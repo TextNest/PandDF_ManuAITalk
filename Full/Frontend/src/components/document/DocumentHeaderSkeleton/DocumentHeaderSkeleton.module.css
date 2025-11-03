@@ -1,0 +1,45 @@
+/* ============================================
+   📄 src/components/document/DocumentHeaderSkeleton/DocumentHeaderSkeleton.module.css
+   ============================================ */
+
+.header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.titleSection {
+  margin-bottom: var(--spacing-lg);
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.searchBar {
+  flex: 1;
+  min-width: 250px;
+}
+
+.filters {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .searchBar {
+    width: 100%;
+  }
+
+  .filters {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

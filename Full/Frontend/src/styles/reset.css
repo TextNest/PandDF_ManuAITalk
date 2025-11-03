@@ -1,0 +1,78 @@
+/* ============================================
+   📄 2. src/styles/reset.css
+   ============================================
+   브라우저 기본 스타일 초기화
+   ============================================ */
+
+/* Box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Margin & Padding 초기화 */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* HTML & Body */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  line-height: var(--line-height-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 미디어 요소 */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Form 요소 */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 텍스트 요소 */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 리스트 */
+ul,
+ol {
+  list-style: none;
+}
+
+/* 링크 */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 버튼 */
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
