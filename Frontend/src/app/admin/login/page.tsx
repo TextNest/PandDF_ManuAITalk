@@ -13,14 +13,7 @@ export default function LoginPage() {
   // 이미 로그인되어 있으면 역할에 따라 리디렉션
   useEffect(() => {
     if (isAuthenticated && user) {
-      // 슈퍼 관리자면 슈퍼 관리자 페이지로
-      if (user.role === 'super_admin') {
-        router.push('/superadmin');
-      } 
-      // 기업 관리자면 대시보드로
-      else if (user.role === 'company_admin') {
-        router.push('/dashboard');
-      }
+      router.push('/')
     }
   }, [isAuthenticated, user, router]);
 

@@ -32,11 +32,11 @@ export function useAuth() {
       // 테스트 계정들
       const testAccounts = [
         {
-          email: 'super@seshat.com',
+          email: 'super@manuai-talk.com',
           password: 'super123',
           user: {
             id: '1',
-            email: 'super@seshat.com',
+            email: 'super@manuai-talk.com',
             name: '슈퍼 관리자',
             role: 'super_admin' as UserRole,
           },
