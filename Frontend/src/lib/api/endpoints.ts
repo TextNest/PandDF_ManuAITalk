@@ -7,6 +7,8 @@
 export const API_ENDPOINTS = {
   // 인증
   AUTH: {
+    CODE: '/api/register/code',
+    INFO: '/api/register/info',
     OAUTH_CALLBACK: '/api/google/callback',
     LOGIN: '/api/login',
     LOGOUT: '/api/logout',

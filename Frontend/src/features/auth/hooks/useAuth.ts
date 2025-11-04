@@ -24,64 +24,66 @@ export function useAuth() {
       setError(null);
 
       // 실제로는 API 호출
-      // const response = await apiClient.post('/api/auth/login', credentials);
+      const response = await apiClient.post(API_ENDPOINTS.AUTH.LOGIN, credentials);
       
-      // Mock 로그인 (개발용)
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // // Mock 로그인 (개발용)
+      // await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // 테스트 계정들
-      const testAccounts = [
-        {
-          email: 'super@manuai-talk.com',
-          password: 'super123',
-          user: {
-            id: '1',
-            email: 'super@manuai-talk.com',
-            name: '슈퍼 관리자',
-            role: 'super_admin' as UserRole,
-          },
-          redirectTo: '/superadmin',
-        },
-        {
-          email: 'admin@samsung.com',
-          password: 'admin123',
-          user: {
-            id: '2',
-            email: 'admin@samsung.com',
-            name: '삼성전자 관리자',
-            role: 'company_admin' as UserRole,
-            companyId: 'company-001',
-            companyName: '삼성전자',
-          },
-          redirectTo: '/dashboard',
-        },
-        {
-          email: 'admin@lg.com',
-          password: 'admin123',
-          user: {
-            id: '3',
-            email: 'admin@lg.com',
-            name: 'LG전자 관리자',
-            role: 'company_admin' as UserRole,
-            companyId: 'company-002',
-            companyName: 'LG전자',
-          },
-          redirectTo: '/dashboard',
-        },
-      ];
+      // // 테스트 계정들
+      // const testAccounts = [
+      //   {
+      //     email: 'super@manuai-talk.com',
+      //     password: 'super123',
+      //     user: {
+      //       id: '1',
+      //       email: 'super@manuai-talk.com',
+      //       name: '슈퍼 관리자',
+      //       role: 'super_admin' as UserRole,
+      //     },
+      //     redirectTo: '/superadmin',
+      //   },
+      //   {
+      //     email: 'admin@samsung.com',
+      //     password: 'admin123',
+      //     user: {
+      //       id: '2',
+      //       email: 'admin@samsung.com',
+      //       name: '삼성전자 관리자',
+      //       role: 'company_admin' as UserRole,
+      //       companyId: 'company-001',
+      //       companyName: '삼성전자',
+      //     },
+      //     redirectTo: '/dashboard',
+      //   },
+      //   {
+      //     email: 'admin@lg.com',
+      //     password: 'admin123',
+      //     user: {
+      //       id: '3',
+      //       email: 'admin@lg.com',
+      //       name: 'LG전자 관리자',
+      //       role: 'company_admin' as UserRole,
+      //       companyId: 'company-002',
+      //       companyName: 'LG전자',
+      //     },
+      //     redirectTo: '/dashboard',
+      //   },
+      // ];
 
-      const account = testAccounts.find(
-        acc => acc.email === credentials.email && acc.password === credentials.password
-      );
+      // const account = testAccounts.find(
+      //   acc => acc.email === credentials.email && acc.password === credentials.password
+      // );
 
-      if (account) {
-        const mockToken = 'mock-jwt-token-' + Date.now();
+      if (response) {
+        console.log(response.data)
+        const account = response.data;
+        const Token = account.access_token;
         
         // Zustand 스토어에 저장
-        setLogin(account.user, mockToken);
+        setLogin(account.user, Token);
         
         // 권한별 페이지로 이동
-        router.push(account.redirectTo);
+        ////router.push(account.redirectTo);
         
         return { success: true };
       } else {

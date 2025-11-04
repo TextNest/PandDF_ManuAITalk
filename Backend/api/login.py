@@ -1,100 +1,96 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
-from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text 
-from typing import Dict, Any, List
 import os
 import httpx
-
+import json
 from core.auth import create_access_token,verify_password,get_password_hash,get_current_user
 from core.db_config import get_session
 from dotenv import load_dotenv
+from schemas.login import LoginRequest,Register,FindCode,CompayCodeResponse,companyInfo,AuthCodeRequest
+from schemas.query import find_company,regist_query,login_query,user_query
+
 load_dotenv()
 client_id = os.getenv("clinet_id")
 client_secret = os.getenv("clinet_secret")
 router = APIRouter()
-class LoginRequest(BaseModel):
-    user_id: str
-    pw: str
 
-class Register(BaseModel):
-    company_name:str
-    name:str
-    user_id:str
-    department:str
-    preferred_language:str
-    pw:str
-class FindCode(BaseModel):
-    company_code:str
 
-find_company= """
-SELECT company_name 
-FROM company
-WHERE company_code = :code
-"""
-regist_query = """
-INSERT INTO user (user_id ,pw_hash,name,company_name,department,preferred_language)VALUES (:user_id,:pw_hash,:name,:company_name,:department,:preferred_language)
-"""
-@router.post("/register/code")
+
+@router.post("/register/code",response_model=CompayCodeResponse)
 async def regist_with_code(code:FindCode,session:AsyncSession=Depends(get_session)):
+    print(code)
     result = await session.execute(text(find_company),
-    params={"code":code.company_code})
+    params={"code":code.code})
     code_row = result.mappings().one_or_none()
+    code_row_dict = dict(code_row)
+    print(code_row_dict['existingDepartments'][0])
+    if 'existingDepartments' in code_row_dict and isinstance(code_row_dict['existingDepartments'], str):
+        departments_str = code_row_dict['existingDepartments'].strip()
+        try:
+            parsed_list = json.loads(departments_str)
+            code_row_dict['existingDepartments'] = parsed_list
+            print("Parsed existingDepartments:", parsed_list[0])
+        except json.JSONDecodeError as e:
+            print(f"JSON 파싱 실패 (Data was not valid JSON string): {e}") 
+            code_row_dict['existingDepartments'] = []
     if not code_row:
         raise HTTPException(status_code=401,detail="현재 등록된 코드가 없습니다.")
-    return {"company_name":code_row["company_name"]}
+    print(code_row_dict)
+    return code_row_dict
+
 @router.post("/register/info")
 async def regist_with_hash_pw(write_info:Register,session:AsyncSession=Depends(get_session)):
-    print(write_info.pw)
-    pw_hash = get_password_hash(write_info.pw)
+    print(write_info.password)
+    pw_hash = get_password_hash(write_info.password)
     params = {
-        "company_name":write_info.company_name,
-        "user_id":write_info.user_id,
+        "company_name":write_info.companyName,
+        "user_id":write_info.email,
         "department":write_info.department,
-        "preferred_language":write_info.preferred_language,
+        "preferred_language":write_info.languagePreference,
         "pw_hash":pw_hash,
-        "name":write_info.name
+        "name":write_info.name,
+        "role":write_info.role
     }
     try:
         await session.execute(text(regist_query),params=params)
         await session.commit()
-        return {"message":f"{write_info.user_id}가 등록되었습니다."}
+        return {"message":f"{write_info.name}가 등록되었습니다."}
     except Exception as e:
         await session.rollback()
         print(f"사용자 등록 실패했습니다.(오류:{e})")
         raise HTTPException(status_code=400,detail=f"사용자 등록 실패했습니다.(오류:{e})")
 
-login_query = """
-SELECT company_name,pw_hash,name
-FROM user
-WHERE user_id = :user_id
-"""
+
 
 @router.post("/login")
 async def login_with_token(login_data:LoginRequest,session:AsyncSession=Depends(get_session)):
-    result = await session.execute(text(login_query),params={"user_id":login_data.user_id})
+    result = await session.execute(text(login_query),params={"user_id":login_data.email})
     user_row = result.mappings().one_or_none()
     if not user_row:
         raise HTTPException(status_code=401,detail="아이디를 찾을 수 없습니다.")
-    
-    if not verify_password(login_data.pw,user_row["pw_hash"]):
-        raise HTTPException(status_code=401,detail="비밀번호가 일치하지 않습니다.")
+    if user_row["role"] == "super_admin":
+        if user_row["pw_hash"]!= login_data.password:
+            raise HTTPException(status_code=401,detail="비밀번호가 일치하지 않습니다.")
+    else:
+        if not verify_password(login_data.password,user_row["pw_hash"]):
+            raise HTTPException(status_code=401,detail="비밀번호가 일치하지 않습니다.")
     
     from datetime import timedelta
     access_token = create_access_token(
         data ={
-            "id":login_data.user_id,    
+            "id":login_data.email,    
             "company_name":user_row["company_name"],
             "name":user_row["name"],
-            "role":"company_admin"
+            "role":user_row["role"]
         } # expire 미 작성시 30분  작성법  expires_delta = timedelta(days=1)
     )
     return {
-        "user":{"name":user_row["name"],"company_name":user_row["company_name"],"role":"company_admin"},
+        "user":{"name":user_row["name"],"company_name":user_row["company_name"],"role":user_row["role"]},
         "access_token":access_token,
         "token_type":"Bearer"
     }
-companyInfo = Dict[str,str]
+
 
 @router.post("/user/me", response_model=companyInfo)
 async def get_admin_info_from_token_post(
@@ -102,19 +98,6 @@ async def get_admin_info_from_token_post(
 ):
     print("보냈습니다.",current_admin_info)
     return current_admin_info
-
-
-
-
-class AuthCodeRequest(BaseModel):
-    code: str
-    redirect_uri: str
-
-user_query = """
-SELECT name
-FROM google_login
-WHERE email = :email
-"""
 
 @router.post("/google/callback")
 async def google_login_call_back(code_data:AuthCodeRequest,session:AsyncSession=Depends(get_session)):
