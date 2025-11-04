@@ -1,0 +1,202 @@
+/* ============================================
+   📄 ChatMessage.module.css - 완전 재설계
+   ============================================ */
+
+/* 메시지 컨테이너 */
+.message {
+  width: 100%; /* 🔥 필수! */
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  animation: messageSlideIn 0.3s ease;
+}
+
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 사용자 메시지 - 오른쪽 */
+.userMessage {
+  justify-content: flex-end; /* 🔥 이게 핵심! */
+}
+
+/* AI 메시지 - 왼쪽 */
+.assistantMessage {
+  justify-content: flex-start;
+}
+
+/* 메시지 내부 래퍼 */
+.messageInner {
+  display: flex;
+  gap: 0.75rem;
+  max-width: 80%;
+}
+
+/* 사용자 메시지 내부 */
+.userMessage .messageInner {
+  flex-direction: row-reverse;
+}
+
+/* AI 메시지 내부 */
+.assistantMessage .messageInner {
+  flex-direction: row;
+}
+
+/* 아바타 */
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.userMessage .avatar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.assistantMessage .avatar {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+}
+
+/* 컨텐츠 */
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0; /* 🔥 텍스트 오버플로우 방지 */
+}
+
+/* 텍스트 버블 */
+.text {
+  padding: 1rem 1.25rem;
+  border-radius: 1.25rem;
+  line-height: 1.6;
+  word-wrap: break-word;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.userMessage .text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-bottom-right-radius: 0.25rem;
+}
+
+.assistantMessage .text {
+  background: white;
+  color: #1a1a1a;
+  border: 1px solid #e0e0e0;
+  border-bottom-left-radius: 0.25rem;
+}
+
+/* 타임스탬프 */
+.timestamp {
+  font-size: 0.75rem;
+  color: #999;
+  padding: 0 0.25rem;
+}
+
+.userMessage .timestamp {
+  text-align: right;
+}
+
+.assistantMessage .timestamp {
+  text-align: left;
+}
+
+/* 출처 */
+.sources {
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.75rem;
+  padding: 0.875rem 1rem;
+  font-size: 0.875rem;
+}
+
+.sourcesTitle {
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 0.5rem 0;
+}
+
+.sources ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  list-style: none;
+}
+
+.sources li {
+  color: #666;
+  margin-bottom: 0.375rem;
+  position: relative;
+}
+
+.sources li:before {
+  content: '•';
+  position: absolute;
+  left: -1rem;
+  color: #10b981;
+}
+
+/* 피드백 버튼 */
+.feedbackButtons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.feedbackButton {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.875rem;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 1.5rem;
+  color: #666;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.feedbackButton:hover:not(:disabled) {
+  background: #f8f9fa;
+  border-color: #667eea;
+  color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+.feedbackButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.feedbackButton.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #667eea;
+  color: white;
+  font-weight: 600;
+}
+
+.feedbackLabel {
+  font-size: 0.75rem;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .messageInner {
+    max-width: 90%;
+  }
+}

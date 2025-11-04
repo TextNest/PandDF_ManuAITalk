@@ -1,0 +1,283 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f8f9fa;
+}
+
+/* 헤더 - 중앙 정렬 */
+.header {
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 🔥 중앙 정렬 */
+}
+
+.headerTitle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.headerIcon {
+  color: #667eea;
+}
+
+.headerTitle h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.headerTitle p {
+  font-size: 0.875rem;
+  color: #666;
+  margin: 0;
+}
+
+/* 메인 컨텐츠 */
+.main {
+  flex: 1;
+  display: flex;
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.simulationContainer {
+  flex: 1;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* 플레이스홀더 */
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 600px;
+  padding: 3rem;
+  text-align: center;
+}
+
+.placeholderIcon {
+  color: #667eea;
+  opacity: 0.3;
+  margin-bottom: 2rem;
+}
+
+.placeholder h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+}
+
+.placeholder p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.specs {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: left;
+  max-width: 500px;
+  margin-bottom: 2rem;
+}
+
+.specs h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+}
+
+.specs ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.specs li {
+  padding: 0.5rem 0;
+  color: #333;
+  font-size: 0.875rem;
+}
+
+.devNote {
+  background: #fffbeb;
+  border: 1px solid #fbbf24;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  max-width: 600px;
+}
+
+.devNote strong {
+  color: #d97706;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.devNote p {
+  font-size: 0.875rem;
+  color: #92400e;
+  margin: 0.25rem 0;
+}
+
+/* 사이드바 */
+.sidebar {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.infoCard {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.infoCard h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.infoItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.infoItem:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.value {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.guideList {
+  padding-left: 1.25rem;
+  margin: 0;
+}
+
+.guideList li {
+  font-size: 0.875rem;
+  color: #333;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.arButton {
+  margin-top: 2rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: #667eea;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.arButton:hover {
+  background-color: #5a67d8;
+}
+
+.arSceneWrapper {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+/* AR Active State */
+.page.arActive .placeholder {
+  display: none;
+}
+
+.page.arActive .arSceneWrapper {
+  display: block;
+}
+.page.arActive .sessionHistoryWrapper,
+.page.arActive > header,
+.page.arActive > main > aside {
+  display: none;
+}
+
+.page.arActive {
+  flex-direction: row; /* Adjust main flex direction if needed, or let main handle it */
+  padding: 0;
+}
+
+.page.arActive .main {
+  flex: 1;
+  padding: 0;
+  gap: 0;
+}
+
+.page.arActive .simulationContainer {
+  flex: 1;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* 반응형 */
+@media (max-width: 1024px) {
+  .main {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .main {
+    padding: 1rem;
+  }
+
+  .placeholder {
+    min-height: 400px;
+    padding: 2rem 1rem;
+  }
+
+  .placeholder h2 {
+    font-size: 1.5rem;
+  }
+
+  .specs {
+    padding: 1.5rem;
+  }
+}

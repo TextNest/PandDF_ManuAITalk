@@ -1,0 +1,40 @@
+# Backend Framework
+fastapi
+uvicorn[standard]
+jinja2
+websockets
+
+# LangChain
+langchain==0.3.27
+langgraph==1.0.1
+langchain-openai==0.3.35
+langchain-community==0.3.31
+langchain-core==0.3.79
+
+# OpenAI
+openai==2.6.0
+
+# Vector Store
+faiss-cpu
+
+# Document Processing (PDF, Images, OCR)
+PyMuPDF
+Pillow
+pytesseract 
+
+# Utilities
+python-dotenv
+pydantic
+requests
+
+# Development / Notebook Environment
+ipython
+
+# Database
+SQLAlchemy
+aiomysql
+
+#auth
+python-jose[cryptography]
+passlib
+bcrypt==4.0.1

@@ -1,0 +1,138 @@
+/* // ============================================
+// 📄 8. src/app/(user)/product/[id]/product-page.module.css
+// ============================================ */
+
+.productPage {
+  min-height: 100%;
+  background-color: var(--bg-secondary);
+}
+
+/* 제품 이미지 */
+.productImage {
+  background-color: white;
+  padding: var(--spacing-2xl);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagePlaceholder {
+  width: 200px;
+  height: 200px;
+  background-color: var(--bg-secondary);
+  border-radius: var(--border-radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 제품 정보 */
+.productInfo {
+  background-color: white;
+  padding: var(--spacing-lg);
+  border-bottom: 8px solid var(--bg-secondary);
+}
+
+.productName {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.productId {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* 액션 버튼들 */
+.actionButtons {
+  background-color: white;
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-lg);
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  /* 터치 영역 확보 */
+  min-height: 72px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.actionButton:active {
+  transform: scale(0.98);
+  background-color: var(--bg-tertiary);
+}
+
+.actionButton.primary {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.actionButton.primary:active {
+  background-color: var(--color-primary-dark);
+}
+
+.buttonTitle {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 4px;
+}
+
+.buttonDesc {
+  font-size: var(--font-size-sm);
+  opacity: 0.8;
+}
+
+/* FAQ 섹션 */
+.faqSection {
+  background-color: white;
+  padding: var(--spacing-lg);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.faqItem {
+  padding: var(--spacing-md);
+  background-color: var(--bg-secondary);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  /* 터치 영역 */
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+}
+
+.faqItem:active {
+  background-color: var(--bg-tertiary);
+}
+
+.faqQuestion {
+  margin: 0;
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+}

@@ -1,0 +1,263 @@
+/* // ============================================
+// 📄 7. src/components/document/DocumentCard/DocumentCard.module.css
+// ============================================ */
+
+.card {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  transition: all var(--transition-base);
+  position: relative;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.card:hover .actions {
+  opacity: 1;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-md);
+}
+
+/* 🆕 메뉴 래퍼 */
+.menuWrapper {
+  position: relative;
+}
+
+.menuButton {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  border-radius: var(--border-radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.menuButton:hover {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+/* 🆕 드롭다운 메뉴 */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  min-width: 160px;
+  background: white;
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: 10;
+  overflow: hidden;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdownItem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: none;
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.dropdownItem:hover {
+  background-color: var(--bg-secondary);
+}
+
+.dropdownItem.danger {
+  color: var(--color-error);
+}
+
+.dropdownItem.danger:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+.content {
+  display: block;
+  margin-bottom: var(--spacing-md);
+  text-decoration: none;
+  color: inherit;
+}
+
+.title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  margin: 0 0 var(--spacing-xs) 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.filename {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meta {
+  display: flex;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metaLabel {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+}
+
+.metaValue {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  padding: 4px 8px;
+  border-radius: var(--border-radius-sm);
+}
+
+.status.ready {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--color-success);
+}
+
+.status.processing {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: var(--color-warning);
+}
+
+.status.error {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--color-error);
+}
+
+.date {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+}
+
+.actions {
+  position: absolute;
+  bottom: var(--spacing-lg);
+  right: var(--spacing-lg);
+  display: flex;
+  gap: var(--spacing-sm);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.actionButton {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-light);
+  background-color: white;
+  color: var(--text-secondary);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.actionButton:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background-color: var(--bg-secondary);
+}
+
+.actionButton.danger:hover {
+  border-color: var(--color-error);
+  color: var(--color-error);
+}
+
+/* 드롭다운 구분선 */
+.divider {
+  height: 1px;
+  background-color: var(--border-light);
+  margin: 0.25rem 0;
+}
+
+/* footer 수정 */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.statusGroup {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* 비활성 라벨 */
+.inactiveLabel {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  padding: 4px 8px;
+  border-radius: var(--border-radius-sm);
+  background-color: rgba(156, 163, 175, 0.1);
+  color: #6b7280;
+}
+
+/* DocumentCard.module.css에 추가 */
+.description {
+  font-size: 0.875rem;
+  color: #999;
+  margin: 0.25rem 0 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

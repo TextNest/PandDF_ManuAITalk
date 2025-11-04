@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <title>AI 챗봇 (PID: {{ pid }})</title>
+    <style>
+        /* CSS 스타일은 변경 없이 그대로 사용 */
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f0f2f5; }
+        .chat-container { width: 400px; height: 600px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); background-color: #fff; display: flex; flex-direction: column; }
+        .chat-box { flex-grow: 1; padding: 20px; overflow-y: auto; border-bottom: 1px solid #e5e5e5; display: flex; flex-direction: column; }
+        .message-bubble { max-width: 75%; padding: 10px 15px; border-radius: 18px; margin-bottom: 10px; line-height: 1.4; word-wrap: break-word; }
+        .bot-message { background-color: #e9e9eb; color: #000; align-self: flex-start; }
+        .user-message { background-color: #ffeb3b; color: #000; align-self: flex-end; }
+        .message-bubble img { max-width: 100%; border-radius: 10px; margin-top: 5px; display: block; }
+        .input-area { display: flex; padding: 10px; }
+        #messageInput { flex-grow: 1; border: 1px solid #ccc; border-radius: 20px; padding: 10px 15px; font-size: 16px; outline: none; }
+        button { border: none; background-color: #007bff; color: white; padding: 10px 20px; border-radius: 20px; margin-left: 10px; cursor: pointer; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-box" id="chatBox"></div>
+        <div class="input-area">
+            <input type="text" id="messageInput" placeholder="메시지를 입력하세요..." onkeydown="handleEnter(event)">
+            <button onclick="sendMessage()">전송</button>
+        </div>
+    </div>
+
+    <script>
+        const pid = "{{ pid }}";
+        const chatBox = document.getElementById("chatBox");
+        const messageInput = document.getElementById("messageInput");
+
+        const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+        const socket = new WebSocket(`${wsProtocol}//${window.location.host}/ws/${pid}`);
+
+
+        const addMessageToChat = (sender, content) => {
+            const messageDiv = document.createElement("div");
+            messageDiv.classList.add("message-bubble");
+            messageDiv.classList.add(sender === 'bot' ? "bot-message" : "user-message");
+
+            // 텍스트 내용 처리
+            if (content.text) {
+                if (content.isMarkdown) {
+                    // 마크다운 텍스트일 경우 HTML로 변환하여 삽입
+                    messageDiv.innerHTML = marked.parse(content.text);
+                } else {
+                    // 일반 텍스트는 그대로 삽입
+                    messageDiv.textContent = content.text;
+                }
+            }
+            
+            // 이미지 내용 처리 (백엔드 키 이름 'image'로 통일)
+            if (content.image) {
+                const imgElement = document.createElement('img');
+                imgElement.src = content.image;
+                messageDiv.appendChild(imgElement);
+            }
+            
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        };
+
+        // --- WebSocket 이벤트 핸들러 ---
+
+        socket.onopen = () => {
+            console.log("✅ WebSocket 연결 성공");
+        };
+        
+        socket.onmessage = (event) => {
+            console.log("📥 서버로부터 메시지 수신:", event.data);
+            const serverData = JSON.parse(event.data);
+            
+            if (serverData.type === 'bot') {
+                // 백엔드에서 받은 봇 메시지를 화면에 추가
+                // 백엔드에서 보낸 텍스트는 마크다운으로 간주
+                addMessageToChat('bot', { 
+                    text: serverData.content, 
+                    image: serverData.img, // 백엔드 키는 'image'
+                    isMarkdown: true 
+                });
+            }
+        };
+
+        socket.onerror = (error) => {
+            console.error("❌ WebSocket 오류 발생:", error);
+            addMessageToChat('bot', { text: "서버 연결에 실패했습니다. 잠시 후 다시 시도해주세요." });
+        };
+        
+        socket.onclose = () => {
+            console.log("🔌 WebSocket 연결 종료");
+        };
+
+        // --- 사용자 입력 처리 함수 ---
+
+        const sendMessage = () => {
+            const messageText = messageInput.value;
+            if (messageText.trim() === "") return;
+
+            // 사용자 메시지를 화면에 즉시 추가 (마크다운 아님)
+            addMessageToChat('user', { text: messageText, isMarkdown: false });
+            
+            // 서버로 메시지 전송
+            socket.send(messageText);
+    
+            messageInput.value = "";
+        };
+
+        const handleEnter = (event) => {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        };
+    </script>
+</body>
+</html>

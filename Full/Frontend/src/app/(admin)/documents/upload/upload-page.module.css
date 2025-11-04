@@ -1,0 +1,93 @@
+/* ============================================
+   📄 src/app/(admin)/documents/upload/upload-page.module.css
+   ============================================ */
+
+.page {
+  max-width: 800px;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.875rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin: 0;
+  color: #666;
+  font-size: 1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* 🆕 추가 */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.required {
+  color: #ef4444;
+}
+
+.select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  font-size: 0.9375rem;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.helperText {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+@media (max-width: 768px) {
+  .actions {
+    flex-direction: column-reverse;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+}
