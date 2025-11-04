@@ -8,7 +8,7 @@ from core.auth import create_access_token,verify_password,get_password_hash,get_
 from core.db_config import get_session
 from dotenv import load_dotenv
 from schemas.login import LoginRequest,Register,FindCode,CompayCodeResponse,companyInfo,AuthCodeRequest
-from schemas.query import find_company,regist_query,login_query,user_query
+from core.query import find_company,regist_query,login_query,user_query
 
 load_dotenv()
 client_id = os.getenv("clinet_id")
