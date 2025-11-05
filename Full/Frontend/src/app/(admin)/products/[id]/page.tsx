@@ -1,4 +1,5 @@
 // src/app/(admin)/products/[id]/page.tsx
+// A comment to trigger a file change.
 
 import React from 'react';
 
