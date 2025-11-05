@@ -39,8 +39,9 @@ export const useChat = (productId: string) => {
 
       // 1. 동적으로 WebSocket 주소 생성
       const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-      // 💡 productId만 사용하는 순수 WebSocket 주소
-      const wsUrl = `${wsProtocol}//localhost:8000/ws/${productId}`;
+      // 💡 productId만 사용하는 순수 WebSocket 주소(.env.local 파일에서 백엔드 호스트 주소를 읽어옵니다.)
+      const wsHost = process.env.NEXT_PUBLIC_WS_HOST || 'localhost:8000';
+      const wsUrl = `${wsProtocol}//${wsHost}/ws/${productId}`;
       
       console.log(`WebSocket 연결 시도: ${wsUrl}`);
       

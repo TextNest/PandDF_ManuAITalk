@@ -10,6 +10,7 @@ from api import chat,login,admin,superadmin
 origins = [
     "http://localhost:3000",  
     "http://127.0.0.1:3000", 
+    "https://subnotational-unmodified-myrl.ngrok-free.dev", # ngrok 테스트용
 
 ]
 
