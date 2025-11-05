@@ -7,6 +7,8 @@ import Button from '@/components/ui/Button/Button';
 import { Lock, Mail, User, Key, Building2 } from 'lucide-react';
 import styles from './register-page.module.css';
 import { toast } from '@/store/useToastStore';
+import apiClient from '@/lib/api/client'; // apiClient는 세션 로딩에 필요
+import { API_ENDPOINTS } from '@/lib/api/endpoints';
 
 
 // Mock 기업 데이터
@@ -68,27 +70,33 @@ export default function RegisterPage() {
   const [languagePreference, setLanguagePreference] = useState('ko');
 
   // 가입 코드 검증
-  const handleVerifyCode = (e: FormEvent) => {
+  const handleVerifyCode = async (e: FormEvent) => {
     e.preventDefault();
     setError(null);
-    setIsLoading(true);
-
-    setTimeout(() => {
-      const company = mockCompanies.find(c => c.code === registrationCode.toUpperCase());
-
+    setIsLoading(true); 
+    try{
+      console.log(registrationCode);
+      const company =  await apiClient.post(API_ENDPOINTS.AUTH.CODE,{code:registrationCode});
+      console.log(company.data);
       if (company) {
         setVerifiedCompany({
-          id: company.id,
-          name: company.name,
-          existingDepartments: company.existingDepartments
+          id: company.data.id,
+          name: company.data.name,
+          existingDepartments: company.data.existingDepartments
         });
-        setStep('info');
+        setStep('info');  
         setError(null);
       } else {
         setError('유효하지 않은 가입 코드입니다. 슈퍼 관리자에게 문의하세요.');
       }
+      
+    }catch{
+      console.error('Code verification failed:', error);
+        const errorMessage = error.response?.data?.message || '코드 확인 중 오류가 발생했습니다.';
+        setError(errorMessage);
+    }finally{
       setIsLoading(false);
-    }, 1000);
+    }
   };
 
   // 회원가입 처리
@@ -117,28 +125,42 @@ export default function RegisterPage() {
     setIsLoading(true);
 
     // 실제로는 API 호출
-    setTimeout(() => {
-      const userData = {
+    const userData = {
         name,
         email,
         companyId: verifiedCompany?.id,
         companyName: verifiedCompany?.name,
         department: finalDepartment,
         languagePreference,
+        password,
         role: 'company_admin',
       };
-
+      
       console.log('회원가입 데이터:', userData);
-
-      toast.success(`${verifiedCompany?.name} 관리자로 가입되었습니다!`);
-
-      setTimeout(() => {
-        router.push('/admin/login');
-      }, 1500);
-
-      setIsLoading(false);
-    }, 1500);
-  };
+      try{
+        const response =  await apiClient.post(API_ENDPOINTS.AUTH.INFO,userData);
+        if (response){
+          toast.success(`${verifiedCompany?.name} 관리자로 가입되었습니다!`);
+          setTimeout(()=>{
+            router.push('/admin/login');
+          },1500);
+          }
+        else{
+          setError('회원가입에 실패했습니다. 다시 시도해주세요.');
+        }
+      }catch (error) {
+        
+        console.error('회원가입 실패:', error);
+        
+        
+        const errorMessage = error.response?.data?.message || '회원가입에 실패했습니다. 다시 시도해 주세요.';
+        setError(errorMessage);
+    
+  
+      }finally{
+        setIsLoading(false);
+      }
+    };
 
   // Step 1 재설정
   const handleBackToCode = () => {
@@ -162,7 +184,7 @@ export default function RegisterPage() {
 
       <div className={styles.container}>
         <div className={styles.logo}>
-          <h1>ManuAI-Talk</h1>
+          <h1>SeShat</h1>
           <p>기업 관리자 회원가입</p>
         </div>
 

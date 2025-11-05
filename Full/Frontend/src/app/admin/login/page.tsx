@@ -13,14 +13,7 @@ export default function LoginPage() {
   // 이미 로그인되어 있으면 역할에 따라 리디렉션
   useEffect(() => {
     if (isAuthenticated && user) {
-      // 슈퍼 관리자면 슈퍼 관리자 페이지로
-      if (user.role === 'super_admin') {
-        router.push('/superadmin');
-      } 
-      // 기업 관리자면 대시보드로
-      else if (user.role === 'company_admin') {
-        router.push('/dashboard');
-      }
+      router.push('/')
     }
   }, [isAuthenticated, user, router]);
 
@@ -33,7 +26,7 @@ export default function LoginPage() {
 
       <div className={styles.container}>
         <div className={styles.logo}>
-          <h1>ManuAI-Talk</h1>
+          <h1>SeShat</h1>
           <p>AI 기반 제품 설명서 질의응답 시스템</p>
         </div>
 

@@ -5,9 +5,19 @@
 // ============================================
 
 export const API_ENDPOINTS = {
+  // 인증
+  AUTH: {
+    CODE: '/api/register/code',
+    INFO: '/api/register/info',
+    OAUTH_CALLBACK: '/api/google/callback',
+    LOGIN: '/api/login',
+    LOGOUT: '/api/logout',
+    ME: '/api/user/me',
+  },
+  
   // 채팅
   CHAT: {
-    SEND_MESSAGE: '/chat/message',
+    SESSIONS : '/chat/history',
     GET_HISTORY: (productId: string) => `/chat/history/${productId}`,
     STREAM: '/chat/stream',
   },

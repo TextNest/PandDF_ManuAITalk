@@ -5,7 +5,7 @@ import styles from './settings-page.module.css';
 
 export default function SettingsPage() {
   const [settings, setSettings] = useState({
-    siteName: 'ManuAI-Talk',
+    siteName: 'SeShat',
     maxUploadSize: '10',
     sessionTimeout: '30',
     enableRegistration: true,

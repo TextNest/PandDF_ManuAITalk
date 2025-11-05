@@ -4,7 +4,7 @@
 // IndexedDB 초기화 및 관리
 // ============================================
 
-const DB_NAME = 'manuai-talk-db';
+const DB_NAME = 'seshat-db';
 const DB_VERSION = 2; // 🆕 버전 업그레이드
 const CHAT_STORE = 'chat-sessions';
 const FEEDBACK_STORE = 'feedbacks'; // 🆕 피드백 스토어

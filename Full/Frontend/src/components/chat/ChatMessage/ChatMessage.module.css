@@ -200,3 +200,87 @@
     max-width: 90%;
   }
 }
+.assistantMessage .text p {
+  margin-top: 0;
+  margin-bottom: 0.5rem; /* 문단 간격 */
+}
+.assistantMessage .text p:last-child {
+  margin-bottom: 0;
+}
+
+/* 목록 (ul, ol) */
+.assistantMessage .text ul,
+.assistantMessage .text ol {
+  padding-left: 24px; /* 들여쓰기 */
+  margin: 0.5rem 0;
+  list-style: revert; /* 🛑 list-style: none 해제 (점/숫자 보이게) */
+}
+
+.assistantMessage .text li {
+  margin-bottom: 0.25rem;
+  line-height: 1.5;
+}
+
+/* 🛑 마크다운 <li>에는 가상요소(::before) 제거 (출처와 겹치지 않게) */
+.assistantMessage .text li::before {
+  content: none;
+}
+
+/* 인라인 코드 `code` */
+.assistantMessage .text code {
+  background-color: #f1f3f5; /* 연한 회색 배경 */
+  color: #c92a2a; /* 붉은색 텍스트 */
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier,
+    monospace;
+}
+
+/* 코드 블럭 ```code``` */
+.assistantMessage .text pre {
+  background-color: #2e3440; /* 어두운 배경 (Nord 테마) */
+  color: #d8dee9; /* 밝은 글자색 */
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto; /* 가로 스크롤 */
+  margin: 0.75rem 0;
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+.assistantMessage .text pre code {
+  background-color: transparent; /* pre 안의 code는 배경색 없음 */
+  color: inherit; /* pre의 글자색 상속 */
+  padding: 0;
+  font-size: 1em; /* pre의 폰트 크기 그대로 사용 */
+}
+
+/* 인용문 > ... */
+.assistantMessage .text blockquote {
+  border-left: 4px solid #10b981; /* 아바타와 동일한 녹색 라인 */
+  padding-left: 1rem;
+  margin: 0.75rem 0;
+  color: #495057;
+  font-style: italic;
+}
+
+/* 표 */
+.assistantMessage .text table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  border: 1px solid #e0e0e_0;
+}
+
+.assistantMessage .text th,
+.assistantMessage .text td {
+  border: 1px solid #e0e0e0;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.assistantMessage .text th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}

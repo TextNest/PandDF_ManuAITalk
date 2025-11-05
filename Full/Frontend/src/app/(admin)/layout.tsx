@@ -42,7 +42,7 @@ export default function AdminLayout({
       <Sidebar />
       <div className={styles.mainContent}>
         <header className={styles.header}>
-          <h1 className={styles.title}>ManuAI-Talk 관리자</h1>
+          <h1 className={styles.title}>ManuAI-Talk  관리자</h1>
           <div className={styles.userMenu}>
             <div className={styles.userInfo}>
               <div className={styles.avatar}>

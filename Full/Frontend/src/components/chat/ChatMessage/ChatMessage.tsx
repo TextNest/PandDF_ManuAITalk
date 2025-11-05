@@ -2,9 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import { User, Bot, ThumbsUp, ThumbsDown } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+// 2. IndexedDB 로직
 import { dbManager, MessageFeedback } from '@/lib/db/indexedDB';
+// 3. CSS 파일
 import styles from './ChatMessage.module.css';
 
+// 4. Message 타입 정의
 interface Message {
   id: string;
   role: 'user' | 'assistant';
@@ -20,18 +25,19 @@ interface ChatMessageProps {
   message: Message;
   sessionId: string;
   productId: string;
-  isFirstMessage?: boolean; // 🆕 추가
+  isFirstMessage?: boolean;
 }
 
 export default function ChatMessage({
   message,
   sessionId,
   productId,
-  isFirstMessage = false // 🆕 추가
+  isFirstMessage = false
 }: ChatMessageProps) {
   const [feedback, setFeedback] = useState<'positive' | 'negative' | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  // 5. 피드백 로드 로직
   useEffect(() => {
     if (message.role === 'assistant') {
       loadExistingFeedback();
@@ -45,20 +51,17 @@ export default function ChatMessage({
     }
   };
 
+  // 6. 피드백 핸들러 로직
   const handleFeedback = async (type: 'positive' | 'negative') => {
     if (isLoading) return;
-
     setIsLoading(true);
 
     try {
-      // 🆕 같은 버튼을 다시 누르면 취소
       if (feedback === type) {
-        // 피드백 삭제
         await dbManager.deleteFeedback(sessionId, message.id);
         setFeedback(null);
         console.log('피드백 취소됨');
       } else {
-        // 새로운 피드백 저장 또는 변경
         const newFeedback: MessageFeedback = {
           id: `${sessionId}-${message.id}`,
           messageId: message.id,
@@ -67,7 +70,6 @@ export default function ChatMessage({
           feedbackType: type,
           timestamp: new Date().toISOString(),
         };
-
         await dbManager.saveFeedback(newFeedback);
         setFeedback(type);
         console.log(`피드백 저장됨: ${type}`);
@@ -79,7 +81,7 @@ export default function ChatMessage({
     }
   };
 
-  // 🆕 역할에 따라 별도 클래스명 사용
+  // 7. 새 CSS 클래스 이름 적용
   const messageClass = message.role === 'user'
     ? `${styles.message} ${styles.userMessage}`
     : `${styles.message} ${styles.assistantMessage}`;
@@ -87,13 +89,21 @@ export default function ChatMessage({
   return (
     <div className={messageClass}>
       <div className={styles.messageInner}>
+        {/* 아바타 */}
         <div className={styles.avatar}>
           {message.role === 'user' ? <User size={20} /> : <Bot size={20} />}
         </div>
         
+        {/* 컨텐츠 */}
         <div className={styles.content}>
-          <div className={styles.text}>{message.content}</div>
+          {/* 8. 🛑 핵심! message.content를 ReactMarkdown으로 렌더링 */}
+          <div className={styles.text}>
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {message.content}
+            </ReactMarkdown>
+          </div>
           
+          {/* 출처 (AI 응답 + sources가 있을 때) */}
           {message.role === 'assistant' && message.sources && (
             <div className={styles.sources}>
               <p className={styles.sourcesTitle}>📚 출처:</p>
@@ -107,7 +117,7 @@ export default function ChatMessage({
             </div>
           )}
 
-          {/* 🆕 첫 메시지가 아닐 때만 피드백 버튼 표시 */}
+          {/* 피드백 (AI 응답 + 첫 메시지가 아닐 때) */}
           {message.role === 'assistant' && !isFirstMessage && (
             <div className={styles.feedbackButtons}>
               <button
@@ -132,6 +142,7 @@ export default function ChatMessage({
             </div>
           )}
           
+          {/* 타임스탬프 */}
           <div className={styles.timestamp}>
             {new Date(message.timestamp).toLocaleTimeString('ko-KR', {
               hour: '2-digit',

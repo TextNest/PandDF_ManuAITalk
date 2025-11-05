@@ -63,10 +63,27 @@ export default function ChatPage({
 
   // 구글 로그인 함수
   const handleGoogleLogin = () => {
-    // TODO: 실제 Google OAuth 연동
-    toast.info('구글 로그인 기능은 백엔드 연동 후 활성화됩니다.');
-    // 실제 구현: window.location.href = '/api/auth/google';
+
+
+    // 1. Google OAuth 인증 URL 구성
+    const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+    // 리디렉션 URI는 Google Cloud Console에 등록된 주소여야 합니다.
+    const REDIRECT_URI = `${window.location.origin}/auth/callback`; 
+    const SCOPE = 'openid profile email'; // 요청할 권한
+
+    const AUTH_URL = 
+      `https://accounts.google.com/o/oauth2/v2/auth?` +
+      `client_id=${GOOGLE_CLIENT_ID}` +
+      `&redirect_uri=${REDIRECT_URI}` +
+      `&response_type=code` + // 인가 코드를 받기 위함
+      `&scope=${SCOPE}` +
+      `&access_type=offline` +
+      `&prompt=select_account`;
+
+    // 2. 사용자를 Google 인증 페이지로 리디렉션
+    window.location.href = AUTH_URL;
   };
+
 
   // 메시지 전송
   const handleSend = async () => {
@@ -157,7 +174,7 @@ export default function ChatPage({
         </div>
 
         {/* 추천 질문 (메시지가 1개일 때만) */}
-        {messages.length === 1 && !isLoading && (
+        {!isLoading && (
           <SuggestedQuestions
             questions={SUGGESTED_QUESTIONS}
             onSelect={handleSuggestedQuestion}

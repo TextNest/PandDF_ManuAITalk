@@ -16,12 +16,6 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-.titleContainer {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
 .title {
   margin: 0;
   font-size: 1.25rem;
@@ -31,22 +25,9 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  cursor: pointer;
-}
-
-.arButton {
-  padding: 0.5rem 1rem;
-  background-color: transparent;
-  border: 1px solid var(--color-primary);
-  color: var(--color-primary);
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.2s, color 0.2s;
-}
-
-.arButton:hover {
-  background-color: var(--color-primary);
-  color: white;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* 🆕 로그인/로그아웃 버튼 */

@@ -27,9 +27,15 @@
   margin-bottom: var(--spacing-md);
 }
 
-/* 🆕 메뉴 래퍼 */
-.menuWrapper {
-  position: relative;
+.iconWrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--border-radius-md);
+  background-color: var(--color-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .menuButton {
@@ -49,59 +55,6 @@
 .menuButton:hover {
   background-color: var(--bg-secondary);
   color: var(--text-primary);
-}
-
-/* 🆕 드롭다운 메뉴 */
-.dropdown {
-  position: absolute;
-  top: calc(100% + 4px);
-  right: 0;
-  min-width: 160px;
-  background: white;
-  border: 1px solid var(--border-light);
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-lg);
-  z-index: 10;
-  overflow: hidden;
-  animation: slideDown 0.2s ease;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.dropdownItem {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1rem;
-  border: none;
-  background: none;
-  color: var(--text-primary);
-  font-size: var(--font-size-sm);
-  text-align: left;
-  cursor: pointer;
-  transition: background-color var(--transition-fast);
-}
-
-.dropdownItem:hover {
-  background-color: var(--bg-secondary);
-}
-
-.dropdownItem.danger {
-  color: var(--color-error);
-}
-
-.dropdownItem.danger:hover {
-  background-color: rgba(239, 68, 68, 0.1);
 }
 
 .content {
@@ -220,44 +173,4 @@
 .actionButton.danger:hover {
   border-color: var(--color-error);
   color: var(--color-error);
-}
-
-/* 드롭다운 구분선 */
-.divider {
-  height: 1px;
-  background-color: var(--border-light);
-  margin: 0.25rem 0;
-}
-
-/* footer 수정 */
-.footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.statusGroup {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-
-/* 비활성 라벨 */
-.inactiveLabel {
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
-  padding: 4px 8px;
-  border-radius: var(--border-radius-sm);
-  background-color: rgba(156, 163, 175, 0.1);
-  color: #6b7280;
-}
-
-/* DocumentCard.module.css에 추가 */
-.description {
-  font-size: 0.875rem;
-  color: #999;
-  margin: 0.25rem 0 0 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }

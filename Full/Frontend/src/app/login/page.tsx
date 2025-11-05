@@ -10,17 +10,28 @@ export default function UserLoginPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   // 구글 로그인 (실제로는 OAuth)
-  const handleGoogleLogin = async () => {
-    setIsLoading(true);
 
-    // TODO: 실제 Google OAuth 연동
-    // window.location.href = '/api/auth/google';
+  // 💡 사용자 요청에 따라 함수는 에로우 함수로 작성합니다.
+  const handleGoogleLogin = () => {
+    setIsLoading(true); // 버튼 비활성화 및 로딩 표시
 
-    // 임시: Mock 로그인
-    setTimeout(() => {
-      toast.info('구글 로그인 기능은 백엔드 연동 후 활성화됩니다.');
-      setIsLoading(false);
-    }, 1000);
+    // 1. Google OAuth 인증 URL 구성
+    const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+    // 리디렉션 URI는 Google Cloud Console에 등록된 주소여야 합니다.
+    const REDIRECT_URI = `${window.location.origin}/auth/callback`; 
+    const SCOPE = 'openid profile email'; // 요청할 권한
+
+    const AUTH_URL = 
+      `https://accounts.google.com/o/oauth2/v2/auth?` +
+      `client_id=${GOOGLE_CLIENT_ID}` +
+      `&redirect_uri=${REDIRECT_URI}` +
+      `&response_type=code` + // 인가 코드를 받기 위함
+      `&scope=${SCOPE}` +
+      `&access_type=offline` +
+      `&prompt=select_account`;
+
+    // 2. 사용자를 Google 인증 페이지로 리디렉션
+    window.location.href = AUTH_URL;
   };
 
   // 로그인 없이 계속
@@ -42,7 +53,7 @@ export default function UserLoginPage() {
 
       <div className={styles.container}>
         <div className={styles.logo}>
-          <h1>ManuAI-Talk</h1>
+          <h1>SeShat</h1>
           <p>AI 제품 설명서 도우미</p>
         </div>
 

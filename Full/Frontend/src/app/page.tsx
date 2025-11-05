@@ -2,7 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/features/auth/hooks/useAuth';
-import { Sparkles, QrCode, Shield, Settings } from 'lucide-react';
+// 1. 아이콘 추가 (History, Building 등)
+import { Sparkles, QrCode, Shield, Settings, History, Building } from 'lucide-react'; 
 import { useState, useEffect } from 'react';
 import SearchBar from '@/components/home/SearchBar/SearchBar';
 import RecentSearches from '@/components/home/RecentSearches/RecentSearches';
@@ -13,10 +14,13 @@ import { toast } from '@/store/useToastStore';
 
 export default function HomePage() {
   const router = useRouter();
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated, user } = useAuth(); // 👈 로그인 상태
   const [showDevTools, setShowDevTools] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  // 이미 로그인된 경우 자동 리디렉션
+  // 🛑 1. 자동 리디렉션 useEffect는 주석 처리 (또는 삭제)
+  // (로그인해도 이 페이지에 머무름)
+  /*
   useEffect(() => {
     if (isAuthenticated && user) {
       if (user.role === 'super_admin') {
@@ -28,17 +32,107 @@ export default function HomePage() {
       }
     }
   }, [isAuthenticated, user, router]);
+  */
 
+  // --- 검색창 핸들러 (기존과 동일) ---
+  const handleSearchChange = (query) => {
+    setSearchQuery(query);
+  };
+
+  const handleSearchSubmit = (query) => {
+    const trimmedQuery = query.trim();
+    if (!trimmedQuery) {
+      toast.show('제품 ID 또는 이름을 입력해주세요.', 'warning');
+      return;
+    }
+    // 검색 쿼리(제품 ID 또는 슬러그)를 기반으로 채팅 페이지로 바로 이동
+    console.log('채팅 페이지로 이동:', trimmedQuery);
+    router.push(`/chat/${encodeURIComponent(trimmedQuery)}`);
+  };
+
+  // --- 버튼 핸들러 (기존과 동일) ---
   const handleGoogleLogin = () => {
-    toast.info('구글 로그인 기능은 백엔드 연동 후 활성화됩니다.');
+    // 1. Google OAuth 인증 URL 구성
+    const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+    const REDIRECT_URI = `${window.location.origin}/auth/callback`;
+    const SCOPE = 'openid profile email'; // 요청할 권한
+
+    const AUTH_URL =
+      `https://accounts.google.com/o/oauth2/v2/auth?` +
+      `client_id=${GOOGLE_CLIENT_ID}` +
+      `&redirect_uri=${REDIRECT_URI}` +
+      `&response_type=code` + // 인가 코드를 받기 위함
+      `&scope=${SCOPE}` +
+      `&access_type=offline` +
+      `&prompt=select_account`;
+
+    // 2. 사용자를 Google 인증 페이지로 리디렉션
+    window.location.href = AUTH_URL;
   };
 
   const handleQRScan = () => {
-    toast.info('QR 스캔 기능은 곧 추가됩니다!');
+    // QR 스캔 페이지로 이동 (예시)
+    router.push('/scan');
   };
 
   const handleAdminLogin = () => {
     router.push('/admin/login');
+  };
+
+  // 🛑 2. 로그인 상태에 따라 버튼을 렌더링하는 함수
+  const renderAuthButton = () => {
+    
+    // 2a. 로그인 상태일 때 (역할 분기)
+    if (isAuthenticated && user) {
+      switch (user.role) {
+        case 'super_admin':
+          return (
+            <button
+              className={styles.loginButton} // 스타일 재활용
+              onClick={() => router.push('/superadmin')}
+            >
+              <Shield size={20} />
+              슈퍼관리자 바로가기
+            </button>
+          );
+        case 'company_admin':
+          return (
+            <button
+              className={styles.loginButton} // 스타일 재활용
+              onClick={() => router.push('/dashboard')}
+            >
+              <Building size={20} />
+              기업 관리자
+            </button>
+          );
+        default: // 'user' 역할 (일반 사용자)
+          return (
+            <button
+              className={styles.loginButton} // 스타일 재활용
+              onClick={() => router.push('/my')}
+            >
+              <History size={20} />
+              과거기록 바로가기
+            </button>
+          );
+      }
+    }
+    
+    // 2b. 비로그인 상태일 때 (위에 해당하지 않으면)
+    return (
+      <button
+        className={styles.loginButton}
+        onClick={handleGoogleLogin}
+      >
+        <svg className={styles.googleIcon} viewBox="0 0 24 24">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+        </svg>
+        구글 로그인
+      </button>
+    );
   };
 
   return (
@@ -66,8 +160,12 @@ export default function HomePage() {
           </p>
 
 
-          {/* 🆕 검색창 */}
-          <SearchBar />
+          {/* 검색창 (기존과 동일) */}
+          <SearchBar
+            value={searchQuery}
+            onChange={handleSearchChange}
+            onSubmit={handleSearchSubmit}
+          />
 
           {/* QR 스캔 버튼 */}
           <div className={styles.quickActions}>
@@ -79,25 +177,16 @@ export default function HomePage() {
               QR 코드 스캔
             </button>
 
-            <button
-              className={styles.loginButton}
-              onClick={handleGoogleLogin}
-            >
-              <svg className={styles.googleIcon} viewBox="0 0 24 24">
-                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
-                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
-              </svg>
-              로그인
-            </button>
+            {/* 🛑 3. 위에서 만든 함수를 호출해 버튼 표시 */}
+            {renderAuthButton()}
+            
           </div>
 
           <p className={styles.hint}>
             💡 로그인 없이도 사용 가능하지만, 로그인하면 대화 기록이 저장됩니다
           </p>
 
-          {/* 🆕 스크롤 인디케이터 */}
+          {/* 스크롤 인디케이터 (기존과 동일) */}
           <div className={styles.scrollIndicator}>
             <span className={styles.scrollText}>아래로 스크롤</span>
             <div className={styles.scrollArrow}>↓</div>
@@ -105,17 +194,13 @@ export default function HomePage() {
         </div>
       </section>
 
-
-      {/* 🆕 최근 검색 */}
+      {/* --- 이하 섹션 (기존과 동일) --- */}
+      
       <RecentSearches />
-
-      {/* 🆕 카테고리 */}
       <CategoryGrid />
-
-      {/* 🆕 인기 제품 */}
       <PopularProducts />
 
-      {/* 푸터 */}
+      {/* 푸터 (기존과 동일) */}
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
           <p>© 2025 ManuAI-Talk. All rights reserved.</p>
@@ -129,7 +214,7 @@ export default function HomePage() {
         </div>
       </footer>
 
-      {/* 개발자 도구 플로팅 버튼 */}
+      {/* 개발자 도구 (기존과 동일) */}
       <div className={styles.devTools}>
         <button
           className={styles.devToolsButton}
