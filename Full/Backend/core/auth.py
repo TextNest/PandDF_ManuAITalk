@@ -40,8 +40,11 @@ def get_password_hash(password:str):
     return pwd_context.hash(password)
 
 def get_current_user(authorization: Optional[str] = Header(None))-> companyInfo:
-    if not authorization or not authorization.startswith("Bearer"):
+    if not authorization :
+        return None
+    if  not authorization.startswith("Bearer"):
         raise HTTPException(status_code =401, detail ="인증 실패 : 토큰 누락이 되었거나 인증이 실패되었습니다.")
+        
     
     token = authorization.split(" ")[1]
     try:
