@@ -38,7 +38,7 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session:AsyncSession=De
 session_id: Optional[str] = Query(None, alias="session_id")):
     print(session_id,type(session_id))
     await websocket.accept()
-
+    message = None
     print("연결 성공")  
     user_id = None
     try:
@@ -72,8 +72,9 @@ session_id: Optional[str] = Query(None, alias="session_id")):
                 if isinstance(i["timestamp"],datetime.datetime):
                     i['timestamp'] = i['timestamp'].isoformat()
                 final_message.append(i)
+            message = final_message
             await websocket.send_json({"type":"session_init", "message":final_message})
-        agent = ChatBotAgent(product_id = pid,session_id = session_id)
+        agent = ChatBotAgent(product_id = pid,session_id = session_id,initial_messages=message)
 
         while True:
             data = await websocket.receive_text()
