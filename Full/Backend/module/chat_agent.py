@@ -4,11 +4,13 @@ from langgraph.graph import StateGraph, MessagesState, START, END
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.prebuilt import ToolNode
 from langchain_openai import ChatOpenAI
-from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_core.messages import HumanMessage, SystemMessage,AIMessage
 from langchain_core.tools import tool
+from langchain_google_genai import ChatGoogleGenerativeAI
 from module.qa_service import HybridRAGChain
 import os
 from core.config import load
+from typing import List, Dict, Any, Optional
 load.envs()
 
 
@@ -39,13 +41,32 @@ def product_qa_tool(query: str, product_id:str,session_id:str) -> str:
 
 
 class  ChatBotAgent:
-    def __init__(self,product_id:str,session_id:str):
+    def __init__(self,product_id:str,session_id:str,initial_messages: Optional[List[Dict[str, Any]]] = None):
         self.product_id = product_id
-        self.llm = ChatOpenAI(model = "gpt-4o",temperature=0)
+        self.llm = ChatGoogleGenerativeAI(model = "gemini-2.5-flash",temperature=0)
         self.tools = [product_qa_tool]
         self.checkpoint = MemorySaver()
         self.graph =self._build_graph()
         self.session_id = session_id
+        
+        if initial_messages:
+            self._put_memory(initial_messages)
+    
+    def _put_memory(self,db_msg: List[Dict[str, Any]]):
+        config = {"configurable":{"thread_id":self.session_id}}
+        memory_state = []
+        for msg in db_msg:
+            if msg["role"]=="user":
+                memory_state.append(HumanMessage(content=msg["content"]))
+            elif msg["role"]=="assistant":
+                memory_state.append(AIMessage(content=msg["content"]))
+            final_state_to_put = AgentState(
+            messages=memory_state, 
+            product_id=self.product_id, 
+            session_id=self.session_id
+        )
+        self.graph.update_state(config, final_state_to_put)
+        print("메모리 저장완료했습니다.")
     
     def _build_graph(self) :
         work  = StateGraph(AgentState)
