@@ -42,3 +42,8 @@ INSERT INTO test_session (email,productId,session_id,lastMessage,messageCount) V
 update_session ="""
 UPDATE test_session SET lastMessage = :lastMessage, messageCount = :messageCount , updatedAt = CURRENT_TIMESTAMP
 WHERE email = :email AND session_id = :session_id"""
+
+
+delete_sessions = """
+DELETE FROM test_session WHERE email = :email AND session_id = :session_id
+"""

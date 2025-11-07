@@ -10,7 +10,7 @@ from typing import  Dict,Optional
 from sqlalchemy import text 
 import datetime
 import json
-from core.query import session_search,find_message,add_message,find_session,update_session,add_session
+from core.query import session_search,find_message,add_message,find_session,update_session,add_session,delete_sessions
 
 
 router = APIRouter()
@@ -30,6 +30,19 @@ async def history_session(user_info: Dict = Depends(get_current_user),session:As
         return [] 
     json_safe_rows = [dict(row) for row in code_row]
     return json_safe_rows
+
+
+@router.delete("/chat/history/{session_id}")
+async def delete_session(session_id:str,user_info:Dict=Depends(get_current_user),session:AsyncSession=Depends(get_session)):
+    user_id = user_info.get("email")
+    await session.execute(text(delete_sessions),
+    params={
+        "email":user_id,
+        "session_id":session_id
+    })
+    await session.commit()
+    print(f"{user_id}의 {session_id}가 삭제 되었습니다.")
+    return {"message":"세션이 삭제되었습니다."}
 
 
 
