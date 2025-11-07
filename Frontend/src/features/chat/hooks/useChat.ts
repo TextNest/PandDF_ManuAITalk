@@ -226,7 +226,7 @@ export const useChat = (initialProductId: string) => {
         if (!isAuthenticated || !jwtToken) return;
         
         try {
-            const response = await fetch(`${BACKEND_URL}/chat/session/${deleteSessionId}`, {
+            const response = await fetch(`${BACKEND_URL}/chat/history/${deleteSessionId}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${jwtToken}` },
             });

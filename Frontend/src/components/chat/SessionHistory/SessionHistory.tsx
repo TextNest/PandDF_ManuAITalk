@@ -66,7 +66,13 @@ export default function SessionHistory({
             {/* 토글 버튼 */}
             <button 
                 className={styles.toggleButton}
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={() => {
+                    if (isAuthenticated) {
+                        setIsOpen(!isOpen); // 1. 로그인 상태면 사이드바를 엽니다.
+                    } else {
+                        router.push('/login'); // 2. 비로그인 상태면 로그인 페이지로 이동합니다.
+                    }
+                }}
                 aria-label="대화 기록"
             >
                 <Menu size={20} />
@@ -173,7 +179,7 @@ export default function SessionHistory({
                                             {isAuthenticated && (
                                                 <button
                                                     className={styles.deleteButton}
-                                                    onClick={(e) => handleDelete(e, session.id)}
+                                                    onClick={(e) => handleDelete(e, session.session_id)}
                                                     aria-label="삭제"
                                                 >
                                                     <Trash2 size={16} />

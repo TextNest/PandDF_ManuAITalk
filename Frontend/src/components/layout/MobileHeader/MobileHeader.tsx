@@ -5,7 +5,7 @@
 // ============================================
 
 'use client';
-
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/features/auth/hooks/useAuth';
 import { LogIn, LogOut } from 'lucide-react';
@@ -25,7 +25,9 @@ export default function MobileHeader() {
 
   return (
     <header className={styles.header}>
-      <h1 className={styles.title}>ManuAI-Talk</h1>
+        <Link href="/" className={styles.title}>
+          <h1>ManuAI-Talk</h1>
+        </Link>
       
       <button 
         className={styles.authButton}
