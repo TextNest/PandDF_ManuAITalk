@@ -1,0 +1,117 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  background: white;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 2rem 0;
+  text-align: center;
+}
+
+/* 🔥 고정된 3열 그리드 */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 항상 3열 */
+  gap: 1.25rem;
+}
+
+.card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.2);
+  border-color: #667eea;
+}
+
+.iconWrapper {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s;
+}
+
+.card:hover .iconWrapper {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transform: scale(1.1);
+}
+
+.icon {
+  font-size: 2rem;
+}
+
+.content {
+  flex: 1;
+}
+
+.name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+.count {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+/* 태블릿 - 2열 */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 모바일 - 2열 유지 (더 보기 좋음) */
+@media (max-width: 640px) {
+  .container {
+    padding: 2rem 1rem;
+  }
+  
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .card {
+    padding: 1.25rem;
+  }
+
+  .iconWrapper {
+    width: 60px;
+    height: 60px;
+  }
+
+  .icon {
+    font-size: 1.75rem;
+  }
+
+  .name {
+    font-size: 0.875rem;
+  }
+
+  .count {
+    font-size: 0.75rem;
+  }
+}

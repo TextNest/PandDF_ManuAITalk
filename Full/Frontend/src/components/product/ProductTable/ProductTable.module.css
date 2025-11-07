@@ -1,0 +1,133 @@
+/* // ============================================
+// 📄 2. src/components/product/ProductTable/ProductTable.module.css
+// ============================================ */
+
+.tableWrapper {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table thead {
+  background-color: var(--bg-secondary);
+}
+
+.table th {
+  padding: var(--spacing-md) var(--spacing-lg);
+  text-align: left;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-secondary);
+  border-bottom: 2px solid var(--border-light);
+  white-space: nowrap;
+}
+
+.table td {
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-sm);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.table tbody tr:hover {
+  background-color: var(--bg-secondary);
+}
+
+.nameCell {
+  font-weight: var(--font-weight-semibold);
+}
+
+.productName {
+  color: var(--text-primary);
+}
+
+.model {
+  display: inline-block;
+  padding: 4px 12px;
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: var(--border-radius-full);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-xs);
+}
+
+.document {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  color: var(--text-secondary);
+}
+
+.noDocument {
+  color: var(--text-tertiary);
+}
+
+.status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: var(--border-radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.status.active {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--color-success);
+}
+
+.status.inactive {
+  background-color: rgba(107, 114, 128, 0.1);
+  color: var(--text-secondary);
+}
+
+.dateCell {
+  color: var(--text-tertiary);
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.actionButton {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-md);
+  background-color: white;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.actionButton:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.actionButton.danger:hover {
+  border-color: var(--color-error);
+  color: var(--color-error);
+}
+
+.empty {
+  text-align: center;
+  padding: var(--spacing-3xl);
+  background-color: var(--bg-primary);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-light);
+}
+
+.empty p {
+  margin: 0;
+  color: var(--text-secondary);
+}

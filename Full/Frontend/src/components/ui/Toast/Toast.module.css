@@ -1,0 +1,106 @@
+.toastContainer {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 300px;
+  max-width: 400px;
+  pointer-events: auto;
+  animation: slideIn 0.3s ease;
+  border-left: 4px solid currentColor;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.toastIcon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toastMessage {
+  flex: 1;
+  font-size: 0.875rem;
+  color: #333;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.closeButton {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.closeButton:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #666;
+}
+
+/* 타입별 스타일 */
+.toast.success {
+  color: #10b981;
+  background: #ecfdf5;
+}
+
+.toast.error {
+  color: #ef4444;
+  background: #fef2f2;
+}
+
+.toast.warning {
+  color: #f59e0b;
+  background: #fffbeb;
+}
+
+.toast.info {
+  color: #3b82f6;
+  background: #eff6ff;
+}
+
+/* 반응형 */
+@media (max-width: 640px) {
+  .toastContainer {
+    top: auto;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+  }
+
+  .toast {
+    min-width: auto;
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,166 @@
+/* ============================================
+   📄 src/components/logs/UnansweredQueries/UnansweredQueries.module.css
+   ============================================ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.queryCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 0.75rem;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.queryCard:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* 우선순위별 색상 */
+.queryCard.urgent {
+  border-color: #ef4444;
+  background: #fef2f2;
+}
+
+.queryCard.warning {
+  border-color: #f59e0b;
+  background: #fffbeb;
+}
+
+/* 🔥 normal → recent 변경 */
+.queryCard.recent {
+  border-color: #3b82f6;
+  background: #eff6ff;
+}
+
+.priorityBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* 🔥 배지 색상도 변경 */
+.urgent .priorityBadge {
+  background: #ef4444;
+  color: white;
+}
+
+.warning .priorityBadge {
+  background: #f59e0b;
+  color: white;
+}
+
+.recent .priorityBadge {
+  background: #3b82f6;
+  color: white;
+}
+
+.queryContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.question {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 1rem 0;
+  line-height: 1.5;
+}
+
+.metadata {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.attemptCount {
+  padding: 0.25rem 0.75rem;
+  background: #f3f4f6;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* Empty State */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.emptyIcon {
+  color: #10b981;
+  margin-bottom: 1rem;
+}
+
+.emptyText {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 0.5rem 0;
+}
+
+.emptySubtext {
+  font-size: 0.875rem;
+  color: #666;
+  margin: 0;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+  .queryCard {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .priorityBadge {
+    align-self: flex-start;
+  }
+
+  .actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+
+  .metadata {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}

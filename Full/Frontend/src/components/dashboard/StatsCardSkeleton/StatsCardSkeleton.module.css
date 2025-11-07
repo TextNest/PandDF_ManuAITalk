@@ -1,0 +1,23 @@
+/* // ============================================
+// 📄 6. src/components/dashboard/StatsCardSkeleton/StatsCardSkeleton.module.css
+// ============================================ */
+
+.card {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.content {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}

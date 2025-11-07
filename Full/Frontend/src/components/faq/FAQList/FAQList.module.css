@@ -1,0 +1,22 @@
+/* // ============================================
+// 📄 5. src/components/faq/FAQList/FAQList.module.css
+// ============================================ */
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.empty {
+  text-align: center;
+  padding: var(--spacing-3xl);
+  background-color: var(--bg-primary);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-light);
+}
+
+.empty p {
+  margin: 0;
+  color: var(--text-secondary);
+}

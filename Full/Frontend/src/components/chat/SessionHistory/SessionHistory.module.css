@@ -1,0 +1,285 @@
+/* // ============================================
+// 📄 4. src/components/chat/SessionHistory/SessionHistory.module.css
+// ============================================ */
+
+/* 토글 버튼 */
+.toggleButton {
+  position: fixed;
+  left: 1rem; /* 🔥 left: 0 → left: 1rem (여백 추가) */
+  top: 4.0rem; /* 🔥 top: 50% → top: 4.0rem (헤더 아래) */
+  transform: none; /* 🔥 translateY 제거 */
+  z-index: 1000;
+  width: 40px;
+  height: 40px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%; /* 🔥 둥글게 */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #667eea;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.toggleButton:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-xl);
+}
+
+.toggleButton:active {
+  transform: scale(0.95);
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999; /* 🔥 1050 → 999 (사이드바보다 낮게) */
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* 사이드바 */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 280px;
+  background: white;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  z-index: 1001; /* 🔥 backdrop보다 높게 유지 */
+  display: flex; /* 🔥 flex 추가 */
+  flex-direction: column; /* 🔥 세로 배치 */
+  animation: slideIn 0.3s ease;
+}
+
+/* 헤더 - 고정 */
+.header {
+  padding: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0; /* 🔥 고정 */
+}
+
+/* 네비게이션 섹션 - 고정 */
+.navigationSection {
+  padding: 1rem;
+  flex-shrink: 0; /* 🔥 고정 */
+}
+
+/* 구분선 - 고정 */
+.divider {
+  height: 1px;
+  background: #e0e0e0;
+  margin: 0 1rem;
+  flex-shrink: 0; /* 🔥 고정 */
+}
+
+/* 🔥 세션 섹션 - 스크롤 가능 영역 */
+.sessionSection {
+  flex: 1; /* 🔥 남은 공간 차지 */
+  overflow-y: auto; /* 🔥 스크롤 가능 */
+  padding: 1rem;
+  min-height: 0; /* 🔥 flex 자식이 스크롤되도록 */
+}
+
+.sectionTitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.75rem 0;
+  padding: 0 0.5rem;
+}
+
+.sessionList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.empty {
+  text-align: center;
+  padding: var(--spacing-3xl);
+  color: var(--text-secondary);
+}
+
+.empty p {
+  margin: 0;
+}
+
+.sessionItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-xs);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.sessionItem:hover {
+  background-color: var(--bg-secondary);
+}
+
+.sessionItem.active {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.sessionItem.active .sessionMeta {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.sessionInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.sessionTitle {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 4px;
+}
+
+.sessionMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+}
+
+.deleteButton {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  color: var(--text-tertiary);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.deleteButton:hover {
+  background-color: var(--color-error);
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+/* 🆕 네비게이션 섹션 */
+.navigationSection {
+  padding: 1rem;
+}
+
+.sectionTitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.75rem 0;
+  padding: 0 0.5rem;
+}
+
+.navButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  background: none;
+  border: none;
+  border-radius: 0.5rem;
+  color: #333;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+.navButton:hover {
+  background: #f8f9fa;
+  color: #667eea;
+}
+
+.navButton:active {
+  transform: scale(0.98);
+}
+
+/* 🆕 구분선 */
+.divider {
+  height: 1px;
+  background: #e0e0e0;
+  margin: 0.5rem 1rem;
+}
+
+/* 🆕 세션 섹션 */
+.sessionSection {
+  padding: 0 1rem 1rem;
+}
+
+/* 🆕 하단 푸터 */
+.footer {
+  padding: 1rem;
+  border-top: 1px solid #e0e0e0;
+  background: #f8f9fa;
+  flex-shrink: 0; /* 🔥 고정 */
+}
+
+.authButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: white;
+  border: 2px solid #667eea;
+  border-radius: 0.5rem;
+  color: #667eea;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.authButton:hover {
+  background: #667eea;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}

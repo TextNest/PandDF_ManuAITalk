@@ -3,4 +3,5 @@ __pycache__/
 /artifacts/*
 !/artifacts/.gitkeep
 /test/
+/modules/
 test.py

@@ -1,0 +1,21 @@
+/* // ============================================
+// 📄 2. src/app/(user)/user-layout.module.css
+// ============================================ */
+
+.mobileLayout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-secondary);
+  /* 모바일 Safe Area 대응 */
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  /* iOS 스크롤 부드럽게 */
+  -webkit-overflow-scrolling: touch;
+}
