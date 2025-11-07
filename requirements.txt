@@ -14,6 +14,8 @@ langchain-core==0.3.79
 # OpenAI
 openai==2.6.0
 
+#Gemini
+langchain-google-genai
 # Vector Store
 faiss-cpu
 

@@ -6,6 +6,7 @@ from langgraph.prebuilt import ToolNode
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage,AIMessage
 from langchain_core.tools import tool
+from langchain_google_genai import ChatGoogleGenerativeAI
 from module.qa_service import HybridRAGChain
 import os
 from core.config import load
@@ -42,7 +43,7 @@ def product_qa_tool(query: str, product_id:str,session_id:str) -> str:
 class  ChatBotAgent:
     def __init__(self,product_id:str,session_id:str,initial_messages: Optional[List[Dict[str, Any]]] = None):
         self.product_id = product_id
-        self.llm = ChatOpenAI(model = "gpt-4o",temperature=0)
+        self.llm = ChatGoogleGenerativeAI(model = "gemini-2.5-flash",temperature=0)
         self.tools = [product_qa_tool]
         self.checkpoint = MemorySaver()
         self.graph =self._build_graph()

@@ -9,7 +9,7 @@ from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_community.vectorstores import FAISS
 from core.config import path,load
 import os
-
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_openai import ChatOpenAI,OpenAIEmbeddings
 from langchain.retrievers.multi_query import MultiQueryRetriever
 from langchain.callbacks.manager import CallbackManagerForRetrieverRun
@@ -33,7 +33,7 @@ class HybridRAGChain:
         with open(path.DOCSTORE_PATH, "rb") as f:
             self.docstore = pickle.load(f)
 
-        self.llm = ChatOpenAI(model="gpt-4o", temperature=0)
+        self.llm = ChatGoogleGenerativeAI(model = "gemini-2.5-flash",temperature=0)
 
         base_retriever = MultiVectorRetriever(
             vectorstore= self.vectorstore, 
