@@ -4,6 +4,7 @@ from langgraph.graph import StateGraph, MessagesState, START, END
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.prebuilt import ToolNode
 from langchain_openai import ChatOpenAI
+
 from langchain_core.messages import HumanMessage, SystemMessage,AIMessage
 from langchain_core.tools import tool
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -12,6 +13,7 @@ import os
 from core.config import load
 from typing import List, Dict, Any, Optional
 load.envs()
+from langchain_core.runnables import RunnableConfig
 
 
 class AgentState(MessagesState):
@@ -39,15 +41,28 @@ def product_qa_tool(query: str, product_id:str,session_id:str) -> str:
     answer = rag.invoke(query,session_id)
     return answer["answer"]
 
+@tool
+def recommend_tool(product_id:str,count:int=3, *, config: RunnableConfig) -> str:
+    """
+    상푼 추천을 해줍니다. 만약 유저가 'count'개 만큼 추천해달라고 하면 count 수만큼 추천을 해주고 작성을 하지않으면 기본값을 사용합니다.
+    """
+    db_session = config.get("configurable", {}).get("db_session")
+    print("연결됨")
+    data = [{"id":"abc","name":"거대한풍선"},{"id":"cde","name":"거대한선풍기"},{"id":"efg","name":"작은 선풍기"}]
+    return data[:count]
+
+
+
+
 
 class  ChatBotAgent:
     def __init__(self,product_id:str,session_id:str,initial_messages: Optional[List[Dict[str, Any]]] = None):
         self.product_id = product_id
         self.llm = ChatGoogleGenerativeAI(model = "gemini-2.5-flash",temperature=0)
-        self.tools = [product_qa_tool]
+        self.tools = [product_qa_tool,recommend_tool]
         self.checkpoint = MemorySaver()
         self.graph =self._build_graph()
-        self.session_id = session_id
+        self.session_id = session_id    
         
         if initial_messages:
             self._put_memory(initial_messages)
@@ -78,6 +93,7 @@ class  ChatBotAgent:
 
             - 일상 대화는 직접 답변합니다.
             - 제품과 관련된 질문(기능, 스펙, 사용법 등)은 반드시 'product_qa_tool'을 사용해서 답변해야 합니다.
+            - 상품 추천 요청하는 질문이 들어오면 'recommend_tool' 사용해서 답변합니다.대답형식은 'recommend_tool'값들의 name들만 뽑아서 name을 찾았습니다. 예를 들어 a객체,b객체,c객체를 찾았으면 [a.name 값,b.name 값,c.name 값]을 찾았습니다. 라고 대답합니다.
             """)
             response = llm_with_tools.with_config({"run_name":"final_answer"}).invoke([system_msg]+state["messages"])
             return {"messages":[response]}
@@ -104,8 +120,8 @@ class  ChatBotAgent:
         work.add_edge("tools","agent")
         return work.compile(checkpointer=self.checkpoint)
 
-    def chat(self,query:str):
-        config = {"configurable":{"thread_id":self.session_id}}
+    def chat(self,query:str,db_session: Optional[Any] = None):
+        config = {"configurable":{"thread_id":self.session_id,"db":db_session}}
         initial_state = {
             "messages":[HumanMessage(content=query)],
             "product_id":self.product_id,
@@ -114,8 +130,8 @@ class  ChatBotAgent:
         result = self.graph.invoke(initial_state,config=config)
         final_message = result["messages"][-1]
         return {"answer":final_message.content}
-    async def stream_chat(self,query:str):
-        config = {"configurable":{"thread_id":self.session_id}}
+    async def stream_chat(self,query:str,db_session: Optional[Any] = None):
+        config = {"configurable":{"thread_id":self.session_id,"db":db_session}}
         initial_state = {
             "messages":[HumanMessage(content=query)],
             "product_id":self.product_id,
