@@ -1,40 +1,44 @@
-# Backend Framework
+#FASTAPI 및 서버관련 
 fastapi
 uvicorn[standard]
-jinja2
 websockets
 
-# LangChain
-langchain==0.3.27
-langgraph==1.0.1
-langchain-openai==0.3.35
-langchain-community==0.3.31
-langchain-core==0.3.79
+#데이터베이스
+SQLAlchemy
+aiomysql
+
+#HTTP 클라이언트(추후 MCP 확장)
+httpx
 
 # OpenAI
 openai==2.6.0
 
-# Vector Store
-faiss-cpu
+
+# LangChain 모듈
+langchain-community     
+langchain-classic       
+langchain-openai
+langchain-google-genai
+langgraph
+langchain-core
 
 # Document Processing (PDF, Images, OCR)
 PyMuPDF
 Pillow
 pytesseract 
 
-# Utilities
+# 벡터 스토어
+faiss-cpu
+
+# 환경변수 관리
 python-dotenv
-pydantic
-requests
 
-# Development / Notebook Environment
-ipython
-
-# Database
-SQLAlchemy
-aiomysql
-
-#auth
-python-jose[cryptography]
+# 인증 및 암호화 (JWT)
+python-jose[cryptography] 
 passlib
 bcrypt==4.0.1
+
+#기타 
+ipython
+pydantic
+requests

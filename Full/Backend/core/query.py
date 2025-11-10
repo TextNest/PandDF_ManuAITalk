@@ -47,3 +47,7 @@ WHERE email = :email AND session_id = :session_id"""
 delete_sessions = """
 DELETE FROM test_session WHERE email = :email AND session_id = :session_id
 """
+
+delete_message = """
+DELETE FROM test_message WHERE email = :email AND session_id = :session_id
+"""

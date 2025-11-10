@@ -3,14 +3,14 @@ import asyncio
 import random
 from module.chat_agent import ChatBotAgent
 import time
-from core.db_config import get_session
+from core.db_config import get_session,get_session_text
 from sqlalchemy.ext.asyncio import AsyncSession
 from core.auth import get_current_user
 from typing import  Dict,Optional
 from sqlalchemy import text 
 import datetime
 import json
-from core.query import session_search,find_message,add_message,find_session,update_session,add_session,delete_sessions
+from core.query import session_search,find_message,add_message,find_session,update_session,add_session,delete_sessions,delete_message 
 
 
 router = APIRouter()
@@ -41,14 +41,19 @@ async def delete_session(session_id:str,user_info:Dict=Depends(get_current_user)
         "session_id":session_id
     })
     await session.commit()
+    await session.execute(text(delete_message),
+    params={
+        "email":user_id,
+        "session_id":session_id
+    })
+    await session.commit()
     print(f"{user_id}의 {session_id}가 삭제 되었습니다.")
     return {"message":"세션이 삭제되었습니다."}
 
 
 
 @router.websocket("/ws/{pid}")
-async def websocket_endpoint(websocket:WebSocket,pid:str,session:AsyncSession=Depends(get_session),
-session_id: Optional[str] = Query(None, alias="session_id")):
+async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[str] = Query(None, alias="session_id")):
     print(session_id,type(session_id))
     await websocket.accept()
     message = None
@@ -73,85 +78,87 @@ session_id: Optional[str] = Query(None, alias="session_id")):
             await asyncio.sleep(0.5)
             await websocket.send_json({"type":"bot","message":"무엇을 도와드릴까요?"})
         else:
-            print(f"기존 세션 ID: {session_id} 로 연결합니다.")
-            results = await session.execute(text(find_message),
-            params={"session_id":session_id,"user_id":user_id})
-            code_row = results.mappings().all()
-            print(code_row,type(code_row))
-            initial_messages = [dict(row) for row in code_row]
-            print(initial_messages,type(initial_messages))
-            final_message = []
-            for i in initial_messages:
-                if isinstance(i["timestamp"],datetime.datetime):
-                    i['timestamp'] = i['timestamp'].isoformat()
-                final_message.append(i)
-            message = final_message
-            await websocket.send_json({"type":"session_init", "message":final_message})
+            async with get_session_text() as session:
+                print(f"기존 세션 ID: {session_id} 로 연결합니다.")
+                results = await session.execute(text(find_message),
+                params={"session_id":session_id,"user_id":user_id})
+                code_row = results.mappings().all()
+                print(code_row,type(code_row))
+                initial_messages = [dict(row) for row in code_row]
+                print(initial_messages,type(initial_messages))
+                final_message = []
+                for i in initial_messages:
+                    if isinstance(i["timestamp"],datetime.datetime):
+                        i['timestamp'] = i['timestamp'].isoformat()
+                    final_message.append(i)
+                message = final_message
+                await websocket.send_json({"type":"session_init", "message":final_message})
         agent = ChatBotAgent(product_id = pid,session_id = session_id,initial_messages=message)
 
         while True:
             data = await websocket.receive_text()
+            async with get_session_text() as session:
+                if session_id and user_id:
+                    await session.execute(text(add_message),
+                    params={
+                        "email":user_id,
+                        "session_id":session_id,
+                        "role":"user",
+                        "content":data
+                    })
+                    await session.commit()
 
-            if session_id and user_id:
-                await session.execute(text(add_message),
-                params={
-                    "email":user_id,
-                    "session_id":session_id,
-                    "role":"user",
-                    "content":data
-                })
-                await session.commit()
+                start = time.time()
+                answer = agent.chat(data,session)
+                end  = time.time()
+                total_time = end - start 
+                print(f"{total_time:0.2f}초 걸렸습니다.")
+                await websocket.send_json({"type":"bot","message":answer["answer"]})
 
-            start = time.time()
-            answer = agent.chat(data)
-            end  = time.time()
-            total_time = end - start 
-            print(f"{total_time:0.2f}초 걸렸습니다.")
-            await websocket.send_json({"type":"bot","message":answer["answer"]})
+                if session_id and user_id :
+                    await session.execute(text(add_message),
+                    params={
+                        "email":user_id,
+                        "session_id":session_id,
+                        "role":"assistant",
+                        "content":answer["answer"]
+                    })
+                    await session.commit()
 
-            if session_id and user_id :
-                await session.execute(text(add_message),
-                params={
-                    "email":user_id,
-                    "session_id":session_id,
-                    "role":"assistant",
-                    "content":answer["answer"]
-                })
-                await session.commit()
-
-            # async for token in agent.stream_chat(data):
-            #     await websocket.send_json({"type": "token", "message": token}) ## type bot:normal , type token : stream
-            await websocket.send_json({"type":"stream_end"})
+                # async for token in agent.stream_chat(data):
+                #     await websocket.send_json({"type": "token", "message": token}) ## type bot:normal , type token : stream
+                await websocket.send_json({"type":"stream_end"})
     except WebSocketDisconnect:
-        if user_id:
-            results = await session.execute(text(find_message),
-            params={"session_id":session_id,"user_id":user_id})
-            code_row = results.mappings().all()
-            message_count = len(code_row)
-            last_message = code_row[-1]['content']
+        async with get_session_text() as session:
+            if user_id:
+                results = await session.execute(text(find_message),
+                params={"session_id":session_id,"user_id":user_id})
+                code_row = results.mappings().all()
+                message_count = len(code_row)
+                last_message = code_row[-1]['content']
 
-            find_sessions = await session.execute(text(find_session),params={"email":user_id,"session_id":session_id})
-            find_sessions = find_sessions.mappings().one_or_none()
-            if find_sessions:
-                await session.execute(text(update_session),params={
-                    "email":user_id,
-                    "session_id":session_id,
-                    "lastMessage":last_message,
-                    "messageCount":message_count
-                })
+                find_sessions = await session.execute(text(find_session),params={"email":user_id,"session_id":session_id})
+                find_sessions = find_sessions.mappings().one_or_none()
+                if find_sessions:
+                    await session.execute(text(update_session),params={
+                        "email":user_id,
+                        "session_id":session_id,
+                        "lastMessage":last_message,
+                        "messageCount":message_count
+                    })
+                else:
+                    await session.execute(text(add_session),
+                    params={
+                        "email":user_id,
+                        "productId":pid,
+                        "session_id":session_id,
+                        "lastMessage":last_message,
+                        "messageCount":message_count
+                    })
+                await session.commit()
+
+                print(f"{user_id}_{session_id}가 저장되었습니다.")
+                print("연결 종료")
             else:
-                await session.execute(text(add_session),
-                params={
-                    "email":user_id,
-                    "productId":pid,
-                    "session_id":session_id,
-                    "lastMessage":last_message,
-                    "messageCount":message_count
-                })
-            await session.commit()
-
-            print(f"{user_id}_{session_id}가 저장되었습니다.")
-            print("연결 종료")
-        else:
-            print("비회원 연결종료")
+                print("비회원 연결종료")
         
