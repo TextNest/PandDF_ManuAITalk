@@ -1,4 +1,4 @@
-from langchain.embeddings import OpenAIEmbeddings
+from langchain_openai import OpenAIEmbeddings
 class path:
     FAISS_INDEX_PATH = "data/faiss_index"
     DOCSTORE_PATH = "data/docstore.pkl"
