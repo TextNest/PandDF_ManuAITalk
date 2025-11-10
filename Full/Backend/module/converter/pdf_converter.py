@@ -14,9 +14,9 @@ from dotenv import load_dotenv
 load_dotenv()
 ABSPATH = os.path.dirname(os.path.abspath(__file__))
 ABSPATH = os.path.abspath(os.path.join(ABSPATH,'..','..'))
-SESHAT_NAMESPACE = uuid.UUID(os.getenv('UUID_NAMESPACE_SESHAT'))
+SESHAT_CODE = uuid.UUID(os.getenv('UUID_PROTOCOL_SESHAT'))
 OUTDIR = os.path.join(ABSPATH,'artifacts')
-PDF_PATH = os.path.join(ABSPATH,'ex_data')
+PDF_PATH = os.path.join(ABSPATH,'data')
 DATALIST = os.listdir(PDF_PATH)
 DEFAULT_DPI = 400
 IMG_FMT = 'png'
@@ -52,7 +52,7 @@ def rand_pdf(data_namelist: list, pdf_path: str, target: str = None):
 # 고유 문서 생성자
 def gen_doc_id(pdf_path:str):
     pdf = os.path.basename(pdf_path)
-    return str(uuid5(SESHAT_NAMESPACE, pdf))
+    return str(uuid5(SESHAT_CODE, pdf))
 
 # 프로세스 : 페이지 단위 추출(변환)
 def pdf_converter(pdf_path: str, path_bin: str, dpi: int = DEFAULT_DPI):

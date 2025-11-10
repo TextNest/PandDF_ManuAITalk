@@ -1,4 +1,4 @@
-# 📝 PandDF_SeShat: 문서 기반 RAG Q&A 챗봇 프로젝트
+# 📝 PandDF_ManuAI-Talk: 문서 기반 RAG Q&A 챗봇 프로젝트
 
 이 프로젝트는 FastAPI를 기반으로 구축된 문서 기반 Q&A 챗봇 백엔드입니다. LangGraph를 활용한 에이전트 아키텍처를 통해 사용자의 질문에 대해 RAG(Retrieval-Augmented Generation) 기술로 답변합니다. 텍스트뿐만 아니라 향후 이미지 기반 질의응답까지 확장 가능하도록 설계되었습니다.
 

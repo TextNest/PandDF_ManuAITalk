@@ -4,7 +4,7 @@ LLM을 활용한 PDF 문서 요약 및 질의응답 기능 개발 프로젝트
 
 ## 📋 프로젝트 개요
 
-**ManuAI-Talk**은 전자제품 설명서를 AI 기반으로 분석하고, 사용자의 질문에 실시간으로 답변하는 RAG(Retrieval-Augmented Generation) 시스템입니다.
+**ManuAI-Talk**은 전자제품 설명서를 AI 기반으로 분석하고, 사용자의 질문에 실시간으로 답변하는 RAG(Retrieval-Augmented Generation) 기반 QA 지원 시스템입니다.
 
 - **팀명**: P&DF
 - **기술 스택**: Next.js 14 (App Router), TypeScript, CSS Modules, Zustand, React Query
