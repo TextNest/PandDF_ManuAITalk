@@ -13,7 +13,7 @@ class load:
         from dotenv import load_dotenv
         import os  
         load_dotenv()
-        os.environ["OPENAI_API_KEY"] = os.getenv("openai")
+        os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
         os.environ["GOOGLE_API_KEY"] = os.getenv("GEMINI_API_KEY")
         DB_HOST = os.getenv("DB_HOST")
         DB_USER = os.getenv("DB_USER")

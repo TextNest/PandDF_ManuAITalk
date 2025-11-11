@@ -123,14 +123,3 @@
   font-size: var(--font-size-sm);
   color: var(--text-secondary);
 }
-
-.loading,
-.error {
-  padding: var(--spacing-xl);
-  text-align: center;
-  color: var(--text-secondary);
-}
-
-.error {
-  color: var(--color-error);
-}

@@ -1,0 +1,890 @@
+/*!**************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/components/ui/Button/Button.module.css ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************/
+/* // ============================================
+// 📄 2. src/components/ui/Button/Button.module.css
+// ============================================ */
+
+.Button_button__f_l0m {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  font-weight: var(--font-weight-medium);
+  border: none;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: inherit;
+  white-space: nowrap;
+  /* 터치 대응 */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.Button_button__f_l0m:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 크기 */
+.Button_sm__CDbQJ {
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-sm);
+  min-height: 36px;
+}
+
+.Button_md__fwg2m {
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-base);
+  min-height: 44px;
+}
+
+.Button_lg__2Fw1x {
+  padding: var(--spacing-lg) var(--spacing-xl);
+  font-size: var(--font-size-lg);
+  min-height: 52px;
+}
+
+/* 변형 */
+.Button_primary__gNjMo {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.Button_primary__gNjMo:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+}
+
+.Button_primary__gNjMo:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.Button_secondary__6ARy2 {
+  background-color: var(--color-secondary);
+  color: white;
+}
+
+.Button_secondary__6ARy2:hover:not(:disabled) {
+  background-color: var(--color-secondary-dark);
+}
+
+.Button_outline__Nk0b6 {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.Button_outline__Nk0b6:hover:not(:disabled) {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.Button_ghost__nCpIY {
+  background-color: transparent;
+  color: var(--text-primary);
+}
+
+.Button_ghost__nCpIY:hover:not(:disabled) {
+  background-color: var(--bg-secondary);
+}
+
+.Button_danger__yObcW {
+  background-color: var(--color-error);
+  color: white;
+}
+
+.Button_danger__yObcW:hover:not(:disabled) {
+  background-color: var(--color-error-dark);
+}
+
+/* 전체 너비 */
+.Button_fullWidth__9EUg4 {
+  width: 100%;
+}
+
+/* 로딩 상태 */
+.Button_loading__xz7Vs {
+  position: relative;
+  color: transparent;
+}
+
+.Button_spinner__bkL9X {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: Button_spin__UIsOW 0.6s linear infinite;
+}
+
+@keyframes Button_spin__UIsOW {
+  to { transform: rotate(360deg); }
+}
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/components/chat/SessionHistory/SessionHistory.module.css ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************/
+/* // ============================================
+// 📄 4. src/components/chat/SessionHistory/SessionHistory.module.css
+// ============================================ */
+
+/* 토글 버튼 */
+.SessionHistory_toggleButton__3gjB_ {
+  position: fixed;
+  left: 1rem; /* 🔥 left: 0 → left: 1rem (여백 추가) */
+  top: 4.0rem; /* 🔥 top: 50% → top: 4.0rem (헤더 아래) */
+  transform: none; /* 🔥 translateY 제거 */
+  z-index: 1000;
+  width: 40px;
+  height: 40px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%; /* 🔥 둥글게 */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #667eea;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.SessionHistory_toggleButton__3gjB_:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-xl);
+}
+
+.SessionHistory_toggleButton__3gjB_:active {
+  transform: scale(0.95);
+}
+
+.SessionHistory_backdrop__bAZtI {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999; /* 🔥 1050 → 999 (사이드바보다 낮게) */
+  animation: SessionHistory_fadeIn__ef38U 0.2s ease-out;
+}
+
+@keyframes SessionHistory_slideIn___yZkl {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* 사이드바 */
+.SessionHistory_sidebar__jnqHW {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 280px;
+  background: white;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  z-index: 1001; /* 🔥 backdrop보다 높게 유지 */
+  display: flex; /* 🔥 flex 추가 */
+  flex-direction: column; /* 🔥 세로 배치 */
+  animation: SessionHistory_slideIn___yZkl 0.3s ease;
+}
+
+/* 헤더 - 고정 */
+.SessionHistory_header__BTmz4 {
+  padding: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0; /* 🔥 고정 */
+}
+
+/* 네비게이션 섹션 - 고정 */
+.SessionHistory_navigationSection__PjFDP {
+  padding: 1rem;
+  flex-shrink: 0; /* 🔥 고정 */
+}
+
+/* 구분선 - 고정 */
+.SessionHistory_divider__Q_2Ak {
+  height: 1px;
+  background: #e0e0e0;
+  margin: 0 1rem;
+  flex-shrink: 0; /* 🔥 고정 */
+}
+
+/* 🔥 세션 섹션 - 스크롤 가능 영역 */
+.SessionHistory_sessionSection__POmdD {
+  flex: 1 1; /* 🔥 남은 공간 차지 */
+  overflow-y: auto; /* 🔥 스크롤 가능 */
+  padding: 1rem;
+  min-height: 0; /* 🔥 flex 자식이 스크롤되도록 */
+}
+
+.SessionHistory_sectionTitle__Mrs7A {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.75rem 0;
+  padding: 0 0.5rem;
+}
+
+.SessionHistory_sessionList__sTdOL {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.SessionHistory_empty__FLH5V {
+  text-align: center;
+  padding: var(--spacing-3xl);
+  color: var(--text-secondary);
+}
+
+.SessionHistory_empty__FLH5V p {
+  margin: 0;
+}
+
+.SessionHistory_sessionItem___1yBZ {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-xs);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.SessionHistory_sessionItem___1yBZ:hover {
+  background-color: var(--bg-secondary);
+}
+
+.SessionHistory_sessionItem___1yBZ.SessionHistory_active__fFys4 {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.SessionHistory_sessionItem___1yBZ.SessionHistory_active__fFys4 .SessionHistory_sessionMeta__XLOaE {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.SessionHistory_sessionInfo__uMw2t {
+  flex: 1 1;
+  min-width: 0;
+}
+
+.SessionHistory_sessionTitle__DfGcg {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 4px;
+}
+
+.SessionHistory_sessionMeta__XLOaE {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+}
+
+.SessionHistory_deleteButton__wyYv5 {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  color: var(--text-tertiary);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.SessionHistory_deleteButton__wyYv5:hover {
+  background-color: var(--color-error);
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .SessionHistory_sidebar__jnqHW {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+/* 🆕 네비게이션 섹션 */
+.SessionHistory_navigationSection__PjFDP {
+  padding: 1rem;
+}
+
+.SessionHistory_sectionTitle__Mrs7A {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.75rem 0;
+  padding: 0 0.5rem;
+}
+
+.SessionHistory_navButton__OjWgk {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  background: none;
+  border: none;
+  border-radius: 0.5rem;
+  color: #333;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+.SessionHistory_navButton__OjWgk:hover {
+  background: #f8f9fa;
+  color: #667eea;
+}
+
+.SessionHistory_navButton__OjWgk:active {
+  transform: scale(0.98);
+}
+
+/* 🆕 구분선 */
+.SessionHistory_divider__Q_2Ak {
+  height: 1px;
+  background: #e0e0e0;
+  margin: 0.5rem 1rem;
+}
+
+/* 🆕 세션 섹션 */
+.SessionHistory_sessionSection__POmdD {
+  padding: 0 1rem 1rem;
+}
+
+/* 🆕 하단 푸터 */
+.SessionHistory_footer__Gu6qT {
+  padding: 1rem;
+  border-top: 1px solid #e0e0e0;
+  background: #f8f9fa;
+  flex-shrink: 0; /* 🔥 고정 */
+}
+
+.SessionHistory_authButton__htIZj {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: white;
+  border: 2px solid #667eea;
+  border-radius: 0.5rem;
+  color: #667eea;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.SessionHistory_authButton__htIZj:hover {
+  background: #667eea;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+/*!*****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/components/ar/ARUI.module.css ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************/
+.ARUI_container__FOSEu {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.ARUI_uiOverlay__dK0qi {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.ARUI_panel__DWeia {
+  background: rgba(20, 20, 20, 0.75);
+  color: white;
+  padding: 12px;
+  border-radius: 12px;
+  pointer-events: auto;
+  touch-action: none;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-sizing: border-box;
+  min-width: 280px;
+}
+
+.ARUI_panelHeader__lBhxm {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.ARUI_panelHeaderCollapsed__xFfme {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.ARUI_panelTitle__y8oio {
+  font-weight: bold;
+  cursor: move;
+}
+
+.ARUI_headerButton___DwoL {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  padding: 0 8px;
+  cursor: pointer;
+}
+
+.ARUI_section__w3wIN {
+  margin-bottom: 12px;
+}
+
+.ARUI_sectionTitle__XMgHU {
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.ARUI_subSectionTitle__36MWB {
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 8px;
+}
+
+.ARUI_dropdownContainer__1CiJd {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.ARUI_dropdownButton__cLbjL {
+  width: 100%;
+  padding: 8px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ARUI_dropdownMenu__7v2QY {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 150px;
+  overflow-y: auto;
+  background: rgba(20, 20, 20, 0.9);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 4px;
+  z-index: 100;
+}
+
+.ARUI_dropdownItem__vO0uF {
+  width: 100%;
+  padding: 8px;
+  background: transparent;
+  border: none;
+  color: white;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ARUI_dropdownItemSelected__jSOjP {
+  background: rgba(255,255,255,0.2);
+}
+
+.ARUI_buttonGrid__isnHd {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  gap: 10px;
+}
+
+.ARUI_button__yaTGf {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+.ARUI_buttonSecondary__XU3oD {
+  background: #6c757d;
+}
+
+.ARUI_buttonDanger__7jSLq {
+  background: #dc3545;
+  padding: 10px 16px;
+  margin-top: 16px;
+  width: 100%;
+  font-size: 16px;
+}
+
+/*!********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/components/ar/ARScene.module.css ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************/
+.ARScene_arContainer__XFzap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.ARScene_arContainerInactive__GfMsH {
+ pointer-events: auto;
+}
+
+.ARScene_arContainerActive__6nAaw {
+ pointer-events: none;
+}
+
+.ARScene_centerContainer__RezuR {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.ARScene_startButton__lSIfu {
+  padding: 12px 24px;
+  font-size: 18px;
+  pointer-events: auto;
+}
+
+.ARScene_scanMessage__a7PtH {
+  color: white;
+  font-size: 18px;
+  background: rgba(0,0,0,0.3);
+}
+
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/app/(user)/simulation/[productId]/simulation-page.module.css ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************/
+.simulation-page_page__WR6ks {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f8f9fa;
+}
+
+/* 헤더 - 중앙 정렬 */
+.simulation-page_header__Fzoha {
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 🔥 중앙 정렬 */
+}
+
+.simulation-page_headerTitle__IpDxu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.simulation-page_headerIcon__raaD5 {
+  color: #667eea;
+}
+
+.simulation-page_headerTitle__IpDxu h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.simulation-page_headerTitle__IpDxu p {
+  font-size: 0.875rem;
+  color: #666;
+  margin: 0;
+}
+
+/* 메인 컨텐츠 */
+.simulation-page_main__4IySE {
+  flex: 1 1;
+  display: flex;
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.simulation-page_simulationContainer__yF6UT {
+  flex: 1 1;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* 플레이스홀더 */
+.simulation-page_placeholder__1Hipa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 600px;
+  padding: 3rem;
+  text-align: center;
+}
+
+.simulation-page_placeholderIcon__Ku7yi {
+  color: #667eea;
+  opacity: 0.3;
+  margin-bottom: 2rem;
+}
+
+.simulation-page_placeholder__1Hipa h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+}
+
+.simulation-page_placeholder__1Hipa p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.simulation-page_specs__uTz1T {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: left;
+  max-width: 500px;
+  margin-bottom: 2rem;
+}
+
+.simulation-page_specs__uTz1T h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+}
+
+.simulation-page_specs__uTz1T ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.simulation-page_specs__uTz1T li {
+  padding: 0.5rem 0;
+  color: #333;
+  font-size: 0.875rem;
+}
+
+.simulation-page_devNote__gPMX8 {
+  background: #fffbeb;
+  border: 1px solid #fbbf24;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  max-width: 600px;
+}
+
+.simulation-page_devNote__gPMX8 strong {
+  color: #d97706;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.simulation-page_devNote__gPMX8 p {
+  font-size: 0.875rem;
+  color: #92400e;
+  margin: 0.25rem 0;
+}
+
+/* 사이드바 */
+.simulation-page_sidebar__OgKdY {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.simulation-page_infoCard__rmOEo {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.simulation-page_infoCard__rmOEo h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.simulation-page_infoItem___1eDF {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.simulation-page_infoItem___1eDF:last-child {
+  border-bottom: none;
+}
+
+.simulation-page_label__4wQhO {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.simulation-page_value__dLyu0 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.simulation-page_guideList__9WMNs {
+  padding-left: 1.25rem;
+  margin: 0;
+}
+
+.simulation-page_guideList__9WMNs li {
+  font-size: 0.875rem;
+  color: #333;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.simulation-page_arButton__hTAKG {
+  margin-top: 2rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: #667eea;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.simulation-page_arButton__hTAKG:hover {
+  background-color: #5a67d8;
+}
+
+.simulation-page_arSceneWrapper__AUYv6 {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+/* AR Active State */
+.simulation-page_page__WR6ks.simulation-page_arActive__MzsGZ .simulation-page_placeholder__1Hipa {
+  display: none;
+}
+
+.simulation-page_page__WR6ks.simulation-page_arActive__MzsGZ .simulation-page_arSceneWrapper__AUYv6 {
+  display: block;
+}
+.simulation-page_page__WR6ks.simulation-page_arActive__MzsGZ .simulation-page_sessionHistoryWrapper__kmvh7,
+.simulation-page_page__WR6ks.simulation-page_arActive__MzsGZ > header,
+.simulation-page_page__WR6ks.simulation-page_arActive__MzsGZ > main > aside {
+  display: none;
+}
+
+.simulation-page_page__WR6ks.simulation-page_arActive__MzsGZ {
+  flex-direction: row; /* Adjust main flex direction if needed, or let main handle it */
+  padding: 0;
+}
+
+.simulation-page_page__WR6ks.simulation-page_arActive__MzsGZ .simulation-page_main__4IySE {
+  flex: 1 1;
+  padding: 0;
+  gap: 0;
+}
+
+.simulation-page_page__WR6ks.simulation-page_arActive__MzsGZ .simulation-page_simulationContainer__yF6UT {
+  flex: 1 1;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* 반응형 */
+@media (max-width: 1024px) {
+  .simulation-page_main__4IySE {
+    flex-direction: column;
+  }
+
+  .simulation-page_sidebar__OgKdY {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .simulation-page_header__Fzoha {
+    padding: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .simulation-page_main__4IySE {
+    padding: 1rem;
+  }
+
+  .simulation-page_placeholder__1Hipa {
+    min-height: 400px;
+    padding: 2rem 1rem;
+  }
+
+  .simulation-page_placeholder__1Hipa h2 {
+    font-size: 1.5rem;
+  }
+
+  .simulation-page_specs__uTz1T {
+    padding: 1.5rem;
+  }
+}

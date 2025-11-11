@@ -1,22 +1,37 @@
 'use client';
 
+import { useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { ArrowLeft, Maximize2, Move3d } from 'lucide-react';
-import SessionHistory from '@/components/chat/SessionHistory/SessionHistory'; // 🆕 추가
-import { ChatSession } from '@/lib/db/indexedDB'; // 🆕 추가
+import { Maximize2, Move3d } from 'lucide-react';
+import SessionHistory from '@/components/chat/SessionHistory/SessionHistory';
+import { ChatSession } from '@/lib/db/indexedDB';
+import ARUI from '@/components/ar/ARUI';
+import ARScene, { ARSceneHandle } from '@/components/ar/ARScene';
 import styles from './simulation-page.module.css';
+import { useARStore } from '@/store/useARStore';
 
 export default function SimulationPage() {
   const params = useParams();
   const router = useRouter();
   const productId = params.productId as string;
+  const { isARActive, setARActive } = useARStore();
 
-  // 🆕 SessionHistory를 위한 Mock 데이터
+  const arSceneRef = useRef<ARSceneHandle>(null);
+  const uiOverlayRef = useRef<HTMLDivElement>(null);
+  const lastUITouchTimeRef = useRef(0);
+
+  const handleStartAR = () => {
+    // Call startAR directly from the user gesture
+    arSceneRef.current?.startAR();
+    // Set the global state to update the UI
+    setARActive(true);
+  };
+
+  // Mock data for SessionHistory
   const mockSessions: ChatSession[] = [];
   const currentSessionId = '';
 
   const handleSelectSession = (sessionId: string) => {
-    // 세션 선택 시 채팅 페이지로 이동
     router.push(`/chat/${productId}?session=${sessionId}`);
   };
 
@@ -29,26 +44,20 @@ export default function SimulationPage() {
   };
 
   return (
-    <div className={styles.page}>
-      {/* 🆕 네비게이션 사이드바 */}
-      <SessionHistory
-        sessions={mockSessions}
-        currentSessionId={currentSessionId}
-        onSelectSession={handleSelectSession}
-        onNewSession={handleNewSession}
-        onDeleteSession={handleDeleteSession}
-      />
+    <div className={`${styles.page} ${isARActive ? styles.arActive : ''}`} ref={uiOverlayRef}>
+      <ARUI lastUITouchTimeRef={lastUITouchTimeRef} />
 
-      {/* 헤더 */}
+      <div className={styles.sessionHistoryWrapper}>
+        <SessionHistory
+          sessions={mockSessions}
+          currentSessionId={currentSessionId}
+          onSelectSession={handleSelectSession}
+          onNewSession={handleNewSession}
+          onDeleteSession={handleDeleteSession}
+        />
+      </div>
+
       <header className={styles.header}>
-        <button 
-          className={styles.backButton}
-          onClick={() => router.push(`/chat/${productId}`)}
-        >
-          <ArrowLeft size={20} />
-          <span>채팅으로 돌아가기</span>
-        </button>
-
         <div className={styles.headerTitle}>
           <Move3d size={24} className={styles.headerIcon} />
           <div>
@@ -58,15 +67,19 @@ export default function SimulationPage() {
         </div>
       </header>
 
-      {/* 메인 컨텐츠 */}
       <main className={styles.main}>
-        {/* 시뮬레이션 영역 */}
         <div className={styles.simulationContainer}>
+          {/* ARScene is always rendered but hidden via CSS initially */}
+          <div className={styles.arSceneWrapper}>
+            <ARScene ref={arSceneRef} uiOverlayRef={uiOverlayRef} lastUITouchTimeRef={lastUITouchTimeRef} />
+          </div>
+
+          {/* Placeholder is shown/hidden via CSS */}
           <div className={styles.placeholder}>
             <Maximize2 size={64} className={styles.placeholderIcon} />
             <h2>AR/3D 시뮬레이션 영역</h2>
             <p>이 영역에 AR 또는 3D 시뮬레이션 기능이 구현됩니다</p>
-            
+
             <div className={styles.specs}>
               <h3>구현 예정 기능:</h3>
               <ul>
@@ -83,10 +96,13 @@ export default function SimulationPage() {
               <p>이 페이지는 시뮬레이션 기능을 위한 컨테이너입니다.</p>
               <p>실제 AR/3D 로직은 별도 컴포넌트로 구현하여 이 영역에 삽입하면 됩니다.</p>
             </div>
+
+            <button className={styles.arButton} onClick={handleStartAR}>
+              AR 기능 시작
+            </button>
           </div>
         </div>
 
-        {/* 사이드 패널 */}
         <aside className={styles.sidebar}>
           <div className={styles.infoCard}>
             <h3>제품 정보</h3>
