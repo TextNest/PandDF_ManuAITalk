@@ -8,14 +8,13 @@ from uuid import uuid5
 from pdf2image import convert_from_path
 from datetime import datetime, timedelta, timezone
 from pypdf import PdfReader
-from dotenv import load_dotenv
+from core.config import path
 
 # 상수
-load_dotenv()
 ABSPATH = os.path.dirname(os.path.abspath(__file__))
 ABSPATH = os.path.abspath(os.path.join(ABSPATH,'..','..'))
-SESHAT_CODE = uuid.UUID(os.getenv('UUID_PROTOCOL_SESHAT'))
-OUTDIR = os.path.join(ABSPATH,'artifacts')
+MPC = uuid.UUID(os.getenv('MAIT_PROTOCOL_CODE'))
+OUTDIR = os.path.join(path.PAGE_IMAGES_DIR)
 PDF_PATH = os.path.join(ABSPATH,'data')
 DATALIST = os.listdir(PDF_PATH)
 DEFAULT_DPI = 400
@@ -52,7 +51,7 @@ def rand_pdf(data_namelist: list, pdf_path: str, target: str = None):
 # 고유 문서 생성자
 def gen_doc_id(pdf_path:str):
     pdf = os.path.basename(pdf_path)
-    return str(uuid5(SESHAT_CODE, pdf))
+    return str(uuid5(MPC, pdf))
 
 # 프로세스 : 페이지 단위 추출(변환)
 def pdf_converter(pdf_path: str, path_bin: str, dpi: int = DEFAULT_DPI):
@@ -216,7 +215,7 @@ def save_page_img(imgs, metadata, img_format='png'):
         img.save(filelist[i], format=img_format, optimize=True)
 
 # 실행루틴
-def execute(pdf_path:str, poppler_path:str = None):
+def execute_convert(pdf_path:str, poppler_path:str = None):
   if poppler_path is None:
     poppler_path = PATH_BIN
   os.makedirs(OUTDIR, exist_ok=True)
@@ -232,4 +231,4 @@ def execute(pdf_path:str, poppler_path:str = None):
 if __name__ == '__main__':
   # PDF 선택 (PDF는 랜덤 지정)
   pdfpath = set_pdf('SDH-E18KPA_SDH-CP170E1_MANUAL.pdf')
-  execute(pdfpath, PATH_BIN)
+  execute_convert(pdfpath, PATH_BIN)

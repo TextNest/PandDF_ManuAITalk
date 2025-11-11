@@ -113,7 +113,12 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[st
                 end  = time.time()
                 total_time = end - start 
                 print(f"{total_time:0.2f}초 걸렸습니다.")
-                await websocket.send_json({"type":"bot","message":answer["answer"]})
+                print(type(answer["answer"]))
+                if isinstance(answer["answer"],list):
+                    final_answer = answer["answer"][0]["text"]
+                elif isinstance(answer["answer"],str):
+                    final_answer = answer["answer"]
+                await websocket.send_json({"type":"bot","message":final_answer})
 
                 if session_id and user_id :
                     await session.execute(text(add_message),
@@ -121,7 +126,7 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[st
                         "email":user_id,
                         "session_id":session_id,
                         "role":"assistant",
-                        "content":answer["answer"]
+                        "content":final_answer
                     })
                     await session.commit()
 

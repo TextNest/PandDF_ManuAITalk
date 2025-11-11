@@ -1,7 +1,8 @@
 __pycache__/
 /ex_data/
-/artifacts/*
-!/artifacts/.gitkeep
-/test/
+/artifacts/
 /modules/
-test.py
+*test*
+*.ipynb
+*.png
+.env
