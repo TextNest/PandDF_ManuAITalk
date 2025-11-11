@@ -3,7 +3,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from api import chat,login,admin,superadmin
+from api import chat,login,admin,superadmin, faq
 
 
 # CORS 설정
@@ -43,5 +43,7 @@ templates = Jinja2Templates(directory="templates")
 
 app.include_router(chat.router, tags=["chat"])
 app.include_router(login.router, tags=["login"],prefix="/api")
+app.include_router(faq.router, tags=["faq"])
+            
 
 
