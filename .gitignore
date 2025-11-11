@@ -1,7 +1,7 @@
 __pycache__/
-/ex_data/
-/artifacts/
-/modules/
+/Full/Backend/db
+ex_data/
+artifacts/
 *test*
 *.ipynb
 *.png

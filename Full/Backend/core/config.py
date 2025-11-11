@@ -23,9 +23,10 @@ class load:
     def __init__(self):
         pass
 
-    def envs():
+    @staticmethod
+    def envs(env_path:str=None):
         from dotenv import load_dotenv
-        load_dotenv()
+        load_dotenv(dotenv_path=env_path)
         os.environ["OPENAI_API_KEY"] = os.getenv("openai")
         os.environ["GOOGLE_API_KEY"] = os.getenv("GEMINI_API_KEY")
         os.environ["MAIT_PROTOCOL_CODE"] = os.getenv('UUID_PROTOCOL_SESHAT')
