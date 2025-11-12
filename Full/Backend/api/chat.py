@@ -10,7 +10,8 @@ from typing import  Dict,Optional
 from sqlalchemy import text 
 import datetime
 import json
-from core.query import session_search,find_message,add_message,find_session,update_session,add_session,delete_sessions,delete_message 
+from core.query import session_search,find_message,add_message,find_session,update_session,add_session,delete_sessions,delete_message,update_feedback
+from schemas.chat import FeedBack
 
 
 router = APIRouter()
@@ -49,6 +50,35 @@ async def delete_session(session_id:str,user_info:Dict=Depends(get_current_user)
     await session.commit()
     print(f"{user_id}의 {session_id}가 삭제 되었습니다.")
     return {"message":"세션이 삭제되었습니다."}
+
+@router.post("/chat/feedback")
+async def feedback(feedback_data:FeedBack,user_info:Dict=Depends(get_current_user),session:AsyncSession=Depends(get_session)):
+    user_id = user_info.get("email")
+    try:
+        await session.execute(text(update_feedback),
+        params={
+            "feedback":feedback_data.feedback,
+            "id": feedback_data.message_id,
+            "email":user_id
+        })
+        await session.commit()
+        print(f"{feedback_data.id}가 업데이트 되었습니다.")
+    except Exception as e:
+        await session.rollback()
+        
+        # # 위에서 발생시킨 HTTPException도 여기서 잡힐 수 있음
+        # if isinstance(e, HTTPException):
+        #     raise e
+        
+        # raise HTTPException(
+        #     status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        #     detail=f"Database error: {str(e)}"
+        # )
+
+    
+
+    
+
 
 
 
@@ -113,7 +143,12 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[st
                 end  = time.time()
                 total_time = end - start 
                 print(f"{total_time:0.2f}초 걸렸습니다.")
-                await websocket.send_json({"type":"bot","message":answer["answer"]})
+                print(type(answer["answer"]))
+                if isinstance(answer["answer"],list):
+                    final_answer = answer["answer"][0]["text"]
+                elif isinstance(answer["answer"],str):
+                    final_answer = answer["answer"]
+                
 
                 if session_id and user_id :
                     await session.execute(text(add_message),
@@ -121,10 +156,14 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[st
                         "email":user_id,
                         "session_id":session_id,
                         "role":"assistant",
-                        "content":answer["answer"]
+                        "content":final_answer
                     })
+                    result = await session.execute(text("SELECT LAST_INSERT_ID()"))
+                    new_message_id = result.scalar_one()
                     await session.commit()
-
+                    await websocket.send_json({"type":"bot","message":final_answer,"message_id":new_message_id})
+                else:
+                    await websocket.send_json({"type":"bot","message":final_answer})
                 # async for token in agent.stream_chat(data):
                 #     await websocket.send_json({"type": "token", "message": token}) ## type bot:normal , type token : stream
                 await websocket.send_json({"type":"stream_end"})
