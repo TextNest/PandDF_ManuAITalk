@@ -9,6 +9,7 @@ export interface Message {
   role: 'user' | 'assistant'; // 🔥 type → role, bot → assistant
   content: string;
   timestamp: string; // 🔥 Date → string
+  feedback?: 'positive' | 'negative' | null;
   sources?: Source[];
   isStreaming?: boolean;
 }

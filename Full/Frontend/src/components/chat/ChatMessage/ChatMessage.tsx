@@ -5,7 +5,7 @@ import { User, Bot, ThumbsUp, ThumbsDown } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 // 2. IndexedDB 로직
-import { dbManager, MessageFeedback } from '@/lib/db/indexedDB';
+// import { dbManager, MessageFeedback } from '@/lib/db/indexedDB';
 // 3. CSS 파일
 import styles from './ChatMessage.module.css';
 
@@ -15,6 +15,7 @@ interface Message {
   role: 'user' | 'assistant';
   content: string;
   timestamp: string;
+  feedback?: 'positive' | 'negative' | null;
   sources?: Array<{
     documentName: string;
     pageNumber: number;
@@ -26,57 +27,45 @@ interface ChatMessageProps {
   sessionId: string;
   productId: string;
   isFirstMessage?: boolean;
+  onSendFeedback: (
+    messageId: string | number, 
+    type: 'positive' | 'negative' | null
+  ) => Promise<void>;
 }
 
 export default function ChatMessage({
   message,
   sessionId,
   productId,
-  isFirstMessage = false
+  isFirstMessage = false,
+  onSendFeedback
 }: ChatMessageProps) {
-  const [feedback, setFeedback] = useState<'positive' | 'negative' | null>(null);
+  const [feedback, setFeedback] = useState<'positive' | 'negative' | null>(message.feedback || null);
   const [isLoading, setIsLoading] = useState(false);
 
   // 5. 피드백 로드 로직
   useEffect(() => {
-    if (message.role === 'assistant') {
-      loadExistingFeedback();
+    if (message.feedback !== feedback) {
+      setFeedback(message.feedback || null);
     }
-  }, [message.id, sessionId]);
+  }, [message.feedback]);
 
-  const loadExistingFeedback = async () => {
-    const existingFeedback = await dbManager.getFeedback(sessionId, message.id);
-    if (existingFeedback) {
-      setFeedback(existingFeedback.feedbackType);
-    }
-  };
 
   // 6. 피드백 핸들러 로직
   const handleFeedback = async (type: 'positive' | 'negative') => {
     if (isLoading) return;
     setIsLoading(true);
+    const previousFeedback = feedback;
+    const newFeedbackType = (feedback===type)?null:type;
 
     try {
-      if (feedback === type) {
-        await dbManager.deleteFeedback(sessionId, message.id);
-        setFeedback(null);
-        console.log('피드백 취소됨');
-      } else {
-        const newFeedback: MessageFeedback = {
-          id: `${sessionId}-${message.id}`,
-          messageId: message.id,
-          sessionId,
-          productId,
-          feedbackType: type,
-          timestamp: new Date().toISOString(),
-        };
-        await dbManager.saveFeedback(newFeedback);
-        setFeedback(type);
-        console.log(`피드백 저장됨: ${type}`);
-      }
-    } catch (error) {
-      console.error('피드백 처리 실패:', error);
-    } finally {
+      await onSendFeedback(message.id, newFeedbackType);
+      setFeedback(newFeedbackType);
+      console.log(`피드백 저장됨: ${newFeedbackType}`);
+    } catch (error){
+      setFeedback(previousFeedback);
+      console.log(`피드백 저장 실패: ${error}`)
+    }finally{
       setIsLoading(false);
     }
   };

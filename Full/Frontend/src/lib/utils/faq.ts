@@ -65,4 +65,3 @@ export function convertFAQResponseToFAQ(response: FAQResponse): FAQ {
 export function convertFAQResponseArrayToFAQArray(responses: FAQResponse[]): FAQ[] {
   return responses.map(convertFAQResponseToFAQ);
 }
-
