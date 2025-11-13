@@ -10,7 +10,7 @@ from typing import  Dict,Optional
 from sqlalchemy import text 
 import datetime
 import json
-from core.query import session_search,find_message,add_message,find_session,update_session,add_session,delete_sessions,delete_message,update_feedback
+from core.query import session_search,find_message,add_message,find_session,update_session,add_session,delete_sessions,delete_message,update_feedback,guest_find_message
 from schemas.chat import FeedBack
 
 
@@ -84,11 +84,11 @@ async def feedback(feedback_data:FeedBack,user_info:Dict=Depends(get_current_use
 
 @router.websocket("/ws/{pid}")
 async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[str] = Query(None, alias="session_id")):
-    print(session_id,type(session_id))
     await websocket.accept()
-    message = None
     print("연결 성공")  
+    message = None
     user_id = None
+    final_answer = None
     try:
         first_message = await websocket.receive_json()
         if first_message.get("token")=="pass":
@@ -128,15 +128,15 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[st
         while True:
             data = await websocket.receive_text()
             async with get_session_text() as session:
-                if session_id and user_id:
-                    await session.execute(text(add_message),
-                    params={
-                        "email":user_id,
-                        "session_id":session_id,
-                        "role":"user",
-                        "content":data
-                    })
-                    await session.commit()
+                
+                await session.execute(text(add_message),
+                params={
+                    "email":user_id,
+                    "session_id":session_id,
+                    "role":"user",
+                    "content":data
+                })
+                await session.commit()
 
                 start = time.time()
                 answer = agent.chat(data,session)
@@ -150,17 +150,18 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[st
                     final_answer = answer["answer"]
                 
 
+                
+                await session.execute(text(add_message),
+                params={
+                    "email":user_id,
+                    "session_id":session_id,
+                    "role":"assistant",
+                    "content":final_answer
+                })
+                result = await session.execute(text("SELECT LAST_INSERT_ID()"))
+                new_message_id = result.scalar_one()
+                await session.commit()
                 if session_id and user_id :
-                    await session.execute(text(add_message),
-                    params={
-                        "email":user_id,
-                        "session_id":session_id,
-                        "role":"assistant",
-                        "content":final_answer
-                    })
-                    result = await session.execute(text("SELECT LAST_INSERT_ID()"))
-                    new_message_id = result.scalar_one()
-                    await session.commit()
                     await websocket.send_json({"type":"bot","message":final_answer,"message_id":new_message_id})
                 else:
                     await websocket.send_json({"type":"bot","message":final_answer})
@@ -185,19 +186,24 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[st
                         "lastMessage":last_message,
                         "messageCount":message_count
                     })
-                else:
-                    await session.execute(text(add_session),
-                    params={
-                        "email":user_id,
-                        "productId":pid,
-                        "session_id":session_id,
-                        "lastMessage":last_message,
-                        "messageCount":message_count
-                    })
-                await session.commit()
-
-                print(f"{user_id}_{session_id}가 저장되었습니다.")
-                print("연결 종료")
             else:
-                print("비회원 연결종료")
+                results = await session.execute(text(guest_find_message),
+                params={"session_id":session_id})
+                code_row = results.mappings().all()
+                message_count = len(code_row)
+                last_message = code_row[-1]['content']
+                await session.execute(text(add_session),
+                params={
+                    "email":user_id,
+                    "productId":pid,
+                    "session_id":session_id,
+                    "lastMessage":last_message,
+                    "messageCount":message_count
+                })
+            await session.commit()
+
+            print(f"{user_id}_{session_id}가 저장되었습니다.")
+            print("연결 종료")
+
+                
         

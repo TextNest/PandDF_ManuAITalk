@@ -54,3 +54,9 @@ DELETE FROM test_session WHERE email = :email AND session_id = :session_id
 delete_message = """
 DELETE FROM test_message WHERE email = :email AND session_id = :session_id
 """
+guest_find_message= """
+SELECT id,role,content,timestamp,feedback
+FROM test_message
+WHERE session_id = :session_id 
+ORDER BY timestamp ASC
+"""
