@@ -1,10 +1,11 @@
+import asyncio
 from fastapi import FastAPI,Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from api import chat,login,admin,superadmin, faq
-
+from module import Scheduler_ARP
 
 # CORS 설정
 origins = [
@@ -41,9 +42,14 @@ templates = Jinja2Templates(directory="templates")
 # async def main_page(request:Request,pid:str):
 #     return templates.TemplateResponse("chat.html",{"request":request,"pid":pid})
 
+
 app.include_router(chat.router, tags=["chat"])
 app.include_router(login.router, tags=["login"],prefix="/api")
 app.include_router(faq.router, tags=["faq"])
             
+
+@app.on_event("startup")
+async def set_scheduler():
+    asyncio.create_task(Scheduler_ARP())
 
 

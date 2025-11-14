@@ -54,3 +54,40 @@ DELETE FROM test_session WHERE email = :email AND session_id = :session_id
 delete_message = """
 DELETE FROM test_message WHERE email = :email AND session_id = :session_id
 """
+
+find_session_for_rep = """
+SELECT tm.session_id
+FROM test_message tm
+WHERE NOT EXISTS (SELECT 1 FROM test_report r WHERE r.session_id = tm.session_id)
+GROUP BY tm.session_id
+HAVING MAX(tm.`timestamp`) < NOW() - INTERVAL 30 MINUTE
+ORDER BY MAX(tm.`timestamp`) ASC
+LIMIT 200;
+"""
+
+find_message_for_rep = """
+SELECT role, content, timestamp
+FROM test_message
+WHERE session_id = :sid
+ORDER BY `timestamp` ASC;
+"""
+
+find_product_for_rep = """
+SELECT productId as product_id
+FROM test_session
+WHERE session_id = :sid;
+"""
+
+report_query = """
+INSERT INTO test_report (
+    session_id, product_id, status, content, timestamp_s, timestamp_e
+) VALUES (
+    :sid, :pid, :stat, :sum, :ts, :te
+)
+ON DUPLICATE KEY UPDATE
+    product_id = VALUES(product_id),
+    status = VALUES(status),
+    content = VALUES(content),
+    timestamp_s = VALUES(timestamp_s),
+    timestamp_e = VALUES(timestamp_e);
+"""
