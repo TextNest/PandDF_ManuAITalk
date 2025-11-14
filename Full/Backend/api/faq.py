@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, update, delete
 from typing import List, Optional
 from core.db_config import get_session
-from module.faq import FAQ
+from models.faq import FAQ
 from schemas.faq import FAQCreate, FAQUpdate, FAQResponse
 
 router = APIRouter(prefix="/api/faqs", tags=["FAQ"])
