@@ -1,0 +1,8 @@
+__pycache__/
+/Full/Backend/db
+ex_data/
+artifacts/
+*test*
+*.ipynb
+*.png
+.env

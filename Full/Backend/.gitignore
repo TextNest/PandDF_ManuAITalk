@@ -1,5 +1,0 @@
-.env
-db/
-*.ipynb
-__pycache__/
-*.png
