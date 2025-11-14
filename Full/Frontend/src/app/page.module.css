@@ -542,3 +542,93 @@
   }
 }
 
+/* 3D 모델 변환 섹션 스타일 */
+.conversionSection {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.conversionSection h2 {
+  font-size: 1.5rem;
+  color: white;
+  margin: 0;
+  text-align: center;
+}
+
+.fileInput {
+  font-size: 0.875rem;
+  color: white;
+}
+
+.fileInput::file-selector-button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.fileInput::file-selector-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.convertButton {
+  padding: 0.875rem 1.5rem;
+  background: #ffd700;
+  color: #333;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.convertButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+.convertButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.modelResult {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(0, 255, 100, 0.1);
+  border-radius: 0.5rem;
+}
+
+.modelResult p {
+  margin: 0 0 0.5rem 0;
+  color: white;
+  font-weight: 500;
+}
+
+.modelResult a {
+  color: #ffd700;
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.errorMessage {
+  color: #ffcccc;
+  text-align: center;
+  background: rgba(255, 0, 0, 0.2);
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+}
+

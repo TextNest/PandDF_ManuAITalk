@@ -8,7 +8,7 @@ START "Frontend" /D "..\Full\Frontend" npm run dev
 REM 2. Start Backend (in a new window, with venv activation)
 ECHO Starting Backend (uvicorn)...
 REM .venv 이름을 다르게 하셨다면 ".\.venv\Scripts\activate" 부분을 수정하세요.
-START "Backend" /D "..\Full\Backend" cmd /k ".\.venv\Scripts\activate && uvicorn main:app --port 8000"
+START "Backend" /D "..\Full\Backend" cmd /k ".\.venv\Scripts\activate && uvicorn main:app --port 8000 --reload"
 
 REM 3. Start ngrok (2-Account Fix)
 ECHO Starting ngrok tunnels with separate accounts...

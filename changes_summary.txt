@@ -1,0 +1,52 @@
+오늘의 변경 사항 요약:
+
+1.  **백엔드 (Full/Backend/models/category.py)**
+    *   `__tablename__`을 `"categories"`에서 `"test_categories"`로 변경하여 테이블 이름 일관성 유지.
+
+2.  **백엔드 (Full/Backend/models/product.py)**
+    *   `ForeignKey` 참조를 `"categories.id"`에서 `"test_categories.id"`로 업데이트.
+    *   `AnalysisStatus` Enum (`PENDING`, `COMPLETED`, `FAILED`) 추가.
+    *   `Product` 모델에 `analysis_status` 컬럼 추가 (기본값 `PENDING`).
+    *   `Product` 모델에 `viewCount` 컬럼 추가 (기본값 `0`).
+    *   `Product` 모델에 `questionCount` 컬럼 추가 (기본값 `0`).
+
+3.  **백엔드 (Full/Backend/schemas/product.py)**
+    *   `AnalysisStatus` Enum 추가.
+    *   `ProductBase` 스키마에 `analysis_status: Optional[AnalysisStatus] = AnalysisStatus.PENDING` 추가.
+    *   `ProductBase` 스키마에 `viewCount: int = 0` 및 `questionCount: int = 0` 추가.
+
+4.  **백엔드 (Full/Backend/api/categories.py)**
+    *   상대 경로 임포트(`..core`, `..models`, `..schemas`)를 절대 경로 임포트(`core`, `models`, `schemas`)로 변경하여 `ImportError` 수정.
+
+5.  **백엔드 (Full/Backend/api/products.py)**
+    *   `create_product` 엔드포인트에서 `session.refresh` 대신 `selectinload`를 사용하여 `Product`와 `category` 관계를 명시적으로 로드하도록 수정하여 `500 Internal Server Error` 해결.
+    *   제품 목록을 조회하는 `GET /` 엔드포인트 추가 (초기에는 `analysis_status == AnalysisStatus.COMPLETED`로 필터링).
+    *   중복된 `router = APIRouter()` 선언을 제거하여 파일 업로드 엔드포인트의 `404 Not Found` 오류 해결.
+    *   **임시적으로** `GET /` 엔드포인트에서 `analysis_status` 필터를 제거하여 모든 제품이 목록에 표시되도록 수정 (테스트 목적).
+
+6.  **프론트엔드 (Full/Frontend/src/types/product.types.ts)**
+    *   `Product` 인터페이스 업데이트:
+        *   `category` 타입을 `ProductCategory` (문자열)에서 `{ id: number; name: string; }` (객체)로 변경.
+        *   `is_active: boolean` 추가.
+        *   `analysis_status: 'PENDING' | 'COMPLETED' | 'FAILED'` 추가.
+        *   `documentIds: string[]`를 `pdf_path?: string | null;`로 대체.
+        *   `viewCount: number` 및 `questionCount: number` 추가.
+
+7.  **프론트엔드 (Full/Frontend/src/components/product/ProductCard/ProductCard.tsx)**
+    *   `product.status` 대신 `product.is_active` 사용하도록 업데이트.
+    *   `product.category` 대신 `product.category.name` 사용하도록 업데이트.
+    *   `product.documentIds.length` 대신 `product.pdf_path ? '1개' : '0개'` 사용하도록 업데이트.
+    *   `product.analysis_status`를 아이콘 및 라벨과 함께 표시하도록 추가.
+    *   `product.viewCount` 및 `product.questionCount`를 사용하도록 업데이트.
+
+8.  **프론트엔드 (Full/Frontend/src/components/product/ProductCard/ProductCard.module.css)**
+    *   `statusPending`, `statusCompleted`, `statusFailed`에 대한 스타일 추가.
+
+9.  **프론트엔드 (Full/Frontend/src/app/(admin)/products/page.tsx)**
+    *   백엔드 API(`GET /api/products`, `GET /api/categories`)에서 제품 및 카테고리 데이터를 동적으로 가져오도록 리팩토링.
+    *   목업 데이터 제거.
+    *   `category_id`를 사용하도록 카테고리 필터링 로직 업데이트.
+    *   로딩 및 오류 상태 추가.
+
+10. **프론트엔드 (Full/Frontend/src/components/product/ProductForm/ProductForm.module.css)**
+    *   커스텀 드롭다운 화살표 스타일을 원래대로 되돌림.

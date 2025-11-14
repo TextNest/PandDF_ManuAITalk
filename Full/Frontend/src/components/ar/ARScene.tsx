@@ -10,17 +10,20 @@ import { useFurniturePlacement } from '@/features/ar/hooks/useFurniturePlacement
 import styles from './ARScene.module.css';
 import { COLORS } from '@/lib/ar/constants';
 import { useARStore } from '@/store/useARStore';
+import { Product } from '@/types/product.types';
+import { FurnitureItem } from '@/lib/ar/types'; // Import FurnitureItem
 
 interface ARSceneProps {
   uiOverlayRef: React.RefObject<HTMLDivElement | null>;
   lastUITouchTimeRef: React.RefObject<number>;
+  product: Product | null;
 }
 
 export interface ARSceneHandle {
   startAR: () => void;
 }
 
-const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUITouchTimeRef }, ref) => {
+const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUITouchTimeRef, product }, ref) => {
   // --- Zustand Store ---
   const {
     isARActive,
@@ -31,7 +34,6 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
     endARCounter,
     isPreviewing,
     selectFurniture,
-    endAR,
     setDebugMessage,
     isScanning,
     setIsScanning,
@@ -39,9 +41,7 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
 
   // --- Refs & State ---
   const containerRef = useRef<HTMLDivElement | null>(null);
-
   const isPreviewingRef = useRef(false);
-
   const rendererRef = useRef<WebGLRenderer | null>(null);
   const sceneRef = useRef<Scene | null>(null);
   const hitTestSourceRef = useRef<XRHitTestSource | null>(null);
@@ -55,6 +55,29 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
   useEffect(() => {
     isPreviewingRef.current = isPreviewing;
   }, [isPreviewing]);
+
+  // Automatically select the product when the product prop changes
+  useEffect(() => {
+    if (product) {
+      const mappedFurniture: FurnitureItem = {
+        id: product.id,
+        name: product.name,
+        // For compatibility with ARUI
+        width: (product.width_mm || 1000) / 1000,
+        depth: (product.depth_mm || 1000) / 1000,
+        height: (product.height_mm || 1000) / 1000,
+        modelUrl: product.model3dUrl,
+        // For useFurniturePlacement hook
+        model3dUrl: product.model3dUrl,
+        width_mm: product.width_mm,
+        height_mm: product.height_mm,
+        depth_mm: product.depth_mm,
+      };
+      selectFurniture(mappedFurniture);
+    } else {
+      selectFurniture(null); // Clear selection if product is null
+    }
+  }, [product, selectFurniture]);
 
   useEffect(() => {
     if (selectedFurniture) {

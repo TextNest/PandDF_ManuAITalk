@@ -10,7 +10,7 @@ const ARPage = () => {
 
   return (
     <div>
-      <ARScene uiOverlayRef={uiOverlayRef} lastUITouchTimeRef={lastUITouchTimeRef} />
+      <ARScene uiOverlayRef={uiOverlayRef} lastUITouchTimeRef={lastUITouchTimeRef} product={null} />
       <div ref={uiOverlayRef}>
         <ARUI lastUITouchTimeRef={lastUITouchTimeRef} />
       </div>

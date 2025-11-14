@@ -219,9 +219,29 @@
   color: #6b7280;
 }
 
-.status.draft {
-  background-color: rgba(245, 158, 11, 0.1);
+/* analysis_status 스타일 */
+.statusPending {
+  background-color: rgba(251, 191, 36, 0.1); /* Yellow */
   color: #f59e0b;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.statusCompleted {
+  background-color: rgba(16, 185, 129, 0.1); /* Green */
+  color: #10b981;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.statusFailed {
+  background-color: rgba(239, 68, 68, 0.1); /* Red */
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 .inactiveLabel {

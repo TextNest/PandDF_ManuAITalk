@@ -24,7 +24,7 @@ export default function ProductList({ products }: ProductListProps) {
   return (
     <div className={styles.grid}>
       {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+        <ProductCard key={product.internal_id} product={product} />
       ))}
     </div>
   );

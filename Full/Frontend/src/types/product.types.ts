@@ -13,23 +13,23 @@ export type ProductCategory =
   | '공기청정기'
   | '기타';
 
-export type ProductStatus = 
-  | 'active'      // 활성
-  | 'inactive'    // 비활성
-  | 'draft';      // 임시저장
-
 export interface Product {
-  id: string;
-  name: string;                    // 제품명
-  model: string;                   // 모델명
-  category: ProductCategory;       // 카테고리
+  internal_id: string;
+  product_name: string;                    // 제품명
+  product_id: string;                   // 모델명
+  category: { id: number; name: string; }; // 카테고리 (객체로 변경)
   manufacturer?: string;           // 제조사
   description?: string;            // 설명
   releaseDate?: Date;              // 출시일
-  status: ProductStatus;           // 상태
+  is_active: boolean;              // 활성 상태
+  analysis_status: 'PENDING' | 'COMPLETED' | 'FAILED'; // 분석 상태 추가
   qrCodeUrl: string;              // QR 코드 URL (/chat/{productId})
-  documentIds: string[];          // 연결된 문서 ID들
+  pdf_path?: string | null;        // PDF 경로 (documentIds에서 변경)
   imageUrl?: string;              // 제품 이미지
+  model3dUrl?: string;            // 3D 모델 경로
+  width_mm?: number;              // 가로 길이 (mm)
+  height_mm?: number;             // 세로 길이 (mm)
+  depth_mm?: number;              // 깊이 길이 (mm)
   viewCount: number;              // 조회수
   questionCount: number;          // 질문 수
   createdAt: Date;
@@ -38,13 +38,14 @@ export interface Product {
 }
 
 export interface ProductFormData {
-  name: string;
-  model: string;
-  category: ProductCategory;
+  product_name: string;
+  product_id: string;
+  category_id: number;
   manufacturer?: string;
   description?: string;
   releaseDate?: string;           // ISO string
-  status: ProductStatus;
+  is_active: boolean;
   documentIds: string[];
   imageUrl?: string;
+  model3dUrl?: string;
 }

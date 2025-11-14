@@ -5,4 +5,8 @@ export interface FurnitureItem {
   depth: number;
   height: number;
   modelUrl?: string;
+  model3dUrl?: string;
+  width_mm?: number;
+  depth_mm?: number;
+  height_mm?: number;
 }

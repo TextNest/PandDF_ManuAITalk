@@ -16,10 +16,13 @@ import {
   Power,
   QrCode,
   Eye,
-  MessageSquare
+  MessageSquare,
+  Hourglass, // 분석 상태 아이콘 추가
+  CheckCircle, // 분석 완료 아이콘 추가
+  XCircle // 분석 실패 아이콘 추가
 } from 'lucide-react';
-import Modal from '@/components/ui/Modal/Modal';  // 🆕 추가
-import QRCodeDisplay from '../QRCodeDisplay/QRCodeDisplay';  // 🆕 추가
+import Modal from '@/components/ui/Modal/Modal';
+import QRCodeDisplay from '../QRCodeDisplay/QRCodeDisplay';
 import { Product } from '@/types/product.types';
 import styles from './ProductCard.module.css';
 
@@ -29,20 +32,15 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isActive, setIsActive] = useState(product.status === 'active');
-  const [showQRModal, setShowQRModal] = useState(false);  // 🆕 추가
+  const [isActive, setIsActive] = useState(product.is_active); // is_active 사용
+  const [showQRModal, setShowQRModal] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  const statusColors = {
-    active: styles.active,
-    inactive: styles.inactive,
-    draft: styles.draft,
-  };
-
-  const statusLabels = {
-    active: '활성',
-    inactive: '비활성',
-    draft: '임시저장',
+  // analysis_status에 따른 스타일 및 라벨
+  const analysisStatusMap = {
+    PENDING: { label: '분석 대기중', color: styles.statusPending, icon: <Hourglass size={16} /> },
+    COMPLETED: { label: '분석 완료', color: styles.statusCompleted, icon: <CheckCircle size={16} /> },
+    FAILED: { label: '분석 실패', color: styles.statusFailed, icon: <XCircle size={16} /> },
   };
 
   // 외부 클릭 시 메뉴 닫기
@@ -62,33 +60,34 @@ export default function ProductCard({ product }: ProductCardProps) {
     };
   }, [isMenuOpen]);
 
-  // 🔥 수정: QR 모달 열기
   const handleViewQR = () => {
-    setShowQRModal(true);  // 🆕 변경
+    setShowQRModal(true);
     setIsMenuOpen(false);
   };
 
   const handleEdit = () => {
-    console.log('수정하기:', product.id);
+    console.log('수정하기:', product.internal_id);
     // TODO: 수정 페이지로 이동
     setIsMenuOpen(false);
   };
 
   const handleToggleActive = () => {
-    const newStatus = !isActive;
-    setIsActive(newStatus);
-    console.log('활성화 토글:', product.id, newStatus ? '활성화' : '비활성화');
+    const newIsActive = !isActive;
+    setIsActive(newIsActive);
+    console.log('활성화 토글:', product.internal_id, newIsActive ? '활성화' : '비활성화');
     // TODO: API 호출
     setIsMenuOpen(false);
   };
 
   const handleDelete = () => {
-    if (confirm(`"${product.name}" 제품을 삭제하시겠습니까?`)) {
-      console.log('삭제:', product.id);
+    if (confirm(`"${product.product_name}" 제품을 삭제하시겠습니까?`)) {
+      console.log('삭제:', product.internal_id);
       // TODO: 실제 삭제 로직
     }
     setIsMenuOpen(false);
   };
+
+  const currentAnalysisStatus = analysisStatusMap[product.analysis_status];
 
   return (
     <>
@@ -144,8 +143,8 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
 
         <div className={styles.content}>
-          <h3 className={styles.title}>{product.name}</h3>
-          <p className={styles.model}>{product.model}</p>
+          <h3 className={styles.title}>{product.product_name}</h3>
+          <p className={styles.model}>{product.product_id}</p>
           {product.manufacturer && (
             <p className={styles.manufacturer}>{product.manufacturer}</p>
           )}
@@ -154,11 +153,11 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className={styles.meta}>
           <div className={styles.metaItem}>
             <span className={styles.metaLabel}>카테고리</span>
-            <span className={styles.metaValue}>{product.category}</span>
+            <span className={styles.metaValue}>{product.category.name}</span> {/* category.name 사용 */}
           </div>
           <div className={styles.metaItem}>
             <span className={styles.metaLabel}>문서</span>
-            <span className={styles.metaValue}>{product.documentIds.length}개</span>
+            <span className={styles.metaValue}>{product.pdf_path ? '1개' : '0개'}</span>
           </div>
         </div>
 
@@ -176,18 +175,19 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         <div className={styles.footer}>
           <div className={styles.statusGroup}>
-            <span className={`${styles.status} ${statusColors[product.status]}`}>
-              {statusLabels[product.status]}
+            <span className={`${styles.status} ${product.is_active ? styles.active : styles.inactive}`}>
+              {product.is_active ? '활성' : '비활성'}
             </span>
-            {/* 🔥 수정: status가 active인데 토글로 비활성화된 경우만 표시 */}
-            {product.status === 'active' && !isActive && (
-              <span className={styles.inactiveLabel}>비활성</span>
+            {currentAnalysisStatus && (
+              <span className={`${styles.status} ${currentAnalysisStatus.color}`}>
+                {currentAnalysisStatus.icon} {currentAnalysisStatus.label}
+              </span>
             )}
           </div>
         </div>
       </div>
 
-      {/* 🆕 QR 코드 모달 추가 */}
+      {/* QR 코드 모달 */}
       {showQRModal && (
         <Modal
           isOpen={showQRModal}
@@ -195,8 +195,8 @@ export default function ProductCard({ product }: ProductCardProps) {
           title="QR 코드"
         >
           <QRCodeDisplay
-            productId={product.id}
-            productName={product.name}
+            productId={product.internal_id}
+            productName={product.product_name}
             size={256}
           />
         </Modal>
