@@ -8,6 +8,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation'; // useRouter 임포트
 import {
   Package,
   MoreVertical,
@@ -35,6 +36,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const [isActive, setIsActive] = useState(product.is_active); // is_active 사용
   const [showQRModal, setShowQRModal] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const router = useRouter(); // useRouter 초기화
 
   // analysis_status에 따른 스타일 및 라벨
   const analysisStatusMap = {
@@ -67,7 +69,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   const handleEdit = () => {
     console.log('수정하기:', product.internal_id);
-    // TODO: 수정 페이지로 이동
+    router.push(`/products/edit/${product.internal_id}`); // 수정 페이지로 이동
     setIsMenuOpen(false);
   };
 
@@ -88,6 +90,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   const currentAnalysisStatus = analysisStatusMap[product.analysis_status];
+  const isAnalysisComplete = product.analysis_status === 'COMPLETED';
 
   return (
     <>
@@ -108,7 +111,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
             {isMenuOpen && (
               <div className={styles.dropdown}>
-                <button className={styles.dropdownItem} onClick={handleViewQR}>
+                <button className={styles.dropdownItem} onClick={handleViewQR} disabled={!isAnalysisComplete}>
                   <QrCode size={16} />
                   QR 코드 보기
                 </button>
@@ -144,34 +147,30 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         <div className={styles.content}>
           <h3 className={styles.title}>{product.product_name}</h3>
-          <p className={styles.model}>{product.product_id}</p>
-          {product.manufacturer && (
-            <p className={styles.manufacturer}>{product.manufacturer}</p>
+          {isAnalysisComplete && (
+            <>
+              <p className={styles.model}>{product.product_id}</p>
+              {product.manufacturer && (
+                <p className={styles.manufacturer}>{product.manufacturer}</p>
+              )}
+            </>
           )}
         </div>
 
-        <div className={styles.meta}>
-          <div className={styles.metaItem}>
-            <span className={styles.metaLabel}>카테고리</span>
-            <span className={styles.metaValue}>{product.category.name}</span> {/* category.name 사용 */}
+        {isAnalysisComplete && (
+          <div className={styles.meta}>
+            <div className={styles.metaItem}>
+              <span className={styles.metaLabel}>카테고리</span>
+              <span className={styles.metaValue}>{product.category || '미지정'}</span>
+            </div>
+            <div className={styles.metaItem}>
+              <span className={styles.metaLabel}>문서</span>
+              <span className={styles.metaValue}>{product.pdf_path ? '1개' : '0개'}</span>
+            </div>
           </div>
-          <div className={styles.metaItem}>
-            <span className={styles.metaLabel}>문서</span>
-            <span className={styles.metaValue}>{product.pdf_path ? '1개' : '0개'}</span>
-          </div>
-        </div>
+        )}
 
-        {/* 통계 */}
-        <div className={styles.stats}>
-          <div className={styles.statItem}>
-            <Eye size={16} />
-            <span>{product.viewCount.toLocaleString()}</span>
-          </div>
-          <div className={styles.statItem}>
-            <MessageSquare size={16} />
-            <span>{product.questionCount.toLocaleString()}</span>
-          </div>
-        </div>
+        {/* 통계 (제거됨) */}
 
         <div className={styles.footer}>
           <div className={styles.statusGroup}>

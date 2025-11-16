@@ -14,38 +14,28 @@ export type ProductCategory =
   | '기타';
 
 export interface Product {
-  internal_id: string;
-  product_name: string;                    // 제품명
-  product_id: string;                   // 모델명
-  category: { id: number; name: string; }; // 카테고리 (객체로 변경)
-  manufacturer?: string;           // 제조사
-  description?: string;            // 설명
-  releaseDate?: Date;              // 출시일
-  is_active: boolean;              // 활성 상태
-  analysis_status: 'PENDING' | 'COMPLETED' | 'FAILED'; // 분석 상태 추가
-  qrCodeUrl: string;              // QR 코드 URL (/chat/{productId})
-  pdf_path?: string | null;        // PDF 경로 (documentIds에서 변경)
-  imageUrl?: string;              // 제품 이미지
-  model3dUrl?: string;            // 3D 모델 경로
-  width_mm?: number;              // 가로 길이 (mm)
-  height_mm?: number;             // 세로 길이 (mm)
-  depth_mm?: number;              // 깊이 길이 (mm)
-  viewCount: number;              // 조회수
-  questionCount: number;          // 질문 수
-  createdAt: Date;
-  updatedAt: Date;
-  createdBy: string;              // 생성자
+  internal_id: number;
+  product_name: string;
+  product_id: string | null;
+  category: string | null;
+  manufacturer?: string | null;
+  description?: string | null;
+  release_date?: string | null; // Changed from Date to string
+  is_active: boolean;
+  analysis_status: 'PENDING' | 'COMPLETED' | 'FAILED';
+  pdf_path?: string | null;
+  image_url?: string | null;
+  model3d_url?: string | null;
+  width_mm?: number | null;
+  height_mm?: number | null;
+  depth_mm?: number | null;
+  created_at: string; // Changed from Date to string
+  updated_at: string; // Changed from Date to string
 }
 
 export interface ProductFormData {
   product_name: string;
-  product_id: string;
-  category_id: number;
-  manufacturer?: string;
-  description?: string;
-  releaseDate?: string;           // ISO string
-  is_active: boolean;
-  documentIds: string[];
-  imageUrl?: string;
-  model3dUrl?: string;
+  pdf_path: string;
 }
+
+export type ProductUpdate = Partial<Omit<Product, 'internal_id' | 'created_at' | 'updated_at'>>;

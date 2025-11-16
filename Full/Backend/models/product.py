@@ -15,9 +15,11 @@ class Product(Base):
 
     internal_id = Column(Integer, primary_key=True, index=True)
     product_name = Column(String(255), nullable=False, comment="제품명")
-    product_id = Column(String(255), nullable=False, unique=True, comment="모델명")
+    product_id = Column(String(255), nullable=True, unique=True, comment="모델명")
     
-    category_id = Column(Integer, ForeignKey("test_categories.id"), nullable=False, comment="카테고리 ID")
+    # category_id = Column(Integer, ForeignKey("test_categories.id"), nullable=False, comment="카테고리 ID")
+    # _category = Column('category', String(100), ForeignKey("test_categories.name"), nullable=False, comment="카테고리명")
+    category = Column(String(100), nullable=True, comment="카테고리명")
     
     manufacturer = Column(String(255), comment="제조사")
     description = Column(Text, comment="제품 설명")
@@ -39,7 +41,7 @@ class Product(Base):
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now(), comment="수정일")
 
     # Category 모델과의 관계 설정 (Product 입장에서)
-    category = relationship("Category", back_populates="products")
+    # category = relationship("Category", foreign_keys=[_category], back_populates="products")
 
     def __repr__(self):
         return f"<Product(id={self.internal_id}, name='{self.product_name}', model='{self.product_id}')>"

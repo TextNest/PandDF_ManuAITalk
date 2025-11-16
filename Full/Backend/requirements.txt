@@ -2,6 +2,7 @@
 fastapi
 uvicorn[standard]
 websockets
+Jinja2Templates
 
 #데이터베이스
 SQLAlchemy
@@ -43,3 +44,4 @@ PyJWT
 ipython
 pydantic
 requests
+python-multipart

@@ -122,7 +122,7 @@ from fastapi import Depends
 from typing import List
 from core.db_config import get_session
 from models.product import Product, AnalysisStatus
-from schemas.product import ProductCreate, Product as ProductSchema
+from schemas.product import ProductCreate, ProductUpdate, Product as ProductSchema
 
 @router.get("/", response_model=List[ProductSchema])
 async def get_completed_products(session: AsyncSession = Depends(get_session)):
@@ -132,7 +132,7 @@ async def get_completed_products(session: AsyncSession = Depends(get_session)):
     try:
         result = await session.execute(
             select(Product)
-            .options(selectinload(Product.category))
+            # .options(selectinload(Product.category))
             # .where(Product.analysis_status == AnalysisStatus.COMPLETED) # 임시로 필터 제거
             .order_by(Product.created_at.desc())
         )
@@ -153,7 +153,7 @@ async def create_product(
     new_product = Product(
         product_name=product_data.product_name,
         product_id=product_data.product_id,
-        category_id=product_data.category_id,
+        category=product_data.category,
         manufacturer=product_data.manufacturer,
         description=product_data.description,
         release_date=product_data.release_date,
@@ -170,7 +170,7 @@ async def create_product(
         # 방금 생성된 객체를 관계와 함께 다시 조회하여 반환
         result = await session.execute(
             select(Product)
-            .options(selectinload(Product.category))
+            # .options(selectinload(Product.category))
             .where(Product.internal_id == new_product.internal_id)
         )
         created_product = result.scalars().one()
@@ -181,3 +181,57 @@ async def create_product(
         raise HTTPException(status_code=500, detail=f"데이터베이스에 제품을 저장하는 중 오류가 발생했습니다: {e}")
 
     return created_product
+
+@router.get("/{internal_id}", response_model=ProductSchema)
+async def get_product(
+    internal_id: int,
+    session: AsyncSession = Depends(get_session)
+):
+    """
+    특정 ID의 제품 정보를 조회합니다.
+    """
+    result = await session.execute(
+        select(Product).where(Product.internal_id == internal_id)
+    )
+    product = result.scalars().one_or_none()
+
+    if not product:
+        raise HTTPException(status_code=404, detail="Product not found")
+    
+    return product
+
+@router.put("/{internal_id}", response_model=ProductSchema)
+async def update_product(
+    internal_id: int,
+    product_data: ProductUpdate, # Change type here
+    session: AsyncSession = Depends(get_session)
+):
+    """
+    기존 제품 정보를 업데이트합니다.
+    """
+    try:
+        # 제품 조회
+        result = await session.execute(
+            select(Product).where(Product.internal_id == internal_id)
+        )
+        existing_product = result.scalars().one_or_none()
+
+        if not existing_product:
+            raise HTTPException(status_code=404, detail="Product not found")
+
+        # ProductUpdate 스키마의 필드를 순회하며 업데이트
+        # exclude_unset=True를 사용하여 요청에 포함되지 않은 필드는 업데이트하지 않음
+        update_data = product_data.dict(exclude_unset=True)
+        for field, value in update_data.items():
+            setattr(existing_product, field, value)
+        
+        await session.commit()
+        await session.refresh(existing_product) # 변경사항을 반영한 객체를 다시 로드
+        
+        return existing_product
+
+    except HTTPException:
+        raise # 404 에러는 그대로 다시 발생
+    except Exception as e:
+        await session.rollback()
+        raise HTTPException(status_code=500, detail=f"제품 업데이트 중 오류 발생: {e}")

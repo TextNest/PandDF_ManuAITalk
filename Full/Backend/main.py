@@ -3,11 +3,11 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from api import chat,login,admin,superadmin,ar_models, products, categories
+from api import chat,login,admin,superadmin,ar_models, products
 from core.db_config import engine
 from models.base import Base
 from models.product import Product
-from models.category import Category
+# from models.category import Category
 
 app = FastAPI() # <--- Moved this line here
 
@@ -56,6 +56,5 @@ async def main_page(request:Request,pid:str):
 app.include_router(chat.router, tags=["chat"])
 app.include_router(login.router, tags=["login"],prefix="/api")
 app.include_router(ar_models.router, tags=["ar_models"], prefix="/api")
-app.include_router(categories.router, tags=["categories"], prefix="/api")
 app.include_router(products.router, tags=["products"], prefix="/api/products")
 

@@ -14,21 +14,22 @@ import ProductList from '@/components/product/ProductList/ProductList';
 import { Product } from '@/types/product.types';
 import styles from './products-page.module.css';
 
+// 카테고리 타입을 문자열 기반으로 변경
 interface Category {
-  id: number;
+  id: string;
   name: string;
 }
 
 export default function ProductsPage() {
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategoryId, setSelectedCategoryId] = useState<number | 'all'>('all');
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string | 'all'>('all'); // 타입을 string으로 변경
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchProductsAndCategories = async () => {
+    const fetchProducts = async () => {
       const fetchOptions = {
         headers: {
           'ngrok-skip-browser-warning': 'true',
@@ -38,37 +39,31 @@ export default function ProductsPage() {
       try {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL;
         
-        // 카테고리 불러오기
-        console.log("Fetching categories from:", `${apiUrl}/api/categories`);
-        const categoriesResponse = await fetch(`${apiUrl}/api/categories`, fetchOptions);
-        if (!categoriesResponse.ok) {
-          throw new Error('카테고리 목록을 불러오는데 실패했습니다.');
-        }
-        const categoriesText = await categoriesResponse.text();
-        console.log("Raw categories response:", categoriesText);
-        const categoriesData: Category[] = JSON.parse(categoriesText);
-        setCategories(categoriesData);
-
-        // 제품 목록 불러오기
+        // 제품 목록만 불러오기
         console.log("Fetching products from:", `${apiUrl}/api/products/`);
         const productsResponse = await fetch(`${apiUrl}/api/products/`, fetchOptions);
         if (!productsResponse.ok) {
+          const errorText = await productsResponse.text();
+          console.error("Products fetch failed:", errorText);
           throw new Error('제품 목록을 불러오는데 실패했습니다.');
         }
-        const productsText = await productsResponse.text();
-        console.log("Raw products response:", productsText);
-        const productsData: Product[] = JSON.parse(productsText);
+        const productsData: Product[] = await productsResponse.json();
         setProducts(productsData);
 
+        // 제품 목록에서 카테고리 목록 동적 생성
+        const uniqueCategoryNames = [...new Set(productsData.map(p => p.category).filter(Boolean))]; // null이나 undefined 제외
+        const categoryObjects: Category[] = uniqueCategoryNames.map(name => ({ id: name, name: name }));
+        setCategories(categoryObjects);
+
       } catch (err: any) {
-        console.error("Error in fetchProductsAndCategories:", err);
+        console.error("Error in fetchProducts:", err);
         setError(err.message);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchProductsAndCategories();
+    fetchProducts();
   }, []);
 
   // 필터링
@@ -77,8 +72,9 @@ export default function ProductsPage() {
       product.product_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.product_id.toLowerCase().includes(searchQuery.toLowerCase());
     
+    // 카테고리 필터링 로직을 문자열 비교로 변경
     const matchesCategory = 
-      selectedCategoryId === 'all' || product.category.id === selectedCategoryId;
+      selectedCategoryId === 'all' || product.category === selectedCategoryId;
 
     return matchesSearch && matchesCategory;
   });
@@ -124,7 +120,7 @@ export default function ProductsPage() {
           <Filter size={18} />
           <select
             value={selectedCategoryId}
-            onChange={(e) => setSelectedCategoryId(e.target.value === 'all' ? 'all' : parseInt(e.target.value, 10))}
+            onChange={(e) => setSelectedCategoryId(e.target.value)} // parseInt 제거
             className={styles.categorySelect}
           >
             <option value="all">전체 카테고리</option>

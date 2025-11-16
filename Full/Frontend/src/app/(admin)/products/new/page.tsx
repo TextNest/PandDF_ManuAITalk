@@ -20,35 +20,22 @@ export default function NewProductPage() {
     try {
       console.log('제품 등록 데이터:', data);
 
-      // 백엔드 스키마에 맞게 데이터 매핑
-      const productToCreate = {
-        product_name: data.product_name,
-        product_id: data.product_id,
-        category_id: data.category_id,
-        manufacturer: data.manufacturer,
-        description: data.description,
-        release_date: data.releaseDate ? new Date(data.releaseDate).toISOString() : null,
-        is_active: data.is_active,
-        pdf_path: data.documentIds && data.documentIds.length > 0 ? data.documentIds[0] : null,
-        image_url: data.imageUrl,
-        model3d_url: data.model3dUrl,
-      };
-
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products`, {
+      // 데이터가 이미 백엔드 스키마와 일치하므로 바로 전송
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(productToCreate),
+        body: JSON.stringify(data),
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.detail || '제품 등록 API 호출 실패');
+        const errorData = await response.json().catch(() => ({ detail: '제품 등록 API 호출 실패' }));
+        throw new Error(errorData.detail);
       }
       
       // 성공 시 제품 목록으로 이동
-      alert('제품이 성공적으로 등록되었습니다!');
+      alert('제품이 성공적으로 등록되었습니다! AI 분석이 시작됩니다.');
       router.push('/products');
     } catch (error) {
       console.error('제품 등록 실패:', error);
