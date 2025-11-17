@@ -32,9 +32,14 @@ export const API_ENDPOINTS = {
   
   // FAQ
   FAQ: {
-    LIST: '/faq',
-    CREATE: '/faq',
-    AUTO_GENERATE: '/faq/auto-generate',
+    LIST: '/api/faqs',
+    GET: (faqId: string) => `/api/faqs/${faqId}`,
+    CREATE: '/api/faqs',
+    UPDATE: (faqId: string) => `/api/faqs/${faqId}`,
+    DELETE: (faqId: string) => `/api/faqs/${faqId}`,
+    FROM_CHATBOT: '/api/faqs/from-chatbot',
+    AUTO_GENERATE: '/api/faqs/auto_generate',
+    HELPFUL: (faqId: string) => `/api/faqs/${faqId}/helpful`,
   },
   
   // 제품

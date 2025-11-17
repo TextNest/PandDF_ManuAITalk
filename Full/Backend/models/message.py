@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
-class TestMessage(Base):
+class ChatMessage(Base):
     """테스트 메시지 테이블"""
     __tablename__ = "test_message"
     
