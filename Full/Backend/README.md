@@ -60,7 +60,7 @@
         - Request : code
         - Response : 200 - 검증 이상 무 / 401 - 검증 오류 
 
-### 🚧Admin 개발현황 (진행율:3%)
+### 🚧Admin 개발현황 (진행율:10%)
 1. **데이터 불러오기** : JWT 내 payload를 params를 이용하여 다중 조인을 통해 데이터 불러오기 (JWT를 통해 payload를 찾는 로직 구현/쿼리 미작성)
 2. **DashBoard** :  
     -  **데이터**:
@@ -89,40 +89,51 @@
 ```
 BackEnd/
 │
-├─── main.py                # FastAPI 애플리케이션의 메인 실행 파일
-├─── requirements.txt       # 프로젝트에 필요한 Python 라이브러리 목록
-├─── .env                   # API 키 등 민감한 환경 변수 설정 파일
-├─── .gitignore             # Git 버전 관리에서 제외할 파일 및 폴더 목록 (.env,pycache,data,db)
-│
-├─── core/                  # 프로젝트의 핵심 설정 관리
-│    ├── auth.py            # JWT,HashPW 생성 및 변환 등 보안 관련 로직 
-│    ├── db_config.py       # DB 연결 및 종료 관리 로직
-│    └── config.py          # .env 파일 로드 등 환경 설정 관련 로직
-│
-├─── data/                  # 데이터 저장 폴더 (임시)
-│    ├── docstore.pkl       # 원본 문서 조각(chunk) 저장소
-│    ├── image_store.pkl    # 문서에서 추출한 이미지 데이터 저장소
-│    └── faiss_index/       # 벡터 검색을 위한 FAISS 인덱스 파일 저장
-│
-├─── module/                # 애플리케이션의 핵심 비즈니스 로직
-│    ├── document_pr.py     # PDF 문서 파싱, 텍스트/이미지 추출 ,벡터DB추가 파이프라인(admin/document에 사용예정)
-│    ├── qa_service.py      # 텍스트 기반 RAG Q&A 체인 및 서비스 로직(현재 사용중)
-│    ├── qa_service_img.py  # 이미지 기반 RAG Q&A 체인 및 서비스 로직(이미지도 추가로 보낼경우)
-│    └── chat_agent.py      # LangGraph 기반의 대화형 에이전트 로직 -> 일반 채팅과 스트리밍을 구현해놨습니다.
+├─── main.py           # FastAPI 애플리케이션의 메인 실행 파일
+├─── requirements.txt    # 프로젝트에 필요한 Python 라이브러리 목록
+├─── .env                # API 키 등 민감한 환경 변수 설정 파일
+├─── .gitignore          # Git 버전 관리에서 제외할 파일 및 폴더 목록
+├─── README.md           # 프로젝트 설명 문서
 │
 ├─── api/                # API 엔드포인트(URL 경로) 정의
-│    ├── login.py           # 로그인/회원가입 라우터
-│    ├── admin.py           # AdminPage 관련(대시보드,문서관리,FAQ관리,로그분석,제품관리) 라우터 
-│    ├── superadmin.py      # SuperAdminPage 관련(대시보드,기업관리,사용자관리,시스템설정) 라우터
-│    └── chat.py            # 채팅 관련 API (WebSocket 연결 등) 라우터
+│    ├── admin.py         # AdminPage 관련 라우터
+│    ├── chat.py          # 채팅 관련 API (WebSocket 연결 등) 라우터
+│    ├── faq.py           # FAQ 관련 라우터
+│    ├── login.py         # 로그인/회원가입 라우터
+│    └── superadmin.py    # SuperAdminPage 관련 라우터
 │
-├─── schemas/               # API 요청/응답 데이터 모델 정의 (Pydantic)
-│    ├── document.py        # 문서 관련 데이터 스키마
-│    └── qa.py              # Q&A 관련 데이터 스키마
+├─── core/               # 프로젝트의 핵심 설정 관리
+│    ├── auth.py          # JWT, HashPW 생성 등 보안 관련 로직
+│    ├── config.py        # .env 파일 로드 등 환경 설정 관련 로직
+│    ├── db_config.py     # DB 연결 및 종료 관리 로직
+│    └── query.py         # Raw SQL 쿼리 관리
 │
-└─── templates/             # 프론트엔드 HTML 템플릿 (임시 추후 프론트에서 연결)
-     ├── main.html          # 메인 페이지
-     └── chat.html          # 채팅 UI 페이지
+├─── data/               # 데이터 저장 폴더 (임시)
+│    ├── docstore.pkl     # 원본 문서 조각(chunk) 저장소
+│    ├── image_store.pkl  # 문서에서 추출한 이미지 데이터 저장소
+│    └── faiss_index/     # 벡터 검색을 위한 FAISS 인덱스
+│         ├── index.faiss
+│         └── index.pkl
+│
+├─── module/             # 애플리케이션의 핵심 비즈니스 로직
+│    ├── chat_agent.py    # LangGraph 기반의 대화형 에이전트 로직
+│    ├── document_pr.py   # PDF 문서 파싱, 텍스트/이미지 추출 파이프라인
+│    ├── faq.py           # FAQ 관련 비즈니스 로직
+│    ├── qa_service.py    # 텍스트 기반 RAG Q&A 체인 및 서비스 로직
+│    └── qa_service_img.py# 이미지 기반 RAG Q&A 체인 및 서비스 로직
+│
+├─── schemas/            # API 요청/응답 데이터 모델 정의 (Pydantic)
+│    ├── chat.py          # 채팅 관련 스키마
+│    ├── document.py      # 문서 관련 스키마
+│    ├── faq.py           # FAQ 관련 스키마
+│    ├── login.py         # 로그인/회원가입 스키마
+│    └── qa.py            # Q&A 관련 스키마
+│
+└─── templates/          # 프론트엔드 HTML 템플릿 (임시)
+     ├── chat.html
+     ├── login.html
+     ├── main.html
+     └── register.html
 ```
 ---
 

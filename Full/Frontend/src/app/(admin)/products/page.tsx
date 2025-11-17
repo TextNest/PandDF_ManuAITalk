@@ -67,6 +67,20 @@ export default function ProductsPage() {
   }, []);
 
   // 필터링
+  const handleProductDelete = (deletedProductId: number) => {
+    setProducts(prevProducts =>
+      prevProducts.filter(p => p.internal_id !== deletedProductId)
+    );
+  };
+
+  const handleProductUpdate = (updatedProduct: Product) => {
+    setProducts(prevProducts =>
+      prevProducts.map(p =>
+        p.internal_id === updatedProduct.internal_id ? updatedProduct : p
+      )
+    );
+  };
+
   const filteredProducts = products.filter(product => {
     const matchesSearch = 
       product.product_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -148,7 +162,7 @@ export default function ProductsPage() {
       </div>
 
       {/* 제품 목록 */}
-      <ProductList products={filteredProducts} />
+      <ProductList products={filteredProducts} onProductUpdate={handleProductUpdate} onProductDelete={handleProductDelete} />
     </div>
   );
 }

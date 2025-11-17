@@ -22,6 +22,8 @@ import {
   CheckCircle, // 분석 완료 아이콘 추가
   XCircle // 분석 실패 아이콘 추가
 } from 'lucide-react';
+import apiClient from '@/lib/api/client';
+import { toast } from '@/store/useToastStore';
 import Modal from '@/components/ui/Modal/Modal';
 import QRCodeDisplay from '../QRCodeDisplay/QRCodeDisplay';
 import { Product } from '@/types/product.types';
@@ -29,9 +31,11 @@ import styles from './ProductCard.module.css';
 
 interface ProductCardProps {
   product: Product;
+  onProductUpdate: (updatedProduct: Product) => void;
+  onProductDelete: (deletedProductId: number) => void;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, onProductUpdate, onProductDelete }: ProductCardProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isActive, setIsActive] = useState(product.is_active); // is_active 사용
   const [showQRModal, setShowQRModal] = useState(false);
@@ -73,18 +77,38 @@ export default function ProductCard({ product }: ProductCardProps) {
     setIsMenuOpen(false);
   };
 
-  const handleToggleActive = () => {
+  const handleToggleActive = async () => {
     const newIsActive = !isActive;
-    setIsActive(newIsActive);
-    console.log('활성화 토글:', product.internal_id, newIsActive ? '활성화' : '비활성화');
-    // TODO: API 호출
+    try {
+      const response = await apiClient.put(`/api/products/${product.internal_id}`, { is_active: newIsActive });
+      if (response.status === 200) {
+        setIsActive(newIsActive);
+        onProductUpdate(response.data);
+        toast.success(`제품이 ${newIsActive ? '활성화' : '비활성화'}되었습니다.`);
+      } else {
+        toast.error('상태 변경에 실패했습니다.');
+      }
+    } catch (error) {
+      console.error('Error toggling active status:', error);
+      toast.error('상태 변경 중 오류가 발생했습니다.');
+    }
     setIsMenuOpen(false);
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     if (confirm(`"${product.product_name}" 제품을 삭제하시겠습니까?`)) {
-      console.log('삭제:', product.internal_id);
-      // TODO: 실제 삭제 로직
+      try {
+        const response = await apiClient.delete(`/api/products/${product.internal_id}`);
+        if (response.status === 204) {
+          onProductDelete(product.internal_id);
+          toast.success('제품이 삭제되었습니다.');
+        } else {
+          toast.error('제품 삭제에 실패했습니다.');
+        }
+      } catch (error) {
+        console.error('Error deleting product:', error);
+        toast.error('제품 삭제 중 오류가 발생했습니다.');
+      }
     }
     setIsMenuOpen(false);
   };
@@ -94,7 +118,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <>
-      <div className={styles.card}>
+      <div className={`${styles.card} ${isMenuOpen ? styles.menuOpen : ''}`}>
         <div className={styles.header}>
           <div className={styles.iconWrapper}>
             <Package size={24} />
@@ -180,6 +204,11 @@ export default function ProductCard({ product }: ProductCardProps) {
             {currentAnalysisStatus && (
               <span className={`${styles.status} ${currentAnalysisStatus.color}`}>
                 {currentAnalysisStatus.icon} {currentAnalysisStatus.label}
+              </span>
+            )}
+            {product.model3d_url && (
+              <span className={`${styles.status} ${styles.status3D}`}>
+                3D
               </span>
             )}
           </div>

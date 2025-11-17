@@ -49,6 +49,8 @@ export default function ChatPage({
     loadSession,
     startNewSession,
     deleteSession,
+    sendFeedback,
+    isNewSession
   } = useChat(params.productId);
 
   // 로그인 배너 상태
@@ -164,7 +166,8 @@ export default function ChatPage({
               message={message}
               sessionId={sessionId}
               productId={params.productId}
-              isFirstMessage={index === 0} // 🆕 추가
+              isFirstMessage={isNewSession?(index < 2) : (index === 0)} 
+              onSendFeedback={sendFeedback}
             />
           ))}
 

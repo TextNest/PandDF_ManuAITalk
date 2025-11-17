@@ -1,5 +1,8 @@
+# Node
 node_modules
 .env
+.env.local
+.env.*
 
 # ngrok
 ngrok/ngrok.exe
@@ -7,21 +10,23 @@ ngrok/ngrok_recovery_codes.txt
 ngrok/ngrok_back.yml
 ngrok/ngrok_front.yml
 
-# Stable Fast 3D
-stable-fast-3d/.venv/
-stable-fast-3d/output/
-stable-fast-3d/__pycache__/
-stable-fast-3d/*.pyc
-stable-fast-3d/.env
-Full/Backend/.venv/
+# Python
+__pycache__/
 
 # General
 *.log
 .DS_Store
 .vscode/
 .idea/
-__pycache__/
-.env.local
-.env.*
 
+# Database
+/Full/Backend/db
 
+# Data
+ex_data/
+artifacts/
+
+# Other
+*test*
+*.ipynb
+*.png

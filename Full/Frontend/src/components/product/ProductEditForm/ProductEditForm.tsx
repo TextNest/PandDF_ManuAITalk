@@ -8,6 +8,7 @@
 
 import { useState, useRef } from 'react';
 import { Save, X, Upload, Sparkles } from 'lucide-react';
+import { toast } from '@/store/useToastStore';
 import Button from '@/components/ui/Button/Button';
 import Input from '@/components/ui/Input/Input';
 import { Product } from '@/types/product.types';
@@ -30,7 +31,6 @@ export default function ProductEditForm({ initialData, onSubmit, onCancel }: Pro
     manufacturer: initialData.manufacturer || '',
     description: initialData.description || '',
     release_date: initialData.release_date ? new Date(initialData.release_date).toISOString().split('T')[0] : '',
-    is_active: initialData.is_active,
     pdf_path: initialData.pdf_path || '',
     image_url: initialData.image_url || '',
     model3d_url: initialData.model3d_url || '',
@@ -79,7 +79,9 @@ export default function ProductEditForm({ initialData, onSubmit, onCancel }: Pro
       const blob = await response.blob();
       setGenerated3DModel(blob);
     } catch (err: any) {
-      setError(err.message || '3D 모델 변환 중 오류가 발생했습니다.');
+      const errorMessage = err.message || '3D 모델 변환 중 오류가 발생했습니다.';
+      setError(errorMessage); // Keep the state for inline message
+      toast.error(errorMessage); // Add toast notification
     } finally {
       setIsConverting3D(false);
     }
@@ -171,9 +173,8 @@ export default function ProductEditForm({ initialData, onSubmit, onCancel }: Pro
     <form onSubmit={handleSubmit} className={styles.form}>
       {/* --- PDF Section --- */}
       <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>PDF 문서</h2>
         <div className={styles.field}>
-          <label className={styles.label}>제품 설명서 (PDF)</label>
+          <label className={styles.label}>제품 설명서 (PDF) <span className={styles.required}>*</span></label>
           <div className={styles.fileInputContainer}>
             <input type="file" accept=".pdf" onChange={handlePdfFileChange} className={styles.hiddenInput} ref={pdfInputRef} disabled={isUploading} />
             <Button type="button" variant="outline" onClick={() => pdfInputRef.current?.click()} disabled={isUploading}>
@@ -183,11 +184,6 @@ export default function ProductEditForm({ initialData, onSubmit, onCancel }: Pro
             {!pdfFile && formData.pdf_path && <p className={styles.fileName}>기존 파일: {formData.pdf_path.split('\\').pop()?.split('/').pop()}</p>}
           </div>
         </div>
-      </div>
-
-      {/* --- Basic Info Section --- */}
-      <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>기본 정보</h2>
         <div className={styles.grid}>
           <div className={`${styles.field} ${styles.fullWidth}`}>
             <Input
@@ -228,11 +224,6 @@ export default function ProductEditForm({ initialData, onSubmit, onCancel }: Pro
             />
           </div>
         </div>
-      </div>
-
-      {/* --- Additional Info Section --- */}
-      <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>추가 정보</h2>
         <div className={styles.grid}>
           <div className={styles.field}>
             <Input
@@ -242,17 +233,7 @@ export default function ProductEditForm({ initialData, onSubmit, onCancel }: Pro
               onChange={(e) => handleChange('release_date', e.target.value)}
             />
           </div>
-          <div className={styles.field}>
-            <label className={styles.label}>활성 상태</label>
-            <select
-              value={String(formData.is_active)}
-              onChange={(e) => handleChange('is_active', e.target.value === 'true')}
-              className={styles.select}
-            >
-              <option value="true">활성</option>
-              <option value="false">비활성</option>
-            </select>
-          </div>
+
           <div className={`${styles.field} ${styles.fullWidth}`}>
             <label className={styles.label}>제품 이미지</label>
             <div className={styles.fileInputContainer}>
@@ -263,6 +244,7 @@ export default function ProductEditForm({ initialData, onSubmit, onCancel }: Pro
               {imageFile && <p className={styles.fileName}>{imageFile.name}</p>}
               {!imageFile && formData.image_url && <p className={styles.fileName}>기존 이미지: {formData.image_url.split('\\').pop()?.split('/').pop()}</p>}
             </div>
+            <p className={styles.arDescription}>3D 모델링을 통해 AR에서 확인 가능합니다.</p>
             {isConverting3D && <p className={styles.uploadStatus}><Sparkles size={16} /> 3D 모델 변환 중...</p>}
             {generated3DModel && !isConverting3D && <p className={styles.successMessage}>✅ 3D 모델 생성 완료. 등록 시 함께 업로드됩니다.</p>}
           </div>

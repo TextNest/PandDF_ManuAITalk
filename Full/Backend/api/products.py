@@ -235,3 +235,32 @@ async def update_product(
     except Exception as e:
         await session.rollback()
         raise HTTPException(status_code=500, detail=f"제품 업데이트 중 오류 발생: {e}")
+
+@router.delete("/{internal_id}", status_code=204)
+async def delete_product(
+    internal_id: int,
+    session: AsyncSession = Depends(get_session)
+):
+    """
+    특정 ID의 제품을 삭제합니다.
+    """
+    try:
+        # 제품 조회
+        result = await session.execute(
+            select(Product).where(Product.internal_id == internal_id)
+        )
+        product_to_delete = result.scalars().one_or_none()
+
+        if not product_to_delete:
+            raise HTTPException(status_code=404, detail="Product not found")
+
+        await session.delete(product_to_delete)
+        await session.commit()
+        
+        return {"message": "Product deleted successfully"}
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        await session.rollback()
+        raise HTTPException(status_code=500, detail=f"제품 삭제 중 오류 발생: {e}")

@@ -53,14 +53,14 @@
 }
 
 .required {
-  color: var(--color-red-500);
+  color: #ef4444; /* Explicitly set to red */
   margin-left: 0.25rem;
 }
 
 .textarea {
   width: 100%;
   padding: 0.75rem 1rem;
-  border: 1px solid var(--color-gray-300);
+  border: 1px solid var(--border-light); /* Consistent with Input component */
   border-radius: var(--border-radius-md);
   font-size: 1rem;
   transition: border-color 0.2s, box-shadow 0.2s;
@@ -89,8 +89,8 @@
 .textarea:focus,
 .select:focus {
   outline: none;
-  border-color: var(--color-primary-500);
-  box-shadow: 0 0 0 3px var(--color-primary-100);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .actions {
@@ -150,4 +150,10 @@
   .grid {
     grid-template-columns: 1fr;
   }
+}
+
+.arDescription {
+  font-size: 0.8rem;
+  color: var(--color-gray-500);
+  margin-top: 0.5rem;
 }

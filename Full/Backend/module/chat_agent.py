@@ -1,18 +1,14 @@
-
 from typing import Literal
 from langgraph.graph import StateGraph, MessagesState, START, END
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.prebuilt import ToolNode
-from langchain_openai import ChatOpenAI
 
 from langchain_core.messages import HumanMessage, SystemMessage,AIMessage
 from langchain_core.tools import tool
 from langchain_google_genai import ChatGoogleGenerativeAI
 from module.qa_service import HybridRAGChain
-import os
-from core.config import load
+from core.prompt import agent_prompt
 from typing import List, Dict, Any, Optional
-load.envs()
 from langchain_core.runnables import RunnableConfig
 
 
@@ -87,14 +83,10 @@ class  ChatBotAgent:
         work  = StateGraph(AgentState)
         llm_with_tools = self.llm.bind_tools(self.tools)
         def agent_node(state):
-            system_msg = SystemMessage("""
-            당신은 제품에 대한 상담을 진행하는 전문 챗봇입니다.
-            사용자가 '이거', '저거', '스펙' 등 구체적인 제품명 없이 질문하더라도, 현재 대화의 주제인 '{product_id}'에 대한 질문으로 가정하고 답변해야 합니다.
-
-            - 일상 대화는 직접 답변합니다.
-            - 제품과 관련된 질문(기능, 스펙, 사용법 등)은 반드시 'product_qa_tool'을 사용해서 답변해야 합니다.
-            - 상품 추천 요청하는 질문이 들어오면 'recommend_tool' 사용해서 답변합니다.대답형식은 'recommend_tool'값들의 name들만 뽑아서 name을 찾았습니다. 예를 들어 a객체,b객체,c객체를 찾았으면 [a.name 값,b.name 값,c.name 값]을 찾았습니다. 라고 대답합니다.
-            """)
+            system_msg = SystemMessage(agent_prompt)
+#             system_msg = SystemMessage(
+#                 content=system_msg.format(product_id=state["product_id"])
+# )
             response = llm_with_tools.with_config({"run_name":"final_answer"}).invoke([system_msg]+state["messages"])
             return {"messages":[response]}
 
