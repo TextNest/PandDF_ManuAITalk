@@ -5,10 +5,7 @@ node_modules
 .env.*
 
 # ngrok
-ngrok/ngrok.exe
-ngrok/ngrok_recovery_codes.txt
-ngrok/ngrok_back.yml
-ngrok/ngrok_front.yml
+ngrok/
 
 # Python
 __pycache__/
