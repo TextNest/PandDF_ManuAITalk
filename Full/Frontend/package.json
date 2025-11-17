@@ -11,11 +11,15 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
+    "@react-three/drei": "^9.105.6",
+    "@react-three/fiber": "^8.16.6",
+    "@react-three/xr": "^5.7.1",
     "@tanstack/react-query": "^5.28.0",
     "axios": "^1.6.8",
     "clsx": "^2.1.0",
     "date-fns": "^3.6.0",
     "lucide-react": "^0.363.0",
+    "mysql2": "^3.15.2",
     "next": "^14.2.0",
     "qrcode.react": "^4.2.0",
     "react": "^18.3.1",
@@ -26,13 +30,16 @@
     "recharts": "^2.12.3",
     "remark-gfm": "^4.0.1",
     "socket.io-client": "^4.7.5",
+    "three": "^0.181.0",
     "zod": "^3.22.4",
-    "zustand": "^4.5.2"
+    "zustand": "^5.0.8"
   },
   "devDependencies": {
     "@types/node": "^20.11.30",
     "@types/react": "^18.2.73",
     "@types/react-dom": "^18.2.23",
+    "@types/three": "^0.159.0",
+    "cross-env": "^10.1.0",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.0",
     "typescript": "^5.4.3"

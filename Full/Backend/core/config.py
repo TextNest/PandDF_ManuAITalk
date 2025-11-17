@@ -27,7 +27,7 @@ class load:
     def envs(env_path:str=None):
         from dotenv import load_dotenv
         load_dotenv(dotenv_path=env_path)
-        os.environ["OPENAI_API_KEY"] = os.getenv("openai")
+        os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
         os.environ["GOOGLE_API_KEY"] = os.getenv("GEMINI_API_KEY")
         os.environ["MAIT_PROTOCOL_CODE"] = os.getenv('UUID_PROTOCOL_SESHAT')
         DB_HOST = os.getenv("DB_HOST")
@@ -36,11 +36,3 @@ class load:
         DB_DATABASE = os.getenv("DB_DATABASE")
         DB_PORT = os.getenv("DB_PORT")
         return DB_HOST,DB_USER,DB_PASSWORD,DB_DATABASE,DB_PORT
-        
-        
-
-
-
-
-
-

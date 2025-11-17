@@ -4,138 +4,22 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
-import { ChevronDown, ChevronUp, Eye, ThumbsUp, Sparkles, Edit, Trash2, Save, X } from 'lucide-react';
+import { useState } from 'react';
+import { ChevronDown, ChevronUp, Eye, ThumbsUp, Sparkles, Edit, Trash2 } from 'lucide-react';
 import { FAQ } from '@/types/faq.types';
 import { formatRelativeTime } from '@/lib/utils/format';
-import apiClient from '@/lib/api/client';
-import { API_ENDPOINTS } from '@/lib/api/endpoints';
-import { convertFAQResponseToFAQ } from '@/lib/utils/faq';
-import Modal from '@/components/ui/Modal/Modal';
-import Button from '@/components/ui/Button/Button';
-import Input from '@/components/ui/Input/Input';
 import styles from './FAQCard.module.css';
 
 interface FAQCardProps {
   faq: FAQ;
-  onUpdate?: (updatedFaq: FAQ) => void;
-  onDelete?: (faqId: string) => void;
 }
 
-export default function FAQCard({ faq, onUpdate, onDelete }: FAQCardProps) {
+export default function FAQCard({ faq }: FAQCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [isSaving, setIsSaving] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  
-  // 수정 폼 상태
-  const [editForm, setEditForm] = useState({
-    question: faq.question,
-    answer: faq.answer,
-    category: faq.category || '',
-    tags: Array.isArray(faq.tags) ? faq.tags.join(', ') : (faq.tags || ''),
-    status: faq.status,
-  });
-
-  // faq가 변경되면 폼 업데이트
-  useEffect(() => {
-    if (!isEditing) {
-      setEditForm({
-        question: faq.question,
-        answer: faq.answer,
-        category: faq.category || '',
-        tags: Array.isArray(faq.tags) ? faq.tags.join(', ') : (faq.tags || ''),
-        status: faq.status,
-      });
-    }
-  }, [faq, isEditing]);
-
-  // 수정 모드 시작
-  const handleEdit = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsEditing(true);
-    setIsExpanded(true);
-  };
-
-  // 수정 취소
-  const handleCancelEdit = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setEditForm({
-      question: faq.question,
-      answer: faq.answer,
-      category: faq.category || '',
-      tags: Array.isArray(faq.tags) ? faq.tags.join(', ') : (faq.tags || ''),
-      status: faq.status,
-    });
-    setIsEditing(false);
-  };
-
-  // 수정 저장
-  const handleSave = async (e: React.MouseEvent) => {
-    e.stopPropagation();
-    try {
-      setIsSaving(true);
-      
-      const updateData: any = {
-        question: editForm.question,
-        answer: editForm.answer,
-        category: editForm.category || null,
-        tags: editForm.tags || null,
-        status: editForm.status,
-      };
-
-      const response = await apiClient.patch(
-        API_ENDPOINTS.FAQ.UPDATE(faq.faqId),
-        updateData
-      );
-      
-      const updatedFaq = convertFAQResponseToFAQ(response.data);
-      setIsEditing(false);
-      
-      if (onUpdate) {
-        onUpdate(updatedFaq);
-      }
-    } catch (err: any) {
-      console.error('FAQ 수정 실패:', err);
-      alert('FAQ 수정에 실패했습니다: ' + (err.response?.data?.detail || err.message));
-    } finally {
-      setIsSaving(false);
-    }
-  };
-
-  // 삭제 확인 모달 열기
-  const handleDeleteClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setShowDeleteModal(true);
-  };
-
-  // 삭제 확인
-  const handleConfirmDelete = async () => {
-    try {
-      setIsDeleting(true);
-      await apiClient.delete(API_ENDPOINTS.FAQ.DELETE(faq.faqId));
-      setShowDeleteModal(false);
-      
-      if (onDelete) {
-        onDelete(faq.faqId);
-      }
-    } catch (err: any) {
-      console.error('FAQ 삭제 실패:', err);
-      alert('FAQ 삭제에 실패했습니다: ' + (err.response?.data?.detail || err.message));
-      setIsDeleting(false);
-    }
-  };
-
-  const handleHeaderClick = () => {
-    if (!isEditing) {
-      setIsExpanded(!isExpanded);
-    }
-  };
 
   return (
     <div className={styles.card}>
-      <div className={styles.header} onClick={handleHeaderClick}>
+      <div className={styles.header} onClick={() => setIsExpanded(!isExpanded)}>
         <div className={styles.headerContent}>
           <div className={styles.titleRow}>
             <h3 className={styles.question}>{faq.question}</h3>
@@ -164,156 +48,49 @@ export default function FAQCard({ faq, onUpdate, onDelete }: FAQCardProps) {
       </div>
 
       {isExpanded && (
-        <div className={styles.body} onClick={(e) => e.stopPropagation()}>
-          {isEditing ? (
-            <div className={styles.editForm}>
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel}>질문 *</label>
-                <Input
-                  value={editForm.question}
-                  onChange={(e) => setEditForm({ ...editForm, question: e.target.value })}
-                  placeholder="질문을 입력하세요"
-                  fullWidth
-                />
-              </div>
+        <div className={styles.body}>
+          <div className={styles.answer}>
+            <p>{faq.answer}</p>
+          </div>
 
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel}>답변 *</label>
-                <textarea
-                  className={styles.textarea}
-                  value={editForm.answer}
-                  onChange={(e) => setEditForm({ ...editForm, answer: e.target.value })}
-                  placeholder="답변을 입력하세요"
-                  rows={6}
-                />
-              </div>
-
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel}>카테고리</label>
-                <Input
-                  value={editForm.category}
-                  onChange={(e) => setEditForm({ ...editForm, category: e.target.value })}
-                  placeholder="카테고리를 입력하세요"
-                  fullWidth
-                />
-              </div>
-
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel}>태그 (쉼표로 구분)</label>
-                <Input
-                  value={editForm.tags}
-                  onChange={(e) => setEditForm({ ...editForm, tags: e.target.value })}
-                  placeholder="태그1, 태그2, 태그3"
-                  fullWidth
-                />
-              </div>
-
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel}>상태</label>
-                <select
-                  className={styles.select}
-                  value={editForm.status}
-                  onChange={(e) => setEditForm({ ...editForm, status: e.target.value as 'draft' | 'published' })}
-                >
-                  <option value="draft">임시저장</option>
-                  <option value="published">게시됨</option>
-                </select>
-              </div>
-
-              <div className={styles.editActions}>
-                <Button
-                  variant="secondary"
-                  onClick={handleCancelEdit}
-                  disabled={isSaving}
-                >
-                  <X size={16} />
-                  취소
-                </Button>
-                <Button
-                  variant="primary"
-                  onClick={handleSave}
-                  loading={isSaving}
-                >
-                  <Save size={16} />
-                  저장
-                </Button>
-              </div>
+          {faq.tags && faq.tags.length > 0 && (
+            <div className={styles.tags}>
+              {faq.tags.map((tag, index) => (
+                <span key={index} className={styles.tag}>
+                  #{tag}
+                </span>
+              ))}
             </div>
-          ) : (
-            <>
-              <div className={styles.answer}>
-                <p>{faq.answer}</p>
-              </div>
-
-              {faq.tags && (
-                <div className={styles.tags}>
-                  {(Array.isArray(faq.tags) ? faq.tags : [faq.tags]).map((tag, index) => (
-                    <span key={index} className={styles.tag}>
-                      #{tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-
-              <div className={styles.stats}>
-                <div className={styles.statItem}>
-                  <Eye size={16} />
-                  <span>{faq.viewCount}</span>
-                </div>
-                <div className={styles.statItem}>
-                  <ThumbsUp size={16} />
-                  <span>{faq.helpfulCount}</span>
-                </div>
-                <div className={styles.statItem}>
-                  <span className={styles.date}>
-                    {formatRelativeTime(faq.updatedAt)}
-                  </span>
-                </div>
-              </div>
-
-              <div className={styles.actions}>
-                <button className={styles.actionButton} onClick={handleEdit}>
-                  <Edit size={16} />
-                  수정
-                </button>
-                <button className={`${styles.actionButton} ${styles.danger}`} onClick={handleDeleteClick}>
-                  <Trash2 size={16} />
-                  삭제
-                </button>
-              </div>
-            </>
           )}
-        </div>
-      )}
 
-      {/* 삭제 확인 모달 */}
-      <Modal
-        isOpen={showDeleteModal}
-        onClose={() => !isDeleting && setShowDeleteModal(false)}
-        title="FAQ 삭제 확인"
-        size="sm"
-      >
-        <div className={styles.deleteModalContent}>
-          <p>정말로 이 FAQ를 삭제하시겠습니까?</p>
-          <p className={styles.deleteWarning}>이 작업은 되돌릴 수 없습니다.</p>
-          <div className={styles.deleteModalActions}>
-            <Button
-              variant="secondary"
-              onClick={() => setShowDeleteModal(false)}
-              disabled={isDeleting}
-            >
-              아니오
-            </Button>
-            <Button
-              variant="danger"
-              onClick={handleConfirmDelete}
-              loading={isDeleting}
-            >
-              예, 삭제합니다
-            </Button>
+          <div className={styles.stats}>
+            <div className={styles.statItem}>
+              <Eye size={16} />
+              <span>{faq.viewCount}</span>
+            </div>
+            <div className={styles.statItem}>
+              <ThumbsUp size={16} />
+              <span>{faq.helpfulCount}</span>
+            </div>
+            <div className={styles.statItem}>
+              <span className={styles.date}>
+                {formatRelativeTime(faq.updatedAt)}
+              </span>
+            </div>
+          </div>
+
+          <div className={styles.actions}>
+            <button className={styles.actionButton}>
+              <Edit size={16} />
+              수정
+            </button>
+            <button className={`${styles.actionButton} ${styles.danger}`}>
+              <Trash2 size={16} />
+              삭제
+            </button>
           </div>
         </div>
-      </Modal>
+      )}
     </div>
   );
 }

@@ -4,18 +4,31 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from api import chat,login,admin,superadmin, faq
+from api import chat,login,admin,superadmin,ar_models, products, faq
 from module import Scheduler_ARP
+from core.db_config import engine
+from models.base import Base
+from models.product import Product
+
+
+app = FastAPI() 
+
+# 데이터베이스 테이블 생성
+async def create_tables():
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+
+@app.on_event("startup")
+async def on_startup():
+    await create_tables()
 
 # CORS 설정
 origins = [
     "http://localhost:3000",  
     "http://127.0.0.1:3000", 
+    "https://subnotational-unmodified-myrl.ngrok-free.dev", # ngrok 테스트용
 
 ]
-
-
-app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
@@ -45,11 +58,10 @@ templates = Jinja2Templates(directory="templates")
 
 app.include_router(chat.router, tags=["chat"])
 app.include_router(login.router, tags=["login"],prefix="/api")
+app.include_router(ar_models.router, tags=["ar_models"], prefix="/api")
+app.include_router(products.router, tags=["products"], prefix="/api/products")
 app.include_router(faq.router, tags=["faq"])
-            
 
 @app.on_event("startup")
 async def set_scheduler():
     asyncio.create_task(Scheduler_ARP())
-
-
