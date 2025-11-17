@@ -38,6 +38,7 @@ export const API_ENDPOINTS = {
     UPDATE: (faqId: string) => `/api/faqs/${faqId}`,
     DELETE: (faqId: string) => `/api/faqs/${faqId}`,
     FROM_CHATBOT: '/api/faqs/from-chatbot',
+    AUTO_GENERATE: '/api/faqs/auto_generate',
     HELPFUL: (faqId: string) => `/api/faqs/${faqId}/helpful`,
   },
   

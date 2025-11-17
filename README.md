@@ -937,6 +937,35 @@ npm install
 
 ## 📅 일자별 주요 업데이트 내역
 
+### 2025년 11월 3일
+**AR 공간 시뮬레이션 기능 개발** 🚀
+
+#### AR 공간 시뮬레이션 (신규 기능)
+- ✅ **AR 기능 활성화**: 'AR 기능 시작' 버튼을 통해 WebXR 세션을 시작합니다.
+- ✅ **실시간 카메라 뷰**: Three.js와 WebXR을 사용하여 실시간으로 사용자 공간을 렌더링합니다.
+- ✅ **가구 선택 및 배치**: UI 패널에서 가구를 선택하고, 카메라가 인식한 평면 위에 가상으로 배치할 수 있습니다.
+- ✅ **가구 및 측정 삭제**: 배치된 가구나 측정 지점을 삭제하는 기능을 제공합니다.
+- ✅ **AR 세션 종료**: AR 모드를 종료하고 이전 시뮬레이션 페이지로 돌아갑니다.
+
+#### 아키텍처 및 주요 기술
+- **상태 관리**: `Zustand` (`useARStore`)를 사용하여 AR 활성화 상태, 선택된 가구 등 전역 상태를 관리합니다.
+- **컴포넌트 분리**:
+  - `ARScene.tsx`: Three.js와 WebXR 렌더링 및 상호작용 로직을 담당하는 핵심 컴포넌트.
+  - `ARUI.tsx`: 가구 선택, 삭제 등 AR 세션 중 사용되는 UI 컴포넌트.
+  - `simulation/[productId]/page.tsx`: AR 기능을 호스팅하고, 컴포넌트들을 조합하는 페이지.
+- **성능 최적화**: `React.lazy`와 `Suspense`를 적용하여, 사용자가 AR 기능을 시작할 때만 `ARScene` 컴포넌트를 로드하도록 지연 로딩을 구현했습니다.
+
+#### 구현된 주요 파일
+- `src/app/(user)/simulation/[productId]/page.tsx`
+- `src/components/ar/ARScene.tsx`
+- `src/components/ar/ARUI.tsx`
+- `src/features/ar/hooks/useObjectRotation.ts`
+- `src/features/ar/hooks/useMeasurement.ts`
+- `src/features/ar/hooks/useFurniturePlacement.ts`
+- `src/store/useARStore.ts`
+
+---
+
 ### 2025년 10월 28일
 **제품 관리 시스템 완성 & 로그 분석 페이지 대폭 개선** 🎉
 

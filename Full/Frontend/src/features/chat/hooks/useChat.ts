@@ -14,8 +14,8 @@ type ChatSession = {
     messages?: Message[];
 }; 
 
-// 🚨 백엔드 주소 설정 (실제 도메인으로 변경 필요)
-const BACKEND_URL = 'http://localhost:8000'; 
+// 🚨 백엔드 주소 설정 (실제 도메인으로 변경 필요)4
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL; 
 
 // 💡 사용자 요청: 모든 함수는 에로우 함수로 작성합니다.
 export const useChat = (initialProductId: string) => {
@@ -37,6 +37,9 @@ export const useChat = (initialProductId: string) => {
     const [sessionId, setSessionId] = useState<string>(initialSessionIdFromUrl);
     const [sessions, setSessions] = useState<ChatSession[]>([]); 
     const [isSessionLoading, setIsSessionLoading] = useState(true); 
+    const [isNewSession, setIsNewSession] = useState<boolean>(
+    () => !initialSessionIdFromUrl
+  );
 
     // ----------------------------------------------------
     // 1. HTTP REST API: 회원 세션 목록 로드 (변경 없음)
@@ -60,6 +63,7 @@ export const useChat = (initialProductId: string) => {
                 console.log(response)
                 const data: ChatSession[] = await response.json();
                 setSessions(data); 
+                
             }
         } catch (error) {
             console.error('세션 기록 로드 실패:', error);
@@ -79,16 +83,12 @@ export const useChat = (initialProductId: string) => {
 
     // 🚨 connectWebSocket은 이제 세션 ID를 파라미터로 받지 않습니다.
     const connectWebSocket = useCallback((targetSessionId?: string) => {
-        const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-        // 💡 productId만 사용하는 순수 WebSocket 주소 (토큰/세션 ID 없음)
-        let wsUrl = `${wsProtocol}//${BACKEND_URL.split('//')[1]}/ws/${productId}`;
+        const wsUrlBase = process.env.NEXT_PUBLIC_WS_URL;
+        let wsUrl = `${wsUrlBase}/ws/${productId}`;
         if (targetSessionId) {
           wsUrl += `?session_id=${targetSessionId}`; 
         }
         const protocols: string[] = []; 
-        // if (isAuthenticated && jwtToken) {
-        //     protocols.push(`Bearer ${jwtToken}`); 
-        // }
 
         if (ws.current) {
             console.log('기존 WebSocket 연결 정리 (재연결)');
@@ -96,7 +96,6 @@ export const useChat = (initialProductId: string) => {
             ws.current = null;
         }
         
-        // 🚨 토큰 없이 순수 연결
         const wsInstance = new WebSocket(wsUrl, protocols);
         ws.current = wsInstance;
 
@@ -154,12 +153,12 @@ export const useChat = (initialProductId: string) => {
                         break;
                         
                     case 'bot':
-                        // 일반 단일 봇 메시지 (유지)
-                        const botMessage: Message = { id: `bot-${Date.now()}`, role: 'assistant', content: data.message, timestamp: new Date().toISOString() };
+                        const message_id= data.message_id?data.message_id:`bot-${Date.now()}`;
+                        const botMessage: Message = { id: message_id, role: 'assistant', content: data.message, timestamp: new Date().toISOString(),feedback:null };
+                        
                         setMessages(prev => [...prev, botMessage]);
                         break;
                     
-                    // 🚨 (주의) 만약 에러 응답을 별도로 받는다면 여기서 처리해야 함
                 }
             } catch (e) {
                 console.error('수신 데이터 처리 오류:', e);
@@ -190,17 +189,15 @@ export const useChat = (initialProductId: string) => {
     // 3. 세션 핸들러 함수들 (API 기반 로직)
     // ----------------------------------------------------
 
-    // 과거 세션 불러오기: load_session API 호출 (REST API로 대체)
     const handleLoadSession = useCallback(async (loadSessionId: string, newProductId: string) => {
       if (productId !== newProductId) {
           setProductId(newProductId); 
-          // 💡 [Redirection/Routing]: URL을 변경합니다.
+          setIsNewSession(false);
           router.push(`/chat/${newProductId}?session_id=${loadSessionId}`); 
         
-        // Next.js는 router.push를 통해 새로운 URL로 이동 후 
-        // ChatPage 컴포넌트를 새 productId로 재마운트합니다.
+
         }else {
-        // productId가 동일할 경우: URL 변경 없이 WebSocket만 재연결
+
         connectWebSocket(loadSessionId); 
     }
 
@@ -215,14 +212,13 @@ export const useChat = (initialProductId: string) => {
     const handleNewSession = useCallback(async () => {
         setMessages([]); 
         setIsSessionLoading(true);
-        // 🚨 새 세션 시작은 WebSocket 재연결로 처리 (세션 ID 없이 연결)
+        setIsNewSession(true);
         connectWebSocket(); 
         
     }, [connectWebSocket]);
 
-    // 세션 삭제 (API 호출)
     const handleDeleteSession = useCallback(async (deleteSessionId: string) => {
-        // ... (handleDeleteSession 로직은 이전 답변과 동일하게 유지)
+
         if (!isAuthenticated || !jwtToken) return;
         
         try {
@@ -267,6 +263,42 @@ export const useChat = (initialProductId: string) => {
     const scrollToBottom = useCallback(() => { /* ... */ }, []);
     useEffect(() => { scrollToBottom(); }, [messages, scrollToBottom]);
 
+    const sendFeedback = useCallback(async (
+    messageId: string | number, 
+    feedbackType: 'positive' | 'negative' | null
+    ) => {
+
+     if (!isAuthenticated || !jwtToken) {
+     console.error('피드백은 로그인이 필요합니다.');
+    throw new Error('Feedback requires authentication');
+    }
+
+    try {
+        const response = await fetch(`${BACKEND_URL}/chat/feedback`, { 
+        method: 'POST',
+        headers: {
+        'Authorization': `Bearer ${jwtToken}`, 
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+        message_id: messageId,      
+        feedback: feedbackType,
+
+        }),
+        });
+
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.detail || '피드백 서버 전송 실패');
+        }
+        console.log('피드백 전송 성공');
+
+    } catch (err) {
+        console.error('Failed to send feedback:', err);
+        throw err; // ⭐️ ChatMessage 컴포넌트가 롤백할 수 있게 에러를 다시 던짐
+    }
+    }, [isAuthenticated, jwtToken]);
+
 
     return {
         messages, isLoading, error, sendMessage, messagesEndRef,
@@ -275,5 +307,7 @@ export const useChat = (initialProductId: string) => {
         loadSession: handleLoadSession,
         startNewSession: handleNewSession,
         deleteSession: handleDeleteSession,
+        sendFeedback: sendFeedback,
+        isNewSession: isNewSession
     };
 };

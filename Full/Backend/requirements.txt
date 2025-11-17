@@ -2,6 +2,7 @@
 fastapi
 uvicorn[standard]
 websockets
+Jinja2
 
 #데이터베이스
 SQLAlchemy
@@ -43,3 +44,5 @@ PyJWT
 ipython
 pydantic
 requests
+python-multipart
+sentence-transformers

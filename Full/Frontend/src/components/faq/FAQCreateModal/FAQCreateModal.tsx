@@ -178,4 +178,3 @@ export default function FAQCreateModal({ isOpen, onClose, onSuccess }: FAQCreate
     </Modal>
   );
 }
-

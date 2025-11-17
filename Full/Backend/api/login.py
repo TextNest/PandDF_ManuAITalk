@@ -110,8 +110,13 @@ async def google_login_call_back(code_data:AuthCodeRequest,session:AsyncSession=
         "grant_type": "authorization_code", 
     }
     print("데이터확인")
-    async with httpx.AsyncClient() as client:
-        response = await client.post(token_url, data=token_data)
+    try:
+        async with httpx.AsyncClient() as client:
+            response = await client.post(token_url, data=token_data)
+    except httpx.RequestError as e:
+        # 백엔드 서버가 외부(구글)로 요청을 보낼 수 없는 경우 (네트워크, 방화벽, DNS 문제 등)
+        raise HTTPException(status_code=503, detail=f"Could not connect to Google's authentication server: {e}")
+
     print("서버 비교 중")
     if response.status_code != 200:
         print("Google Token Exchange Failed:", response.json())
