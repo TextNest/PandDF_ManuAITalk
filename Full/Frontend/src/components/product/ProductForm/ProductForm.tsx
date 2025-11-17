@@ -6,227 +6,142 @@
 
 'use client';
 
-import { useState } from 'react';
-import { Save, X } from 'lucide-react';
+import { useState, useRef } from 'react';
+import { Save, X, Upload } from 'lucide-react';
 import Button from '@/components/ui/Button/Button';
 import Input from '@/components/ui/Input/Input';
-import { ProductFormData, ProductCategory } from '@/types/product.types';
-import styles from './ProductForm.module.css';
+import { ProductFormData } from '@/types/product.types';
+import styles from '@/styles/Form.module.css';
+
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
 
 interface ProductFormProps {
-  initialData?: ProductFormData;
   onSubmit: (data: ProductFormData) => void;
   onCancel?: () => void;
 }
 
-const CATEGORIES: ProductCategory[] = [
-  '에어컨',
-  '냉장고',
-  '세탁기',
-  'TV',
-  '청소기',
-  '공기청정기',
-  '기타',
-];
-
-export default function ProductForm({ 
-  initialData, 
-  onSubmit, 
-  onCancel 
-}: ProductFormProps) {
-  const [formData, setFormData] = useState<ProductFormData>(
-    initialData || {
-      name: '',
-      model: '',
-      category: '에어컨',
-      manufacturer: '',
-      description: '',
-      releaseDate: '',
-      status: 'active',
-      documentIds: [],
-      imageUrl: '',
-    }
-  );
-
-  const [errors, setErrors] = useState<Partial<Record<keyof ProductFormData, string>>>({});
+export default function ProductForm({ onSubmit, onCancel }: ProductFormProps) {
+  const [productName, setProductName] = useState('');
+  const [pdfFile, setPdfFile] = useState<File | null>(null);
+  
+  const [isUploading, setIsUploading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  
+  const pdfInputRef = useRef<HTMLInputElement>(null);
 
   const validate = (): boolean => {
-    const newErrors: Partial<Record<keyof ProductFormData, string>> = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = '제품명을 입력해주세요';
+    if (!productName.trim()) {
+      setError('제품명을 입력해주세요.');
+      return false;
     }
-
-    if (!formData.model.trim()) {
-      newErrors.model = '모델명을 입력해주세요';
+    if (!pdfFile) {
+      setError('PDF 파일을 선택해주세요.');
+      return false;
     }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    setError(null);
+    return true;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handlePdfFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      if (file.type !== 'application/pdf') {
+        setError('PDF 파일만 업로드할 수 있습니다.');
+        setPdfFile(null);
+      } else {
+        setPdfFile(file);
+        setError(null);
+      }
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (validate()) {
-      onSubmit(formData);
-    }
-  };
+    if (!validate() || !pdfFile) return;
 
-  const handleChange = (
-    field: keyof ProductFormData,
-    value: string | string[]
-  ) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value,
-    }));
+    setIsUploading(true);
+    setError(null);
 
-    // 에러 클리어
-    if (errors[field]) {
-      setErrors(prev => ({
-        ...prev,
-        [field]: undefined,
-      }));
+    try {
+      // 1. PDF 업로드
+      const formDataForPdf = new FormData();
+      formDataForPdf.append('pdf_file', pdfFile);
+      const response = await fetch(`${apiBaseUrl}/api/products/upload-pdf`, { 
+        method: 'POST', 
+        body: formDataForPdf 
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ detail: 'PDF 업로드 실패' }));
+        throw new Error(errorData.detail);
+      }
+      const result = await response.json();
+      const pdfPath = result.file_path;
+
+      // 2. 최종 데이터 전송
+      onSubmit({
+        product_name: productName,
+        pdf_path: pdfPath,
+      });
+
+    } catch (err: any) {
+      setError(err.message || '제품 등록 중 오류가 발생했습니다.');
+    } finally {
+      setIsUploading(false);
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      {/* 기본 정보 */}
       <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>기본 정보</h2>
-        
-        <div className={styles.row}>
-          <Input
-            label="제품명"
-            placeholder="예: 시스템 에어컨 2024"
-            value={formData.name}
-            onChange={(e) => handleChange('name', e.target.value)}
-            error={errors.name}
-            required
-            fullWidth
-          />
-        </div>
-
-        <div className={styles.row}>
-          <Input
-            label="모델명"
-            placeholder="예: AC-2024-001"
-            value={formData.model}
-            onChange={(e) => handleChange('model', e.target.value)}
-            error={errors.model}
-            required
-            fullWidth
-          />
-        </div>
-
-        <div className={styles.row}>
-          <div className={styles.field}>
-            <label className={styles.label}>
-              카테고리 <span className={styles.required}>*</span>
-            </label>
-            <select
-              value={formData.category}
-              onChange={(e) => handleChange('category', e.target.value as ProductCategory)}
-              className={styles.select}
-            >
-              {CATEGORIES.map(category => (
-                <option key={category} value={category}>
-                  {category}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        <div className={styles.row}>
-          <Input
-            label="제조사"
-            placeholder="예: LG전자"
-            value={formData.manufacturer || ''}
-            onChange={(e) => handleChange('manufacturer', e.target.value)}
-            fullWidth
-          />
-        </div>
-
-        <div className={styles.row}>
-          <div className={styles.field}>
-            <label className={styles.label}>제품 설명</label>
-            <textarea
-              placeholder="제품에 대한 간단한 설명을 입력하세요"
-              value={formData.description || ''}
-              onChange={(e) => handleChange('description', e.target.value)}
-              className={styles.textarea}
-              rows={4}
+        <h2 className={styles.sectionTitle}>제품 정보</h2>
+        <div className={styles.field}>
+            <Input
+              label="제품명"
+              placeholder="예: 시스템 에어컨 2024"
+              value={productName}
+              onChange={(e) => setProductName(e.target.value)}
+              required
+              disabled={isUploading}
             />
-          </div>
         </div>
-      </div>
-
-      {/* 추가 정보 */}
-      <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>추가 정보</h2>
-
-        <div className={styles.row}>
-          <Input
-            label="출시일"
-            type="date"
-            value={formData.releaseDate || ''}
-            onChange={(e) => handleChange('releaseDate', e.target.value)}
-            fullWidth
-          />
-        </div>
-
-        <div className={styles.row}>
-          <Input
-            label="제품 이미지 URL"
-            placeholder="https://example.com/product-image.jpg"
-            value={formData.imageUrl || ''}
-            onChange={(e) => handleChange('imageUrl', e.target.value)}
-            fullWidth
-          />
-        </div>
-
-        <div className={styles.row}>
-          <div className={styles.field}>
-            <label className={styles.label}>
-              상태 <span className={styles.required}>*</span>
-            </label>
-            <select
-              value={formData.status}
-              onChange={(e) => handleChange('status', e.target.value as any)}
-              className={styles.select}
+        <div className={styles.field}>
+          <label className={styles.label}>제품 설명서 (PDF) <span className={styles.required}>*</span></label>
+          <div className={styles.fileInputContainer}>
+            <input
+              type="file"
+              accept=".pdf"
+              onChange={handlePdfFileChange}
+              className={styles.hiddenInput}
+              ref={pdfInputRef}
+              disabled={isUploading}
+            />
+            <Button 
+              type="button" 
+              variant="outline" 
+              onClick={() => pdfInputRef.current?.click()}
+              disabled={isUploading}
             >
-              <option value="active">활성</option>
-              <option value="inactive">비활성</option>
-              <option value="draft">임시저장</option>
-            </select>
+              <Upload size={16} />
+              파일 선택
+            </Button>
+            {pdfFile && <p className={styles.fileName}>{pdfFile.name}</p>}
           </div>
         </div>
       </div>
 
-      {/* 버튼 */}
+      {error && <p className={styles.errorMessage}>{error}</p>}
+
       <div className={styles.actions}>
         {onCancel && (
-          <Button
-            type="button"
-            variant="outline"
-            size="lg"
-            onClick={onCancel}
-          >
+          <Button type="button" variant="outline" size="lg" onClick={onCancel} disabled={isUploading}>
             <X size={20} />
             취소
           </Button>
         )}
-        
-        <Button
-          type="submit"
-          variant="primary"
-          size="lg"
-        >
+        <Button type="submit" variant="primary" size="lg" disabled={isUploading}>
           <Save size={20} />
-          {initialData ? '수정하기' : '등록하기'}
+          {isUploading ? '저장 중...' : '등록하기'}
         </Button>
       </div>
     </form>
