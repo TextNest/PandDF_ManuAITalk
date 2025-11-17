@@ -8,9 +8,11 @@ import styles from './FAQList.module.css';
 
 interface FAQListProps {
   faqs: FAQ[];
+  onUpdate?: (updatedFaq: FAQ) => void;
+  onDelete?: (faqId: string) => void;
 }
 
-export default function FAQList({ faqs }: FAQListProps) {
+export default function FAQList({ faqs, onUpdate, onDelete }: FAQListProps) {
   if (faqs.length === 0) {
     return (
       <div className={styles.empty}>
@@ -22,7 +24,12 @@ export default function FAQList({ faqs }: FAQListProps) {
   return (
     <div className={styles.list}>
       {faqs.map((faq) => (
-        <FAQCard key={faq.id} faq={faq} />
+        <FAQCard 
+          key={faq.faqId} 
+          faq={faq} 
+          onUpdate={onUpdate}
+          onDelete={onDelete}
+        />
       ))}
     </div>
   );
