@@ -1,8 +1,5 @@
 # Node
 node_modules
-.env
-.env.local
-.env.*
 
 # ngrok
 ngrok/
@@ -27,3 +24,4 @@ artifacts/
 *test*
 *.ipynb
 *.png
+.next
