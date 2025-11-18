@@ -1,0 +1,678 @@
+{
+  "doc_id": "SVC-BCL20",
+  "source_pdf": "data/raw/SVC-BCL20.pdf",
+  "num_images_total": 23,
+  "num_images_kept": 10,
+  "created_by": "image_captioner_gemini.py",
+  "model": "gemini-2.5-flash",
+  "config": {
+    "CAPTION_MAX_CHARS": 220,
+    "UNSAFE_KEYWORDS": [
+      "폭발",
+      "감전",
+      "사망",
+      "질식",
+      "중독",
+      "화재",
+      "불이 날",
+      "불이날",
+      "가스 누출",
+      "가스누출",
+      "가스가 새",
+      "전기 충격",
+      "전기충격",
+      "고압",
+      "중상",
+      "심각한 부상"
+    ]
+  },
+  "images": [
+    {
+      "file": "data/figures/SVC-BCL20/page_002_figure_001.png",
+      "page": 2,
+      "index": 1,
+      "size_px": [
+        42,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 42.0,
+        "height": 41.0,
+        "aspect_ratio": 1.024390243902439,
+        "ink_ratio": 0.42044134727061555,
+        "edge_ratio": 0.2346109175377468,
+        "table_line_ratio": 0.22938443670150988,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        42,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 42.0,
+        "height": 43.0,
+        "aspect_ratio": 0.9767441860465116,
+        "ink_ratio": 0.4169435215946844,
+        "edge_ratio": 0.2552602436323367,
+        "table_line_ratio": 0.19158361018826134,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        43,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0238095238095237,
+        "ink_ratio": 0.39313399778516056,
+        "edge_ratio": 0.25802879291251385,
+        "table_line_ratio": 0.18549280177187155,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        44,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 43.0,
+        "aspect_ratio": 1.0232558139534884,
+        "ink_ratio": 0.322938689217759,
+        "edge_ratio": 0.18181818181818182,
+        "table_line_ratio": 0.14376321353065538,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        40,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 40.0,
+        "height": 41.0,
+        "aspect_ratio": 0.975609756097561,
+        "ink_ratio": 0.6920731707317073,
+        "edge_ratio": 0.11463414634146342,
+        "table_line_ratio": 0.7073170731707317,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        43,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0238095238095237,
+        "ink_ratio": 0.4844961240310077,
+        "edge_ratio": 0.18660022148394242,
+        "table_line_ratio": 0.42967884828349945,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_004_figure_007.png",
+      "page": 4,
+      "index": 7,
+      "size_px": [
+        610,
+        287
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 610.0,
+        "height": 287.0,
+        "aspect_ratio": 2.1254355400696863,
+        "ink_ratio": 0.04225167076026732,
+        "edge_ratio": 0.04942594390815103,
+        "table_line_ratio": 0.015479522476723597,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BCL20/page_004_figure_007.png",
+      "caption_short": "이것은 손에 쥐고 사용하는 아담한 크기의 청소용 전자기기이다. 옆에서 살짝 위쪽을 내려다보는 모습이다. 길쭉한 원통형 본체에 손잡이가 붙어 있다. 손잡이 위쪽에는 동그란 전원 버튼이 있고, 손잡이 아래의 큰 원통 부분은 먼지통이다. 본체 가장 아래쪽에는 둥근 그릴 모양의 공기배출구가 있으며, 손잡이에서 전기 콘센트에 꽂는 긴 전원 코드가 나와 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_004_figure_008.png",
+      "page": 4,
+      "index": 8,
+      "size_px": [
+        660,
+        478
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 660.0,
+        "height": 478.0,
+        "aspect_ratio": 1.3807531380753137,
+        "ink_ratio": 0.034258907062254346,
+        "edge_ratio": 0.04102003296563966,
+        "table_line_ratio": 0.028417015341701535,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BCL20/page_004_figure_008.png",
+      "caption_short": "이것은 청소기처럼 생긴 전자제품의 바닥면이다. 전체적으로 모서리가 둥근 직사각형 모양이며, 제품의 아래쪽을 위에서 내려다본 모습이다. 제품의 위쪽 중앙에는 '팻 헤드'라고 불리는 두 개의 솔 같은 부분이 나란히 위치한다. 양옆 가장자리에는 작은 네모 형태의 '안전 스위치'가 하나씩 있다. 팻 헤드 아래쪽에는 여러 개의 구멍이 있는 긴 부분이 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_004_figure_009.png",
+      "page": 4,
+      "index": 9,
+      "size_px": [
+        61,
+        61
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 61.0,
+        "height": 61.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.5984950282182209,
+        "edge_ratio": 0.14969094329481322,
+        "table_line_ratio": 0.5732330018812147,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_004_figure_010.png",
+      "page": 4,
+      "index": 10,
+      "size_px": [
+        61,
+        59
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 61.0,
+        "height": 59.0,
+        "aspect_ratio": 1.0338983050847457,
+        "ink_ratio": 0.6168380105584884,
+        "edge_ratio": 0.1414281744929147,
+        "table_line_ratio": 0.6118366212836899,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_004_figure_011.png",
+      "page": 4,
+      "index": 11,
+      "size_px": [
+        60,
+        59
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 60.0,
+        "height": 59.0,
+        "aspect_ratio": 1.0169491525423728,
+        "ink_ratio": 0.7550847457627119,
+        "edge_ratio": 0.15423728813559323,
+        "table_line_ratio": 0.6790960451977401,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_004_figure_012.png",
+      "page": 4,
+      "index": 12,
+      "size_px": [
+        60,
+        60
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 60.0,
+        "height": 60.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.6741666666666667,
+        "edge_ratio": 0.1213888888888889,
+        "table_line_ratio": 0.6730555555555555,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_004_figure_013.png",
+      "page": 4,
+      "index": 13,
+      "size_px": [
+        61,
+        63
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 61.0,
+        "height": 63.0,
+        "aspect_ratio": 0.9682539682539683,
+        "ink_ratio": 0.6396044756700494,
+        "edge_ratio": 0.12646370023419204,
+        "table_line_ratio": 0.618527192297684,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_004_figure_014.png",
+      "page": 4,
+      "index": 14,
+      "size_px": [
+        62,
+        61
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 62.0,
+        "height": 61.0,
+        "aspect_ratio": 1.0163934426229508,
+        "ink_ratio": 0.6501850872554205,
+        "edge_ratio": 0.14516129032258066,
+        "table_line_ratio": 0.6639344262295082,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_005_figure_015.png",
+      "page": 5,
+      "index": 15,
+      "size_px": [
+        374,
+        275
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 374.0,
+        "height": 275.0,
+        "aspect_ratio": 1.36,
+        "ink_ratio": 0.05438988818667963,
+        "edge_ratio": 0.05903743315508021,
+        "table_line_ratio": 0.016246961594555177,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BCL20/page_005_figure_015.png",
+      "caption_short": "오른쪽에는 하얀색 직사각형 모양의 전기 콘센트가 세로로 놓여 있다. 콘센트에는 동그란 구멍이 두 개 있는 소켓이 위아래로 나란히 보인다. 왼쪽에는 사람의 손이 전원 플러그를 잡고 있으며, 플러그는 콘센트 쪽을 향하고 있다. 아래쪽에는 하얀색의 작은 전자 기기가 손잡이를 위로 한 채 바닥에 놓여 있다. 손잡이 위에는 타원형 버튼이 하나 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_005_figure_016.png",
+      "page": 5,
+      "index": 16,
+      "size_px": [
+        317,
+        216
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 317.0,
+        "height": 216.0,
+        "aspect_ratio": 1.4675925925925926,
+        "ink_ratio": 0.08136172450052576,
+        "edge_ratio": 0.05424114966701717,
+        "table_line_ratio": 0.04490886785839467,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BCL20/page_005_figure_016.png",
+      "caption_short": "하얗고 매끈한 길쭉한 기계가 넓적한 받침대 위에 가로로 놓여 있다. 기계 위쪽에는 손잡이가 달려 있고, 손잡이에 작은 동그란 버튼이 하나 보인다. 기계의 왼쪽 위와 오른쪽 아래에서 바깥 방향으로 커다란 빨간색 화살표 두 개가 보인다. 이는 기계를 앞뒤로 움직이라는 표시이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_005_figure_017.png",
+      "page": 5,
+      "index": 17,
+      "size_px": [
+        321,
+        213
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 321.0,
+        "height": 213.0,
+        "aspect_ratio": 1.5070422535211268,
+        "ink_ratio": 0.12942243283167332,
+        "edge_ratio": 0.1012680444034926,
+        "table_line_ratio": 0.0571424392669621,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BCL20/page_005_figure_017.png",
+      "caption_short": "손잡이가 달린 전자 기기가 바닥에 놓여 있다. 옆에서 본 모습으로, 길쭉한 손잡이와 둥근 본체가 있다. 손잡이 위 작은 원형 버튼을 손가락이 누르고 있고, 손잡이 끝에는 전원 코드가 연결되어 있다. 본체 앞부분 바닥에는 작은 돌기가 튀어나와 있으며, 빨간색 동그라미와 세 개의 빨간 화살표가 이 돌기를 가리키고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_005_figure_018.png",
+      "page": 5,
+      "index": 18,
+      "size_px": [
+        315,
+        266
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 315.0,
+        "height": 266.0,
+        "aspect_ratio": 1.1842105263157894,
+        "ink_ratio": 0.05688029597804034,
+        "edge_ratio": 0.07023511158849505,
+        "table_line_ratio": 0.012555197517603532,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BCL20/page_005_figure_018.png",
+      "caption_short": "작고 둥근 모양의 청소 기구가 바닥에 놓여 있다. 한 손은 이 기구의 전원 코드를 잡고 벽에 있는 두 구멍짜리 콘센트에 꽂으려 한다. 다른 한 손은 기구 손잡이 위에 있는 둥근 전원 버튼을 누르고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_006_figure_019.png",
+      "page": 6,
+      "index": 19,
+      "size_px": [
+        245,
+        196
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 245.0,
+        "height": 196.0,
+        "aspect_ratio": 1.25,
+        "ink_ratio": 0.08583923365264473,
+        "edge_ratio": 0.08769262807163682,
+        "table_line_ratio": 0.03304872969596002,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BCL20/page_006_figure_019.png",
+      "caption_short": "작고 둥근 모양의 청소 기기가 납작한 받침대 위에 놓여 있다. 기기 뒤쪽 위에는 손잡이가 있고, 그 끝에서 전원 코드가 보인다. 기기 몸통은 두 부분으로 나뉘며, 오른쪽 부분이 손잡이 반대 방향으로 돌려지고 있다. 빨간색 둥근 화살표가 이 움직임을 보여준다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_006_figure_020.png",
+      "page": 6,
+      "index": 20,
+      "size_px": [
+        200,
+        179
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 200.0,
+        "height": 179.0,
+        "aspect_ratio": 1.1173184357541899,
+        "ink_ratio": 0.12581005586592178,
+        "edge_ratio": 0.12427374301675978,
+        "table_line_ratio": 0.05301675977653631,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BCL20/page_006_figure_020.png",
+      "caption_short": "튼튼한 원통형 부품 하나가 비스듬히 놓여 있다. 밝은색 통의 둥글게 열린 안쪽에는 빨간색 막대 같은 것이 보이고, 그 주변은 점선으로 된 빨간 동그라미로 강조되어 있다. 통의 아래쪽에서는 굵은 빨간 화살표가 오른쪽 아래 방향으로 뻗어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_006_figure_021.png",
+      "page": 6,
+      "index": 21,
+      "size_px": [
+        221,
+        218
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 221.0,
+        "height": 218.0,
+        "aspect_ratio": 1.0137614678899083,
+        "ink_ratio": 0.08912781767611773,
+        "edge_ratio": 0.08202914193200216,
+        "table_line_ratio": 0.04767736311179376,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BCL20/page_006_figure_021.png",
+      "caption_short": "둥근 통 모양의 하얀색 부품이 보인다. 이 부품의 위쪽에는 넓고 평평한 원형 판이 연결되어 있다. 통 안쪽에 있는 또 다른 원통 모양의 부품 둘레에 빨간색 화살표가 그려져 있으며, 왼쪽 방향으로 돌리는 움직임을 가리키고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_006_figure_022.png",
+      "page": 6,
+      "index": 22,
+      "size_px": [
+        201,
+        191
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 201.0,
+        "height": 191.0,
+        "aspect_ratio": 1.0523560209424083,
+        "ink_ratio": 0.11276080331327655,
+        "edge_ratio": 0.16152223177307182,
+        "table_line_ratio": 0.0,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BCL20/page_006_figure_022.png",
+      "caption_short": "직사각형 모양의 필터가 보인다. 위에서 비스듬히 내려다본 모습이다. 양쪽 끝에는 필터를 고정하는 두꺼운 테두리가 있다. 그 안에는 가로로 길게 여러 줄의 얇은 막이 주름진 모습으로 펼쳐져 있다. 중간 부분의 얇은 막들은 부채꼴처럼 살짝 벌어져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_009_figure_023.png",
+      "page": 9,
+      "index": 23,
+      "size_px": [
+        784,
+        153
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 784.0,
+        "height": 153.0,
+        "aspect_ratio": 5.124183006535947,
+        "ink_ratio": 0.08601774042950514,
+        "edge_ratio": 0.0913031879418434,
+        "table_line_ratio": 0.05889855942376951,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    }
+  ]
+}

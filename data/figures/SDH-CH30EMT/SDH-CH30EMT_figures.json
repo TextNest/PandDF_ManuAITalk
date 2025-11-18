@@ -1,0 +1,277 @@
+{
+  "doc_id": "SDH-CH30EMT",
+  "source_pdf": "data/raw/SDH-CH30EMT.pdf",
+  "num_figures": 30,
+  "images": [
+    {
+      "file": "data/figures/SDH-CH30EMT/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        510,
+        755
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        46,
+        43
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        45,
+        44
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        47,
+        45
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        45,
+        43
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        47,
+        45
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        43,
+        43
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_002_figure_008.png",
+      "page": 2,
+      "index": 8,
+      "size_px": [
+        42,
+        41
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_004_figure_009.png",
+      "page": 4,
+      "index": 9,
+      "size_px": [
+        788,
+        511
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_004_figure_010.png",
+      "page": 4,
+      "index": 10,
+      "size_px": [
+        140,
+        107
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_004_figure_011.png",
+      "page": 4,
+      "index": 11,
+      "size_px": [
+        626,
+        288
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_005_figure_012.png",
+      "page": 5,
+      "index": 12,
+      "size_px": [
+        549,
+        242
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_005_figure_013.png",
+      "page": 5,
+      "index": 13,
+      "size_px": [
+        458,
+        197
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_005_figure_014.png",
+      "page": 5,
+      "index": 14,
+      "size_px": [
+        146,
+        143
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_005_figure_015.png",
+      "page": 5,
+      "index": 15,
+      "size_px": [
+        366,
+        319
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_006_figure_016.png",
+      "page": 6,
+      "index": 16,
+      "size_px": [
+        443,
+        376
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_008_figure_017.png",
+      "page": 8,
+      "index": 17,
+      "size_px": [
+        384,
+        230
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_008_figure_018.png",
+      "page": 8,
+      "index": 18,
+      "size_px": [
+        388,
+        228
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_008_figure_019.png",
+      "page": 8,
+      "index": 19,
+      "size_px": [
+        384,
+        229
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_008_figure_020.png",
+      "page": 8,
+      "index": 20,
+      "size_px": [
+        381,
+        228
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_009_figure_021.png",
+      "page": 9,
+      "index": 21,
+      "size_px": [
+        782,
+        986
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_010_figure_022.png",
+      "page": 10,
+      "index": 22,
+      "size_px": [
+        385,
+        230
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_010_figure_023.png",
+      "page": 10,
+      "index": 23,
+      "size_px": [
+        383,
+        227
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_010_figure_024.png",
+      "page": 10,
+      "index": 24,
+      "size_px": [
+        104,
+        98
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_010_figure_025.png",
+      "page": 10,
+      "index": 25,
+      "size_px": [
+        781,
+        274
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_010_figure_026.png",
+      "page": 10,
+      "index": 26,
+      "size_px": [
+        780,
+        272
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_011_figure_027.png",
+      "page": 11,
+      "index": 27,
+      "size_px": [
+        358,
+        165
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_011_figure_028.png",
+      "page": 11,
+      "index": 28,
+      "size_px": [
+        534,
+        175
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_013_figure_029.png",
+      "page": 13,
+      "index": 29,
+      "size_px": [
+        783,
+        153
+      ]
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_016_figure_030.png",
+      "page": 16,
+      "index": 30,
+      "size_px": [
+        116,
+        113
+      ]
+    }
+  ]
+}

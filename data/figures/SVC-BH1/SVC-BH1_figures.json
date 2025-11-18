@@ -1,0 +1,529 @@
+{
+  "doc_id": "SVC-BH1",
+  "source_pdf": "data/raw/SVC-BH1.pdf",
+  "num_figures": 58,
+  "images": [
+    {
+      "file": "data/figures/SVC-BH1/page_002_figure_001.png",
+      "page": 2,
+      "index": 1,
+      "size_px": [
+        418,
+        563
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_003_figure_002.png",
+      "page": 3,
+      "index": 2,
+      "size_px": [
+        341,
+        323
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_003_figure_003.png",
+      "page": 3,
+      "index": 3,
+      "size_px": [
+        336,
+        321
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_005_figure_004.png",
+      "page": 5,
+      "index": 4,
+      "size_px": [
+        135,
+        149
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_005_figure_005.png",
+      "page": 5,
+      "index": 5,
+      "size_px": [
+        133,
+        118
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_005_figure_006.png",
+      "page": 5,
+      "index": 6,
+      "size_px": [
+        124,
+        98
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_005_figure_007.png",
+      "page": 5,
+      "index": 7,
+      "size_px": [
+        120,
+        95
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_005_figure_008.png",
+      "page": 5,
+      "index": 8,
+      "size_px": [
+        104,
+        83
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_005_figure_009.png",
+      "page": 5,
+      "index": 9,
+      "size_px": [
+        56,
+        145
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_005_figure_010.png",
+      "page": 5,
+      "index": 10,
+      "size_px": [
+        114,
+        66
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_005_figure_011.png",
+      "page": 5,
+      "index": 11,
+      "size_px": [
+        90,
+        107
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_005_figure_012.png",
+      "page": 5,
+      "index": 12,
+      "size_px": [
+        107,
+        113
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_005_figure_013.png",
+      "page": 5,
+      "index": 13,
+      "size_px": [
+        122,
+        33
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_005_figure_014.png",
+      "page": 5,
+      "index": 14,
+      "size_px": [
+        120,
+        65
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_005_figure_015.png",
+      "page": 5,
+      "index": 15,
+      "size_px": [
+        100,
+        80
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_006_figure_016.png",
+      "page": 6,
+      "index": 16,
+      "size_px": [
+        722,
+        302
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_007_figure_017.png",
+      "page": 7,
+      "index": 17,
+      "size_px": [
+        978,
+        543
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_008_figure_018.png",
+      "page": 8,
+      "index": 18,
+      "size_px": [
+        991,
+        606
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_009_figure_019.png",
+      "page": 9,
+      "index": 19,
+      "size_px": [
+        871,
+        553
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_010_figure_020.png",
+      "page": 10,
+      "index": 20,
+      "size_px": [
+        296,
+        187
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_010_figure_021.png",
+      "page": 10,
+      "index": 21,
+      "size_px": [
+        312,
+        190
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_010_figure_022.png",
+      "page": 10,
+      "index": 22,
+      "size_px": [
+        317,
+        189
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_010_figure_023.png",
+      "page": 10,
+      "index": 23,
+      "size_px": [
+        315,
+        192
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_011_figure_024.png",
+      "page": 11,
+      "index": 24,
+      "size_px": [
+        371,
+        285
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_011_figure_025.png",
+      "page": 11,
+      "index": 25,
+      "size_px": [
+        259,
+        181
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_011_figure_026.png",
+      "page": 11,
+      "index": 26,
+      "size_px": [
+        515,
+        383
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_013_figure_027.png",
+      "page": 13,
+      "index": 27,
+      "size_px": [
+        820,
+        317
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_015_figure_028.png",
+      "page": 15,
+      "index": 28,
+      "size_px": [
+        307,
+        307
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_016_figure_029.png",
+      "page": 16,
+      "index": 29,
+      "size_px": [
+        148,
+        105
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_017_figure_030.png",
+      "page": 17,
+      "index": 30,
+      "size_px": [
+        649,
+        300
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_018_figure_031.png",
+      "page": 18,
+      "index": 31,
+      "size_px": [
+        370,
+        114
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_018_figure_032.png",
+      "page": 18,
+      "index": 32,
+      "size_px": [
+        237,
+        148
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_018_figure_033.png",
+      "page": 18,
+      "index": 33,
+      "size_px": [
+        214,
+        224
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_019_figure_034.png",
+      "page": 19,
+      "index": 34,
+      "size_px": [
+        434,
+        176
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_019_figure_035.png",
+      "page": 19,
+      "index": 35,
+      "size_px": [
+        227,
+        144
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_019_figure_036.png",
+      "page": 19,
+      "index": 36,
+      "size_px": [
+        181,
+        166
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_019_figure_037.png",
+      "page": 19,
+      "index": 37,
+      "size_px": [
+        220,
+        201
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_019_figure_038.png",
+      "page": 19,
+      "index": 38,
+      "size_px": [
+        293,
+        178
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_020_figure_039.png",
+      "page": 20,
+      "index": 39,
+      "size_px": [
+        270,
+        136
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_020_figure_040.png",
+      "page": 20,
+      "index": 40,
+      "size_px": [
+        184,
+        200
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_020_figure_041.png",
+      "page": 20,
+      "index": 41,
+      "size_px": [
+        219,
+        256
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_020_figure_042.png",
+      "page": 20,
+      "index": 42,
+      "size_px": [
+        246,
+        154
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_020_figure_043.png",
+      "page": 20,
+      "index": 43,
+      "size_px": [
+        446,
+        163
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_021_figure_044.png",
+      "page": 21,
+      "index": 44,
+      "size_px": [
+        255,
+        133
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_021_figure_045.png",
+      "page": 21,
+      "index": 45,
+      "size_px": [
+        182,
+        101
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_021_figure_046.png",
+      "page": 21,
+      "index": 46,
+      "size_px": [
+        158,
+        182
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_021_figure_047.png",
+      "page": 21,
+      "index": 47,
+      "size_px": [
+        172,
+        181
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_021_figure_048.png",
+      "page": 21,
+      "index": 48,
+      "size_px": [
+        357,
+        261
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_022_figure_049.png",
+      "page": 22,
+      "index": 49,
+      "size_px": [
+        330,
+        157
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_022_figure_050.png",
+      "page": 22,
+      "index": 50,
+      "size_px": [
+        132,
+        149
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_022_figure_051.png",
+      "page": 22,
+      "index": 51,
+      "size_px": [
+        336,
+        172
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_022_figure_052.png",
+      "page": 22,
+      "index": 52,
+      "size_px": [
+        356,
+        131
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_022_figure_053.png",
+      "page": 22,
+      "index": 53,
+      "size_px": [
+        290,
+        160
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_023_figure_054.png",
+      "page": 23,
+      "index": 54,
+      "size_px": [
+        73,
+        91
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_023_figure_055.png",
+      "page": 23,
+      "index": 55,
+      "size_px": [
+        223,
+        98
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_023_figure_056.png",
+      "page": 23,
+      "index": 56,
+      "size_px": [
+        210,
+        282
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_024_figure_057.png",
+      "page": 24,
+      "index": 57,
+      "size_px": [
+        76,
+        108
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_027_figure_058.png",
+      "page": 27,
+      "index": 58,
+      "size_px": [
+        498,
+        97
+      ]
+    }
+  ]
+}

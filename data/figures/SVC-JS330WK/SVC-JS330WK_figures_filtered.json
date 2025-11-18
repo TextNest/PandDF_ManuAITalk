@@ -1,0 +1,740 @@
+{
+  "doc_id": "SVC-JS330WK",
+  "source_pdf": "data/raw/SVC-JS330WK.pdf",
+  "num_images_total": 28,
+  "num_images_kept": 20,
+  "created_by": "image_filter_for_caption.py",
+  "config": {
+    "SMALL_ICON_MAX_DIM": 96,
+    "SMALL_ICON_MAX_AREA": 9216,
+    "INK_INTENSITY_THRESHOLD": 190,
+    "PROCEDURE_BANNER_MIN_ASPECT": 4.0,
+    "PROCEDURE_BANNER_MAX_INK": 0.2,
+    "PROCEDURE_BANNER_MIN_TABLE_LINE": 0.03,
+    "ENABLE_QR_DETECTION": true,
+    "QR_SIZE_MIN": 80.0,
+    "QR_SIZE_MAX": 300.0,
+    "QR_SQUARE_ASPECT_TOL": 0.15,
+    "QR_MIN_EDGE_RATIO": 0.15,
+    "QR_MIN_TABLE_LINE_RATIO": 0.2,
+    "QR_MIN_INK_RATIO": 0.3
+  },
+  "images": [
+    {
+      "file": "data/figures/SVC-JS330WK/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        373,
+        791
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 373.0,
+        "height": 791.0,
+        "aspect_ratio": 0.4715549936788875,
+        "ink_ratio": 0.9576129581111906,
+        "edge_ratio": 0.0699864087607569,
+        "table_line_ratio": 0.9077524293069146,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-JS330WK/page_001_figure_001.png"
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        43,
+        53
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 53.0,
+        "aspect_ratio": 0.8113207547169812,
+        "ink_ratio": 0.3286529179464677,
+        "edge_ratio": 0.23913997367266346,
+        "table_line_ratio": 0.15313734093900833,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        43,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 41.0,
+        "aspect_ratio": 1.048780487804878,
+        "ink_ratio": 0.36755530346001136,
+        "edge_ratio": 0.2733976176971072,
+        "table_line_ratio": 0.14577424844015882,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        44,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 41.0,
+        "aspect_ratio": 1.0731707317073171,
+        "ink_ratio": 0.3231707317073171,
+        "edge_ratio": 0.27605321507760533,
+        "table_line_ratio": 0.13248337028824833,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        45,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0714285714285714,
+        "ink_ratio": 0.25925925925925924,
+        "edge_ratio": 0.1873015873015873,
+        "table_line_ratio": 0.08571428571428572,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        41,
+        40
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 41.0,
+        "height": 40.0,
+        "aspect_ratio": 1.025,
+        "ink_ratio": 0.6939024390243902,
+        "edge_ratio": 0.11890243902439024,
+        "table_line_ratio": 0.7176829268292683,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        42,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 42.0,
+        "height": 41.0,
+        "aspect_ratio": 1.024390243902439,
+        "ink_ratio": 0.49419279907084784,
+        "edge_ratio": 0.19221835075493612,
+        "table_line_ratio": 0.44773519163763065,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_002_figure_008.png",
+      "page": 2,
+      "index": 8,
+      "size_px": [
+        43,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 41.0,
+        "aspect_ratio": 1.048780487804878,
+        "ink_ratio": 0.40726035167328417,
+        "edge_ratio": 0.3028927963698242,
+        "table_line_ratio": 0.16392512762336925,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_004_figure_009.png",
+      "page": 4,
+      "index": 9,
+      "size_px": [
+        548,
+        670
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 548.0,
+        "height": 670.0,
+        "aspect_ratio": 0.817910447761194,
+        "ink_ratio": 0.0449558775465737,
+        "edge_ratio": 0.056011003377274216,
+        "table_line_ratio": 0.009469985837237172,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-JS330WK/page_004_figure_009.png"
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_004_figure_010.png",
+      "page": 4,
+      "index": 10,
+      "size_px": [
+        235,
+        690
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 235.0,
+        "height": 690.0,
+        "aspect_ratio": 0.34057971014492755,
+        "ink_ratio": 0.05251310514955288,
+        "edge_ratio": 0.06630280604378662,
+        "table_line_ratio": 0.023946962688868333,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-JS330WK/page_004_figure_010.png"
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_005_figure_011.png",
+      "page": 5,
+      "index": 11,
+      "size_px": [
+        353,
+        156
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 353.0,
+        "height": 156.0,
+        "aspect_ratio": 2.2628205128205128,
+        "ink_ratio": 0.07071257354543474,
+        "edge_ratio": 0.10668627878259607,
+        "table_line_ratio": 0.06181448391080119,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-JS330WK/page_005_figure_011.png"
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_005_figure_012.png",
+      "page": 5,
+      "index": 12,
+      "size_px": [
+        294,
+        245
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 294.0,
+        "height": 245.0,
+        "aspect_ratio": 1.2,
+        "ink_ratio": 0.04264889629321116,
+        "edge_ratio": 0.07607941135637929,
+        "table_line_ratio": 0.007607941135637929,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-JS330WK/page_005_figure_012.png"
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_005_figure_013.png",
+      "page": 5,
+      "index": 13,
+      "size_px": [
+        317,
+        240
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 317.0,
+        "height": 240.0,
+        "aspect_ratio": 1.3208333333333333,
+        "ink_ratio": 0.04187697160883281,
+        "edge_ratio": 0.06301261829652997,
+        "table_line_ratio": 0.014524185068349106,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-JS330WK/page_005_figure_013.png"
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_005_figure_014.png",
+      "page": 5,
+      "index": 14,
+      "size_px": [
+        401,
+        225
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 401.0,
+        "height": 225.0,
+        "aspect_ratio": 1.7822222222222222,
+        "ink_ratio": 0.054220005541701304,
+        "edge_ratio": 0.07270712108617346,
+        "table_line_ratio": 0.012069825436408978,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-JS330WK/page_005_figure_014.png"
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_005_figure_015.png",
+      "page": 5,
+      "index": 15,
+      "size_px": [
+        278,
+        255
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 278.0,
+        "height": 255.0,
+        "aspect_ratio": 1.0901960784313725,
+        "ink_ratio": 0.03729722104669206,
+        "edge_ratio": 0.057032021441670196,
+        "table_line_ratio": 0.013937085625617154,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-JS330WK/page_005_figure_015.png"
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_005_figure_016.png",
+      "page": 5,
+      "index": 16,
+      "size_px": [
+        293,
+        244
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 293.0,
+        "height": 244.0,
+        "aspect_ratio": 1.2008196721311475,
+        "ink_ratio": 0.04284395456834331,
+        "edge_ratio": 0.07402226822581548,
+        "table_line_ratio": 0.05057908577183461,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-JS330WK/page_005_figure_016.png"
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_006_figure_017.png",
+      "page": 6,
+      "index": 17,
+      "size_px": [
+        330,
+        736
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 330.0,
+        "height": 736.0,
+        "aspect_ratio": 0.4483695652173913,
+        "ink_ratio": 0.024600625823451912,
+        "edge_ratio": 0.04563982213438735,
+        "table_line_ratio": 0.01343461791831357,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-JS330WK/page_006_figure_017.png"
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_006_figure_018.png",
+      "page": 6,
+      "index": 18,
+      "size_px": [
+        179,
+        278
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 179.0,
+        "height": 278.0,
+        "aspect_ratio": 0.6438848920863309,
+        "ink_ratio": 0.07702664683895342,
+        "edge_ratio": 0.12304569752019613,
+        "table_line_ratio": 0.07135967203890518,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-JS330WK/page_006_figure_018.png"
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_006_figure_019.png",
+      "page": 6,
+      "index": 19,
+      "size_px": [
+        292,
+        288
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 292.0,
+        "height": 288.0,
+        "aspect_ratio": 1.0138888888888888,
+        "ink_ratio": 0.022735920852359207,
+        "edge_ratio": 0.069503900304414,
+        "table_line_ratio": 0.0370291095890411,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-JS330WK/page_006_figure_019.png"
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_007_figure_020.png",
+      "page": 7,
+      "index": 20,
+      "size_px": [
+        698,
+        292
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 698.0,
+        "height": 292.0,
+        "aspect_ratio": 2.3904109589041096,
+        "ink_ratio": 0.05146799073674294,
+        "edge_ratio": 0.06472995250618205,
+        "table_line_ratio": 0.013939043058444872,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-JS330WK/page_007_figure_020.png"
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_007_figure_021.png",
+      "page": 7,
+      "index": 21,
+      "size_px": [
+        218,
+        232
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 218.0,
+        "height": 232.0,
+        "aspect_ratio": 0.9396551724137931,
+        "ink_ratio": 0.12045238848465675,
+        "edge_ratio": 0.08132315722872509,
+        "table_line_ratio": 0.08772935779816514,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-JS330WK/page_007_figure_021.png"
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_008_figure_022.png",
+      "page": 8,
+      "index": 22,
+      "size_px": [
+        312,
+        256
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 312.0,
+        "height": 256.0,
+        "aspect_ratio": 1.21875,
+        "ink_ratio": 0.024564302884615384,
+        "edge_ratio": 0.07850060096153846,
+        "table_line_ratio": 0.042818509615384616,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-JS330WK/page_008_figure_022.png"
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_008_figure_023.png",
+      "page": 8,
+      "index": 23,
+      "size_px": [
+        789,
+        247
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 789.0,
+        "height": 247.0,
+        "aspect_ratio": 3.194331983805668,
+        "ink_ratio": 0.06722495035482828,
+        "edge_ratio": 0.09001811343216186,
+        "table_line_ratio": 0.02092537573826347,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-JS330WK/page_008_figure_023.png"
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_009_figure_024.png",
+      "page": 9,
+      "index": 24,
+      "size_px": [
+        332,
+        178
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 332.0,
+        "height": 178.0,
+        "aspect_ratio": 1.8651685393258426,
+        "ink_ratio": 0.05531677270881278,
+        "edge_ratio": 0.119212806281305,
+        "table_line_ratio": 0.05150940842019765,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-JS330WK/page_009_figure_024.png"
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_009_figure_025.png",
+      "page": 9,
+      "index": 25,
+      "size_px": [
+        789,
+        251
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 789.0,
+        "height": 251.0,
+        "aspect_ratio": 3.143426294820717,
+        "ink_ratio": 0.07249582153010266,
+        "edge_ratio": 0.07448027913693768,
+        "table_line_ratio": 0.041885689182433766,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-JS330WK/page_009_figure_025.png"
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_009_figure_026.png",
+      "page": 9,
+      "index": 26,
+      "size_px": [
+        784,
+        248
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 784.0,
+        "height": 248.0,
+        "aspect_ratio": 3.161290322580645,
+        "ink_ratio": 0.058616894338380514,
+        "edge_ratio": 0.05447148617511521,
+        "table_line_ratio": 0.02978933508887426,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-JS330WK/page_009_figure_026.png"
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_009_figure_027.png",
+      "page": 9,
+      "index": 27,
+      "size_px": [
+        248,
+        174
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 248.0,
+        "height": 174.0,
+        "aspect_ratio": 1.4252873563218391,
+        "ink_ratio": 0.0917686318131257,
+        "edge_ratio": 0.19839173155357806,
+        "table_line_ratio": 0.08924267704857249,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-JS330WK/page_009_figure_027.png"
+    },
+    {
+      "file": "data/figures/SVC-JS330WK/page_010_figure_028.png",
+      "page": 10,
+      "index": 28,
+      "size_px": [
+        783,
+        153
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 783.0,
+        "height": 153.0,
+        "aspect_ratio": 5.117647058823529,
+        "ink_ratio": 0.08914932511957528,
+        "edge_ratio": 0.08991727810749672,
+        "table_line_ratio": 0.06277180944749121,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null
+    }
+  ]
+}

@@ -1,0 +1,371 @@
+{
+  "doc_id": "SEP-DU812",
+  "source_pdf": "data/raw/SEP-DU812.pdf",
+  "num_images_total": 12,
+  "num_images_kept": 4,
+  "created_by": "image_captioner_gemini.py",
+  "model": "gemini-2.5-flash",
+  "config": {
+    "CAPTION_MAX_CHARS": 220,
+    "UNSAFE_KEYWORDS": [
+      "폭발",
+      "감전",
+      "사망",
+      "질식",
+      "중독",
+      "화재",
+      "불이 날",
+      "불이날",
+      "가스 누출",
+      "가스누출",
+      "가스가 새",
+      "전기 충격",
+      "전기충격",
+      "고압",
+      "중상",
+      "심각한 부상"
+    ]
+  },
+  "images": [
+    {
+      "file": "data/figures/SEP-DU812/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        547,
+        758
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 547.0,
+        "height": 758.0,
+        "aspect_ratio": 0.7216358839050132,
+        "ink_ratio": 0.9571083337754989,
+        "edge_ratio": 0.09354936738168856,
+        "table_line_ratio": 0.9096318127662038,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEP-DU812/page_001_figure_001.png",
+      "caption_short": "이 제품은 빨간색의 두유제조기이다. 정면에서 본 모습이며, 위쪽에는 'SHINIL'이라는 글자가 새겨져 있고, 오른쪽에는 잡기 편한 손잡이가 길게 붙어 있다. 가운데에는 세로로 긴 조작부가 있고, 그 위에는 작은 화면이 있다. 화면 아래로는 두유, 죽, 스무디, 주스, 오트밀, 예약 기능이 차례로 보인다. 조작부 가장 아래에는 '시작'과 '취소'가 함께 적힌 둥근 버튼이 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEP-DU812/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        46,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 43.0,
+        "aspect_ratio": 1.069767441860465,
+        "ink_ratio": 0.42163801820020225,
+        "edge_ratio": 0.21334681496461072,
+        "table_line_ratio": 0.2644084934277047,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEP-DU812/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        46,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 43.0,
+        "aspect_ratio": 1.069767441860465,
+        "ink_ratio": 0.3988877654196158,
+        "edge_ratio": 0.256319514661274,
+        "table_line_ratio": 0.2199191102123357,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEP-DU812/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        46,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0222222222222221,
+        "ink_ratio": 0.40869565217391307,
+        "edge_ratio": 0.23864734299516907,
+        "table_line_ratio": 0.20966183574879227,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEP-DU812/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        47,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 47.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0681818181818181,
+        "ink_ratio": 0.4521276595744681,
+        "edge_ratio": 0.24758220502901354,
+        "table_line_ratio": 0.23210831721470018,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEP-DU812/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        47,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 47.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0444444444444445,
+        "ink_ratio": 0.324822695035461,
+        "edge_ratio": 0.16784869976359337,
+        "table_line_ratio": 0.17163120567375886,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEP-DU812/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        43,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 43.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.5202812330989725,
+        "edge_ratio": 0.1919956733369389,
+        "table_line_ratio": 0.44943212547322875,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEP-DU812/page_002_figure_008.png",
+      "page": 2,
+      "index": 8,
+      "size_px": [
+        42,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 42.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.7046485260770975,
+        "edge_ratio": 0.10941043083900227,
+        "table_line_ratio": 0.7097505668934241,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEP-DU812/page_004_figure_009.png",
+      "page": 4,
+      "index": 9,
+      "size_px": [
+        800,
+        724
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 800.0,
+        "height": 724.0,
+        "aspect_ratio": 1.1049723756906078,
+        "ink_ratio": 0.05404868784530387,
+        "edge_ratio": 0.06413156077348066,
+        "table_line_ratio": 0.04282113259668508,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEP-DU812/page_004_figure_009.png",
+      "caption_short": "이것은 두유를 만드는 기계이다. 몸통과 뚜껑, 그리고 받침대로 구성되어 있다. 몸통은 세로로 길고 원기둥 모양이며, 오른쪽에는 잡기 편한 손잡이가 있다. 몸통 앞쪽에는 내용물을 볼 수 있는 투명한 창이 있다. 몸통 위에는 재료를 갈아주는 날카로운 칼날이 있고, 그 위로 뚜껑을 닫을 때 새는 것을 막는 고무 패킹이 둥글게 놓여 있다. 가장 위에는 증기가 나가는 구멍이 있는 뚜껑이 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEP-DU812/page_006_figure_010.png",
+      "page": 6,
+      "index": 10,
+      "size_px": [
+        752,
+        380
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 752.0,
+        "height": 380.0,
+        "aspect_ratio": 1.9789473684210526,
+        "ink_ratio": 0.04092245240761478,
+        "edge_ratio": 0.04221724524076148,
+        "table_line_ratio": 0.02948978163493841,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEP-DU812/page_006_figure_010.png",
+      "caption_short": "세 가지 장면이 옆으로 나란히 펼쳐져 있다. 모든 장면 위쪽에는 수도꼭지에서 물이 흐르고 있다. **첫 번째 장면:** 높은 주전자 모양의 제품 안으로 수도꼭지에서 물이 흐르고 있다. 긴 막대 솔이 제품 내부를 청소하고 있다. 제품 아래에는 동그란 올바른 표시가 있다. **두 번째 장면:** 높은 주전자 모양의 제품 뚜껑이 닫혀 있다. 수도꼭지에서 나오는 물이 닫힌 뚜껑 위로 흐르고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEP-DU812/page_007_figure_011.png",
+      "page": 7,
+      "index": 11,
+      "size_px": [
+        781,
+        288
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 781.0,
+        "height": 288.0,
+        "aspect_ratio": 2.7118055555555554,
+        "ink_ratio": 0.04773527528809219,
+        "edge_ratio": 0.07761150234741784,
+        "table_line_ratio": 0.04583689002703087,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEP-DU812/page_007_figure_011.png",
+      "caption_short": "세 개의 칸에 하얀색 주전자 모양의 기계가 각각 놓여 있다. 첫 번째 칸에는 길쭉한 하얀색 주전자 모양의 기계가 보인다. 오른쪽에는 손잡이가 있고, 앞쪽에는 물 높이를 확인할 수 있는 세로로 긴 창이 있다. 창 안쪽에는 물을 채울 수 있는 'MAX'라고 표시된 빨간 선이 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEP-DU812/page_008_figure_012.png",
+      "page": 8,
+      "index": 12,
+      "size_px": [
+        785,
+        152
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 785.0,
+        "height": 152.0,
+        "aspect_ratio": 5.1644736842105265,
+        "ink_ratio": 0.0835149178679182,
+        "edge_ratio": 0.0907308079114985,
+        "table_line_ratio": 0.058204827355011736,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    }
+  ]
+}

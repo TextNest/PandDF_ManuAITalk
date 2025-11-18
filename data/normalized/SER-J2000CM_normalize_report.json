@@ -1,0 +1,12 @@
+{
+  "num_pages": 12,
+  "lines_before": 302,
+  "lines_after": 217,
+  "placeholders_removed_estimate": 51,
+  "repeated_lines_removed": 0,
+  "num_repeated_patterns": 0,
+  "repeated_patterns_sample": [],
+  "repeated_threshold": 8,
+  "doc_id": "SER-J2000CM",
+  "source_parsed_file": "data\\parsed\\SER-J2000CM.md"
+}

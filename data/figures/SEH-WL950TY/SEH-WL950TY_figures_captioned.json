@@ -1,0 +1,481 @@
+{
+  "doc_id": "SEH-WL950TY",
+  "source_pdf": "data/raw/SEH-WL950TY.pdf",
+  "num_images_total": 16,
+  "num_images_kept": 7,
+  "created_by": "image_captioner_gemini.py",
+  "model": "gemini-2.5-flash",
+  "config": {
+    "CAPTION_MAX_CHARS": 220,
+    "UNSAFE_KEYWORDS": [
+      "폭발",
+      "감전",
+      "사망",
+      "질식",
+      "중독",
+      "화재",
+      "불이 날",
+      "불이날",
+      "가스 누출",
+      "가스누출",
+      "가스가 새",
+      "전기 충격",
+      "전기충격",
+      "고압",
+      "중상",
+      "심각한 부상"
+    ]
+  },
+  "images": [
+    {
+      "file": "data/figures/SEH-WL950TY/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        494,
+        646
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 494.0,
+        "height": 646.0,
+        "aspect_ratio": 0.7647058823529411,
+        "ink_ratio": 0.8385235833093092,
+        "edge_ratio": 0.18800528947995138,
+        "table_line_ratio": 0.4901354959200812,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-WL950TY/page_001_figure_001.png",
+      "caption_short": "이것은 하얀색 선으로 그려진 벽걸이형 온풍기이다. 크게 동그란 머리 부분이 있고, 그 아래 오른쪽에 길쭉한 조작부가 붙어 있다. 동그란 머리 부분은 마치 철망처럼 얇은 선들이 촘촘하게 퍼져 있으며, 가운데에는 작은 원형의 중심부가 있다. 조작부는 사각형 모양이고, 한가운데에 큰 동그란 다이얼이 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-WL950TY/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        44,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 43.0,
+        "aspect_ratio": 1.0232558139534884,
+        "ink_ratio": 0.4952431289640592,
+        "edge_ratio": 0.18551797040169132,
+        "table_line_ratio": 0.4455602536997886,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-WL950TY/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        46,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 43.0,
+        "aspect_ratio": 1.069767441860465,
+        "ink_ratio": 0.34630940343781597,
+        "edge_ratio": 0.2269969666329626,
+        "table_line_ratio": 0.17997977755308392,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-WL950TY/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        46,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0454545454545454,
+        "ink_ratio": 0.325098814229249,
+        "edge_ratio": 0.26679841897233203,
+        "table_line_ratio": 0.13537549407114624,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-WL950TY/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        46,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0454545454545454,
+        "ink_ratio": 0.3325098814229249,
+        "edge_ratio": 0.25592885375494073,
+        "table_line_ratio": 0.13389328063241107,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-WL950TY/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        46,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0222222222222221,
+        "ink_ratio": 0.25169082125603864,
+        "edge_ratio": 0.18019323671497584,
+        "table_line_ratio": 0.09468599033816426,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-WL950TY/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        45,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 43.0,
+        "aspect_ratio": 1.0465116279069768,
+        "ink_ratio": 0.42997416020671836,
+        "edge_ratio": 0.27028423772609816,
+        "table_line_ratio": 0.24599483204134368,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-WL950TY/page_002_figure_008.png",
+      "page": 2,
+      "index": 8,
+      "size_px": [
+        42,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 42.0,
+        "height": 41.0,
+        "aspect_ratio": 1.024390243902439,
+        "ink_ratio": 0.721835075493612,
+        "edge_ratio": 0.11207897793263646,
+        "table_line_ratio": 0.7299651567944251,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-WL950TY/page_004_figure_009.png",
+      "page": 4,
+      "index": 9,
+      "size_px": [
+        255,
+        257
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 255.0,
+        "height": 257.0,
+        "aspect_ratio": 0.9922178988326849,
+        "ink_ratio": 0.12553597314412146,
+        "edge_ratio": 0.10728618295567253,
+        "table_line_ratio": 0.06163118944075685,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-WL950TY/page_004_figure_009.png",
+      "caption_short": "벽에 설치하는 둥근 모양의 전자제품이 있다. 밝은 색이며, 앞면은 촘촘한 살이 있는 그릴 형태이다. 제품은 방의 코너 벽에 고정되어 있다. 제품 본체는 '본체 고정대'라는 길쭉한 부품에 걸려 있다. 고정대는 나사로 벽에 단단히 박혀 있다. 고정대는 천장에서 1미터보다 더 아래에, 그리고 옆 벽에서도 1미터보다 더 떨어진 위치이다. 제품 아래로는 전선 같은 줄이 길게 내려와 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-WL950TY/page_004_figure_010.png",
+      "page": 4,
+      "index": 10,
+      "size_px": [
+        255,
+        260
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 255.0,
+        "height": 260.0,
+        "aspect_ratio": 0.9807692307692307,
+        "ink_ratio": 0.13948717948717948,
+        "edge_ratio": 0.08395173453996983,
+        "table_line_ratio": 0.08972850678733031,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-WL950TY/page_004_figure_010.png",
+      "caption_short": "둥근 모양의 열풍기나 선풍기가 정면을 향해 서 있다. 앞면에는 바람이 나오는 촘촘한 그릴이 있다. 제품의 양옆으로는 세로로 긴 기둥이나 벽이 있다. 제품의 오른쪽 아랫부분에 손이 닿아 기울어진 모습 위에 커다란 빨간색 X 표시가 그려져 있다. 왼쪽 위에는 노란색 경고 표시가 붙어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-WL950TY/page_004_figure_011.png",
+      "page": 4,
+      "index": 11,
+      "size_px": [
+        254,
+        257
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 254.0,
+        "height": 257.0,
+        "aspect_ratio": 0.9883268482490273,
+        "ink_ratio": 0.12684212138852294,
+        "edge_ratio": 0.09395202058886608,
+        "table_line_ratio": 0.0955911639449738,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-WL950TY/page_004_figure_011.png",
+      "caption_short": "천장 같은 평평한 곳에 밝은색 둥근 히터가 붙어 있다. 히터의 바닥면은 물결처럼 주름진 무늬이다. 이 히터 위에는 큰 빨간색 엑스(X) 표시가 그려져 있는데, 이런 방식으로 설치하면 안 된다는 의미이다. 왼쪽 위에는 빨간색 경고 표시가 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-WL950TY/page_004_figure_012.png",
+      "page": 4,
+      "index": 12,
+      "size_px": [
+        389,
+        253
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 389.0,
+        "height": 253.0,
+        "aspect_ratio": 1.5375494071146245,
+        "ink_ratio": 0.13000802706849426,
+        "edge_ratio": 0.08834855766788258,
+        "table_line_ratio": 0.08232317587408679,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-WL950TY/page_004_figure_012.png",
+      "caption_short": "이것은 벽에 붙여 사용하는 선풍기이다. 위쪽에는 둥근 바람망이 있고, 그 아래에는 세로로 긴 본체가 벽에 고정되어 있다. 본체 밑에는 선풍기를 켜고 끄며 회전까지 조절하는 하나의 당김줄이 길게 내려와 있다. 옆에 그려진 둥근 조절판에는 '정지', '강풍', '약풍', '회전' 등 여러 작동 방식이 시계 방향으로 표시되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-WL950TY/page_004_figure_013.png",
+      "page": 4,
+      "index": 13,
+      "size_px": [
+        388,
+        242
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 388.0,
+        "height": 242.0,
+        "aspect_ratio": 1.603305785123967,
+        "ink_ratio": 0.13724759308170742,
+        "edge_ratio": 0.09299650677345148,
+        "table_line_ratio": 0.08580770213853625,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-WL950TY/page_004_figure_013.png",
+      "caption_short": "벽에 설치된 회색 난방기이다. 앞면은 바람이 나오는 동그란 보호망으로 덮여 있고, 아래로는 길쭉한 본체가 연결되어 있다. 난방기 본체 아래에는 두 개의 당김줄이 길게 내려와 있다. 왼쪽 당김줄은 난방기를 돌리거나 멈추게 하는 '회전/정지' 당김줄이며, 오른쪽 당김줄은 '온도 조절' 당김줄이다. 난방기 옆에는 둥근 조절 다이얼이 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-WL950TY/page_005_figure_014.png",
+      "page": 5,
+      "index": 14,
+      "size_px": [
+        309,
+        226
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 309.0,
+        "height": 226.0,
+        "aspect_ratio": 1.3672566371681416,
+        "ink_ratio": 0.16251396168055676,
+        "edge_ratio": 0.1051207148380445,
+        "table_line_ratio": 0.11716355929776327,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-WL950TY/page_005_figure_014.png",
+      "caption_short": "이것은 벽에 설치된 선풍기이다. 둥근 선풍기 머리 앞에는 보호망이 있고, 아래쪽 직사각형 몸통에는 동그란 조절 다이얼이 붙어 있다. 다이얼에는 '정지', '약/강' 글자와 돌리는 방향을 가리키는 화살표가 있으며, 선풍기에는 당기는 줄이 없다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-WL950TY/page_007_figure_015.png",
+      "page": 7,
+      "index": 15,
+      "size_px": [
+        780,
+        151
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 780.0,
+        "height": 151.0,
+        "aspect_ratio": 5.1655629139072845,
+        "ink_ratio": 0.09339446425539141,
+        "edge_ratio": 0.09095771777890983,
+        "table_line_ratio": 0.06582611648836814,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-WL950TY/page_008_figure_016.png",
+      "page": 8,
+      "index": 16,
+      "size_px": [
+        116,
+        113
+      ],
+      "keep_for_caption": false,
+      "category": "qr_code_heuristic",
+      "tags": [
+        "qr_code"
+      ],
+      "metrics": {
+        "width": 116.0,
+        "height": 113.0,
+        "aspect_ratio": 1.0265486725663717,
+        "ink_ratio": 0.5966585291425084,
+        "edge_ratio": 0.23153799206591394,
+        "table_line_ratio": 0.3878547451937748,
+        "is_qr_code": true,
+        "qr_heuristic": true,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    }
+  ]
+}

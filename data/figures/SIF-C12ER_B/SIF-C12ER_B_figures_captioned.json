@@ -1,0 +1,566 @@
+{
+  "doc_id": "SIF-C12ER_B",
+  "source_pdf": "data/raw/SIF-C12ER_B.pdf",
+  "num_images_total": 19,
+  "num_images_kept": 8,
+  "created_by": "image_captioner_gemini.py",
+  "model": "gemini-2.5-flash",
+  "config": {
+    "CAPTION_MAX_CHARS": 220,
+    "UNSAFE_KEYWORDS": [
+      "폭발",
+      "감전",
+      "사망",
+      "질식",
+      "중독",
+      "화재",
+      "불이 날",
+      "불이날",
+      "가스 누출",
+      "가스누출",
+      "가스가 새",
+      "전기 충격",
+      "전기충격",
+      "고압",
+      "중상",
+      "심각한 부상"
+    ]
+  },
+  "images": [
+    {
+      "file": "data/figures/SIF-C12ER_B/page_002_figure_001.png",
+      "page": 2,
+      "index": 1,
+      "size_px": [
+        46,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0454545454545454,
+        "ink_ratio": 0.3932806324110672,
+        "edge_ratio": 0.25049407114624506,
+        "table_line_ratio": 0.19120553359683795,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SIF-C12ER_B/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        46,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 43.0,
+        "aspect_ratio": 1.069767441860465,
+        "ink_ratio": 0.4196157735085945,
+        "edge_ratio": 0.21334681496461072,
+        "table_line_ratio": 0.25025278058645095,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SIF-C12ER_B/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        45,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.41975308641975306,
+        "edge_ratio": 0.24246913580246915,
+        "table_line_ratio": 0.20296296296296296,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SIF-C12ER_B/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        45,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.33382716049382716,
+        "edge_ratio": 0.17530864197530865,
+        "table_line_ratio": 0.16592592592592592,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SIF-C12ER_B/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        44,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 45.0,
+        "aspect_ratio": 0.9777777777777777,
+        "ink_ratio": 0.48787878787878786,
+        "edge_ratio": 0.18232323232323233,
+        "table_line_ratio": 0.4348484848484849,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SIF-C12ER_B/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        43,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 44.0,
+        "aspect_ratio": 0.9772727272727273,
+        "ink_ratio": 0.6633192389006343,
+        "edge_ratio": 0.10782241014799154,
+        "table_line_ratio": 0.6738900634249472,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SIF-C12ER_B/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        46,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0222222222222221,
+        "ink_ratio": 0.40531400966183573,
+        "edge_ratio": 0.2429951690821256,
+        "table_line_ratio": 0.2144927536231884,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SIF-C12ER_B/page_002_figure_008.png",
+      "page": 2,
+      "index": 8,
+      "size_px": [
+        46,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 43.0,
+        "aspect_ratio": 1.069767441860465,
+        "ink_ratio": 0.4706774519716886,
+        "edge_ratio": 0.27098078867542974,
+        "table_line_ratio": 0.2295247724974722,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SIF-C12ER_B/page_004_figure_009.png",
+      "page": 4,
+      "index": 9,
+      "size_px": [
+        396,
+        746
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 396.0,
+        "height": 746.0,
+        "aspect_ratio": 0.5308310991957105,
+        "ink_ratio": 0.0883906084978471,
+        "edge_ratio": 0.10006567010588459,
+        "table_line_ratio": 0.027371570937254584,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-C12ER_B/page_004_figure_009.png",
+      "caption_short": "이 제품은 집에서 사용하는 선풍기이다. 동그란 머리 부분과 길쭉한 기둥, 그리고 바닥에 놓는 원형 받침대로 이루어져 있다. 전체적으로 단순하고 깔끔한 모습이다. 선풍기는 정면에서 살짝 왼쪽으로 비스듬히 놓여 있다. 선풍기 머리 왼쪽에는 전원 어댑터가, 기둥 오른쪽에는 리모컨이 함께 보인다. 선풍기 머리 부분은 동그란 모양이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-C12ER_B/page_004_figure_010.png",
+      "page": 4,
+      "index": 10,
+      "size_px": [
+        323,
+        595
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 323.0,
+        "height": 595.0,
+        "aspect_ratio": 0.5428571428571428,
+        "ink_ratio": 0.09448187943908214,
+        "edge_ratio": 0.10592397949892031,
+        "table_line_ratio": 0.05260035902906054,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-C12ER_B/page_004_figure_010.png",
+      "caption_short": "눈앞에 둥근 머리, 긴 기둥, 원형 받침으로 이루어진 스탠드형 선풍기의 뒷면이 보인다. 선풍기 머리 위쪽에는 운반 손잡이, 중앙에는 조작부가 있다. 긴 기둥 중간에는 분리 버튼이 있고, 받침대 밑면에는 파이프 분리 버튼 및 어댑터 연결부도 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-C12ER_B/page_005_figure_011.png",
+      "page": 5,
+      "index": 11,
+      "size_px": [
+        782,
+        341
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 782.0,
+        "height": 341.0,
+        "aspect_ratio": 2.2932551319648096,
+        "ink_ratio": 0.0620035850627386,
+        "edge_ratio": 0.07822261889583068,
+        "table_line_ratio": 0.02100411757205751,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-C12ER_B/page_005_figure_011.png",
+      "caption_short": "여기 두 가지 방법으로 선풍기를 조립하는 장면이 펼쳐진다. 1번 장면은 길고 가는 높이 조절 파이프와 둥근 베이스를 보여준다. 파이프 아래쪽에는 두 개의 돌출된 부분이 있고, 아래의 둥근 베이스 중앙에는 파이프를 끼울 수 있는 조립 홈이 있다. 파이프가 베이스 조립 홈 위쪽에 위치해 있다. 2번 장면에서는 두 가지 형태의 선풍기 조립 모습이 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-C12ER_B/page_005_figure_012.png",
+      "page": 5,
+      "index": 12,
+      "size_px": [
+        779,
+        340
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 779.0,
+        "height": 340.0,
+        "aspect_ratio": 2.291176470588235,
+        "ink_ratio": 0.05201993506003171,
+        "edge_ratio": 0.07062599108963226,
+        "table_line_ratio": 0.02345767575322812,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-C12ER_B/page_005_figure_012.png",
+      "caption_short": "왼쪽에는 선풍기 받침대의 아랫면이 보인다. 둥근 받침대 밑면에 두 개의 네모난 홈이 있고, 손이 그중 한 홈을 잡고 있다. 위에는 '베이스 밑면'이라는 글자가 쓰여 있다. 가운데에는 세워진 선풍기의 옆모습이 나타나 있다. 둥근 팬 머리 부분이 긴 기둥에 연결되어 있고, 기둥은 다시 둥근 받침대에 연결되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-C12ER_B/page_006_figure_013.png",
+      "page": 6,
+      "index": 13,
+      "size_px": [
+        782,
+        273
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 782.0,
+        "height": 273.0,
+        "aspect_ratio": 2.8644688644688645,
+        "ink_ratio": 0.03205830827314203,
+        "edge_ratio": 0.03144468489737032,
+        "table_line_ratio": 0.014380334073428702,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-C12ER_B/page_006_figure_013.png",
+      "caption_short": "이것은 전자기기의 조작부 모습이다. 왼쪽 다이얼 조작부에는 시계, '60', '120', 전원 모양이 있고, 다이얼을 돌릴 수 있다는 화살표가 그려져 있다. 오른쪽 모터 조작부에는 햇살, 회전, 4등분 원, 시계 모양 버튼이 세로로 있다. 그 아래에는 '0.5h, 1h, 2h, 4h, 8h' 시간 표시와 작은 점들이 나란히 놓여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-C12ER_B/page_006_figure_014.png",
+      "page": 6,
+      "index": 14,
+      "size_px": [
+        37,
+        36
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 37.0,
+        "height": 36.0,
+        "aspect_ratio": 1.0277777777777777,
+        "ink_ratio": 0.18768768768768768,
+        "edge_ratio": 0.14564564564564564,
+        "table_line_ratio": 0.0960960960960961,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SIF-C12ER_B/page_006_figure_015.png",
+      "page": 6,
+      "index": 15,
+      "size_px": [
+        43,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 41.0,
+        "aspect_ratio": 1.048780487804878,
+        "ink_ratio": 0.14634146341463414,
+        "edge_ratio": 0.13840045377197957,
+        "table_line_ratio": 0.03460011344299489,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SIF-C12ER_B/page_008_figure_016.png",
+      "page": 8,
+      "index": 16,
+      "size_px": [
+        384,
+        202
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 384.0,
+        "height": 202.0,
+        "aspect_ratio": 1.900990099009901,
+        "ink_ratio": 0.050910169141914194,
+        "edge_ratio": 0.0767842409240924,
+        "table_line_ratio": 0.031108188943894388,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-C12ER_B/page_008_figure_016.png",
+      "caption_short": "둥글게 휘어진 띠에 연결된 작고 하얀색의 길쭉한 물건이 보인다. 사람의 왼손 엄지는 이 물건의 왼쪽 끝에 있고, 오른손 검지는 오른쪽 윗부분을 누르고 있다. 왼쪽 끝에서 오른쪽으로 미는 듯한 화살표 1과, 오른쪽 위에서 아래로 누르는 듯한 화살표 2가 그려져 있으며, 이 모든 장면 위에는 동그라미 안에 큰 숫자 1이 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-C12ER_B/page_008_figure_017.png",
+      "page": 8,
+      "index": 17,
+      "size_px": [
+        385,
+        201
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 385.0,
+        "height": 201.0,
+        "aspect_ratio": 1.9154228855721394,
+        "ink_ratio": 0.049841700587969245,
+        "edge_ratio": 0.06627899463720359,
+        "table_line_ratio": 0.03253860567293403,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-C12ER_B/page_008_figure_017.png",
+      "caption_short": "회색 동그라미 안에 숫자 2가 있다. 왼쪽에는 납작하고 동그란 건전지 모양의 표시가 보인다. 표시의 가운데에는 커다란 더하기(+) 표시가 있고, 아래쪽에는 작은 더하기(+) 표시가 있다. 오른쪽에는 기기의 오른쪽 모서리에 있는 홈 안으로 납작하고 동그란 건전지가 비스듬히 들어가고 있다. 건전지 아랫부분 옆에는 작은 별표 모양 표시가 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-C12ER_B/page_008_figure_018.png",
+      "page": 8,
+      "index": 18,
+      "size_px": [
+        783,
+        272
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 783.0,
+        "height": 272.0,
+        "aspect_ratio": 2.8786764705882355,
+        "ink_ratio": 0.12641330478551574,
+        "edge_ratio": 0.12250206596048381,
+        "table_line_ratio": 0.039826083690181056,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-C12ER_B/page_008_figure_018.png",
+      "caption_short": "가장 위에 '분해 방법'이라는 글자가 검정색 상자 안에 흰 글씨로 쓰여 있다. 그 옆에는 '선풍기 청소를 위한 안전망과 날개, 후망 분해 방법입니다.'라는 문장이 보인다. **첫 번째 장면:** 선풍기 앞면의 둥근 안전망이 보인다. 안전망은 가는 살들이 격자무늬로 촘촘하게 배열된 형태이다. 안전망 하단에 있는 두 개의 고정 나사 중 하나가 숫자 1번으로 표시되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-C12ER_B/page_012_figure_019.png",
+      "page": 12,
+      "index": 19,
+      "size_px": [
+        116,
+        112
+      ],
+      "keep_for_caption": false,
+      "category": "qr_code_heuristic",
+      "tags": [
+        "qr_code"
+      ],
+      "metrics": {
+        "width": 116.0,
+        "height": 112.0,
+        "aspect_ratio": 1.0357142857142858,
+        "ink_ratio": 0.5855141625615764,
+        "edge_ratio": 0.23406711822660098,
+        "table_line_ratio": 0.3642241379310345,
+        "is_qr_code": true,
+        "qr_heuristic": true,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    }
+  ]
+}

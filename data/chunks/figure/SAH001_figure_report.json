@@ -1,0 +1,8 @@
+{
+  "doc_id": "SAH001",
+  "source_caption_file": "data\\figures\\SAH001\\SAH001_figures_captioned.json",
+  "num_images_total": 13,
+  "num_keep_for_caption": 7,
+  "num_with_caption_text": 7,
+  "num_chunks_written": 7
+}

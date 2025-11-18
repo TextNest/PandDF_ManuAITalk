@@ -1,34 +1,32 @@
-# Node
-node_modules
+# ------------------------------------
+# 1. 민감 정보 및 환경 설정 파일 (필수 제외)
+# ------------------------------------
+# 1-1. API 키가 포함된 환경 변수 파일 (보안상 절대 제외)
 .env
-.env.local
-.env.*
+
+# 1-2. Python 가상 환경 및 컴파일 파일
 .venv/
-
-# ngrok
-ngrok/
-
-# Python
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
 
-# General
-*.log
+# ------------------------------------
+# 2. RAG 파이프라인 생성 산출물 (data/)
+# ------------------------------------
+# data/index/를 제외한 모든 '중간 처리/대용량' 폴더를 제외합니다.
+# 이 파일들은 파이프라인을 다시 돌려야만 생성되는 파일들입니다.
+
+data/raw/             # 원본 PDF 파일
+data/parsed/          # Upstage 파싱 결과
+data/elements/        # 요소 + 캡션 통합 JSON
+data/figures/         # 추출된 figure 이미지 및 메타
+data/caption_images/  # 캡션이 필요한 이미지 PNG
+data/normalized/      # RAG용 정리 텍스트 (.md)
+data/chunks/          # 텍스트/figure 청크 JSONL (청크 단위 원본)
+
+# ------------------------------------
+# 3. OS/IDE 생성 파일
+# ------------------------------------
 .DS_Store
-.vscode/
-.idea/
-
-# Backend
-/Full/Backend/db
-/Full/Backend/data/logs
-/Full/Backend/data/page_images
-/Full/Backend/data/upload
-/Full/Backend/uploads/
-
-# Data
-ex_data/
-artifacts/
-
-# Other
-*test*
-*.ipynb
-*.png
+Thumbs.db

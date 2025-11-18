@@ -1,0 +1,8 @@
+{
+  "doc_id": "SHL-G10KP",
+  "source_caption_file": "data\\figures\\SHL-G10KP\\SHL-G10KP_figures_captioned.json",
+  "num_images_total": 17,
+  "num_keep_for_caption": 9,
+  "num_with_caption_text": 9,
+  "num_chunks_written": 9
+}

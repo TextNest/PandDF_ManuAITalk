@@ -1,0 +1,369 @@
+{
+  "doc_id": "SEH-CTH1200A",
+  "source_pdf": "data/raw/SEH-CTH1200A.pdf",
+  "num_images_total": 12,
+  "num_images_kept": 5,
+  "created_by": "image_captioner_gemini.py",
+  "model": "gemini-2.5-flash",
+  "config": {
+    "CAPTION_MAX_CHARS": 220,
+    "UNSAFE_KEYWORDS": [
+      "폭발",
+      "감전",
+      "사망",
+      "질식",
+      "중독",
+      "화재",
+      "불이 날",
+      "불이날",
+      "가스 누출",
+      "가스누출",
+      "가스가 새",
+      "전기 충격",
+      "전기충격",
+      "고압",
+      "중상",
+      "심각한 부상"
+    ]
+  },
+  "images": [
+    {
+      "file": "data/figures/SEH-CTH1200A/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        299,
+        657
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 299.0,
+        "height": 657.0,
+        "aspect_ratio": 0.4550989345509893,
+        "ink_ratio": 0.9404967344216898,
+        "edge_ratio": 0.11341203300703002,
+        "table_line_ratio": 0.7930799264926722,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-CTH1200A/page_001_figure_001.png",
+      "caption_short": "긴 원통형 전열기구가 정면에서 보인다. 윗부분은 손잡이가 있는 둥근 철망이고, 그 안에는 여러 겹의 둥근 발열체가 있다. 아랫부분 받침대 앞에는 햇님 모양의 조절 다이얼과 'Shinil' 글씨가 있고, 세 개의 다리가 제품을 안정적으로 받치고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-CTH1200A/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        45,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 43.0,
+        "aspect_ratio": 1.0465116279069768,
+        "ink_ratio": 0.42170542635658914,
+        "edge_ratio": 0.22325581395348837,
+        "table_line_ratio": 0.2656330749354005,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-CTH1200A/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        46,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0222222222222221,
+        "ink_ratio": 0.3714975845410628,
+        "edge_ratio": 0.24154589371980675,
+        "table_line_ratio": 0.2,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-CTH1200A/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        47,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 47.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0444444444444445,
+        "ink_ratio": 0.3905437352245863,
+        "edge_ratio": 0.23167848699763594,
+        "table_line_ratio": 0.21371158392434988,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-CTH1200A/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        47,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 47.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0444444444444445,
+        "ink_ratio": 0.31678486997635935,
+        "edge_ratio": 0.16784869976359337,
+        "table_line_ratio": 0.1541371158392435,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-CTH1200A/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        43,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 43.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.5056787452677123,
+        "edge_ratio": 0.19361817198485667,
+        "table_line_ratio": 0.4597079502433748,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-CTH1200A/page_004_figure_007.png",
+      "page": 4,
+      "index": 7,
+      "size_px": [
+        798,
+        620
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 798.0,
+        "height": 620.0,
+        "aspect_ratio": 1.2870967741935484,
+        "ink_ratio": 0.04747756487994179,
+        "edge_ratio": 0.056453634085213034,
+        "table_line_ratio": 0.012709192335677905,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-CTH1200A/page_004_figure_007.png",
+      "caption_short": "이것은 난로의 앞모습이다. 위에는 잡기 편한 손잡이가 달린 둥근 안전망이 있고, 그 안에는 위와 아래에 빨간 발열체 두 개가 보인다. 각각 상부 하이라이트 히터, 하부 하이라이트 히터이다. 중간 부분은 본체이며, 앞쪽에 동그란 온도 조절 노브가 있다. 노브 옆에는 'Shinil'이라고 쓰여 있다. 본체 뒤에서는 전기를 연결하는 전원 코드가 밖으로 나와 플러그가 달려 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-CTH1200A/page_004_figure_008.png",
+      "page": 4,
+      "index": 8,
+      "size_px": [
+        242,
+        181
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 242.0,
+        "height": 181.0,
+        "aspect_ratio": 1.3370165745856353,
+        "ink_ratio": 0.07412903520387197,
+        "edge_ratio": 0.08428838865805215,
+        "table_line_ratio": 0.059563490251586686,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-CTH1200A/page_004_figure_008.png",
+      "caption_short": "네모난 모양의 제품 본체 아래쪽을 위에서 내려다보는 모습이다. 길쭉한 막대 모양의 지지대 네 개가 본체 주변에 놓여 있다. 그중 두 개의 지지대는 본체 아래쪽 구멍 안으로 반쯤 들어가 있고, 빨간색 화살표 두 개가 지지대를 본체 안쪽으로 밀어 넣는 방향을 가리키고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-CTH1200A/page_005_figure_009.png",
+      "page": 5,
+      "index": 9,
+      "size_px": [
+        727,
+        247
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 727.0,
+        "height": 247.0,
+        "aspect_ratio": 2.9433198380566803,
+        "ink_ratio": 0.10897760749349832,
+        "edge_ratio": 0.12794524667398047,
+        "table_line_ratio": 0.05461410377069539,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-CTH1200A/page_005_figure_009.png",
+      "caption_short": "둥근 모양의 히터가 있다. 이 히터는 위쪽 부분과 아래쪽 부분으로 나뉘며, 아래쪽 부분 안에는 빨갛게 달아오른 열선이 보인다. 히터 옆에는 동그란 온도 조절 손잡이가 있다. 이 손잡이에는 '정지', '상단 켜짐', '하단 켜짐', '모두 켜짐'이라는 글자들이 쓰여 있고, 손잡이의 회전 방향을 알려주는 빨간색 화살표가 그려져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-CTH1200A/page_005_figure_010.png",
+      "page": 5,
+      "index": 10,
+      "size_px": [
+        163,
+        260
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 163.0,
+        "height": 260.0,
+        "aspect_ratio": 0.6269230769230769,
+        "ink_ratio": 0.13782444549315714,
+        "edge_ratio": 0.0886974988201982,
+        "table_line_ratio": 0.07107126002831524,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-CTH1200A/page_005_figure_010.png",
+      "caption_short": "흰색 히터가 오른쪽으로 기울어져 있다. 히터는 아래가 넓은 몸체 위에 둥근 가열 부분이 위아래로 두 개 있으며, 각 부분은 철망으로 덮여 있다. 몸체 앞쪽에는 둥근 조절 다이얼이 있고, 맨 위 손잡이를 한 손이 잡고 있다. 왼쪽 위 빨간 동그라미에는 '히터 꺼짐'이라고 적혀 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-CTH1200A/page_007_figure_011.png",
+      "page": 7,
+      "index": 11,
+      "size_px": [
+        784,
+        153
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 784.0,
+        "height": 153.0,
+        "aspect_ratio": 5.124183006535947,
+        "ink_ratio": 0.07776443910897693,
+        "edge_ratio": 0.09065292783780178,
+        "table_line_ratio": 0.04733560090702948,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-CTH1200A/page_008_figure_012.png",
+      "page": 8,
+      "index": 12,
+      "size_px": [
+        115,
+        114
+      ],
+      "keep_for_caption": false,
+      "category": "qr_code_heuristic",
+      "tags": [
+        "qr_code"
+      ],
+      "metrics": {
+        "width": 115.0,
+        "height": 114.0,
+        "aspect_ratio": 1.0087719298245614,
+        "ink_ratio": 0.6089244851258582,
+        "edge_ratio": 0.23333333333333334,
+        "table_line_ratio": 0.3869565217391304,
+        "is_qr_code": true,
+        "qr_heuristic": true,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    }
+  ]
+}

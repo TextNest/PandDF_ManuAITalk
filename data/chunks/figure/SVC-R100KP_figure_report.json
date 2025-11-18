@@ -1,0 +1,8 @@
+{
+  "doc_id": "SVC-R100KP",
+  "source_caption_file": "data\\figures\\SVC-R100KP\\SVC-R100KP_figures_captioned.json",
+  "num_images_total": 24,
+  "num_keep_for_caption": 10,
+  "num_with_caption_text": 10,
+  "num_chunks_written": 10
+}

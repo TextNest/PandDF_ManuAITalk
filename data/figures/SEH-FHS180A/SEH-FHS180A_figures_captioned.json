@@ -1,0 +1,400 @@
+{
+  "doc_id": "SEH-FHS180A",
+  "source_pdf": "data/raw/SEH-FHS180A.pdf",
+  "num_images_total": 13,
+  "num_images_kept": 4,
+  "created_by": "image_captioner_gemini.py",
+  "model": "gemini-2.5-flash",
+  "config": {
+    "CAPTION_MAX_CHARS": 220,
+    "UNSAFE_KEYWORDS": [
+      "폭발",
+      "감전",
+      "사망",
+      "질식",
+      "중독",
+      "화재",
+      "불이 날",
+      "불이날",
+      "가스 누출",
+      "가스누출",
+      "가스가 새",
+      "전기 충격",
+      "전기충격",
+      "고압",
+      "중상",
+      "심각한 부상"
+    ]
+  },
+  "images": [
+    {
+      "file": "data/figures/SEH-FHS180A/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        400,
+        647
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 400.0,
+        "height": 647.0,
+        "aspect_ratio": 0.6182380216383307,
+        "ink_ratio": 0.9361901081916538,
+        "edge_ratio": 0.12785548686244205,
+        "table_line_ratio": 0.709903400309119,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-FHS180A/page_001_figure_001.png",
+      "caption_short": "이것은 세로로 긴 직사각형 모양의 전기 히터이다. 모서리는 둥글고, 아래쪽에는 넓고 둥근 받침대가 있다. 제품을 오른쪽 앞에서 비스듬히 내려다보는 모습이다. 맨 위 상판에는 커다란 둥근 발열판이 보이며, 그 안에는 뜨거움을 알리는 주의 표시가 있다. 발열판 옆에는 타원형 버튼들이 나란히 놓여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-FHS180A/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        47,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 47.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0681818181818181,
+        "ink_ratio": 0.4144100580270793,
+        "edge_ratio": 0.21324951644100582,
+        "table_line_ratio": 0.25,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-FHS180A/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        45,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0227272727272727,
+        "ink_ratio": 0.4863636363636364,
+        "edge_ratio": 0.17777777777777778,
+        "table_line_ratio": 0.42828282828282827,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-FHS180A/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        47,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 47.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0681818181818181,
+        "ink_ratio": 0.38781431334622823,
+        "edge_ratio": 0.24806576402321084,
+        "table_line_ratio": 0.195357833655706,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-FHS180A/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        47,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 47.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0444444444444445,
+        "ink_ratio": 0.3262411347517731,
+        "edge_ratio": 0.16879432624113475,
+        "table_line_ratio": 0.16973995271867612,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-FHS180A/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        48,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 48.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0666666666666667,
+        "ink_ratio": 0.3976851851851852,
+        "edge_ratio": 0.2263888888888889,
+        "table_line_ratio": 0.20416666666666666,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-FHS180A/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        44,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0476190476190477,
+        "ink_ratio": 0.5140692640692641,
+        "edge_ratio": 0.2765151515151515,
+        "table_line_ratio": 0.3116883116883117,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-FHS180A/page_002_figure_008.png",
+      "page": 2,
+      "index": 8,
+      "size_px": [
+        42,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 42.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.7114512471655329,
+        "edge_ratio": 0.10941043083900227,
+        "table_line_ratio": 0.7239229024943311,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-FHS180A/page_004_figure_009.png",
+      "page": 4,
+      "index": 9,
+      "size_px": [
+        635,
+        533
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 635.0,
+        "height": 533.0,
+        "aspect_ratio": 1.1913696060037524,
+        "ink_ratio": 0.11544223013399123,
+        "edge_ratio": 0.10013443441521029,
+        "table_line_ratio": 0.019222644073805972,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-FHS180A/page_004_figure_009.png",
+      "caption_short": "이것은 길고 네모난 모양의 전기 히터이다. 몸체는 밝은 색이며, 아래쪽은 넓은 받침대로 단단하게 지지되어 있다. 제품을 오른쪽 앞에서 위를 내려다보는 각도로 보고 있다. 윗면에는 둥근 전원 스위치들이 일렬로 놓여 있다. 이 스위치들은 윗면, 앞면, 왼쪽, 오른쪽, 뒷면의 전원과 연결되어 있다. 윗면의 오른쪽 끝에는 손잡이가 있어 제품을 쉽게 들 수 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-FHS180A/page_005_figure_010.png",
+      "page": 5,
+      "index": 10,
+      "size_px": [
+        448,
+        231
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 448.0,
+        "height": 231.0,
+        "aspect_ratio": 1.9393939393939394,
+        "ink_ratio": 0.0779510667903525,
+        "edge_ratio": 0.08163265306122448,
+        "table_line_ratio": 0.0432224025974026,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-FHS180A/page_005_figure_010.png",
+      "caption_short": "네모난 기기 바닥면의 모습이다. 중앙에는 네모난 구멍이 하나 있다. 사방으로 뻗은 다리 모양 부품 네 개가 보이며, 빨간 원은 이 다리들이 본체에 고정되는 위치를 각각 나타내고 있다. 똑같이 네모난 기기 바닥면의 모습이다. 중앙에는 네모난 구멍이 하나 있고, 사방으로 뻗은 다리 모양 부품은 그대로이다. 빨간 원은 기기 모서리 안쪽에 있는 바퀴 모양 부품 네 개를 각각 보여주고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-FHS180A/page_006_figure_011.png",
+      "page": 6,
+      "index": 11,
+      "size_px": [
+        175,
+        174
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 175.0,
+        "height": 174.0,
+        "aspect_ratio": 1.0057471264367817,
+        "ink_ratio": 0.06348111658456486,
+        "edge_ratio": 0.08348111658456486,
+        "table_line_ratio": 0.0348440065681445,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-FHS180A/page_006_figure_011.png",
+      "caption_short": "이것은 전자제품의 조작 부분이다. 네모난 판의 가운데에 동그란 조절 다이얼이 있다. 다이얼에는 짧은 선 모양의 손잡이가 붙어 있다. 다이얼 주변에는 '3h', '연속', '정지', '1h', '2h'라는 글자가 적혀 있다. 손잡이는 현재 '정지'라고 쓰인 곳을 가리키고 있다. '3h'와 '연속' 사이, 그리고 '2h'와 '1h' 사이에는 작은 점이 하나씩 찍혀 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-FHS180A/page_007_figure_012.png",
+      "page": 7,
+      "index": 12,
+      "size_px": [
+        782,
+        153
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 782.0,
+        "height": 153.0,
+        "aspect_ratio": 5.111111111111111,
+        "ink_ratio": 0.07796332514250372,
+        "edge_ratio": 0.0912859602494024,
+        "table_line_ratio": 0.047389799909733715,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-FHS180A/page_008_figure_013.png",
+      "page": 8,
+      "index": 13,
+      "size_px": [
+        115,
+        114
+      ],
+      "keep_for_caption": false,
+      "category": "qr_code",
+      "tags": [
+        "qr_code"
+      ],
+      "metrics": {
+        "width": 115.0,
+        "height": 114.0,
+        "aspect_ratio": 1.0087719298245614,
+        "ink_ratio": 0.6058733790999237,
+        "edge_ratio": 0.23310450038138825,
+        "table_line_ratio": 0.38306636155606405,
+        "is_qr_code": true,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    }
+  ]
+}

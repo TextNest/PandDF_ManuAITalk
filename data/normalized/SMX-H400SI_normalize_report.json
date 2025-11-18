@@ -1,0 +1,12 @@
+{
+  "num_pages": 16,
+  "lines_before": 225,
+  "lines_after": 188,
+  "placeholders_removed_estimate": 40,
+  "repeated_lines_removed": 0,
+  "num_repeated_patterns": 0,
+  "repeated_patterns_sample": [],
+  "repeated_threshold": 10,
+  "doc_id": "SMX-H400SI",
+  "source_parsed_file": "data\\parsed\\SMX-H400SI.md"
+}

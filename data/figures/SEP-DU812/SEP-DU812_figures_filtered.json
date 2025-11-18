@@ -1,0 +1,340 @@
+{
+  "doc_id": "SEP-DU812",
+  "source_pdf": "data/raw/SEP-DU812.pdf",
+  "num_images_total": 12,
+  "num_images_kept": 4,
+  "created_by": "image_filter_for_caption.py",
+  "config": {
+    "SMALL_ICON_MAX_DIM": 96,
+    "SMALL_ICON_MAX_AREA": 9216,
+    "INK_INTENSITY_THRESHOLD": 190,
+    "PROCEDURE_BANNER_MIN_ASPECT": 4.0,
+    "PROCEDURE_BANNER_MAX_INK": 0.2,
+    "PROCEDURE_BANNER_MIN_TABLE_LINE": 0.03,
+    "ENABLE_QR_DETECTION": true,
+    "QR_SIZE_MIN": 80.0,
+    "QR_SIZE_MAX": 300.0,
+    "QR_SQUARE_ASPECT_TOL": 0.15,
+    "QR_MIN_EDGE_RATIO": 0.15,
+    "QR_MIN_TABLE_LINE_RATIO": 0.2,
+    "QR_MIN_INK_RATIO": 0.3
+  },
+  "images": [
+    {
+      "file": "data/figures/SEP-DU812/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        547,
+        758
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 547.0,
+        "height": 758.0,
+        "aspect_ratio": 0.7216358839050132,
+        "ink_ratio": 0.9571083337754989,
+        "edge_ratio": 0.09354936738168856,
+        "table_line_ratio": 0.9096318127662038,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEP-DU812/page_001_figure_001.png"
+    },
+    {
+      "file": "data/figures/SEP-DU812/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        46,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 43.0,
+        "aspect_ratio": 1.069767441860465,
+        "ink_ratio": 0.42163801820020225,
+        "edge_ratio": 0.21334681496461072,
+        "table_line_ratio": 0.2644084934277047,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SEP-DU812/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        46,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 43.0,
+        "aspect_ratio": 1.069767441860465,
+        "ink_ratio": 0.3988877654196158,
+        "edge_ratio": 0.256319514661274,
+        "table_line_ratio": 0.2199191102123357,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SEP-DU812/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        46,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0222222222222221,
+        "ink_ratio": 0.40869565217391307,
+        "edge_ratio": 0.23864734299516907,
+        "table_line_ratio": 0.20966183574879227,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SEP-DU812/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        47,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 47.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0681818181818181,
+        "ink_ratio": 0.4521276595744681,
+        "edge_ratio": 0.24758220502901354,
+        "table_line_ratio": 0.23210831721470018,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SEP-DU812/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        47,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 47.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0444444444444445,
+        "ink_ratio": 0.324822695035461,
+        "edge_ratio": 0.16784869976359337,
+        "table_line_ratio": 0.17163120567375886,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SEP-DU812/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        43,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 43.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.5202812330989725,
+        "edge_ratio": 0.1919956733369389,
+        "table_line_ratio": 0.44943212547322875,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SEP-DU812/page_002_figure_008.png",
+      "page": 2,
+      "index": 8,
+      "size_px": [
+        42,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 42.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.7046485260770975,
+        "edge_ratio": 0.10941043083900227,
+        "table_line_ratio": 0.7097505668934241,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SEP-DU812/page_004_figure_009.png",
+      "page": 4,
+      "index": 9,
+      "size_px": [
+        800,
+        724
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 800.0,
+        "height": 724.0,
+        "aspect_ratio": 1.1049723756906078,
+        "ink_ratio": 0.05404868784530387,
+        "edge_ratio": 0.06413156077348066,
+        "table_line_ratio": 0.04282113259668508,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEP-DU812/page_004_figure_009.png"
+    },
+    {
+      "file": "data/figures/SEP-DU812/page_006_figure_010.png",
+      "page": 6,
+      "index": 10,
+      "size_px": [
+        752,
+        380
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 752.0,
+        "height": 380.0,
+        "aspect_ratio": 1.9789473684210526,
+        "ink_ratio": 0.04092245240761478,
+        "edge_ratio": 0.04221724524076148,
+        "table_line_ratio": 0.02948978163493841,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEP-DU812/page_006_figure_010.png"
+    },
+    {
+      "file": "data/figures/SEP-DU812/page_007_figure_011.png",
+      "page": 7,
+      "index": 11,
+      "size_px": [
+        781,
+        288
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 781.0,
+        "height": 288.0,
+        "aspect_ratio": 2.7118055555555554,
+        "ink_ratio": 0.04773527528809219,
+        "edge_ratio": 0.07761150234741784,
+        "table_line_ratio": 0.04583689002703087,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEP-DU812/page_007_figure_011.png"
+    },
+    {
+      "file": "data/figures/SEP-DU812/page_008_figure_012.png",
+      "page": 8,
+      "index": 12,
+      "size_px": [
+        785,
+        152
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 785.0,
+        "height": 152.0,
+        "aspect_ratio": 5.1644736842105265,
+        "ink_ratio": 0.0835149178679182,
+        "edge_ratio": 0.0907308079114985,
+        "table_line_ratio": 0.058204827355011736,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null
+    }
+  ]
+}

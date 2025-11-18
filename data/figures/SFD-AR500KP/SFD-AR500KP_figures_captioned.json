@@ -1,0 +1,423 @@
+{
+  "doc_id": "SFD-AR500KP",
+  "source_pdf": "data/raw/SFD-AR500KP.pdf",
+  "num_images_total": 14,
+  "num_images_kept": 7,
+  "created_by": "image_captioner_gemini.py",
+  "model": "gemini-2.5-flash",
+  "config": {
+    "CAPTION_MAX_CHARS": 220,
+    "UNSAFE_KEYWORDS": [
+      "폭발",
+      "감전",
+      "사망",
+      "질식",
+      "중독",
+      "화재",
+      "불이 날",
+      "불이날",
+      "가스 누출",
+      "가스누출",
+      "가스가 새",
+      "전기 충격",
+      "전기충격",
+      "고압",
+      "중상",
+      "심각한 부상"
+    ]
+  },
+  "images": [
+    {
+      "file": "data/figures/SFD-AR500KP/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        545,
+        500
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 545.0,
+        "height": 500.0,
+        "aspect_ratio": 1.09,
+        "ink_ratio": 0.09540550458715596,
+        "edge_ratio": 0.0857211009174312,
+        "table_line_ratio": 0.039757798165137616,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SFD-AR500KP/page_001_figure_001.png",
+      "caption_short": "이것은 음식을 말리는 식품 건조기이다. 아래 본체 위에 네모난 쟁반 7개가 쌓여 있고, 맨 위 덮개에는 둥근 팬 구멍이 있다. 본체 앞면에는 시간을 조절하는 화면과 버튼(시간 -/+), 온도를 조절하는 화면과 버튼(온도 -/+), 그리고 전원 버튼이 왼쪽부터 차례대로 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SFD-AR500KP/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        44,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0476190476190477,
+        "ink_ratio": 0.4069264069264069,
+        "edge_ratio": 0.2532467532467532,
+        "table_line_ratio": 0.18506493506493507,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SFD-AR500KP/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        43,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 41.0,
+        "aspect_ratio": 1.048780487804878,
+        "ink_ratio": 0.42597844583096994,
+        "edge_ratio": 0.23085649461145774,
+        "table_line_ratio": 0.22404991491775383,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SFD-AR500KP/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        44,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 41.0,
+        "aspect_ratio": 1.0731707317073171,
+        "ink_ratio": 0.3874722838137472,
+        "edge_ratio": 0.25554323725055433,
+        "table_line_ratio": 0.17350332594235032,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SFD-AR500KP/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        44,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 43.0,
+        "aspect_ratio": 1.0232558139534884,
+        "ink_ratio": 0.31976744186046513,
+        "edge_ratio": 0.1791754756871036,
+        "table_line_ratio": 0.14323467230443976,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SFD-AR500KP/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        40,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 40.0,
+        "height": 42.0,
+        "aspect_ratio": 0.9523809523809523,
+        "ink_ratio": 0.6779761904761905,
+        "edge_ratio": 0.11607142857142858,
+        "table_line_ratio": 0.6976190476190476,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SFD-AR500KP/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        44,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 41.0,
+        "aspect_ratio": 1.0731707317073171,
+        "ink_ratio": 0.47394678492239467,
+        "edge_ratio": 0.18237250554323725,
+        "table_line_ratio": 0.4312638580931264,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SFD-AR500KP/page_004_figure_008.png",
+      "page": 4,
+      "index": 8,
+      "size_px": [
+        388,
+        295
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 388.0,
+        "height": 295.0,
+        "aspect_ratio": 1.3152542372881355,
+        "ink_ratio": 0.05702428796085969,
+        "edge_ratio": 0.057469858465839595,
+        "table_line_ratio": 0.031670452559846234,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SFD-AR500KP/page_004_figure_008.png",
+      "caption_short": "사각형 모양의 옅은 색 제품이 여러 층으로 쌓여 있으며, 맨 위에는 둥근 환기구가 있다. 제품은 벽과 벽이 만나는 모서리에 놓여 있다. 제품의 뒷면, 오른쪽 옆면, 그리고 앞쪽으로 10cm 간격이 화살표로 표시되어 있다. 맨 아랫부분 앞면에는 직사각형 화면을 중심으로 네모난 버튼 두 개와 둥근 버튼 하나가 있는 조작부가 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SFD-AR500KP/page_005_figure_009.png",
+      "page": 5,
+      "index": 9,
+      "size_px": [
+        333,
+        154
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 333.0,
+        "height": 154.0,
+        "aspect_ratio": 2.1623376623376624,
+        "ink_ratio": 0.18267618267618269,
+        "edge_ratio": 0.14295464295464294,
+        "table_line_ratio": 0.08410358410358411,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SFD-AR500KP/page_005_figure_009.png",
+      "caption_short": "이것은 사각형 모양의 건조용 받침대이다. 위에서 비스듬히 내려다본 모습이다. 받침대 바닥에는 작은 네모들이 촘촘하게 배열된 격자무늬가 있고, 그 위에 둥근 회색 음식 재료 6개가 놓여 있다. 받침대 중앙에는 속이 빈 둥근 원형 구멍이 있고, 오른쪽 측면에는 작은 손잡이 같은 부분이 튀어나와 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SFD-AR500KP/page_005_figure_010.png",
+      "page": 5,
+      "index": 10,
+      "size_px": [
+        372,
+        269
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 372.0,
+        "height": 269.0,
+        "aspect_ratio": 1.3828996282527881,
+        "ink_ratio": 0.07336011512171724,
+        "edge_ratio": 0.08253387696366471,
+        "table_line_ratio": 0.036435224047647596,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SFD-AR500KP/page_005_figure_010.png",
+      "caption_short": "직사각형 모양의 하얀색 전자제품이 보인다. 윗부분은 여러 층으로 쌓인 칸막이 모양이며, 왼쪽 상단에 숫자 3이 동그라미 안에 있다. 제품 앞면 조작부에는 '03'이 보이는 시간 화면과 '55'가 보이는 온도 화면이 각각 더하기 빼기 버튼과 함께 있다. 한 사람의 손가락이 '온도 버튼' 글자 옆의 빼기 버튼을 누르고 있고, 오른쪽에는 둥근 전원 버튼이 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SFD-AR500KP/page_005_figure_011.png",
+      "page": 5,
+      "index": 11,
+      "size_px": [
+        379,
+        236
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 379.0,
+        "height": 236.0,
+        "aspect_ratio": 1.6059322033898304,
+        "ink_ratio": 0.08695943830776799,
+        "edge_ratio": 0.11629623004337909,
+        "table_line_ratio": 0.04038280935557444,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SFD-AR500KP/page_005_figure_011.png",
+      "caption_short": "이것은 식품을 건조하는 전자 기기이다. 밝은색의 직사각형 모양이며 여러 개의 층이 위로 쌓여 있다. 기기 위쪽에는 둥근 팬 구멍이 있고, 아래 앞면에는 작은 화면과 여러 개의 버튼이 있다. 화면에는 숫자 '03'과 '55'가 보인다. 오른쪽에 있는 손이 전원 플러그를 잡고 벽에 있는 콘센트로 향하고 있다. 플러그는 벽의 두 구멍 콘센트에 꽂히기 직전의 모습이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SFD-AR500KP/page_005_figure_012.png",
+      "page": 5,
+      "index": 12,
+      "size_px": [
+        379,
+        220
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 379.0,
+        "height": 220.0,
+        "aspect_ratio": 1.7227272727272727,
+        "ink_ratio": 0.09153274166466778,
+        "edge_ratio": 0.1221875749580235,
+        "table_line_ratio": 0.04448308946989686,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SFD-AR500KP/page_005_figure_012.png",
+      "caption_short": "앞쪽과 옆쪽에서 본 음식 건조기가 있다. 네모난 모양으로, 아래 본체 위에 여러 층의 칸들이 쌓여있는 모습이다. 제일 위 칸에는 동그란 구멍이 송송 뚫린 팬 모양이 보인다. 본체 앞면에는 숫자가 나오는 작은 화면이 있는데, 지금은 '03'과 '55'가 표시되어 있다. 화면 아래에는 누를 수 있는 여러 개의 버튼이 보인다. 오른쪽에는 사람 손이 전원 플러그를 잡고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SFD-AR500KP/page_005_figure_013.png",
+      "page": 5,
+      "index": 13,
+      "size_px": [
+        387,
+        273
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 387.0,
+        "height": 273.0,
+        "aspect_ratio": 1.4175824175824177,
+        "ink_ratio": 0.07176458339249037,
+        "edge_ratio": 0.08044410369991765,
+        "table_line_ratio": 0.03700864165980445,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SFD-AR500KP/page_005_figure_013.png",
+      "caption_short": "네모난 흰색 가전제품의 앞면을 위에서 비스듬히 내려다보고 있다. 앞쪽 조작부에는 '03'과 '55' 숫자가 보이는 두 개의 화면과 여러 버튼이 있으며, 한 손의 검지 손가락이 '시간'이라고 쓰인 둥근 버튼을 누르고 있다. 왼쪽 위에는 둥근 테두리 안에 숫자 4가 적혀 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SFD-AR500KP/page_011_figure_014.png",
+      "page": 11,
+      "index": 14,
+      "size_px": [
+        784,
+        153
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 784.0,
+        "height": 153.0,
+        "aspect_ratio": 5.124183006535947,
+        "ink_ratio": 0.09121982126183807,
+        "edge_ratio": 0.09066960117380285,
+        "table_line_ratio": 0.06265006002400961,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    }
+  ]
+}

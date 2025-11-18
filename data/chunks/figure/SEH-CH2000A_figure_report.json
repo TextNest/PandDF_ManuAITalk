@@ -1,0 +1,8 @@
+{
+  "doc_id": "SEH-CH2000A",
+  "source_caption_file": "data\\figures\\SEH-CH2000A\\SEH-CH2000A_figures_captioned.json",
+  "num_images_total": 12,
+  "num_keep_for_caption": 5,
+  "num_with_caption_text": 5,
+  "num_chunks_written": 5
+}

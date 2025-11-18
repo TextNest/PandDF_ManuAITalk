@@ -1,0 +1,315 @@
+{
+  "doc_id": "SDM-WHT330HS",
+  "source_pdf": "data/raw/SDM-WHT330HS.pdf",
+  "num_images_total": 10,
+  "num_images_kept": 3,
+  "created_by": "image_captioner_gemini.py",
+  "model": "gemini-2.5-flash",
+  "config": {
+    "CAPTION_MAX_CHARS": 220,
+    "UNSAFE_KEYWORDS": [
+      "폭발",
+      "감전",
+      "사망",
+      "질식",
+      "중독",
+      "화재",
+      "불이 날",
+      "불이날",
+      "가스 누출",
+      "가스누출",
+      "가스가 새",
+      "전기 충격",
+      "전기충격",
+      "고압",
+      "중상",
+      "심각한 부상"
+    ]
+  },
+  "images": [
+    {
+      "file": "data/figures/SDM-WHT330HS/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        552,
+        818
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 552.0,
+        "height": 818.0,
+        "aspect_ratio": 0.6748166259168704,
+        "ink_ratio": 0.8118068105311648,
+        "edge_ratio": 0.04982326990538961,
+        "table_line_ratio": 0.788989139293434,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDM-WHT330HS/page_001_figure_001.png",
+      "caption_short": "이것은 빨간색 탈수기이다. 위쪽은 하얀색 뚜껑이고, 아래쪽은 빨간색 몸통이다. 앞쪽과 오른쪽 위에서 비스듬히 내려다본 모습이다. 하얀색 뚜껑은 평평하고 넓으며, 뚜껑 위에 얇은 가로줄이 하나 있다. 오른쪽 옆면에는 세로로 여러 줄 무늬가 있고, 위에서 아래로 구부러진 하얀색 호스가 달려 있다. 탈수기 아래쪽에는 작고 둥근 발 네 개가 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDM-WHT330HS/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        44,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0476190476190477,
+        "ink_ratio": 0.44642857142857145,
+        "edge_ratio": 0.2278138528138528,
+        "table_line_ratio": 0.2922077922077922,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SDM-WHT330HS/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        44,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.40082644628099173,
+        "edge_ratio": 0.2577479338842975,
+        "table_line_ratio": 0.2215909090909091,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SDM-WHT330HS/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        46,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0454545454545454,
+        "ink_ratio": 0.3325098814229249,
+        "edge_ratio": 0.17490118577075098,
+        "table_line_ratio": 0.17885375494071146,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SDM-WHT330HS/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        46,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 43.0,
+        "aspect_ratio": 1.069767441860465,
+        "ink_ratio": 0.4089989888776542,
+        "edge_ratio": 0.24216380182002023,
+        "table_line_ratio": 0.21587462082912032,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SDM-WHT330HS/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        43,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 43.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.5127095727420227,
+        "edge_ratio": 0.19307733910221742,
+        "table_line_ratio": 0.4553812871822607,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SDM-WHT330HS/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        41,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 41.0,
+        "height": 41.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.7412254610350981,
+        "edge_ratio": 0.11838191552647234,
+        "table_line_ratio": 0.7674003569303985,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SDM-WHT330HS/page_004_figure_008.png",
+      "page": 4,
+      "index": 8,
+      "size_px": [
+        761,
+        611
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 761.0,
+        "height": 611.0,
+        "aspect_ratio": 1.2454991816693943,
+        "ink_ratio": 0.06573958375898711,
+        "edge_ratio": 0.07122809809644043,
+        "table_line_ratio": 0.009469407769516809,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDM-WHT330HS/page_004_figure_008.png",
+      "caption_short": "눈앞에 세로로 길고 직사각형 모양의 세탁기 같은 가전제품이 보인다. 오른쪽 앞에서 약간 위에서 내려다본 모습이다. 제품의 맨 위 왼쪽에는 물을 넣는 '급수 주입구'가 있다. 이 구멍은 물로 헹굴 때 세제 찌꺼기를 없애는 데 사용한다. 위쪽 오른쪽에는 시간을 조절하는 '타이머' 다이얼이 있고, 제품의 큰 덮개는 '뚜껑'이다. 제품의 오른쪽 옆면에는 물을 빼는 '배수 호스'가 아래로 늘어져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDM-WHT330HS/page_005_figure_009.png",
+      "page": 5,
+      "index": 9,
+      "size_px": [
+        793,
+        198
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 793.0,
+        "height": 198.0,
+        "aspect_ratio": 4.005050505050505,
+        "ink_ratio": 0.28814627994955866,
+        "edge_ratio": 0.08895385124893322,
+        "table_line_ratio": 0.2869807787840575,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDM-WHT330HS/page_005_figure_009.png",
+      "caption_short": "여기는 둥근 세탁통 안이다. 1. 둥근 세탁통 안이다. 아래쪽에 회색 세탁물이 들어있다. 납작한 안전 덮개가 세탁물 위에 놓여 있고, 통 안쪽 턱에 맞춰 바르게 들어가 있다. 덮개가 잘 놓인 곳에 빨간색 동그라미 표시가 있다. 2. 둥근 세탁통 안이다. 회색 세탁물이 통 위까지 넘칠 듯이 쌓여 있다. 납작한 안전 덮개가 세탁물 위에서 비스듬하게 기울어져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDM-WHT330HS/page_007_figure_010.png",
+      "page": 7,
+      "index": 10,
+      "size_px": [
+        784,
+        153
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 784.0,
+        "height": 153.0,
+        "aspect_ratio": 5.124183006535947,
+        "ink_ratio": 0.08991930105375484,
+        "edge_ratio": 0.0900110044017607,
+        "table_line_ratio": 0.0689859277044151,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    }
+  ]
+}

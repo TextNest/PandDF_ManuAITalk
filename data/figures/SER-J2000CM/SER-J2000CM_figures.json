@@ -1,0 +1,187 @@
+{
+  "doc_id": "SER-J2000CM",
+  "source_pdf": "data/raw/SER-J2000CM.pdf",
+  "num_figures": 20,
+  "images": [
+    {
+      "file": "data/figures/SER-J2000CM/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        530,
+        754
+      ]
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_003_figure_002.png",
+      "page": 3,
+      "index": 2,
+      "size_px": [
+        46,
+        42
+      ]
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_003_figure_003.png",
+      "page": 3,
+      "index": 3,
+      "size_px": [
+        46,
+        43
+      ]
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_003_figure_004.png",
+      "page": 3,
+      "index": 4,
+      "size_px": [
+        47,
+        44
+      ]
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_003_figure_005.png",
+      "page": 3,
+      "index": 5,
+      "size_px": [
+        45,
+        44
+      ]
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_003_figure_006.png",
+      "page": 3,
+      "index": 6,
+      "size_px": [
+        46,
+        44
+      ]
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_003_figure_007.png",
+      "page": 3,
+      "index": 7,
+      "size_px": [
+        43,
+        42
+      ]
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_003_figure_008.png",
+      "page": 3,
+      "index": 8,
+      "size_px": [
+        41,
+        41
+      ]
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_005_figure_009.png",
+      "page": 5,
+      "index": 9,
+      "size_px": [
+        788,
+        187
+      ]
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_005_figure_010.png",
+      "page": 5,
+      "index": 10,
+      "size_px": [
+        374,
+        251
+      ]
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_005_figure_011.png",
+      "page": 5,
+      "index": 11,
+      "size_px": [
+        377,
+        253
+      ]
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_006_figure_012.png",
+      "page": 6,
+      "index": 12,
+      "size_px": [
+        145,
+        273
+      ]
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_006_figure_013.png",
+      "page": 6,
+      "index": 13,
+      "size_px": [
+        164,
+        175
+      ]
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_006_figure_014.png",
+      "page": 6,
+      "index": 14,
+      "size_px": [
+        256,
+        336
+      ]
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_007_figure_015.png",
+      "page": 7,
+      "index": 15,
+      "size_px": [
+        175,
+        175
+      ]
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_007_figure_016.png",
+      "page": 7,
+      "index": 16,
+      "size_px": [
+        173,
+        174
+      ]
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_007_figure_017.png",
+      "page": 7,
+      "index": 17,
+      "size_px": [
+        413,
+        203
+      ]
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_007_figure_018.png",
+      "page": 7,
+      "index": 18,
+      "size_px": [
+        409,
+        197
+      ]
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_007_figure_019.png",
+      "page": 7,
+      "index": 19,
+      "size_px": [
+        404,
+        191
+      ]
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_011_figure_020.png",
+      "page": 11,
+      "index": 20,
+      "size_px": [
+        783,
+        153
+      ]
+    }
+  ]
+}

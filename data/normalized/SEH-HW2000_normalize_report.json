@@ -1,0 +1,12 @@
+{
+  "num_pages": 10,
+  "lines_before": 277,
+  "lines_after": 233,
+  "placeholders_removed_estimate": 41,
+  "repeated_lines_removed": 0,
+  "num_repeated_patterns": 0,
+  "repeated_patterns_sample": [],
+  "repeated_threshold": 6,
+  "doc_id": "SEH-HW2000",
+  "source_parsed_file": "data\\parsed\\SEH-HW2000.md"
+}

@@ -1,0 +1,452 @@
+{
+  "doc_id": "SMX-P400KP",
+  "source_pdf": "data/raw/SMX-P400KP.pdf",
+  "num_images_total": 15,
+  "num_images_kept": 7,
+  "created_by": "image_captioner_gemini.py",
+  "model": "gemini-2.5-flash",
+  "config": {
+    "CAPTION_MAX_CHARS": 220,
+    "UNSAFE_KEYWORDS": [
+      "폭발",
+      "감전",
+      "사망",
+      "질식",
+      "중독",
+      "화재",
+      "불이 날",
+      "불이날",
+      "가스 누출",
+      "가스누출",
+      "가스가 새",
+      "전기 충격",
+      "전기충격",
+      "고압",
+      "중상",
+      "심각한 부상"
+    ]
+  },
+  "images": [
+    {
+      "file": "data/figures/SMX-P400KP/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        455,
+        648
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 455.0,
+        "height": 648.0,
+        "aspect_ratio": 0.7021604938271605,
+        "ink_ratio": 0.9703330619997287,
+        "edge_ratio": 0.06370913037579705,
+        "table_line_ratio": 0.9405813322479989,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SMX-P400KP/page_001_figure_001.png",
+      "caption_short": "빨간색 배경 위에 흰색 선으로 그려진 믹서기가 정면에서 보인다. 믹서기는 위쪽의 용기와 아래쪽 본체로 구성되어 있다. 용기에는 뚜껑과 오른쪽 손잡이가 있고, 앞면에는 내용물 양을 보여주는 세로 눈금 표시창이 있다. 본체 앞면에는 네 개의 동그란 버튼이 왼쪽부터 '정지', '분쇄', '믹서', '커트'라고 쓰여 있다. 버튼 아래에는 'shinil'이라는 상표명이 적혀 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SMX-P400KP/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        42,
+        46
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 42.0,
+        "height": 46.0,
+        "aspect_ratio": 0.9130434782608695,
+        "ink_ratio": 0.34006211180124224,
+        "edge_ratio": 0.21583850931677018,
+        "table_line_ratio": 0.17184265010351968,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SMX-P400KP/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        42,
+        40
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 42.0,
+        "height": 40.0,
+        "aspect_ratio": 1.05,
+        "ink_ratio": 0.35773809523809524,
+        "edge_ratio": 0.24761904761904763,
+        "table_line_ratio": 0.16428571428571428,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SMX-P400KP/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        42,
+        40
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 42.0,
+        "height": 40.0,
+        "aspect_ratio": 1.05,
+        "ink_ratio": 0.38452380952380955,
+        "edge_ratio": 0.2494047619047619,
+        "table_line_ratio": 0.18333333333333332,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SMX-P400KP/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        39,
+        39
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 39.0,
+        "height": 39.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.47337278106508873,
+        "edge_ratio": 0.1946088099934254,
+        "table_line_ratio": 0.42998027613412226,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SMX-P400KP/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        41,
+        40
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 41.0,
+        "height": 40.0,
+        "aspect_ratio": 1.025,
+        "ink_ratio": 0.31402439024390244,
+        "edge_ratio": 0.19146341463414634,
+        "table_line_ratio": 0.13658536585365855,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SMX-P400KP/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        37,
+        37
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 37.0,
+        "height": 37.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.6968590211833455,
+        "edge_ratio": 0.12490869247626005,
+        "table_line_ratio": 0.7151205259313368,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SMX-P400KP/page_004_figure_008.png",
+      "page": 4,
+      "index": 8,
+      "size_px": [
+        203,
+        308
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 203.0,
+        "height": 308.0,
+        "aspect_ratio": 0.6590909090909091,
+        "ink_ratio": 0.09322820037105752,
+        "edge_ratio": 0.1183545518520888,
+        "table_line_ratio": 0.06560680698611733,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SMX-P400KP/page_004_figure_008.png",
+      "caption_short": "이 제품은 주방에서 사용하는 믹서기이다. 전체적으로 위로 길쭉하며, 아래쪽 본체가 위쪽 용기보다 조금 더 넓다. 앞면을 정면으로 바라보고 있는 모습이다. 맨 위에는 둥근 뚜껑이 덮여 있고, 그 아래에는 투명한 용기가 놓여 있다. 이 용기의 오른쪽에는 손잡이가 달려 있고, 앞면에는 내용물의 양을 알 수 있는 세로 눈금이 그려져 있다. 용기 아래에는 본체가 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SMX-P400KP/page_004_figure_009.png",
+      "page": 4,
+      "index": 9,
+      "size_px": [
+        131,
+        93
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 131.0,
+        "height": 93.0,
+        "aspect_ratio": 1.4086021505376345,
+        "ink_ratio": 0.09800541738488057,
+        "edge_ratio": 0.11327259295739965,
+        "table_line_ratio": 0.030288106377739474,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SMX-P400KP/page_004_figure_009.png",
+      "caption_short": "이것은 믹서기에 쓰는 칼날이다. 위에서 비스듬히 본 모습인데, 가운데 기둥에서 두 개의 칼날이 양옆으로 뻗어 있다. 이 칼날 중 한쪽은 매끈하고 다른 한쪽은 톱니 모양이며, 그림 아래에는 '커트 칼날'이라는 글자가 쓰여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SMX-P400KP/page_004_figure_010.png",
+      "page": 4,
+      "index": 10,
+      "size_px": [
+        133,
+        104
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 133.0,
+        "height": 104.0,
+        "aspect_ratio": 1.2788461538461537,
+        "ink_ratio": 0.09991324465008676,
+        "edge_ratio": 0.10331116252168884,
+        "table_line_ratio": 0.03643724696356275,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SMX-P400KP/page_004_figure_010.png",
+      "caption_short": "이것은 음식물을 잘게 부수는 믹서기 칼날이다. 가운데에 기둥이 위로 똑바로 서 있고, 기둥 아래에서 두 개의 넓적한 칼날이 양옆으로 길게 뻗어 있다. 칼날의 끝부분은 뾰족한 톱니 모양이며, 아래에 '분쇄 칼날'이라고 쓰여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SMX-P400KP/page_005_figure_011.png",
+      "page": 5,
+      "index": 11,
+      "size_px": [
+        636,
+        720
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 636.0,
+        "height": 720.0,
+        "aspect_ratio": 0.8833333333333333,
+        "ink_ratio": 0.06834818308874913,
+        "edge_ratio": 0.07290574772886094,
+        "table_line_ratio": 0.013873602375960867,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SMX-P400KP/page_005_figure_011.png",
+      "caption_short": "이것은 주방에서 쓰는 믹서나 다지기 제품이다. 여러 부품이 위아래로 나뉘어 놓여 있고, 옆에도 추가 부품이 보인다. 가장 위에는 둥근 뚜껑이 있으며, 뚜껑에는 작은 걸쇠가 있다. 그 아래에는 재료를 다지고 섞는 칼날과 가는 칼날이 각각 있다. 칼날을 고정하는 나사 모양 부품도 보인다. 가운데에는 투명한 용기가 놓여 있다. 용기 오른쪽에는 손잡이가 있고, 앞면에는 눈금이 있는 계량기가 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SMX-P400KP/page_007_figure_012.png",
+      "page": 7,
+      "index": 12,
+      "size_px": [
+        204,
+        317
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 204.0,
+        "height": 317.0,
+        "aspect_ratio": 0.6435331230283912,
+        "ink_ratio": 0.09007546236160079,
+        "edge_ratio": 0.11755427723139729,
+        "table_line_ratio": 0.06186985835343601,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SMX-P400KP/page_007_figure_012.png",
+      "caption_short": "이것은 정면에서 본 믹서기이다. 아래에 튼튼한 본체가 있고 그 위에 투명한 용기가 얹혀 있으며, 본체 앞면에는 '정지', '분쇄', '믹서', '커트'라고 적힌 네 개의 버튼이 일렬로 나란히 있다. 용기 오른쪽에는 손잡이가 달려 있고, 앞면에는 양을 알려주는 눈금과 둥근 뚜껑이 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SMX-P400KP/page_008_figure_013.png",
+      "page": 8,
+      "index": 13,
+      "size_px": [
+        619,
+        187
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 619.0,
+        "height": 187.0,
+        "aspect_ratio": 3.3101604278074865,
+        "ink_ratio": 0.061683066529593183,
+        "edge_ratio": 0.07341494388914326,
+        "table_line_ratio": 0.037182621616718356,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SMX-P400KP/page_008_figure_013.png",
+      "caption_short": "이것은 받침대가 있는 전자제품의 뒷면 아래쪽 모습이다. 왼쪽에는 전원 코드가 제품에 연결되어 아래로 늘어져 있고, 코드 옆에는 '코드 걸이'라는 작은 고리가 있다. 오른쪽에는 같은 전원 코드가 '코드 걸이' 주변에 돌돌 말려 깔끔하게 정리된 모습이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SMX-P400KP/page_015_figure_014.png",
+      "page": 15,
+      "index": 14,
+      "size_px": [
+        687,
+        132
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 687.0,
+        "height": 132.0,
+        "aspect_ratio": 5.204545454545454,
+        "ink_ratio": 0.0954964492082396,
+        "edge_ratio": 0.10014997132901063,
+        "table_line_ratio": 0.07258171231970359,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SMX-P400KP/page_016_figure_015.png",
+      "page": 16,
+      "index": 15,
+      "size_px": [
+        105,
+        104
+      ],
+      "keep_for_caption": false,
+      "category": "qr_code",
+      "tags": [
+        "qr_code"
+      ],
+      "metrics": {
+        "width": 105.0,
+        "height": 104.0,
+        "aspect_ratio": 1.0096153846153846,
+        "ink_ratio": 0.6116300366300367,
+        "edge_ratio": 0.253021978021978,
+        "table_line_ratio": 0.3747252747252747,
+        "is_qr_code": true,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    }
+  ]
+}

@@ -1,0 +1,506 @@
+{
+  "doc_id": "SHL-G10KP",
+  "source_pdf": "data/raw/SHL-G10KP.pdf",
+  "num_images_total": 17,
+  "num_images_kept": 9,
+  "created_by": "image_captioner_gemini.py",
+  "model": "gemini-2.5-flash",
+  "config": {
+    "CAPTION_MAX_CHARS": 220,
+    "UNSAFE_KEYWORDS": [
+      "폭발",
+      "감전",
+      "사망",
+      "질식",
+      "중독",
+      "화재",
+      "불이 날",
+      "불이날",
+      "가스 누출",
+      "가스누출",
+      "가스가 새",
+      "전기 충격",
+      "전기충격",
+      "고압",
+      "중상",
+      "심각한 부상"
+    ]
+  },
+  "images": [
+    {
+      "file": "data/figures/SHL-G10KP/page_003_figure_001.png",
+      "page": 3,
+      "index": 1,
+      "size_px": [
+        46,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0952380952380953,
+        "ink_ratio": 0.4078674948240166,
+        "edge_ratio": 0.2531055900621118,
+        "table_line_ratio": 0.2267080745341615,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SHL-G10KP/page_003_figure_002.png",
+      "page": 3,
+      "index": 2,
+      "size_px": [
+        45,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0227272727272727,
+        "ink_ratio": 0.42727272727272725,
+        "edge_ratio": 0.21717171717171718,
+        "table_line_ratio": 0.26212121212121214,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SHL-G10KP/page_003_figure_003.png",
+      "page": 3,
+      "index": 3,
+      "size_px": [
+        46,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0454545454545454,
+        "ink_ratio": 0.4762845849802372,
+        "edge_ratio": 0.25395256916996045,
+        "table_line_ratio": 0.30434782608695654,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SHL-G10KP/page_003_figure_004.png",
+      "page": 3,
+      "index": 4,
+      "size_px": [
+        46,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0454545454545454,
+        "ink_ratio": 0.4214426877470356,
+        "edge_ratio": 0.24061264822134387,
+        "table_line_ratio": 0.2267786561264822,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SHL-G10KP/page_003_figure_005.png",
+      "page": 3,
+      "index": 5,
+      "size_px": [
+        46,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0454545454545454,
+        "ink_ratio": 0.3364624505928854,
+        "edge_ratio": 0.17638339920948617,
+        "table_line_ratio": 0.1793478260869565,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SHL-G10KP/page_003_figure_006.png",
+      "page": 3,
+      "index": 6,
+      "size_px": [
+        42,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 42.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.7080498866213152,
+        "edge_ratio": 0.10770975056689343,
+        "table_line_ratio": 0.7131519274376418,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SHL-G10KP/page_003_figure_007.png",
+      "page": 3,
+      "index": 7,
+      "size_px": [
+        43,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0238095238095237,
+        "ink_ratio": 0.5254706533776301,
+        "edge_ratio": 0.19047619047619047,
+        "table_line_ratio": 0.4629014396456257,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SHL-G10KP/page_006_figure_008.png",
+      "page": 6,
+      "index": 8,
+      "size_px": [
+        696,
+        455
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 696.0,
+        "height": 455.0,
+        "aspect_ratio": 1.5296703296703296,
+        "ink_ratio": 0.03969306555513452,
+        "edge_ratio": 0.05484084880636605,
+        "table_line_ratio": 0.020168624478969308,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SHL-G10KP/page_006_figure_008.png",
+      "caption_short": "위에서 내려다본 사각형 모양의 전기 조리 기구이다. 모서리는 둥글고, 전체적으로 밝은 색상이다. 왼쪽에는 음식을 조리하는 커다란 원형 세라믹 플레이트가 있다. 왼쪽 위 모서리에 쿨링 팬이 작게 표시되어 있다. 오른쪽에는 조작부가 있다. 상단에 '88:88'과 같은 숫자가 표시되는 디지털 디스플레이가 있고, 그 아래로 네 개의 버튼이 자리한다. 조작부 맨 아래에는 동그란 다이얼이 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SHL-G10KP/page_007_figure_009.png",
+      "page": 7,
+      "index": 9,
+      "size_px": [
+        352,
+        205
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 352.0,
+        "height": 205.0,
+        "aspect_ratio": 1.7170731707317073,
+        "ink_ratio": 0.0881929046563193,
+        "edge_ratio": 0.07975332594235034,
+        "table_line_ratio": 0.07368348115299335,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SHL-G10KP/page_007_figure_009.png",
+      "caption_short": "이것은 하얀색 네모난 조작 화면이다. 왼쪽 위에는 '타이머' 글씨와 시계 모양이 있고, 그 아래에는 '잠금 표시' 글씨와 자물쇠 모양이 보인다. 화면 가운데에는 시간을 나타내는 큼직한 네 자리 숫자들이 있다. 아래쪽에는 '전골', '차', '튀김', '국물'이라는 글씨와 함께 각각 전골 냄비, 주전자, 프라이팬, 국그릇 모양이 나란히 표시되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SHL-G10KP/page_007_figure_010.png",
+      "page": 7,
+      "index": 10,
+      "size_px": [
+        350,
+        162
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 350.0,
+        "height": 162.0,
+        "aspect_ratio": 2.1604938271604937,
+        "ink_ratio": 0.05881834215167549,
+        "edge_ratio": 0.07493827160493827,
+        "table_line_ratio": 0.022275132275132274,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SHL-G10KP/page_007_figure_010.png",
+      "caption_short": "이것은 전기레인지의 조작부에 있는 네 가지 주요 기능 버튼들이다. 위쪽에 두 개, 아래쪽에 두 개가 나란히 놓여 있다. 왼쪽 위에는 자물쇠가 열린 모양의 동그란 버튼이 있다. 이 버튼은 '잠금' 기능을 나타내며, '잠금 설정'을 위한 것이다. 오른쪽 위에는 시계 모양의 동그란 버튼이 있다. 이 버튼은 '타이머' 기능을 나타내며, '타이머 설정'을 위한 것이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SHL-G10KP/page_008_figure_011.png",
+      "page": 8,
+      "index": 11,
+      "size_px": [
+        384,
+        178
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 384.0,
+        "height": 178.0,
+        "aspect_ratio": 2.157303370786517,
+        "ink_ratio": 0.047006671348314606,
+        "edge_ratio": 0.06242684925093633,
+        "table_line_ratio": 0.02232560861423221,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SHL-G10KP/page_008_figure_011.png",
+      "caption_short": "한 손이 두 개의 핀이 달린 전기 플러그를 잡고 있다. 플러그는 벽에 세로로 붙은 하얀색 콘센트 두 개 중 아래쪽 구멍으로 향한다. 붉은색 화살표가 플러그가 들어갈 방향을 알려준다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SHL-G10KP/page_008_figure_012.png",
+      "page": 8,
+      "index": 12,
+      "size_px": [
+        384,
+        179
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 384.0,
+        "height": 179.0,
+        "aspect_ratio": 2.1452513966480447,
+        "ink_ratio": 0.0621362895716946,
+        "edge_ratio": 0.07362953910614525,
+        "table_line_ratio": 0.03485800744878957,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SHL-G10KP/page_008_figure_012.png",
+      "caption_short": "전자 제품의 밝은색 조작부에는 둥근 버튼 네 개가 두 줄로 배열되어 있다. 위쪽에는 잠금 버튼과 타이머 버튼이 있고, 아래쪽에는 메뉴선택 버튼과 전원 버튼이 있다. 한 손가락이 메뉴선택 버튼을 누르고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SHL-G10KP/page_008_figure_013.png",
+      "page": 8,
+      "index": 13,
+      "size_px": [
+        385,
+        179
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 385.0,
+        "height": 179.0,
+        "aspect_ratio": 2.1508379888268156,
+        "ink_ratio": 0.06605238337081913,
+        "edge_ratio": 0.07410578248567075,
+        "table_line_ratio": 0.03881593267068127,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SHL-G10KP/page_008_figure_013.png",
+      "caption_short": "연한 색의 네모난 조작부이다. 위쪽에는 자물쇠 모양의 '잠금' 버튼과 시계 모양의 '타이머' 버튼이 나란히 있다. 아래쪽에는 손가락이 화면을 누르는 '메뉴선택' 버튼과 전원 모양의 '전원' 버튼이 있다. 한 손의 검지손가락이 빨간색 원으로 강조된 '전원' 버튼을 누르고 있는 모습이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SHL-G10KP/page_008_figure_014.png",
+      "page": 8,
+      "index": 14,
+      "size_px": [
+        387,
+        182
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 387.0,
+        "height": 182.0,
+        "aspect_ratio": 2.1263736263736264,
+        "ink_ratio": 0.061987108498736405,
+        "edge_ratio": 0.07629837862396002,
+        "table_line_ratio": 0.03168924099156657,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SHL-G10KP/page_008_figure_014.png",
+      "caption_short": "하얀색 전자제품의 조작부가 보인다. 조작부 위쪽에는 자물쇠 모양의 '잠금' 버튼과 시계 모양의 '타이머' 버튼이 있다. 그 아래에는 손가락 모양의 '메뉴선택' 버튼과 전원 기호의 '전원' 버튼이 놓여 있다. '전원' 버튼은 빨간색 원으로 크게 둘러싸여 있으며, 한 손가락이 이 버튼을 누르고 있다. 버튼들 맨 아래에는 작은 동그라미 여러 개가 일렬로 놓인 곡선이 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SHL-G10KP/page_008_figure_015.png",
+      "page": 8,
+      "index": 15,
+      "size_px": [
+        383,
+        182
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 383.0,
+        "height": 182.0,
+        "aspect_ratio": 2.1043956043956045,
+        "ink_ratio": 0.04866152124637765,
+        "edge_ratio": 0.06168765959888675,
+        "table_line_ratio": 0.03260838378331851,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SHL-G10KP/page_008_figure_015.png",
+      "caption_short": "흰색 사각형 패널의 윗부분을 정면에서 보고 있다. 왼쪽에는 회색 테두리의 둥근 조절 다이얼이 크게 있으며, 주변으로 작은 동그라미 표시들이 곡선 형태로 놓여 있다. 빨간색 굽은 화살표는 이 다이얼이 시계 반대 방향으로 돌아감을 보여준다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SHL-G10KP/page_008_figure_016.png",
+      "page": 8,
+      "index": 16,
+      "size_px": [
+        384,
+        181
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 384.0,
+        "height": 181.0,
+        "aspect_ratio": 2.1215469613259668,
+        "ink_ratio": 0.05913328729281768,
+        "edge_ratio": 0.06496029005524862,
+        "table_line_ratio": 0.037724447513812154,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SHL-G10KP/page_008_figure_016.png",
+      "caption_short": "한 손이 전기 플러그를 잡고 있다. 이 플러그는 벽에 설치된 두 개의 전원 콘센트 중 한 곳에서 뽑히는 중이다. 빨간색 화살표는 플러그가 콘센트에서 아래쪽으로 멀어지는 방향을 보여준다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SHL-G10KP/page_011_figure_017.png",
+      "page": 11,
+      "index": 17,
+      "size_px": [
+        784,
+        154
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 784.0,
+        "height": 154.0,
+        "aspect_ratio": 5.090909090909091,
+        "ink_ratio": 0.08455638749006096,
+        "edge_ratio": 0.09055294195600318,
+        "table_line_ratio": 0.05904618340842831,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    }
+  ]
+}

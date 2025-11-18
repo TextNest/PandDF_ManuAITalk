@@ -1,0 +1,508 @@
+{
+  "doc_id": "SEH-3000JBO",
+  "source_pdf": "data/raw/SEH-3000JBO.pdf",
+  "num_images_total": 17,
+  "num_images_kept": 8,
+  "created_by": "image_captioner_gemini.py",
+  "model": "gemini-2.5-flash",
+  "config": {
+    "CAPTION_MAX_CHARS": 220,
+    "UNSAFE_KEYWORDS": [
+      "폭발",
+      "감전",
+      "사망",
+      "질식",
+      "중독",
+      "화재",
+      "불이 날",
+      "불이날",
+      "가스 누출",
+      "가스누출",
+      "가스가 새",
+      "전기 충격",
+      "전기충격",
+      "고압",
+      "중상",
+      "심각한 부상"
+    ]
+  },
+  "images": [
+    {
+      "file": "data/figures/SEH-3000JBO/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        389,
+        729
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 389.0,
+        "height": 729.0,
+        "aspect_ratio": 0.53360768175583,
+        "ink_ratio": 0.9046656863471108,
+        "edge_ratio": 0.15586023041035896,
+        "table_line_ratio": 0.705858290929223,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-3000JBO/page_001_figure_001.png",
+      "caption_short": "이 제품은 앞면에 작은 구멍들이 촘촘히 뚫려 있는 직사각형 모양의 히터이다. 모서리는 둥글고, 정면과 오른쪽 옆면, 윗면이 보인다. 제품 윗부분 정면에는 '88'이라는 숫자가 표시된 작은 화면이 있고, 그 아래에 'shinil'이라는 글자가 쓰여 있다. 제품의 오른쪽 옆면 위쪽에는 손으로 잡을 수 있도록 안으로 파인 손잡이가 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-3000JBO/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        44,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0476190476190477,
+        "ink_ratio": 0.362012987012987,
+        "edge_ratio": 0.24025974025974026,
+        "table_line_ratio": 0.1699134199134199,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-3000JBO/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        45,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 43.0,
+        "aspect_ratio": 1.0465116279069768,
+        "ink_ratio": 0.3302325581395349,
+        "edge_ratio": 0.27906976744186046,
+        "table_line_ratio": 0.11679586563307494,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-3000JBO/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        45,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0227272727272727,
+        "ink_ratio": 0.4015151515151515,
+        "edge_ratio": 0.2691919191919192,
+        "table_line_ratio": 0.20707070707070707,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-3000JBO/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        47,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 47.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0681818181818181,
+        "ink_ratio": 0.3307543520309478,
+        "edge_ratio": 0.2437137330754352,
+        "table_line_ratio": 0.12427466150870406,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-3000JBO/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        46,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0222222222222221,
+        "ink_ratio": 0.2463768115942029,
+        "edge_ratio": 0.17922705314009663,
+        "table_line_ratio": 0.0927536231884058,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-3000JBO/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        43,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0238095238095237,
+        "ink_ratio": 0.5293466223698782,
+        "edge_ratio": 0.1921373200442968,
+        "table_line_ratio": 0.48172757475083056,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-3000JBO/page_002_figure_008.png",
+      "page": 2,
+      "index": 8,
+      "size_px": [
+        41,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 41.0,
+        "height": 42.0,
+        "aspect_ratio": 0.9761904761904762,
+        "ink_ratio": 0.7212543554006968,
+        "edge_ratio": 0.11498257839721254,
+        "table_line_ratio": 0.7288037166085947,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-3000JBO/page_004_figure_009.png",
+      "page": 4,
+      "index": 9,
+      "size_px": [
+        257,
+        328
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 257.0,
+        "height": 328.0,
+        "aspect_ratio": 0.7835365853658537,
+        "ink_ratio": 0.11293537059884218,
+        "edge_ratio": 0.1240984151086647,
+        "table_line_ratio": 0.05531697826705893,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-3000JBO/page_004_figure_009.png",
+      "caption_short": "이 장면은 모서리가 둥근 사각형 모양의 전기 히터 밑바닥을 위에서 본 모습이다. 히터 밑면에는 네 개의 작은 바퀴가 달려 있어 쉽게 움직일 수 있다. 가운데에는 검은색 전원 코드가 감겨 보관되어 있고, 아래쪽에는 길쭉한 주전원 스위치가 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-3000JBO/page_004_figure_010.png",
+      "page": 4,
+      "index": 10,
+      "size_px": [
+        239,
+        298
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 239.0,
+        "height": 298.0,
+        "aspect_ratio": 0.802013422818792,
+        "ink_ratio": 0.14599421527056247,
+        "edge_ratio": 0.11385526943921821,
+        "table_line_ratio": 0.06844795147566764,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-3000JBO/page_004_figure_010.png",
+      "caption_short": "이것은 길쭉한 전기 제품의 뒷모습이다. 뒷면의 넓은 사각형 부분은 작은 구멍들이 촘촘하게 있는 덮개이며, 이곳으로 공기가 들어간다. 이 덮개 안쪽에는 카본 필터라는 공기를 걸러주는 부품이 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-3000JBO/page_004_figure_011.png",
+      "page": 4,
+      "index": 11,
+      "size_px": [
+        565,
+        768
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 565.0,
+        "height": 768.0,
+        "aspect_ratio": 0.7356770833333334,
+        "ink_ratio": 0.1203125,
+        "edge_ratio": 0.10486725663716814,
+        "table_line_ratio": 0.02003595132743363,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-3000JBO/page_004_figure_011.png",
+      "caption_short": "이것은 하얗고 키가 큰 온풍기 본체이다. 본체 앞면 위쪽에는 숫자 '88'이 보이는 작은 화면과 'Shinil' 글자가 있고, 그 아래는 열을 내는 히터와 뜨거운 바람이 나오는 안전망으로 덮여 있다. 맨 위는 조작부이고 오른쪽 옆면에는 손잡이가 있으며, 바닥에는 바퀴 달린 받침대가 있다. 본체 오른쪽에는 작고 하얀 리모컨이 놓여 있으며, 여러 개의 동그란 버튼들이 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-3000JBO/page_005_figure_012.png",
+      "page": 5,
+      "index": 12,
+      "size_px": [
+        779,
+        346
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 779.0,
+        "height": 346.0,
+        "aspect_ratio": 2.2514450867052025,
+        "ink_ratio": 0.36913710329680116,
+        "edge_ratio": 0.05892021043727322,
+        "table_line_ratio": 0.3380278554839093,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-3000JBO/page_005_figure_012.png",
+      "caption_short": "이것은 어떤 전자제품의 조작부이다. 검은색의 매끄러운 직사각형 형태이며, 손가락으로 누르는 터치 방식처럼 보인다. 가운데 위쪽에는 '88'이라는 숫자가 밝게 빛나는 디스플레이가 있다. 이 디스플레이 주변으로는 작은 점들이 둥근 원을 그리고 있다. 디스플레이 왼쪽에는 온도계 모양의 그림이 있는데, 이는 온도를 조절하는 기능이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-3000JBO/page_006_figure_013.png",
+      "page": 6,
+      "index": 13,
+      "size_px": [
+        386,
+        236
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 386.0,
+        "height": 236.0,
+        "aspect_ratio": 1.6355932203389831,
+        "ink_ratio": 0.07684201282163872,
+        "edge_ratio": 0.07061780978308597,
+        "table_line_ratio": 0.04637964345306051,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-3000JBO/page_006_figure_013.png",
+      "caption_short": "위아래로 긴 직사각형 모양의 연회색 기기가 진회색 앞면과 맨 위 네모난 조작부를 가진 채 방 바닥에 놓여 있다. 기기 오른쪽에는 주름진 커튼이 있고, 앞쪽 바닥에는 납작한 직사각형 물체가 보인다. 기기 위로는 100센티미터, 양옆으로는 30센티미터, 앞쪽으로는 100센티미터 이상 거리를 두라는 화살표와 숫자가 표시되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-3000JBO/page_006_figure_014.png",
+      "page": 6,
+      "index": 14,
+      "size_px": [
+        794,
+        294
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 794.0,
+        "height": 294.0,
+        "aspect_ratio": 2.7006802721088436,
+        "ink_ratio": 0.047730427183467844,
+        "edge_ratio": 0.05802446923353724,
+        "table_line_ratio": 0.015605990507034049,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-3000JBO/page_006_figure_014.png",
+      "caption_short": "작고 길쭉한 리모컨 같은 기기를 손으로 잡고 있는 모습이다. 엄지손가락이 기기 옆면의 작은 뚜껑을 왼쪽으로 밀고 있으며, 숫자 1이 새겨진 빨간 화살표가 그 움직임을 가리킨다. 뚜껑 위쪽으로는 숫자 2가 새겨진 빨간 화살표가 아래로 향하고 있어, 뚜껑이 아래쪽으로 당겨져 열릴 수 있음을 보여준다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-3000JBO/page_007_figure_015.png",
+      "page": 7,
+      "index": 15,
+      "size_px": [
+        769,
+        391
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 769.0,
+        "height": 391.0,
+        "aspect_ratio": 1.9667519181585678,
+        "ink_ratio": 0.12440177065907496,
+        "edge_ratio": 0.08729575394357438,
+        "table_line_ratio": 0.03995623239401488,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-3000JBO/page_007_figure_015.png",
+      "caption_short": "하얀색 직사각형 전자제품의 뒷모습과 그 부품을 보여주는 세 가지 상황이다. 가장 왼쪽 상황에는 제품 뒷면의 위쪽 중앙에 작은 버튼이 보인다. 이 버튼에는 '후면 커버 분리 버튼'이라는 글자와 빨간색 숫자 1, 그리고 아래로 향하는 화살표가 그려져 있다. 버튼 아래에는 사각형 모양의 격자무늬 판이 제품에 끼워져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-3000JBO/page_011_figure_016.png",
+      "page": 11,
+      "index": 16,
+      "size_px": [
+        783,
+        154
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 783.0,
+        "height": 154.0,
+        "aspect_ratio": 5.084415584415584,
+        "ink_ratio": 0.09140667761357417,
+        "edge_ratio": 0.09082615979167703,
+        "table_line_ratio": 0.06532484118691015,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-3000JBO/page_012_figure_017.png",
+      "page": 12,
+      "index": 17,
+      "size_px": [
+        116,
+        113
+      ],
+      "keep_for_caption": false,
+      "category": "qr_code_heuristic",
+      "tags": [
+        "qr_code"
+      ],
+      "metrics": {
+        "width": 116.0,
+        "height": 113.0,
+        "aspect_ratio": 1.0265486725663717,
+        "ink_ratio": 0.5966585291425084,
+        "edge_ratio": 0.23153799206591394,
+        "table_line_ratio": 0.3878547451937748,
+        "is_qr_code": true,
+        "qr_heuristic": true,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    }
+  ]
+}
