@@ -10,11 +10,16 @@ from module.qa_service import HybridRAGChain
 from core.prompt import agent_prompt
 from typing import List, Dict, Any, Optional
 from langchain_core.runnables import RunnableConfig
-
+Tool_name={
+    "product_qa_tool":"질문",
+    "recommend_tool":"추천"
+}
 
 class AgentState(MessagesState):
     product_id : str
     session_id : str
+    tool_name: str
+
 catalog = {"SDH-E18KPA":"SDH-E18KPA_SDH-CP170E1_MANUAL",
     "SIF-14SSWT":"2024년_SIF-14SSWT_W3514BL_D14BCSJ_BL2314_14JKS_MANUAL",
     "SDH-E45KPA":"SDH-PM45_MANUAL"}  ## 데이터 베이스 추가시 변경 필요
@@ -92,13 +97,21 @@ class  ChatBotAgent:
 
         def tool_node(state):
             last_msg = state["messages"][-1]
+            
             if hasattr(last_msg,"tool_calls") and last_msg.tool_calls: #마지막 메세지에 too_calls 속성이 있고 값이 있으면
+                print(last_msg.tool_calls[0]["name"])
+                tool_name = last_msg.tool_calls[0]["name"]
+                find_name = Tool_name.get(tool_name,tool_name)
                 for call in last_msg.tool_calls:
                     call['args']['product_id'] = state["product_id"]
                     call['args']['session_id'] = state["session_id"]
                     print(f"도구 이름: {call['name']}")
                     print(f"전달된 인자: {call['args']}")
-            return ToolNode(self.tools).invoke(state)
+            message_tool =  ToolNode(self.tools).invoke(state)    
+            return {
+                "messages": message_tool["messages"],
+                "tool_name":find_name
+            }
 
         def end_node(state):
             last_msg = state["messages"][-1]
@@ -117,23 +130,25 @@ class  ChatBotAgent:
         initial_state = {
             "messages":[HumanMessage(content=query)],
             "product_id":self.product_id,
-            "session_id":self.session_id
+            "session_id":self.session_id,
+            "tool_name": None
         }
         result = self.graph.invoke(initial_state,config=config)
         final_message = result["messages"][-1]
-        return {"answer":final_message.content}
-    async def stream_chat(self,query:str,db_session: Optional[Any] = None):
-        config = {"configurable":{"thread_id":self.session_id,"db":db_session}}
-        initial_state = {
-            "messages":[HumanMessage(content=query)],
-            "product_id":self.product_id,
-            "session_id":self.session_id
-        }
-        async for event in self.graph.astream_events(
-            initial_state, config=config, version="v1"
-        ):
-            kind = event["event"]
-            if (kind == "on_chat_model_stream" and event["name"]=="final_answer"):
-                chunk = event["data"]["chunk"]
-                if content := chunk.content:    
-                    yield content
+        tool_name = result.get("tool_name")
+        return {"answer":final_message.content,"tool_name":tool_name}
+    # async def stream_chat(self,query:str,db_session: Optional[Any] = None):
+    #     config = {"configurable":{"thread_id":self.session_id,"db":db_session}}
+    #     initial_state = {
+    #         "messages":[HumanMessage(content=query)],
+    #         "product_id":self.product_id,
+    #         "session_id":self.session_id
+    #     }
+    #     async for event in self.graph.astream_events(
+    #         initial_state, config=config, version="v1"
+    #     ):
+    #         kind = event["event"]
+    #         if (kind == "on_chat_model_stream" and event["name"]=="final_answer"):
+    #             chunk = event["data"]["chunk"]
+    #             if content := chunk.content:    
+    #                 yield content
