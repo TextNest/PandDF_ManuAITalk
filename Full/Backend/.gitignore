@@ -1,8 +1,0 @@
-.env
-.venv/
-db/
-*.ipynb
-__pycache__/
-*.png
-uploads/
-*.ipynb

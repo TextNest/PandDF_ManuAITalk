@@ -4,20 +4,11 @@
 // FAQ 목록 데이터 페칭 훅
 // ============================================
 
-import { useState, useEffect } from 'react';
-
-// 타입 정의
-export interface FAQ {
-  id: string;
-  question: string;
-  answer: string;
-  category: string;
-  status: 'published' | 'draft';
-  createdAt: string;
-  updatedAt: string;
-  views: number;
-  helpful: number;
-}
+import { useState, useEffect, useCallback } from 'react';
+import apiClient from '@/lib/api/client';
+import { API_ENDPOINTS } from '@/lib/api/endpoints';
+import { convertFAQResponseArrayToFAQArray } from '@/lib/utils/faq';
+import { FAQ } from '@/types/faq.types';
 
 export interface FAQsData {
   faqs: FAQ[];
@@ -35,112 +26,74 @@ export function useFAQs(options: UseFAQsOptions = {}) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
-        // Mock 데이터
-        const mockFAQs: FAQ[] = [
-          {
-            id: '1',
-            question: '제품 A/S는 어디서 받을 수 있나요?',
-            answer: '제품 A/S는 공식 서비스 센터에서 받으실 수 있습니다. 가까운 서비스 센터는 고객센터(1588-xxxx)로 문의해주세요.',
-            category: 'A/S',
-            status: 'published',
-            createdAt: '2024-10-15T10:00:00',
-            updatedAt: '2024-10-15T10:00:00',
-            views: 245,
-            helpful: 189,
-          },
-          {
-            id: '2',
-            question: '보증 기간은 얼마나 되나요?',
-            answer: '제품 구매일로부터 1년간 무상 보증이 제공됩니다. 보증서를 잘 보관해주세요.',
-            category: '보증',
-            status: 'published',
-            createdAt: '2024-10-14T15:30:00',
-            updatedAt: '2024-10-14T15:30:00',
-            views: 198,
-            helpful: 156,
-          },
-          {
-            id: '3',
-            question: '배터리 교체는 어떻게 하나요?',
-            answer: '배터리 교체는 공식 서비스 센터에서만 가능합니다. 임의로 분해하시면 보증이 무효화될 수 있습니다.',
-            category: '배터리',
-            status: 'published',
-            createdAt: '2024-10-13T09:15:00',
-            updatedAt: '2024-10-13T09:15:00',
-            views: 156,
-            helpful: 98,
-          },
-          {
-            id: '4',
-            question: '초기화 방법을 알려주세요',
-            answer: '설정 > 일반 > 초기화 메뉴에서 "모든 설정 초기화"를 선택하시면 됩니다.',
-            category: '설정',
-            status: 'draft',
-            createdAt: '2024-10-12T14:20:00',
-            updatedAt: '2024-10-12T14:20:00',
-            views: 134,
-            helpful: 87,
-          },
-          {
-            id: '5',
-            question: '소프트웨어 업데이트는 어떻게 하나요?',
-            answer: '설정 > 소프트웨어 업데이트에서 "자동 업데이트"를 활성화하시면 자동으로 업데이트됩니다.',
-            category: '업데이트',
-            status: 'published',
-            createdAt: '2024-10-11T11:00:00',
-            updatedAt: '2024-10-11T11:00:00',
-            views: 112,
-            helpful: 76,
-          },
-        ];
+  const fetchData = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
 
-        // 필터 적용
-        let filteredFAQs = mockFAQs;
-        
-        if (options.filter && options.filter !== 'all') {
-          filteredFAQs = filteredFAQs.filter(faq => faq.status === options.filter);
-        }
-        
-        if (options.searchQuery) {
-          const query = options.searchQuery.toLowerCase();
-          filteredFAQs = filteredFAQs.filter(faq => 
-            faq.question.toLowerCase().includes(query) ||
-            faq.answer.toLowerCase().includes(query)
-          );
-        }
+      // API 호출 파라미터 설정
+      const params: { status?: string; category?: string; limit?: number } = {
+        limit: 1000, // 충분히 큰 값으로 설정
+      };
 
-        if (options.category) {
-          filteredFAQs = filteredFAQs.filter(faq => faq.category === options.category);
-        }
-
-        setData({
-          faqs: filteredFAQs,
-          total: filteredFAQs.length,
-        });
-        setError(null);
-      } catch (err) {
-        setError(err as Error);
-      } finally {
-        setIsLoading(false);
+      if (options.filter && options.filter !== 'all') {
+        params.status = options.filter;
       }
-    };
 
-    fetchData();
+      if (options.category) {
+        params.category = options.category;
+      }
+
+      // API 호출
+      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}${API_ENDPOINTS.FAQ.LIST}`;
+      console.log('FAQ API 호출 (useFAQs):', apiUrl, params);
+
+      const response = await apiClient.get(API_ENDPOINTS.FAQ.LIST, { params });
+      const faqs = convertFAQResponseArrayToFAQArray(response.data);
+
+      // 클라이언트 측 검색 필터 적용 (검색은 서버에서 지원하지 않을 수 있으므로)
+      let filteredFAQs = faqs;
+
+      if (options.searchQuery) {
+        const query = options.searchQuery.toLowerCase();
+        filteredFAQs = filteredFAQs.filter(faq => 
+          faq.question.toLowerCase().includes(query) ||
+          faq.answer.toLowerCase().includes(query)
+        );
+      }
+
+      setData({
+        faqs: filteredFAQs,
+        total: filteredFAQs.length,
+      });
+    } catch (err: any) {
+      console.error('FAQ 조회 실패 (useFAQs):', err);
+      
+      // 더 자세한 에러 메시지 제공
+      let errorMessage = 'FAQ를 불러오는데 실패했습니다.';
+      if (err.code === 'ERR_NETWORK' || err.message === 'Network Error') {
+        errorMessage = '네트워크 오류가 발생했습니다. 백엔드 서버가 실행 중인지 확인해주세요.';
+      } else if (err.response) {
+        errorMessage = `서버 오류: ${err.response.status} - ${err.response.data?.detail || err.response.statusText}`;
+      } else if (err.message) {
+        errorMessage = err.message;
+      }
+      
+      setError(new Error(errorMessage));
+      setData(null);
+    } finally {
+      setIsLoading(false);
+    }
   }, [options.searchQuery, options.filter, options.category]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   return {
     data,
     isLoading,
     error,
-    refetch: () => {
-      setIsLoading(true);
-    },
+    refetch: fetchData,
   };
 }

@@ -1,5 +1,9 @@
 # Node
 node_modules
+.env
+.env.local
+.env.*
+.venv/
 
 # ngrok
 ngrok/
@@ -13,8 +17,12 @@ __pycache__/
 .vscode/
 .idea/
 
-# Database
+# Backend
 /Full/Backend/db
+/Full/Backend/data/logs
+/Full/Backend/data/page_images
+/Full/Backend/data/upload
+/Full/Backend/uploads/
 
 # Data
 ex_data/

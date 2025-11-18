@@ -2,7 +2,7 @@ import os
 import asyncio
 from sqlalchemy import text
 from core.db_config import get_session_text
-from core.query import find_session_for_rep, find_message_for_rep, find_product_for_rep, report_query
+from core.query import find_session_for_rep, find_message_for_rep, find_product_for_rep, reset_all_rep, report_query
 from core.prompt import analysis_prompt
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
@@ -74,14 +74,17 @@ async def upload_report(terminal, input_report: dict):
     await terminal.commit()
 
 # Automatic Report-process Pipeline
-async def execute_report():
+async def execute_report(verbose:int = 0):
+    if verbose>0: print("SCHEDULER_ARP : Execute report")
     async with get_session_text() as session:
         logs = []
         session_ids = await search_session(session)
         for sid in session_ids:
+            if verbose>1: print(f"SCHEDULER_ARP : Collecting infos for session <{sid}>")
             slogs, pid = await find_session_info(session, sid)
             logs.append(convert_report(slogs, sid, pid))
         for log in logs:
+            if verbose>1: print(f"SCHEDULER_ARP : Generating report for session <{log['session_id']}>")
             rst = await chain.ainvoke({
                 "input" : log['messages'],
                 "format" : parser.get_format_instructions()
@@ -89,11 +92,19 @@ async def execute_report():
             log['status'] = rst.status
             log['summary'] = rst.summary
             await upload_report(session, log)
+        if verbose>0: print("SCHEDULER_ARP : Process completed")
 
 async def Scheduler_ARP():
     while True:
         try:
-            await execute_report()
+            await execute_report(2)
         except Exception as e:
             print(f'SCHEDULER_ARP : ERROR!\n>>> {e}')
         await asyncio.sleep(INTERVAL)
+
+# report reset
+async def reset_report(terminal):
+    query = text(reset_all_rep)
+    await terminal.execute(query)
+
+

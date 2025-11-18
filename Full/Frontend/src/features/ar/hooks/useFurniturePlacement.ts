@@ -34,11 +34,10 @@ export function useFurniturePlacement(
         }
     }, [sceneRef]);
 
-    const createPreviewBox = useCallback((item: FurnitureItem) => { // Use FurnitureItem type
-        if (!isARActive || !sceneRef.current) {
-            alert("AR 세션을 먼저 시작해주세요.");
-            return;
-        }
+  const createPreviewBox = useCallback((item: FurnitureItem) => {
+    if (!isARActive) {
+      return;
+    }
         clearPreviewBox();
         setDebugMessage(null); // Reset debug message
 
@@ -98,7 +97,9 @@ export function useFurniturePlacement(
             const box = new Mesh(geometry, material);
             box.visible = false;
             previewModelRef.current = box;
-            sceneRef.current.add(box);
+            if (sceneRef.current) {
+                sceneRef.current.add(box);
+            }
         }
     }, [isARActive, sceneRef, clearPreviewBox, setDebugMessage]);
 

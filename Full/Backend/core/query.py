@@ -85,6 +85,10 @@ FROM test_session
 WHERE session_id = :sid;
 """
 
+reset_all_rep = """
+TRUNCATE TABLE test_report;
+"""
+
 report_query = """
 INSERT INTO test_report (
     session_id, product_id, status, content, timestamp_s, timestamp_e

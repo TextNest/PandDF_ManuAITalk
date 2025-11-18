@@ -19,6 +19,21 @@ export default function SimulationPage() {
   const { isARActive, setARActive } = useARStore();
   const [product, setProduct] = useState<Product | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isARSupported, setIsARSupported] = useState(false);
+  const [arSupportChecked, setArSupportChecked] = useState(false);
+
+  useEffect(() => {
+    const checkARSupport = async () => {
+      if (!('xr' in navigator)) {
+        setIsARSupported(false);
+      } else {
+        const supported = await (navigator as any).xr.isSessionSupported('immersive-ar');
+        setIsARSupported(supported);
+      }
+      setArSupportChecked(true);
+    };
+    checkARSupport();
+  }, []);
 
   const arSceneRef = useRef<ARSceneHandle>(null);
   const uiOverlayRef = useRef<HTMLDivElement>(null);
@@ -83,7 +98,7 @@ export default function SimulationPage() {
           <Move3d size={24} className={styles.headerIcon} />
           <div>
             <h1>공간 시뮬레이션</h1>
-            <p>제품: {product ? product.name : productId}</p>
+            <p>제품: {product ? product.product_name : productId}</p>
           </div>
         </div>
       </header>
@@ -118,9 +133,19 @@ export default function SimulationPage() {
               <p>실제 AR/3D 로직은 별도 컴포넌트로 구현하여 이 영역에 삽입하면 됩니다.</p>
             </div>
 
-            <button className={styles.arButton} onClick={handleStartAR}>
+            <button
+              className={styles.arButton}
+              onClick={handleStartAR}
+              disabled={!arSupportChecked || !isARSupported}
+            >
               AR 기능 시작
             </button>
+            {!arSupportChecked && (
+              <p className={styles.arSupportMessage}>AR 지원 여부 확인 중...</p>
+            )}
+            {arSupportChecked && !isARSupported && (
+              <p className={styles.arSupportMessage}>이 기기에서는 AR 기능을 지원하지 않습니다.</p>
+            )}
           </div>
         </div>
 
@@ -132,11 +157,11 @@ export default function SimulationPage() {
               <>
                 <div className={styles.infoItem}>
                   <span className={styles.label}>제품명:</span>
-                  <span className={styles.value}>{product.name}</span>
+                  <span className={styles.value}>{product.product_name}</span>
                 </div>
                 <div className={styles.infoItem}>
                   <span className={styles.label}>모델명:</span>
-                  <span className={styles.value}>{product.model}</span>
+                  <span className={styles.value}>{product.product_id}</span>
                 </div>
                 <div className={styles.infoItem}>
                   <span className={styles.label}>규격 (W x H x D):</span>

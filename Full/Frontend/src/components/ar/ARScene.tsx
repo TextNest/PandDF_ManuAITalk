@@ -60,8 +60,8 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
   useEffect(() => {
     if (product) {
       const mappedFurniture: FurnitureItem = {
-        id: product.id,
-        name: product.name,
+        id: product.product_id,
+        name: product.product_name,
         // For compatibility with ARUI
         width: (product.width_mm || 1000) / 1000,
         depth: (product.depth_mm || 1000) / 1000,
@@ -80,12 +80,12 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
   }, [product, selectFurniture]);
 
   useEffect(() => {
-    if (selectedFurniture) {
+    if (isARActive && selectedFurniture) {
       furniture.createPreviewBox(selectedFurniture);
     } else {
       furniture.clearPreviewBox();
     }
-  }, [selectedFurniture, furniture.createPreviewBox, furniture.clearPreviewBox]);
+  }, [isARActive, selectedFurniture, furniture.createPreviewBox, furniture.clearPreviewBox]);
 
   useEffect(() => {
     if (clearFurnitureCounter > 0) {

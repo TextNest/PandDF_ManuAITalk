@@ -1,6 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/api/ar/furniture/route": "app/api/ar/furniture/route.js",
-  "/(user)/chat/[productId]/page": "app/(user)/chat/[productId]/page.js",
-  "/(user)/simulation/[productId]/page": "app/(user)/simulation/[productId]/page.js"
-}
