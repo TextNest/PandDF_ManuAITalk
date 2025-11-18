@@ -23,6 +23,7 @@
 
 루트 경로: `C:\Users\user\Desktop\test3` → 이하 `PROJECT_ROOT` 로 표기
 
+```
 PROJECT_ROOT
 ├─ .env                         # Upstage / Gemini API 키 등 환경 변수
 ├─ .venv/                       # Python 가상환경
@@ -51,6 +52,7 @@ PROJECT_ROOT
    ├─ rag_qa_service.py             # (9) RAG QA 세션 관리
    ├─ rag_chatbot.py                # (10) 터미널 RAG 챗봇 (CLI)
    └─ __pycache__/
+```
 
 ---
 
