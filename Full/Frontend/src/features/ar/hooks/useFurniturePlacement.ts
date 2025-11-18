@@ -34,6 +34,7 @@ export function useFurniturePlacement(
         }
     }, [sceneRef]);
 
+<<<<<<< HEAD
     const createPreviewBox = useCallback((item: { width: number; height: number; depth: number; modelUrl?: string }) => {
         if (!isARActive || !sceneRef.current) {
             alert("AR 세션을 먼저 시작해주세요.");
@@ -44,6 +45,24 @@ export function useFurniturePlacement(
 
         if (item.modelUrl) {
             let absoluteUrl = item.modelUrl.startsWith('/') ? item.modelUrl : '/' + item.modelUrl;
+=======
+  const createPreviewBox = useCallback((item: FurnitureItem) => {
+    if (!isARActive) {
+      return;
+    }
+        clearPreviewBox();
+        setDebugMessage(null); // Reset debug message
+
+        // Use model3dUrl and default to 1000mm (1 meter) if not provided
+        const model3dUrl = item.model3dUrl;
+        const itemWidthMeters = (item.width_mm || 1000) / 1000; // Convert mm to meters
+        const itemHeightMeters = (item.height_mm || 1000) / 1000; // Convert mm to meters
+        const itemDepthMeters = (item.depth_mm || 1000) / 1000; // Convert mm to meters
+
+
+        if (model3dUrl) {
+            let absoluteUrl = model3dUrl.startsWith('/') ? model3dUrl : '/' + model3dUrl;
+>>>>>>> main
             setDebugMessage(`모델 로딩 중: ${absoluteUrl}`);
             const loader = new GLTFLoader();
             loader.load(absoluteUrl, (gltf) => {
@@ -62,9 +81,17 @@ export function useFurniturePlacement(
                 
                 const box = new Box3().setFromObject(model);
                 const size = box.getSize(new Vector3());
+<<<<<<< HEAD
                 const scaleX = item.width / size.x;
                 const scaleY = item.height / size.y;
                 const scaleZ = item.depth / size.z;
+=======
+                
+                // Calculate scale based on desired item dimensions in meters
+                const scaleX = itemWidthMeters / size.x;
+                const scaleY = itemHeightMeters / size.y;
+                const scaleZ = itemDepthMeters / size.z;
+>>>>>>> main
                 model.scale.set(scaleX, scaleY, scaleZ);
 
                 model.visible = false;
@@ -73,7 +100,12 @@ export function useFurniturePlacement(
             }, undefined, (error) => {
                 setDebugMessage(`모델 로딩 실패. 상자로 대체합니다. 에러: ${error.message}`)
                 console.error('모델 로딩 오류:', error);
+<<<<<<< HEAD
                 const geometry = new BoxGeometry(item.width, item.height, item.depth);
+=======
+                // Fallback to a box if model loading fails, using the calculated dimensions
+                const geometry = new BoxGeometry(itemWidthMeters, itemHeightMeters, itemDepthMeters);
+>>>>>>> main
                 const material = new MeshStandardMaterial({ color: COLORS.FURNITURE_PREVIEW, transparent: true, opacity: 0.5 });
                 const box = new Mesh(geometry, material);
                 box.visible = false;
@@ -82,13 +114,24 @@ export function useFurniturePlacement(
             });
         } else {
             setDebugMessage('모델 URL이 없습니다. 상자로 대체합니다.');
+<<<<<<< HEAD
             const { width, height, depth } = item;
             const geometry = new BoxGeometry(width || 0.5, height || 0.5, depth || 0.5);
+=======
+            // Use the calculated dimensions for the fallback box
+            const geometry = new BoxGeometry(itemWidthMeters, itemHeightMeters, itemDepthMeters);
+>>>>>>> main
             const material = new MeshStandardMaterial({ color: COLORS.FURNITURE_PREVIEW, transparent: true, opacity: 0.5 });
             const box = new Mesh(geometry, material);
             box.visible = false;
             previewModelRef.current = box;
+<<<<<<< HEAD
             sceneRef.current.add(box);
+=======
+            if (sceneRef.current) {
+                sceneRef.current.add(box);
+            }
+>>>>>>> main
         }
     }, [isARActive, sceneRef, clearPreviewBox, setDebugMessage]);
 

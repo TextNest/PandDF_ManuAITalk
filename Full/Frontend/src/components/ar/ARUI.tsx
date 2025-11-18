@@ -83,7 +83,11 @@ export default function ARUI({ lastUITouchTimeRef }: { lastUITouchTimeRef: React
                 <div className={styles.dropdownContainer}>
                   <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className={styles.dropdownButton} disabled={isScanning}>
                     {selectedFurniture
+<<<<<<< HEAD
                       ? `${selectedFurniture.name} (W:${selectedFurniture.width}, D:${selectedFurniture.depth}, H:${selectedFurniture.height})`
+=======
+                      ? `${selectedFurniture.name || '알 수 없는 제품'} (W:${selectedFurniture.width || 0}, D:${selectedFurniture.depth || 0}, H:${selectedFurniture.height || 0})`
+>>>>>>> main
                       : '-- 아이템 선택 --'}
                   </button>
                   {isDropdownOpen && (
@@ -96,7 +100,11 @@ export default function ARUI({ lastUITouchTimeRef }: { lastUITouchTimeRef: React
                           key={item.id}
                           onClick={() => handleSelectItem(item.id.toString())}
                           className={`${styles.dropdownItem} ${selectedFurniture?.id === item.id ? styles.dropdownItemSelected : ''}`}>
+<<<<<<< HEAD
                           {item.name} (W:{item.width}, D:{item.depth}, H:{item.height})
+=======
+                          {item.name || '알 수 없는 제품'} (W:{item.width || 0}, D:{item.depth || 0}, H:{item.height || 0})
+>>>>>>> main
                         </button>
                       ))}
                     </div>

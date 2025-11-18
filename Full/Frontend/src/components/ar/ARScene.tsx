@@ -10,17 +10,30 @@ import { useFurniturePlacement } from '@/features/ar/hooks/useFurniturePlacement
 import styles from './ARScene.module.css';
 import { COLORS } from '@/lib/ar/constants';
 import { useARStore } from '@/store/useARStore';
+<<<<<<< HEAD
+=======
+import { Product } from '@/types/product.types';
+import { FurnitureItem } from '@/lib/ar/types'; // Import FurnitureItem
+>>>>>>> main
 
 interface ARSceneProps {
   uiOverlayRef: React.RefObject<HTMLDivElement | null>;
   lastUITouchTimeRef: React.RefObject<number>;
+<<<<<<< HEAD
+=======
+  product: Product | null;
+>>>>>>> main
 }
 
 export interface ARSceneHandle {
   startAR: () => void;
 }
 
+<<<<<<< HEAD
 const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUITouchTimeRef }, ref) => {
+=======
+const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUITouchTimeRef, product }, ref) => {
+>>>>>>> main
   // --- Zustand Store ---
   const {
     isARActive,
@@ -31,7 +44,10 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
     endARCounter,
     isPreviewing,
     selectFurniture,
+<<<<<<< HEAD
     endAR,
+=======
+>>>>>>> main
     setDebugMessage,
     isScanning,
     setIsScanning,
@@ -39,9 +55,13 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
 
   // --- Refs & State ---
   const containerRef = useRef<HTMLDivElement | null>(null);
+<<<<<<< HEAD
 
   const isPreviewingRef = useRef(false);
 
+=======
+  const isPreviewingRef = useRef(false);
+>>>>>>> main
   const rendererRef = useRef<WebGLRenderer | null>(null);
   const sceneRef = useRef<Scene | null>(null);
   const hitTestSourceRef = useRef<XRHitTestSource | null>(null);
@@ -56,13 +76,45 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
     isPreviewingRef.current = isPreviewing;
   }, [isPreviewing]);
 
+<<<<<<< HEAD
   useEffect(() => {
     if (selectedFurniture) {
+=======
+  // Automatically select the product when the product prop changes
+  useEffect(() => {
+    if (product) {
+      const mappedFurniture: FurnitureItem = {
+        id: product.product_id,
+        name: product.product_name,
+        // For compatibility with ARUI
+        width: (product.width_mm || 1000) / 1000,
+        depth: (product.depth_mm || 1000) / 1000,
+        height: (product.height_mm || 1000) / 1000,
+        modelUrl: product.model3dUrl,
+        // For useFurniturePlacement hook
+        model3dUrl: product.model3dUrl,
+        width_mm: product.width_mm,
+        height_mm: product.height_mm,
+        depth_mm: product.depth_mm,
+      };
+      selectFurniture(mappedFurniture);
+    } else {
+      selectFurniture(null); // Clear selection if product is null
+    }
+  }, [product, selectFurniture]);
+
+  useEffect(() => {
+    if (isARActive && selectedFurniture) {
+>>>>>>> main
       furniture.createPreviewBox(selectedFurniture);
     } else {
       furniture.clearPreviewBox();
     }
+<<<<<<< HEAD
   }, [selectedFurniture, furniture.createPreviewBox, furniture.clearPreviewBox]);
+=======
+  }, [isARActive, selectedFurniture, furniture.createPreviewBox, furniture.clearPreviewBox]);
+>>>>>>> main
 
   useEffect(() => {
     if (clearFurnitureCounter > 0) {

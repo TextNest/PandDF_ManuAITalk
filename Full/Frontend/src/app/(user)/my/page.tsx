@@ -160,7 +160,7 @@ const MyChatsPage = () => {
 
     // 💡 사용자 요청에 따라 함수는 에로우 함수로 작성합니다.
     const handleSessionClick = (session: ChatSession) => {
-        router.push(`/chat/${session.productId}?session=${session.id}`);
+        router.push(`/chat/${session.productId}?session_id=${session.session_id}`);
     };
 
     // 💡 사용자 요청에 따라 함수는 에로우 함수로 작성합니다.

@@ -8,7 +8,11 @@ export default function AdminProductDetailPage({ params }: { params: { id: strin
   return (
     <div>
       <h1>관리자 상품 상세 페이지</h1>
+<<<<<<< HEAD
       <p>상품 ID: {params.id}</p>
+=======
+      <p>상품 내부 ID: {params.id}</p>
+>>>>>>> main
       {/* 여기에 실제 페이지 내용을 만드시면 됩니다. */}
     </div>
   );

@@ -1,15 +1,15 @@
-
 from typing import Literal
 from langgraph.graph import StateGraph, MessagesState, START, END
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.prebuilt import ToolNode
-from langchain_openai import ChatOpenAI
-from langchain_core.messages import HumanMessage, SystemMessage
+
+from langchain_core.messages import HumanMessage, SystemMessage,AIMessage
 from langchain_core.tools import tool
+from langchain_google_genai import ChatGoogleGenerativeAI
 from module.qa_service import HybridRAGChain
-import os
-from core.config import load
-load.envs()
+from core.prompt import agent_prompt
+from typing import List, Dict, Any, Optional
+from langchain_core.runnables import RunnableConfig
 
 
 class AgentState(MessagesState):
@@ -37,27 +37,56 @@ def product_qa_tool(query: str, product_id:str,session_id:str) -> str:
     answer = rag.invoke(query,session_id)
     return answer["answer"]
 
+@tool
+def recommend_tool(product_id:str,count:int=3, *, config: RunnableConfig) -> str:
+    """
+    상푼 추천을 해줍니다. 만약 유저가 'count'개 만큼 추천해달라고 하면 count 수만큼 추천을 해주고 작성을 하지않으면 기본값을 사용합니다.
+    """
+    db_session = config.get("configurable", {}).get("db_session")
+    print("연결됨")
+    data = [{"id":"abc","name":"거대한풍선"},{"id":"cde","name":"거대한선풍기"},{"id":"efg","name":"작은 선풍기"}]
+    return data[:count]
+
+
+
+
 
 class  ChatBotAgent:
-    def __init__(self,product_id:str,session_id:str):
+    def __init__(self,product_id:str,session_id:str,initial_messages: Optional[List[Dict[str, Any]]] = None):
         self.product_id = product_id
-        self.llm = ChatOpenAI(model = "gpt-4o",temperature=0)
-        self.tools = [product_qa_tool]
+        self.llm = ChatGoogleGenerativeAI(model = "gemini-2.5-flash",temperature=0)
+        self.tools = [product_qa_tool,recommend_tool]
         self.checkpoint = MemorySaver()
         self.graph =self._build_graph()
-        self.session_id = session_id
+        self.session_id = session_id    
+        
+        if initial_messages:
+            self._put_memory(initial_messages)
+    
+    def _put_memory(self,db_msg: List[Dict[str, Any]]):
+        config = {"configurable":{"thread_id":self.session_id}}
+        memory_state = []
+        for msg in db_msg:
+            if msg["role"]=="user":
+                memory_state.append(HumanMessage(content=msg["content"]))
+            elif msg["role"]=="assistant":
+                memory_state.append(AIMessage(content=msg["content"]))
+            final_state_to_put = AgentState(
+            messages=memory_state, 
+            product_id=self.product_id, 
+            session_id=self.session_id
+        )
+        self.graph.update_state(config, final_state_to_put)
+        print("메모리 저장완료했습니다.")
     
     def _build_graph(self) :
         work  = StateGraph(AgentState)
         llm_with_tools = self.llm.bind_tools(self.tools)
         def agent_node(state):
-            system_msg = SystemMessage("""
-            당신은 제품에 대한 상담을 진행하는 전문 챗봇입니다.
-            사용자가 '이거', '저거', '스펙' 등 구체적인 제품명 없이 질문하더라도, 현재 대화의 주제인 '{product_id}'에 대한 질문으로 가정하고 답변해야 합니다.
-
-            - 일상 대화는 직접 답변합니다.
-            - 제품과 관련된 질문(기능, 스펙, 사용법 등)은 반드시 'product_qa_tool'을 사용해서 답변해야 합니다.
-            """)
+            system_msg = SystemMessage(agent_prompt)
+#             system_msg = SystemMessage(
+#                 content=system_msg.format(product_id=state["product_id"])
+# )
             response = llm_with_tools.with_config({"run_name":"final_answer"}).invoke([system_msg]+state["messages"])
             return {"messages":[response]}
 
@@ -83,8 +112,8 @@ class  ChatBotAgent:
         work.add_edge("tools","agent")
         return work.compile(checkpointer=self.checkpoint)
 
-    def chat(self,query:str):
-        config = {"configurable":{"thread_id":self.session_id}}
+    def chat(self,query:str,db_session: Optional[Any] = None):
+        config = {"configurable":{"thread_id":self.session_id,"db":db_session}}
         initial_state = {
             "messages":[HumanMessage(content=query)],
             "product_id":self.product_id,
@@ -93,8 +122,8 @@ class  ChatBotAgent:
         result = self.graph.invoke(initial_state,config=config)
         final_message = result["messages"][-1]
         return {"answer":final_message.content}
-    async def stream_chat(self,query:str):
-        config = {"configurable":{"thread_id":self.session_id}}
+    async def stream_chat(self,query:str,db_session: Optional[Any] = None):
+        config = {"configurable":{"thread_id":self.session_id,"db":db_session}}
         initial_state = {
             "messages":[HumanMessage(content=query)],
             "product_id":self.product_id,

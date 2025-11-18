@@ -207,6 +207,21 @@
   background-color: #5a67d8;
 }
 
+<<<<<<< HEAD
+=======
+.arButton:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.arSupportMessage {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #d32f2f; /* Red color for error/warning */
+  font-weight: 500;
+}
+
+>>>>>>> main
 .arSceneWrapper {
   display: none;
   width: 100%;
