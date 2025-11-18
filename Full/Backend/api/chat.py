@@ -127,17 +127,7 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[st
 
         while True:
             data = await websocket.receive_text()
-            async with get_session_text() as session:
-                
-                await session.execute(text(add_message),
-                params={
-                    "email":user_id,
-                    "session_id":session_id,
-                    "role":"user",
-                    "content":data
-                })
-                await session.commit()
-
+            async with get_session_text() as session:      
                 start = time.time()
                 answer = agent.chat(data,session)
                 end  = time.time()
@@ -148,15 +138,24 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[st
                     final_answer = answer["answer"][0]["text"]
                 elif isinstance(answer["answer"],str):
                     final_answer = answer["answer"]
-                
-
+              
+                await session.execute(text(add_message),
+                params={
+                    "email":user_id,
+                    "session_id":session_id,
+                    "role":"user",
+                    "content":data,
+                    "tool_name":answer["tool_name"]
+                })
+                await session.commit()
                 
                 await session.execute(text(add_message),
                 params={
                     "email":user_id,
                     "session_id":session_id,
                     "role":"assistant",
-                    "content":final_answer
+                    "content":final_answer,
+                    "tool_name":answer["tool_name"]
                 })
                 result = await session.execute(text("SELECT LAST_INSERT_ID()"))
                 new_message_id = result.scalar_one()
