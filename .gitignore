@@ -23,6 +23,7 @@ __pycache__/
 /Full/Backend/data/page_images
 /Full/Backend/data/upload
 /Full/Backend/uploads/
+/Full/Backend/.venv
 
 # Data
 ex_data/

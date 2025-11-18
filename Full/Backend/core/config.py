@@ -26,16 +26,10 @@ class load:
     @staticmethod
     def envs(env_path:str=None):
         from dotenv import load_dotenv
-<<<<<<< HEAD
-        import os  
-        load_dotenv()
-        os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-=======
         load_dotenv(dotenv_path=env_path)
         os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
         os.environ["GOOGLE_API_KEY"] = os.getenv("GEMINI_API_KEY")
         os.environ["MAIT_PROTOCOL_CODE"] = os.getenv('UUID_PROTOCOL_SESHAT')
->>>>>>> main
         DB_HOST = os.getenv("DB_HOST")
         DB_USER = os.getenv("DB_USER")
         DB_PASSWORD = os.getenv("DB_PW")
