@@ -43,5 +43,5 @@ templates = Jinja2Templates(directory="templates")
 
 app.include_router(chat.router, tags=["chat"])
 app.include_router(login.router, tags=["login"],prefix="/api")
-app.include_router(faq.router, tags=["faq"])
+# app.include_router(faq.router, tags=["faq"])
 

@@ -4,7 +4,7 @@
 // 모바일 최적화 제품 상세 페이지
 // ============================================
 
-import { MessageSquare, FileText, Phone } from 'lucide-react';
+import { MessageSquare, FileText, Phone, View } from 'lucide-react';
 import styles from './product-page.module.css';
 
 export default function ProductDetailPage({ 
@@ -37,6 +37,17 @@ export default function ProductDetailPage({
           <div>
             <div className={styles.buttonTitle}>AI 상담하기</div>
             <div className={styles.buttonDesc}>궁금한 점을 물어보세요</div>
+          </div>
+        </a>
+
+        <a 
+          href={`/simulation/${params.id}`}
+          className={`${styles.actionButton} ${styles.primary}`}
+        >
+          <View size={24} />
+          <div>
+            <div className={styles.buttonTitle}>AR로 보기</div>
+            <div className={styles.buttonDesc}>증강현실로 제품 보기</div>
           </div>
         </a>
 

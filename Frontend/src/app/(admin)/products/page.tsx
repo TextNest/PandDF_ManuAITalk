@@ -6,95 +6,100 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Plus, Search, Filter } from 'lucide-react';
 import Link from 'next/link';
 import Button from '@/components/ui/Button/Button';
 import ProductList from '@/components/product/ProductList/ProductList';
-import { Product, ProductCategory } from '@/types/product.types';
+import { Product } from '@/types/product.types';
 import styles from './products-page.module.css';
 
-// ============================================
-// 📄 Mock 데이터 (TODO: 백엔드 연동)
-// ============================================
-const mockProducts: Product[] = [
-  {
-    id: 'product-1',
-    name: '시스템 에어컨 2024',
-    model: 'AC-2024-001',
-    category: '에어컨',
-    manufacturer: 'LG전자',
-    description: '에너지 효율 1등급 인버터 시스템 에어컨',
-    status: 'active',
-    qrCodeUrl: '/chat/product-1',
-    documentIds: ['doc-1', 'doc-2'],
-    imageUrl: '/images/products/ac-2024.jpg',
-    viewCount: 1234,
-    questionCount: 89,
-    createdAt: new Date('2025-01-15'),
-    updatedAt: new Date('2025-01-20'),
-    createdBy: 'admin@example.com',
-  },
-  {
-    id: 'product-2',
-    name: '양문형 냉장고 프리미엄',
-    model: 'RF-2024-002',
-    category: '냉장고',
-    manufacturer: '삼성전자',
-    description: '대용량 양문형 냉장고 (800L)',
-    status: 'active',
-    qrCodeUrl: '/chat/product-2',
-    documentIds: ['doc-3'],
-    viewCount: 856,
-    questionCount: 67,
-    createdAt: new Date('2025-01-10'),
-    updatedAt: new Date('2025-01-18'),
-    createdBy: 'admin@example.com',
-  },
-  {
-    id: 'product-3',
-    name: '드럼세탁기 AI',
-    model: 'WM-2024-003',
-    category: '세탁기',
-    manufacturer: 'LG전자',
-    description: 'AI 자동세탁 드럼세탁기 (21kg)',
-    status: 'inactive',
-    qrCodeUrl: '/chat/product-3',
-    documentIds: ['doc-4', 'doc-5'],
-    viewCount: 645,
-    questionCount: 45,
-    createdAt: new Date('2025-01-05'),
-    updatedAt: new Date('2025-01-15'),
-    createdBy: 'admin@example.com',
-  },
-];
-
-const CATEGORIES: ProductCategory[] = [
-  '에어컨',
-  '냉장고',
-  '세탁기',
-  'TV',
-  '청소기',
-  '공기청정기',
-  '기타',
-];
+// 카테고리 타입을 문자열 기반으로 변경
+interface Category {
+  id: string;
+  name: string;
+}
 
 export default function ProductsPage() {
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<ProductCategory | 'all'>('all');
-  const [products] = useState<Product[]>(mockProducts);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string | 'all'>('all'); // 타입을 string으로 변경
+  const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const fetchOptions = {
+        headers: {
+          'ngrok-skip-browser-warning': 'true',
+        },
+      };
+
+      try {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+        
+        // 제품 목록만 불러오기
+        console.log("Fetching products from:", `${apiUrl}/api/products/`);
+        const productsResponse = await fetch(`${apiUrl}/api/products/`, fetchOptions);
+        if (!productsResponse.ok) {
+          const errorText = await productsResponse.text();
+          console.error("Products fetch failed:", errorText);
+          throw new Error('제품 목록을 불러오는데 실패했습니다.');
+        }
+        const productsData: Product[] = await productsResponse.json();
+        setProducts(productsData);
+
+        // 제품 목록에서 카테고리 목록 동적 생성
+        const uniqueCategoryNames = [...new Set(productsData.map(p => p.category).filter(Boolean))]; // null이나 undefined 제외
+        const categoryObjects: Category[] = uniqueCategoryNames.map(name => ({ id: name, name: name }));
+        setCategories(categoryObjects);
+
+      } catch (err: any) {
+        console.error("Error in fetchProducts:", err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   // 필터링
+  const handleProductDelete = (deletedProductId: number) => {
+    setProducts(prevProducts =>
+      prevProducts.filter(p => p.internal_id !== deletedProductId)
+    );
+  };
+
+  const handleProductUpdate = (updatedProduct: Product) => {
+    setProducts(prevProducts =>
+      prevProducts.map(p =>
+        p.internal_id === updatedProduct.internal_id ? updatedProduct : p
+      )
+    );
+  };
+
   const filteredProducts = products.filter(product => {
     const matchesSearch = 
-      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.model.toLowerCase().includes(searchQuery.toLowerCase());
+      product.product_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.product_id.toLowerCase().includes(searchQuery.toLowerCase());
     
+    // 카테고리 필터링 로직을 문자열 비교로 변경
     const matchesCategory = 
-      selectedCategory === 'all' || product.category === selectedCategory;
+      selectedCategoryId === 'all' || product.category === selectedCategoryId;
 
     return matchesSearch && matchesCategory;
   });
+
+  if (loading) {
+    return <div className={styles.page}>로딩 중...</div>;
+  }
+
+  if (error) {
+    return <div className={styles.page}>오류: {error}</div>;
+  }
 
   return (
     <div className={styles.page}>
@@ -128,14 +133,14 @@ export default function ProductsPage() {
         <div className={styles.categoryFilter}>
           <Filter size={18} />
           <select
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value as ProductCategory | 'all')}
+            value={selectedCategoryId}
+            onChange={(e) => setSelectedCategoryId(e.target.value)} // parseInt 제거
             className={styles.categorySelect}
           >
             <option value="all">전체 카테고리</option>
-            {CATEGORIES.map(category => (
-              <option key={category} value={category}>
-                {category}
+            {categories.map(category => (
+              <option key={category.id} value={category.id}>
+                {category.name}
               </option>
             ))}
           </select>
@@ -150,26 +155,14 @@ export default function ProductsPage() {
         </div>
         <div className={styles.statCard}>
           <span className={styles.statValue}>
-            {products.filter(p => p.status === 'active').length}
+            {products.filter(p => p.is_active).length}
           </span>
           <span className={styles.statLabel}>활성 제품</span>
-        </div>
-        <div className={styles.statCard}>
-          <span className={styles.statValue}>
-            {products.reduce((sum, p) => sum + p.viewCount, 0)}
-          </span>
-          <span className={styles.statLabel}>총 조회수</span>
-        </div>
-        <div className={styles.statCard}>
-          <span className={styles.statValue}>
-            {products.reduce((sum, p) => sum + p.questionCount, 0)}
-          </span>
-          <span className={styles.statLabel}>총 질문수</span>
         </div>
       </div>
 
       {/* 제품 목록 */}
-      <ProductList products={filteredProducts} />
+      <ProductList products={filteredProducts} onProductUpdate={handleProductUpdate} onProductDelete={handleProductDelete} />
     </div>
   );
 }
