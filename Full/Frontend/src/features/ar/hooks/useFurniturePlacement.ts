@@ -6,12 +6,14 @@ import { FurnitureItem } from '@/lib/ar/types';
 
 type SelectFurnitureAction = (furniture: FurnitureItem | null) => void;
 type SetDebugMessageAction = (message: string | null) => void;
+type SetIsPlacingAction = (isPlacing: boolean) => void;
 
 export function useFurniturePlacement(
     sceneRef: React.RefObject<Scene | null>,
     selectFurniture: SelectFurnitureAction,
     isARActive: boolean,
-    setDebugMessage: SetDebugMessageAction
+    setDebugMessage: SetDebugMessageAction,
+    setIsPlacing: SetIsPlacingAction
 ) {
     const previewModelRef = useRef<Group | Mesh | null>(null);
     const placedModelsRef = useRef<(Group | Mesh)[]>([]);
@@ -34,18 +36,6 @@ export function useFurniturePlacement(
         }
     }, [sceneRef]);
 
-<<<<<<< HEAD
-    const createPreviewBox = useCallback((item: { width: number; height: number; depth: number; modelUrl?: string }) => {
-        if (!isARActive || !sceneRef.current) {
-            alert("AR 세션을 먼저 시작해주세요.");
-            return;
-        }
-        clearPreviewBox();
-        setDebugMessage(null); // Reset debug message
-
-        if (item.modelUrl) {
-            let absoluteUrl = item.modelUrl.startsWith('/') ? item.modelUrl : '/' + item.modelUrl;
-=======
   const createPreviewBox = useCallback((item: FurnitureItem) => {
     if (!isARActive) {
       return;
@@ -62,7 +52,6 @@ export function useFurniturePlacement(
 
         if (model3dUrl) {
             let absoluteUrl = model3dUrl.startsWith('/') ? model3dUrl : '/' + model3dUrl;
->>>>>>> main
             setDebugMessage(`모델 로딩 중: ${absoluteUrl}`);
             const loader = new GLTFLoader();
             loader.load(absoluteUrl, (gltf) => {
@@ -81,31 +70,22 @@ export function useFurniturePlacement(
                 
                 const box = new Box3().setFromObject(model);
                 const size = box.getSize(new Vector3());
-<<<<<<< HEAD
-                const scaleX = item.width / size.x;
-                const scaleY = item.height / size.y;
-                const scaleZ = item.depth / size.z;
-=======
                 
                 // Calculate scale based on desired item dimensions in meters
                 const scaleX = itemWidthMeters / size.x;
                 const scaleY = itemHeightMeters / size.y;
                 const scaleZ = itemDepthMeters / size.z;
->>>>>>> main
                 model.scale.set(scaleX, scaleY, scaleZ);
 
                 model.visible = false;
                 previewModelRef.current = model;
                 sceneRef.current?.add(model);
             }, undefined, (error) => {
-                setDebugMessage(`모델 로딩 실패. 상자로 대체합니다. 에러: ${error.message}`)
+                const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+                setDebugMessage(`모델 로딩 실패. 상자로 대체합니다. 에러: ${errorMessage}`)
                 console.error('모델 로딩 오류:', error);
-<<<<<<< HEAD
-                const geometry = new BoxGeometry(item.width, item.height, item.depth);
-=======
                 // Fallback to a box if model loading fails, using the calculated dimensions
                 const geometry = new BoxGeometry(itemWidthMeters, itemHeightMeters, itemDepthMeters);
->>>>>>> main
                 const material = new MeshStandardMaterial({ color: COLORS.FURNITURE_PREVIEW, transparent: true, opacity: 0.5 });
                 const box = new Mesh(geometry, material);
                 box.visible = false;
@@ -114,24 +94,15 @@ export function useFurniturePlacement(
             });
         } else {
             setDebugMessage('모델 URL이 없습니다. 상자로 대체합니다.');
-<<<<<<< HEAD
-            const { width, height, depth } = item;
-            const geometry = new BoxGeometry(width || 0.5, height || 0.5, depth || 0.5);
-=======
             // Use the calculated dimensions for the fallback box
             const geometry = new BoxGeometry(itemWidthMeters, itemHeightMeters, itemDepthMeters);
->>>>>>> main
             const material = new MeshStandardMaterial({ color: COLORS.FURNITURE_PREVIEW, transparent: true, opacity: 0.5 });
             const box = new Mesh(geometry, material);
             box.visible = false;
             previewModelRef.current = box;
-<<<<<<< HEAD
-            sceneRef.current.add(box);
-=======
             if (sceneRef.current) {
                 sceneRef.current.add(box);
             }
->>>>>>> main
         }
     }, [isARActive, sceneRef, clearPreviewBox, setDebugMessage]);
 
@@ -157,10 +128,10 @@ export function useFurniturePlacement(
         placedModelsRef.current.push(placedModel);
 
         clearPreviewBox();
-        selectFurniture(null);
         setDebugMessage('가구가 배치되었습니다.');
+        setIsPlacing(false); // Exit placement mode
 
-    }, [sceneRef, clearPreviewBox, selectFurniture, setDebugMessage]);
+    }, [sceneRef, clearPreviewBox, selectFurniture, setDebugMessage, setIsPlacing]);
 
     const clearPlacedBoxes = useCallback(() => {
         if (!sceneRef.current) return;

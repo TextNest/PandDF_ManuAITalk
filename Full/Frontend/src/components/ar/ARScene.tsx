@@ -2,7 +2,7 @@
 // WebXR을 사용하여 AR 렌더링과 상호작용을 처리하는 핵심 컴포넌트입니다.
 // Three.js를 직접 제어하고, 각종 커스텀 훅을 사용하여 기능별 로직을 통합합니다.
 
-import { useEffect, useRef, useState, useCallback, forwardRef, useImperativeHandle } from 'react';
+import { useEffect, useRef, useCallback, forwardRef, useImperativeHandle } from 'react';
 import { Scene, PerspectiveCamera, WebGLRenderer, HemisphereLight, Mesh, RingGeometry, MeshBasicMaterial, Vector3 } from 'three';
 import { useObjectRotation } from '@/features/ar/hooks/useObjectRotation';
 import { useMeasurement } from '@/features/ar/hooks/useMeasurement';
@@ -10,30 +10,19 @@ import { useFurniturePlacement } from '@/features/ar/hooks/useFurniturePlacement
 import styles from './ARScene.module.css';
 import { COLORS } from '@/lib/ar/constants';
 import { useARStore } from '@/store/useARStore';
-<<<<<<< HEAD
-=======
 import { Product } from '@/types/product.types';
 import { FurnitureItem } from '@/lib/ar/types'; // Import FurnitureItem
->>>>>>> main
 
 interface ARSceneProps {
   uiOverlayRef: React.RefObject<HTMLDivElement | null>;
   lastUITouchTimeRef: React.RefObject<number>;
-<<<<<<< HEAD
-=======
-  product: Product | null;
->>>>>>> main
 }
 
 export interface ARSceneHandle {
   startAR: () => void;
 }
 
-<<<<<<< HEAD
 const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUITouchTimeRef }, ref) => {
-=======
-const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUITouchTimeRef, product }, ref) => {
->>>>>>> main
   // --- Zustand Store ---
   const {
     isARActive,
@@ -44,24 +33,16 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
     endARCounter,
     isPreviewing,
     selectFurniture,
-<<<<<<< HEAD
-    endAR,
-=======
->>>>>>> main
     setDebugMessage,
     isScanning,
     setIsScanning,
+    isPlacing, // Get isPlacing state
+    setIsPlacing, // Get setIsPlacing action
   } = useARStore();
 
   // --- Refs & State ---
   const containerRef = useRef<HTMLDivElement | null>(null);
-<<<<<<< HEAD
-
   const isPreviewingRef = useRef(false);
-
-=======
-  const isPreviewingRef = useRef(false);
->>>>>>> main
   const rendererRef = useRef<WebGLRenderer | null>(null);
   const sceneRef = useRef<Scene | null>(null);
   const hitTestSourceRef = useRef<XRHitTestSource | null>(null);
@@ -69,52 +50,21 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
 
   // --- Custom Hooks ---
   const measurement = useMeasurement(sceneRef);
-  const furniture = useFurniturePlacement(sceneRef, selectFurniture, isARActive, setDebugMessage);
+  // Pass setIsPlacing to the hook
+  const furniture = useFurniturePlacement(sceneRef, selectFurniture, isARActive, setDebugMessage, setIsPlacing);
   const { didDragRef } = useObjectRotation(furniture.previewBoxRef, isPreviewing);
 
   useEffect(() => {
     isPreviewingRef.current = isPreviewing;
   }, [isPreviewing]);
 
-<<<<<<< HEAD
-  useEffect(() => {
-    if (selectedFurniture) {
-=======
-  // Automatically select the product when the product prop changes
-  useEffect(() => {
-    if (product) {
-      const mappedFurniture: FurnitureItem = {
-        id: product.product_id,
-        name: product.product_name,
-        // For compatibility with ARUI
-        width: (product.width_mm || 1000) / 1000,
-        depth: (product.depth_mm || 1000) / 1000,
-        height: (product.height_mm || 1000) / 1000,
-        modelUrl: product.model3dUrl,
-        // For useFurniturePlacement hook
-        model3dUrl: product.model3dUrl,
-        width_mm: product.width_mm,
-        height_mm: product.height_mm,
-        depth_mm: product.depth_mm,
-      };
-      selectFurniture(mappedFurniture);
-    } else {
-      selectFurniture(null); // Clear selection if product is null
-    }
-  }, [product, selectFurniture]);
-
   useEffect(() => {
     if (isARActive && selectedFurniture) {
->>>>>>> main
       furniture.createPreviewBox(selectedFurniture);
     } else {
       furniture.clearPreviewBox();
     }
-<<<<<<< HEAD
-  }, [selectedFurniture, furniture.createPreviewBox, furniture.clearPreviewBox]);
-=======
   }, [isARActive, selectedFurniture, furniture.createPreviewBox, furniture.clearPreviewBox]);
->>>>>>> main
 
   useEffect(() => {
     if (clearFurnitureCounter > 0) {
@@ -142,7 +92,7 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
     }
 
     setARActive(false);
-    useARStore.setState({ selectedFurniture: null, isPreviewing: false, endARCounter: 0 });
+    useARStore.setState({ selectedFurniture: null, isPreviewing: false, isPlacing: false, endARCounter: 0 });
     setIsScanning(false);
     measurement.clearPoints();
     furniture.clearPlacedBoxes();
@@ -166,17 +116,6 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
   }, [endARCounter, handleEndAR]);
 
   const startAR = useCallback(async () => {
-    if (!('xr' in navigator)) {
-      alert('WebXR을 지원하지 않는 브라우저입니다.');
-      return;
-    }
-
-    const isImmersiveArSupported = await (navigator as any).xr.isSessionSupported('immersive-ar');
-    if (!isImmersiveArSupported) {
-      alert('이 기기 또는 브라우저에서는 AR 기능을 지원하지 않습니다.');
-      return;
-    }
-
     try {
       const session = await (navigator as any).xr.requestSession('immersive-ar', {
         optionalFeatures: ['hit-test', 'local-floor', 'dom-overlay'],
@@ -221,10 +160,11 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
 
       session.onselect = () => {
         const now = Date.now();
-        if (now - lastUITouchTimeRef.current < 100) return;
+        if (lastUITouchTimeRef.current && now - lastUITouchTimeRef.current < 100) return;
         if (didDragRef.current) return;
 
-        if (isPreviewingRef.current) {
+        // Use isPlacing to determine the mode
+        if (useARStore.getState().isPlacing) {
           furniture.placeFurniture();
           return;
         }
@@ -235,7 +175,7 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
         }
       };
 
-      const onXRFrame = (time: number, frame: XRFrame) => {
+      const onXRFrame = (_time: number, frame: XRFrame) => {
         if (!frame) return;
         const pose = frame.getViewerPose(xrRefSpaceRef.current!);
         if (!pose) return;

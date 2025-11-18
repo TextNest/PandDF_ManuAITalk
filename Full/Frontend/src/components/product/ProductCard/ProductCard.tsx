@@ -7,7 +7,6 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation'; // useRouter 임포트
 import {
   Package,
@@ -16,8 +15,6 @@ import {
   Trash2,
   Power,
   QrCode,
-  Eye,
-  MessageSquare,
   Hourglass, // 분석 상태 아이콘 추가
   CheckCircle, // 분석 완료 아이콘 추가
   XCircle // 분석 실패 아이콘 추가
@@ -223,7 +220,7 @@ export default function ProductCard({ product, onProductUpdate, onProductDelete 
           title="QR 코드"
         >
           <QRCodeDisplay
-            productId={product.internal_id}
+            productId={product.internal_id.toString()}
             productName={product.product_name}
             size={256}
           />

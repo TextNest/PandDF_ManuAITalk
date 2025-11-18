@@ -12,6 +12,8 @@ type ARState = {
   selectFurniture: (furniture: FurnitureItem | null) => void;
   isPreviewing: boolean;
   setIsPreviewing: (isPreviewing: boolean) => void;
+  isPlacing: boolean; // New state for placement mode
+  setIsPlacing: (isPlacing: boolean) => void; // New action
   clearFurnitureCounter: number;
   triggerClearFurniture: () => void;
   clearMeasurementCounter: number;
@@ -23,7 +25,7 @@ type ARState = {
   setDebugMessage: (message: string | null) => void;
 };
 
-export const useARStore = create<ARState>((set, get) => ({
+export const useARStore = create<ARState>((set, _get) => ({
   isARActive: false,
   setARActive: (isActive) => set({ isARActive: isActive }),
   isScanning: false,
@@ -36,6 +38,8 @@ export const useARStore = create<ARState>((set, get) => ({
   },
   isPreviewing: false,
   setIsPreviewing: (isPreviewing) => set({ isPreviewing }),
+  isPlacing: false, // Initial value
+  setIsPlacing: (isPlacing) => set({ isPlacing }), // Setter
   clearFurnitureCounter: 0,
   triggerClearFurniture: () => set((state) => ({ clearFurnitureCounter: state.clearFurnitureCounter + 1 })),
   clearMeasurementCounter: 0,
@@ -45,6 +49,7 @@ export const useARStore = create<ARState>((set, get) => ({
   reset: () => set({
     isARActive: false,
     isPreviewing: false,
+    isPlacing: false,
     selectedFurniture: null,
     distance: null,
     clearFurnitureCounter: 0,

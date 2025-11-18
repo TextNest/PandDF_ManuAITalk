@@ -11,8 +11,7 @@ import { Save, X, Upload, Sparkles } from 'lucide-react';
 import { toast } from '@/store/useToastStore';
 import Button from '@/components/ui/Button/Button';
 import Input from '@/components/ui/Input/Input';
-import { Product } from '@/types/product.types';
-import { ProductUpdate } from '@/schemas/product';
+import { Product, ProductUpdate } from '@/types/product.types';
 import styles from '@/styles/Form.module.css';
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -174,7 +173,7 @@ export default function ProductEditForm({ initialData, onSubmit, onCancel }: Pro
       {/* --- PDF Section --- */}
       <div className={styles.section}>
         <div className={styles.field}>
-          <label className={styles.label}>제품 설명서 (PDF) <span className={styles.required}>*</span></label>
+          <label className={styles.label}>제품 설명서 (PDF)<span className={styles.required}>*</span></label>
           <div className={styles.fileInputContainer}>
             <input type="file" accept=".pdf" onChange={handlePdfFileChange} className={styles.hiddenInput} ref={pdfInputRef} disabled={isUploading} />
             <Button type="button" variant="outline" onClick={() => pdfInputRef.current?.click()} disabled={isUploading}>

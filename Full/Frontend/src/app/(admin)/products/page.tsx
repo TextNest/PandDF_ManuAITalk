@@ -6,7 +6,7 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Plus, Search, Filter } from 'lucide-react';
 import Link from 'next/link';
 import Button from '@/components/ui/Button/Button';
@@ -23,24 +23,27 @@ interface Category {
 export default function ProductsPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | 'all'>('all'); // 타입을 string으로 변경
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<Product[] | null>(null); // Change initial state to null
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    const abortController = new AbortController();
+    const signal = abortController.signal;
+
     const fetchProducts = async () => {
-      const fetchOptions = {
+      const fetchOptions: RequestInit = {
         headers: {
           'ngrok-skip-browser-warning': 'true',
         },
+        signal: signal, // Pass the signal to the fetch request
       };
 
       try {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL;
         
         // 제품 목록만 불러오기
-        console.log("Fetching products from:", `${apiUrl}/api/products/`);
         const productsResponse = await fetch(`${apiUrl}/api/products/`, fetchOptions);
         if (!productsResponse.ok) {
           const errorText = await productsResponse.text();
@@ -52,54 +55,55 @@ export default function ProductsPage() {
 
         // 제품 목록에서 카테고리 목록 동적 생성
         const uniqueCategoryNames = [...new Set(productsData.map(p => p.category).filter(Boolean))]; // null이나 undefined 제외
-        const categoryObjects: Category[] = uniqueCategoryNames.map(name => ({ id: name, name: name }));
+        const categoryObjects: Category[] = uniqueCategoryNames.map(name => ({ id: name as string, name: name as string }));
         setCategories(categoryObjects);
 
       } catch (err: any) {
-        console.error("Error in fetchProducts:", err);
-        setError(err.message);
+        if (err.name === 'AbortError') {
+          // console.log('Fetch aborted'); // Removed console.log
+        } else {
+          console.error("Error in fetchProducts:", err);
+          setError(err.message);
+        }
       } finally {
         setLoading(false);
       }
     };
 
     fetchProducts();
+
+    return () => {
+      abortController.abort(); // Abort the fetch request on component unmount
+    };
   }, []);
 
   // 필터링
   const handleProductDelete = (deletedProductId: number) => {
     setProducts(prevProducts =>
-      prevProducts.filter(p => p.internal_id !== deletedProductId)
+      (prevProducts || []).filter(p => p.internal_id !== deletedProductId)
     );
   };
 
   const handleProductUpdate = (updatedProduct: Product) => {
     setProducts(prevProducts =>
-      prevProducts.map(p =>
+      (prevProducts || []).map(p =>
         p.internal_id === updatedProduct.internal_id ? updatedProduct : p
       )
     );
   };
 
-  const filteredProducts = products.filter(product => {
-    const matchesSearch = 
-      product.product_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.product_id.toLowerCase().includes(searchQuery.toLowerCase());
-    
-    // 카테고리 필터링 로직을 문자열 비교로 변경
-    const matchesCategory = 
-      selectedCategoryId === 'all' || product.category === selectedCategoryId;
+  const filteredProducts = useMemo(() => {
+    return (products || []).filter(product => { // Handle products being null
+            const matchesSearch = 
+              product.product_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+              (product.product_id && product.product_id.toLowerCase().includes(searchQuery.toLowerCase()));    
+      // 카테고리 필터링 로직을 문자열 비교로 변경
+      const matchesCategory = 
+        selectedCategoryId === 'all' || product.category === selectedCategoryId;
 
-    return matchesSearch && matchesCategory;
-  });
-
-  if (loading) {
-    return <div className={styles.page}>로딩 중...</div>;
-  }
-
-  if (error) {
-    return <div className={styles.page}>오류: {error}</div>;
-  }
+      return matchesSearch && matchesCategory;
+    });
+  }, [products, searchQuery, selectedCategoryId]);
 
   return (
     <div className={styles.page}>
@@ -147,22 +151,30 @@ export default function ProductsPage() {
         </div>
       </div>
 
-      {/* 통계 */}
-      <div className={styles.stats}>
-        <div className={styles.statCard}>
-          <span className={styles.statValue}>{products.length}</span>
-          <span className={styles.statLabel}>전체 제품</span>
-        </div>
-        <div className={styles.statCard}>
-          <span className={styles.statValue}>
-            {products.filter(p => p.is_active).length}
-          </span>
-          <span className={styles.statLabel}>활성 제품</span>
-        </div>
-      </div>
+      {loading || products === null ? ( // Adjust loading condition
+        <div className={styles.loading}>로딩 중...</div>
+      ) : error ? (
+        <div className={styles.error}>오류: {error}</div>
+      ) : (
+        <>
+          {/* 통계 */}
+          <div className={styles.stats}>
+            <div className={styles.statCard}>
+              <span className={styles.statValue}>{products.length}</span>
+              <span className={styles.statLabel}>전체 제품</span>
+            </div>
+            <div className={styles.statCard}>
+              <span className={styles.statValue}>
+                {products.filter(p => p.is_active).length}
+              </span>
+              <span className={styles.statLabel}>활성 제품</span>
+            </div>
+          </div>
 
-      {/* 제품 목록 */}
-      <ProductList products={filteredProducts} onProductUpdate={handleProductUpdate} onProductDelete={handleProductDelete} />
+          {/* 제품 목록 */}
+          <ProductList products={filteredProducts} onProductUpdate={handleProductUpdate} onProductDelete={handleProductDelete} />
+        </>
+      )}
     </div>
   );
 }

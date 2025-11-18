@@ -42,45 +42,46 @@ export default function ProductTable({ products }: ProductTableProps) {
         </thead>
         <tbody>
           {products.map((product) => (
-            <tr key={product.id}>
+            <tr key={product.internal_id}>
               <td className={styles.nameCell}>
-                <div className={styles.productName}>{product.name}</div>
+                <div className={styles.productName}>{product.product_name}</div>
               </td>
               <td>
-                <span className={styles.model}>{product.model}</span>
+                <span className={styles.model}>{product.product_id}</span>
               </td>
               <td>{product.category}</td>
               <td>
-                {product.documentName ? (
+                {product.pdf_path ? (
                   <div className={styles.document}>
                     <FileText size={16} />
-                    <span>{product.documentName}</span>
+                    <span>PDF 문서</span> {/* Display a generic name for the document */}
                   </div>
                 ) : (
                   <span className={styles.noDocument}>-</span>
                 )}
               </td>
               <td>
-                <span className={`${styles.status} ${styles[product.status]}`}>
-                  {product.status === 'active' ? '활성' : '비활성'}
+                <span className={`${styles.status} ${product.is_active ? styles.active : styles.inactive}`}>
+                  {product.is_active ? '활성' : '비활성'}
                 </span>
               </td>
               <td className={styles.dateCell}>
-                {formatRelativeTime(product.updatedAt)}
+                {formatRelativeTime(new Date(product.updated_at))}
               </td>
               <td>
                 <div className={styles.actions}>
-                  {product.qrCodeUrl && (
+                  {/* QR 코드 버튼은 product.product_id가 있을 때만 표시 */}
+                  {product.product_id && (
                     <button
                       className={styles.actionButton}
-                      onClick={() => handleDownloadQR(product.model)}
+                      onClick={() => handleDownloadQR(product.product_id as string)}
                       title="QR 코드"
                     >
                       <QrCode size={18} />
                     </button>
                   )}
                   <Link
-                    href={`/products/${product.id}`}
+                    href={`/products/edit/${product.internal_id}`}
                     className={styles.actionButton}
                     title="수정"
                   >

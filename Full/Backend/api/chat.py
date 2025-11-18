@@ -174,7 +174,9 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[st
                 params={"session_id":session_id,"user_id":user_id})
                 code_row = results.mappings().all()
                 message_count = len(code_row)
-                last_message = code_row[-1]['content']
+                last_message = ""
+                if code_row:
+                    last_message = code_row[-1]['content']
 
                 find_sessions = await session.execute(text(find_session),params={"email":user_id,"session_id":session_id})
                 find_sessions = find_sessions.mappings().one_or_none()
@@ -190,7 +192,9 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[st
                 params={"session_id":session_id})
                 code_row = results.mappings().all()
                 message_count = len(code_row)
-                last_message = code_row[-1]['content']
+                last_message = ""
+                if code_row:
+                    last_message = code_row[-1]['content']
                 await session.execute(text(add_session),
                 params={
                     "email":user_id,

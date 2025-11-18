@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/features/auth/hooks/useAuth';
 // 1. 아이콘 추가 (History, Building 등)
-import { Sparkles, QrCode, Shield, Settings, History, Building } from 'lucide-react'; 
+import { Sparkles, QrCode, Shield, Settings, History, Building, Box } from 'lucide-react'; 
 import { useState, useEffect } from 'react';
 import SearchBar from '@/components/home/SearchBar/SearchBar';
 import RecentSearches from '@/components/home/RecentSearches/RecentSearches';
@@ -70,9 +70,9 @@ export default function HomePage() {
     window.location.href = AUTH_URL;
   };
 
-  const handleQRScan = () => {
-    // QR 스캔 페이지로 이동 (예시)
-    router.push('/scan');
+  const handleStartAR = () => {
+    // AR 시뮬레이션 페이지로 이동 (ID 없이)
+    router.push('/simulation');
   };
 
   const handleAdminLogin = () => {
@@ -170,11 +170,11 @@ export default function HomePage() {
           {/* QR 스캔 버튼 */}
           <div className={styles.quickActions}>
             <button
-              className={styles.qrButton}
-              onClick={handleQRScan}
+              className={styles.qrButton} // Keep the style for now, can rename later if needed
+              onClick={handleStartAR}
             >
-              <QrCode size={20} />
-              QR 코드 스캔
+              <Box size={20} />
+              AR 시작
             </button>
 
             {/* 🛑 3. 위에서 만든 함수를 호출해 버튼 표시 */}
