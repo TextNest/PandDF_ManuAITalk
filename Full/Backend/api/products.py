@@ -1,5 +1,5 @@
 # Full/Backend/api/products.py
-from fastapi import APIRouter, UploadFile, File, HTTPException
+from fastapi import APIRouter, UploadFile, File, HTTPException, BackgroundTasks
 from fastapi.responses import JSONResponse
 import os
 import shutil
@@ -123,6 +123,7 @@ from typing import List
 from core.db_config import get_session
 from models.product import Product, AnalysisStatus
 from schemas.product import ProductCreate, ProductUpdate, Product as ProductSchema
+from module.document_pr import trigger_pdf_processing
 
 @router.get("/", response_model=List[ProductSchema])
 async def get_completed_products(session: AsyncSession = Depends(get_session)):
@@ -144,10 +145,11 @@ async def get_completed_products(session: AsyncSession = Depends(get_session)):
 @router.post("/", response_model=ProductSchema)
 async def create_product(
     product_data: ProductCreate,
-    session: AsyncSession = Depends(get_session)
+    session: AsyncSession = Depends(get_session),
+    background_tasks: BackgroundTasks = BackgroundTasks()
 ):
     """
-    새로운 제품 정보를 데이터베이스에 저장합니다.
+    새로운 제품 정보를 데이터베이스에 저장하고, PDF 분석을 백그라운드 작업으로 트리거합니다.
     """
     # Pydantic 모델을 SQLAlchemy 모델 인스턴스로 변환
     new_product = Product(
@@ -161,11 +163,21 @@ async def create_product(
         image_url=product_data.image_url,
         pdf_path=product_data.pdf_path,
         model3d_url=product_data.model3d_url, # Add model3d_url
+        analysis_status=AnalysisStatus.PENDING # 초기 상태를 PENDING으로 설정
     )
     
     try:
         session.add(new_product)
         await session.commit()
+        await session.refresh(new_product) # DB에서 생성된 ID 등을 다시 로드
+
+        # PDF 분석을 백그라운드 작업으로 추가
+        if new_product.pdf_path:
+            background_tasks.add_task(
+                trigger_pdf_processing, 
+                product_id=new_product.internal_id, 
+                pdf_path=new_product.pdf_path
+            )
         
         # 방금 생성된 객체를 관계와 함께 다시 조회하여 반환
         result = await session.execute(
@@ -203,11 +215,12 @@ async def get_product(
 @router.put("/{internal_id}", response_model=ProductSchema)
 async def update_product(
     internal_id: int,
-    product_data: ProductUpdate, # Change type here
-    session: AsyncSession = Depends(get_session)
+    product_data: ProductUpdate,
+    session: AsyncSession = Depends(get_session),
+    background_tasks: BackgroundTasks = BackgroundTasks()
 ):
     """
-    기존 제품 정보를 업데이트합니다.
+    기존 제품 정보를 업데이트합니다. PDF가 변경되면 분석을 다시 트리거합니다.
     """
     try:
         # 제품 조회
@@ -222,11 +235,26 @@ async def update_product(
         # ProductUpdate 스키마의 필드를 순회하며 업데이트
         # exclude_unset=True를 사용하여 요청에 포함되지 않은 필드는 업데이트하지 않음
         update_data = product_data.dict(exclude_unset=True)
+        
+        pdf_path_updated = 'pdf_path' in update_data and update_data['pdf_path'] != existing_product.pdf_path
+
         for field, value in update_data.items():
             setattr(existing_product, field, value)
         
+        # PDF가 변경되었다면 상태를 PENDING으로 리셋
+        if pdf_path_updated:
+            existing_product.analysis_status = AnalysisStatus.PENDING
+
         await session.commit()
         await session.refresh(existing_product) # 변경사항을 반영한 객체를 다시 로드
+        
+        # PDF가 변경되었을 경우에만 백그라운드 작업 트리거
+        if pdf_path_updated and existing_product.pdf_path:
+            background_tasks.add_task(
+                trigger_pdf_processing,
+                product_id=existing_product.internal_id,
+                pdf_path=existing_product.pdf_path
+            )
         
         return existing_product
 
