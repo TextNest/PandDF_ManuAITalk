@@ -25,7 +25,6 @@ class ProductBase(BaseModel):
     is_active: Optional[bool] = True
     analysis_status: Optional[AnalysisStatus] = AnalysisStatus.PENDING
     image_url: Optional[str] = None
-    pdf_path: Optional[str] = None
     model3d_url: Optional[str] = None
     width_mm: Optional[float] = None
     height_mm: Optional[float] = None
@@ -33,7 +32,7 @@ class ProductBase(BaseModel):
 
 # Schema for creating a new product (used in POST requests)
 class ProductCreate(ProductBase):
-    pass
+    pdf_path: str
 
 # Schema for updating an existing product (used in PUT/PATCH requests)
 class ProductUpdate(BaseModel):
@@ -57,6 +56,7 @@ class Product(ProductBase):
     internal_id: int
     created_at: datetime
     updated_at: datetime
+    pdf_path: Optional[str] = None
 
     class Config:
         from_attributes = True

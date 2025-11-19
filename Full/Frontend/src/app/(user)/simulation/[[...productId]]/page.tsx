@@ -2,14 +2,16 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { Maximize2, Move3d } from 'lucide-react';
+import { Maximize2, Move3d, Camera } from 'lucide-react';
 import ARUI from '@/components/ar/ARUI';
 import ARScene, { ARSceneHandle } from '@/components/ar/ARScene';
+import PlacedItemsCard from '@/components/ar/PlacedItemsCard'; // Import the card
 import styles from './simulation-page.module.css';
 import { useARStore } from '@/store/useARStore';
 import { toast } from '@/store/useToastStore';
 import { Product } from '@/types/product.types';
 import apiClient from '@/lib/api/client';
+import { FurnitureItem } from '@/lib/ar/types';
 
 export default function SimulationPage() {
   const params = useParams();
@@ -38,7 +40,8 @@ export default function SimulationPage() {
     if (productId) {
       const fetchInitialProduct = async () => {
         try {
-          const product = await apiClient.get<Product>(`/products/${productId}`);
+          console.log("Fetching product with ID:", productId); // Add console.log for debugging
+          const product = await apiClient.get<Product>(`/api/products/${productId}`);
           const mappedFurniture: FurnitureItem = {
             id: product.data.product_id ?? '',
             name: product.data.product_name,
@@ -47,11 +50,12 @@ export default function SimulationPage() {
             height_mm: product.data.height_mm ?? undefined,
             depth_mm: product.data.depth_mm ?? undefined,
             // Add non-mm properties for ARUI compatibility
-            width: product.data.width_mm ? product.data.width_mm / 1000 : undefined,
-            height: product.data.height_mm ? product.data.height_mm / 1000 : undefined,
-            depth: product.data.depth_mm ? product.data.depth_mm / 1000 : undefined,
+            width: product.data.width_mm ? product.data.width_mm / 1000 : 0,
+            height: product.data.height_mm ? product.data.height_mm / 1000 : 0,
+            depth: product.data.depth_mm ? product.data.depth_mm / 1000 : 0,
           };
           selectFurniture(mappedFurniture);
+          console.log("Mapped furniture for AR:", mappedFurniture); // Test code
         } catch (err) {
           console.error("Failed to fetch initial product", err);
           selectFurniture(null); // Clear selection on error
@@ -77,8 +81,22 @@ export default function SimulationPage() {
   };
 
   return (
-    <div className={`${styles.page} ${isARActive ? styles.arActive : ''}`} ref={uiOverlayRef}>
-      <ARUI lastUITouchTimeRef={lastUITouchTimeRef} />
+    <div className={`${styles.page} ${isARActive ? styles.arActive : ''}`}>
+      {/* The AR Scene is now a sibling to the UI, not a child of the main content */}
+      <div className={styles.arSceneWrapper}>
+        <ARScene ref={arSceneRef} uiOverlayRef={uiOverlayRef} lastUITouchTimeRef={lastUITouchTimeRef} />
+      </div>
+
+      {/* This is the dedicated root for the DOM overlay */}
+      <div ref={uiOverlayRef} className={styles.arOverlayContainer}>
+        {/* The ARUI component is the only child of the overlay root */}
+        <ARUI lastUITouchTimeRef={lastUITouchTimeRef} />
+        {/* The PlacedItemsCard should also be part of the overlay */}
+        <PlacedItemsCard />
+      </div>
+
+      {/* The placed items card is now completely separate from the overlay */}
+      {/* <PlacedItemsCard /> */}
 
       <header className={styles.header}>
         <div className={styles.headerTitle}>
@@ -92,31 +110,27 @@ export default function SimulationPage() {
 
       <main className={styles.main}>
         <div className={styles.simulationContainer}>
-          <div className={styles.arSceneWrapper}>
-            <ARScene ref={arSceneRef} uiOverlayRef={uiOverlayRef} lastUITouchTimeRef={lastUITouchTimeRef} />
-          </div>
-
+          {/* The ARScene wrapper is moved out, placeholder remains */}
           <div className={styles.placeholder}>
-            <Maximize2 size={64} className={styles.placeholderIcon} />
-            <h2>증강 현실로 제품을 미리 만나보세요!</h2>
-
-            <div className={styles.specs}>
-              <h3>구현 기능</h3>
-              <ul>
-                <li>📱 <strong>모바일 AR 카메라:</strong> WebXR 기반 증강 현실로 실제 공간에 제품을 배치합니다.</li>
-                <li>🧊 <strong>3D 제품 시각화:</strong> Three.js로 렌더링된 3D 모델을 직접 보고 조작할 수 있습니다.</li>
-                <li>🎯 <strong>정확한 제품 배치:</strong> 실제 제품 크기를 반영하여 정확한 위치에 가구를 놓아볼 수 있습니다.</li>
-                <li>📏 <strong>공간 측정 도구:</strong> AR 공간 내에서 두 지점 사이의 거리를 측정하여 공간 활용도를 높입니다.</li>
-                <li>🔗 <strong>제품 정보 연동:</strong> DB에 저장된 제품의 규격과 3D 모델을 실시간으로 불러옵니다.</li>
-              </ul>
-            </div>
-
             <button
               className={styles.arButton}
               onClick={handleStartAR}
             >
-              AR 기능 시작
+              <Camera size={20} />
+              <span>AR로 제품 보기</span>
             </button>
+
+            <div className={styles.specs}>
+              <h3>주요 기능</h3>
+              <ul>
+                <li>📱 <strong>AR 카메라:</strong> 내 방에 가상 가구를 직접 놓아볼 수 있어요.</li>
+                <li>🔄 <strong>3D 가구 조작:</strong> 놓인 가구를 손가락으로 돌려보고 원하는 위치로 옮길 수 있어요.</li>
+                <li>🎯 <strong>실제 크기 배치:</strong> 가구가 실제 크기대로 정확하게 보여서, 미리 놓아본 것처럼 느껴져요.</li>
+                <li>📏 <strong>공간 길이 측정:</strong> AR로 내 방의 길이를 바로 재볼 수 있어요.</li>
+                <li>🔗 <strong>가구 정보 확인:</strong> 가구의 크기나 3D 모델 정보를 바로 불러와서 볼 수 있어요.</li>
+                <li>🖐️ <strong>움직이는 메뉴:</strong> 화면에 뜨는 메뉴를 드래그하거나 확대/축소해서 편하게 쓸 수 있어요.</li>
+              </ul>
+            </div>
           </div>
         </div>
 

@@ -30,7 +30,7 @@ class Product(Base):
     
     # 파일 경로는 문자열로 저장
     image_url = Column(String(1024), comment="제품 이미지 파일 경로")
-    pdf_path = Column(String(1024), comment="제품 설명서 PDF 파일 경로")
+    pdf_path = Column(String(1024), nullable=False, comment="제품 설명서 PDF 파일 경로")
     model3d_url = Column(String(1024), comment="3D 모델 파일 경로")
 
     width_mm = Column(Float, nullable=True, comment="제품 가로 길이 (mm)")

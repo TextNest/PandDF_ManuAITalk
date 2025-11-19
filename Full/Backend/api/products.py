@@ -36,7 +36,7 @@ async def upload_product_pdf(pdf_file: UploadFile = File(...)):
 
     # 5. 프론트엔드에서 사용할 파일 경로 반환
     # 여기서는 서버 내부 경로가 아닌, 나중에 DB에 저장하거나 식별할 수 있는 상대 경로를 반환합니다.
-    relative_path = os.path.join("uploads", "pdfs", safe_filename)
+    relative_path = os.path.join("uploads", "pdfs", safe_filename).replace('\\', '/')
 
     return JSONResponse(content={
         "message": "PDF 파일이 성공적으로 업로드되었습니다.",
@@ -72,7 +72,7 @@ async def upload_product_image(image_file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail=f"이미지 파일 저장에 실패했습니다: {e}")
 
     # 5. 프론트엔드에서 사용할 파일 경로 반환
-    relative_path = os.path.join("uploads", "images", safe_filename)
+    relative_path = os.path.join("uploads", "images", safe_filename).replace('\\', '/')
 
     return JSONResponse(content={
         "message": "이미지 파일이 성공적으로 업로드되었습니다.",
@@ -105,7 +105,7 @@ async def upload_3d_model(model_file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail=f"3D 모델 파일 저장에 실패했습니다: {e}")
 
     # 4. 프론트엔드에서 사용할 파일 경로 반환
-    relative_path = os.path.join("uploads", "models_3d", safe_filename)
+    relative_path = os.path.join("uploads", "models_3d", safe_filename).replace('\\', '/')
 
     return JSONResponse(content={
         "message": "3D 모델 파일이 성공적으로 업로드되었습니다.",
@@ -194,16 +194,16 @@ async def create_product(
 
     return created_product
 
-@router.get("/{internal_id}", response_model=ProductSchema)
+@router.get("/{product_id}", response_model=ProductSchema)
 async def get_product(
-    internal_id: int,
+    product_id: str,
     session: AsyncSession = Depends(get_session)
 ):
     """
     특정 ID의 제품 정보를 조회합니다.
     """
     result = await session.execute(
-        select(Product).where(Product.internal_id == internal_id)
+        select(Product).where(Product.product_id == product_id)
     )
     product = result.scalars().one_or_none()
 

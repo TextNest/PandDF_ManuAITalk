@@ -29,22 +29,26 @@ export function useMeasurement(sceneRef: React.RefObject<Scene | null>) {
 
         pointMeshesRef.current.forEach(p => {
             scene.remove(p);
-            p.geometry.dispose();
-            (p.material as Material).dispose();
         });
         pointMeshesRef.current = [];
         pointsRef.current = [];
 
         if (distanceSpriteRef.current) {
             scene.remove(distanceSpriteRef.current);
-            distanceSpriteRef.current.material.map?.dispose();
+            if (distanceSpriteRef.current.material.map) {
+                distanceSpriteRef.current.material.map.dispose();
+            }
             distanceSpriteRef.current.material.dispose();
             distanceSpriteRef.current = null;
         }
         if (lineRef.current) {
             scene.remove(lineRef.current);
-            lineRef.current.geometry.dispose();
-            (lineRef.current.material as Material).dispose();
+            if (lineRef.current.geometry) {
+                lineRef.current.geometry.dispose();
+            }
+            if (lineRef.current.material) {
+                (lineRef.current.material as Material).dispose();
+            }
             lineRef.current = null;
         }
     }, [sceneRef]);

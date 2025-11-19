@@ -28,21 +28,23 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
     isARActive,
     setARActive,
     selectedFurniture,
+    addPlacedItem,
     clearFurnitureCounter,
     clearMeasurementCounter,
     endARCounter,
     isPreviewing,
     selectFurniture,
     setDebugMessage,
-    isScanning,
-    setIsScanning,
-    isPlacing, // Get isPlacing state
-    setIsPlacing, // Get setIsPlacing action
+    arStatus,
+    setARStatus,
+    isPlacing,
+    setIsPlacing,
+    previewTriggerCounter,
   } = useARStore();
 
   // --- Refs & State ---
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const isPreviewingRef = useRef(false);
+  const sessionRef = useRef<XRSession | null>(null);
   const rendererRef = useRef<WebGLRenderer | null>(null);
   const sceneRef = useRef<Scene | null>(null);
   const hitTestSourceRef = useRef<XRHitTestSource | null>(null);
@@ -50,13 +52,21 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
 
   // --- Custom Hooks ---
   const measurement = useMeasurement(sceneRef);
-  // Pass setIsPlacing to the hook
-  const furniture = useFurniturePlacement(sceneRef, selectFurniture, isARActive, setDebugMessage, setIsPlacing);
-  const { didDragRef } = useObjectRotation(furniture.previewBoxRef, isPreviewing);
+  const furniture = useFurniturePlacement(
+    sceneRef, 
+    selectFurniture, 
+    isARActive, 
+    setDebugMessage, 
+    setIsPlacing,
+    selectedFurniture,
+    addPlacedItem
+  );
+  const { didDragRef } = useObjectRotation(furniture.previewBoxRef, isPreviewing, lastUITouchTimeRef);
 
+  const placeFurnitureRef = useRef(furniture.placeFurniture);
   useEffect(() => {
-    isPreviewingRef.current = isPreviewing;
-  }, [isPreviewing]);
+    placeFurnitureRef.current = furniture.placeFurniture;
+  }, [furniture.placeFurniture]);
 
   useEffect(() => {
     if (isARActive && selectedFurniture) {
@@ -64,7 +74,7 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
     } else {
       furniture.clearPreviewBox();
     }
-  }, [isARActive, selectedFurniture, furniture.createPreviewBox, furniture.clearPreviewBox]);
+  }, [isARActive, selectedFurniture, previewTriggerCounter, furniture.createPreviewBox, furniture.clearPreviewBox]);
 
   useEffect(() => {
     if (clearFurnitureCounter > 0) {
@@ -78,36 +88,66 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
     }
   }, [clearMeasurementCounter, measurement]);
 
-  const handleEndAR = useCallback(() => {
-    setDebugMessage('AR 종료 중...');
-    
-    rendererRef.current?.setAnimationLoop(null);
+  const cleanupAR = useCallback(() => {
+    setDebugMessage('AR 세션 종료됨. 리소스 정리 중...');
 
-    const session = rendererRef.current?.xr.getSession();
-    if (session) {
-        session.end().catch(error => {
-            console.error("세션 종료 오류:", error);
-            setDebugMessage(`세션 종료 오류: ${(error as Error).message}`);
+    if (rendererRef.current) {
+      rendererRef.current.setAnimationLoop(null);
+    }
+    
+    try {
+        measurement.clearPoints();
+        furniture.clearPlacedBoxes();
+    } catch (error) {
+        console.error("씬 정리 중 오류:", error);
+    }
+
+    if (sceneRef.current) {
+        sceneRef.current.traverse((object) => {
+            if (object instanceof Mesh) {
+                if (object.geometry) {
+                    object.geometry.dispose();
+                }
+                if (object.material) {
+                    const materials = Array.isArray(object.material) ? object.material : [object.material];
+                    materials.forEach(material => material.dispose());
+                }
+            }
         });
     }
 
-    setARActive(false);
-    useARStore.setState({ selectedFurniture: null, isPreviewing: false, isPlacing: false, endARCounter: 0 });
-    setIsScanning(false);
-    measurement.clearPoints();
-    furniture.clearPlacedBoxes();
+    useARStore.getState().reset();
     
     if (rendererRef.current) {
-        rendererRef.current.dispose();
-        rendererRef.current = null;
+      rendererRef.current.dispose();
+      rendererRef.current = null;
     }
 
     hitTestSourceRef.current = null;
     xrRefSpaceRef.current = null;
+    sceneRef.current = null;
+    sessionRef.current = null;
     
-    setDebugMessage('AR 세션 종료 요청됨.');
+    if (containerRef.current) {
+      containerRef.current.innerHTML = '';
+    }
 
-  }, [setARActive, measurement, furniture, setDebugMessage]);
+    setDebugMessage('AR이 완전히 종료되었습니다.');
+  }, [measurement, furniture, setDebugMessage]);
+
+  const handleEndAR = useCallback(() => {
+    setDebugMessage('AR 종료 요청 중...');
+    const session = sessionRef.current;
+    
+    if (session?.end) {
+        session.end().catch((error) => {
+            console.error("session.end() promise가 거부되었습니다:", error);
+            cleanupAR();
+        });
+    } else {
+        cleanupAR();
+    }
+  }, [cleanupAR]);
 
   useEffect(() => {
     if (endARCounter > 0) {
@@ -116,14 +156,19 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
   }, [endARCounter, handleEndAR]);
 
   const startAR = useCallback(async () => {
+    useARStore.getState().reset();
+    setDebugMessage(null);
+
     try {
       const session = await (navigator as any).xr.requestSession('immersive-ar', {
         optionalFeatures: ['hit-test', 'local-floor', 'dom-overlay'],
         domOverlay: { root: uiOverlayRef.current! },
       });
 
+      sessionRef.current = session;
+
       setARActive(true);
-      setIsScanning(true);
+      setARStatus('SCANNING');
 
       const scene = new Scene();
       sceneRef.current = scene;
@@ -131,6 +176,9 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
       const renderer = new WebGLRenderer({ alpha: true, antialias: true });
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.xr.enabled = true;
+
+      renderer.xr.addEventListener('sessionend', cleanupAR);
+
       const light = new HemisphereLight(0xffffff, 0xbbbbff, 1);
       scene.add(light);
 
@@ -158,14 +206,18 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
         alert('히트 테스트를 시작할 수 없습니다.');
       }
 
-      session.onselect = () => {
+      const onSelect = () => {
         const now = Date.now();
         if (lastUITouchTimeRef.current && now - lastUITouchTimeRef.current < 100) return;
-        if (didDragRef.current) return;
+        
+        const wasDragging = didDragRef.current;
+        didDragRef.current = false;
+        if (wasDragging) return;
 
-        // Use isPlacing to determine the mode
         if (useARStore.getState().isPlacing) {
-          furniture.placeFurniture();
+          if (reticle.visible) {
+            placeFurnitureRef.current();
+          }
           return;
         }
 
@@ -175,30 +227,47 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
         }
       };
 
+      session.addEventListener('select', onSelect);
+
       const onXRFrame = (_time: number, frame: XRFrame) => {
-        if (!frame) return;
-        const pose = frame.getViewerPose(xrRefSpaceRef.current!);
+        if (!frame || !xrRefSpaceRef.current) return;
+        const pose = frame.getViewerPose(xrRefSpaceRef.current);
         if (!pose) return;
 
-        let reticlePosition: Vector3 | null = null;
+        const { arStatus, setARStatus, setDebugMessage, hasInitialScanCompleted, setHasInitialScanCompleted } = useARStore.getState();
+
         if (hitTestSourceRef.current) {
           const hitTestResults = frame.getHitTestResults(hitTestSourceRef.current);
           if (hitTestResults.length > 0) {
-            setIsScanning(false);
+            if (arStatus === 'SCANNING') {
+              setARStatus('SURFACE_DETECTED');
+              setDebugMessage('표면 감지됨. 가구를 선택하고 배치하세요.');
+              if (!hasInitialScanCompleted) {
+                setHasInitialScanCompleted(true);
+              }
+            }
+
             const hit = hitTestResults[0];
-            const hitPose = hit.getPose(xrRefSpaceRef.current!);
+            const hitPose = hit.getPose(xrRefSpaceRef.current);
             if(hitPose) {
               reticle.visible = true;
               reticle.position.set(hitPose.transform.position.x, hitPose.transform.position.y, hitPose.transform.position.z);
-              reticlePosition = reticle.position;
             }
           } else {
             reticle.visible = false;
+            if (arStatus === 'SURFACE_DETECTED') {
+              setDebugMessage('표면을 놓쳤습니다. 다시 스캔하세요.');
+              setARStatus('SCANNING');
+            }
+          }
+        } else {
+          if (arStatus === 'SCANNING') {
+            setDebugMessage('히트 테스트 소스를 기다리는 중...');
           }
         }
         
         measurement.update(camera);
-        furniture.update(reticlePosition);
+        furniture.update(reticle.position);
 
         renderer.render(scene, camera);
       };
@@ -207,22 +276,11 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
       console.error('AR 세션 시작 중 오류 발생:', err);
       alert('AR 세션을 시작하지 못했습니다: ' + (err as Error).message);
     }
-  }, [setARActive, uiOverlayRef, lastUITouchTimeRef, didDragRef, furniture, measurement]);
+  }, [cleanupAR, setARActive, setARStatus, uiOverlayRef, lastUITouchTimeRef, didDragRef, furniture, measurement]);
 
   useImperativeHandle(ref, () => ({
     startAR,
   }));
-
-  useEffect(() => {
-    return () => {
-      if (rendererRef.current) {
-        try { rendererRef.current.dispose?.() } catch {}
-        rendererRef.current = null;
-      }
-      measurement.clearPoints();
-      furniture.clearPlacedBoxes();
-    };
-  }, [measurement, furniture]);
 
   return (
     <>
@@ -230,11 +288,6 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
         ref={containerRef} 
         className={`${styles.arContainer} ${isARActive ? styles.arContainerActive : styles.arContainerInactive}`}
       />
-      {isARActive && isScanning && (
-        <div className={`${styles.centerContainer} ${styles.scanMessage}`}>
-          <span>표면을 찾기 위해 휴대폰을 움직여주세요...</span>
-        </div>
-      )}
     </>
   );
 });

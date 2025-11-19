@@ -21,12 +21,14 @@ async def create_tables():
 @app.on_event("startup")
 async def on_startup():
     await create_tables()
+    asyncio.create_task(Scheduler_ARP())
 
 # CORS 설정
 origins = [
     "http://localhost:3000",  
     "http://127.0.0.1:3000", 
     "https://subnotational-unmodified-myrl.ngrok-free.dev", # ngrok 테스트용
+    "https://preactive-beryline-despina.ngrok-free.dev", # ngrok 테스트용 
 
 ]
 
@@ -37,7 +39,12 @@ app.add_middleware(
     allow_methods=["*"],       
     allow_headers=["*"],       
 )
-# app.mount("/static/images", StaticFiles(directory="page_images"), name="static_images")
+
+app.mount("/uploads/models_3d", StaticFiles(directory="uploads/models_3d"), name="models_3d")
+app.mount("/uploads/pdfs", StaticFiles(directory="uploads/pdfs"), name="pdfs")
+app.mount("/uploads/images", StaticFiles(directory="uploads/images"), name="images")
+app.mount("/page_images", StaticFiles(directory="data/page_images"), name="page_images")
+
 templates = Jinja2Templates(directory="templates")
 
 # @app.get("/",response_class=HTMLResponse) # 리액트 연결 후 수정 예정 현재는 MVP를 위해서 임시로 작성 이후 router-> api로 풀더 이름 변경
@@ -61,7 +68,3 @@ app.include_router(login.router, tags=["login"],prefix="/api")
 app.include_router(ar_models.router, tags=["ar_models"], prefix="/api")
 app.include_router(products.router, tags=["products"], prefix="/api/products")
 app.include_router(faq.router, tags=["faq"])
-
-@app.on_event("startup")
-async def set_scheduler():
-    asyncio.create_task(Scheduler_ARP())
