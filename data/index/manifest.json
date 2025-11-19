@@ -2,10 +2,10 @@
   "embed_model": "text-embedding-004",
   "output_dimensionality": 768,
   "index_type": "IndexFlatIP_L2norm",
-  "num_vectors": 705,
-  "num_text_chunks": 388,
+  "num_vectors": 706,
+  "num_text_chunks": 389,
   "num_figure_chunks": 317,
-  "created_at": "2025-11-17T13:48:09.787242+09:00",
+  "created_at": "2025-11-18T19:19:45.207702+09:00",
   "chunk_dirs": {
     "text": "data\\chunks\\text",
     "figure": "data\\chunks\\figure"

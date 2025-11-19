@@ -339,19 +339,19 @@
       "page": 7,
       "index": 13,
       "size_px": [
-        790,
+        789,
         353
       ],
       "keep_for_caption": true,
       "category": "photo_or_diagram",
       "tags": [],
       "metrics": {
-        "width": 790.0,
+        "width": 789.0,
         "height": 353.0,
-        "aspect_ratio": 2.237960339943343,
-        "ink_ratio": 0.0356474342883781,
-        "edge_ratio": 0.05245813461469502,
-        "table_line_ratio": 0.017215907053465773,
+        "aspect_ratio": 2.235127478753541,
+        "ink_ratio": 0.03569261481345842,
+        "edge_ratio": 0.05252462147732454,
+        "table_line_ratio": 0.017237726961011356,
         "is_qr_code": false,
         "qr_heuristic": false,
         "is_small_icon": false,
@@ -365,18 +365,18 @@
       "index": 14,
       "size_px": [
         377,
-        321
+        322
       ],
       "keep_for_caption": true,
       "category": "photo_or_diagram",
       "tags": [],
       "metrics": {
         "width": 377.0,
-        "height": 321.0,
-        "aspect_ratio": 1.1744548286604362,
-        "ink_ratio": 0.07027111893370352,
-        "edge_ratio": 0.09515192080451507,
-        "table_line_ratio": 0.01570027351529124,
+        "height": 322.0,
+        "aspect_ratio": 1.170807453416149,
+        "ink_ratio": 0.07049771817388009,
+        "edge_ratio": 0.0952188740794438,
+        "table_line_ratio": 0.01569270309899995,
         "is_qr_code": false,
         "qr_heuristic": false,
         "is_small_icon": false,
@@ -414,7 +414,7 @@
       "page": 9,
       "index": 16,
       "size_px": [
-        783,
+        784,
         153
       ],
       "keep_for_caption": false,
@@ -423,12 +423,12 @@
         "procedure_banner"
       ],
       "metrics": {
-        "width": 783.0,
+        "width": 784.0,
         "height": 153.0,
-        "aspect_ratio": 5.117647058823529,
-        "ink_ratio": 0.0872628319101161,
-        "edge_ratio": 0.09003414051870216,
-        "table_line_ratio": 0.06115243032078732,
+        "aspect_ratio": 5.124183006535947,
+        "ink_ratio": 0.0871515272775777,
+        "edge_ratio": 0.08992763772175537,
+        "table_line_ratio": 0.061074429771908766,
         "is_qr_code": false,
         "qr_heuristic": false,
         "is_small_icon": false,

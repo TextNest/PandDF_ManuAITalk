@@ -25,19 +25,19 @@
       "page": 1,
       "index": 1,
       "size_px": [
-        379,
-        791
+        380,
+        792
       ],
       "keep_for_caption": true,
       "category": "photo_or_diagram",
       "tags": [],
       "metrics": {
-        "width": 379.0,
-        "height": 791.0,
-        "aspect_ratio": 0.47914032869785084,
-        "ink_ratio": 0.9104803711944067,
-        "edge_ratio": 0.12021121522137236,
-        "table_line_ratio": 0.728815933873491,
+        "width": 380.0,
+        "height": 792.0,
+        "aspect_ratio": 0.4797979797979798,
+        "ink_ratio": 0.9098484848484848,
+        "edge_ratio": 0.11987639553429028,
+        "table_line_ratio": 0.7302199627857523,
         "is_qr_code": false,
         "qr_heuristic": false,
         "is_small_icon": false,

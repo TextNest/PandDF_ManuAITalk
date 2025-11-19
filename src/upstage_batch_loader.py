@@ -5,7 +5,7 @@
 #   - C:\Users\user\Desktop\test3\data\raw 폴더에 있는
 #     가전제품 설명서 PDF들을 Upstage Document Parse API로 일괄 파싱한다.
 #
-#   - UpstageDocumentParseLoader를 한 번만 호출해서,
+#   - Upstage Document Parse HTTP API를 requests로 직접 호출해서
 #       1) 페이지 단위 텍스트/마크다운
 #       2) 페이지 메타데이터(elements.json; 좌표 포함)
 #       3) 페이지 안의 "figure" 이미지(base64)만
@@ -19,30 +19,56 @@
 #           ├─ page_001_figure_001.png
 #           └─ <doc_id>_figures.json
 #
-# [이번 버전의 핵심 개선]
-#   1) figure 메타데이터에 "좌표 정보"를 함께 저장
-#      - Upstage metadata["base64_encodings"] 항목이
-#          • 단순 문자열(base64) 이거나
-#          • {"data": "...", "coordinates": [...]} 형태의 dict
-#        둘 다 올 수 있다고 가정하고,
-#        가능한 경우 coordinates(정규화 bbox)를 추출해
-#        figures 메타에 다음 필드를 추가한다:
-#          - "bbox_norm"        : [{x, y}, ...] 정규화 좌표(페이지 기준)
-#          - "bbox_center_norm" : {"x": ..., "y": ...} 중심점(정규화)
-#      - 좌표가 없으면 두 필드는 None / 누락될 수 있으며,
-#        캡션 단계(image_captioner_gemini.py)에서
-#        좌표가 없으면 "페이지 전체 텍스트" fallback 전략을 쓰도록 한다.
+# [Upstage Document Parse HTTP 호출 방식]
+#   - 엔드포인트:
+#       POST https://api.upstage.ai/v1/document-ai/document-parse
+#   - 헤더:
+#       Authorization: Bearer <UPSTAGE_API_KEY>
+#   - 바디 (multipart/form-data):
+#       files = { "document": <PDF 바이너리> }
+#       data  = {
+#           "ocr": "auto" 또는 "force",
+#           "model": "document-parse" (또는 환경변수로 지정한 모델명),
+#           "output_formats": "['markdown']",
+#           "coordinates": True,
+#           "base64_encoding": "['figure']",
+#       }
+#   - 응답(JSON) 구조(요약):
+#       {
+#         "elements": [
+#           {
+#             "id": "...",
+#             "page": 0,         # 0-based 페이지 인덱스
+#             "category": "...",
+#             "content": {
+#               "text": "...",
+#               "html": "...",
+#               "markdown": "..."
+#             },
+#             "coordinates": [...],       # 선택
+#             "base64_encoding": [...]    # 선택 (figure 등)
+#           },
+#           ...
+#         ]
+#       }
 #
-#   2) elements.json 과의 연계
-#      - data/elements/<doc_id>_elements.json 에는
-#          • page 번호
-#          • metadata.coordinates (텍스트 블록 bbox 정규 좌표)
-#        가 들어있다.
-#      - 이후 캡셔닝 단계에서
-#          • figures.bbox_center_norm 과
-#          • elements[].metadata.coordinates 의 중심점
-#        사이의 거리를 비교해, 그림 주변 텍스트만 골라
-#        Gemini 캡션의 manual_excerpt로 넘길 수 있도록 설계.
+#   - langchain-upstage의 UpstageDocumentParseLoader / Parser 내부 구현을
+#     참고하여, 같은 옵션(split='page', output_format='markdown', coordinates=True,
+#     base64_encoding=['figure'])로 직접 호출하도록 구현했다.
+#
+# [이번 버전의 핵심 포인트]
+#   1) langchain-upstage 의존성 제거
+#      - 더 이상 `from langchain_upstage import UpstageDocumentParseLoader` 를 사용하지 않는다.
+#      - 대신 requests로 Upstage Document Parse API를 직접 호출한다.
+#
+#   2) Document 구조는 이전과 최대한 동일하게 유지
+#      - 여전히 langchain_core.documents.Document 객체를 사용한다.
+#      - metadata:
+#           "page"              : 페이지 번호(0-based, 이전과 동일)
+#           "base64_encodings"  : 각 페이지의 base64_encoding 목록
+#           "coordinates"       : 각 페이지의 coordinates 목록
+#      - 따라서 이후 파이프라인(image_captioner_gemini.py, 청킹/임베딩 등)은
+#        코드를 수정하지 않고 그대로 재사용 가능하다.
 #
 # [프로젝트 내 위치]
 #   1) 기업 담당자가 PDF 업로드  →  data/raw/<doc>.pdf 저장
@@ -64,22 +90,27 @@
 #      - ELEMENTS_DIR : PROJECT_ROOT / "data" / "elements"
 #      - FIGURES_DIR  : PROJECT_ROOT / "data" / "figures"
 #
-#   2) UpstageDocumentParseLoader 옵션
-#      - split           = "page"         → 페이지 단위 Document
-#      - output_format   = "markdown"     → 표, 리스트 등 구조 보존
-#      - coordinates     = True           → 이후 텍스트/이미지 좌표 활용
-#      - base64_encoding = ["figure"]
-#           · "chart", "table"은 텍스트/표 파이프라인에서 이미 다루므로
-#             여기서는 제품 생김새/조작부/연결 상태가 담긴 figure만 추출.
-#      - ocr             = "auto"         → PDF는 텍스트 우선, 스캔본은 자동 처리
+#   2) Upstage Document Parse 옵션 (HTTP 직접 호출)
+#      - split           = "page"  역할을 코드에서 직접 구현:
+#           · elements를 page 값 기준으로 묶어서
+#             페이지 단위 Document 객체로 변환한다.
+#      - output_format   = "markdown" 에 해당:
+#           · elements[i]["content"]["markdown"]을 사용하여 텍스트 구성.
+#      - coordinates     = True:
+#           · elements[i]["coordinates"] 를 페이지 Document의 metadata에 모아 둔다.
+#      - base64_encoding = ["figure"]:
+#           · figure 카테고리 등의 base64_encoding을 페이지별로 모아서
+#             metadata["base64_encodings"] 에 저장.
+#      - ocr             = "auto" (기본) / "force" (필요 시 변경 가능)
 #
 #   3) 재실행 전략
-#      - 기본(default) : 예전과 동일하게
+#      - 기본(default):
 #          • data/parsed/<doc_id>.md
 #          • data/elements/<doc_id>_elements.json
 #          • data/figures/<doc_id>/<doc_id>_figures.json
 #        이 모두 존재하면 해당 PDF는 SKIP.
-#      - --force 옵션  : 위 산출물이 있어도 모두 삭제 후
+#      - --force 옵션:
+#        위 산출물이 있어도 모두 삭제 후
 #        Upstage API를 다시 호출하여 새로 생성.
 #
 # [사용 예]
@@ -95,8 +126,11 @@
 # [사전 준비]
 #   1) .env 파일 (PROJECT_ROOT/.env)
 #        UPSTAGE_API_KEY=up_xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+#        # (선택) 모델 버전을 바꾸고 싶다면:
+#        # UPSTAGE_DOCUMENT_PARSE_MODEL=document-parse-250116
+#
 #   2) 패키지 설치
-#        pip install -U langchain-upstage langchain-core python-dotenv Pillow
+#        pip install -U requests langchain-core python-dotenv Pillow
 # ============================================================
 
 from __future__ import annotations
@@ -109,11 +143,11 @@ import logging
 import argparse
 import shutil
 from pathlib import Path
-from typing import List, Dict, Any, Optional, Tuple  # 🔹 Tuple 추가
+from typing import List, Dict, Any, Optional, Tuple
 
+import requests
 from dotenv import load_dotenv
 from PIL import Image
-from langchain_upstage import UpstageDocumentParseLoader
 from langchain_core.documents import Document
 
 
@@ -138,6 +172,9 @@ FIGURES_ROOT_DIR: Path = PROJECT_ROOT / "data" / "figures"
 # 환경 변수명 상수
 ENV_FILE_PATH: Path = PROJECT_ROOT / ".env"
 UPSTAGE_API_KEY_ENV: str = "UPSTAGE_API_KEY"
+
+# Upstage Document Parse HTTP API 기본 URL
+UPSTAGE_DOCUMENT_PARSE_URL_DEFAULT: str = "https://api.upstage.ai/v1/document-ai/document-parse"
 
 
 # ----------------------------- 로깅 설정 함수 -----------------------------
@@ -226,15 +263,96 @@ def list_pdf_files(target_doc_id: Optional[str] = None) -> List[Path]:
 # ----------------------------- Upstage 파싱 관련 함수 -----------------------------
 
 
+def _parse_upstage_elements_to_documents(
+    elements: List[Dict[str, Any]],
+    output_format: str = "markdown",
+) -> List[Document]:
+    """
+    Upstage Document Parse 응답의 elements 리스트를
+    langchain_core.documents.Document 리스트로 변환한다.
+
+    이 함수는 langchain-upstage의 UpstageDocumentParseParser(split=\"page\")가
+    하는 일을 간단히 재구현한 것이다.
+
+    동작 요약:
+        1) elements를 page 값 기준으로 그룹화한다.
+        2) 같은 page 그룹 내의 content[output_format]을 공백으로 이어붙여
+           페이지 단위 텍스트를 만든다.
+        3) base64_encoding / coordinates 필드를 페이지 단위로 모아서
+           metadata["base64_encodings"] / metadata["coordinates"]에 저장한다.
+
+    Args:
+        elements:
+            Upstage Document Parse API 응답의 "elements" 리스트.
+        output_format:
+            content에서 사용할 필드 이름 ("text" | "html" | "markdown").
+
+    Returns:
+        List[Document]:
+            페이지 단위로 생성된 Document 객체 리스트.
+            - page_content: 해당 페이지의 전체 텍스트
+            - metadata:
+                "page"              : 페이지 번호(0-based)
+                "base64_encodings"  : base64 정보 목록(있을 때만)
+                "coordinates"       : 좌표 정보 목록(있을 때만)
+    """
+    if not elements:
+        return []
+
+    # elements 안에 있는 page 값(0-based)을 모두 모아서 정렬된 목록 생성
+    pages = sorted({el.get("page", 0) for el in elements})
+
+    documents: List[Document] = []
+
+    for page in pages:
+        # 현재 page에 해당하는 element들만 추출
+        group = [el for el in elements if el.get("page", 0) == page]
+
+        page_text_parts: List[str] = []
+        base64_list: List[Any] = []
+        coord_list: List[Any] = []
+
+        for el in group:
+            # Upstage 응답에서 텍스트는 el["content"][output_format] 형태로 들어온다.
+            content: Dict[str, Any] = el.get("content", {}) or {}
+            text_value = content.get(output_format) or ""
+            page_text_parts.append(text_value)
+
+            # figure 등에서 base64_encoding 필드가 들어올 수 있다.
+            if "base64_encoding" in el and el["base64_encoding"] is not None:
+                base64_list.append(el["base64_encoding"])
+
+            # coordinates 필드(정규화 bbox 좌표)가 있을 수 있다.
+            if "coordinates" in el and el["coordinates"] is not None:
+                coord_list.append(el["coordinates"])
+
+        # 페이지 메타데이터 구성
+        metadata: Dict[str, Any] = {"page": page}
+        if base64_list:
+            metadata["base64_encodings"] = base64_list
+        if coord_list:
+            metadata["coordinates"] = coord_list
+
+        documents.append(
+            Document(
+                page_content=" ".join(page_text_parts),
+                metadata=metadata,
+            )
+        )
+
+    return documents
+
+
 def parse_pdf_with_upstage(
     pdf_path: Path,
     ocr_mode: str = "auto",
 ) -> List[Document]:
     """
-    단일 PDF 파일을 UpstageDocumentParseLoader로 파싱하여 페이지 단위 Document 리스트로 반환한다.
+    단일 PDF 파일을 Upstage Document Parse HTTP API로 파싱하여
+    페이지 단위 Document 리스트로 반환한다.
 
-    - 텍스트 + 좌표 + figure base64 이미지를
-      한 번의 호출로 모두 받아온다.
+    - langchain-upstage의 UpstageDocumentParseLoader(split="page", output_format="markdown")
+      와 동일한 옵션을 직접 HTTP로 호출하여 흉내낸 구현이다.
 
     Args:
         pdf_path (Path):
@@ -245,21 +363,84 @@ def parse_pdf_with_upstage(
             - "force" : 무조건 OCR 사용 (스캔본 위주 문서에 사용)
 
     Returns:
-        List[Document]: 페이지 단위로 생성된 LangChain Document 객체 리스트.
-                        각 Document는 page_content(텍스트)와 metadata(페이지 번호,
-                        좌표, base64_encodings 등)를 포함한다.
+        List[Document]:
+            페이지 단위로 생성된 LangChain Document 객체 리스트.
     """
-    loader = UpstageDocumentParseLoader(
-        file_path=str(pdf_path),
-        split="page",
-        ocr=ocr_mode,
-        output_format="markdown",
-        coordinates=True,  # 좌표 정보 포함 (예: metadata["coordinates"])
-        # 🔹 figure만 base64로 요청 (chart, table은 텍스트/표 파이프라인에서 처리)
-        base64_encoding=["figure"],
+    api_key = os.getenv(UPSTAGE_API_KEY_ENV)
+    if not api_key:
+        raise RuntimeError(
+            f"{UPSTAGE_API_KEY_ENV} 환경 변수가 설정되어 있지 않습니다. "
+            f".env 파일 또는 OS 환경변수를 확인해 주세요."
+        )
+
+    # 모델 이름은 환경변수로 오버라이드 가능 (없으면 기본 "document-parse")
+    model_name = os.getenv("UPSTAGE_DOCUMENT_PARSE_MODEL", "document-parse")
+
+    # 엔드포인트 URL도 필요시 환경변수로 오버라이드 가능
+    base_url = os.getenv(
+        "UPSTAGE_DOCUMENT_PARSE_URL",
+        UPSTAGE_DOCUMENT_PARSE_URL_DEFAULT,
     )
 
-    docs: List[Document] = loader.load()
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+    }
+
+    # langchain_upstage.document_parse_parsers.UpstageDocumentParseParser 의
+    # _get_response 구현을 참고한 옵션 설정:
+    #
+    #   data={
+    #       "ocr": self.ocr,
+    #       "model": self.model,
+    #       "output_formats": f"['{self.output_format}']",
+    #       "coordinates": self.coordinates,
+    #       "base64_encoding": f"{self.base64_encoding}",
+    #   }
+    #
+    # 여기서는 output_format="markdown", base64_encoding=["figure"] 로 고정한다.
+    data = {
+        "ocr": ocr_mode,
+        "model": model_name,
+        "output_formats": "['markdown']",
+        "coordinates": True,
+        "base64_encoding": "['figure']",
+    }
+
+    # 파일 업로드: multipart/form-data 로 "document" 필드에 PDF 바이너리 첨부
+    with open(pdf_path, "rb") as f:
+        files = {"document": f}
+        try:
+            response = requests.post(
+                base_url,
+                headers=headers,
+                files=files,
+                data=data,
+                timeout=120,
+            )
+            response.raise_for_status()
+        except requests.HTTPError as e:
+            # Upstage 쪽에서 에러 메시지를 JSON/텍스트로 내려주는 경우를 그대로 보여주기 위해
+            text = e.response.text if e.response is not None else str(e)
+            raise RuntimeError(f"Upstage Document Parse HTTP 오류: {text}") from e
+        except requests.RequestException as e:
+            raise RuntimeError(f"Upstage Document Parse 요청 실패: {e}") from e
+
+    try:
+        payload = response.json()
+    except json.JSONDecodeError as e:
+        raise RuntimeError(f"Upstage 응답 JSON 파싱 실패: {e}") from e
+
+    elements: List[Dict[str, Any]] = payload.get("elements", []) or []
+
+    if not elements:
+        logging.warning(
+            "[WARN] Upstage Document Parse 응답에 elements 가 비어 있습니다: %s",
+            pdf_path.name,
+        )
+        return []
+
+    # elements → 페이지 단위 Document 리스트로 변환
+    docs = _parse_upstage_elements_to_documents(elements, output_format="markdown")
     return docs
 
 
@@ -271,16 +452,20 @@ def save_docs_as_markdown(docs: List[Document], out_path: Path) -> None:
     페이지 단위 LangChain Document 리스트를 하나의 마크다운 파일로 저장한다.
 
     저장 형식 예:
+        # [p0]
+        (0페이지 내용)
+
         # [p1]
         (1페이지 내용)
-
-        # [p2]
-        (2페이지 내용)
         ...
+
+    주의:
+        - Upstage Document Parse의 page 인덱스는 0부터 시작한다.
+          (기존 langchain-upstage 기반 구현과 동일하게 0-based를 그대로 사용한다.)
 
     Args:
         docs (List[Document]):
-            UpstageDocumentParseLoader.load() 결과로 얻은 Document 리스트.
+            Upstage Document Parse 결과로 얻은 Document 리스트.
         out_path (Path):
             결과를 저장할 마크다운 파일 경로.
     """
@@ -292,7 +477,7 @@ def save_docs_as_markdown(docs: List[Document], out_path: Path) -> None:
 
         # 페이지 헤더를 추가하여 페이지 경계를 명확히 한다.
         lines.append(f"# [p{page_no}]")
-        lines.append(doc.page_content.strip())
+        lines.append((doc.page_content or "").strip())
         lines.append("")  # 페이지 사이에 공백 줄 추가
 
     out_path.write_text("\n".join(lines), encoding="utf-8")
@@ -312,7 +497,7 @@ def build_elements_payload(
           "elements": [
             {
               "index": 1,
-              "page": 1,
+              "page": 0,
               "content": "...",
               "metadata": { ... }  # page, coordinates, base64_encodings 등
             },
@@ -324,7 +509,7 @@ def build_elements_payload(
         doc_id (str):
             문서 식별자 (파일명에서 확장자를 제거한 값).
         docs (List[Document]):
-            UpstageDocumentParseLoader.load() 결과.
+            Upstage Document Parse 결과.
 
     Returns:
         Dict[str, Any]: JSON으로 직렬화 가능한 페이로드 딕셔너리.
@@ -332,11 +517,11 @@ def build_elements_payload(
     elements: List[Dict[str, Any]] = []
 
     for idx, doc in enumerate(docs, start=1):
-        page_no = doc.metadata.get("page", idx)
+        page_no = doc.metadata.get("page", idx - 1)
 
         element: Dict[str, Any] = {
             "index": idx,                # 문서 내 요소 순번 (페이지 순서)
-            "page": page_no,             # 페이지 번호
+            "page": page_no,             # 페이지 번호 (0-based)
             "content": doc.page_content, # 페이지 전체 텍스트(마크다운)
             "metadata": doc.metadata,    # 좌표 / base64_encodings 등 전체 메타데이터
         }
@@ -361,7 +546,7 @@ def save_elements_as_json(
         doc_id (str):
             문서 식별자 (파일명에서 확장자를 제거한 값).
         docs (List[Document]):
-            UpstageDocumentParseLoader.load() 결과.
+            Upstage Document Parse 결과.
         out_path (Path):
             결과를 저장할 JSON 파일 경로.
     """
@@ -406,7 +591,7 @@ def _extract_b64_and_coords_from_item(
     item: Any,
 ) -> Tuple[Optional[str], Optional[List[Dict[str, float]]]]:
     """
-    Upstage metadata["base64_encodings"] 항목 하나에서
+    metadata["base64_encodings"] 항목 하나에서
     - 실제 base64 문자열
     - (있다면) 정규화 좌표 리스트
     를 추출한다.
@@ -415,12 +600,12 @@ def _extract_b64_and_coords_from_item(
       1) 단순 문자열:
          - item: "iVBORw0KGgoAAAANSUhEUgAA..."
            → (base64, None)
-      2) dict 기반(향후 Upstage 포맷 확장 대비):
+      2) dict 기반(Upstage 포맷 확장 대비):
          - item: {"data": "...", "coordinates": [ {x, y}, ... ]}
            → ("...", coordinates)
          - item: {"base64": "...", "bbox": [ {x, y}, ... ]}
            → ("...", bbox)
-         - 알 수 없는 포맷이면 (None, None) 반환
+         - 인식 불가 포맷이면 (None, None) 반환
 
     반환:
         (img_b64 or None, coords or None)
@@ -514,7 +699,7 @@ def save_figures_from_docs(
     docs: List[Document],
 ) -> None:
     """
-    UpstageDocumentParseLoader에서 받은 docs를 이용해,
+    Upstage Document Parse 결과 docs를 이용해,
     metadata["base64_encodings"]에 포함된 figure 이미지를 추출하고
     PNG + 메타데이터 JSON을 저장한다.
 
@@ -552,7 +737,7 @@ def save_figures_from_docs(
         )
 
         for i, raw_item in enumerate(img_list, start=1):
-            # 🔹 base64 문자열 + (있다면) 좌표 추출
+            # base64 문자열 + (있다면) 좌표 추출
             img_b64, bbox_norm = _extract_b64_and_coords_from_item(raw_item)
             if not img_b64:
                 logging.warning(
@@ -584,7 +769,7 @@ def save_figures_from_docs(
 
             rel_path = img_path.relative_to(PROJECT_ROOT).as_posix()
 
-            # 🔹 좌표가 있으면 중심점 계산
+            # 좌표가 있으면 중심점 계산
             bbox_center_norm = _compute_center_from_coords(bbox_norm) if bbox_norm else None
 
             meta: Dict[str, Any] = {
@@ -651,7 +836,7 @@ def main() -> None:
               이 모두 존재하면 SKIP
             - --force 모드
                 · 위 산출물이 있어도 삭제 후
-                  UpstageDocumentParseLoader로 다시 파싱하여
+                  Upstage Document Parse HTTP API로 다시 파싱하여
                   마크다운(.md) + elements.json + figures PNG/JSON 생성
     """
     parser = argparse.ArgumentParser(

@@ -240,7 +240,7 @@
       "index": 9,
       "size_px": [
         788,
-        187
+        188
       ],
       "keep_for_caption": false,
       "category": "procedure_banner",
@@ -249,11 +249,11 @@
       ],
       "metrics": {
         "width": 788.0,
-        "height": 187.0,
-        "aspect_ratio": 4.213903743315508,
-        "ink_ratio": 0.08398029262466408,
-        "edge_ratio": 0.09352181112408046,
-        "table_line_ratio": 0.036462716143217784,
+        "height": 188.0,
+        "aspect_ratio": 4.191489361702128,
+        "ink_ratio": 0.08353358894049033,
+        "edge_ratio": 0.0930243546819311,
+        "table_line_ratio": 0.03626876552543471,
         "is_qr_code": false,
         "qr_heuristic": false,
         "is_small_icon": false,

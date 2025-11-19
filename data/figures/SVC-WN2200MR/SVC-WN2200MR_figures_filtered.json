@@ -495,18 +495,18 @@
       "index": 19,
       "size_px": [
         577,
-        265
+        264
       ],
       "keep_for_caption": true,
       "category": "photo_or_diagram",
       "tags": [],
       "metrics": {
         "width": 577.0,
-        "height": 265.0,
-        "aspect_ratio": 2.177358490566038,
-        "ink_ratio": 0.11726235244105818,
-        "edge_ratio": 0.13567247637421928,
-        "table_line_ratio": 0.026885974951767436,
+        "height": 264.0,
+        "aspect_ratio": 2.1856060606060606,
+        "ink_ratio": 0.11775248148731685,
+        "edge_ratio": 0.1360747859881309,
+        "table_line_ratio": 0.027197888766346306,
         "is_qr_code": false,
         "qr_heuristic": false,
         "is_small_icon": false,
@@ -694,7 +694,7 @@
       "page": 11,
       "index": 27,
       "size_px": [
-        783,
+        782,
         153
       ],
       "keep_for_caption": false,
@@ -703,12 +703,12 @@
         "procedure_banner"
       ],
       "metrics": {
-        "width": 783.0,
+        "width": 782.0,
         "height": 153.0,
-        "aspect_ratio": 5.117647058823529,
-        "ink_ratio": 0.08815599462432909,
-        "edge_ratio": 0.09055167405404052,
-        "table_line_ratio": 0.061277640047078856,
+        "aspect_ratio": 5.111111111111111,
+        "ink_ratio": 0.08827708406465741,
+        "edge_ratio": 0.09065911104424719,
+        "table_line_ratio": 0.061356000200591745,
         "is_qr_code": false,
         "qr_heuristic": false,
         "is_small_icon": false,

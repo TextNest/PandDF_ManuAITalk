@@ -56,8 +56,8 @@ User Manual ![image](/image/placeholder)
 | ○ 본 제품은 살균을 위한 UVC 램프가 장착되어 있습니다. UVC 램프 빛을 눈으로 직접 보거나 피부에 노출 시키지 마십시오. |
  # 사용 가능한 소재 - ※ 실크에 사용하지 마십시오.
 - ※ 청소 시 기기를 같은 위치에 오랫동안 두지 마십시오. 손상의 우려가 있습니다.
- # 이불 ![image](/image/placeholder)
  ![image](/image/placeholder)
+ # 이불 ![image](/image/placeholder)
  침대 ![image](/image/placeholder)
  인형 ![image](/image/placeholder)
  의류 3 ![image](/image/placeholder)

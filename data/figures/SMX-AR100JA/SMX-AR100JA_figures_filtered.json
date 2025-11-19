@@ -50,7 +50,7 @@
       "page": 2,
       "index": 2,
       "size_px": [
-        44,
+        45,
         42
       ],
       "keep_for_caption": false,
@@ -59,12 +59,12 @@
         "small_icon"
       ],
       "metrics": {
-        "width": 44.0,
+        "width": 45.0,
         "height": 42.0,
-        "aspect_ratio": 1.0476190476190477,
-        "ink_ratio": 0.44805194805194803,
-        "edge_ratio": 0.22943722943722944,
-        "table_line_ratio": 0.2846320346320346,
+        "aspect_ratio": 1.0714285714285714,
+        "ink_ratio": 0.4396825396825397,
+        "edge_ratio": 0.22433862433862434,
+        "table_line_ratio": 0.2788359788359788,
         "is_qr_code": false,
         "qr_heuristic": false,
         "is_small_icon": true,
@@ -131,33 +131,6 @@
       "page": 2,
       "index": 5,
       "size_px": [
-        46,
-        45
-      ],
-      "keep_for_caption": false,
-      "category": "small_icon",
-      "tags": [
-        "small_icon"
-      ],
-      "metrics": {
-        "width": 46.0,
-        "height": 45.0,
-        "aspect_ratio": 1.0222222222222221,
-        "ink_ratio": 0.3285024154589372,
-        "edge_ratio": 0.17101449275362318,
-        "table_line_ratio": 0.17439613526570047,
-        "is_qr_code": false,
-        "qr_heuristic": false,
-        "is_small_icon": true,
-        "is_procedure_banner": false
-      },
-      "caption_file": null
-    },
-    {
-      "file": "data/figures/SMX-AR100JA/page_002_figure_006.png",
-      "page": 2,
-      "index": 6,
-      "size_px": [
         43,
         44
       ],
@@ -173,6 +146,33 @@
         "ink_ratio": 0.5079281183932347,
         "edge_ratio": 0.1886892177589852,
         "table_line_ratio": 0.44238900634249473,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SMX-AR100JA/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        46,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0222222222222221,
+        "ink_ratio": 0.3285024154589372,
+        "edge_ratio": 0.17101449275362318,
+        "table_line_ratio": 0.17439613526570047,
         "is_qr_code": false,
         "qr_heuristic": false,
         "is_small_icon": true,

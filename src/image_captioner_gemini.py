@@ -64,7 +64,7 @@
 #           {
 #             ...  # _figures_filtered.json 의 각 항목 전체
 #             "caption_short": "짧은 접근성 캡션",
-#             "caption_fallback_reason": null 또는 "safety_block" / "no_response" 등
+#             "caption_fallback_reason": null 또는 "safety_block" / "no_response" / ...
 #           },
 #           ...
 #         ]
@@ -89,19 +89,26 @@
 #        응답이 비어 있거나 예외가 발생하면,
 #        안전한 기본 캡션으로 폴백한다.
 #
-# [사전 준비]
-#   1) .env 파일 (PROJECT_ROOT/.env)
-#        GEMINI_API_KEY=your_api_key_here
+# [CLI 동작 요약]
+#   - 기본:
+#       python -m src.image_captioner_gemini
+#       → *_figures_filtered.json 기준으로 전체 캡션 생성
 #
-#   2) 패키지 설치
-#        pip install -U google-genai python-dotenv
+#   - 특정 문서만:
+#       python -m src.image_captioner_gemini --doc-id SVC-BH1
 #
-#   3) 실행 예시
-#        # 전체 문서 캡션 생성
-#        (.venv) > python -m src.image_captioner_gemini
+#   - 기존 결과 무시하고 전체 재생성:
+#       python -m src.image_captioner_gemini --doc-id SVC-BH1 --force
 #
-#        # 특정 문서만, 기존 결과 무시하고 다시 생성
-#        (.venv) > python -m src.image_captioner_gemini --doc-id SVC-BH1 --force
+#   - 503 등 에러가 났던 이미지들만 다시 시도:
+#       python -m src.image_captioner_gemini --doc-id SVC-WN2200MR --retry-failed
+#
+#     ※ 이 경우:
+#        - data/figures/<doc_id>/<doc_id>_figures_captioned.json 를 읽고,
+#        - caption_short == null 이고 caption_fallback_reason 에
+#          "503", "UNAVAILABLE", "overloaded" 등이 포함된 이미지들만
+#          다시 Gemini 호출.
+#        - 성공 시 caption_short 갱신 + caption_fallback_reason = null 로 초기화.
 #
 # ============================================================
 
@@ -140,8 +147,8 @@ ENV_FILE_PATH: Path = PROJECT_ROOT / ".env"
 GEMINI_API_KEY_ENV: str = "GEMINI_API_KEY"
 GEMINI_MODEL_NAME: str = "gemini-2.5-flash"
 
-# 캡션 길이 제한(alt-text 베스트 프랙티스 참고; 1~3문장, 200자 이내를 목표로 함)
-CAPTION_MAX_CHARS: int = 220
+# 캡션 길이 제한(alt-text 베스트 프랙티스 참고; 1~3문장, 200자 이내를 목표로 하지만 -> 약간 여유 둠)
+CAPTION_MAX_CHARS: int = 320  # 또는 350
 
 # manual_excerpt에서 제거할 "강한 위험/사고" 키워드 목록
 UNSAFE_KEYWORDS: Tuple[str, ...] = (
@@ -260,13 +267,6 @@ def _sanitize_manual_excerpt(page_text: str, max_chars: int = 1000) -> str:
       2) UNSAFE_KEYWORDS 가 포함된 줄은 제거
       3) "경고", "주의"만 있는 제목 수준의 줄은 대부분 제거
     - 나머지 줄을 앞에서부터 이어붙이다가 max_chars를 넘으면 중단.
-
-    Args:
-        page_text (str): 해당 페이지의 전체 마크다운 텍스트
-        max_chars (int): 발췌 텍스트의 최대 길이(문자 수)
-
-    Returns:
-        str: Gemini 프롬프트에 넣을 manual_excerpt 문자열
     """
     if not page_text:
         return ""
@@ -289,8 +289,7 @@ def _sanitize_manual_excerpt(page_text: str, max_chars: int = 1000) -> str:
         if line in ("경고", "주의", "[경고]", "[주의]"):
             continue
         if lower_line.startswith("경고:") or lower_line.startswith("주의:"):
-            # 경고 상세 문구는 안전 상 중요한 정보이지만,
-            # 이 모듈의 목적은 시각적 설명이므로, 텍스트 RAG에 맡기고 여기서는 제외한다.
+            # 경고 상세 문구는 텍스트 RAG에서 다루도록 하고, 여기서는 제외
             continue
 
         cleaned_lines.append(line)
@@ -313,13 +312,6 @@ def build_manual_excerpt_for_page(
 ) -> str:
     """
     페이지 번호에 해당하는 텍스트에서 캡션용 manual_excerpt를 생성한다.
-
-    Args:
-        elements_by_page (Dict[int, str]): page → content 매핑
-        page_no (int): 대상 페이지 번호
-
-    Returns:
-        str: 정제된 manual_excerpt 문자열 (없으면 빈 문자열)
     """
     page_text = elements_by_page.get(page_no, "")
     if not page_text:
@@ -353,7 +345,6 @@ def _truncate_caption(text: str, max_chars: int = CAPTION_MAX_CHARS) -> str:
     if len(text) <= max_chars:
         return text
 
-    # 뒤에서부터 max_chars 이내에서 마침표/물음표/느낌표를 찾아본다.
     cut_region = text[: max_chars + 1]
     last_punct = max(
         cut_region.rfind("。"),
@@ -363,7 +354,7 @@ def _truncate_caption(text: str, max_chars: int = CAPTION_MAX_CHARS) -> str:
         cut_region.rfind("！"),
         cut_region.rfind("？"),
     )
-    if last_punct >= 20:  # 문장 길이가 너무 짧게 잘리지 않도록 최소 길이 조건
+    if last_punct >= 20:
         return cut_region[: last_punct + 1].strip()
 
     return cut_region[:max_chars].strip()
@@ -372,52 +363,55 @@ def _truncate_caption(text: str, max_chars: int = CAPTION_MAX_CHARS) -> str:
 def build_accessibility_prompt(manual_excerpt: str) -> str:
     """
     Gemini에게 전달할 접근성 캡션 프롬프트를 생성한다.
-
-    - 시각장애인/인지 저하 노인/유아를 대상으로,
-      그림에서 보이는 "모양·배치·버튼 위치·연결 관계"를
-      짧고 쉬운 문장으로 설명하도록 지시한다.
-    - 설치/사용 절차를 단계적으로 제안하지 말고,
-      "현재 그림에 보이는 상태"만 서술하게 한다.
     """
     # manual_excerpt는 없을 수도 있으므로, 조건부로 포함
     excerpt_block = ""
     if manual_excerpt:
         excerpt_block = (
             "\n\n[참고용 설명서 발췌]\n"
-            "아래 텍스트는 이 그림이 포함된 설명서의 일부입니다. "
+            "아래 텍스트는 이 그림이 포함된 설명서의 일부이다. "
             "필요한 정보만 참고하고, 그대로 복사하지 말고, "
-            "그림에서 실제로 볼 수 있는 내용만 묘사하십시오.\n"
+            "그림에서 실제로 볼 수 있는 내용만 묘사하라.\n"
             "----\n"
             f"{manual_excerpt}\n"
             "----\n"
         )
 
     prompt = (
-        "너는 전자제품 사용 설명서의 그림을 설명하는 접근성 전문가이다.\n"
+        "너는 전자제품 사용 설명서에 실린 그림을 설명하는 접근성 전문가이다.\n"
         "시각장애인, 인지 능력이 떨어지는 노인, 유아도 이해할 수 있도록 "
-        "쉬운 한국어로 그림의 내용을 설명하라.\n\n"
+        "쉬운 한국어로 그림의 내용을 자세하게 설명하라.\n\n"
         "[설명 방식 지침]\n"
         "1) '이미지'나 '그림'이라는 단어를 굳이 쓰지 말고, "
         "사람이 눈앞의 장면을 보는 것처럼 자연스럽게 묘사한다.\n"
-        "2) 다음 항목에 집중한다.\n"
-        "   - 제품의 종류와 전체적인 모양(크기 느낌, 색, 형태)\n"
-        "   - 앞·뒤·옆·위 중 어느 방향에서 본 모습인지\n"
-        "   - 눈에 잘 띄는 버튼·다이얼·손잡이·화면 등이 어디에 있고, "
-        "     어떻게 생겼는지\n"
-        "   - 전원 코드, 호스, 벽, 바닥, 책상, 콘센트 등 주변 환경과 "
-        "     연결 관계\n"
-        "   - 그림에 큰 글자나 번호가 있으면 그 의미\n"
+        "2) 다음 항목에 특히 집중하여 구체적으로 설명한다.\n"
+        "   - 제품의 종류와 전체적인 형태(원통형, 네모난 형태, 높고 낮음 등)\n"
+        "   - 어느 방향에서 본 모습인지 (정면, 옆면, 위에서 본 모습 등)\n"
+        "   - 위에서 아래로 또는 왼쪽에서 오른쪽으로 따라가면서, "
+        "     눈에 보이는 주요 부품(예: 안전망, 버너, 손잡이, 조작부, 바퀴, 받침대 등)의 "
+        "     이름과 위치 관계를 차례대로 설명한다.\n"
+        "   - 버튼·다이얼·손잡이·레버·불꽃이 나오는 부분 등이 "
+        "     제품의 어느 쪽(앞/뒤/왼쪽/오른쪽)에 있고, "
+        "     대략 어느 높이(위쪽/가운데/아래쪽)에 있는지.\n"
+        "   - 그림 안에 한글로 적힌 레이블이나 번호가 보이면, "
+        "     그 글자를 읽어서 어떤 부품을 가리키는지 함께 말해 준다.\n"
         "3) 설치 방법이나 사용 방법을 1단계, 2단계처럼 절차로 설명하지 말고, "
-        "   그림에서 보이는 '현재 상태'만 차분히 묘사한다.\n"
-        "4) '불이 난다, 폭발한다, 감전된다, 사망한다'와 같은 위험 상황을 "
-        "   상상해서 새로 만들어내지 말라. "
-        "그림에 실제로 '경고 표시'나 '주의 문구'가 보이는 경우에는 "
-        "   '위쪽에 노란색 경고 라벨이 붙어 있다'처럼 짧게만 언급한다.\n"
-        "5) 문장은 1~3문장 정도로, 너무 길지 않게(200자 이내) 정리한다.\n"
-        "6) 존댓말 대신 '~이다, ~있다' 형태의 평서문을 사용한다.\n"
+        "   지금 그림에 보이는 '현재 상태'만 차분히 묘사한다.\n"
+        "4) 제품의 색이나 재질을 상상해서 말하지 않는다. "
+        "   선으로만 그려진 제품은 색을 언급하지 말고, "
+        "   실제로 눈에 보이는 경고 라벨 같은 중요한 색깔이 있을 때만 "
+        "   짧게 언급한다.\n"
+        "5) '불이 난다, 폭발한다, 감전된다, 사망한다'와 같은 위험 상황을 "
+        "   새로 상상해서 만들지 말라. "
+        "   그림에 실제로 경고 표시나 주의 문구가 보이는 경우에만 "
+        "   '위쪽에 경고 표시가 붙어 있다'처럼 짧게만 언급한다.\n"
+        "6) 문장은 3~4문장 정도로, 핵심 부품과 위치 관계를 "
+        "   머릿속에 그릴 수 있을 만큼 충분히 구체적으로 설명하라. "
+        "   전체 길이는 250~300자 안팎이 되도록 한다.\n"
+        "7) 존댓말 대신 '~이다, ~있다' 형태의 평서문을 사용한다.\n"
         "\n"
         "위 지침을 따르면서, 이 그림을 보는 사람이 "
-        "제품의 모양과 중요한 부분의 위치를 머릿속에 떠올릴 수 있도록 설명하라."
+        "제품의 구조와 중요한 부분의 위치를 머릿속에 떠올릴 수 있도록 설명하라."
         f"{excerpt_block}"
     )
 
@@ -431,24 +425,17 @@ def generate_caption_with_gemini(
     client: genai.Client,
     image_path: Path,
     manual_excerpt: str,
-    max_retries: int = 3,
-    retry_delay_base: float = 2.0,
+    max_retries: int = 10,
+    retry_delay_base: float = 5.0,
 ) -> Tuple[Optional[str], Optional[str]]:
     """
     단일 이미지에 대해 Gemini 2.5 Flash를 호출하여 캡션을 생성한다.
 
-    Args:
-        client (genai.Client): 초기화된 Gemini 클라이언트
-        image_path (Path): 캡션을 생성할 이미지 파일 경로 (PNG 예상)
-        manual_excerpt (str): 해당 페이지의 정제된 텍스트 발췌
-        max_retries (int): API 호출 재시도 최대 횟수
-        retry_delay_base (float): 재시도 시 지수 백오프의 기준(초)
-
     Returns:
-        Tuple[Optional[str], Optional[str]]:
-            - caption_short: 성공적으로 생성된 캡션(없으면 None)
-            - fallback_reason: 실패 시 이유 문자열
-              (예: "no_response", "exception: ...", "file_not_found")
+        (caption_short, fallback_reason)
+        - caption_short: 성공적으로 생성된 캡션(없으면 None)
+        - fallback_reason: 실패 시 이유 문자열
+          (예: "no_response", "exception: ...", "file_not_found")
     """
     if not image_path.exists():
         logging.warning("이미지 파일을 찾을 수 없습니다: %s", image_path)
@@ -462,10 +449,6 @@ def generate_caption_with_gemini(
 
     prompt = build_accessibility_prompt(manual_excerpt)
 
-    # Gemini API 호출: image + prompt 텍스트
-    # 공식 문서의 예시와 동일하게, inline bytes를 Part로 전달한다.
-    #   - types.Part.from_bytes(data=..., mime_type="image/png")
-    #   - contents=[image_part, prompt_text]
     image_part = types.Part.from_bytes(
         data=image_bytes,
         mime_type="image/png",
@@ -536,20 +519,42 @@ def _find_target_doc_ids(target_doc_id: Optional[str] = None) -> List[str]:
     return doc_ids
 
 
+def _should_retry_this_image(fallback_reason: Optional[str]) -> bool:
+    """
+    caption_fallback_reason 문자열을 보고
+    '이번에 다시 시도할 대상인지' 판단한다.
+
+    - 503 UNAVAILABLE, overloaded 류의 임시 오류만 재시도 대상으로 본다.
+    """
+    if not fallback_reason:
+        return False
+
+    reason = fallback_reason.lower()
+    keywords = ("503", "unavailable", "overloaded", "model is overloaded")
+    return any(kw in reason for kw in keywords)
+
+
 def process_one_document(
     client: genai.Client,
     doc_id: str,
     force: bool = False,
+    retry_failed: bool = False,
 ) -> None:
     """
     단일 doc_id에 대해 캡션 생성을 수행한다.
 
-    - 입력:
-        data/figures/<doc_id>/<doc_id>_figures_filtered.json
-        data/caption_images/<doc_id>/page_XXX_figure_YYY.png
-        data/elements/<doc_id>_elements.json
-    - 출력:
-        data/figures/<doc_id>/<doc_id>_figures_captioned.json
+    모드:
+      - retry_failed=False (기본):
+          • *_figures_filtered.json 을 읽어 전체 캡션 생성
+          • *_figures_captioned.json 이 이미 있고 force=False 이면 SKIP
+
+      - retry_failed=True:
+          • *_figures_captioned.json 을 우선 읽는다.
+          • caption_short == None 이고,
+            caption_fallback_reason 에 503/UNAVAILABLE/overloaded 가
+            포함된 이미지들만 다시 Gemini 호출.
+          • 성공 시 caption_short 갱신 + caption_fallback_reason=None
+          • 실패 시 caption_fallback_reason 를 최신 에러 메시지로 업데이트
     """
     doc_fig_dir = FIGURES_ROOT_DIR / doc_id
     filtered_meta_path = doc_fig_dir / f"{doc_id}_figures_filtered.json"
@@ -561,6 +566,129 @@ def process_one_document(
             filtered_meta_path,
         )
         return
+
+    # ------------------ retry_failed 모드: 기존 결과에서 일부만 재시도 ------------------
+    if retry_failed:
+        if not captioned_meta_path.exists():
+            logging.warning(
+                "[SKIP] retry-failed 모드이지만 기존 captioned 메타를 찾을 수 없습니다: %s",
+                captioned_meta_path,
+            )
+            return
+
+        try:
+            captioned_meta = json.loads(captioned_meta_path.read_text(encoding="utf-8"))
+        except Exception as e:
+            logging.error(
+                "[ERROR] 기존 captioned 메타 JSON 로드 실패 (%s): %s",
+                captioned_meta_path,
+                e,
+            )
+            return
+
+        images: List[Dict[str, Any]] = captioned_meta.get("images", [])
+        if not images:
+            logging.warning(
+                "[WARN] doc_id=%s 의 captioned 메타에 images가 없습니다.",
+                doc_id,
+            )
+            return
+
+        # 페이지별 텍스트 미리 로드
+        elements_by_page = load_elements_for_doc(doc_id)
+
+        # 재시도 대상만 필터링
+        retry_indices: List[int] = []
+        for idx, img_info in enumerate(images):
+            keep = bool(img_info.get("keep_for_caption", False))
+            caption_rel_path = img_info.get("caption_file")
+            caption_short = img_info.get("caption_short")
+            fallback_reason = img_info.get("caption_fallback_reason")
+
+            if not keep or not caption_rel_path:
+                continue
+            if caption_short is not None and caption_short != "":
+                # 이미 성공한 것
+                continue
+            if not _should_retry_this_image(fallback_reason):
+                continue
+
+            retry_indices.append(idx)
+
+        if not retry_indices:
+            logging.info(
+                "[RETRY] doc_id=%s 에서 재시도할 이미지가 없습니다.",
+                doc_id,
+            )
+            return
+
+        logging.info(
+            "[RETRY] doc_id=%s: 총 %d개 이미지 중 %d개를 재시도합니다.",
+            doc_id,
+            len(images),
+            len(retry_indices),
+        )
+
+        num_retry = 0
+        num_success = 0
+
+        for idx in retry_indices:
+            img_info = images[idx]
+            num_retry += 1
+
+            page_no = int(img_info.get("page", 0))
+            caption_rel_path = img_info.get("caption_file")
+            image_path = PROJECT_ROOT / caption_rel_path
+
+            manual_excerpt = build_manual_excerpt_for_page(elements_by_page, page_no)
+
+            logging.info(
+                "  [RETRY CAPTION] page=%d, file=%s",
+                page_no,
+                image_path.relative_to(PROJECT_ROOT),
+            )
+
+            caption_short, fallback_reason = generate_caption_with_gemini(
+                client=client,
+                image_path=image_path,
+                manual_excerpt=manual_excerpt,
+            )
+
+            if caption_short:
+                num_success += 1
+                images[idx]["caption_short"] = caption_short
+                images[idx]["caption_fallback_reason"] = None
+            else:
+                # 실패했으면 최신 fallback_reason 기록
+                images[idx]["caption_short"] = None
+                images[idx]["caption_fallback_reason"] = fallback_reason
+
+        # 수정된 images를 기존 payload에 다시 저장
+        captioned_meta["images"] = images
+
+        try:
+            captioned_meta_path.write_text(
+                json.dumps(captioned_meta, ensure_ascii=False, indent=2),
+                encoding="utf-8",
+            )
+        except Exception as e:
+            logging.error(
+                "[ERROR] retry-failed 결과 JSON 저장 실패 (%s): %s",
+                captioned_meta_path,
+                e,
+            )
+            return
+
+        logging.info(
+            "[RETRY DONE] doc_id=%s, 재시도=%d개 중 성공=%d개 → %s",
+            doc_id,
+            num_retry,
+            num_success,
+            captioned_meta_path,
+        )
+        return
+
+    # ------------------ 기본 모드: 전체 캡션 생성/재생성 ------------------
 
     # 이미 captioned 결과가 있고, force가 아니면 건너뜀
     if captioned_meta_path.exists() and not force:
@@ -677,17 +805,18 @@ def main() -> None:
     image_captioner_gemini 스크립트의 메인 엔트리 포인트.
 
     수행 순서:
-        1) 인자 파싱 (--doc-id, --force)
+        1) 인자 파싱 (--doc-id, --force, --retry-failed)
         2) 로깅/환경 변수 초기화
         3) Gemini 클라이언트 생성
         4) 처리 대상 doc_id 목록 수집
-        5) 각 doc_id에 대해 캡션 생성 수행
+        5) 각 doc_id에 대해 캡션 생성 / 재시도 수행
     """
     parser = argparse.ArgumentParser(
         description=(
             "image_filter_for_caption 단계의 결과를 바탕으로, "
             "Gemini 2.5 Flash를 사용하여 전자제품 설명서 그림에 대한 "
-            "접근성 캡션(짧은 한국어 설명)을 생성하는 스크립트"
+            "접근성 캡션(짧은 한국어 설명)을 생성하거나 "
+            "이전에 실패했던 이미지들만 선택적으로 재시도하는 스크립트"
         )
     )
     parser.add_argument(
@@ -701,7 +830,17 @@ def main() -> None:
         action="store_true",
         help=(
             "기존 *_figures_captioned.json 이 있어도 덮어씁니다. "
-            "기본값은 이미 결과가 있으면 SKIP."
+            "(retry-failed 모드가 아닐 때만 의미가 있습니다.)"
+        ),
+    )
+    parser.add_argument(
+        "--retry-failed",
+        action="store_true",
+        help=(
+            "기존 *_figures_captioned.json 을 읽어, "
+            "503/UNAVAILABLE/overloaded 등의 이유로 실패했던 이미지들만 "
+            "다시 캡션 생성합니다. "
+            "이 옵션을 사용하려면 해당 captioned JSON이 이미 존재해야 합니다."
         ),
     )
 
@@ -723,12 +862,22 @@ def main() -> None:
         )
         return
 
-    logging.info("총 %d개 문서에 대해 이미지 캡션 생성 시작.", len(doc_ids))
+    mode_str = "RETRY-FAILED" if args.retry_failed else "FULL"
+    logging.info(
+        "총 %d개 문서에 대해 이미지 캡션 작업 시작 (mode=%s).",
+        len(doc_ids),
+        mode_str,
+    )
 
     for doc_id in doc_ids:
-        process_one_document(client=client, doc_id=doc_id, force=args.force)
+        process_one_document(
+            client=client,
+            doc_id=doc_id,
+            force=args.force,
+            retry_failed=args.retry_failed,
+        )
 
-    logging.info("모든 문서 이미지 캡션 생성 완료.")
+    logging.info("모든 문서 이미지 캡션 작업 완료.")
 
 
 if __name__ == "__main__":

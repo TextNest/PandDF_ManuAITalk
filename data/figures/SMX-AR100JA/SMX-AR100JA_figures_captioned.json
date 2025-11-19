@@ -6,7 +6,7 @@
   "created_by": "image_captioner_gemini.py",
   "model": "gemini-2.5-flash",
   "config": {
-    "CAPTION_MAX_CHARS": 220,
+    "CAPTION_MAX_CHARS": 320,
     "UNSAFE_KEYWORDS": [
       "폭발",
       "감전",
@@ -51,7 +51,7 @@
         "is_procedure_banner": false
       },
       "caption_file": "data/caption_images/SMX-AR100JA/page_001_figure_001.png",
-      "caption_short": "빨간색 바탕에 흰색 선으로 그려진 믹서기가 보인다. 정면에서 본 모습이다. 믹서기는 위쪽의 용기와 아래쪽의 본체로 이루어져 있다. 용기는 투명한 재질처럼 보이며, 오른쪽에는 손잡이가 달려 있고 위에는 뚜껑이 덮여 있다. 용기 옆면에는 액체 양을 알려주는 눈금이 있다. 1000ml는 1리터, 800은 5분의 4, 600은 5분의 3, 400은 5분의 2, 200은 5분의 1을 의미한다.",
+      "caption_short": "이것은 주방용 믹서기이다. 정면에서 본 모습으로, 위쪽에는 높은 용기가, 아래쪽에는 납작한 본체가 연결되어 있다. 용기 위에는 뚜껑이 덮여 있고, 오른쪽에는 손잡이가 있다. 용기 정면에는 위에서부터 'ML 1000 = 1 LITER', '800 = 4/5', '600 = 3/5', '400 = 2/5', '200 = 1/5' 순서로 용량 눈금과 글자가 표시되어 있다. 본체는 네모난 형태로, 정면 가운데 위쪽에 동그란 작동 버튼이 있다. 버튼 바로 아래 가운데에는 'shinil'이라는 글자가 적혀 있으며, 본체 바닥에는 작은 받침대 두 개가 보인다.",
       "caption_fallback_reason": null
     },
     {
@@ -59,7 +59,7 @@
       "page": 2,
       "index": 2,
       "size_px": [
-        44,
+        45,
         42
       ],
       "keep_for_caption": false,
@@ -68,12 +68,12 @@
         "small_icon"
       ],
       "metrics": {
-        "width": 44.0,
+        "width": 45.0,
         "height": 42.0,
-        "aspect_ratio": 1.0476190476190477,
-        "ink_ratio": 0.44805194805194803,
-        "edge_ratio": 0.22943722943722944,
-        "table_line_ratio": 0.2846320346320346,
+        "aspect_ratio": 1.0714285714285714,
+        "ink_ratio": 0.4396825396825397,
+        "edge_ratio": 0.22433862433862434,
+        "table_line_ratio": 0.2788359788359788,
         "is_qr_code": false,
         "qr_heuristic": false,
         "is_small_icon": true,
@@ -146,35 +146,6 @@
       "page": 2,
       "index": 5,
       "size_px": [
-        46,
-        45
-      ],
-      "keep_for_caption": false,
-      "category": "small_icon",
-      "tags": [
-        "small_icon"
-      ],
-      "metrics": {
-        "width": 46.0,
-        "height": 45.0,
-        "aspect_ratio": 1.0222222222222221,
-        "ink_ratio": 0.3285024154589372,
-        "edge_ratio": 0.17101449275362318,
-        "table_line_ratio": 0.17439613526570047,
-        "is_qr_code": false,
-        "qr_heuristic": false,
-        "is_small_icon": true,
-        "is_procedure_banner": false
-      },
-      "caption_file": null,
-      "caption_short": null,
-      "caption_fallback_reason": "not_for_caption"
-    },
-    {
-      "file": "data/figures/SMX-AR100JA/page_002_figure_006.png",
-      "page": 2,
-      "index": 6,
-      "size_px": [
         43,
         44
       ],
@@ -190,6 +161,35 @@
         "ink_ratio": 0.5079281183932347,
         "edge_ratio": 0.1886892177589852,
         "table_line_ratio": 0.44238900634249473,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SMX-AR100JA/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        46,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0222222222222221,
+        "ink_ratio": 0.3285024154589372,
+        "edge_ratio": 0.17101449275362318,
+        "table_line_ratio": 0.17439613526570047,
         "is_qr_code": false,
         "qr_heuristic": false,
         "is_small_icon": true,
@@ -252,7 +252,7 @@
         "is_procedure_banner": false
       },
       "caption_file": "data/caption_images/SMX-AR100JA/page_004_figure_008.png",
-      "caption_short": "이것은 주스를 만들거나 음식을 가는 다용도 믹서기이다. 전체적으로 위는 넓고 아래는 좁은 모양이며, 제품의 앞면을 보고 있다. 윗부분은 내용물을 담는 투명한 믹서 용기이다. 용기 오른쪽에는 세로로 길쭉한 손잡이가 달려 있다. 용기 표면에는 'ML 1000 - 1 LITER', '800 - 4/5'와 같이 내용물의 양을 알려주는 눈금이 새겨져 있다.",
+      "caption_short": "이것은 정면에서 본 다용도 믹서기이다. 위쪽에는 내용물을 섞는 믹서 용기가 있고, 그 아래에는 기계를 움직이는 본체가 있다. 믹서 용기 위에는 뚜껑이 덮여 있고, 뚜껑의 작은 덮개는 추가 주입구 뚜껑이며 뚜껑 손잡이도 보인다. 믹서 용기 앞면에는 'ML 1000 - 1 LITER'와 같은 용량 표시가 세로로 적혀 있고, 오른쪽에는 손잡이가 달려 있다. 본체는 네모난 모양으로, 앞면 가운데에는 둥근 동작 버튼이 있다. 본체 아래쪽에는 미끄러지지 않도록 발 받침대가 네 군데에 보인다.",
       "caption_fallback_reason": null
     },
     {
@@ -279,7 +279,7 @@
         "is_procedure_banner": false
       },
       "caption_file": "data/caption_images/SMX-AR100JA/page_005_figure_009.png",
-      "caption_short": "투명한 믹서 용기가 놓여 있다. 이 용기는 왼쪽에 손잡이가 있고, 앞면에는 1리터까지 재료 양을 보여주는 눈금이 표시되어 있으며, 입구는 돌려 잠그는 방식이다. 여러 칼날이 달린 둥글고 밝은색 부품이 용기 입구 바로 위에 있다. 아래 화살표는 이 부품이 용기 안으로 들어가야 함을, 구부러진 화살표는 시계 방향으로 돌려 끼워야 함을 보여준다.",
+      "caption_short": "하나의 장면에는 두 가지 주요 부품이 보인다. 아래쪽에는 손잡이가 왼쪽으로 튀어나온 투명한 주전자 형태의 믹서 용기가 놓여 있다. 이 용기의 옆면에는 액체의 양을 측정하는 세로 눈금이 새겨져 있으며, '200, 400, 600, 800, 1 LITER, 1000 ML' 같은 숫자와 'ml, liter' 글자가 또렷하게 보인다. 위쪽에는 둥근 모양의 판에 세 개의 날카로운 칼날이 아래를 향하고 있는 칼날 부분이 있다.",
       "caption_fallback_reason": null
     },
     {
@@ -306,7 +306,7 @@
         "is_procedure_banner": false
       },
       "caption_file": "data/caption_images/SMX-AR100JA/page_005_figure_010.png",
-      "caption_short": "한 손이 하얀색 전기 플러그를 잡고 있다. 플러그는 뒤로 길게 이어진 전선에 연결되어 있으며, 두 개의 뾰족한 금속 다리가 보인다. 이 플러그가 벽에 붙은 하얀색 전원 콘센트의 동그란 구멍 두 개를 향해 앞으로 움직이고 있다.",
+      "caption_short": "왼쪽에는 사람이 손으로 전원 플러그를 잡고 있다. 플러그는 길쭉한 금속 막대 두 개가 앞으로 튀어나와 있는 모습이다. 이 플러그는 오른쪽의 벽에 붙어 있는 직사각형 모양의 전기 콘센트를 향해 움직이고 있다. 콘센트에는 동그란 구멍 두 개가 위아래로 놓여 있고, 각 구멍 안에는 플러그의 막대가 들어갈 작은 구멍 두 개가 보인다. 플러그가 콘센트를 향해 나아가고 있음을 가리키는 빨간색 화살표가 아래쪽에 그려져 있다.",
       "caption_fallback_reason": null
     },
     {
@@ -333,7 +333,7 @@
         "is_procedure_banner": false
       },
       "caption_file": "data/caption_images/SMX-AR100JA/page_005_figure_011.png",
-      "caption_short": "이것은 음식을 갈아주는 믹서기이다. 아래에는 네모난 본체가 있고, 그 위에 손잡이 달린 투명한 용기가 놓여 있다. 용기 안에는 길쭉한 재료와 덩어리진 재료들이 들어 있으며, 옆면에는 양을 재는 눈금이 그려져 있다. 본체 앞쪽에 있는 동그란 버튼을 손가락으로 누르고 있다.",
+      "caption_short": "이 장면은 음료나 소스를 만드는 데 쓰는 믹서기이다. 믹서기는 아래쪽에 네모난 몸통이 있고, 그 위에 높고 투명한 유리병 모양의 용기가 올려져 있다. 용기 안에는 막대 모양의 생강이나 계피 같은 여러 가지 고형 재료들이 들어 있으며, 용기 옆면에는 'ML', 'L', 'CUPS'라고 적힌 용량 표시와 함께 눈금이 새겨져 있다. 아래쪽 몸통의 앞면 가운데에는 둥글고 작은 버튼이 하나 있는데, 오른쪽에서 뻗어 나온 손가락이 이 버튼을 누르고 있다.",
       "caption_fallback_reason": null
     },
     {
@@ -360,7 +360,7 @@
         "is_procedure_banner": false
       },
       "caption_file": "data/caption_images/SMX-AR100JA/page_005_figure_012.png",
-      "caption_short": "투명한 믹서기 용기가 흰색 본체 위에 놓여 있다. 용기는 위로 갈수록 넓어지는 길쭉한 컵 모양이다. 용기 안에는 생강처럼 보이는 재료들, 긴 막대 모양 재료, 네모난 덩어리들이 담겨 있다. 용기 오른쪽에는 손잡이가 있고, 앞쪽에는 액체의 양을 나타내는 숫자와 글자가 보인다. 둥근 뚜껑이 용기 위쪽에 놓여 있으며, 뚜껑에서 용기 안으로 빨간 화살표가 아래를 향하고 있다.",
+      "caption_short": "눈앞에는 믹서기의 긴 용기 위쪽으로 둥근 뚜껑이 내려오는 듯한 모습이 보인다. 뚜껑에는 손으로 잡기 편리한 부분이 튀어나와 있으며, 뚜껑에서 용기 안쪽으로 빨간색 화살표가 아래를 향하고 있다. 투명한 용기 오른쪽에는 손잡이가 달려 있고, 앞면에는 ‘ML 1600’, ‘LITER’, ‘800’, ‘4/3’ 등의 눈금 표시가 있다. 용기 안에는 울퉁불퉁한 생강 뿌리처럼 생긴 재료 세 개, 길쭉한 막대와 네모난 깍두기 모양의 재료들이 들어 있다. 이 용기는 평평한 네모난 받침대 위에 안정적으로 올려져 있다.",
       "caption_fallback_reason": null
     },
     {
@@ -387,7 +387,7 @@
         "is_procedure_banner": false
       },
       "caption_file": "data/caption_images/SMX-AR100JA/page_005_figure_013.png",
-      "caption_short": "블렌더가 앞에 놓여 있다. 네모난 본체 앞면에는 둥근 버튼이 있고, 그 위에 투명한 컵이 얹혀 있다. 컵 안에는 생강, 계피 같은 재료들이 보이며, 뚜껑의 작은 덮개를 한 손이 위로 들어 올리고 있다. 옆에는 가루가 담긴 숟가락이 있고, 컵에는 용량 눈금, 오른쪽 아래에는 '넘침 주의'라는 빨간 경고 문구가 있다.",
+      "caption_short": "믹서기가 놓여 있는 모습이다. 투명한 원통형 용기가 아래의 네모난 본체 위에 얹혀 있다. 용기 오른쪽에는 손잡이가 있고, 왼쪽에는 'MAX', '1 LITER' 등의 눈금이 세로로 표시되어 있으며, 안에는 막대 모양의 계피와 덩어리진 생강 같은 재료들이 들어 있다. 용기 뚜껑의 가운데 작은 구멍 위로 사람 손이 작은 네모 뚜껑을 들어 올리고 있고, 그 옆에는 숟가락에 갈색 가루가 담겨 있다. 본체의 앞면 가운데에는 둥근 버튼 하나가 보인다. 아래쪽 오른쪽에는 빨간색 경고 표시와 '넘침 주의'라는 글자가 쓰여 있다.",
       "caption_fallback_reason": null
     },
     {
@@ -414,7 +414,7 @@
         "is_procedure_banner": false
       },
       "caption_file": "data/caption_images/SMX-AR100JA/page_005_figure_014.png",
-      "caption_short": "주방에서 사용하는 믹서기가 눈앞에 보인다. 흰색 본체 위에 투명한 용기가 놓여 있고, 용기 안에는 길쭉한 재료들과 네모난 조각들이 담겨 있다. 용기 위는 뚜껑으로 닫혀 있다. 본체 앞면 중앙에는 둥근 버튼이 하나 있고, 투명 용기 오른쪽에는 잡는 손잡이가 있다. 용기 옆면에는 200ml부터 1리터까지 양을 나타내는 눈금들이 보인다.",
+      "caption_short": "눈앞에 보이는 것은 믹서기이다. 아래는 네모난 모양의 본체이며, 그 위에는 내용물을 담는 용기가 놓여 있다. 용기 안에는 생강 조각 같은 덩어리 재료들이 들어 있고, 용기 옆면에는 내용물의 양을 알 수 있는 눈금 표시가 세로로 보인다. 용기 아래쪽과 본체 위쪽이 만나는 지점에는 시계 방향으로 돌려 용기를 본체에 단단히 고정시키는 화살표가 그려져 있다. 본체 앞면 중앙에는 둥근 조작 버튼이 하나 있고, 본체 오른쪽에는 잠긴 자물쇠 그림 옆에 '잠금'이라는 글자가, 열린 자물쇠 그림 옆에는 '열림'이라는 글자가 함께 보인다.",
       "caption_fallback_reason": null
     },
     {
@@ -441,7 +441,7 @@
         "is_procedure_banner": false
       },
       "caption_file": "data/caption_images/SMX-AR100JA/page_005_figure_015.png",
-      "caption_short": "손이 하얀색 전기 플러그를 잡고 있다. 이 플러그에는 앞으로 뻗어 나온 두 개의 쇠 막대기가 있다. 플러그 앞쪽에는 벽에 고정된 하얀색 콘센트가 보인다. 콘센트에는 위아래로 나란히 두 개의 구멍 뭉치가 있으며, 각 구멍 뭉치에는 동그란 구멍이 두 개씩 있다. 빨간색 화살표는 플러그가 콘센트의 아래쪽 구멍으로 향하는 방향을 가리키고 있다.",
+      "caption_short": "왼쪽에는 사람의 손이 보인다. 손은 전기 플러그를 잡고 있다. 플러그는 둥근 네모 형태의 본체에서 두 개의 금속 막대가 앞으로 튀어나와 있고, 아래쪽으로 전선이 연결되어 있다. 오른쪽에는 벽에 부착된 네모난 전원 콘센트가 있다. 이 콘센트에는 위아래로 나란히 두 개의 동그란 구멍이 보인다. 플러그가 콘센트의 아래쪽 구멍을 향해 다가가는 모습이며, 빨간색 화살표가 그 방향을 가리키고 있다.",
       "caption_fallback_reason": null
     },
     {
@@ -468,7 +468,7 @@
         "is_procedure_banner": false
       },
       "caption_file": "data/caption_images/SMX-AR100JA/page_006_figure_016.png",
-      "caption_short": "왼쪽 위에는 \"외관 청소\"라는 빨간 글자가 있다. 믹서기는 투명한 용기와 둥근 조절 다이얼이 있는 받침대로 이루어져 있다. 왼쪽 장면은 손이 헝겊으로 믹서기 받침대를 닦는 모습이다. 오른쪽 장면은 믹서기 받침대가 싱크대 안에 놓여 있고 수도꼭지에서 물이 흐르는데, 큰 빨간 X 표시가 있어 물에 담그면 안 된다는 의미이다.",
+      "caption_short": "위쪽 왼쪽에는 빨간색 표지가 있는데, 여기에 '외관 청소'라고 적혀 있다. 왼쪽에는 믹서기가 보인다. 이 믹서기는 투명한 긴 용기가 아래쪽의 넓적한 본체 위에 연결된 형태이다. 용기에는 눈금과 옆에 손잡이가 있으며, 본체 앞면 중앙에는 동그란 조절 다이얼이 있다. 한 손이 헝겊을 들고 믹서기 본체 윗부분을 반짝이도록 닦고 있다. 오른쪽에는 같은 믹서기의 본체가 깊은 그릇 안에 잠겨 있는 모습이다. 그릇 위 수도꼭지에서는 물이 흘러내리고 있고, 그릇 바닥에는 커다란 빨간색 X 표시가 있어 이렇게 하면 안 된다는 것을 명확히 알려준다.",
       "caption_fallback_reason": null
     },
     {

@@ -19,10 +19,10 @@ WWW.SHINIL.CO.KR 의 고객지원 항목에서 설명서를 다운로드해 참�
  물접촉
 금지 ![image](/image/placeholder)
  접촉금지 ![image](/image/placeholder)
- 금 지 ![image](/image/placeholder)
- 알 림 ![image](/image/placeholder)
- 플러그 뼘 ![image](/image/placeholder)
- 주의 배터리 | ![image](/image/placeholder)
+ ![image](/image/placeholder)
+ 금 지 알 림 ![image](/image/placeholder)
+ ![image](/image/placeholder)
+ 플러그 뼘 주의 배터리 | ![image](/image/placeholder)
  지정하는 서비스 센터 직원 외에는 임의로 제품을 분해하거나 수리 및 개조를 하지 마십시오. 본사가 ※ 이상 작동으로 인한 화재, 감전, 상해의 위험이 있습니다. |
 | --- |
 | ![image](/image/placeholder)
@@ -240,4 +240,4 @@ MEMO 11
 보증서에 기재된 내용에 따라 보증하여 드리며, 본 보증서는 재발행되지 않습니다.
 본 보증서는 대한민국 국내에서만 유효합니다.
 THIS WARRANTY IS VALID ONLY IN KOREA Shioil
-전국 어디서나 : 1577-6667 創業 瑞 는 록 QR코드로 서비스 센터를 확인하세요!
+전국 어디서나 : 1577-6667 創業 瑞 늘 록 QR코드로 서비스 센터를 확인하세요!

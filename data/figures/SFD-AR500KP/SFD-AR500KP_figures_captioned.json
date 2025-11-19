@@ -6,7 +6,7 @@
   "created_by": "image_captioner_gemini.py",
   "model": "gemini-2.5-flash",
   "config": {
-    "CAPTION_MAX_CHARS": 220,
+    "CAPTION_MAX_CHARS": 320,
     "UNSAFE_KEYWORDS": [
       "폭발",
       "감전",
@@ -51,42 +51,13 @@
         "is_procedure_banner": false
       },
       "caption_file": "data/caption_images/SFD-AR500KP/page_001_figure_001.png",
-      "caption_short": "이것은 음식을 말리는 식품 건조기이다. 아래 본체 위에 네모난 쟁반 7개가 쌓여 있고, 맨 위 덮개에는 둥근 팬 구멍이 있다. 본체 앞면에는 시간을 조절하는 화면과 버튼(시간 -/+), 온도를 조절하는 화면과 버튼(온도 -/+), 그리고 전원 버튼이 왼쪽부터 차례대로 있다.",
+      "caption_short": "눈앞에는 식품을 말리는 건조기가 놓여 있다. 전체적으로 모서리가 둥근 높은 직사각형 형태이며, 정면과 오른쪽 옆면이 보이는 약간 위에서 본 모습이다. 가장 위쪽에는 덮개 중앙에 동그란 환기구가 있고, 그 아래로 납작한 칸막이 통 여러 개가 차곡차곡 쌓여 있다. 이 칸막이 통의 오른쪽 옆면에는 잡을 수 있는 작은 홈이 있다. 가장 아래 본체 앞면 중앙에는 조작부가 있다. 조작부에는 두 개의 작은 네모난 화면이 있으며, 왼쪽 화면 아래에는 '시간' 글자와 빼기, 더하기 기호가 있다.",
       "caption_fallback_reason": null
     },
     {
       "file": "data/figures/SFD-AR500KP/page_002_figure_002.png",
       "page": 2,
       "index": 2,
-      "size_px": [
-        44,
-        42
-      ],
-      "keep_for_caption": false,
-      "category": "small_icon",
-      "tags": [
-        "small_icon"
-      ],
-      "metrics": {
-        "width": 44.0,
-        "height": 42.0,
-        "aspect_ratio": 1.0476190476190477,
-        "ink_ratio": 0.4069264069264069,
-        "edge_ratio": 0.2532467532467532,
-        "table_line_ratio": 0.18506493506493507,
-        "is_qr_code": false,
-        "qr_heuristic": false,
-        "is_small_icon": true,
-        "is_procedure_banner": false
-      },
-      "caption_file": null,
-      "caption_short": null,
-      "caption_fallback_reason": "not_for_caption"
-    },
-    {
-      "file": "data/figures/SFD-AR500KP/page_002_figure_003.png",
-      "page": 2,
-      "index": 3,
       "size_px": [
         43,
         41
@@ -103,6 +74,35 @@
         "ink_ratio": 0.42597844583096994,
         "edge_ratio": 0.23085649461145774,
         "table_line_ratio": 0.22404991491775383,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SFD-AR500KP/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        44,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0476190476190477,
+        "ink_ratio": 0.4069264069264069,
+        "edge_ratio": 0.2532467532467532,
+        "table_line_ratio": 0.18506493506493507,
         "is_qr_code": false,
         "qr_heuristic": false,
         "is_small_icon": true,
@@ -233,26 +233,26 @@
       "page": 4,
       "index": 8,
       "size_px": [
-        388,
+        389,
         295
       ],
       "keep_for_caption": true,
       "category": "photo_or_diagram",
       "tags": [],
       "metrics": {
-        "width": 388.0,
+        "width": 389.0,
         "height": 295.0,
-        "aspect_ratio": 1.3152542372881355,
-        "ink_ratio": 0.05702428796085969,
-        "edge_ratio": 0.057469858465839595,
-        "table_line_ratio": 0.031670452559846234,
+        "aspect_ratio": 1.3186440677966103,
+        "ink_ratio": 0.0568776959609603,
+        "edge_ratio": 0.05732212104047754,
+        "table_line_ratio": 0.031589037514705244,
         "is_qr_code": false,
         "qr_heuristic": false,
         "is_small_icon": false,
         "is_procedure_banner": false
       },
       "caption_file": "data/caption_images/SFD-AR500KP/page_004_figure_008.png",
-      "caption_short": "사각형 모양의 옅은 색 제품이 여러 층으로 쌓여 있으며, 맨 위에는 둥근 환기구가 있다. 제품은 벽과 벽이 만나는 모서리에 놓여 있다. 제품의 뒷면, 오른쪽 옆면, 그리고 앞쪽으로 10cm 간격이 화살표로 표시되어 있다. 맨 아랫부분 앞면에는 직사각형 화면을 중심으로 네모난 버튼 두 개와 둥근 버튼 하나가 있는 조작부가 보인다.",
+      "caption_short": "벽이 만나는 구석에 네모난 모양으로 쌓인 기기가 놓여 있다. 기기는 아래 본체와 그 위에 여러 층으로 쌓인 네모난 트레이들, 맨 위 뚜껑으로 구성된다. 뚜껑 가운데에는 동그란 통풍구가 있고, 아래 본체 앞면에는 두 개의 디스플레이 창과 버튼들이 있는 조작부가 있다. 기기 오른쪽 옆, 뒤, 그리고 앞쪽에는 각각 10cm라는 글자가 적힌 화살표들이 있어, 벽이나 다른 물건과의 거리를 유지해야 함을 나타낸다.",
       "caption_fallback_reason": null
     },
     {
@@ -279,7 +279,7 @@
         "is_procedure_banner": false
       },
       "caption_file": "data/caption_images/SFD-AR500KP/page_005_figure_009.png",
-      "caption_short": "이것은 사각형 모양의 건조용 받침대이다. 위에서 비스듬히 내려다본 모습이다. 받침대 바닥에는 작은 네모들이 촘촘하게 배열된 격자무늬가 있고, 그 위에 둥근 회색 음식 재료 6개가 놓여 있다. 받침대 중앙에는 속이 빈 둥근 원형 구멍이 있고, 오른쪽 측면에는 작은 손잡이 같은 부분이 튀어나와 있다.",
+      "caption_short": "넓고 납작한 사각형 모양의 용기이다. 위쪽과 오른쪽 옆면이 보이도록 살짝 위에서 내려다본 모습이다. 용기 안쪽 바닥에는 작은 네모들이 촘촘히 이어진 격자무늬가 가득하고, 그 위에 둥근 회색 물체 여섯 개가 놓여 있다. 격자무늬 한가운데에는 뻥 뚫린 듯한 둥근 모양의 구조물이 위로 솟아 있다. 용기의 오른쪽 옆면 위쪽에는 작은 손잡이 같은 것이 튀어나와 있고, 여기서 가느다란 선이 오른쪽으로 이어져 있다.",
       "caption_fallback_reason": null
     },
     {
@@ -306,7 +306,7 @@
         "is_procedure_banner": false
       },
       "caption_file": "data/caption_images/SFD-AR500KP/page_005_figure_010.png",
-      "caption_short": "직사각형 모양의 하얀색 전자제품이 보인다. 윗부분은 여러 층으로 쌓인 칸막이 모양이며, 왼쪽 상단에 숫자 3이 동그라미 안에 있다. 제품 앞면 조작부에는 '03'이 보이는 시간 화면과 '55'가 보이는 온도 화면이 각각 더하기 빼기 버튼과 함께 있다. 한 사람의 손가락이 '온도 버튼' 글자 옆의 빼기 버튼을 누르고 있고, 오른쪽에는 둥근 전원 버튼이 있다.",
+      "caption_short": "장면의 왼쪽 위에는 동그란 숫자 '3'이 보인다. 눈앞에는 네모난 형태의 전자제품이 약간 위에서 비스듬히 내려다본 모습으로 놓여 있다. 제품의 앞면 가운데 부분에는 조작부가 있다. 조작부의 왼쪽에는 '03'이라는 숫자가 표시된 창과 '시간'이라고 쓰인 마이너스, 플러스 버튼이 있다. 조작부의 가운데에는 '55'라는 숫자가 표시된 창과 '온도'라고 쓰인 마이너스, 플러스 버튼이 있다. 이 '온도' 버튼 중 플러스 버튼을 한 손가락이 누르고 있고, 이 버튼들을 '온도 버튼'이라고 가리키는 글자가 보인다.",
       "caption_fallback_reason": null
     },
     {
@@ -333,7 +333,7 @@
         "is_procedure_banner": false
       },
       "caption_file": "data/caption_images/SFD-AR500KP/page_005_figure_011.png",
-      "caption_short": "이것은 식품을 건조하는 전자 기기이다. 밝은색의 직사각형 모양이며 여러 개의 층이 위로 쌓여 있다. 기기 위쪽에는 둥근 팬 구멍이 있고, 아래 앞면에는 작은 화면과 여러 개의 버튼이 있다. 화면에는 숫자 '03'과 '55'가 보인다. 오른쪽에 있는 손이 전원 플러그를 잡고 벽에 있는 콘센트로 향하고 있다. 플러그는 벽의 두 구멍 콘센트에 꽂히기 직전의 모습이다.",
+      "caption_short": "앞에 보이는 제품은 음식을 건조하는 데 쓰는 것으로 보이는 높고 네모난 전자제품이다. 제품 위쪽에는 둥근 환기구가 있고, 그 아래로 얇은 쟁반 5개가 차곡차곡 쌓여 있다. 가장 아래쪽 본체 앞면에는 조작부가 있는데, 왼쪽에는 '03'이라고 표시된 숫자 창과 시간 조절 버튼('시간', '-', '+')이 있다. 오른쪽에는 '55'라고 표시된 숫자 창과 온도 조절 버튼('온도', '-', '+')이 보이며, 그 옆에는 'ON'이라고 쓰인 전원 버튼이 있다. 제품 오른쪽에서는 손이 플러그를 잡아 벽에 있는 두 구멍짜리 콘센트에 꽂는 모습이 보인다.",
       "caption_fallback_reason": null
     },
     {
@@ -360,7 +360,7 @@
         "is_procedure_banner": false
       },
       "caption_file": "data/caption_images/SFD-AR500KP/page_005_figure_012.png",
-      "caption_short": "앞쪽과 옆쪽에서 본 음식 건조기가 있다. 네모난 모양으로, 아래 본체 위에 여러 층의 칸들이 쌓여있는 모습이다. 제일 위 칸에는 동그란 구멍이 송송 뚫린 팬 모양이 보인다. 본체 앞면에는 숫자가 나오는 작은 화면이 있는데, 지금은 '03'과 '55'가 표시되어 있다. 화면 아래에는 누를 수 있는 여러 개의 버튼이 보인다. 오른쪽에는 사람 손이 전원 플러그를 잡고 있다.",
+      "caption_short": "오른쪽 앞에서 본 네모난 식품 건조기이다. 위에서부터 동그란 통풍구가 있는 덮개, 여러 겹의 투명한 트레이들이 차례로 쌓여 있고, 가장 아래에 받침대가 있다. 받침대 앞면에는 '03'과 '55'가 표시된 화면, 시간 및 온도 조절 버튼, 그리고 동그란 전원 버튼이 보인다. 오른쪽에는 손이 전원 플러그를 잡고 벽에 있는 콘센트에 꽂으려는 모습이다.",
       "caption_fallback_reason": null
     },
     {
@@ -387,7 +387,7 @@
         "is_procedure_banner": false
       },
       "caption_file": "data/caption_images/SFD-AR500KP/page_005_figure_013.png",
-      "caption_short": "네모난 흰색 가전제품의 앞면을 위에서 비스듬히 내려다보고 있다. 앞쪽 조작부에는 '03'과 '55' 숫자가 보이는 두 개의 화면과 여러 버튼이 있으며, 한 손의 검지 손가락이 '시간'이라고 쓰인 둥근 버튼을 누르고 있다. 왼쪽 위에는 둥근 테두리 안에 숫자 4가 적혀 있다.",
+      "caption_short": "여러 층으로 겹쳐진 네모난 모양의 전자제품 본체가 약간 오른쪽 앞에서 비스듬히 아래를 내려다보는 각도로 보인다. 본체 앞면에는 긴 조작부가 있는데, 왼쪽에는 한 손의 검지 손가락이 '시간 버튼'이라고 적힌 둥근 버튼을 누르고 있다. 이 버튼 안에는 숫자 '03'과 아래에 '시간'이라는 글자가 표시되어 있다. 시간 버튼 오른쪽으로는 빼기(-) 기호와 숫자 '55', 그리고 아래에 '온도'라는 글자가 있으며, 그 옆에 더하기(+) 기호가 있다. 조작부의 가장 오른쪽에는 전원 기호와 '전원'이라는 글자가 있는 버튼이 위치한다.",
       "caption_fallback_reason": null
     },
     {

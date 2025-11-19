@@ -50,33 +50,6 @@
       "page": 2,
       "index": 2,
       "size_px": [
-        44,
-        42
-      ],
-      "keep_for_caption": false,
-      "category": "small_icon",
-      "tags": [
-        "small_icon"
-      ],
-      "metrics": {
-        "width": 44.0,
-        "height": 42.0,
-        "aspect_ratio": 1.0476190476190477,
-        "ink_ratio": 0.4069264069264069,
-        "edge_ratio": 0.2532467532467532,
-        "table_line_ratio": 0.18506493506493507,
-        "is_qr_code": false,
-        "qr_heuristic": false,
-        "is_small_icon": true,
-        "is_procedure_banner": false
-      },
-      "caption_file": null
-    },
-    {
-      "file": "data/figures/SFD-AR500KP/page_002_figure_003.png",
-      "page": 2,
-      "index": 3,
-      "size_px": [
         43,
         41
       ],
@@ -92,6 +65,33 @@
         "ink_ratio": 0.42597844583096994,
         "edge_ratio": 0.23085649461145774,
         "table_line_ratio": 0.22404991491775383,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SFD-AR500KP/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        44,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0476190476190477,
+        "ink_ratio": 0.4069264069264069,
+        "edge_ratio": 0.2532467532467532,
+        "table_line_ratio": 0.18506493506493507,
         "is_qr_code": false,
         "qr_heuristic": false,
         "is_small_icon": true,
@@ -212,19 +212,19 @@
       "page": 4,
       "index": 8,
       "size_px": [
-        388,
+        389,
         295
       ],
       "keep_for_caption": true,
       "category": "photo_or_diagram",
       "tags": [],
       "metrics": {
-        "width": 388.0,
+        "width": 389.0,
         "height": 295.0,
-        "aspect_ratio": 1.3152542372881355,
-        "ink_ratio": 0.05702428796085969,
-        "edge_ratio": 0.057469858465839595,
-        "table_line_ratio": 0.031670452559846234,
+        "aspect_ratio": 1.3186440677966103,
+        "ink_ratio": 0.0568776959609603,
+        "edge_ratio": 0.05732212104047754,
+        "table_line_ratio": 0.031589037514705244,
         "is_qr_code": false,
         "qr_heuristic": false,
         "is_small_icon": false,

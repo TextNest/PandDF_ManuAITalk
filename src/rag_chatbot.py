@@ -381,8 +381,19 @@ def interactive_chat() -> None:
         stream_print_answer(qa_result.answer)
         print()
 
+        # 2-1) 외형/이미지 질문 + 이미지 결과가 있다면 같이 보여주기
+        if qa_result.image_results:
+            print("[이미지 후보]")
+            for img in qa_result.image_results:
+                page_str = f"p.{img.page}" if img.page is not None else "p.?"
+                print(
+                    f"  - URL: {img.image_url} "
+                    f"({img.doc_id} {page_str}, figure_index={img.figure_index}, score={img.score:.4f})"
+                )
+                print(f"    캡션: {img.caption}")
+            print()
+
         # 3) 응답 생성에 걸린 시간 출력
-        #    - 소수점 둘째 자리에서 반올림하여 2자리까지 표시
         print(f"⏱ 생성 소요 시간: {elapsed:.2f}초 (검색 + 답변 생성 전체)\n")
 
         # 4) 간추린 출처 요약 출력

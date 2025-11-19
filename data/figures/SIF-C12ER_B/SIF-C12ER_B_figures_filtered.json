@@ -26,33 +26,6 @@
       "index": 1,
       "size_px": [
         46,
-        44
-      ],
-      "keep_for_caption": false,
-      "category": "small_icon",
-      "tags": [
-        "small_icon"
-      ],
-      "metrics": {
-        "width": 46.0,
-        "height": 44.0,
-        "aspect_ratio": 1.0454545454545454,
-        "ink_ratio": 0.3932806324110672,
-        "edge_ratio": 0.25049407114624506,
-        "table_line_ratio": 0.19120553359683795,
-        "is_qr_code": false,
-        "qr_heuristic": false,
-        "is_small_icon": true,
-        "is_procedure_banner": false
-      },
-      "caption_file": null
-    },
-    {
-      "file": "data/figures/SIF-C12ER_B/page_002_figure_002.png",
-      "page": 2,
-      "index": 2,
-      "size_px": [
-        46,
         43
       ],
       "keep_for_caption": false,
@@ -75,9 +48,9 @@
       "caption_file": null
     },
     {
-      "file": "data/figures/SIF-C12ER_B/page_002_figure_003.png",
+      "file": "data/figures/SIF-C12ER_B/page_002_figure_002.png",
       "page": 2,
-      "index": 3,
+      "index": 2,
       "size_px": [
         45,
         45
@@ -94,6 +67,33 @@
         "ink_ratio": 0.41975308641975306,
         "edge_ratio": 0.24246913580246915,
         "table_line_ratio": 0.20296296296296296,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SIF-C12ER_B/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        46,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0454545454545454,
+        "ink_ratio": 0.3932806324110672,
+        "edge_ratio": 0.25049407114624506,
+        "table_line_ratio": 0.19120553359683795,
         "is_qr_code": false,
         "qr_heuristic": false,
         "is_small_icon": true,
@@ -446,18 +446,18 @@
       "index": 17,
       "size_px": [
         385,
-        201
+        200
       ],
       "keep_for_caption": true,
       "category": "photo_or_diagram",
       "tags": [],
       "metrics": {
         "width": 385.0,
-        "height": 201.0,
-        "aspect_ratio": 1.9154228855721394,
-        "ink_ratio": 0.049841700587969245,
-        "edge_ratio": 0.06627899463720359,
-        "table_line_ratio": 0.03253860567293403,
+        "height": 200.0,
+        "aspect_ratio": 1.925,
+        "ink_ratio": 0.04535064935064935,
+        "edge_ratio": 0.06192207792207792,
+        "table_line_ratio": 0.030896103896103897,
         "is_qr_code": false,
         "qr_heuristic": false,
         "is_small_icon": false,

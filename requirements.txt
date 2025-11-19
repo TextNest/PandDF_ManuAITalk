@@ -1,10 +1,13 @@
-faiss_cpu==1.8.0
-langchain_core==1.0.5
-langchain_upstage==0.7.4
-numpy==2.3.5
-opencv_contrib_python==4.12.0.88
-opencv_python==4.12.0.88
-Pillow==12.0.0
-protobuf==6.33.1
-python-dotenv==1.2.1
-google-genai>=0.6.0
+# --- Core RAG / AI ---
+google-genai        # from google import genai
+python-dotenv       # from dotenv import load_dotenv
+
+# --- Numerical / Vector / Image ---
+numpy
+faiss-cpu           # 또는 faiss-gpu, 환경에 맞게 선택
+opencv-python       # cv2
+Pillow              # PIL
+
+# --- HTTP / 기타 ---
+requests
+langchain-core      # langchain_core.documents.Document 사용
