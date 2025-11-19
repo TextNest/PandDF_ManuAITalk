@@ -185,6 +185,16 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[st
                         "lastMessage":last_message,
                         "messageCount":message_count
                     })
+                else:
+                    await session.execute(text(add_session),
+                    params={
+                        "email":user_id,
+                        "productId":pid,
+                        "session_id":session_id,
+                        "lastMessage":last_message,
+                        "messageCount":message_count
+                    })
+
             else:
                 results = await session.execute(text(guest_find_message),
                 params={"session_id":session_id})
