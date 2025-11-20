@@ -11,7 +11,7 @@ import styles from './ProductGrid.module.css';
 interface ProductGridProps {
   products: Product[];
   onProductUpdate: (updatedProduct: Product) => void;
-  onProductDelete: (deletedProductId: number) => void;
+  onProductDelete: (deletedProductId: string) => void;
 }
 
 export default function ProductGrid({ products, onProductUpdate, onProductDelete }: ProductGridProps) {

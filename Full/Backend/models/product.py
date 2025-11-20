@@ -14,8 +14,8 @@ class Product(Base):
     __tablename__ = "test_products"
 
     internal_id = Column(Integer, primary_key=True, index=True)
-    product_name = Column(String(255), nullable=False, comment="제품명")
-    product_id = Column(String(255), nullable=True, unique=True, comment="모델명")
+    product_name = Column(String(255), nullable=True, unique=True, comment="제품명")
+    product_id = Column(String(255), nullable=False, unique=True, comment="모델명")
     
     # category_id = Column(Integer, ForeignKey("test_categories.id"), nullable=False, comment="카테고리 ID")
     # _category = Column('category', String(100), ForeignKey("test_categories.name"), nullable=False, comment="카테고리명")

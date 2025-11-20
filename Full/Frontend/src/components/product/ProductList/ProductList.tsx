@@ -11,7 +11,7 @@ import styles from './ProductList.module.css';
 interface ProductListProps {
   products: Product[];
   onProductUpdate: (updatedProduct: Product) => void;
-  onProductDelete: (deletedProductId: number) => void;
+  onProductDelete: (deletedProductId: string) => void;
 }
 
 export default function ProductList({ products, onProductUpdate, onProductDelete }: ProductListProps) {

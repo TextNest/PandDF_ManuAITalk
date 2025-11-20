@@ -78,24 +78,24 @@ export default function ProductsPage() {
   }, []);
 
   // 필터링
-  const handleProductDelete = (deletedProductId: number) => {
+  const handleProductDelete = (deletedProductId: string) => {
     setProducts(prevProducts =>
-      (prevProducts || []).filter(p => p.internal_id !== deletedProductId)
+      (prevProducts || []).filter(p => p.product_id !== deletedProductId) // internal_id -> product_id
     );
   };
 
   const handleProductUpdate = (updatedProduct: Product) => {
     setProducts(prevProducts =>
       (prevProducts || []).map(p =>
-        p.internal_id === updatedProduct.internal_id ? updatedProduct : p
+        p.product_id === updatedProduct.product_id ? updatedProduct : p // internal_id -> product_id
       )
     );
   };
 
   const filteredProducts = useMemo(() => {
     return (products || []).filter(product => { // Handle products being null
-            const matchesSearch = 
-              product.product_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            const matchesSearch =
+              (product.product_name && product.product_name.toLowerCase().includes(searchQuery.toLowerCase())) ||
               (product.product_id && product.product_id.toLowerCase().includes(searchQuery.toLowerCase()));    
       // 카테고리 필터링 로직을 문자열 비교로 변경
       const matchesCategory = 

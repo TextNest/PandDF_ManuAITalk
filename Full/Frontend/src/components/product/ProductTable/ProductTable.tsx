@@ -81,7 +81,7 @@ export default function ProductTable({ products }: ProductTableProps) {
                     </button>
                   )}
                   <Link
-                    href={`/products/edit/${product.internal_id}`}
+                    href={`/products/edit/${product.product_id}`}
                     className={styles.actionButton}
                     title="수정"
                   >

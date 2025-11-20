@@ -1,5 +1,5 @@
 import { useRef, useCallback, useMemo } from 'react';
-import { Scene, Mesh, Material, BoxGeometry, MeshStandardMaterial, Vector3, Group, Box3 } from 'three';
+import { Scene, Mesh, BoxGeometry, MeshStandardMaterial, Vector3, Group, Box3 } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { COLORS } from '@/lib/ar/constants';
 import { FurnitureItem } from '@/lib/ar/types';
@@ -65,6 +65,8 @@ export function useFurniturePlacement(
             
             setDebugMessage(`모델 로딩 중: ${absoluteUrl}`);
             const loader = new GLTFLoader();
+            loader.setRequestHeader({ 'ngrok-skip-browser-warning': 'true' });
+
             loader.load(absoluteUrl, (gltf) => {
                 setDebugMessage('모델 로딩 성공!');
                 const model = gltf.scene;
@@ -90,9 +92,11 @@ export function useFurniturePlacement(
                 previewModelRef.current = model;
                 sceneRef.current?.add(model);
             }, undefined, (error) => {
-                const errorMessage = error instanceof ErrorEvent ? error.message : 'Unknown error';
-                setDebugMessage(`모델 로딩 실패. 상자로 대체합니다. 에러: ${errorMessage}`)
-                console.error('모델 로딩 오류:', error);
+                console.error('모델 로딩 오류 상세:', error);
+                const errorMessage = error instanceof ErrorEvent 
+                    ? error.message 
+                    : (typeof error === 'object' && error !== null ? JSON.stringify(error) : String(error));
+                setDebugMessage(`모델 로딩 실패. URL: ${absoluteUrl}, 에러: ${errorMessage}`);
                 
                 const geometry = new BoxGeometry(itemWidthMeters, itemHeightMeters, itemDepthMeters);
                 const material = new MeshStandardMaterial({ color: COLORS.FURNITURE_PREVIEW, transparent: true, opacity: 0.5 });

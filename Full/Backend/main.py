@@ -1,5 +1,5 @@
 import asyncio
-from fastapi import FastAPI,Request
+from fastapi import FastAPI,Request, HTTPException
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
@@ -24,21 +24,42 @@ async def on_startup():
     asyncio.create_task(Scheduler_ARP())
 
 # CORS 설정
-origins = [
-    "http://localhost:3000",  
-    "http://127.0.0.1:3000", 
-    "https://subnotational-unmodified-myrl.ngrok-free.dev", # ngrok 테스트용
-    "https://preactive-beryline-despina.ngrok-free.dev", # ngrok 테스트용 
+# origins = [
+#     "http://localhost:3000",  
+#     "http://127.0.0.1:3000", 
+#     "https://subnotational-unmodified-myrl.ngrok-free.dev", # ngrok 테스트용
+#     "https://preactive-beryline-despina.ngrok-free.dev", # ngrok 테스트용 
+# ]
 
-]
+import os
+from fastapi.responses import FileResponse
+
+# ... (기존 코드 유지)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,      
+    allow_origins=["*"],      
     allow_credentials=True,   
     allow_methods=["*"],       
     allow_headers=["*"],       
 )
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],      
+    allow_credentials=True,   
+    allow_methods=["*"],       
+    allow_headers=["*"],       
+)
+
+
+@app.middleware("http")
+async def add_cors_header(request: Request, call_next):
+    response = await call_next(request)
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = "*"
+    response.headers["Access-Control-Allow-Headers"] = "*"
+    return response
 
 app.mount("/uploads/models_3d", StaticFiles(directory="uploads/models_3d"), name="models_3d")
 app.mount("/uploads/pdfs", StaticFiles(directory="uploads/pdfs"), name="pdfs")

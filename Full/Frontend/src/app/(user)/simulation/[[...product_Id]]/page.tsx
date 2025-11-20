@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import { Maximize2, Move3d, Camera } from 'lucide-react';
+import { useEffect, useRef } from 'react';
+import { useParams } from 'next/navigation';
+import { Move3d, Camera } from 'lucide-react';
 import ARUI from '@/components/ar/ARUI';
 import ARScene, { ARSceneHandle } from '@/components/ar/ARScene';
 import PlacedItemsCard from '@/components/ar/PlacedItemsCard'; // Import the card
@@ -15,8 +15,8 @@ import { FurnitureItem } from '@/lib/ar/types';
 
 export default function SimulationPage() {
   const params = useParams();
-  const router = useRouter();
-  const productId = params.productId ? (params.productId as string[])[0] : undefined;
+  const rawProductId = params.product_Id ? (params.product_Id as string[])[0] : undefined;
+  const productId = rawProductId ? decodeURIComponent(rawProductId) : undefined;
 
   // Use individual selectors for Zustand state to ensure correct re-renders
   const isARActive = useARStore(state => state.isARActive);
@@ -40,19 +40,19 @@ export default function SimulationPage() {
     if (productId) {
       const fetchInitialProduct = async () => {
         try {
-          console.log("Fetching product with ID:", productId); // Add console.log for debugging
+          console.log("Fetching product with id:", productId); // Add console.log for debugging
           const product = await apiClient.get<Product>(`/api/products/${productId}`);
           const mappedFurniture: FurnitureItem = {
             id: product.data.product_id ?? '',
-            name: product.data.product_name,
+            name: product.data.product_name || '',
             model3dUrl: product.data.model3d_url ?? undefined,
             width_mm: product.data.width_mm ?? undefined,
             height_mm: product.data.height_mm ?? undefined,
             depth_mm: product.data.depth_mm ?? undefined,
             // Add non-mm properties for ARUI compatibility
             width: product.data.width_mm ? product.data.width_mm / 1000 : 0,
-            height: product.data.height_mm ? product.data.height_mm / 1000 : 0,
-            depth: product.data.depth_mm ? product.data.depth_mm / 1000 : 0,
+            height: product.data.depth_mm ? product.data.depth_mm / 1000 : 0, // 높이(H)는 depth_mm 사용
+            depth: product.data.height_mm ? product.data.height_mm / 1000 : 0, // 깊이(D)는 height_mm 사용
           };
           selectFurniture(mappedFurniture);
           console.log("Mapped furniture for AR:", mappedFurniture); // Test code
@@ -150,7 +150,7 @@ export default function SimulationPage() {
                 <div className={styles.infoItem}>
                   <span className={styles.label}>규격 (W x H x D):</span>
                   <span className={styles.value}>
-                    {`${selectedFurniture.width_mm || (selectedFurniture.width || 0) * 1000}mm x ${selectedFurniture.height_mm || (selectedFurniture.height || 0) * 1000}mm x ${selectedFurniture.depth_mm || (selectedFurniture.depth || 0) * 1000}mm`}
+                    {`${selectedFurniture.width_mm || (selectedFurniture.width || 0) * 1000}mm x ${selectedFurniture.depth_mm || (selectedFurniture.height || 0) * 1000}mm x ${selectedFurniture.height_mm || (selectedFurniture.depth || 0) * 1000}mm`}
                   </span>
                 </div>
               </>

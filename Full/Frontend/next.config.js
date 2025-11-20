@@ -5,7 +5,7 @@ const nextConfig = {
 
   devIndicators: {
     allowedDevOrigins: [
-      'subnotational-unmodified-myrl.ngrok-free.dev', 
+      
       'preactive-beryline-despina.ngrok-free.dev']
   },
 

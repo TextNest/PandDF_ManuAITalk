@@ -62,37 +62,28 @@ export default function ARUI({ lastUITouchTimeRef }: { lastUITouchTimeRef: React
       setDebugMessage('가구 목록 로딩 중...');
       try {
         const response = await apiClient.get<Product[]>('/api/products', { signal });
-        
-        if (Array.isArray(response.data)) {
-          const mappedItems: FurnitureItem[] = response.data
-            //.filter(p => p.model3d_url) // 3D 모델이 있는 제품만 필터링
-            .map(p => ({
-              id: p.internal_id,
-              name: p.product_name,
-              model3dUrl: p.model3d_url?.replace(/\\/g, '/') || undefined,
-              width_mm: p.width_mm || 1000,
-              height_mm: p.height_mm || 1000,
-              depth_mm: p.depth_mm || 1000,
-              width: (p.width_mm || 1000) / 1000,
-              height: (p.height_mm || 1000) / 1000,
-              depth: (p.depth_mm || 1000) / 1000,
-            }));
-          setDbItems(mappedItems);
-          setDebugMessage(`데이터베이스에서 ${mappedItems.length}개의 가구를 불러왔습니다.`);
-        } else {
-          console.error("API 응답이 배열이 아닙니다:", response.data);
-          setDbItems([]);
-          setDebugMessage('가구 목록을 불러오는 데 실패했습니다: 잘못된 데이터 형식');
-        }
-      } catch (error: any) {
-        if (error.name === 'CanceledError') {
-          console.log('Fetch aborted');
-        } else {
-          console.error("DB 아이템 가져오기 실패:", error);
-          setDebugMessage(`가구 목록 로딩 실패: ${error.message}`);
+        const mappedItems: FurnitureItem[] = response.data
+          .map(p => ({
+            id: p.product_id || '',
+            name: p.product_name || '',
+            model3dUrl: p.model3d_url || undefined,
+            width_mm: p.width_mm || 0,
+            height_mm: p.height_mm || 0,
+            depth_mm: p.depth_mm || 0,
+            width: (p.width_mm || 0) / 1000,
+            height: (p.depth_mm || 0) / 1000, // 높이는 depth_mm
+            depth: (p.height_mm || 0) / 1000,  // 깊이는 height_mm
+          }));
+        setDbItems(mappedItems);
+        setDebugMessage('가구 목록 로딩 완료.');
+      } catch (error) {
+        if ((error as Error).name !== 'AbortError') {
+          console.error("가구 목록을 불러오는 데 실패했습니다:", error);
+          setDebugMessage("제품 목록을 가져올 수 없습니다.");
         }
       }
     }
+
     fetchDbItems();
 
     return () => {

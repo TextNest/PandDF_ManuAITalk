@@ -16,8 +16,8 @@ class AnalysisStatus(str, enum.Enum):
 # Product Schemas
 # ==================
 class ProductBase(BaseModel):
-    product_name: str
-    product_id: Optional[str] = None
+    product_id: str # 제품 코드를 필수로 받도록 변경
+    product_name: Optional[str] = None
     category: Optional[str] = None
     manufacturer: Optional[str] = None
     description: Optional[str] = None

@@ -3,15 +3,13 @@
 // Three.js를 직접 제어하고, 각종 커스텀 훅을 사용하여 기능별 로직을 통합합니다.
 
 import { useEffect, useRef, useCallback, forwardRef, useImperativeHandle } from 'react';
-import { Scene, PerspectiveCamera, WebGLRenderer, HemisphereLight, Mesh, RingGeometry, MeshBasicMaterial, Vector3 } from 'three';
+import { Scene, PerspectiveCamera, WebGLRenderer, HemisphereLight, Mesh, RingGeometry, MeshBasicMaterial } from 'three';
 import { useObjectRotation } from '@/features/ar/hooks/useObjectRotation';
 import { useMeasurement } from '@/features/ar/hooks/useMeasurement';
 import { useFurniturePlacement } from '@/features/ar/hooks/useFurniturePlacement';
 import styles from './ARScene.module.css';
 import { COLORS } from '@/lib/ar/constants';
 import { useARStore } from '@/store/useARStore';
-import { Product } from '@/types/product.types';
-import { FurnitureItem } from '@/lib/ar/types'; // Import FurnitureItem
 
 interface ARSceneProps {
   uiOverlayRef: React.RefObject<HTMLDivElement | null>;
@@ -35,9 +33,7 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
     isPreviewing,
     selectFurniture,
     setDebugMessage,
-    arStatus,
     setARStatus,
-    isPlacing,
     setIsPlacing,
     previewTriggerCounter,
   } = useARStore();
