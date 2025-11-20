@@ -4,7 +4,9 @@ const nextConfig = {
   reactStrictMode: true,
 
   devIndicators: {
-    allowedDevOrigins: ['subnotational-unmodified-myrl.ngrok-free.dev'],
+    allowedDevOrigins: [
+      
+      'preactive-beryline-despina.ngrok-free.dev']
   },
 
   // 이미지 최적화 설정

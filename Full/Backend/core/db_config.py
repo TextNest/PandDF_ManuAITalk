@@ -14,7 +14,9 @@ print(DATABASE_URL)
 engine: Engine = create_async_engine(
     DATABASE_URL, 
     echo=True,
-    pool_pre_ping=True
+    pool_pre_ping=True,
+    pool_recycle=3600,
+    pool_timeout=30
 )
 
 AsyncSessionFactory = sessionmaker(

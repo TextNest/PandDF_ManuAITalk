@@ -24,6 +24,6 @@ export const ROUTES = {
     FAQ_AUTO_GENERATE: '/faq/auto-generate',
     LOGS: '/logs',
     PRODUCTS: '/products',
-    PRODUCTS_DETAIL: (id: string) => `/products/${id}`,
+    PRODUCTS_DETAIL: (productId: string) => `/products/${productId}`,
   },
 } as const;

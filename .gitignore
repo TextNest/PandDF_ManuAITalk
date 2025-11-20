@@ -22,7 +22,10 @@ __pycache__/
 /Full/Backend/data/logs
 /Full/Backend/data/page_images
 /Full/Backend/data/upload
-/Full/Backend/uploads/
+/Full/Backend/uploads/images/*
+/Full/Backend/uploads/models_3d/*
+/Full/Backend/uploads/pdfs/*
+/Full/Backend/.venv
 
 # Data
 ex_data/
@@ -32,3 +35,4 @@ artifacts/
 *test*
 *.ipynb
 *.png
+.next
