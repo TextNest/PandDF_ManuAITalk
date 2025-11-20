@@ -1,7 +1,8 @@
 from typing import List, Tuple, Dict, Optional
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, and_, join
+from sqlalchemy import text, select
 from datetime import datetime, timedelta
+from core.query import find_faq_messages
 from models.faq import FAQ
 from models.message import ChatMessage
 from models.session import ChatSession
@@ -46,31 +47,12 @@ class FAQGenerator:
         """
         start_date = datetime.utcnow() - timedelta(days=days_range)
         
-        # [JOIN] message - session - product 
-        # SQLAlchemy 2.0 스타일 조인
-        query = select(
-            ChatMessage.role,
-            ChatMessage.content,
-            ChatMessage.session_id,
-            Product.product_id,
-            Product.product_name,
-            Product.category,
-            ChatMessage.timestamp
-        ).join(
-            ChatSession,
-            ChatMessage.session_id == ChatSession.session_id
-        ).join(
-            Product,
-            ChatSession.productId == Product.product_id
-        ).where(
-            ChatMessage.timestamp >= start_date
-        ).order_by(
-            ChatMessage.session_id,
-            ChatMessage.timestamp
-        )
+        # [JOIN] message - session - product
+        query = text(find_faq_messages)
+        params = {"start_date": start_date}
         
-        result = await session.execute(query)
-        messages = result.all()
+        result = await session.execute(query, params)
+        messages = result.mappings().all()
         
         logger.info(f"조인된 메시지 수: {len(messages)}")
         
@@ -90,16 +72,17 @@ class FAQGenerator:
 
         # 세션별로 메시지를 그룹화한 후 user-assistant 매칭
         messages_by_session = defaultdict(list)
-        for role, content, session_id, product_id, product_name, category, timestamp in messages:
-            messages_by_session[session_id].append({
-                'role': role,
-                'content': content,
-                'product_id': product_id,
-                'product_name': product_name,
-                'category': category,
-                'timestamp': timestamp
+        for row in messages:
+            messages_by_session[row['session_id']].append({
+                'role': row['role'],
+                'content': row['content'],
+                'product_id': row['product_id'],
+                'product_name': row['product_name'],
+                'category': row['category'],
+                'timestamp': row['timestamp'],
+                'tool_name': row.get('tool_name')  # 추가: tool_name도 추적
             })
-        
+
         user_count = 0
         assistant_count = 0
         qa_pair_count = 0
@@ -108,6 +91,7 @@ class FAQGenerator:
         for session_id, session_messages in messages_by_session.items():
             pending_user = None
             pending_product_id = None
+            pending_tool_name = None   # tool_name 추적
             
             for msg in session_messages:
                 role = msg['role']
@@ -115,6 +99,7 @@ class FAQGenerator:
                 product_id = msg['product_id']
                 product_name = msg['product_name']
                 category = msg['category']
+                tool_name = msg['tool_name']
                 
                 # product_id가 없으면 건너뛰기
                 if not product_id:
@@ -130,6 +115,9 @@ class FAQGenerator:
                     product_qa_pairs[product_id]['product_id'] = product_id
                 
                 if role == 'user':
+                    # tool_name이 None/빈값은 FAQ 후보에서 제외
+                    if not tool_name:
+                        continue
                     pending_user = content
                     pending_product_id = product_id
                     user_count += 1
@@ -144,6 +132,7 @@ class FAQGenerator:
                         logger.debug(f"QA 쌍 생성: product_id={product_id}, Q: {pending_user[:50]}...")
                         pending_user = None
                         pending_product_id = None
+                        pending_tool_name = None
                     else:
                         logger.debug(f"대응하는 user 메시지가 없는 assistant 메시지: product_id={product_id}, session_id={session_id}")
         

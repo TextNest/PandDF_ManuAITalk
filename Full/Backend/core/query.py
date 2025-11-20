@@ -105,3 +105,21 @@ ON DUPLICATE KEY UPDATE
     negative = VALUES(negative),
     satisfaction = VALUES(satisfaction);
 """
+
+# FAQ 관련 쿼리
+find_faq_messages = """
+SELECT 
+    m.role,
+    m.content,
+    m.session_id,
+    p.product_id,
+    p.product_name,
+    p.category,
+    m.timestamp,
+    m.tool_name
+FROM test_message m
+JOIN test_session s ON m.session_id = s.session_id
+JOIN test_products p ON s.productId = p.product_id
+WHERE m.timestamp >= :start_date
+ORDER BY m.id;
+"""
