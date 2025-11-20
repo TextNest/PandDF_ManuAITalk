@@ -31,6 +31,7 @@
     "remark-gfm": "^4.0.1",
     "socket.io-client": "^4.7.5",
     "three": "^0.181.0",
+    "three-mesh-bvh": "^0.8.3",
     "zod": "^3.22.4",
     "zustand": "^5.0.8"
   },
@@ -41,7 +42,7 @@
     "@types/three": "^0.159.0",
     "cross-env": "^10.1.0",
     "eslint": "^8.57.0",
-    "eslint-config-next": "^14.2.0",
+    "eslint-config-next": "^16.0.3",
     "typescript": "^5.4.3"
   }
 }

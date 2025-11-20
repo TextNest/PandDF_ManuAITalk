@@ -1,5 +1,5 @@
 // ============================================
-// 📄 src/app/(admin)/products/edit/[internal_id]/page.tsx
+// 📄 src/app/(admin)/products/edit/[product_id]/page.tsx
 // ============================================
 // 제품 수정 페이지
 // ============================================
@@ -10,8 +10,8 @@ import { useRouter, useParams } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import ProductEditForm from '@/components/product/ProductEditForm/ProductEditForm'; // ProductEditForm으로 변경
-import { Product, ProductUpdate } from '@/types/product.types'; // ProductUpdate 스키마 임포트
+import ProductEditForm from '@/components/product/ProductEditForm/ProductEditForm';
+import { Product, ProductUpdate } from '@/types/product.types';
 import styles from './edit-page.module.css';
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -19,23 +19,26 @@ const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
 export default function EditProductPage() {
   const router = useRouter();
   const params = useParams();
-  const internal_id = params.internal_id as string;
+  const product_id = params.product_id as string;
 
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!internal_id) return;
+    if (!product_id) return;
 
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`${apiBaseUrl}/api/products/${internal_id}`, {
+        const response = await fetch(`${apiBaseUrl}/api/products/${product_id}`, {
           headers: {
             'ngrok-skip-browser-warning': 'true',
           },
         });
         if (!response.ok) {
+          if (response.status === 404) {
+            throw new Error('제품을 찾을 수 없습니다.');
+          }
           const errorData = await response.json().catch(() => ({ detail: '알 수 없는 오류' }));
           throw new Error(errorData.detail || `제품 정보를 불러오는데 실패했습니다: ${response.status}`);
         }
@@ -50,13 +53,13 @@ export default function EditProductPage() {
     };
 
     fetchProduct();
-  }, [internal_id]);
+  }, [product_id]);
 
   const handleSubmit = async (data: Partial<ProductUpdate>) => {
     try {
       console.log('제품 수정 데이터:', data);
 
-      const response = await fetch(`${apiBaseUrl}/api/products/${internal_id}`, {
+      const response = await fetch(`${apiBaseUrl}/api/products/${product_id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

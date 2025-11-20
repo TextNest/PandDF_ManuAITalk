@@ -11,8 +11,7 @@ import { Save, X, Upload, Sparkles } from 'lucide-react';
 import { toast } from '@/store/useToastStore';
 import Button from '@/components/ui/Button/Button';
 import Input from '@/components/ui/Input/Input';
-import { Product } from '@/types/product.types';
-import { ProductUpdate } from '@/schemas/product';
+import { Product, ProductUpdate } from '@/types/product.types';
 import styles from '@/styles/Form.module.css';
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -57,34 +56,67 @@ export default function ProductEditForm({ initialData, onSubmit, onCancel }: Pro
   };
 
   const trigger3DConversion = async (file: File) => {
-    const colabApiBaseUrl = process.env.NEXT_PUBLIC_COLAB_API_URL;
-    if (!colabApiBaseUrl) {
+    // 1. 환경 변수에서 URL 목록 가져오기 (빈 값 필터링)
+    const apiUrls = [
+      process.env.NEXT_PUBLIC_COLAB_NG_API_URL, // 1순위 (예: Ngrok)
+      process.env.NEXT_PUBLIC_COLAB_CF_API_URL   // 2순위 (예: Cloudflare)
+    ].filter((url): url is string => !!url); // TypeScript: null/undefined 제거
+
+    if (apiUrls.length === 0) {
       setError('3D 변환 API URL이 설정되지 않았습니다.');
       return;
     }
+
     setIsConverting3D(true);
     setError(null);
     setGenerated3DModel(null);
+
     const conversionFormData = new FormData();
     conversionFormData.append('file', file);
-    try {
-      const response = await fetch(`${colabApiBaseUrl}/convert-2d-to-3d`, {
-        method: 'POST',
-        body: conversionFormData,
-      });
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ detail: '알 수 없는 3D 변환 서버 오류' }));
-        throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
+
+    let lastError: any = null;
+    let isSuccess = false;
+
+    // 2. URL 목록을 순회하며 요청 시도 (Failover 로직)
+    for (const baseUrl of apiUrls) {
+      try {
+        console.log(`Trying API connection to: ${baseUrl}`); // 디버깅용 로그
+
+        const response = await fetch(`${baseUrl}/convert-2d-to-3d`, {
+          method: 'POST',
+          body: conversionFormData,
+        });
+
+        if (!response.ok) {
+          // 서버가 응답은 했지만 에러인 경우 (예: 500, 404)
+          const errorData = await response.json().catch(() => ({ detail: '알 수 없는 3D 변환 서버 오류' }));
+          throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
+        }
+
+        // 성공 시 처리
+        const blob = await response.blob();
+        setGenerated3DModel(blob);
+        isSuccess = true;
+        console.log(`Success! Connected via: ${baseUrl}`);
+        
+        break; // 성공했으므로 루프(반복문) 종료
+
+      } catch (err: any) {
+        console.warn(`Failed to connect to ${baseUrl}:`, err.message);
+        lastError = err;
+        // 여기서 return 하지 않고 다음 URL(continue)로 넘어갑니다.
       }
-      const blob = await response.blob();
-      setGenerated3DModel(blob);
-    } catch (err: any) {
-      const errorMessage = err.message || '3D 모델 변환 중 오류가 발생했습니다.';
-      setError(errorMessage); // Keep the state for inline message
-      toast.error(errorMessage); // Add toast notification
-    } finally {
-      setIsConverting3D(false);
     }
+
+    // 3. 모든 URL 시도가 실패했을 경우 최종 에러 처리
+    if (!isSuccess) {
+      const errorMessage = lastError?.message || '모든 AI 서버 연결에 실패했습니다.';
+      setError(errorMessage);
+      toast.error(errorMessage);
+    }
+
+    // 4. 마무리 (로딩 상태 해제)
+    setIsConverting3D(false);
   };
 
   const handlePdfFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -174,7 +206,7 @@ export default function ProductEditForm({ initialData, onSubmit, onCancel }: Pro
       {/* --- PDF Section --- */}
       <div className={styles.section}>
         <div className={styles.field}>
-          <label className={styles.label}>제품 설명서 (PDF) <span className={styles.required}>*</span></label>
+          <label className={styles.label}>제품 설명서 (PDF)<span className={styles.required}>*</span></label>
           <div className={styles.fileInputContainer}>
             <input type="file" accept=".pdf" onChange={handlePdfFileChange} className={styles.hiddenInput} ref={pdfInputRef} disabled={isUploading} />
             <Button type="button" variant="outline" onClick={() => pdfInputRef.current?.click()} disabled={isUploading}>
@@ -190,14 +222,15 @@ export default function ProductEditForm({ initialData, onSubmit, onCancel }: Pro
               label="제품명"
               value={formData.product_name}
               onChange={(e) => handleChange('product_name', e.target.value)}
-              required
             />
           </div>
           <div className={styles.field}>
+            <label htmlFor="product_id" className={styles.label}>제품 코드 <span className={styles.required}>*</span></label>
             <Input
-              label="모델명"
+              id="product_id"
               value={formData.product_id || ''}
               onChange={(e) => handleChange('product_id', e.target.value)}
+              required
             />
           </div>
           <div className={styles.field}>

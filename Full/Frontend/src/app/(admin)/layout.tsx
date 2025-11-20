@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/features/auth/hooks/useAuth';
 import Sidebar from '@/components/layout/Sidebar/Sidebar';
-import { LogOut, ChevronDown } from 'lucide-react';
+import { LogOut, ChevronDown, Menu } from 'lucide-react'; // Menu 아이콘 추가
 import styles from './admin-layout.module.css';
 
 export default function AdminLayout({
@@ -20,24 +20,20 @@ export default function AdminLayout({
 }) {
   const router = useRouter();
   const { user, isAuthenticated, logout } = useAuth();
-  const [isHydrated, setIsHydrated] = useState(false); // persist 복원 완료 여부
+  const [isHydrated, setIsHydrated] = useState(false);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false); // 모바일 사이드바 상태
 
-  // persist 복원 완료 확인
   useEffect(() => {
     setIsHydrated(true);
   }, []);
 
   useEffect(() => {
-    // persist 복원이 완료된 후에만 인증 체크
     if (!isHydrated) return;
-
-    // 로그인 안 되어있으면 로그인 페이지로
     if (!isAuthenticated) {
       router.push('/admin/login');
     }
   }, [isAuthenticated, isHydrated, router]);
 
-  // persist 복원 중이거나 인증 확인 전까지 로딩
   if (!isHydrated || !isAuthenticated) {
     return (
       <div className={styles.loading}>
@@ -48,10 +44,24 @@ export default function AdminLayout({
 
   return (
     <div className={styles.adminLayout}>
-      <Sidebar />
+      <Sidebar 
+        isOpen={isMobileSidebarOpen} 
+        onClose={() => setIsMobileSidebarOpen(false)} 
+      />
       <div className={styles.mainContent}>
         <header className={styles.header}>
-          <h1 className={styles.title}>ManuAI-Talk  관리자</h1>
+          <div className={styles.headerLeft}>
+            <button 
+              className={styles.menuButton}
+              onClick={() => setIsMobileSidebarOpen(true)}
+            >
+              <Menu size={24} />
+            </button>
+            <h1 className={styles.title}>
+              <span className={styles.desktopTitle}>ManuAI-Talk 관리자</span>
+              <span className={styles.mobileTitle}>ManuAI-Talk</span>
+            </h1>
+          </div>
           <div className={styles.userMenu}>
             <div className={styles.userInfo}>
               <div className={styles.avatar}>

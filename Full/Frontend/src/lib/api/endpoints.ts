@@ -45,7 +45,7 @@ export const API_ENDPOINTS = {
   // 제품
   PRODUCTS: {
     LIST: '/products',
-    GET: (id: string) => `/products/${id}`,
+    GET: (productId: string) => `/products/${productId}`,
     CREATE: '/products',
   },
   

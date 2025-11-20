@@ -14,8 +14,8 @@ class Product(Base):
     __tablename__ = "test_products"
 
     internal_id = Column(Integer, primary_key=True, index=True)
-    product_name = Column(String(255), nullable=False, comment="제품명")
-    product_id = Column(String(255), nullable=True, unique=True, comment="모델명")
+    product_name = Column(String(255), nullable=True, unique=True, comment="제품명")
+    product_id = Column(String(255), nullable=False, unique=True, comment="모델명")
     
     # category_id = Column(Integer, ForeignKey("test_categories.id"), nullable=False, comment="카테고리 ID")
     # _category = Column('category', String(100), ForeignKey("test_categories.name"), nullable=False, comment="카테고리명")
@@ -30,7 +30,7 @@ class Product(Base):
     
     # 파일 경로는 문자열로 저장
     image_url = Column(String(1024), comment="제품 이미지 파일 경로")
-    pdf_path = Column(String(1024), comment="제품 설명서 PDF 파일 경로")
+    pdf_path = Column(String(1024), nullable=False, comment="제품 설명서 PDF 파일 경로")
     model3d_url = Column(String(1024), comment="3D 모델 파일 경로")
 
     width_mm = Column(Float, nullable=True, comment="제품 가로 길이 (mm)")

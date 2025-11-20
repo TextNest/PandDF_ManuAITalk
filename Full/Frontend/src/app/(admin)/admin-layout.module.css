@@ -4,132 +4,160 @@
 
 .adminLayout {
   display: flex;
-  min-height: 100vh;
-  background-color: var(--bg-secondary);
+  height: 100vh;
+  background-color: #f7f9fc;
 }
 
 .mainContent {
-  flex: 1;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  margin-left: var(--sidebar-width);
+  overflow-y: auto;
+  margin-left: 260px; /* 사이드바 너비만큼 */
+  transition: margin-left 0.3s ease;
 }
 
 .header {
-  height: var(--header-height);
-  background-color: var(--bg-primary);
-  border-bottom: 1px solid var(--border-light);
-  padding: 0 var(--spacing-xl);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  background-color: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.headerLeft {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 1rem;
+}
+
+.menuButton {
+  display: none; /* 기본적으로 숨김 */
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
 }
 
 .title {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-semibold);
-  color: var(--text-primary);
-  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.mobileTitle {
+  display: none;
 }
 
 .userMenu {
   display: flex;
   align-items: center;
-  gap: var(--spacing-lg);
+  gap: 1rem;
 }
 
-/* 사용자 정보 */
 .userInfo {
   display: flex;
   align-items: center;
-  gap: var(--spacing-md);
+  gap: 0.8rem;
 }
 
 .avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-color: #007bff;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-bold);
+  font-weight: 600;
 }
 
 .userDetails {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  align-items: flex-start;
 }
 
 .userName {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #333;
 }
 
 .userRole {
-  font-size: var(--font-size-xs);
-  color: var(--text-secondary);
+  font-size: 0.8rem;
+  color: #666;
 }
 
-/* 로그아웃 버튼 */
 .logoutButton {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-sm) var(--spacing-md);
-  background-color: transparent;
-  border: 1px solid var(--border-light);
-  border-radius: var(--border-radius-md);
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
+  gap: 0.5rem;
+  background-color: #f1f3f5;
+  color: #333;
+  border: 1px solid #dee2e6;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
 }
 
 .logoutButton:hover {
-  background-color: rgba(239, 68, 68, 0.1);
-  border-color: var(--color-error);
-  color: var(--color-error);
-}
-
-/* 로딩 */
-.loading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  font-size: var(--font-size-lg);
-  color: var(--text-secondary);
+  background-color: #e9ecef;
 }
 
 .content {
-  flex: 1;
-  padding: var(--spacing-xl);
+  padding: 2rem;
+  flex-grow: 1;
 }
 
-/* 반응형 */
+.loading {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ------------------- */
+/* 반응형 스타일 */
+/* ------------------- */
 @media (max-width: 768px) {
   .mainContent {
     margin-left: 0;
   }
-  
-  .content {
-    padding: var(--spacing-md);
+
+  .menuButton {
+    display: block;
   }
 
-  .header {
-    padding: 0 var(--spacing-md);
-  }
-
-  .userDetails {
+  .desktopTitle {
     display: none;
   }
 
-  .logoutButton span {
+  .mobileTitle {
+    display: block;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+  
+  .header {
+    padding: 1rem;
+  }
+
+  .content {
+    padding: 1rem;
+  }
+
+  .userDetails, .logoutButton span {
     display: none;
   }
 }
