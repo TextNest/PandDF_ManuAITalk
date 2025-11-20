@@ -6,6 +6,8 @@
 
 import { useState, useEffect } from 'react';
 import { ChevronDown, ChevronUp, Eye, ThumbsUp, Sparkles, Edit, Trash2, Save, X } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { FAQ } from '@/types/faq.types';
 import { formatRelativeTime } from '@/lib/utils/format';
 import apiClient from '@/lib/api/client';
@@ -242,7 +244,9 @@ export default function FAQCard({ faq, onUpdate, onDelete }: FAQCardProps) {
           ) : (
             <>
               <div className={styles.answer}>
-                <p>{faq.answer}</p>
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {faq.answer}
+                </ReactMarkdown>
               </div>
 
               {faq.tags && (
