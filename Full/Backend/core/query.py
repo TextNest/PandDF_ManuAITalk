@@ -73,7 +73,7 @@ LIMIT 200;
 """
 
 find_message_for_rep = """
-SELECT role, content, timestamp
+SELECT role, content, timestamp, feedback
 FROM test_message
 WHERE session_id = :sid
 ORDER BY `timestamp` ASC;
@@ -91,14 +91,17 @@ TRUNCATE TABLE test_report;
 
 report_query = """
 INSERT INTO test_report (
-    session_id, product_id, status, content, timestamp_s, timestamp_e
+    session_id, product_id, status, content, timestamp_s, timestamp_e, positive, negative, satisfaction 
 ) VALUES (
-    :sid, :pid, :stat, :sum, :ts, :te
+    :sid, :pid, :stat, :sum, :ts, :te, :pos, :neg, :satis
 )
 ON DUPLICATE KEY UPDATE
     product_id = VALUES(product_id),
     status = VALUES(status),
     content = VALUES(content),
     timestamp_s = VALUES(timestamp_s),
-    timestamp_e = VALUES(timestamp_e);
+    timestamp_e = VALUES(timestamp_e),
+    positive = VALUES(positive),
+    negative = VALUES(negative),
+    satisfaction = VALUES(satisfaction);
 """
