@@ -21,6 +21,13 @@ async def create_tables():
 @app.on_event("startup")
 async def on_startup():
     await create_tables()
+    
+    # 필요한 디렉토리 생성
+    os.makedirs("uploads/images", exist_ok=True)
+    os.makedirs("uploads/models_3d", exist_ok=True)
+    os.makedirs("uploads/pdfs", exist_ok=True)
+    
+    # 백그라운드 스케줄러 시작
     asyncio.create_task(Scheduler_ARP())
 
 # CORS 설정
@@ -35,14 +42,6 @@ import os
 from fastapi.responses import FileResponse
 
 # ... (기존 코드 유지)
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],      
-    allow_credentials=True,   
-    allow_methods=["*"],       
-    allow_headers=["*"],       
-)
 
 app.add_middleware(
     CORSMiddleware,
