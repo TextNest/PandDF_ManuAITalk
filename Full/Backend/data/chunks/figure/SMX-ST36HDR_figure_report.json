@@ -1,0 +1,8 @@
+{
+  "doc_id": "SMX-ST36HDR",
+  "source_caption_file": "data\\figures\\SMX-ST36HDR\\SMX-ST36HDR_figures_captioned.json",
+  "num_images_total": 25,
+  "num_keep_for_caption": 13,
+  "num_with_caption_text": 13,
+  "num_chunks_written": 13
+}

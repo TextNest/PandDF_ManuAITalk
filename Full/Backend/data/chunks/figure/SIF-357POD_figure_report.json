@@ -1,0 +1,8 @@
+{
+  "doc_id": "SIF-357POD",
+  "source_caption_file": "data\\figures\\SIF-357POD\\SIF-357POD_figures_captioned.json",
+  "num_images_total": 15,
+  "num_keep_for_caption": 9,
+  "num_with_caption_text": 9,
+  "num_chunks_written": 9
+}

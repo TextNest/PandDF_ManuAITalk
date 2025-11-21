@@ -1,0 +1,12 @@
+{
+  "num_pages": 10,
+  "lines_before": 319,
+  "lines_after": 299,
+  "placeholders_removed_estimate": 13,
+  "repeated_lines_removed": 0,
+  "num_repeated_patterns": 0,
+  "repeated_patterns_sample": [],
+  "repeated_threshold": 6,
+  "doc_id": "SBDH-T1000",
+  "source_parsed_file": "data\\parsed\\SBDH-T1000.md"
+}

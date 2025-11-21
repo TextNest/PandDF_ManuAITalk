@@ -5,6 +5,7 @@ User Manual ![image](/image/placeholder)
 
 # [p2]
 # 안전상의 주의 다음의 지시 사항은 제품을 안전하고 바르게 사용하여 예상치 못한 사고나 위험을 미리 예방하기 위한 것이므로 반드시 지켜 주십시오. ![image](/image/placeholder)
+ ![image](/image/placeholder)
  위 기호는 위험을 끼칠 우려가 있는 사항과 조작에 대하여 주의를 환기시키기 위한 기호입니다. 위험 발생을 피하기 위하여 아래의 지시
 사항을 주의 깊게 읽고 따라 주십시오. 신체감각, 정신 능력이 결여되거나 경험과 지식이 부족하여 감독이나 지시없이 안전하게 기기를
 사용할 수 없는 사람(어린이 포함)의 사용은 권장하지 않습니다.
@@ -12,7 +13,6 @@ User Manual ![image](/image/placeholder)
 주시기 바랍니다. 언제나 볼 수 있는 곳에 필히 보관해 주십시오. 이 사용 설명서에는 제품 보증서가 포함되어 있으므로 버리지 말고 보관해
 주십시오. 사용 중 이상이 없어도 안전을 위해 1~2년에 1회 정도 정기 점검을 받으면 더욱 안전하게 오래 사용할 수 있습니다.
 사용 방법과 주의사항을 따르지 않아 발생한 피해에 대해서 책임을 지지 않습니다. ![image](/image/placeholder)
- ![image](/image/placeholder)
  ![image](/image/placeholder)
  분해금지 접촉금지 물접촉금지 ![image](/image/placeholder)
  금지 ![image](/image/placeholder)

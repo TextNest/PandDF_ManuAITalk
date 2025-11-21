@@ -1,0 +1,250 @@
+{
+  "doc_id": "SVC-WN2200MR",
+  "source_pdf": "data/raw/SVC-WN2200MR.pdf",
+  "num_figures": 27,
+  "images": [
+    {
+      "file": "data/figures/SVC-WN2200MR/page_002_figure_001.png",
+      "page": 2,
+      "index": 1,
+      "size_px": [
+        43,
+        53
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        43,
+        41
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        44,
+        41
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        45,
+        42
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        41,
+        40
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        42,
+        41
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        43,
+        41
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_004_figure_008.png",
+      "page": 4,
+      "index": 8,
+      "size_px": [
+        793,
+        771
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_005_figure_009.png",
+      "page": 5,
+      "index": 9,
+      "size_px": [
+        386,
+        241
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_005_figure_010.png",
+      "page": 5,
+      "index": 10,
+      "size_px": [
+        293,
+        142
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_005_figure_011.png",
+      "page": 5,
+      "index": 11,
+      "size_px": [
+        272,
+        217
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_006_figure_012.png",
+      "page": 6,
+      "index": 12,
+      "size_px": [
+        747,
+        260
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_006_figure_013.png",
+      "page": 6,
+      "index": 13,
+      "size_px": [
+        174,
+        46
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_006_figure_014.png",
+      "page": 6,
+      "index": 14,
+      "size_px": [
+        170,
+        35
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_006_figure_015.png",
+      "page": 6,
+      "index": 15,
+      "size_px": [
+        289,
+        142
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_007_figure_016.png",
+      "page": 7,
+      "index": 16,
+      "size_px": [
+        471,
+        231
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_007_figure_017.png",
+      "page": 7,
+      "index": 17,
+      "size_px": [
+        226,
+        209
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_007_figure_018.png",
+      "page": 7,
+      "index": 18,
+      "size_px": [
+        110,
+        206
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_007_figure_019.png",
+      "page": 7,
+      "index": 19,
+      "size_px": [
+        577,
+        264
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_008_figure_020.png",
+      "page": 8,
+      "index": 20,
+      "size_px": [
+        403,
+        247
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_008_figure_021.png",
+      "page": 8,
+      "index": 21,
+      "size_px": [
+        449,
+        320
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_008_figure_022.png",
+      "page": 8,
+      "index": 22,
+      "size_px": [
+        451,
+        237
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_009_figure_023.png",
+      "page": 9,
+      "index": 23,
+      "size_px": [
+        682,
+        329
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_009_figure_024.png",
+      "page": 9,
+      "index": 24,
+      "size_px": [
+        524,
+        333
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_010_figure_025.png",
+      "page": 10,
+      "index": 25,
+      "size_px": [
+        324,
+        210
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_010_figure_026.png",
+      "page": 10,
+      "index": 26,
+      "size_px": [
+        260,
+        269
+      ]
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_011_figure_027.png",
+      "page": 11,
+      "index": 27,
+      "size_px": [
+        782,
+        153
+      ]
+    }
+  ]
+}

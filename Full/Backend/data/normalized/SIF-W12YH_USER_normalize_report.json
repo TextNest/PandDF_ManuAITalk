@@ -1,0 +1,12 @@
+{
+  "num_pages": 16,
+  "lines_before": 288,
+  "lines_after": 232,
+  "placeholders_removed_estimate": 58,
+  "repeated_lines_removed": 0,
+  "num_repeated_patterns": 0,
+  "repeated_patterns_sample": [],
+  "repeated_threshold": 10,
+  "doc_id": "SIF-W12YH_USER",
+  "source_parsed_file": "data\\parsed\\SIF-W12YH_USER.md"
+}

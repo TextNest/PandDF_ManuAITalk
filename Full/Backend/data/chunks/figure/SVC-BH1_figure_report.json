@@ -1,0 +1,8 @@
+{
+  "doc_id": "SVC-BH1",
+  "source_caption_file": "data\\figures\\SVC-BH1\\SVC-BH1_figures_captioned.json",
+  "num_images_total": 58,
+  "num_keep_for_caption": 49,
+  "num_with_caption_text": 49,
+  "num_chunks_written": 49
+}

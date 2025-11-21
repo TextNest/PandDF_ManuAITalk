@@ -1,0 +1,1206 @@
+{
+  "doc_id": "SVC-S350IM",
+  "source_pdf": "data/raw/SVC-S350IM.pdf",
+  "num_images_total": 43,
+  "num_images_kept": 36,
+  "created_by": "image_captioner_gemini.py",
+  "model": "gemini-2.5-flash",
+  "config": {
+    "CAPTION_MAX_CHARS": 320,
+    "UNSAFE_KEYWORDS": [
+      "폭발",
+      "감전",
+      "사망",
+      "질식",
+      "중독",
+      "화재",
+      "불이 날",
+      "불이날",
+      "가스 누출",
+      "가스누출",
+      "가스가 새",
+      "전기 충격",
+      "전기충격",
+      "고압",
+      "중상",
+      "심각한 부상"
+    ]
+  },
+  "images": [
+    {
+      "file": "data/figures/SVC-S350IM/page_002_figure_001.png",
+      "page": 2,
+      "index": 1,
+      "size_px": [
+        42,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 42.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.3526077097505669,
+        "edge_ratio": 0.24773242630385486,
+        "table_line_ratio": 0.1536281179138322,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        41,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 41.0,
+        "height": 42.0,
+        "aspect_ratio": 0.9761904761904762,
+        "ink_ratio": 0.36585365853658536,
+        "edge_ratio": 0.2851335656213705,
+        "table_line_ratio": 0.10627177700348432,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        43,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 41.0,
+        "aspect_ratio": 1.048780487804878,
+        "ink_ratio": 0.33125354509359045,
+        "edge_ratio": 0.2875779920589904,
+        "table_line_ratio": 0.1276233692569484,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        43,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0238095238095237,
+        "ink_ratio": 0.260797342192691,
+        "edge_ratio": 0.19435215946843853,
+        "table_line_ratio": 0.07198228128460686,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        39,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 39.0,
+        "height": 41.0,
+        "aspect_ratio": 0.9512195121951219,
+        "ink_ratio": 0.7116948092557849,
+        "edge_ratio": 0.12132582864290181,
+        "table_line_ratio": 0.7317073170731707,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        41,
+        40
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 41.0,
+        "height": 40.0,
+        "aspect_ratio": 1.025,
+        "ink_ratio": 0.5195121951219512,
+        "edge_ratio": 0.1951219512195122,
+        "table_line_ratio": 0.48048780487804876,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        43,
+        40
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 40.0,
+        "aspect_ratio": 1.075,
+        "ink_ratio": 0.40348837209302324,
+        "edge_ratio": 0.29941860465116277,
+        "table_line_ratio": 0.16046511627906976,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_004_figure_008.png",
+      "page": 4,
+      "index": 8,
+      "size_px": [
+        775,
+        782
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 775.0,
+        "height": 782.0,
+        "aspect_ratio": 0.9910485933503836,
+        "ink_ratio": 0.07591287847537331,
+        "edge_ratio": 0.07580067651183896,
+        "table_line_ratio": 0.03494926161207821,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_004_figure_008.png",
+      "caption_short": "이 장면은 무선 청소기 제품과 주요 부품들을 보여준다. 왼편에는 충전 단자가 있는 길쭉한 거치대와 충전기가 연결되어 있고, 아래에 악세사리 거치대가 놓여 있다. 중앙의 청소기 본체는 위에서부터 배터리, 둥근 먼지통, 긴 연장관, 그리고 바닥 청소용 노즐로 조립되어 있다. 먼지통 앞면에는 둥근 디스플레이가 보이며, 그 아래에는 먼지통 열림 버튼과 연장관 분리 버튼이 있다. 오른편 위에는 먼지통 내부의 헤파 필터, 프리 필터, 메탈 필터가 분리된 모습이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_004_figure_009.png",
+      "page": 4,
+      "index": 9,
+      "size_px": [
+        775,
+        243
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 775.0,
+        "height": 243.0,
+        "aspect_ratio": 3.1893004115226335,
+        "ink_ratio": 0.04911721757599894,
+        "edge_ratio": 0.06110181866454268,
+        "table_line_ratio": 0.024107261383247047,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_004_figure_009.png",
+      "caption_short": "위쪽에는 \"구성품\"이라는 제목이 적혀 있다. 왼쪽에서 오른쪽으로 여러 부품이 차례로 놓여 있다. 가장 왼쪽에는 손으로 잡는 본체 청소기와 네모난 배터리 1개가 보인다. 이어서 바닥 청소용 넓은 소프트 롤링 브러시와 길쭉한 연장관이 세로로 있다. 그 다음은 좁은 틈새용 납작한 틈새 노즐과 브러시 달린 2단 콤비네이션 노즐이다. 충전 어댑터와 접힌 설명서가 나란히 놓여 있다. 설명서 옆에는 타원형 고리 두 개가 벨크로라는 이름으로 있다. 가장 오른쪽 끝에는 청소기를 세워두는 키 큰 거치대가 자리한다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_005_figure_010.png",
+      "page": 5,
+      "index": 10,
+      "size_px": [
+        360,
+        496
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 360.0,
+        "height": 496.0,
+        "aspect_ratio": 0.7258064516129032,
+        "ink_ratio": 0.08138440860215054,
+        "edge_ratio": 0.06855398745519713,
+        "table_line_ratio": 0.055471550179211467,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_005_figure_010.png",
+      "caption_short": "바닥에는 넓적한 사각형 받침대가 놓여 있다. 받침대 중앙에는 기다란 기둥 모양의 충전대 파이프(1번)가 아래로 향하고 있고, 그 위에는 직사각형 모양의 연결 브라켓(2번)과 길쭉한 상부 충전대(3번)가 차례로 연결될 모습이다. 4번 확대 그림에서는 상부 충전대 옆면에 충전기 플러그가 꽂히는데, 이 플러그는 길게 이어진 전원 어댑터 선에 연결되어 있다. 받침대 오른쪽에는 액세서리 거치대(6번)가 아래쪽 홈으로 향하고 있으며, 5번 확대 그림에는 타원형 고리 두 개가 나란히 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_005_figure_011.png",
+      "page": 5,
+      "index": 11,
+      "size_px": [
+        657,
+        388
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 657.0,
+        "height": 388.0,
+        "aspect_ratio": 1.693298969072165,
+        "ink_ratio": 0.06512341320278052,
+        "edge_ratio": 0.07202764832336926,
+        "table_line_ratio": 0.021991558003420734,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_005_figure_011.png",
+      "caption_short": "길쭉한 몸체를 가진 무선 청소기 제품이 충전대에 거치되는 모습이다. 제품은 손잡이가 위로 솟아 있는 형태이며, 충전대는 제품을 안정적으로 받쳐주는 낮은 받침대 형태이다. 제품의 옆면, 손잡이 아래쪽에는 작은 사각형 모양의 '배터리 돌출부'가 바깥으로 튀어나와 있다. 이 돌출부는 충전대 윗부분에 파인 홈에 맞춰 아래로 끼워지는 모습이다. 그림 아래쪽에는 \"배터리 옆 돌출 부분과 거치대 홈을 잘 맞춰 껴주십시오\"라는 안내가 있다. 오른쪽 아래에는 경고 표시와 함께 \"충전 시 확인해 주세요!\"라는 문구가 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_006_figure_012.png",
+      "page": 6,
+      "index": 12,
+      "size_px": [
+        786,
+        552
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 786.0,
+        "height": 552.0,
+        "aspect_ratio": 1.423913043478261,
+        "ink_ratio": 0.03625954198473282,
+        "edge_ratio": 0.04694472102371206,
+        "table_line_ratio": 0.0060501714791459235,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_006_figure_012.png",
+      "caption_short": "이것은 무선 청소기의 여러 부품이 조립되는 과정을 묘사한다. 오른쪽 위에는 손잡이와 먼지를 모으는 통이 결합된 본체 부분이 있다. 이 본체의 앞쪽 아래에는 스틱을 연결하는 둥근 구멍이 보인다. 가운데에는 길고 가느다란 원통형의 연장 스틱이 놓여 있다. 이 스틱의 위쪽 끝에는 본체와 연결되는 부분이 있고, 그 옆에 작고 튀어나온 '스틱 분리 버튼'이 있다. 스틱의 아래쪽 끝 또한 다른 부품과 연결되는 형태로 되어 있다. 왼쪽 아래에는 바닥을 청소하는 넓적한 헤드 부분이 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_006_figure_013.png",
+      "page": 6,
+      "index": 13,
+      "size_px": [
+        749,
+        282
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 749.0,
+        "height": 282.0,
+        "aspect_ratio": 2.6560283687943262,
+        "ink_ratio": 0.039490005586645074,
+        "edge_ratio": 0.06512229071385961,
+        "table_line_ratio": 0.03534263178327605,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_006_figure_013.png",
+      "caption_short": "이것은 무선 청소기의 부품들을 보여주는 장면이다. 전체적으로 옆에서 본 모습이다. 위쪽에는 왼쪽에 넓은 솔과 좁은 솔 두 가지 청소용 도구가 위아래로 놓여 있고, 연결 부위는 오른쪽을 향한다. 이 도구들은 가운데 가로로 놓인 길고 가는 연장관에 연결될 수 있으며, 연장관의 반대쪽 끝은 아래로 뻗은 손잡이와 위쪽 둥근 조작부가 있는 청소기 본체에 연결된다. 각 부품 사이의 양방향 화살표는 연결 가능성을 나타낸다. 아래쪽에는 위와 같은 두 가지 청소용 도구가 왼쪽에 있고, 오른쪽에는 청소기 본체가 놓여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_007_figure_014.png",
+      "page": 7,
+      "index": 14,
+      "size_px": [
+        501,
+        126
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 501.0,
+        "height": 126.0,
+        "aspect_ratio": 3.9761904761904763,
+        "ink_ratio": 0.08441846465798562,
+        "edge_ratio": 0.12178816969236131,
+        "table_line_ratio": 0.02293825048316066,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_007_figure_014.png",
+      "caption_short": "길쭉한 네모 모양의 배터리 팩을 위쪽에서 살짝 비스듬히 본 모습이다. 배터리 팩 왼쪽 위에는 작고 네모난 버튼이 있다. 이 버튼 오른쪽에는 세로로 길쭉한 직사각형 모양이 세 개 나란히 보인다. 배터리 팩 가운데 위쪽에는 둥근 타원형의 표시등 부분이 있고, 그 안에 여러 개의 작은 빨간 점들이 빛나고 있다. 이 표시등은 배터리에 있는 3개의 LED 램프이며, 충전 중에는 파란색 불이 깜박이다가 완전히 충전되면 3개의 칸에 불이 모두 켜진다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_007_figure_015.png",
+      "page": 7,
+      "index": 15,
+      "size_px": [
+        337,
+        228
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 337.0,
+        "height": 228.0,
+        "aspect_ratio": 1.4780701754385965,
+        "ink_ratio": 0.09310739757405383,
+        "edge_ratio": 0.0951376958717268,
+        "table_line_ratio": 0.07633140715289707,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_007_figure_015.png",
+      "caption_short": "눈앞에 보이는 것은 무선 청소기의 손잡이가 달린 본체 부분이다. 전체적으로 왼쪽은 두껍고 오른쪽은 얇은 모양이며, 옆에서 본 모습이다. 본체 가장 위쪽에는 둥글고 납작한 조작부가 있고, 그 위에는 숫자 93과 작은 선풍기, 배터리 모양의 아이콘이 표시되어 있다. 오른쪽 중간 높이에는 손으로 잡는 손잡이가 본체와 연결되어 아래로 길게 뻗어 있다. 손잡이 아래쪽으로는 길쭉하고 평평한 배터리 같은 부품이 본체에 딱 붙어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_007_figure_016.png",
+      "page": 7,
+      "index": 16,
+      "size_px": [
+        335,
+        232
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 335.0,
+        "height": 232.0,
+        "aspect_ratio": 1.4439655172413792,
+        "ink_ratio": 0.08939783839423572,
+        "edge_ratio": 0.09534225424601132,
+        "table_line_ratio": 0.07017498713329902,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_007_figure_016.png",
+      "caption_short": "손으로 잡고 쓰는 전자 제품의 한쪽 부분을 위에서 비스듬히 내려다본 모습이다. 왼쪽에는 둥근 몸통이 위로 솟아 있고, 그 위쪽에는 숫자 85와 작은 아이콘들이 보이는 동그란 화면이 있다. 오른쪽에는 길쭉한 직사각형 모양의 배터리 부분이 놓여 있으며, 이 부분의 위쪽에는 배터리 잔량을 나타내는 듯한 작은 칸 3개가 나란히 있고 그 옆에 작은 스위치가 있다. 둥근 몸통의 아래쪽과 배터리의 왼쪽 끝 부분이 서로 연결되어 있고, 빨간색 점선 원은 이 연결 부분을 강조한다. 빨간색 오른쪽 방향 화살표는 배터리가 둥근 몸통 쪽으로 밀어 넣거나 빼내는 방향을 보여준다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_007_figure_017.png",
+      "page": 7,
+      "index": 17,
+      "size_px": [
+        327,
+        201
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 327.0,
+        "height": 201.0,
+        "aspect_ratio": 1.626865671641791,
+        "ink_ratio": 0.10053707000167358,
+        "edge_ratio": 0.10782479042098377,
+        "table_line_ratio": 0.08793950735618543,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_007_figure_017.png",
+      "caption_short": "이것은 손잡이가 달린 원통형 전자제품의 옆모습이다. 왼쪽에는 길쭉한 본체가 세워져 있고, 그 위쪽에는 숫자 1, 2, 3, 5, 6이 새겨진 둥근 조절 다이얼이 있다. 본체 오른쪽으로는 손잡이가 연결되어 아래로 비스듬히 뻗어 있으며, 손잡이 아랫부분에는 방아쇠 모양의 버튼이 보인다. 손잡이의 아래쪽 구멍으로 네모난 배터리 팩이 오른쪽에서 왼쪽 방향으로 밀어 넣어지는 중이다. 배터리 팩 위쪽에는 세 개의 작은 점들이 보이고, 오른쪽 끝에는 작은 스위치가 있다. 빨간색 화살표는 배터리가 삽입되는 방향을 나타내고, 빨간색 선들은 배터리 장착 위치를 알려준다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_008_figure_018.png",
+      "page": 8,
+      "index": 18,
+      "size_px": [
+        318,
+        304
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 318.0,
+        "height": 304.0,
+        "aspect_ratio": 1.0460526315789473,
+        "ink_ratio": 0.04372517378351539,
+        "edge_ratio": 0.09853939093015558,
+        "table_line_ratio": 0.051597153260509766,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_008_figure_018.png",
+      "caption_short": "두 가지 충전 방식이 보인다. 장면의 왼쪽에는 길고 납작한 형태의 거치대가 서 있다. 이 거치대의 왼쪽 윗부분에는 둥근 구멍이 있고, L자 모양으로 꺾인 어댑터 케이블이 이 구멍에 꽂혀 있다. 이곳은 빨간 점선 원으로 표시되어 있으며, 한글로 '어댑터 연결잭'이라고 쓰여 있다. 장면의 오른쪽에는 길쭉한 청소기가 세워져 있다. 청소기 본체의 위쪽 왼쪽에도 케이블이 연결되어 있고, 이곳 역시 빨간 점선 원으로 표시되어 있다. 이 케이블은 아래로 내려와 벽 콘센트에 꽂힌 작은 사각형 어댑터에 연결되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_008_figure_019.png",
+      "page": 8,
+      "index": 19,
+      "size_px": [
+        332,
+        309
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 332.0,
+        "height": 309.0,
+        "aspect_ratio": 1.0744336569579287,
+        "ink_ratio": 0.05380746286115335,
+        "edge_ratio": 0.11615393613288104,
+        "table_line_ratio": 0.05094163060007018,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_008_figure_019.png",
+      "caption_short": "이 장면은 벽에 설치된 충전 거치대에 청소기가 걸려 있는 모습이다. 왼쪽을 보면, 길쭉한 청소기 본체가 벽에 고정된 거치대에 세로로 걸려 있다. 거치대의 왼쪽 옆면, 중간 높이에 '어댑터 연결잭'이라고 쓰인 부분이 있고, 이곳에 전원 어댑터 선이 꽂혀 있다. 오른쪽 모습은 청소기가 거치대에 완전히 장착된 상태이다. 청소기 본체의 위쪽 양옆이 거치대의 튀어나온 홈에 잘 맞춰져 고정되어 있다. 벽 콘센트에서 나온 전원 선은 거치대 위쪽으로 연결되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_008_figure_020.png",
+      "page": 8,
+      "index": 20,
+      "size_px": [
+        422,
+        205
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 422.0,
+        "height": 205.0,
+        "aspect_ratio": 2.0585365853658537,
+        "ink_ratio": 0.06903248179401225,
+        "edge_ratio": 0.06695179748006011,
+        "table_line_ratio": 0.04417986359958386,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_008_figure_020.png",
+      "caption_short": "정면에 둥근 형태의 조작부가 있다. 이 조작부의 위쪽 중앙에는 세 자리 숫자를 표시하는 화면이 있는데, 현재 화면에는 '188'이라는 숫자와 함께 '퍼센트(%)' 기호가 보인다. 퍼센트 기호 옆에는 작은 빨간 점이 깜빡이고 있다. 그 아래로는 세 개의 아이콘이 일렬로 놓여 있으며, 왼쪽부터 '배터리 오류', '뜨거운 온도', '온도'를 나타내는 것으로 보인다. 아이콘 아래에는 10칸으로 이루어진 막대 그래프가 있다. 조작부의 왼쪽과 오른쪽에는 각각 '-' 버튼과 '+' 버튼이 있고, 아래쪽 중앙에는 'A'라고 쓰인 빨간 동그라미가 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_009_figure_021.png",
+      "page": 9,
+      "index": 21,
+      "size_px": [
+        425,
+        280
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 425.0,
+        "height": 280.0,
+        "aspect_ratio": 1.5178571428571428,
+        "ink_ratio": 0.08619327731092437,
+        "edge_ratio": 0.10553781512605041,
+        "table_line_ratio": 0.06157142857142857,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_009_figure_021.png",
+      "caption_short": "오른쪽 위에서 비스듬히 내려다본 무선 청소기의 본체 부분이다. 왼쪽에는 길쭉한 원통 모양의 먼지통이 보이고, 그 끝에는 다른 부품과 연결될 입구가 있다. 먼지통의 위쪽에는 둥근 디스플레이 화면이 있고, 화면에는 '93%'라는 숫자가 보인다. 그 아래로는 +, - 기호와 몇 가지 설정 기호가 있는 조작 버튼들이 네모나게 배치되어 있다. 오른쪽으로는 손잡이가 연결되어 있으며, 손잡이 아래쪽 가운데에는 빨간색 전원 버튼이 방아쇠처럼 튀어나와 있다. 손잡이 아래의 넓적한 연결부 끝에는 솔 모양 아이콘이 있는 또 다른 버튼이 위를 향하고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_010_figure_022.png",
+      "page": 10,
+      "index": 22,
+      "size_px": [
+        219,
+        220
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 219.0,
+        "height": 220.0,
+        "aspect_ratio": 0.9954545454545455,
+        "ink_ratio": 0.7029265255292653,
+        "edge_ratio": 0.06994603569946035,
+        "table_line_ratio": 0.7147571606475716,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_010_figure_022.png",
+      "caption_short": "이것은 둥근 모양의 조작 패널을 정면에서 본 모습이다. 패널 위쪽에는 '188%'라고 쓰인 흰색 숫자가 크게 보인다. 가운데 부분에는 왼쪽부터 오른쪽으로 버튼과 지시등이 나란히 있다. 가장 왼쪽에는 둥근 마이너스(-) 버튼이 있고, 가장 오른쪽에는 둥근 플러스(+) 버튼이 있다. 이 두 버튼 사이에는 여러 개의 작은 세로 막대 모양 지시등이 일렬로 놓여 있다. 현재 가장 왼쪽의 두 막대 지시등이 강조되어 있으며, 이들은 빨간 점선 사각형 안에 'II' 모양으로 표시되어 있다. 패널의 아래쪽 중앙에는 둥근 'A' 버튼이 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_010_figure_023.png",
+      "page": 10,
+      "index": 23,
+      "size_px": [
+        231,
+        255
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 231.0,
+        "height": 255.0,
+        "aspect_ratio": 0.9058823529411765,
+        "ink_ratio": 0.5687972158560394,
+        "edge_ratio": 0.06710805534334946,
+        "table_line_ratio": 0.5738731856378915,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_010_figure_023.png",
+      "caption_short": "둥근 형태의 조작부 정면 모습이다. 위쪽 중앙에는 '188 %'라고 쓰인 디지털 화면이 있다. 이 화면 아래 중앙에는 가로로 길게 놓인 막대 그래프가 보인다. 막대 그래프는 여러 칸으로 나뉘어 있고, 왼쪽 몇 칸은 붉은색 점선 테두리 안에 불이 들어와 있으며, 오른쪽 칸들은 불이 꺼져 있는 상태이다. 막대 그래프 왼쪽에는 둥근 마이너스(-) 버튼이, 오른쪽에는 둥근 플러스(+) 버튼이 배치되어 있다. 막대 그래프 아래 중앙에는 둥근 'A' 버튼이 있다. 한 손가락이 플러스(+) 버튼을 누르고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_010_figure_024.png",
+      "page": 10,
+      "index": 24,
+      "size_px": [
+        230,
+        258
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 230.0,
+        "height": 258.0,
+        "aspect_ratio": 0.8914728682170543,
+        "ink_ratio": 0.566211661611055,
+        "edge_ratio": 0.06835187057633973,
+        "table_line_ratio": 0.5702898550724638,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_010_figure_024.png",
+      "caption_short": "앞에 보이는 것은 둥근 모양의 전자제품 조작 화면이다. 화면 가운데 위쪽에는 '188 %'라는 큰 숫자가 표시되어 있다. 그 아래쪽에는 가로로 길게 늘어선 열 개의 칸이 보이며, 이 칸들은 빨간색 점선 테두리로 강조되어 있다. 이 중 여섯 개의 칸이 하얗게 채워져 어떤 단계나 세기를 나타낸다. 칸들의 왼쪽에는 마이너스(-) 버튼이, 오른쪽에는 플러스(+) 버튼이 둥근 형태로 배치되어 있다. 한 손가락이 오른쪽 플러스 버튼을 가리키고 있다. 화면 아래 가운데에는 'A' 글자가 있는 둥근 버튼이 있다. 이 화면은 현재 '3단 (고속)' 모드를 나타내고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_010_figure_025.png",
+      "page": 10,
+      "index": 25,
+      "size_px": [
+        780,
+        257
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 780.0,
+        "height": 257.0,
+        "aspect_ratio": 3.035019455252918,
+        "ink_ratio": 0.49582460341215207,
+        "edge_ratio": 0.06406764441783896,
+        "table_line_ratio": 0.48313379227776115,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_010_figure_025.png",
+      "caption_short": "전자제품의 둥근 제어판 화면 네 개가 왼쪽에서 오른쪽으로 나란히 보인다. 각 화면은 어두운 배경에 상단 중앙에 '188%'라는 하얀색 숫자가 표시되어 있고, 그 아래에는 막대 모양의 수평 표시등, 빼기(-) 버튼, 그리고 더하기(+) 버튼이 있다. 화면 아래 중앙에는 빨간색 원 안에 'A'라고 쓰인 버튼이 있다. 첫 번째 'AUTO 설정' 화면은 바깥 테두리가 파란색 원으로 되어 있으며, 수평 표시등의 왼쪽 두 칸이 하얗게 켜져 있다. 이 'A' 버튼을 검은색 손가락이 누르고 있는 모습이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_011_figure_026.png",
+      "page": 11,
+      "index": 26,
+      "size_px": [
+        254,
+        172
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 254.0,
+        "height": 172.0,
+        "aspect_ratio": 1.4767441860465116,
+        "ink_ratio": 0.07814502838308002,
+        "edge_ratio": 0.1082219373741073,
+        "table_line_ratio": 0.06498351950192273,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_011_figure_026.png",
+      "caption_short": "정면에서 살짝 위쪽을 내려다보는 모습으로, 길쭉한 모양의 도구가 왼쪽에서 오른쪽으로 놓여 있다. 가장 왼쪽에는 둥근 테두리에 가로줄 무늬가 있는 두꺼운 바퀴 모양 부품이 있다. 그 옆으로는 네모난 몸체가 이어지고, 몸체 위쪽에는 작은 사각형 판이 있고 그 가운데에 둥근 버튼 하나가 볼록하게 솟아 있다. 오른쪽으로 갈수록 몸체는 점점 좁아지며 아래로 살짝 구부러져 있다. 좁아진 부분의 맨 오른쪽 위쪽에는 작고 둥근 버튼 두 개가 나란히 붙어 있다. 이 도구의 전체 위쪽으로는 왼쪽 방향을 가리키는 굵은 화살표가 그려져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_011_figure_027.png",
+      "page": 11,
+      "index": 27,
+      "size_px": [
+        301,
+        181
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 301.0,
+        "height": 181.0,
+        "aspect_ratio": 1.6629834254143647,
+        "ink_ratio": 0.07562269415025422,
+        "edge_ratio": 0.09616196472164608,
+        "table_line_ratio": 0.06431600007342009,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_011_figure_027.png",
+      "caption_short": "길쭉한 막대 모양의 부품을 위에서 내려다본 모습이다. 가장 왼쪽에는 줄무늬가 있는 원통형 연결 부분이 있다. 그 옆 직사각형으로 오목하게 들어간 곳에 아래를 향하는 작은 화살표가 그려져 있어, 이곳을 누르는 동작을 나타낸다. 중앙에는 작은 직사각형 돌출부 두 개가 나란히 있으며, 오른쪽 끝은 앞쪽으로 넓어지는 형태이고 위쪽에 동그란 버튼 두 개가 있다. 몸통 위쪽에는 왼쪽 누르는 부분에서 오른쪽 끝으로 밀어내는 방향을 가리키는 커다란 화살표가 그려져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_011_figure_028.png",
+      "page": 11,
+      "index": 28,
+      "size_px": [
+        753,
+        704
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 753.0,
+        "height": 704.0,
+        "aspect_ratio": 1.0696022727272727,
+        "ink_ratio": 0.019492107328262707,
+        "edge_ratio": 0.044122751418568154,
+        "table_line_ratio": 0.0066533109984305205,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_011_figure_028.png",
+      "caption_short": "세 가지 진공청소기 노즐이 화면에 있다. 왼쪽 위는 '2단 콤비네이션' 노즐이 접힌 모습이다. 왼쪽은 넓고 원통형이며, 오른쪽으로 얇은 부분이 짧게 들어가 있다. 노즐 표면에는 가는 줄무늬가 있고 위쪽에는 작은 원 두 개가 보인다. 이는 소파나 커튼 같은 직물 청소에 적합하다. 오른쪽 위는 같은 '2단 콤비네이션' 노즐이 펼쳐진 모습이다. 왼쪽 넓은 부분은 동일하며, 오른쪽 얇은 부분이 길게 연장되어 있다. 고르지 않은 나무 바닥이나 작은 틈새를 쓸어 청소할 때 편리하다. 아래쪽에는 '틈새 노즐'이 길게 놓여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_012_figure_029.png",
+      "page": 12,
+      "index": 29,
+      "size_px": [
+        766,
+        226
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 766.0,
+        "height": 226.0,
+        "aspect_ratio": 3.3893805309734515,
+        "ink_ratio": 0.0807897594676402,
+        "edge_ratio": 0.08824141038378891,
+        "table_line_ratio": 0.06173317313246609,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_012_figure_029.png",
+      "caption_short": "이 장치는 휴대용 청소기 본체와 비슷한 모습이다. 옆에서 바라본 형태로, 위쪽은 굵은 원통형이고 아래쪽으로 갈수록 살짝 좁아지는 몸체이다. 몸체 아래쪽 앞부분에는 먼지통이 붙어 있다. 이 먼지통의 오른쪽 아래에는 위아래로 긴 빨간색 버튼이 세로로 보인다. 이 버튼에는 아래 방향으로 꺾인 화살표가 그려져 있으며, 이 버튼을 누르는 방향을 검은색 화살표가 가리키고 있다. 오른쪽 부분은 같은 장치의 아래쪽 모습을 보여준다. 원통형 먼지통의 아랫부분이 아래로 활짝 열려 있는 상태이다. 열린 틈 사이로 뿌연 회색 먼지가 뭉게뭉게 피어오르며 아래로 떨어지고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_012_figure_030.png",
+      "page": 12,
+      "index": 30,
+      "size_px": [
+        387,
+        219
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 387.0,
+        "height": 219.0,
+        "aspect_ratio": 1.7671232876712328,
+        "ink_ratio": 0.05310726463959978,
+        "edge_ratio": 0.08169622314254363,
+        "table_line_ratio": 0.04249997050251909,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_012_figure_030.png",
+      "caption_short": "장면은 어떤 가전제품의 아래쪽 부분을 옆에서 바라본 모습이다. 왼쪽 위에는 둥근 형태로 이어지는 제품 본체의 일부가 보인다. 본체 오른쪽 아래로는 직사각형 모양의 부품이 가로로 연결되어 있고, 그 아래에 먼지통으로 보이는 부분이 세로로 길게 붙어 있다. 이 먼지통의 아랫부분은 문처럼 아래쪽으로 열려 비스듬히 기울어져 있다. 빨간색 곡선 화살표가 이 열린 문이 현재 위치에서 더 아래쪽으로 활짝 벌어지는 움직임을 나타낸다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_012_figure_031.png",
+      "page": 12,
+      "index": 31,
+      "size_px": [
+        376,
+        218
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 376.0,
+        "height": 218.0,
+        "aspect_ratio": 1.724770642201835,
+        "ink_ratio": 0.06040162014444661,
+        "edge_ratio": 0.08131221940269373,
+        "table_line_ratio": 0.03681924653523326,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_012_figure_031.png",
+      "caption_short": "눈앞에는 무선 청소기의 본체 부분이 보인다. 제품은 오른쪽 앞에서 비스듬히 내려다본 모습이다. 왼쪽에는 크고 둥근 먼지통이 가로로 놓여 있고, 먼지통 왼쪽 끝에는 동그란 흡입구 같은 구멍이 있다. 먼지통의 아래쪽 앞부분에는 작고 네모난 버튼이 하나 있는데, 빨간색 점선이 그 버튼을 강조하고 있다. 오른쪽에는 손잡이와 모터 부분이 연결되어 있다. 손잡이는 위로 솟아 뒤쪽으로 비스듬히 뻗어 있고, 손잡이 위쪽에는 둥근 모양의 조작부가 보인다. 모터 부분의 아래쪽은 바닥에 닿는 넓적한 형태로 되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_012_figure_032.png",
+      "page": 12,
+      "index": 32,
+      "size_px": [
+        379,
+        217
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 379.0,
+        "height": 217.0,
+        "aspect_ratio": 1.7465437788018434,
+        "ink_ratio": 0.0836545359483482,
+        "edge_ratio": 0.10608805612635726,
+        "table_line_ratio": 0.04301885874785696,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_012_figure_032.png",
+      "caption_short": "이것은 휴대용 청소기의 본체처럼 보이는 전자제품이다. 전체적으로 세로로 길쭉한 원통형 몸통을 가지고 있으며, 위쪽은 동그란 뚜껑 모양이고 뒤쪽으로는 손잡이가 연결되어 있다. 몸통의 아랫부분 앞쪽에는 네모난 모양의 먼지통이 연결되어 있다. 손잡이 아래쪽에 위치한 몸통의 오른쪽 면에는 작은 빨간색 버튼이 하나 돌출되어 있다. 이 버튼에는 'PUSH'라고 영어 글자가 쓰여 있으며, 그 옆에는 '먼지통 열림 버튼'이라는 한글 설명이 붙어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_012_figure_033.png",
+      "page": 12,
+      "index": 33,
+      "size_px": [
+        375,
+        217
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 375.0,
+        "height": 217.0,
+        "aspect_ratio": 1.728110599078341,
+        "ink_ratio": 0.09211674347158218,
+        "edge_ratio": 0.10272196620583718,
+        "table_line_ratio": 0.07126267281105991,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_012_figure_033.png",
+      "caption_short": "옆에서 본 전자제품의 모습이다. 오른쪽에는 손잡이 모양의 윗부분을 가진 본체가 수직으로 서 있다. 본체의 가운데쯤에는 숫자 '1'이 표시된 작은 버튼이 있고, 그 옆에는 아래를 향하는 화살표가 있어 누르는 동작을 보여준다. 본체 왼쪽에는 먼지통처럼 생긴 네모난 부품이 아래쪽으로 기울어진 채 본체에서 분리되는 모습이다. 이 먼지통의 위쪽에는 숫자 '2'가 보이고, 왼쪽 아래로 굽은 큰 화살표는 먼지통이 움직이는 방향을 알려준다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_013_figure_034.png",
+      "page": 13,
+      "index": 34,
+      "size_px": [
+        760,
+        359
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 760.0,
+        "height": 359.0,
+        "aspect_ratio": 2.116991643454039,
+        "ink_ratio": 0.052063480428089726,
+        "edge_ratio": 0.06577114792552412,
+        "table_line_ratio": 0.02553144700190588,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_013_figure_034.png",
+      "caption_short": "기기의 상단부가 보이는 장면이다. 왼쪽에는 둥근 기기의 위쪽 원형 구멍이 보이며, 구멍 안쪽 테두리에는 빨간 점선이 둘러져 있고 중앙에는 격자무늬 부품이 있다. 오른쪽에는 필터 두 개가 분리되어 있다. 위쪽에는 손으로 잡힌, 옆면이 주름진 원통형의 '헤파 필터'가 있고, 그 아래에는 입구가 넓은 컵 모양의 '프리 필터'가 놓여 있다. 오른쪽 아래에는 기기 본체의 상단부가 다시 보이며, 비어 있는 원형 구멍 위에 빨간색 화살표 두 개가 위아래로 마주 본다. 이는 필터들이 본체와 결합하거나 분리되는 상황을 보여준다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_013_figure_035.png",
+      "page": 13,
+      "index": 35,
+      "size_px": [
+        760,
+        273
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 760.0,
+        "height": 273.0,
+        "aspect_ratio": 2.7838827838827838,
+        "ink_ratio": 0.10425583188741083,
+        "edge_ratio": 0.0828465394254868,
+        "table_line_ratio": 0.07280219780219781,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_013_figure_035.png",
+      "caption_short": "위쪽에는 '프리 필터 부착법'이라는 제목이 회색 바탕에 하얀 글씨로 쓰여 있다. 왼쪽에는 높고 둥근 원통형 필터가 세로로 서 있다. 필터의 옆면에는 얇고 촘촘한 세로 주름이 보이며, 위쪽과 아래쪽에는 둥근 테두리가 있다. 이어서 중앙에는 같은 원통형 필터의 옆면에 직사각형 모양의 얇은 천 같은 것이 왼쪽에서부터 일부 감싸져 있는 모습이다. 이 천은 아직 완전히 감싸지지 않고 옆으로 길게 펼쳐져 있다. 가장 오른쪽에는 원통형 필터 전체가 직사각형 천으로 매끄럽게 감싸진 모습이다. 원래의 주름진 필터 옆면은 더 이상 보이지 않는다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_013_figure_036.png",
+      "page": 13,
+      "index": 36,
+      "size_px": [
+        764,
+        296
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 764.0,
+        "height": 296.0,
+        "aspect_ratio": 2.581081081081081,
+        "ink_ratio": 0.08296041460308476,
+        "edge_ratio": 0.0637779467949625,
+        "table_line_ratio": 0.05616775152115466,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_013_figure_036.png",
+      "caption_short": "청소기 부품의 구조를 설명하는 장면이다. 크게 왼쪽과 오른쪽 두 부분으로 나뉘어 있다. 왼쪽에는 원통형 흡입구가 비스듬히 놓여 있고, 그 아래에는 뚜껑이 열린 먼지통이 보인다. 흡입구 안쪽에는 촘촘한 필터가 있으며, 붉은색의 큰 굽은 화살표가 이 필터를 시계 반대 방향으로 돌리는 움직임을 가리킨다. 화살표 위쪽에는 붉은색 바탕에 '열림 시계 반대 방향', '잠금 시계 방향'이라고 흰 글씨로 쓰여 있는 표가 있다. 오른쪽에는 청소기 본체가 옆에서 본 모습으로 놓여 있다. 본체 아래쪽으로는 여러 줄의 붉은 화살표가 수직으로 아래를 향하고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_014_figure_037.png",
+      "page": 14,
+      "index": 37,
+      "size_px": [
+        355,
+        541
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 355.0,
+        "height": 541.0,
+        "aspect_ratio": 0.6561922365988909,
+        "ink_ratio": 0.073364400822681,
+        "edge_ratio": 0.05848845382833043,
+        "table_line_ratio": 0.0433781989534248,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_014_figure_037.png",
+      "caption_short": "\"분리\"라는 제목 아래, 원통형 먼지통과 필터들이 분리되는 모습이 보인다. 가장 위에는 주름진 원통 형태의 '헤파+프리 필터'가 자리 잡고 있다. 이 필터는 아래에 있는 길고 둥근 '먼지통'에서 위쪽으로 당겨 올려지는 중이다. 먼지통은 한쪽 옆면에 공기 흡입구 같은 돌출된 연결 부위가 있는 몸체이다. 먼지통의 아래쪽에서는 역시 원통 모양의 '메탈 필터'가 시계 반대 방향으로 돌려진 후 아래쪽으로 분리되는 중이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_014_figure_038.png",
+      "page": 14,
+      "index": 38,
+      "size_px": [
+        421,
+        660
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 421.0,
+        "height": 660.0,
+        "aspect_ratio": 0.6378787878787879,
+        "ink_ratio": 0.07952566040452026,
+        "edge_ratio": 0.08152306917152523,
+        "table_line_ratio": 0.03032462391132225,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_014_figure_038.png",
+      "caption_short": "'결합'이라는 제목이 위쪽에 보인다. 화면에는 세 가지 주요 부품이 위에서 아래로 차례대로 놓여 있다. 가장 위, 숫자 '1' 옆에는 주름진 원통형 '헤파+프리 필터'가 아래쪽으로 향하는 화살표와 함께 놓여 있다. 중간, 숫자 '2' 옆에는 위아래가 열린 길쭉하고 복잡한 형태의 '먼지통'이 있다. 먼지통 위쪽 입구의 확대 그림에는 안쪽 벽의 돌출부 세 개와 이를 따라 원형으로 움직이는 화살표가 그려져 있다. 가장 아래, 숫자 '3' 옆에는 망사형 '메탈 필터'가 위쪽으로 향하는 화살표와 함께 놓여 있다. 이 필터 윗부분에는 검은 점 세 개가 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_014_figure_039.png",
+      "page": 14,
+      "index": 39,
+      "size_px": [
+        268,
+        290
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 268.0,
+        "height": 290.0,
+        "aspect_ratio": 0.9241379310344827,
+        "ink_ratio": 0.7687725167267113,
+        "edge_ratio": 0.07817807514153371,
+        "table_line_ratio": 0.7380082346886259,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_014_figure_039.png",
+      "caption_short": "이것은 원통형 필터 부품이다. 정면에서 약간 오른쪽 측면을 비스듬히 바라보는 모습이다. 필터의 가장 위쪽에는 넓고 평평한 원형 테두리가 있고, 그 중앙은 뚫려 있다. 테두리 아래로는 주름이 잡힌 원통형 몸체가 길게 이어지며, 몸체 전체에 촘촘한 세로 방향의 주름이 보인다. 원통형 필터의 왼쪽 면에는 직사각형 모양의 납작한 또 다른 필터가 붙어 있다. 아래쪽은 윗부분보다 살짝 좁은 원형 바닥으로 마무리되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_015_figure_040.png",
+      "page": 15,
+      "index": 40,
+      "size_px": [
+        767,
+        445
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 767.0,
+        "height": 445.0,
+        "aspect_ratio": 1.7235955056179775,
+        "ink_ratio": 0.05862033605320598,
+        "edge_ratio": 0.08368222902597308,
+        "table_line_ratio": 0.019448310211974275,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_015_figure_040.png",
+      "caption_short": "붉은색 숫자 1이 있는 왼쪽 부분에는 진공청소기 헤드가 비스듬히 놓여 있다. 헤드 양쪽에는 바퀴가 달려 있고, 아랫부분에는 긴 솔이 들어갈 공간이 보인다. 헤드의 오른쪽 옆면이 확대되어 나타나며, 중앙에 빨간색 레버가 위치한다. 레버 위에는 왼쪽을 가리키는 빨간색 화살표가 있다. 붉은색 숫자 2가 있는 오른쪽 부분에는 진공청소기 헤드에서 길고 둥근 브러시가 위로 비스듬히 들어 올려지고 있다. 붉은색 곡선 화살표가 브러시의 분리 방향을 보여준다. 그 아래에는 분리된 브러시가 놓여 있고, 손이 브러시에 엉킨 머리카락이나 이물질을 제거하고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_016_figure_041.png",
+      "page": 16,
+      "index": 41,
+      "size_px": [
+        673,
+        290
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 673.0,
+        "height": 290.0,
+        "aspect_ratio": 2.320689655172414,
+        "ink_ratio": 0.0947276733104473,
+        "edge_ratio": 0.1128503356048573,
+        "table_line_ratio": 0.03424706665983501,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_016_figure_041.png",
+      "caption_short": "왼쪽에는 세로로 길쭉한 원통형 전자 제품이 옆에서 본 모습으로 놓여 있다. 이 제품의 왼쪽 옆면, 가운데 부분에는 둥근 형태의 흡입구나 연결 부위로 보이는 곳이 있다. 이 둥근 부분의 안쪽 모습이 오른쪽 커다란 원 안에서 더욱 자세하게 확대되어 보인다. 확대된 원 안쪽에는 여러 개의 튀어나온 막대들이 둥글게 둘러싸고 있는 구조물이 있으며, 그 안쪽 깊숙한 곳, 중앙에 작은 원형의 부품이 빨간색으로 강조되어 있다. 이 빨간색 부품은 점선으로 연결된 글자 ‘먼지량 감지 센서’를 가리킨다. 그 아래쪽에는 이 센서에 대한 추가 설명 문구가 적혀 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_017_figure_042.png",
+      "page": 17,
+      "index": 42,
+      "size_px": [
+        724,
+        457
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 724.0,
+        "height": 457.0,
+        "aspect_ratio": 1.5842450765864333,
+        "ink_ratio": 0.04742676837893057,
+        "edge_ratio": 0.0497872263259064,
+        "table_line_ratio": 0.04787105431773396,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_017_figure_042.png",
+      "caption_short": "이 장면은 크게 두 부분으로 나뉜다. 위쪽은 '물 세척 가능 부품'으로, 수도꼭지 그림과 함께 표시되어 있다. 이 부품들은 왼쪽부터 손잡이처럼 보이는 부분이 있는 원통형 '먼지통', 촘촘한 망으로 된 원통형 '메탈 필터', 그리고 위가 넓고 아래가 좁은 컵 모양의 '프리 필터'이다. 아래쪽은 '물 세척 불가능 부품'으로, 수도꼭지 위에 X 표시가 된 그림으로 구분된다. 이 부품은 주름이 잡힌 원통형 '헤파 필터' 하나이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-S350IM/page_017_figure_043.png",
+      "page": 17,
+      "index": 43,
+      "size_px": [
+        177,
+        102
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 177.0,
+        "height": 102.0,
+        "aspect_ratio": 1.7352941176470589,
+        "ink_ratio": 0.36003101805694027,
+        "edge_ratio": 0.08081311620693475,
+        "table_line_ratio": 0.36302204497618257,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-S350IM/page_017_figure_043.png",
+      "caption_short": "눈앞에는 대각선으로 나뉜 장면이 펼쳐진다. 왼쪽 아래 회색 부분에는 원통형 용기가 놓여 있다. 이 용기는 짧고 둥근 형태로, 옆면은 작은 구멍들이 촘촘하게 있는 망처럼 생겼다. 위쪽에는 평평한 뚜껑이 닫혀 있는 모습이며, 대략 정면에서 약간 위를 내려다본 듯 보인다. 오른쪽 위 흰색 부분에는 가느다란 가로선 두 개가 평행하게 그려져 있다. 각 선의 왼쪽 끝은 작은 소용돌이 모양으로 되어 있는데, 이는 바람이 부는 모습을 나타낸다.",
+      "caption_fallback_reason": null
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "num_pages": 12,
+  "lines_before": 344,
+  "lines_after": 263,
+  "placeholders_removed_estimate": 53,
+  "repeated_lines_removed": 21,
+  "num_repeated_patterns": 1,
+  "repeated_patterns_sample": [
+    "![image](/image/placeholder)"
+  ],
+  "repeated_threshold": 8,
+  "doc_id": "SIF-PD10DIF_USER",
+  "source_parsed_file": "data\\parsed\\SIF-PD10DIF_USER.md"
+}

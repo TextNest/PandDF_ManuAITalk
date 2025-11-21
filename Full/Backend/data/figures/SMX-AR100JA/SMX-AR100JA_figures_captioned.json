@@ -1,0 +1,533 @@
+{
+  "doc_id": "SMX-AR100JA",
+  "source_pdf": "data/raw/SMX-AR100JA.pdf",
+  "num_images_total": 18,
+  "num_images_kept": 10,
+  "created_by": "image_captioner_gemini.py",
+  "model": "gemini-2.5-flash",
+  "config": {
+    "CAPTION_MAX_CHARS": 320,
+    "UNSAFE_KEYWORDS": [
+      "폭발",
+      "감전",
+      "사망",
+      "질식",
+      "중독",
+      "화재",
+      "불이 날",
+      "불이날",
+      "가스 누출",
+      "가스누출",
+      "가스가 새",
+      "전기 충격",
+      "전기충격",
+      "고압",
+      "중상",
+      "심각한 부상"
+    ]
+  },
+  "images": [
+    {
+      "file": "data/figures/SMX-AR100JA/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        402,
+        755
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 402.0,
+        "height": 755.0,
+        "aspect_ratio": 0.5324503311258278,
+        "ink_ratio": 0.968172383117525,
+        "edge_ratio": 0.03788672531382821,
+        "table_line_ratio": 0.9536226153998221,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SMX-AR100JA/page_001_figure_001.png",
+      "caption_short": "이것은 주방용 믹서기이다. 정면에서 본 모습으로, 위쪽에는 높은 용기가, 아래쪽에는 납작한 본체가 연결되어 있다. 용기 위에는 뚜껑이 덮여 있고, 오른쪽에는 손잡이가 있다. 용기 정면에는 위에서부터 'ML 1000 = 1 LITER', '800 = 4/5', '600 = 3/5', '400 = 2/5', '200 = 1/5' 순서로 용량 눈금과 글자가 표시되어 있다. 본체는 네모난 형태로, 정면 가운데 위쪽에 동그란 작동 버튼이 있다. 버튼 바로 아래 가운데에는 'shinil'이라는 글자가 적혀 있으며, 본체 바닥에는 작은 받침대 두 개가 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SMX-AR100JA/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        45,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0714285714285714,
+        "ink_ratio": 0.4396825396825397,
+        "edge_ratio": 0.22433862433862434,
+        "table_line_ratio": 0.2788359788359788,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SMX-AR100JA/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        45,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0227272727272727,
+        "ink_ratio": 0.3994949494949495,
+        "edge_ratio": 0.251010101010101,
+        "table_line_ratio": 0.21717171717171718,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SMX-AR100JA/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        46,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 43.0,
+        "aspect_ratio": 1.069767441860465,
+        "ink_ratio": 0.41708796764408496,
+        "edge_ratio": 0.24266936299292213,
+        "table_line_ratio": 0.21638018200202225,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SMX-AR100JA/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        43,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 44.0,
+        "aspect_ratio": 0.9772727272727273,
+        "ink_ratio": 0.5079281183932347,
+        "edge_ratio": 0.1886892177589852,
+        "table_line_ratio": 0.44238900634249473,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SMX-AR100JA/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        46,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0222222222222221,
+        "ink_ratio": 0.3285024154589372,
+        "edge_ratio": 0.17101449275362318,
+        "table_line_ratio": 0.17439613526570047,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SMX-AR100JA/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        41,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 41.0,
+        "height": 41.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.744794765020821,
+        "edge_ratio": 0.1189767995240928,
+        "table_line_ratio": 0.7662105889351577,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SMX-AR100JA/page_004_figure_008.png",
+      "page": 4,
+      "index": 8,
+      "size_px": [
+        646,
+        677
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 646.0,
+        "height": 677.0,
+        "aspect_ratio": 0.9542097488921714,
+        "ink_ratio": 0.026366093354857296,
+        "edge_ratio": 0.03182406446213718,
+        "table_line_ratio": 0.010744451710560614,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SMX-AR100JA/page_004_figure_008.png",
+      "caption_short": "이것은 정면에서 본 다용도 믹서기이다. 위쪽에는 내용물을 섞는 믹서 용기가 있고, 그 아래에는 기계를 움직이는 본체가 있다. 믹서 용기 위에는 뚜껑이 덮여 있고, 뚜껑의 작은 덮개는 추가 주입구 뚜껑이며 뚜껑 손잡이도 보인다. 믹서 용기 앞면에는 'ML 1000 - 1 LITER'와 같은 용량 표시가 세로로 적혀 있고, 오른쪽에는 손잡이가 달려 있다. 본체는 네모난 모양으로, 앞면 가운데에는 둥근 동작 버튼이 있다. 본체 아래쪽에는 미끄러지지 않도록 발 받침대가 네 군데에 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SMX-AR100JA/page_005_figure_009.png",
+      "page": 5,
+      "index": 9,
+      "size_px": [
+        134,
+        240
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 134.0,
+        "height": 240.0,
+        "aspect_ratio": 0.5583333333333333,
+        "ink_ratio": 0.10139925373134329,
+        "edge_ratio": 0.08603855721393035,
+        "table_line_ratio": 0.07151741293532338,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SMX-AR100JA/page_005_figure_009.png",
+      "caption_short": "하나의 장면에는 두 가지 주요 부품이 보인다. 아래쪽에는 손잡이가 왼쪽으로 튀어나온 투명한 주전자 형태의 믹서 용기가 놓여 있다. 이 용기의 옆면에는 액체의 양을 측정하는 세로 눈금이 새겨져 있으며, '200, 400, 600, 800, 1 LITER, 1000 ML' 같은 숫자와 'ml, liter' 글자가 또렷하게 보인다. 위쪽에는 둥근 모양의 판에 세 개의 날카로운 칼날이 아래를 향하고 있는 칼날 부분이 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SMX-AR100JA/page_005_figure_010.png",
+      "page": 5,
+      "index": 10,
+      "size_px": [
+        163,
+        108
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 163.0,
+        "height": 108.0,
+        "aspect_ratio": 1.5092592592592593,
+        "ink_ratio": 0.07100658941149739,
+        "edge_ratio": 0.11912065439672802,
+        "table_line_ratio": 0.03311747330152238,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SMX-AR100JA/page_005_figure_010.png",
+      "caption_short": "왼쪽에는 사람이 손으로 전원 플러그를 잡고 있다. 플러그는 길쭉한 금속 막대 두 개가 앞으로 튀어나와 있는 모습이다. 이 플러그는 오른쪽의 벽에 붙어 있는 직사각형 모양의 전기 콘센트를 향해 움직이고 있다. 콘센트에는 동그란 구멍 두 개가 위아래로 놓여 있고, 각 구멍 안에는 플러그의 막대가 들어갈 작은 구멍 두 개가 보인다. 플러그가 콘센트를 향해 나아가고 있음을 가리키는 빨간색 화살표가 아래쪽에 그려져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SMX-AR100JA/page_005_figure_011.png",
+      "page": 5,
+      "index": 11,
+      "size_px": [
+        144,
+        179
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 144.0,
+        "height": 179.0,
+        "aspect_ratio": 0.8044692737430168,
+        "ink_ratio": 0.05745654872749845,
+        "edge_ratio": 0.09085971446306641,
+        "table_line_ratio": 0.027079453755431408,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SMX-AR100JA/page_005_figure_011.png",
+      "caption_short": "이 장면은 음료나 소스를 만드는 데 쓰는 믹서기이다. 믹서기는 아래쪽에 네모난 몸통이 있고, 그 위에 높고 투명한 유리병 모양의 용기가 올려져 있다. 용기 안에는 막대 모양의 생강이나 계피 같은 여러 가지 고형 재료들이 들어 있으며, 용기 옆면에는 'ML', 'L', 'CUPS'라고 적힌 용량 표시와 함께 눈금이 새겨져 있다. 아래쪽 몸통의 앞면 가운데에는 둥글고 작은 버튼이 하나 있는데, 오른쪽에서 뻗어 나온 손가락이 이 버튼을 누르고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SMX-AR100JA/page_005_figure_012.png",
+      "page": 5,
+      "index": 12,
+      "size_px": [
+        129,
+        219
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 129.0,
+        "height": 219.0,
+        "aspect_ratio": 0.589041095890411,
+        "ink_ratio": 0.1284202329121093,
+        "edge_ratio": 0.12222576191993204,
+        "table_line_ratio": 0.08318289618066617,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SMX-AR100JA/page_005_figure_012.png",
+      "caption_short": "눈앞에는 믹서기의 긴 용기 위쪽으로 둥근 뚜껑이 내려오는 듯한 모습이 보인다. 뚜껑에는 손으로 잡기 편리한 부분이 튀어나와 있으며, 뚜껑에서 용기 안쪽으로 빨간색 화살표가 아래를 향하고 있다. 투명한 용기 오른쪽에는 손잡이가 달려 있고, 앞면에는 ‘ML 1600’, ‘LITER’, ‘800’, ‘4/3’ 등의 눈금 표시가 있다. 용기 안에는 울퉁불퉁한 생강 뿌리처럼 생긴 재료 세 개, 길쭉한 막대와 네모난 깍두기 모양의 재료들이 들어 있다. 이 용기는 평평한 네모난 받침대 위에 안정적으로 올려져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SMX-AR100JA/page_005_figure_013.png",
+      "page": 5,
+      "index": 13,
+      "size_px": [
+        176,
+        292
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 176.0,
+        "height": 292.0,
+        "aspect_ratio": 0.6027397260273972,
+        "ink_ratio": 0.06362858032378581,
+        "edge_ratio": 0.08069349315068493,
+        "table_line_ratio": 0.03342932752179328,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SMX-AR100JA/page_005_figure_013.png",
+      "caption_short": "믹서기가 놓여 있는 모습이다. 투명한 원통형 용기가 아래의 네모난 본체 위에 얹혀 있다. 용기 오른쪽에는 손잡이가 있고, 왼쪽에는 'MAX', '1 LITER' 등의 눈금이 세로로 표시되어 있으며, 안에는 막대 모양의 계피와 덩어리진 생강 같은 재료들이 들어 있다. 용기 뚜껑의 가운데 작은 구멍 위로 사람 손이 작은 네모 뚜껑을 들어 올리고 있고, 그 옆에는 숟가락에 갈색 가루가 담겨 있다. 본체의 앞면 가운데에는 둥근 버튼 하나가 보인다. 아래쪽 오른쪽에는 빨간색 경고 표시와 '넘침 주의'라는 글자가 쓰여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SMX-AR100JA/page_005_figure_014.png",
+      "page": 5,
+      "index": 14,
+      "size_px": [
+        217,
+        231
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 217.0,
+        "height": 231.0,
+        "aspect_ratio": 0.9393939393939394,
+        "ink_ratio": 0.06104494583757256,
+        "edge_ratio": 0.07417160412552118,
+        "table_line_ratio": 0.02948510782612165,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SMX-AR100JA/page_005_figure_014.png",
+      "caption_short": "눈앞에 보이는 것은 믹서기이다. 아래는 네모난 모양의 본체이며, 그 위에는 내용물을 담는 용기가 놓여 있다. 용기 안에는 생강 조각 같은 덩어리 재료들이 들어 있고, 용기 옆면에는 내용물의 양을 알 수 있는 눈금 표시가 세로로 보인다. 용기 아래쪽과 본체 위쪽이 만나는 지점에는 시계 방향으로 돌려 용기를 본체에 단단히 고정시키는 화살표가 그려져 있다. 본체 앞면 중앙에는 둥근 조작 버튼이 하나 있고, 본체 오른쪽에는 잠긴 자물쇠 그림 옆에 '잠금'이라는 글자가, 열린 자물쇠 그림 옆에는 '열림'이라는 글자가 함께 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SMX-AR100JA/page_005_figure_015.png",
+      "page": 5,
+      "index": 15,
+      "size_px": [
+        209,
+        139
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 209.0,
+        "height": 139.0,
+        "aspect_ratio": 1.5035971223021583,
+        "ink_ratio": 0.06106502357922275,
+        "edge_ratio": 0.08887817975284844,
+        "table_line_ratio": 0.023820178307115074,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SMX-AR100JA/page_005_figure_015.png",
+      "caption_short": "왼쪽에는 사람의 손이 보인다. 손은 전기 플러그를 잡고 있다. 플러그는 둥근 네모 형태의 본체에서 두 개의 금속 막대가 앞으로 튀어나와 있고, 아래쪽으로 전선이 연결되어 있다. 오른쪽에는 벽에 부착된 네모난 전원 콘센트가 있다. 이 콘센트에는 위아래로 나란히 두 개의 동그란 구멍이 보인다. 플러그가 콘센트의 아래쪽 구멍을 향해 다가가는 모습이며, 빨간색 화살표가 그 방향을 가리키고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SMX-AR100JA/page_006_figure_016.png",
+      "page": 6,
+      "index": 16,
+      "size_px": [
+        785,
+        220
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 785.0,
+        "height": 220.0,
+        "aspect_ratio": 3.5681818181818183,
+        "ink_ratio": 0.044331210191082805,
+        "edge_ratio": 0.05696004632310365,
+        "table_line_ratio": 0.03398957730167921,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SMX-AR100JA/page_006_figure_016.png",
+      "caption_short": "위쪽 왼쪽에는 빨간색 표지가 있는데, 여기에 '외관 청소'라고 적혀 있다. 왼쪽에는 믹서기가 보인다. 이 믹서기는 투명한 긴 용기가 아래쪽의 넓적한 본체 위에 연결된 형태이다. 용기에는 눈금과 옆에 손잡이가 있으며, 본체 앞면 중앙에는 동그란 조절 다이얼이 있다. 한 손이 헝겊을 들고 믹서기 본체 윗부분을 반짝이도록 닦고 있다. 오른쪽에는 같은 믹서기의 본체가 깊은 그릇 안에 잠겨 있는 모습이다. 그릇 위 수도꼭지에서는 물이 흘러내리고 있고, 그릇 바닥에는 커다란 빨간색 X 표시가 있어 이렇게 하면 안 된다는 것을 명확히 알려준다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SMX-AR100JA/page_007_figure_017.png",
+      "page": 7,
+      "index": 17,
+      "size_px": [
+        783,
+        152
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 783.0,
+        "height": 152.0,
+        "aspect_ratio": 5.151315789473684,
+        "ink_ratio": 0.08857632587215164,
+        "edge_ratio": 0.08930732002419843,
+        "table_line_ratio": 0.06094978826376286,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SMX-AR100JA/page_008_figure_018.png",
+      "page": 8,
+      "index": 18,
+      "size_px": [
+        116,
+        114
+      ],
+      "keep_for_caption": false,
+      "category": "qr_code_heuristic",
+      "tags": [
+        "qr_code"
+      ],
+      "metrics": {
+        "width": 116.0,
+        "height": 114.0,
+        "aspect_ratio": 1.0175438596491229,
+        "ink_ratio": 0.5764519056261344,
+        "edge_ratio": 0.23041439806412584,
+        "table_line_ratio": 0.37212643678160917,
+        "is_qr_code": true,
+        "qr_heuristic": true,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    }
+  ]
+}

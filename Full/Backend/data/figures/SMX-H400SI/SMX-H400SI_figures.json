@@ -1,0 +1,142 @@
+{
+  "doc_id": "SMX-H400SI",
+  "source_pdf": "data/raw/SMX-H400SI.pdf",
+  "num_figures": 15,
+  "images": [
+    {
+      "file": "data/figures/SMX-H400SI/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        455,
+        654
+      ]
+    },
+    {
+      "file": "data/figures/SMX-H400SI/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        42,
+        46
+      ]
+    },
+    {
+      "file": "data/figures/SMX-H400SI/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        42,
+        40
+      ]
+    },
+    {
+      "file": "data/figures/SMX-H400SI/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        42,
+        40
+      ]
+    },
+    {
+      "file": "data/figures/SMX-H400SI/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        39,
+        39
+      ]
+    },
+    {
+      "file": "data/figures/SMX-H400SI/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        41,
+        40
+      ]
+    },
+    {
+      "file": "data/figures/SMX-H400SI/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        37,
+        37
+      ]
+    },
+    {
+      "file": "data/figures/SMX-H400SI/page_004_figure_008.png",
+      "page": 4,
+      "index": 8,
+      "size_px": [
+        202,
+        305
+      ]
+    },
+    {
+      "file": "data/figures/SMX-H400SI/page_004_figure_009.png",
+      "page": 4,
+      "index": 9,
+      "size_px": [
+        129,
+        91
+      ]
+    },
+    {
+      "file": "data/figures/SMX-H400SI/page_005_figure_010.png",
+      "page": 5,
+      "index": 10,
+      "size_px": [
+        633,
+        726
+      ]
+    },
+    {
+      "file": "data/figures/SMX-H400SI/page_007_figure_011.png",
+      "page": 7,
+      "index": 11,
+      "size_px": [
+        229,
+        252
+      ]
+    },
+    {
+      "file": "data/figures/SMX-H400SI/page_008_figure_012.png",
+      "page": 8,
+      "index": 12,
+      "size_px": [
+        203,
+        312
+      ]
+    },
+    {
+      "file": "data/figures/SMX-H400SI/page_008_figure_013.png",
+      "page": 8,
+      "index": 13,
+      "size_px": [
+        616,
+        182
+      ]
+    },
+    {
+      "file": "data/figures/SMX-H400SI/page_015_figure_014.png",
+      "page": 15,
+      "index": 14,
+      "size_px": [
+        687,
+        132
+      ]
+    },
+    {
+      "file": "data/figures/SMX-H400SI/page_016_figure_015.png",
+      "page": 16,
+      "index": 15,
+      "size_px": [
+        105,
+        104
+      ]
+    }
+  ]
+}

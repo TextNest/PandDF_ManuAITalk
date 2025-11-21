@@ -1,6 +1,6 @@
 {
   "doc_id": "SDM-WHT330HS",
-  "source_pdf": "uploads/pdfs/SDM-WHT330HS.pdf",
+  "source_pdf": "data/raw/SDM-WHT330HS.pdf",
   "num_figures": 10,
   "images": [
     {
@@ -17,7 +17,7 @@
       "page": 2,
       "index": 2,
       "size_px": [
-        44,
+        45,
         42
       ]
     },
@@ -26,7 +26,7 @@
       "page": 2,
       "index": 3,
       "size_px": [
-        44,
+        45,
         44
       ]
     },
@@ -36,7 +36,7 @@
       "index": 4,
       "size_px": [
         46,
-        44
+        43
       ]
     },
     {
@@ -45,7 +45,7 @@
       "index": 5,
       "size_px": [
         46,
-        43
+        45
       ]
     },
     {
@@ -80,7 +80,7 @@
       "page": 5,
       "index": 9,
       "size_px": [
-        793,
+        794,
         198
       ]
     },

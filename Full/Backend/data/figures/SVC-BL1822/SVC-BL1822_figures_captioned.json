@@ -1,0 +1,508 @@
+{
+  "doc_id": "SVC-BL1822",
+  "source_pdf": "data/raw/SVC-BL1822.pdf",
+  "num_images_total": 17,
+  "num_images_kept": 8,
+  "created_by": "image_captioner_gemini.py",
+  "model": "gemini-2.5-flash",
+  "config": {
+    "CAPTION_MAX_CHARS": 320,
+    "UNSAFE_KEYWORDS": [
+      "폭발",
+      "감전",
+      "사망",
+      "질식",
+      "중독",
+      "화재",
+      "불이 날",
+      "불이날",
+      "가스 누출",
+      "가스누출",
+      "가스가 새",
+      "전기 충격",
+      "전기충격",
+      "고압",
+      "중상",
+      "심각한 부상"
+    ]
+  },
+  "images": [
+    {
+      "file": "data/figures/SVC-BL1822/page_002_figure_001.png",
+      "page": 2,
+      "index": 1,
+      "size_px": [
+        44,
+        60
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 60.0,
+        "aspect_ratio": 0.7333333333333333,
+        "ink_ratio": 0.3068181818181818,
+        "edge_ratio": 0.22727272727272727,
+        "table_line_ratio": 0.13522727272727272,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BL1822/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        43,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 41.0,
+        "aspect_ratio": 1.048780487804878,
+        "ink_ratio": 0.37379466817923995,
+        "edge_ratio": 0.2750992626205332,
+        "table_line_ratio": 0.1542824730572887,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BL1822/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        43,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 41.0,
+        "aspect_ratio": 1.048780487804878,
+        "ink_ratio": 0.3369256948383437,
+        "edge_ratio": 0.2824730572887124,
+        "table_line_ratio": 0.13613159387407828,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BL1822/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        45,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0714285714285714,
+        "ink_ratio": 0.26931216931216934,
+        "edge_ratio": 0.1873015873015873,
+        "table_line_ratio": 0.08518518518518518,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BL1822/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        41,
+        40
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 41.0,
+        "height": 40.0,
+        "aspect_ratio": 1.025,
+        "ink_ratio": 0.6963414634146341,
+        "edge_ratio": 0.11829268292682926,
+        "table_line_ratio": 0.7182926829268292,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BL1822/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        43,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 41.0,
+        "aspect_ratio": 1.048780487804878,
+        "ink_ratio": 0.49120816789563243,
+        "edge_ratio": 0.18604651162790697,
+        "table_line_ratio": 0.4378899602949518,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BL1822/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        43,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 41.0,
+        "aspect_ratio": 1.048780487804878,
+        "ink_ratio": 0.41520136131593877,
+        "edge_ratio": 0.3023255813953488,
+        "table_line_ratio": 0.17073170731707318,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BL1822/page_004_figure_008.png",
+      "page": 4,
+      "index": 8,
+      "size_px": [
+        804,
+        796
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 804.0,
+        "height": 796.0,
+        "aspect_ratio": 1.0100502512562815,
+        "ink_ratio": 0.029649178729468238,
+        "edge_ratio": 0.040954148853721346,
+        "table_line_ratio": 0.005240756018900472,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BL1822/page_004_figure_008.png",
+      "caption_short": "이 제품은 길고 가는 막대형 무선 청소기의 옆모습이다. 가장 위에는 손잡이와 전원/모드 버튼이 있다. 그 아래 청소기 본체에는 둥근 필터 커버와 먼지통이 보이며, 필터 커버 아래와 연장관 연결 부분에 노즐 분리 버튼이 각각 있다. 본체 아래로 긴 연장관이 연결되어 있고, 맨 아래에는 바닥용 노즐이 부착되어 있다. 오른쪽 구성품 상자에는 충전 어댑터, 2 in 1 브러쉬, 그리고 청소기를 벽에 거는 벽면 부착 거치대가 놓여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BL1822/page_006_figure_009.png",
+      "page": 6,
+      "index": 9,
+      "size_px": [
+        625,
+        248
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 625.0,
+        "height": 248.0,
+        "aspect_ratio": 2.5201612903225805,
+        "ink_ratio": 0.03194193548387097,
+        "edge_ratio": 0.054096774193548386,
+        "table_line_ratio": 0.010483870967741936,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BL1822/page_006_figure_009.png",
+      "caption_short": "둥근 형태의 전자제품 조작부가 위에서 내려다본 모습이다. 이 원형 표면의 가장 위쪽 가운데에는 동그란 '전원 버튼'이 자리한다. 전원 버튼 안에는 세로선이 위로 뻗어 나가는 원형 기호가 그려져 있으며, 한 번 누르면 전원이 켜지고 두 번 누르면 전원이 꺼지는 기능을 한다. 전원 버튼 바로 아래, 원형 표면의 중앙에는 회오리 모양이 그려진 동그란 '흡입력 조절 버튼'이 있다. 이 버튼은 흡입력을 2단계로 조절할 수 있음을 알려준다. 가장 아래쪽에는 가로로 긴 네모 형태에 물결 모양 선이 그려진 '배터리 표시등'이 위치한다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BL1822/page_006_figure_010.png",
+      "page": 6,
+      "index": 10,
+      "size_px": [
+        255,
+        255
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 255.0,
+        "height": 255.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.045336409073433295,
+        "edge_ratio": 0.09294886582083814,
+        "table_line_ratio": 0.049319492502883505,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BL1822/page_006_figure_010.png",
+      "caption_short": "장면은 휴대용 진공 청소기가 거치대에 놓여 있는 모습이다. 진공 청소기는 왼쪽을 향하며, 길쭉한 본체 위쪽에는 공기 배출구로 보이는 격자 무늬 부분과 두 개의 둥근 버튼, 그리고 세 개의 작은 표시등이 세로로 나란히 있다. 청소기 본체는 아래쪽의 얇고 납작한 거치대에 안정적으로 놓여 있고, 거치대의 오른쪽 끝에는 작은 충전 단자가 보인다. 이 단자를 향해 오른쪽에서 빨간색 화살표와 함께 충전 어댑터의 꺾인 플러그가 다가오고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BL1822/page_006_figure_011.png",
+      "page": 6,
+      "index": 11,
+      "size_px": [
+        263,
+        257
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 263.0,
+        "height": 257.0,
+        "aspect_ratio": 1.0233463035019454,
+        "ink_ratio": 0.022695329259812696,
+        "edge_ratio": 0.05960852776257194,
+        "table_line_ratio": 0.03876255714518205,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BL1822/page_006_figure_011.png",
+      "caption_short": "오른쪽에는 벽면 콘센트가 세로로 길게 놓여 있다. 콘센트에는 위아래로 각각 두 개씩, 총 네 개의 둥근 구멍이 보인다. 왼쪽에는 작고 네모난 충전기 본체가 있고, 이 본체 아랫부분에는 길게 늘어진 전선이 연결되어 있다. 충전기는 콘센트의 아래쪽 구멍에 아직 완전히 꽂히지 않고, 안으로 밀어 넣으려는 상태이다. 충전기를 콘센트 안으로 밀어 넣는 방향을 가리키는 빨간색 화살표가 충전기 오른쪽에서 콘센트 쪽으로 길게 그려져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BL1822/page_006_figure_012.png",
+      "page": 6,
+      "index": 12,
+      "size_px": [
+        258,
+        259
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 258.0,
+        "height": 259.0,
+        "aspect_ratio": 0.9961389961389961,
+        "ink_ratio": 0.04464098650145162,
+        "edge_ratio": 0.08154500014965131,
+        "table_line_ratio": 0.04329412468947352,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BL1822/page_006_figure_012.png",
+      "caption_short": "이 장면은 왼쪽 위의 기기와 오른쪽 아래의 전원부를 보여준다. 왼쪽 위의 기기는 옆에서 본 모습으로, 가로로 긴 원통형 본체 아래에 넓적한 받침대가 연결되어 있다. 원통형 본체의 오른쪽 위에는 두 개의 작은 원형과 하나의 큰 다이얼 형태의 조작부가 있다. 받침대의 오른쪽 아래에는 둥근 충전 단자가 보이며, ㄱ자로 꺾인 충전 케이블 끝부분이 이 단자를 향해 있다. 오른쪽 아래에는 벽면 전원 콘센트에 네모난 충전기 본체가 꽂혀 있고, 충전기 본체 아래로 기다란 케이블이 연결되어 있다. 붉은색 화살표는 충전 케이블 끝이 기기의 충전 단자에 연결되는 방향을 가리키고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BL1822/page_007_figure_013.png",
+      "page": 7,
+      "index": 13,
+      "size_px": [
+        789,
+        353
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 789.0,
+        "height": 353.0,
+        "aspect_ratio": 2.235127478753541,
+        "ink_ratio": 0.03569261481345842,
+        "edge_ratio": 0.05252462147732454,
+        "table_line_ratio": 0.017237726961011356,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BL1822/page_007_figure_013.png",
+      "caption_short": "이 장면은 손에 쥐는 청소 기구의 옆모습을 보여준다. 화면 위쪽에는 '먼지통 비우기'라는 글자가 있다. 기구 본체 앞쪽에 붙은 기다란 먼지통이 왼쪽에서는 아래로 돌아가며 분리되는 붉은 곡선 화살표로, 오른쪽에서는 본체에서 완전히 분리되어 아래로 기울어져 작은 이물질들이 붉은 아래쪽 화살표 방향으로 쏟아져 나오는 모습으로 나타나 있다. 화면 아래에는 '본체의 먼지통을 돌려 먼지통을 분리 후 먼지통 안의 먼지를 비워 주십시오. 먼지통은 깨끗한 물로만 청소하십시오.'라는 글이 적혀 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BL1822/page_007_figure_014.png",
+      "page": 7,
+      "index": 14,
+      "size_px": [
+        377,
+        322
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 377.0,
+        "height": 322.0,
+        "aspect_ratio": 1.170807453416149,
+        "ink_ratio": 0.07049771817388009,
+        "edge_ratio": 0.0952188740794438,
+        "table_line_ratio": 0.01569270309899995,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BL1822/page_007_figure_014.png",
+      "caption_short": "이 장면은 진공청소기의 바닥을 청소하는 브러시 헤드 부분을 보여준다. 브러시 헤드의 몸통 오른쪽 옆면에는 작은 타원형 모양의 잠금 장치가 있다. 이 잠금 장치 안에는 왼쪽으로 밀 수 있는 슬라이드 버튼이 있고, 옆에는 잠긴 표시와 풀린 표시가 함께 그려져 있다. 잠금 장치 아래에는 화살표가 아래 방향을 가리키고 있으며, 맨 위에는 '브러시 청소 방법'이라는 글자가 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BL1822/page_007_figure_015.png",
+      "page": 7,
+      "index": 15,
+      "size_px": [
+        384,
+        354
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 384.0,
+        "height": 354.0,
+        "aspect_ratio": 1.0847457627118644,
+        "ink_ratio": 0.06730373116760828,
+        "edge_ratio": 0.09463276836158192,
+        "table_line_ratio": 0.02346692561205273,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BL1822/page_007_figure_015.png",
+      "caption_short": "두 가지 모습의 청소 장치가 나란히 보이고, 위쪽에는 빨간 글씨로 '필터 청소 방법'이라고 쓰여 있다. 왼쪽에 보이는 장치는 손잡이가 왼쪽에 있으며, 그 아래에는 투명한 원통형 먼지통이 붙어 있다. 장치 맨 위에는 둥근 필터 덮개가 얹혀 있고, 그 위에는 오른쪽으로 돌리라는 뜻의 굽은 화살표가 그려져 있다. 오른쪽에 보이는 장치는 왼쪽과 같은 모습이지만, 위쪽 부분이 분리되어 있다. 둥근 필터 덮개는 위로 들어 올려져 있고, 그 아래에 있는 원통형 필터 부품도 위로 빠져나와 있는 모습이다. 필터 부품 위에는 위쪽으로 당기는 것을 나타내는 화살표가 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BL1822/page_009_figure_016.png",
+      "page": 9,
+      "index": 16,
+      "size_px": [
+        784,
+        153
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 784.0,
+        "height": 153.0,
+        "aspect_ratio": 5.124183006535947,
+        "ink_ratio": 0.0871515272775777,
+        "edge_ratio": 0.08992763772175537,
+        "table_line_ratio": 0.061074429771908766,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BL1822/page_011_figure_017.png",
+      "page": 11,
+      "index": 17,
+      "size_px": [
+        116,
+        114
+      ],
+      "keep_for_caption": false,
+      "category": "qr_code_heuristic",
+      "tags": [
+        "qr_code"
+      ],
+      "metrics": {
+        "width": 116.0,
+        "height": 114.0,
+        "aspect_ratio": 1.0175438596491229,
+        "ink_ratio": 0.5764519056261344,
+        "edge_ratio": 0.23041439806412584,
+        "table_line_ratio": 0.37212643678160917,
+        "is_qr_code": true,
+        "qr_heuristic": true,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    }
+  ]
+}

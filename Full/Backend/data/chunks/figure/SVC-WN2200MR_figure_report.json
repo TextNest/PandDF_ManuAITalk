@@ -1,0 +1,8 @@
+{
+  "doc_id": "SVC-WN2200MR",
+  "source_caption_file": "data\\figures\\SVC-WN2200MR\\SVC-WN2200MR_figures_captioned.json",
+  "num_images_total": 27,
+  "num_keep_for_caption": 17,
+  "num_with_caption_text": 17,
+  "num_chunks_written": 17
+}
