@@ -1,0 +1,124 @@
+{
+  "doc_id": "SAH001",
+  "source_pdf": "uploads/pdfs/SAH001.pdf",
+  "num_figures": 13,
+  "images": [
+    {
+      "file": "data/figures/SAH001/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        324,
+        657
+      ]
+    },
+    {
+      "file": "data/figures/SAH001/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        43,
+        41
+      ]
+    },
+    {
+      "file": "data/figures/SAH001/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        43,
+        41
+      ]
+    },
+    {
+      "file": "data/figures/SAH001/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        43,
+        41
+      ]
+    },
+    {
+      "file": "data/figures/SAH001/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        43,
+        41
+      ]
+    },
+    {
+      "file": "data/figures/SAH001/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        40,
+        38
+      ]
+    },
+    {
+      "file": "data/figures/SAH001/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        43,
+        39
+      ]
+    },
+    {
+      "file": "data/figures/SAH001/page_004_figure_008.png",
+      "page": 4,
+      "index": 8,
+      "size_px": [
+        378,
+        1030
+      ]
+    },
+    {
+      "file": "data/figures/SAH001/page_004_figure_009.png",
+      "page": 4,
+      "index": 9,
+      "size_px": [
+        349,
+        889
+      ]
+    },
+    {
+      "file": "data/figures/SAH001/page_006_figure_010.png",
+      "page": 6,
+      "index": 10,
+      "size_px": [
+        386,
+        250
+      ]
+    },
+    {
+      "file": "data/figures/SAH001/page_006_figure_011.png",
+      "page": 6,
+      "index": 11,
+      "size_px": [
+        381,
+        252
+      ]
+    },
+    {
+      "file": "data/figures/SAH001/page_006_figure_012.png",
+      "page": 6,
+      "index": 12,
+      "size_px": [
+        388,
+        250
+      ]
+    },
+    {
+      "file": "data/figures/SAH001/page_006_figure_013.png",
+      "page": 6,
+      "index": 13,
+      "size_px": [
+        385,
+        249
+      ]
+    }
+  ]
+}

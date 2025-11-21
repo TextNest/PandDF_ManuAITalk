@@ -1,0 +1,15 @@
+{
+  "embed_model": "text-embedding-004",
+  "output_dimensionality": 768,
+  "index_type": "IndexFlatIP_L2norm",
+  "num_vectors": 49,
+  "num_text_chunks": 35,
+  "num_figure_chunks": 14,
+  "created_at": "2025-11-21T13:33:16.189915+09:00",
+  "chunk_dirs": {
+    "text": "data\\chunks\\text",
+    "figure": "data\\chunks\\figure"
+  },
+  "note": "멀티모달 RAG 인덱스 (text + figure)",
+  "updated_at": "2025-11-21T13:47:10.107920+09:00"
+}

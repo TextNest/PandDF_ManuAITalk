@@ -1,0 +1,394 @@
+{
+  "doc_id": "SAH001",
+  "source_pdf": "uploads/pdfs/SAH001.pdf",
+  "num_images_total": 13,
+  "num_images_kept": 7,
+  "created_by": "image_captioner_gemini.py",
+  "model": "gemini-2.5-flash",
+  "config": {
+    "CAPTION_MAX_CHARS": 320,
+    "UNSAFE_KEYWORDS": [
+      "폭발",
+      "감전",
+      "사망",
+      "질식",
+      "중독",
+      "화재",
+      "불이 날",
+      "불이날",
+      "가스 누출",
+      "가스누출",
+      "가스가 새",
+      "전기 충격",
+      "전기충격",
+      "고압",
+      "중상",
+      "심각한 부상"
+    ]
+  },
+  "images": [
+    {
+      "file": "data/figures/SAH001/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        324,
+        657
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 324.0,
+        "height": 657.0,
+        "aspect_ratio": 0.4931506849315068,
+        "ink_ratio": 0.9774132326136385,
+        "edge_ratio": 0.17613262679219047,
+        "table_line_ratio": 0.7924300505477573,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SAH001/page_001_figure_001.png",
+      "caption_short": "높고 둥근 원통형 난방 장치이며, 맨 위에는 가는 선으로 엮인 둥근 안전망이 덮여 있고 그 안쪽으로는 열을 내는 버너와 작은 구멍들이 보인다. 안전망 바로 아래에는 넓고 튼튼한 원통형 본체가 위치한다. 본체 앞면 위쪽에는 작은 원형 버튼 하나와, 그 오른쪽에 돌려서 조작하는 큰 원형 손잡이가 나란히 있다. 본체 앞면 가운데에는 가로로 긴 원형 안에 세 개의 세로선이 있으며, 그 아래로 이어진 작은 세로 구멍 환기구는 오른쪽으로 갈수록 구멍들이 위로 휘어지며 촘촘해진다. 본체 오른쪽 아래에는 문을 여는 작은 손잡이가 달려 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SAH001/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        43,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 41.0,
+        "aspect_ratio": 1.048780487804878,
+        "ink_ratio": 0.42030629608621667,
+        "edge_ratio": 0.2631877481565513,
+        "table_line_ratio": 0.1911514463981849,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SAH001/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        43,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 41.0,
+        "aspect_ratio": 1.048780487804878,
+        "ink_ratio": 0.4248440158820193,
+        "edge_ratio": 0.22858763471355645,
+        "table_line_ratio": 0.2745320476460579,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SAH001/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        43,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 41.0,
+        "aspect_ratio": 1.048780487804878,
+        "ink_ratio": 0.40045377197958026,
+        "edge_ratio": 0.2614861032331254,
+        "table_line_ratio": 0.2212138400453772,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SAH001/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        43,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 41.0,
+        "aspect_ratio": 1.048780487804878,
+        "ink_ratio": 0.33919455473624505,
+        "edge_ratio": 0.19001701644923427,
+        "table_line_ratio": 0.17526942711287577,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SAH001/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        40,
+        38
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 40.0,
+        "height": 38.0,
+        "aspect_ratio": 1.0526315789473684,
+        "ink_ratio": 0.7453947368421052,
+        "edge_ratio": 0.11973684210526316,
+        "table_line_ratio": 0.7710526315789473,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SAH001/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        43,
+        39
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 39.0,
+        "aspect_ratio": 1.1025641025641026,
+        "ink_ratio": 0.4531902206320811,
+        "edge_ratio": 0.259391771019678,
+        "table_line_ratio": 0.24627310673822303,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SAH001/page_004_figure_008.png",
+      "page": 4,
+      "index": 8,
+      "size_px": [
+        378,
+        1030
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 378.0,
+        "height": 1030.0,
+        "aspect_ratio": 0.36699029126213595,
+        "ink_ratio": 0.06793291210766939,
+        "edge_ratio": 0.08002260235269944,
+        "table_line_ratio": 0.039407715621307855,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SAH001/page_004_figure_008.png",
+      "caption_short": "이 제품은 위아래로 길쭉한 원통형 구조이며, 여러 부품이 분리된 모습이다. 가장 위에는 촘촘한 철망으로 된 '안전망'이 있다. 그 아래 원통형의 '버너'가 놓이며, 버너 오른쪽 옆에는 이동을 위한 '손잡이'가 보인다. 버너 아래 받침 부분 앞쪽에는 기기를 조작하는 둥근 '조작부'가 위치한다. 중간에는 가스를 장착하는 원통형 '본체'가 있으며 옆면에 세로 구멍들이 나 있다. 본체 아래에는 제품을 움직이는 '바퀴'와 가장 바닥에서 지지하는 둥근 '받침대'가 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SAH001/page_004_figure_009.png",
+      "page": 4,
+      "index": 9,
+      "size_px": [
+        349,
+        889
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 349.0,
+        "height": 889.0,
+        "aspect_ratio": 0.3925759280089989,
+        "ink_ratio": 0.03329777187593671,
+        "edge_ratio": 0.04476875920595885,
+        "table_line_ratio": 0.020859856701293426,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SAH001/page_004_figure_009.png",
+      "caption_short": "지금 보이는 장면은 제품과 함께 제공되는 여러 부속품을 보여준다. 가장 위쪽 왼쪽에는 '육각너트'라고 쓰인 육각형 모양의 너트 2개가 있고, 그 옆 오른쪽에는 '볼트 16 mm'라고 쓰인 육각 머리 볼트 2개가 나사산과 함께 보인다. 그 아래 줄에는 왼쪽부터 '스크루'라고 쓰인 십자 머리 나사 11개와 '돔 너트'라고 쓰인 둥근 모양의 너트 1개가 놓여 있다. 중앙에는 '보관용 커버'라고 쓰인, 사각형으로 접혀 있는 천 같은 물체가 있다. 가장 아래쪽에는 긴 형태로 연결된 두 부품이 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SAH001/page_006_figure_010.png",
+      "page": 6,
+      "index": 10,
+      "size_px": [
+        386,
+        250
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 386.0,
+        "height": 250.0,
+        "aspect_ratio": 1.544,
+        "ink_ratio": 0.044756476683937826,
+        "edge_ratio": 0.0573678756476684,
+        "table_line_ratio": 0.03244559585492228,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SAH001/page_006_figure_010.png",
+      "caption_short": "이것은 세로로 긴 제품의 옆면을 가까이서 본 장면이다. 제품은 중앙을 따라 세로로 이어진 선으로 두 개의 판이 맞닿아 있는 모습이다. 왼쪽 상단에는 빨간색 원 안에 숫자 '1'이 표시되어 있다. 위쪽 가장자리에는 작은 직사각형 모양의 구멍들이 가로로 길게 나 있다. 제품의 오른쪽 면, 중간 높이에는 작은 'U'자 모양의 걸쇠가 옆으로 튀어나와 있다. 한 손이 이 걸쇠를 엄지와 검지로 잡고 바깥쪽으로 당기는 동작을 하고 있다. 손가락 끝이 걸쇠를 밀어내듯 잡고 있다. 손 아래쪽으로는 같은 모양의 'U'자 걸쇠 하나가 더 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SAH001/page_006_figure_011.png",
+      "page": 6,
+      "index": 11,
+      "size_px": [
+        381,
+        252
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 381.0,
+        "height": 252.0,
+        "aspect_ratio": 1.5119047619047619,
+        "ink_ratio": 0.09514435695538058,
+        "edge_ratio": 0.10286214223222097,
+        "table_line_ratio": 0.07391784360288298,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SAH001/page_006_figure_011.png",
+      "caption_short": "장면에는 LPG 가스통과 가스 조절기가 있다. 왼쪽에 높고 둥근 LPG 가스통이 세워져 있으며, 몸통에 'LPG'라는 글자가 크게 보인다. 가스통의 위쪽에는 손으로 돌리는 밸브가 있고, 이 밸브의 옆면에는 나사산이 있는 구멍이 있다. 가스통 밸브의 오른쪽에는 가스 조절기가 놓여 있는데, 이 조절기의 끝에 있는 나사 부분이 가스통 밸브의 구멍 안으로 들어가고 있다. 화살표는 가스 조절기가 가스통 밸브 쪽으로 연결되는 방향을 보여준다. 위쪽과 아래쪽에 크게 확대된 부분은 가스 조절기의 나사산이 가스통 밸브 안으로 들어가는 모습을 더 자세히 보여준다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SAH001/page_006_figure_012.png",
+      "page": 6,
+      "index": 12,
+      "size_px": [
+        388,
+        250
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 388.0,
+        "height": 250.0,
+        "aspect_ratio": 1.552,
+        "ink_ratio": 0.10098969072164948,
+        "edge_ratio": 0.0801340206185567,
+        "table_line_ratio": 0.0722061855670103,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SAH001/page_006_figure_012.png",
+      "caption_short": "왼쪽부터 세 가지 모습이 차례로 보인다. 가장 왼쪽에는 둥근 손잡이가 달린 LPG 가스 밸브가 위에서 내려다본 모습으로 보인다. 손잡이는 시계 반대 방향으로 돌려 열도록 화살표가 그려져 있으며, 옆에는 가스통에 연결된 파이프와 빨간 원 안의 숫자 1, 그리고 'LPG 가스 밸브'라는 글자가 있다. 가운데에는 손으로 검은색 조절 다이얼을 잡고 시계 반대 방향으로 돌리는 모습이 있다. 다이얼 주변에는 '소화'와 '강'이라는 글자가 보이고, 빨간색 화살표가 '소화'에서 '강' 방향으로 돌리는 동작을 가리킨다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SAH001/page_006_figure_013.png",
+      "page": 6,
+      "index": 13,
+      "size_px": [
+        385,
+        249
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 385.0,
+        "height": 249.0,
+        "aspect_ratio": 1.5461847389558232,
+        "ink_ratio": 0.12816982214572575,
+        "edge_ratio": 0.05631878161998644,
+        "table_line_ratio": 0.11191780107442759,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SAH001/page_006_figure_013.png",
+      "caption_short": "한쪽 손이 제품의 조절 손잡이를 잡고 있는 모습이다. 손가락으로 잡고 있는 손잡이는 가운데 부분이 길쭉한 검은색 막대 모양이고, 그 주변은 둥근 형태이다. 손잡이의 오른쪽 아래에는 '강'이라는 글자와 빨간색 점이 보이며, 오른쪽 위에는 '약'이라는 글자가 있다. '강'과 '약' 글자 사이를 잇는 붉은색 굽은 화살표가 양쪽 방향을 가리키며, 손잡이를 돌려 세기를 조절할 수 있음을 보여준다.",
+      "caption_fallback_reason": null
+    }
+  ]
+}

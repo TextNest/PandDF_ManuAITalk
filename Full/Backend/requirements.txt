@@ -46,3 +46,7 @@ pydantic
 requests
 python-multipart
 sentence-transformers
+
+# 전처리 관련
+google-genai
+opencv-python-headless
