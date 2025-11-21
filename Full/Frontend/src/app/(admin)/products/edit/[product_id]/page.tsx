@@ -100,9 +100,7 @@ export default function EditProductPage() {
           제품 목록으로
         </Link>
         <h1>제품 수정</h1>
-        <p className={styles.subtitle}>
-          제품 정보를 수정하세요
-        </p>
+        <p className={styles.productCode}>제품 코드: {product_id}</p>
       </div>
 
       <div className={styles.formWrapper}>

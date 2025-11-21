@@ -87,10 +87,15 @@
 }
 
 .textarea:focus,
-.select:focus {
+.select:focus,
+.input[type="date"]:focus { /* type="date" input에 focus 스타일 적용 */
   outline: none;
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.input[type="date"] {
+  width: 100%; /* type="date" 입력 필드의 너비를 100%로 설정 */
 }
 
 .actions {
@@ -109,6 +114,11 @@
   align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
+}
+
+.fileInputContainer button {
+  width: 100%; /* 입력 필드와 동일한 너비를 가지도록 */
+  flex-grow: 1; /* 남은 공간을 채우도록 */
 }
 
 .fileName {
@@ -152,8 +162,39 @@
   }
 }
 
-.arDescription {
+.fieldDescription {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* 아이콘과 텍스트 사이 간격 */
   font-size: 0.8rem;
-  color: var(--color-gray-500);
-  margin-top: 0.5rem;
+  color: var(--color-gray-600); /* 텍스트 색상 약간 진하게 */
+  margin-top: 0.5rem; /* 버튼과의 간격 조정 */
+  margin-bottom: 0.5rem;
+}
+
+.tabContainer {
+  display: flex;
+  gap: 1rem; /* 버튼 사이의 간격 */
+  margin-bottom: 2rem; /* 탭과 아래 콘텐츠 사이 간격 */
+}
+
+.tabContainer button {
+  flex-grow: 1; /* 버튼이 사용 가능한 공간을 채우도록 */
+}
+
+.infoBox {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #eef2ff; /* Light blue background */
+  border-radius: var(--border-radius-md);
+  border: 1px solid #c7d2fe; /* Light blue border */
+  color: #4338ca; /* Darker blue text */
+  margin-bottom: 0rem; /* infoBox와 탭 버튼 사이 간격 */
+}
+
+.infoBox p {
+  margin: 0;
+  font-size: 0.9rem;
 }

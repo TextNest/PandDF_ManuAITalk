@@ -116,15 +116,14 @@ async def upload_3d_model(model_file: UploadFile = File(...)):
 # --- Product CRUD Endpoints ---
 
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.future import select
-from sqlalchemy.orm import selectinload
+from sqlalchemy import text, update, select
 from fastapi import Depends
 from typing import List
 from core.db_config import get_session
 from models.product import Product, AnalysisStatus
 from schemas.product import ProductCreate, ProductUpdate, Product as ProductSchema
 from module.document_pr import trigger_pdf_processing
-
+from core.query import find_product_id, find_all_product
 @router.get("/", response_model=List[ProductSchema])
 async def get_completed_products(session: AsyncSession = Depends(get_session)):
     """
@@ -132,12 +131,11 @@ async def get_completed_products(session: AsyncSession = Depends(get_session)):
     """
     try:
         result = await session.execute(
-            select(Product)
+            text(find_all_product)
             # .options(selectinload(Product.category))
             # .where(Product.analysis_status == AnalysisStatus.COMPLETED) # 임시로 필터 제거
-            .order_by(Product.created_at.desc())
         )
-        products = result.scalars().all()
+        products = result.mappings().all()
         return products
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"제품 목록을 불러오는 중 오류가 발생했습니다: {e}")
@@ -155,6 +153,10 @@ async def create_product(
     # product_id가 제공되었는지 확인
     if not product_data.product_id:
         raise HTTPException(status_code=400, detail="Product ID는 필수입니다.")
+
+    # product_name이 빈 문자열인 경우 None으로 변환
+    if product_data.product_name == '':
+        product_data.product_name = None
 
     # Pydantic 모델을 SQLAlchemy 모델 인스턴스로 변환
     new_product = Product(
@@ -233,9 +235,10 @@ async def get_product(
     특정 제품코드의 제품 정보를 조회합니다.
     """
     result = await session.execute(
-        select(Product).where(Product.product_id == product_id)
+        # select(Product).where(Product.product_id == product_id)
+        text(find_product_id).bindparams(product_id = product_id)
     )
-    product = result.scalars().one_or_none()
+    product = result.mappings().one_or_none()
 
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
@@ -253,28 +256,35 @@ async def update_product(
     기존 제품 정보를 업데이트합니다. PDF가 변경되면 분석을 다시 트리거하고 파일명을 제품 코드로 변경합니다.
     """
     try:
-        # 1. 제품 조회
-        result = await session.execute(
-            select(Product).where(Product.product_id == product_id)
-        )
-        existing_product = result.scalars().one_or_none()
+        # 1. 제품 조회 (text와 mappings 방식 유지)
+        find_stmt = text(find_product_id).bindparams(product_id=product_id)
+        result = await session.execute(find_stmt)
+        existing_product_row = result.mappings().one_or_none()
 
-        if not existing_product:
+        if not existing_product_row:
             raise HTTPException(status_code=404, detail="Product not found")
+        
+        # RowMapping을 일반 딕셔너리로 변환
+        existing_product_dict = dict(existing_product_row)
 
         # 2. 업데이트 데이터 준비
         update_data = product_data.dict(exclude_unset=True)
-        pdf_path_updated = 'pdf_path' in update_data and update_data['pdf_path'] != existing_product.pdf_path
+
+        # product_name이 빈 문자열인 경우 None으로 변환하여 DB에 NULL 값이 저장되도록 함
+        if 'product_name' in update_data and update_data['product_name'] == '':
+            update_data['product_name'] = None
+            
+        pdf_path_updated = 'pdf_path' in update_data and update_data['pdf_path'] != existing_product_dict.get('pdf_path')
         
         # 3. PDF 파일명 변경 및 경로 업데이트 (PDF가 변경된 경우)
-        new_pdf_path = existing_product.pdf_path
+        new_pdf_path = existing_product_dict.get('pdf_path')
         if pdf_path_updated and 'pdf_path' in update_data:
             try:
                 base_dir = os.path.dirname(__file__)
                 
                 # 이전 파일 삭제
-                if existing_product.pdf_path:
-                    old_full_path = os.path.join(base_dir, "..", existing_product.pdf_path)
+                if existing_product_dict.get('pdf_path'):
+                    old_full_path = os.path.join(base_dir, "..", existing_product_dict['pdf_path'])
                     if os.path.exists(old_full_path):
                         os.remove(old_full_path)
 
@@ -298,26 +308,31 @@ async def update_product(
             except Exception as e:
                 raise HTTPException(status_code=500, detail=f"PDF 파일명 변경 중 오류 발생: {e}")
 
-        # 4. 제품 정보 업데이트
-        for field, value in update_data.items():
-            setattr(existing_product, field, value)
-        
         # PDF가 변경되었다면 분석 상태를 PENDING으로 리셋
         if pdf_path_updated:
-            existing_product.analysis_status = AnalysisStatus.PENDING
+            update_data['analysis_status'] = AnalysisStatus.PENDING
 
-        await session.commit()
-        await session.refresh(existing_product)
+        # 4. 제품 정보 업데이트 (SQLAlchemy Core update 사용)
+        if update_data:
+            update_stmt = (
+                update(Product)
+                .where(Product.product_id == product_id)
+                .values(**update_data)
+            )
+            await session.execute(update_stmt)
+            await session.commit()
         
         # 5. 백그라운드 작업 트리거 (PDF가 변경된 경우)
         if pdf_path_updated and new_pdf_path:
             background_tasks.add_task(
                 trigger_pdf_processing,
-                product_id=existing_product.internal_id,
-                pdf_path=new_pdf_path # 변경된 최종 경로 전달
+                product_id=existing_product_dict['internal_id'],
+                pdf_path=new_pdf_path
             )
         
-        return existing_product
+        # 6. 업데이트된 제품 정보 반환
+        updated_product_dict = {**existing_product_dict, **update_data}
+        return updated_product_dict
 
     except HTTPException:
         raise
@@ -325,44 +340,55 @@ async def update_product(
         await session.rollback()
         raise HTTPException(status_code=500, detail=f"제품 업데이트 중 오류 발생: {e}")
 
-@router.delete("/{internal_id}", status_code=204)
+from sqlalchemy import text, delete
+from core.query import find_product_id
+
+@router.delete("/{product_id}", status_code=204)
 async def delete_product(
-    internal_id: int,
+    product_id: str,
     session: AsyncSession = Depends(get_session)
 ):
     """
-    특정 ID의 제품을 삭제하고, 연결된 PDF 파일도 함께 삭제합니다.
+    특정 제품코드의 제품을 삭제하고, 연결된 파일도 함께 삭제합니다. (기존 형식 유지)
     """
     try:
-        # 1. 제품 조회
-        result = await session.execute(
-            select(Product).where(Product.internal_id == internal_id)
-        )
-        product_to_delete = result.scalars().one_or_none()
+        # 1. 제품 조회 (사용자가 지정한 text() 및 mappings() 방식 유지)
+        stmt = text(find_product_id).bindparams(product_id=product_id)
+        result = await session.execute(stmt)
+        product_to_delete_row = result.mappings().one_or_none()
 
-        if not product_to_delete:
+        if not product_to_delete_row:
             raise HTTPException(status_code=404, detail="Product not found")
 
-        # 2. 연결된 PDF 파일 삭제
-        if product_to_delete.pdf_path:
-            try:
-                base_dir = os.path.dirname(__file__)
-                pdf_full_path = os.path.join(base_dir, "..", product_to_delete.pdf_path)
-                if os.path.exists(pdf_full_path):
-                    os.remove(pdf_full_path)
-            except Exception as e:
-                # 파일 삭제 실패 시에도 DB 삭제는 진행되도록 로깅만 할 수 있습니다.
-                # 여기서는 일단 오류를 발생시켜 트랜잭션을 롤백합니다.
-                raise HTTPException(status_code=500, detail=f"PDF 파일 삭제 중 오류 발생: {e}")
+        # 2. 연결된 모든 파일 (이미지, PDF, 3D 모델) 삭제 시도
+        base_dir = os.path.dirname(__file__)
+        files_to_delete = [
+            product_to_delete_row.get("image_url"), 
+            product_to_delete_row.get("pdf_path"), 
+            product_to_delete_row.get("model3d_url")
+        ]
+        
+        for file_path in files_to_delete:
+            if file_path:
+                try:
+                    full_path = os.path.join(base_dir, "..", file_path)
+                    if os.path.exists(full_path):
+                        os.remove(full_path)
+                except Exception as e:
+                    # 파일 삭제 실패 시 500 에러 대신 경고 로그만 남김
+                    print(f"Warning: Could not delete file {file_path}. Error: {e}")
 
-        # 3. DB에서 제품 레코드 삭제
-        await session.delete(product_to_delete)
+        # 3. DB에서 제품 레코드 삭제 (delete 구문 사용)
+        delete_stmt = delete(Product).where(Product.product_id == product_id)
+        await session.execute(delete_stmt)
         await session.commit()
         
-        return {"message": "Product deleted successfully"}
+        return
 
     except HTTPException:
+        # 404 에러는 그대로 다시 발생시킴
         raise
     except Exception as e:
         await session.rollback()
-        raise HTTPException(status_code=500, detail=f"제품 삭제 중 오류 발생: {e}")
+        # 그 외 DB 작업 중 예외는 500 에러로 처리
+        raise HTTPException(status_code=500, detail=f"제품 삭제 중 데이터베이스 오류 발생: {e}")

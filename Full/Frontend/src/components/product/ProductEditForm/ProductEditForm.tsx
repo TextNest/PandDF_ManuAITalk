@@ -7,7 +7,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { Save, X, Upload, Sparkles } from 'lucide-react';
+import { Save, X, Upload, Sparkles, Info } from 'lucide-react';
 import { toast } from '@/store/useToastStore';
 import Button from '@/components/ui/Button/Button';
 import Input from '@/components/ui/Input/Input';
@@ -25,7 +25,6 @@ interface ProductEditFormProps {
 export default function ProductEditForm({ initialData, onSubmit, onCancel }: ProductEditFormProps) {
   const [formData, setFormData] = useState({
     product_name: initialData.product_name || '',
-    product_id: initialData.product_id || '',
     category: initialData.category || '',
     manufacturer: initialData.manufacturer || '',
     description: initialData.description || '',
@@ -42,6 +41,8 @@ export default function ProductEditForm({ initialData, onSubmit, onCancel }: Pro
   const [pdfFile, setPdfFile] = useState<File | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [generated3DModel, setGenerated3DModel] = useState<Blob | null>(null);
+
+  const [activeTab, setActiveTab] = useState<'product' | 'ar'>('product');
 
   const [isUploading, setIsUploading] = useState(false);
   const [isConverting3D, setIsConverting3D] = useState(false);
@@ -135,9 +136,9 @@ export default function ProductEditForm({ initialData, onSubmit, onCancel }: Pro
   const handleImageFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
-      const allowedTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"];
+      const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
       if (!allowedTypes.includes(file.type)) {
-        setError('이미지 파일(JPG, PNG, GIF, WEBP)만 업로드할 수 있습니다.');
+        setError('이미지 파일(JPG, PNG, WEBP)만 업로드할 수 있습니다.');
         setImageFile(null);
       } else {
         setImageFile(file);
@@ -203,110 +204,139 @@ export default function ProductEditForm({ initialData, onSubmit, onCancel }: Pro
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      {/* --- PDF Section --- */}
-      <div className={styles.section}>
-        <div className={styles.field}>
-          <label className={styles.label}>제품 설명서 (PDF)<span className={styles.required}>*</span></label>
-          <div className={styles.fileInputContainer}>
-            <input type="file" accept=".pdf" onChange={handlePdfFileChange} className={styles.hiddenInput} ref={pdfInputRef} disabled={isUploading} />
-            <Button type="button" variant="outline" onClick={() => pdfInputRef.current?.click()} disabled={isUploading}>
-              <Upload size={16} /> 파일 변경
-            </Button>
-            {pdfFile && <p className={styles.fileName}>{pdfFile.name}</p>}
-            {!pdfFile && formData.pdf_path && <p className={styles.fileName}>기존 파일: {formData.pdf_path.split('\\').pop()?.split('/').pop()}</p>}
-          </div>
-        </div>
-        <div className={styles.grid}>
-          <div className={`${styles.field} ${styles.fullWidth}`}>
-            <Input
-              label="제품명"
-              value={formData.product_name}
-              onChange={(e) => handleChange('product_name', e.target.value)}
-            />
-          </div>
-          <div className={styles.field}>
-            <label htmlFor="product_id" className={styles.label}>제품 코드 <span className={styles.required}>*</span></label>
-            <Input
-              id="product_id"
-              value={formData.product_id || ''}
-              onChange={(e) => handleChange('product_id', e.target.value)}
-              required
-            />
-          </div>
-          <div className={styles.field}>
-            <Input
-              label="카테고리"
-              value={formData.category || ''}
-              onChange={(e) => handleChange('category', e.target.value)}
-            />
-          </div>
-          <div className={`${styles.field} ${styles.fullWidth}`}>
-            <Input
-              label="제조사"
-              value={formData.manufacturer || ''}
-              onChange={(e) => handleChange('manufacturer', e.target.value)}
-            />
-          </div>
-          <div className={`${styles.field} ${styles.fullWidth}`}>
-            <label className={styles.label}>제품 설명</label>
-            <textarea
-              value={formData.description || ''}
-              onChange={(e) => handleChange('description', e.target.value)}
-              className={styles.textarea}
-              rows={5}
-            />
-          </div>
-        </div>
-        <div className={styles.grid}>
-          <div className={styles.field}>
-            <Input
-              label="출시일"
-              type="date"
-              value={formData.release_date || ''}
-              onChange={(e) => handleChange('release_date', e.target.value)}
-            />
-          </div>
-
-          <div className={`${styles.field} ${styles.fullWidth}`}>
-            <label className={styles.label}>제품 이미지</label>
-            <div className={styles.fileInputContainer}>
-              <input type="file" accept="image/*" onChange={handleImageFileChange} className={styles.hiddenInput} ref={imageInputRef} disabled={isUploading || isConverting3D} />
-              <Button type="button" variant="outline" onClick={() => imageInputRef.current?.click()} disabled={isUploading || isConverting3D}>
-                <Upload size={16} /> 이미지 변경
-              </Button>
-              {imageFile && <p className={styles.fileName}>{imageFile.name}</p>}
-              {!imageFile && formData.image_url && <p className={styles.fileName}>기존 이미지: {formData.image_url.split('\\').pop()?.split('/').pop()}</p>}
-            </div>
-            <p className={styles.arDescription}>3D 모델링을 통해 AR에서 확인 가능합니다.</p>
-            {isConverting3D && <p className={styles.uploadStatus}><Sparkles size={16} /> 3D 모델 변환 중...</p>}
-            {generated3DModel && !isConverting3D && <p className={styles.successMessage}>✅ 3D 모델 생성 완료. 등록 시 함께 업로드됩니다.</p>}
-          </div>
-          <div className={styles.field}>
-            <Input
-              label="가로 (mm)"
-              type="number"
-              value={formData.width_mm || ''}
-              onChange={(e) => handleChange('width_mm', parseFloat(e.target.value))}
-            />
-          </div>
-          <div className={styles.field}>
-            <Input
-              label="세로 (mm)"
-              type="number"
-              value={formData.height_mm || ''}
-              onChange={(e) => handleChange('height_mm', parseFloat(e.target.value))}
-            />
-          </div>
-          <div className={styles.field}>
-            <Input
-              label="깊이 (mm)"
-              type="number"
-              value={formData.depth_mm || ''}
-              onChange={(e) => handleChange('depth_mm', parseFloat(e.target.value))}
-            />
-          </div>
-        </div>
+      <div className={styles.infoBox}>
+        <Info size={20} />
+        <p>
+          {activeTab === 'product'
+            ? '제품의 기본 정보(제품명, 카테고리 등)와 PDF 설명서를 수정합니다.'
+            : '제품의 AR(증강 현실) 관련 정보 (이미지, 3D 모델, 크기 등)를 수정합니다.'}
+        </p>
       </div>
+
+      {/* --- Tab Buttons --- */}
+      <div className={styles.tabContainer}>
+        <Button
+          type="button"
+          variant={activeTab === 'product' ? 'primary' : 'outline'}
+          onClick={() => setActiveTab('product')}
+        >
+          제품 정보 수정
+        </Button>
+        <Button
+          type="button"
+          variant={activeTab === 'ar' ? 'primary' : 'outline'}
+          onClick={() => setActiveTab('ar')}
+        >
+          AR 정보 수정
+        </Button>
+      </div>
+
+      {activeTab === 'product' && (
+        <div className={styles.section}>
+          <div className={styles.field}>
+            <label className={styles.label}>제품 설명서 (PDF)<span className={styles.required}>*</span></label>
+              <div className={styles.fileInputContainer}>
+                <input type="file" accept=".pdf" onChange={handlePdfFileChange} className={styles.hiddenInput} ref={pdfInputRef} disabled={isUploading} />
+                <Button type="button" variant="outline" onClick={() => pdfInputRef.current?.click()} disabled={isUploading}>
+                  <Upload size={16} /> 파일 변경
+                </Button>
+                {pdfFile && <p className={styles.fileName}>{pdfFile.name}</p>}
+              </div>
+              <p className={styles.fieldDescription}>
+                <Info size={14} />
+                <span>파일변경 시 해당제품의 챗봇 정보가 업데이트됩니다!</span>
+              </p>
+          </div>
+          <div className={styles.grid}>
+            <div className={styles.field}>
+              <Input
+                label="제품명"
+                value={formData.product_name}
+                onChange={(e) => handleChange('product_name', e.target.value)}
+              />
+            </div>
+            <div className={styles.field}>
+              <Input
+                label="제조사"
+                value={formData.manufacturer || ''}
+                onChange={(e) => handleChange('manufacturer', e.target.value)}
+              />
+            </div>
+            <div className={styles.field}>
+              <Input
+                label="카테고리"
+                value={formData.category || ''}
+                onChange={(e) => handleChange('category', e.target.value)}
+              />
+            </div>
+            <div className={styles.field}>
+              <Input
+                label="출시일"
+                type="date"
+                value={formData.release_date || ''}
+                onChange={(e) => handleChange('release_date', e.target.value)}
+              />
+            </div>
+            <div className={`${styles.field} ${styles.fullWidth}`}>
+              <label className={styles.label}>제품 설명</label>
+              <textarea
+                value={formData.description || ''}
+                onChange={(e) => handleChange('description', e.target.value)}
+                className={styles.textarea}
+                rows={5}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {activeTab === 'ar' && (
+        <div className={styles.section}>
+          <div className={styles.grid}>
+            <div className={`${styles.field} ${styles.fullWidth}`}>
+              <label className={styles.label}>제품 이미지 (JPG, PNG, WEBP)</label>
+              <div className={styles.fileInputContainer}>
+                <input type="file" accept="image/*" onChange={handleImageFileChange} className={styles.hiddenInput} ref={imageInputRef} disabled={isUploading || isConverting3D} />
+                <Button type="button" variant="outline" onClick={() => imageInputRef.current?.click()} disabled={isUploading || isConverting3D}>
+                  <Upload size={16} /> 이미지 변경
+                </Button>
+                {imageFile && <p className={styles.fileName}>{imageFile.name}</p>}
+
+              </div>
+              <p className={styles.fieldDescription}>
+                <Info size={14} />
+                <span>이미지 등록시 3D모델 생성 및 AR에서 확인 가능합니다!</span>
+              </p>
+              {isConverting3D && <p className={styles.uploadStatus}><Sparkles size={16} /> 3D 모델 변환 중...</p>}
+              {generated3DModel && !isConverting3D && <p className={styles.successMessage}>✅ 3D 모델 생성 완료. 등록 시 함께 업로드됩니다.</p>}
+            </div>
+            <div className={styles.field}>
+              <Input
+                label="가로 (mm)"
+                type="number"
+                value={formData.width_mm || ''}
+                onChange={(e) => handleChange('width_mm', parseFloat(e.target.value))}
+              />
+            </div>
+            <div className={styles.field}>
+              <Input
+                label="세로 (mm)"
+                type="number"
+                value={formData.height_mm || ''}
+                onChange={(e) => handleChange('height_mm', parseFloat(e.target.value))}
+              />
+            </div>
+            <div className={styles.field}>
+              <Input
+                label="깊이 (mm)"
+                type="number"
+                value={formData.depth_mm || ''}
+                onChange={(e) => handleChange('depth_mm', parseFloat(e.target.value))}
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       {error && <p className={`${styles.errorMessage} ${styles.fullWidth}`}>{error}</p>}
 

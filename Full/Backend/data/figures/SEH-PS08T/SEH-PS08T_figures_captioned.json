@@ -1,0 +1,454 @@
+{
+  "doc_id": "SEH-PS08T",
+  "source_pdf": "uploads/pdfs/SEH-PS08T.pdf",
+  "num_images_total": 15,
+  "num_images_kept": 6,
+  "created_by": "image_captioner_gemini.py",
+  "model": "gemini-2.5-flash",
+  "config": {
+    "CAPTION_MAX_CHARS": 320,
+    "UNSAFE_KEYWORDS": [
+      "폭발",
+      "감전",
+      "사망",
+      "질식",
+      "중독",
+      "화재",
+      "불이 날",
+      "불이날",
+      "가스 누출",
+      "가스누출",
+      "가스가 새",
+      "전기 충격",
+      "전기충격",
+      "고압",
+      "중상",
+      "심각한 부상"
+    ]
+  },
+  "images": [
+    {
+      "file": "data/figures/SEH-PS08T/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        377,
+        818
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 377.0,
+        "height": 818.0,
+        "aspect_ratio": 0.460880195599022,
+        "ink_ratio": 0.9733613069335184,
+        "edge_ratio": 0.09627868969408468,
+        "table_line_ratio": 0.8408488063660478,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-PS08T/page_001_figure_001.png",
+      "caption_short": "이것은 세로로 길쭉한 직사각형 모양의 난방 기기이다. 정면에서 바라본 모습이다. 제품의 맨 위쪽 왼쪽에는 커다란 원형 형태의 조작부가 있으며, 그 옆 오른쪽에는 '신일'이라는 글자가 선명하게 보인다. 이 조작부 아래로는 공기가 드나드는 두 개의 네모난 망이 상하로 배치되어 있다. 각 망은 작은 원형 구멍들이 촘촘하게 배열된 형태로, 위쪽에 있는 망이 아래쪽 망보다 더 넓은 면적을 차지한다. 난방 기기 본체 아래에는 안정적인 자세를 위해 두 개의 다리가 좌우로 비스듬히 벌어져 바닥을 받치고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        45,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0227272727272727,
+        "ink_ratio": 0.40555555555555556,
+        "edge_ratio": 0.2686868686868687,
+        "table_line_ratio": 0.2080808080808081,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        45,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 43.0,
+        "aspect_ratio": 1.0465116279069768,
+        "ink_ratio": 0.3343669250645995,
+        "edge_ratio": 0.2785529715762274,
+        "table_line_ratio": 0.11162790697674418,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        44,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0476190476190477,
+        "ink_ratio": 0.3630952380952381,
+        "edge_ratio": 0.23971861471861472,
+        "table_line_ratio": 0.15854978354978355,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        46,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0222222222222221,
+        "ink_ratio": 0.33768115942028987,
+        "edge_ratio": 0.24396135265700483,
+        "table_line_ratio": 0.11932367149758454,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        46,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0222222222222221,
+        "ink_ratio": 0.24830917874396136,
+        "edge_ratio": 0.17777777777777778,
+        "table_line_ratio": 0.09082125603864734,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        43,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 43.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.5202812330989725,
+        "edge_ratio": 0.1887506760411033,
+        "table_line_ratio": 0.458085451595457,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_002_figure_008.png",
+      "page": 2,
+      "index": 8,
+      "size_px": [
+        41,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 41.0,
+        "height": 41.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.734681737061273,
+        "edge_ratio": 0.10945865556216537,
+        "table_line_ratio": 0.7352766210588935,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_004_figure_009.png",
+      "page": 4,
+      "index": 9,
+      "size_px": [
+        807,
+        715
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 807.0,
+        "height": 715.0,
+        "aspect_ratio": 1.1286713286713286,
+        "ink_ratio": 0.07340317674890165,
+        "edge_ratio": 0.11036299512135943,
+        "table_line_ratio": 0.028869767159729984,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-PS08T/page_004_figure_009.png",
+      "caption_short": "이것은 세로로 긴 네모난 모양의 기기 앞면과 뒷면을 보여주는 모습이다. 기기 왼쪽의 앞면에는 맨 위쪽에 둥근 디스플레이 조작부가 있고, 그 아래로 구멍이 촘촘한 PTC 발열체와 석영관 발열체가 차례로 배치되어 있다. 맨 아래에는 다리 결합부 두 개가 밖으로 뻗어 있다. 기기 오른쪽의 뒷면에는 맨 위쪽에 제품 손잡이가 보이며, 그 아래로 내부 팬이 있는 네모난 열기 배출구가 있다. 더 아래쪽에도 세로 슬릿 모양의 열기 배출구가 있으며, 맨 아래 중앙에서는 전원 코드 선이 연결되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_005_figure_010.png",
+      "page": 5,
+      "index": 10,
+      "size_px": [
+        795,
+        364
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 795.0,
+        "height": 364.0,
+        "aspect_ratio": 2.184065934065934,
+        "ink_ratio": 0.04644412191582003,
+        "edge_ratio": 0.05027299744280876,
+        "table_line_ratio": 0.0360218397954247,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-PS08T/page_005_figure_010.png",
+      "caption_short": "세 가지 구성품이 왼쪽부터 차례로 놓여 있다. 가장 왼쪽에는 윗부분에 나사산이 있는 길고 가는 원통형 다리 네 개가 세워져 있으며, 아래에 '다리 (4개)'라고 쓰여 있다. 가운데에는 짧은 원통 기둥에 납작한 바닥이 연결된 다리 받침대 네 개가 두 줄로 배치되어 있고, 아래에 '다리 받침대(4개)'라고 적혀 있다. 가장 오른쪽에는 직사각형 리모컨이 세로로 놓여 있는데, 위쪽부터 전원, 예약, 마이너스(-), 플러스(+), PTC, 석영관, 디스플레이 끄기, 차일드 락 버튼들이 차례로 배치되어 있고, 맨 아래에 '리모컨'이라고 쓰여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_005_figure_011.png",
+      "page": 5,
+      "index": 11,
+      "size_px": [
+        794,
+        434
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 794.0,
+        "height": 434.0,
+        "aspect_ratio": 1.8294930875576036,
+        "ink_ratio": 0.05404879917352494,
+        "edge_ratio": 0.05088567481920858,
+        "table_line_ratio": 0.03168928252214187,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-PS08T/page_005_figure_011.png",
+      "caption_short": "이것은 제품의 둥근 조작부를 정면에서 본 모습이다. 중앙의 '88' 숫자는 온도, 히터 단수, 타이머 시간을 나타내는 '설정 값 표시'이며, 그 왼쪽에는 '석영관 히터 작동'과 '석영관' 표시, 오른쪽에는 'PTC'와 '타이머 (3초 누름)' 표시가 있다. 조작부 아래쪽에는 중앙에 '전원' 버튼이 있으며, 왼쪽에는 '설정 값 감소' 버튼, 오른쪽에는 '설정 값 증가' 버튼이 있다. 그림 오른쪽에는 ①부터 ④까지 빨간색 글씨의 기능 설명이 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_007_figure_012.png",
+      "page": 7,
+      "index": 12,
+      "size_px": [
+        93,
+        96
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 93.0,
+        "height": 96.0,
+        "aspect_ratio": 0.96875,
+        "ink_ratio": 0.11491935483870967,
+        "edge_ratio": 0.15255376344086022,
+        "table_line_ratio": 0.08971774193548387,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_007_figure_013.png",
+      "page": 7,
+      "index": 13,
+      "size_px": [
+        231,
+        200
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 231.0,
+        "height": 200.0,
+        "aspect_ratio": 1.155,
+        "ink_ratio": 0.047142857142857146,
+        "edge_ratio": 0.06437229437229437,
+        "table_line_ratio": 0.011623376623376624,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-PS08T/page_007_figure_013.png",
+      "caption_short": "길고 네모난 형태의 전자 기기 한쪽 끝 부분을 가까이에서 비스듬히 보고 있다. 이 기기의 왼쪽 끝 부분에는 둥글고 납작한 건전지가 들어가는 칸이 열려 있으며, 그 안에 둥근 건전지가 보인다. 이 건전지 칸을 덮는 네모난 모양의 덮개가 현재 기기 본체에서 왼쪽 방향으로 약 3분의 1정도 밀려나와 있는 상태이다. 덮개 왼쪽 끝에는 작은 갈고리 모양의 돌기가 위를 향해 있고, 덮개 바로 옆으로는 밝은 빨간색 화살표가 선명하게 왼쪽 방향을 가리키고 있다. 건전지 아래쪽 기기 본체에는 작고 둥근 구멍이 하나 위치해 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_007_figure_014.png",
+      "page": 7,
+      "index": 14,
+      "size_px": [
+        797,
+        330
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 797.0,
+        "height": 330.0,
+        "aspect_ratio": 2.415151515151515,
+        "ink_ratio": 0.03846241587772328,
+        "edge_ratio": 0.04189954754572069,
+        "table_line_ratio": 0.018778753659556672,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SEH-PS08T/page_007_figure_014.png",
+      "caption_short": "중앙에는 세 개의 다리 위에 서 있는 길고 얇은 기기가 있다. 이 기기는 위아래로 길쭉한 원통형이나 사각형 형태이며, 몸통은 두 부분으로 나뉘어 있다. 기기 위쪽으로는 '100 cm 이상'이라는 글자와 빨간색 위쪽 화살표가 보이고, 양옆으로는 '30 cm 이상'이라는 글자와 빨간색 바깥쪽 화살표가 표시되어 있다. 기기 오른쪽에는 커튼이 드리워져 있고, 기기 앞쪽 바닥에는 납작한 직사각형 물건이 놓여 있다. 기기 바닥에서 이 물건까지 '100 cm 이상'이라는 글자와 빨간색 대각선 화살표가 이어져 있다. 기기 앞쪽 바닥의 일부 공간은 연한 회색으로 칠해져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_011_figure_015.png",
+      "page": 11,
+      "index": 15,
+      "size_px": [
+        783,
+        155
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 783.0,
+        "height": 155.0,
+        "aspect_ratio": 5.051612903225807,
+        "ink_ratio": 0.08738928027025913,
+        "edge_ratio": 0.08914431673052363,
+        "table_line_ratio": 0.05995962592180612,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    }
+  ]
+}

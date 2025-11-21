@@ -24,6 +24,8 @@
 }
 
 .input {
+  width: 100%;
+  box-sizing: border-box;
   padding: var(--spacing-md);
   font-size: var(--font-size-base);
   border: 1px solid var(--border-light);

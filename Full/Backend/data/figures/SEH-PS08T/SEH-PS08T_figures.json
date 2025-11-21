@@ -1,0 +1,142 @@
+{
+  "doc_id": "SEH-PS08T",
+  "source_pdf": "uploads/pdfs/SEH-PS08T.pdf",
+  "num_figures": 15,
+  "images": [
+    {
+      "file": "data/figures/SEH-PS08T/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        377,
+        818
+      ]
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        45,
+        44
+      ]
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        45,
+        43
+      ]
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        44,
+        42
+      ]
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        46,
+        45
+      ]
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        46,
+        45
+      ]
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        43,
+        43
+      ]
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_002_figure_008.png",
+      "page": 2,
+      "index": 8,
+      "size_px": [
+        41,
+        41
+      ]
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_004_figure_009.png",
+      "page": 4,
+      "index": 9,
+      "size_px": [
+        807,
+        715
+      ]
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_005_figure_010.png",
+      "page": 5,
+      "index": 10,
+      "size_px": [
+        795,
+        364
+      ]
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_005_figure_011.png",
+      "page": 5,
+      "index": 11,
+      "size_px": [
+        794,
+        434
+      ]
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_007_figure_012.png",
+      "page": 7,
+      "index": 12,
+      "size_px": [
+        93,
+        96
+      ]
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_007_figure_013.png",
+      "page": 7,
+      "index": 13,
+      "size_px": [
+        231,
+        200
+      ]
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_007_figure_014.png",
+      "page": 7,
+      "index": 14,
+      "size_px": [
+        797,
+        330
+      ]
+    },
+    {
+      "file": "data/figures/SEH-PS08T/page_011_figure_015.png",
+      "page": 11,
+      "index": 15,
+      "size_px": [
+        783,
+        155
+      ]
+    }
+  ]
+}

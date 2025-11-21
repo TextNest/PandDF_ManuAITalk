@@ -44,7 +44,7 @@ export default function ProductsPage() {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL;
         
         // 제품 목록만 불러오기
-        const productsResponse = await fetch(`${apiUrl}/api/products/`, fetchOptions);
+        const productsResponse = await fetch(`${apiUrl}/api/products`, fetchOptions);
         if (!productsResponse.ok) {
           const errorText = await productsResponse.text();
           console.error("Products fetch failed:", errorText);

@@ -123,3 +123,7 @@ JOIN test_products p ON s.productId = p.product_id
 WHERE m.timestamp >= :start_date
 ORDER BY m.id;
 """
+
+# 제품관리, AR 관련 쿼리
+find_product_id = "SELECT * FROM test_products WHERE product_id = :product_id;"
+find_all_product = "select * from test_products order by created_at desc;"

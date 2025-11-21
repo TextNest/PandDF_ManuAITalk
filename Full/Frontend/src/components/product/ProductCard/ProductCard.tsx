@@ -9,7 +9,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation'; // useRouter 임포트
 import {
-  Package,
   MoreVertical,
   Edit,
   Trash2,
@@ -138,8 +137,11 @@ export default function ProductCard({ product, onProductUpdate, onProductDelete 
         onClick={handleCardClick}
       >
         <div className={styles.header}>
-          <div className={styles.iconWrapper}>
-            <Package size={24} />
+          <div>
+            <h3 className={styles.title}>{product.product_id}</h3>
+            {product.product_name && (
+              <p className={styles.model}>{product.product_name}</p>
+            )}
           </div>
 
           {/* 케밥 메뉴 */}
@@ -182,25 +184,16 @@ export default function ProductCard({ product, onProductUpdate, onProductDelete 
           </div>
         </div>
 
-        <div className={styles.content}>
-          <h3 className={styles.title}>{product.product_id}</h3>
-          {product.product_name && (
-            <p className={styles.model}>{product.product_name}</p>
-          )}
-        </div>
-
-        {isAnalysisComplete && (
-          <div className={styles.meta}>
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>카테고리</span>
-              <span className={styles.metaValue}>{product.category || '미지정'}</span>
-            </div>
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>문서</span>
-              <span className={styles.metaValue}>{product.pdf_path ? '1개' : '0개'}</span>
-            </div>
+        <div className={styles.meta}>
+          <div className={styles.metaItem}>
+            <span className={styles.metaLabel}>카테고리</span>
+            <span className={styles.metaValue}>{product.category || '미지정'}</span>
           </div>
-        )}
+          <div className={styles.metaItem}>
+            <span className={styles.metaLabel}>문서</span>
+            <span className={styles.metaValue}>{product.pdf_path ? '1개' : '0개'}</span>
+          </div>
+        </div>
 
         {/* 통계 (제거됨) */}
 
