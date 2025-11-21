@@ -11,6 +11,7 @@
 #       6) 텍스트 청킹(JSONL)
 #       7) figure 캡션 청킹(JSONL)
 #       8) 임베딩 + FAISS 인덱스 생성
+#       9) 전처리된 MD 기반 제품 메타데이터 추출 + DB 업데이트
 #     까지 한 번에 수행하는 "전체 전처리 엔트리" 스크립트.
 #
 #   - 기존에 구현해 둔 각 단계별 스크립트들을
@@ -21,22 +22,38 @@
 #       • module.rag_pipeline.text_chunker
 #       • module.rag_pipeline.figure_chunker
 #       • module.rag_pipeline.rag_embedder_gemini
+#       • module.rag_pipeline.product_metadata_extractor   ← ★ 신규
 #     를 그대로 사용하되,
 #     여기서는 하위 스크립트를 `python -m module.rag_pipeline.XXX` 형태로
 #     서브프로세스로 호출하여 순차 파이프라인을 구성한다.
 #
 # [사용 예시]
 #   1) 업로드된 PDF를 전체 파이프라인에 태우기
-#       (.venv) PS C:\Users\user\Desktop\project\PandDF_ManuAITalk-dohun\Full\Backend> `
+#       (.venv) PS C:\...\Full\Backend> `
 #           python -m module.rag_pipeline.pipeline_entry `
-#               --pdf-path "C:\Users\user\Desktop\project\PandDF_ManuAITalk-dohun\Full\Backend\uploads\pdfs\20251119_113125_SIF-W12YH_USER.pdf" `
-#               --doc-id "SIF-W12YH_USER"
+#               --pdf-path "C:\...\uploads\pdfs\20251119_113125_SIF-W12YH_USER.pdf" `
+#               --doc-id "SIF-W12YH_USER" `
+#               --product-internal-id 3
 #
 #   2) 같은 doc_id에 대해 결과를 전부 새로 만들고 싶을 때
-#       (.venv) > python -m module.rag_pipeline.pipeline_entry --pdf-path ... --doc-id SIF-W12YH_USER --force
+#       (.venv) > python -m module.rag_pipeline.pipeline_entry \
+#                     --pdf-path ... \
+#                     --doc-id SIF-W12YH_USER \
+#                     --product-internal-id 3 \
+#                     --force
 #
 #   3) 이미지 관련 단계는 건너뛰고 텍스트만 처리하고 싶을 때
-#       (.venv) > python -m module.rag_pipeline.pipeline_entry --pdf-path ... --doc-id SAH001 --skip-image
+#       (.venv) > python -m module.rag_pipeline.pipeline_entry \
+#                     --pdf-path ... \
+#                     --doc-id SAH001 \
+#                     --product-internal-id 1 \
+#                     --skip-image
+#
+#   4) DB 업데이트 없이 전처리/임베딩만 테스트하고 싶을 때
+#       (.venv) > python -m module.rag_pipeline.pipeline_entry \
+#                     --pdf-path ... \
+#                     --doc-id SAH001
+#         → --product-internal-id 를 생략하면 메타데이터 추출 단계는 건너뜀
 #
 # [주의 사항]
 #   - 이 스크립트는 Backend/module/rag_pipeline/ 디렉터리 안의 다른 스크립트들과 마찬가지로
@@ -66,7 +83,7 @@ from typing import List
 # 이 파일(module/rag_pipeline/pipeline_entry.py)을 기준으로
 # "Backend 루트(Full/Backend)"를 프로젝트 루트로 설정한다.
 #
-#   .../PandDF_ManuAITalk-dohun/Full/Backend/module/rag_pipeline/pipeline_entry.py
+#   .../PandDF_ManuAITalk/Full/Backend/module/rag_pipeline/pipeline_entry.py
 #   └ parents[0] = rag_pipeline
 #     parents[1] = module
 #     parents[2] = Backend   ← 여기
@@ -197,7 +214,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description=(
             "업로드된 PDF에 대해 Upstage 파싱 → 이미지 필터링/캡션 → "
-            "텍스트 정리/청킹 → figure 청킹 → 임베딩까지 한 번에 수행하는 엔트리"
+            "텍스트 정리/청킹 → figure 청킹 → 임베딩 → 메타데이터 추출까지 "
+            "한 번에 수행하는 엔트리"
         )
     )
     parser.add_argument(
@@ -206,7 +224,7 @@ def main() -> None:
         required=True,
         help=(
             "업로드된 원본 PDF 파일의 전체 경로. "
-            "예) C:\\Users\\user\\Desktop\\project\\PandDF_ManuAITalk-dohun\\"
+            "예) C:\\Users\\user\\Desktop\\project\\PandDF_ManuAITalk\\"
             "Full\\Backend\\uploads\\pdfs\\....pdf"
         ),
     )
@@ -217,6 +235,15 @@ def main() -> None:
         help=(
             "설명서를 식별할 doc_id (확장자 제외 파일명). "
             "data/raw/<doc_id>.pdf, data/chunks/<doc_id>_*.jsonl 등 여러 단계에서 공통 사용된다."
+        ),
+    )
+    parser.add_argument(
+        "--product-internal-id",
+        type=int,
+        default=None,
+        help=(
+            "DB test_products(tb_product)의 PK (internal_id). "
+            "지정하면 전처리 완료 후 제품 메타데이터 추출 단계까지 수행합니다."
         ),
     )
     parser.add_argument(
@@ -259,12 +286,13 @@ def main() -> None:
     if not pdf_path.exists():
         raise FileNotFoundError(f"지정한 PDF 파일을 찾을 수 없습니다: {pdf_path}")
 
-    logging.info("PROJECT_ROOT  : %s", PROJECT_ROOT)
-    logging.info("입력 PDF 경로 : %s", pdf_path)
-    logging.info("doc_id        : %s", args.doc_id)
-    logging.info("force         : %s", args.force)
-    logging.info("skip_image    : %s", args.skip_image)
-    logging.info("skip_embed    : %s", args.skip_embed)
+    logging.info("PROJECT_ROOT        : %s", PROJECT_ROOT)
+    logging.info("입력 PDF 경로       : %s", pdf_path)
+    logging.info("doc_id              : %s", args.doc_id)
+    logging.info("product_internal_id : %s", args.product_internal_id)
+    logging.info("force               : %s", args.force)
+    logging.info("skip_image          : %s", args.skip_image)
+    logging.info("skip_embed          : %s", args.skip_embed)
 
     # 2. 업로드된 PDF를 data/raw/<doc_id>.pdf 로 복사
     copy_pdf_to_raw(pdf_path=pdf_path, doc_id=args.doc_id, overwrite=args.force)
@@ -348,9 +376,13 @@ def main() -> None:
     # (4) 임베딩 + FAISS 인덱스 생성 (옵션에 따라 생략 가능)
     if not args.skip_embed:
         embed_args: List[str] = ["--doc-id", args.doc_id]
-        # rag_embedder_gemini 는 --overwrite 옵션을 사용해 인덱스를 덮어쓴다.
+        # force=True 이면 전체 인덱스를 재생성(--overwrite),
+        # 그렇지 않으면 해당 doc_id 에 한해서 교체(--replace-doc-id)
         if args.force:
             embed_args.append("--overwrite")
+        else:
+            embed_args.extend(["--replace-doc-id", args.doc_id])
+
         steps.append(
             (
                 "module.rag_pipeline.rag_embedder_gemini",
@@ -360,6 +392,26 @@ def main() -> None:
         )
     else:
         logging.info("옵션에 의해 임베딩/인덱스 생성 단계를 건너뜁니다.")
+
+    # (5) 제품 메타데이터 추출 + DB 업데이트
+    if args.product_internal_id is not None:
+        meta_args: List[str] = [
+            "--doc-id",
+            args.doc_id,
+            "--product-internal-id",
+            str(args.product_internal_id),
+        ]
+        steps.append(
+            (
+                "module.rag_pipeline.product_metadata_extractor",
+                meta_args,
+                "제품 메타데이터 추출 및 DB 업데이트",
+            )
+        )
+    else:
+        logging.info(
+            "product_internal_id 가 지정되지 않아 제품 메타데이터 추출 단계는 건너뜁니다."
+        )
 
     # 4. 단계별 실행
     logging.info("")

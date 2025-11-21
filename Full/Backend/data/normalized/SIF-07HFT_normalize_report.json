@@ -1,0 +1,12 @@
+{
+  "num_pages": 12,
+  "lines_before": 179,
+  "lines_after": 144,
+  "placeholders_removed_estimate": 39,
+  "repeated_lines_removed": 0,
+  "num_repeated_patterns": 0,
+  "repeated_patterns_sample": [],
+  "repeated_threshold": 8,
+  "doc_id": "SIF-07HFT",
+  "source_parsed_file": "data\\parsed\\SIF-07HFT.md"
+}

@@ -1,0 +1,196 @@
+{
+  "doc_id": "SIF-07HFT",
+  "source_pdf": "uploads/pdfs/SIF-07HFT.pdf",
+  "num_figures": 21,
+  "images": [
+    {
+      "file": "data/figures/SIF-07HFT/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        485,
+        654
+      ]
+    },
+    {
+      "file": "data/figures/SIF-07HFT/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        45,
+        43
+      ]
+    },
+    {
+      "file": "data/figures/SIF-07HFT/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        44,
+        44
+      ]
+    },
+    {
+      "file": "data/figures/SIF-07HFT/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        47,
+        43
+      ]
+    },
+    {
+      "file": "data/figures/SIF-07HFT/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        46,
+        45
+      ]
+    },
+    {
+      "file": "data/figures/SIF-07HFT/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        44,
+        43
+      ]
+    },
+    {
+      "file": "data/figures/SIF-07HFT/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        42,
+        42
+      ]
+    },
+    {
+      "file": "data/figures/SIF-07HFT/page_004_figure_008.png",
+      "page": 4,
+      "index": 8,
+      "size_px": [
+        797,
+        748
+      ]
+    },
+    {
+      "file": "data/figures/SIF-07HFT/page_005_figure_009.png",
+      "page": 5,
+      "index": 9,
+      "size_px": [
+        383,
+        236
+      ]
+    },
+    {
+      "file": "data/figures/SIF-07HFT/page_005_figure_010.png",
+      "page": 5,
+      "index": 10,
+      "size_px": [
+        381,
+        238
+      ]
+    },
+    {
+      "file": "data/figures/SIF-07HFT/page_005_figure_011.png",
+      "page": 5,
+      "index": 11,
+      "size_px": [
+        381,
+        236
+      ]
+    },
+    {
+      "file": "data/figures/SIF-07HFT/page_005_figure_012.png",
+      "page": 5,
+      "index": 12,
+      "size_px": [
+        384,
+        237
+      ]
+    },
+    {
+      "file": "data/figures/SIF-07HFT/page_005_figure_013.png",
+      "page": 5,
+      "index": 13,
+      "size_px": [
+        382,
+        238
+      ]
+    },
+    {
+      "file": "data/figures/SIF-07HFT/page_005_figure_014.png",
+      "page": 5,
+      "index": 14,
+      "size_px": [
+        382,
+        237
+      ]
+    },
+    {
+      "file": "data/figures/SIF-07HFT/page_006_figure_015.png",
+      "page": 6,
+      "index": 15,
+      "size_px": [
+        784,
+        301
+      ]
+    },
+    {
+      "file": "data/figures/SIF-07HFT/page_006_figure_016.png",
+      "page": 6,
+      "index": 16,
+      "size_px": [
+        195,
+        203
+      ]
+    },
+    {
+      "file": "data/figures/SIF-07HFT/page_007_figure_017.png",
+      "page": 7,
+      "index": 17,
+      "size_px": [
+        37,
+        40
+      ]
+    },
+    {
+      "file": "data/figures/SIF-07HFT/page_008_figure_018.png",
+      "page": 8,
+      "index": 18,
+      "size_px": [
+        200,
+        219
+      ]
+    },
+    {
+      "file": "data/figures/SIF-07HFT/page_008_figure_019.png",
+      "page": 8,
+      "index": 19,
+      "size_px": [
+        65,
+        34
+      ]
+    },
+    {
+      "file": "data/figures/SIF-07HFT/page_008_figure_020.png",
+      "page": 8,
+      "index": 20,
+      "size_px": [
+        165,
+        206
+      ]
+    },
+    {
+      "file": "data/figures/SIF-07HFT/page_011_figure_021.png",
+      "page": 11,
+      "index": 21,
+      "size_px": [
+        784,
+        153
+      ]
+    }
+  ]
+}

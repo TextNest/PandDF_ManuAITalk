@@ -11,10 +11,14 @@
 #   2) Product.product_id(제품 코드)를 doc_id 로 사용
 #   3) 인자로 받은 pdf_path(상대경로)를 Backend 기준 절대경로로 변환
 #   4) module.rag_pipeline.pipeline_entry 를 서브프로세스로 실행
+#        - pipeline_entry 내부에서:
+#            · Upstage 파싱 / 청킹 / 임베딩
+#            · product_metadata_extractor 로 제품 메타데이터 추출 후
+#              test_products(tb_product) 업데이트
 #   5) 종료 코드에 따라 Product.analysis_status 를 갱신
-#      - PENDING  → 파이프라인 실행 중
-#      - COMPLETED → 전처리 성공
-#      - FAILED    → 전처리 실패
+#      - PENDING   → 파이프라인 실행 중
+#      - COMPLETED → 전처리 + 메타데이터 추출 성공
+#      - FAILED    → 전처리 또는 메타데이터 추출 실패
 #
 # [주의 사항]
 #   - FastAPI 앱 기동 시점에 불필요한 import 로 인해 순환 참조가 생기지 않도록
@@ -117,6 +121,8 @@ async def trigger_pdf_processing(product_id: int, pdf_path: str) -> None:
         str(pdf_abs_path),
         "--doc-id",
         doc_id,
+        "--product-internal-id",
+        str(product_id),  # ← 여기서 internal_id 를 넘겨줌
         # 필요 시 옵션 추가 가능:
         # "--force",
         # "--skip-image",
