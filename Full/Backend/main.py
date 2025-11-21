@@ -9,6 +9,7 @@ from module import Scheduler_ARP
 from core.db_config import engine
 from models.base import Base
 from models.product import Product
+import os
 
 
 app = FastAPI() 
@@ -26,6 +27,12 @@ async def on_startup():
     os.makedirs("uploads/images", exist_ok=True)
     os.makedirs("uploads/models_3d", exist_ok=True)
     os.makedirs("uploads/pdfs", exist_ok=True)
+    os.makedirs("data/page_images", exist_ok=True)
+
+    app.mount("/uploads/models_3d", StaticFiles(directory="uploads/models_3d"), name="models_3d")
+    app.mount("/uploads/pdfs", StaticFiles(directory="uploads/pdfs"), name="pdfs")
+    app.mount("/uploads/images", StaticFiles(directory="uploads/images"), name="images")
+    app.mount("/page_images", StaticFiles(directory="data/page_images"), name="page_images")
     
     # 백그라운드 스케줄러 시작
     asyncio.create_task(Scheduler_ARP())
@@ -60,10 +67,7 @@ async def add_cors_header(request: Request, call_next):
     response.headers["Access-Control-Allow-Headers"] = "*"
     return response
 
-app.mount("/uploads/models_3d", StaticFiles(directory="uploads/models_3d"), name="models_3d")
-app.mount("/uploads/pdfs", StaticFiles(directory="uploads/pdfs"), name="pdfs")
-app.mount("/uploads/images", StaticFiles(directory="uploads/images"), name="images")
-app.mount("/page_images", StaticFiles(directory="data/page_images"), name="page_images")
+
 
 templates = Jinja2Templates(directory="templates")
 
