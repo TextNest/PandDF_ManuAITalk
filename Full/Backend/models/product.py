@@ -23,7 +23,7 @@ class Product(Base):
     
     manufacturer = Column(String(255), comment="제조사")
     description = Column(Text, comment="제품 설명")
-    summary_text = Column(Text, nullable=True, comment="제품 요약")
+
     release_date = Column(DateTime, comment="출시일")
     is_active = Column(Boolean, nullable=False, default=True, comment="활성 상태 (True: 활성, False: 비활성)")
     analysis_status = Column(Enum(AnalysisStatus), nullable=False, default=AnalysisStatus.PENDING, comment="분석 상태")
