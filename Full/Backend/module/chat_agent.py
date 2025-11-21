@@ -125,7 +125,7 @@ class  ChatBotAgent:
         work.add_edge("tools","agent")
         return work.compile(checkpointer=self.checkpoint)
 
-    def chat(self,query:str,db_session: Optional[Any] = None):
+    async def chat(self,query:str,db_session: Optional[Any] = None):
         config = {"configurable":{"thread_id":self.session_id,"db":db_session}}
         initial_state = {
             "messages":[HumanMessage(content=query)],
@@ -133,7 +133,7 @@ class  ChatBotAgent:
             "session_id":self.session_id,
             "tool_name": None
         }
-        result = self.graph.invoke(initial_state,config=config)
+        result = await self.graph.ainvoke(initial_state,config=config)
         final_message = result["messages"][-1]
         tool_name = result.get("tool_name")
         return {"answer":final_message.content,"tool_name":tool_name}

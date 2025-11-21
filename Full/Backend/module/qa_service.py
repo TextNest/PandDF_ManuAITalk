@@ -62,7 +62,7 @@ class HybridRAGChain:
         ])
         question_answer_chain = create_stuff_documents_chain(self.llm, qa_prompt)
         rag_chain = create_retrieval_chain(self.combined_retriever,question_answer_chain)
-        
+        light_chain = create_retrieval_chain(self.base_retriever,question_answer_chain)
         
         self.chain_with_history = RunnableWithMessageHistory(
             runnable=rag_chain, 
@@ -72,7 +72,7 @@ class HybridRAGChain:
             output_messages_key="answer",
         )
         self.light_with_history = RunnableWithMessageHistory(
-            runnable=rag_chain, 
+            runnable=light_chain, 
             get_session_history=get_session_history,
             input_messages_key="input", 
             history_messages_key="chat_history", 
@@ -100,7 +100,6 @@ class HybridRAGChain:
             
             answer = self.chain_with_history.invoke(
             {"input": query},
-            config={"configurable": {"session_id": session}}
-        )
-            answer = answer.get("answer","")
+            config={"configurable": {"session_id": session}})
+        answer = answer.get("answer","")
         return {"answer": answer}
