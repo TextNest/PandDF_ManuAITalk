@@ -7,7 +7,7 @@
 #     업로드된 PDF에 대해 RAG 전처리 파이프라인을 수행한다.
 #
 # [처리 흐름]
-#   1) Product.internal_id (PK)로 DB에서 Product 조회
+#   1) Product.product_id로 DB에서 Product 조회
 #   2) Product.product_id(제품 코드)를 doc_id 로 사용
 #   3) 인자로 받은 pdf_path(상대경로)를 Backend 기준 절대경로로 변환
 #   4) module.rag_pipeline.pipeline_entry 를 서브프로세스로 실행
@@ -40,7 +40,7 @@ logger = logging.getLogger(__name__)
 BACKEND_ROOT: Path = Path(__file__).resolve().parents[1]
 
 
-async def trigger_pdf_processing(product_id: int, pdf_path: str) -> None:
+async def trigger_pdf_processing(product_id: str, pdf_path: str) -> None:
     """
     PDF 분석 및 전처리를 시작하는 트리거 함수.
 
@@ -49,8 +49,8 @@ async def trigger_pdf_processing(product_id: int, pdf_path: str) -> None:
 
     Parameters
     ----------
-    product_id : int
-        Product.internal_id (DB PK)
+    product_id: str
+        제품 코드
     pdf_path : str
         업로드된 PDF의 상대 경로 (예: "uploads/pdfs/SAH001.pdf")
     """

@@ -33,27 +33,27 @@
 #           python -m module.rag_pipeline.pipeline_entry `
 #               --pdf-path "C:\...\uploads\pdfs\20251119_113125_SIF-W12YH_USER.pdf" `
 #               --doc-id "SIF-W12YH_USER" `
-#               --product-internal-id 3
+#               --product-id SIF-W12YH
 #
 #   2) 같은 doc_id에 대해 결과를 전부 새로 만들고 싶을 때
 #       (.venv) > python -m module.rag_pipeline.pipeline_entry \
 #                     --pdf-path ... \
 #                     --doc-id SIF-W12YH_USER \
-#                     --product-internal-id 3 \
+#                     --product-id SIF-W12YH \
 #                     --force
 #
 #   3) 이미지 관련 단계는 건너뛰고 텍스트만 처리하고 싶을 때
 #       (.venv) > python -m module.rag_pipeline.pipeline_entry \
 #                     --pdf-path ... \
 #                     --doc-id SAH001 \
-#                     --product-internal-id 1 \
+#                     --product-id SIF-W12YH \
 #                     --skip-image
 #
 #   4) DB 업데이트 없이 전처리/임베딩만 테스트하고 싶을 때
 #       (.venv) > python -m module.rag_pipeline.pipeline_entry \
 #                     --pdf-path ... \
 #                     --doc-id SAH001
-#         → --product-internal-id 를 생략하면 메타데이터 추출 단계는 건너뜀
+#         → --product-id SIF-W12YH 를 생략하면 메타데이터 추출 단계는 건너뜀
 #
 # [주의 사항]
 #   - 이 스크립트는 Backend/module/rag_pipeline/ 디렉터리 안의 다른 스크립트들과 마찬가지로

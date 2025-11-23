@@ -246,21 +246,8 @@ find_all_product = "SELECT * FROM test_products ORDER BY created_at DESC;"
 # 제품 조회 (제품 코드로)
 find_product_id = "SELECT * FROM test_products WHERE product_id = :product_id;"
 
-# 제품 생성
-create_product = """
-INSERT INTO test_products (
-    product_name, product_id, category, manufacturer, description,
-    release_date, is_active, analysis_status, image_url, pdf_path,
-    model3d_url, width_mm, height_mm, depth_mm, created_at, updated_at
-) VALUES (
-    :product_name, :product_id, :category, :manufacturer, :description,
-    :release_date, :is_active, :analysis_status, :image_url, :pdf_path,
-    :model3d_url, :width_mm, :height_mm, :depth_mm, :created_at, :updated_at
-);
-"""
-
 # 제품 삭제
-delete_product = """
+delete_product_query = """
 DELETE FROM test_products
 WHERE product_id = :product_id;
 """

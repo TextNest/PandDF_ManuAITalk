@@ -88,7 +88,7 @@ export default function DocumentUploadPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!selectedFile || !selectedProductId) {
       alert('필수 항목을 입력해주세요.');
       return;
@@ -110,7 +110,7 @@ export default function DocumentUploadPage() {
     }, 2000);
   };
 
-  const selectedProduct = products.find(p => p.id === selectedProductId);
+  const selectedProduct = products.find(p => p.product_id === selectedProductId);
 
   return (
     <div className={styles.page}>
@@ -136,14 +136,14 @@ export default function DocumentUploadPage() {
             >
               <option value="">제품을 선택하세요</option>
               {products.map(product => (
-                <option key={product.id} value={product.id}>
-                  {product.name} ({product.model})
+                <option key={product.product_id} value={product.product_id}>
+                  {product.product_name} ({product.product_id})
                 </option>
               ))}
             </select>
             {selectedProduct && (
               <p className={styles.helperText}>
-                선택된 제품: {selectedProduct.name} - {selectedProduct.model}
+                선택된 제품: {selectedProduct.product_name} - {selectedProduct.product_id}
               </p>
             )}
           </div>
@@ -176,7 +176,7 @@ export default function DocumentUploadPage() {
             업로드
           </Button>
         </div>
-      </form>
-    </div>
+      </form >
+    </div >
   );
 }

@@ -30,7 +30,7 @@
 #   1) CLI:
 #       (.venv) > python -m module.rag_pipeline.product_metadata_extractor \
 #                       --doc-id SDM-WHT330HS \
-#                       --product-internal-id 3
+#                       --product-id SDM-WHT330HS
 #
 #   2) 코드 내에서 (document_pr.trigger_pdf_processing 에서):
 #       from module.rag_pipeline.product_metadata_extractor import (
@@ -421,10 +421,10 @@ def main() -> None:
         help="설명서에 해당하는 제품 코드 (예: SDM-WHT330HS)",
     )
     parser.add_argument(
-        "--product-internal-id",
-        type=int,
+        "--product-id",
+        type=str,
         required=True,
-        help="DB test_products(tb_product)의 PK (internal_id)",
+        help="DB test_products(tb_product)의 Product Code (product_id)",
     )
     parser.add_argument(
         "--max-chars",

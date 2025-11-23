@@ -14,8 +14,7 @@ from models.product import Product, AnalysisStatus
 from schemas.product import ProductCreate, ProductUpdate, Product as ProductSchema
 from module.document_pr import trigger_pdf_processing
 from core.query import (
-    find_all_product, find_product_id,
-    create_product, delete_product
+    find_all_product, find_product_id, delete_product_query
 )
 
 router = APIRouter()
@@ -159,42 +158,31 @@ async def create_product(
         raise HTTPException(status_code=400, detail="Product ID는 필수입니다.")
 
     # product_name이 빈 문자열인 경우 None으로 변환
-    product_name = product_data.product_name if product_data.product_name != '' else None
+    if product_data.product_name == '':
+        product_data.product_name = None
 
-    now = datetime.utcnow()
-
-    create_query = text(create_product)
-    create_params = {
-        'product_name': product_name,
-        'product_id': product_data.product_id,
-        'category': product_data.category,
-        'manufacturer': product_data.manufacturer,
-        'description': product_data.description,
-        'release_date': product_data.release_date,
-        'is_active': product_data.is_active,
-        'analysis_status': AnalysisStatus.PENDING.value,
-        'image_url': product_data.image_url,
-        'pdf_path': product_data.pdf_path,  # 임시 경로
-        'model3d_url': product_data.model3d_url,
-        'width_mm': None,
-        'height_mm': None,
-        'depth_mm': None,
-        'created_at': now,
-        'updated_at': now
-    }
+    # Pydantic 모델을 SQLAlchemy 모델 인스턴스로 변환
+    new_product = Product(
+        product_name=product_data.product_name,
+        product_id=product_data.product_id,
+        category=product_data.category,
+        manufacturer=product_data.manufacturer,
+        description=product_data.description,
+        release_date=product_data.release_date,
+        is_active=product_data.is_active,
+        image_url=product_data.image_url,
+        pdf_path=product_data.pdf_path, # 임시 경로
+        model3d_url=product_data.model3d_url,
+        analysis_status=AnalysisStatus.PENDING
+    )
     
     try:
-        await session.execute(create_query, create_params)
+        session.add(new_product)
         await session.commit()
-        
-        # 생성된 제품 조회
-        result = await session.execute(
-            text(find_product_id).bindparams(product_id=product_data.product_id)
-        )
-        new_product_row = result.mappings().one()
+        await session.refresh(new_product)
 
         # --- PDF 파일명 변경 및 DB 업데이트 ---
-        new_pdf_path = new_product_row['pdf_path']
+        new_pdf_path = new_product.pdf_path
         if product_data.pdf_path and product_data.product_id:
             try:
                 # 1. 경로 설정
@@ -212,27 +200,10 @@ async def create_product(
                 os.rename(old_full_path, new_full_path)
 
                 # 4. DB 업데이트
-                update_query = text(update_product)
-                update_params = {
-                    'product_id': product_data.product_id,
-                    'pdf_path': new_relative_path,
-                    'updated_at': datetime.utcnow(),
-                    'product_name': None,
-                    'category': None,
-                    'manufacturer': None,
-                    'description': None,
-                    'release_date': None,
-                    'is_active': None,
-                    'analysis_status': None,
-                    'image_url': None,
-                    'model3d_url': None,
-                    'width_mm': None,
-                    'height_mm': None,
-                    'depth_mm': None
-                }
-                await session.execute(update_query, update_params)
+                new_product.pdf_path = new_relative_path
+                new_pdf_path = new_relative_path # 백그라운드 작업에 전달할 경로 업데이트
                 await session.commit()
-                new_pdf_path = new_relative_path
+                await session.refresh(new_product)
 
             except FileNotFoundError:
                 # 파일이 없는 경우 롤백하고 에러 발생
@@ -247,15 +218,11 @@ async def create_product(
         if new_pdf_path:
             background_tasks.add_task(
                 trigger_pdf_processing, 
-                product_id=product_data.product_id, 
+                product_id=new_product.product_id, 
                 pdf_path=new_pdf_path # 변경된 경로를 전달
             )
         
-        # 최종 제품 정보 조회
-        result = await session.execute(
-            text(find_product_id).bindparams(product_id=product_data.product_id)
-        )
-        return dict(result.mappings().one())
+        return new_product
         
     except Exception as e:
         await session.rollback()
@@ -347,7 +314,7 @@ async def update_product(
         if pdf_path_updated:
             update_data['analysis_status'] = AnalysisStatus.PENDING
 
-        # 4. 제품 정보 업데이트 (raw SQL 사용)
+        # 4. 제품 정보 업데이트
         if update_data:
             # 동적 쿼리라서 ORM 사용(SQLAlchemy Core의 update)
             update_stmt = (
@@ -414,7 +381,7 @@ async def delete_product(
                     print(f"Warning: Could not delete file {file_path}. Error: {e}")
 
         # 3. DB에서 제품 레코드 삭제 (raw SQL 사용)
-        delete_query = text(delete_product)
+        delete_query = text(delete_product_query)
         await session.execute(delete_query, {'product_id': product_id})
         await session.commit()
         
