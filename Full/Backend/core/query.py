@@ -106,7 +106,97 @@ ON DUPLICATE KEY UPDATE
     satisfaction = VALUES(satisfaction);
 """
 
-# FAQ 관련 쿼리
+# ---------- FAQ 관련 쿼리 ----------
+# 목록 조회 (필터링 가능)
+find_faq = """
+SELECT
+    internal_id,
+    faq_id,
+    question,
+    answer,
+    category,
+    tags,
+    product_id,
+    product_name,
+    status,
+    is_auto_generated,
+    source,
+    view_count,
+    helpful_count,
+    created_at,
+    updated_at,
+    created_by
+FROM test_faqs f
+WHERE 1=1
+"""
+
+# 질문 목록 조회(faq_id)
+find_faq_by_id = """
+SELECT
+    internal_id,
+    faq_id,
+    question,
+    answer,
+    category,
+    tags,
+    product_id,
+    product_name,
+    status,
+    is_auto_generated,
+    source,
+    view_count,
+    helpful_count,
+    created_at,
+    updated_at,
+    created_by
+FROM
+    test_faqs
+WHERE
+    faq_id=:faq_id
+;
+"""
+
+# 질문 목록 조회(product_id)
+find_faq_questions_by_product = """
+SELECT question
+FROM test_faqs
+WHERE product_id = :product_id;
+"""
+
+# 생성
+create_faq = """
+INSERT INTO test_faqs (
+    faq_id, question, answer, category, tags, product_id, product_name,
+    status, is_auto_generated, source, view_count, helpful_count, created_by    
+) VALUES (
+    :faq_id, :question, :answer, :category, :tags, :product_id, :product_name,
+    :status, :is_auto_generated, :source, :view_count, :helpful_count, :created_by
+);
+"""
+
+# 수정
+update_faq = """
+UPDATE test_faqs
+SET 
+    question = COALESCE(:question, question),
+    answer = COALESCE(:answer, answer),
+    category = COALESCE(:category, category),
+    tags = COALESCE(:tags, tags),
+    product_id = COALESCE(:product_id, product_id),
+    product_name = COALESCE(:product_name, product_name),
+    status = COALESCE(:status, status),
+    is_auto_generated = COALESCE(:is_auto_generated, is_auto_generated),
+    source = COALESCE(:source, source)
+WHERE faq_id = :faq_id;
+"""
+
+# 삭제
+delete_faq = """
+DELETE FROM test_faqs
+WHERE faq_id = :faq_id;
+"""
+
+# 자동 생성 시 사용할 메시지 고르기
 find_faq_messages = """
 SELECT 
     m.role,
@@ -121,9 +211,63 @@ FROM test_message m
 JOIN test_session s ON m.session_id = s.session_id
 JOIN test_products p ON s.productId = p.product_id
 WHERE m.timestamp >= :start_date
-ORDER BY m.id;
+ORDER BY m.id
+;
 """
 
-# 제품관리, AR 관련 쿼리
+# 자동 생성 로그 생성
+create_faq_generation_log = """
+INSERT INTO test_faq_generation_log (
+    generation_id, status, messages_analyzed,
+    questions_extracted, faqs_created, created_by
+) VALUES (
+    :generation_id, :status, :messages_analyzed,
+    :questions_extracted, :faqs_created, :created_by
+);
+"""
+
+# 자동 생성 로그 업데이트
+update_faq_generation_log = """
+UPDATE test_faq_generation_log
+SET 
+    completed_at = :completed_at,
+    status = :status,
+    messages_analyzed = COALESCE(:messages_analyzed, messages_analyzed),
+    questions_extracted = COALESCE(:questions_extracted, questions_extracted),
+    faqs_created = COALESCE(:faqs_created, faqs_created),
+    error_message = :error_message
+WHERE generation_id = :generation_id;
+"""
+
+# ---------- 제품관리, AR 관련 쿼리 ----------
+# 전체 제품 조회
+find_all_product = "SELECT * FROM test_products ORDER BY created_at DESC;"
+
+# 제품 조회 (제품 코드로)
 find_product_id = "SELECT * FROM test_products WHERE product_id = :product_id;"
-find_all_product = "select * from test_products order by created_at desc;"
+
+# 제품 생성
+create_product = """
+INSERT INTO test_products (
+    product_name, product_id, category, manufacturer, description,
+    release_date, is_active, analysis_status, image_url, pdf_path,
+    model3d_url, width_mm, height_mm, depth_mm, created_at, updated_at
+) VALUES (
+    :product_name, :product_id, :category, :manufacturer, :description,
+    :release_date, :is_active, :analysis_status, :image_url, :pdf_path,
+    :model3d_url, :width_mm, :height_mm, :depth_mm, :created_at, :updated_at
+);
+"""
+
+# 제품 삭제
+delete_product = """
+DELETE FROM test_products
+WHERE product_id = :product_id;
+"""
+
+# 제품 상태 업데이트 (analysis_status만)
+update_product_status = """
+UPDATE test_products
+SET analysis_status = :analysis_status
+WHERE product_id = :product_id;
+"""

@@ -1,0 +1,12 @@
+{
+  "num_pages": 1,
+  "lines_before": 264,
+  "lines_after": 262,
+  "placeholders_removed_estimate": 13,
+  "repeated_lines_removed": 0,
+  "num_repeated_patterns": 0,
+  "repeated_patterns_sample": [],
+  "repeated_threshold": 0,
+  "doc_id": "SEH-M70WR",
+  "source_parsed_file": "data\\parsed\\SEH-M70WR.md"
+}

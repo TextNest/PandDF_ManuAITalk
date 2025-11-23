@@ -238,11 +238,11 @@ def main() -> None:
         ),
     )
     parser.add_argument(
-        "--product-internal-id",
-        type=int,
+        "--product-id",
+        type=str,
         default=None,
         help=(
-            "DB test_products(tb_product)의 PK (internal_id). "
+            "DB test_products(tb_product)의 product_id(제품 코드). "
             "지정하면 전처리 완료 후 제품 메타데이터 추출 단계까지 수행합니다."
         ),
     )
@@ -289,7 +289,7 @@ def main() -> None:
     logging.info("PROJECT_ROOT        : %s", PROJECT_ROOT)
     logging.info("입력 PDF 경로       : %s", pdf_path)
     logging.info("doc_id              : %s", args.doc_id)
-    logging.info("product_internal_id : %s", args.product_internal_id)
+    logging.info("product_id : %s", args.product_id)
     logging.info("force               : %s", args.force)
     logging.info("skip_image          : %s", args.skip_image)
     logging.info("skip_embed          : %s", args.skip_embed)
@@ -394,12 +394,12 @@ def main() -> None:
         logging.info("옵션에 의해 임베딩/인덱스 생성 단계를 건너뜁니다.")
 
     # (5) 제품 메타데이터 추출 + DB 업데이트
-    if args.product_internal_id is not None:
+    if args.product_id is not None:
         meta_args: List[str] = [
             "--doc-id",
             args.doc_id,
-            "--product-internal-id",
-            str(args.product_internal_id),
+            "--product-id",
+            args.product_id,
         ]
         steps.append(
             (
@@ -410,7 +410,7 @@ def main() -> None:
         )
     else:
         logging.info(
-            "product_internal_id 가 지정되지 않아 제품 메타데이터 추출 단계는 건너뜁니다."
+            "product_id 가 지정되지 않아 제품 메타데이터 추출 단계는 건너뜁니다."
         )
 
     # 4. 단계별 실행

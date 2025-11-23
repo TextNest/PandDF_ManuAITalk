@@ -59,7 +59,7 @@ import asyncio
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
-from sqlalchemy import select
+from sqlalchemy import text, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.db_config import get_session_text  # AsyncSession factory
@@ -249,7 +249,7 @@ def _parse_date(value: Optional[str]) -> Optional[date]:
 
 async def extract_and_update_product_metadata(
     doc_id: str,
-    product_internal_id: int,
+    product_id: str,
     max_chars: int = DEFAULT_MAX_CHARS,
     client: Optional[genai.Client] = None,
 ) -> Dict[str, Any]:
@@ -259,6 +259,10 @@ async def extract_and_update_product_metadata(
       2) LLM으로 메타데이터 JSON 추출
       3) test_products 행 업데이트
     를 수행한다.
+
+    Parameters:
+      - doc_id: str
+      - product_id: str
 
     반환:
       - LLM이 생성한 메타데이터 dict (DB에 반영된 값 기준)
@@ -300,43 +304,41 @@ async def extract_and_update_product_metadata(
     metadata = _safe_json_loads(raw_text)
 
     # 3) DB 업데이트
-    await _update_product_row(product_internal_id, metadata)
+    await _update_product_row(product_id, metadata)
 
-    logging.info("메타데이터 추출 & DB 업데이트 완료 (doc_id=%s, id=%d)", doc_id, product_internal_id)
+    logging.info("메타데이터 추출 & DB 업데이트 완료 (doc_id=%s, id=%d)", doc_id, product_id)
     return metadata
 
 
 async def _update_product_row(
-    product_internal_id: int,
+    product_id: str,
     metadata: Dict[str, Any],
 ) -> None:
     """
-    test_products 테이블에서 internal_id 로 row를 찾아
+    test_products 테이블에서 product_id 로 row를 찾아
     LLM이 추출한 메타데이터를 반영한다.
     """
-    async with get_session_text() as session:   # AsyncSession
-        result = await session.execute(
-            select(Product).where(Product.internal_id == product_internal_id)
-        )
-        product: Optional[Product] = result.scalar_one_or_none()
+    from core.query import find_product_id
+    from datetime import datetime
 
-        if product is None:
+    async with get_session_text() as session:   # AsyncSession
+        # 제품 조회
+        result = await session.execute(
+            text(find_product_id),
+            {'product_id': product_id}
+        )
+        product_row = result.mappings().one_or_none()
+
+        if product_row is None:
             logging.error(
-                "Product not found (internal_id=%d). 메타데이터 업데이트를 건너뜁니다.",
-                product_internal_id,
+                "Product not found (product_id=%s). 메타데이터 업데이트를 건너뜁니다.",
+                product_id,
             )
             return
-
-        # 아래 필드 매핑 로직들은 그대로 유지
-        product.product_name = metadata.get("product_name") or product.product_name
-        product.category = metadata.get("category") or product.category
-        product.manufacturer = metadata.get("manufacturer") or product.manufacturer
-        product.description = metadata.get("description") or product.description
-
+        
+        # 메타데이터 준비
         release_date_str = metadata.get("release_date")
         parsed_date = _parse_date(release_date_str)
-        if parsed_date:
-            product.release_date = parsed_date
 
         def _as_float(val: Any) -> Optional[float]:
             try:
@@ -351,22 +353,44 @@ async def _update_product_row(
         h = _as_float(metadata.get("height_mm"))
         d = _as_float(metadata.get("depth_mm"))
 
+        # 업데이트 데이터 준비 (None이 아닌 값만)
+        update_data = {}
+        
+        if metadata.get("product_name"):
+            update_data['product_name'] = metadata.get("product_name")
+        if metadata.get("category"):
+            update_data['category'] = metadata.get("category")
+        if metadata.get("manufacturer"):
+            update_data['manufacturer'] = metadata.get("manufacturer")
+        if metadata.get("description"):
+            update_data['description'] = metadata.get("description")
+        if parsed_date:
+            update_data['release_date'] = parsed_date
         if w and w > 0:
-            product.width_mm = w
+            update_data['width_mm'] = w
         if h and h > 0:
-            product.height_mm = h
+            update_data['height_mm'] = h
         if d and d > 0:
-            product.depth_mm = d
+            update_data['depth_mm'] = d
+        
+        # analysis_status는 항상 업데이트
+        update_data['analysis_status'] = AnalysisStatus.COMPLETED
 
-        # 전체 전처리 + 메타 추출까지 끝난 걸로 보고 상태 COMPLETED 로 변경
-        product.analysis_status = AnalysisStatus.COMPLETED.value
-
-        await session.commit()
+        # DB 업데이트 (ORM 사용)
+        if update_data:
+            update_stmt = (
+                update(Product)
+                .where(Product.product_id == product_id)
+                .values(**update_data)
+            )
+            await session.execute(update_stmt)
+            await session.commit()
+        
         logging.info(
-            "Product (id=%d) 메타데이터 업데이트 완료: name=%s, category=%s",
-            product_internal_id,
-            product.product_name,
-            product.category,
+            "Product (product_id=%s) 메타데이터 업데이트 완료: name=%s, category=%s",
+            product_id,
+            metadata.get("product_name"),
+            metadata.get("category"),
         )
 
 
@@ -380,7 +404,7 @@ async def _async_main(args: argparse.Namespace) -> None:
 
     await extract_and_update_product_metadata(
         doc_id=args.doc_id,
-        product_internal_id=args.product_internal_id,
+        product_id=args.product_id,
         max_chars=args.max_chars,
         client=client,
     )

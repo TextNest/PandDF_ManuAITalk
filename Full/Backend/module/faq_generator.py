@@ -1,13 +1,16 @@
 from typing import List, Tuple, Dict, Optional
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import text, select
+from sqlalchemy import text
 from datetime import datetime, timedelta
-from core.query import find_faq_messages
-from models.faq import FAQ
-from models.message import ChatMessage
-from models.session import ChatSession
-from models.product import Product
-from models.faq_generation_log import FAQGenerationLog
+from core.query import (
+    find_faq_messages,
+    find_faq_questions_by_product,
+    create_faq,
+    create_faq_generation_log,
+    update_faq_generation_log
+)
+from models.faq import generate_short_id
+from models.faq_generation_log import generate_short_uuid
 import numpy as np
 import logging
 from sentence_transformers import SentenceTransformer
@@ -74,12 +77,12 @@ class FAQGenerator:
         messages_by_session = defaultdict(list)
         for row in messages:
             messages_by_session[row['session_id']].append({
-                'role': row['role'],
-                'content': row['content'],
-                'product_id': row['product_id'],
-                'product_name': row['product_name'],
-                'category': row['category'],
-                'timestamp': row['timestamp'],
+                'role': row.get('role'),
+                'content': row.get('content'),
+                'product_id': row.get('product_id'),
+                'product_name': row.get('product_name'),
+                'category': row.get('category'),
+                'timestamp': row.get('timestamp'),
                 'tool_name': row.get('tool_name')  # 추가: tool_name도 추적
             })
 
@@ -120,13 +123,14 @@ class FAQGenerator:
                         continue
                     pending_user = content
                     pending_product_id = product_id
+                    pending_tool_name = tool_name
                     user_count += 1
                     logger.debug(f"User 메시지 저장: product_id={product_id}, session_id={session_id}")
                 
                 elif role == 'assistant':
                     assistant_count += 1
                     # pending_user가 있고, product_id가 일치할 때만 매칭
-                    if pending_user and pending_product_id == product_id:
+                    if pending_user and pending_product_id == product_id and pending_tool_name == "질문":
                         product_qa_pairs[product_id]['qa_pairs'].append((pending_user, content))
                         qa_pair_count += 1
                         logger.debug(f"QA 쌍 생성: product_id={product_id}, Q: {pending_user[:50]}...")
@@ -285,15 +289,20 @@ class FAQGenerator:
             min_qa_pair_count: 제품별 최소 QA 쌍 개수 (예: 3 = 최소 3개의 QA 쌍 필요)
         """
         # [0] 생성 로그 시작
-        log_entry = FAQGenerationLog(
-            status='processing',
-            created_by='PRODUCT_GENERATOR'
-        )
-        session.add(log_entry)
-        await session.commit()
-        await session.refresh(log_entry)
+        generation_id = generate_short_uuid()
         
-        generation_id = log_entry.generation_id
+        log_query = text(create_faq_generation_log)
+        log_params = {
+            'generation_id': generation_id,
+            'status': 'processing',
+            'messages_analyzed': 0,
+            'questions_extracted': 0,
+            'faqs_created': 0,
+            'created_by': 'PRODUCT_GENERATOR'
+        }
+        await session.execute(log_query, log_params)
+        await session.commit()
+        
         logger.info(f"=== FAQ 생성 시작 (ID: {generation_id}, 기간: {days_range}일) ===")
         
         try:
@@ -308,15 +317,35 @@ class FAQGenerator:
                 for data in product_qa_data.values()
             )
             
-            log_entry.messages_analyzed = total_messages_analyzed
+            # 로그 업데이트: 메시지 분석 수
+            log_update_query = text(update_faq_generation_log)
+            await session.execute(log_update_query, {
+                'generation_id': generation_id,
+                'messages_analyzed': total_messages_analyzed,
+                'completed_at': None,
+                'status': 'processing',
+                'questions_extracted': None,
+                'faqs_created': None,
+                'error_message': None
+            })
             await session.commit()
             
             logger.info(f"분석한 메시지: {total_messages_analyzed}개")
             
             if not product_qa_data:
                 logger.warning("QA 쌍이 없습니다")
-                log_entry.status = 'completed'
-                log_entry.completed_at = datetime.utcnow()
+                
+                # 로그 업데이트: 완료 상태
+                log_update_query = text(update_faq_generation_log)
+                await session.execute(log_update_query, {
+                    'generation_id': generation_id,
+                    'completed_at': datetime.utcnow(),
+                    'status': 'completed',
+                    'messages_analyzed': None,
+                    'questions_extracted': None,
+                    'faqs_created': None,
+                    'error_message': None
+                })
                 await session.commit()
                 
                 return {
@@ -428,11 +457,12 @@ class FAQGenerator:
                     continue
                 
                 # [2-4] 이 제품의 기존 FAQ 확인
-                existing_query = select(FAQ.question).where(
-                    FAQ.product_id == product_id
+                existing_query = text(find_faq_questions_by_product)
+                existing_result = await session.execute(
+                    existing_query,
+                    {'product_id': product_id}
                 )
-                existing_result = await session.execute(existing_query)
-                existing_questions = {row[0] for row in existing_result.all()}
+                existing_questions = {row['question'] for row in existing_result.mappings().all()}
                 
                 logger.info(f"  기존 FAQ: {len(existing_questions)}개")
                 
@@ -456,19 +486,26 @@ class FAQGenerator:
                     )
                     
                     # FAQ 생성
-                    new_faq = FAQ(
-                        question=representative_question,
-                        answer=best_answer,
-                        category=category,
-                        product_id=product_id,
-                        product_name=product_name,
-                        is_auto_generated=True,
-                        source='chatbot',
-                        status='draft',
-                        created_by=f'PRODUCT_GENERATOR (제품: {product_id}, 클러스터: {len(cluster_indices)}개)'
-                    )
+                    faq_id = generate_short_id()
                     
-                    session.add(new_faq)
+                    create_query = text(create_faq)
+                    create_params = {
+                        'faq_id': faq_id,
+                        'question': representative_question,
+                        'answer': best_answer,
+                        'category': category,
+                        'tags': None,
+                        'product_id': product_id,
+                        'product_name': product_name,
+                        'status': 'draft',
+                        'is_auto_generated': True,
+                        'source': 'chatbot',
+                        'view_count': 0,
+                        'helpful_count': 0,
+                        'created_by': f'PRODUCT_GENERATOR (제품: {product_id}, 클러스터: {len(cluster_indices)}개)'
+                    }
+                    
+                    await session.execute(create_query, create_params)
                     created_count += 1
                     
                     logger.info(f"    [생성] {representative_question} (유사: {len(cluster_indices)}개)")
@@ -493,11 +530,17 @@ class FAQGenerator:
             
             logger.info(f"\n=== 모든 제품 처리 완료 (총 생성: {total_created}, 중복: {total_skipped}) ===")
             
-            # [3] 로그 업데이트
-            log_entry.status = 'completed'
-            log_entry.completed_at = datetime.utcnow()
-            log_entry.questions_extracted = total_questions_extracted
-            log_entry.faqs_created = total_created
+             # [3] 로그 업데이트
+            log_update_query = text(update_faq_generation_log)
+            await session.execute(log_update_query, {
+                'generation_id': generation_id,
+                'completed_at': datetime.utcnow(),
+                'status': 'completed',
+                'messages_analyzed': None,
+                'questions_extracted': total_questions_extracted,
+                'faqs_created': total_created,
+                'error_message': None
+            })
             await session.commit()
             
             # FAQ가 하나도 생성되지 않았으면 insufficient_data 반환
@@ -530,9 +573,16 @@ class FAQGenerator:
             logger.error(f"FAQ 생성 중 에러: {str(e)}", exc_info=True)
             
             # [3] 로그 업데이트 (실패)
-            log_entry.status = 'failed'
-            log_entry.completed_at = datetime.utcnow()
-            log_entry.error_message = str(e)[:1000]  # 1000자 제한
+            log_update_query = text(update_faq_generation_log)
+            await session.execute(log_update_query, {
+                'generation_id': generation_id,
+                'completed_at': datetime.utcnow(),
+                'status': 'failed',
+                'messages_analyzed': None,
+                'questions_extracted': None,
+                'faqs_created': None,
+                'error_message': str(e)[:1000]  # 1000자 제한
+            })
             await session.commit()
             
             return {

@@ -30,6 +30,7 @@ import logging
 import subprocess
 import sys
 from pathlib import Path
+from sqlalchemy import text
 
 # --- 로깅 설정 ------------------------------------------------
 logging.basicConfig(level=logging.INFO)
@@ -55,7 +56,8 @@ async def trigger_pdf_processing(product_id: int, pdf_path: str) -> None:
     """
     # 지연 import 를 사용하여 앱 기동 시점의 순환 참조를 방지한다.
     from core.db_config import get_session_text
-    from models.product import Product, AnalysisStatus
+    from models.product import AnalysisStatus
+    from core.query import find_product_id, update_product_status
 
     logger.info(
         "PDF 전처리 트리거 호출: product_pk=%s, pdf_path=%s",
@@ -67,8 +69,12 @@ async def trigger_pdf_processing(product_id: int, pdf_path: str) -> None:
     # 1. Product 조회 및 doc_id 결정
     # ---------------------------------------------------------
     async with get_session_text() as session:
-        product = await session.get(Product, product_id)
-        if product is None:
+        result = await session.execute(
+            text(find_product_id),
+            {"product_id": product_id}
+        )
+        product_row = result.mappings().one_or_none()
+        if product_row is None:
             logger.error(
                 "PDF 전처리 실패: Product(id=%s)를 찾을 수 없습니다. (pdf_path=%s)",
                 product_id,
@@ -78,11 +84,19 @@ async def trigger_pdf_processing(product_id: int, pdf_path: str) -> None:
 
         # RAG 파이프라인에서 사용하는 문서 ID
         # 기본적으로 제품 코드(Product.product_id)를 그대로 사용한다.
-        doc_id = product.product_id or str(product.internal_id)
+        doc_id = product_id
 
         # 상태를 PENDING 으로 갱신
-        product.analysis_status = AnalysisStatus.PENDING
+        update_query = text(update_product_status)
+        await session.execute(
+            update_query,
+            {
+                'product_id': product_id,
+                'analysis_status': AnalysisStatus.PENDING.value
+            }
+        )
         await session.commit()
+
         logger.info(
             "전처리 대상 제품 결정: product_pk=%s, doc_id=%s (status=PENDING)",
             product_id,
@@ -101,10 +115,15 @@ async def trigger_pdf_processing(product_id: int, pdf_path: str) -> None:
         )
         # 실패 상태로 마킹
         async with get_session_text() as session:
-            product = await session.get(Product, product_id)
-            if product is not None:
-                product.analysis_status = AnalysisStatus.FAILED
-                await session.commit()
+            update_query = text(update_product_status)
+            await session.execute(
+                update_query,
+                {
+                    'product_id': product_id,
+                    'analysis_status': AnalysisStatus.PENDING.value
+                }
+            )
+            await session.commit()
         return
 
     logger.info("입력 PDF 절대 경로: %s", pdf_abs_path)
@@ -121,8 +140,8 @@ async def trigger_pdf_processing(product_id: int, pdf_path: str) -> None:
         str(pdf_abs_path),
         "--doc-id",
         doc_id,
-        "--product-internal-id",
-        str(product_id),  # ← 여기서 internal_id 를 넘겨줌
+        "--product-id",
+        product_id, 
         # 필요 시 옵션 추가 가능:
         # "--force",
         # "--skip-image",
@@ -166,23 +185,42 @@ async def trigger_pdf_processing(product_id: int, pdf_path: str) -> None:
     # 4. 종료 코드에 따라 분석 상태 갱신
     # ---------------------------------------------------------
     async with get_session_text() as session:
-        product = await session.get(Product, product_id)
-        if product is None:
+        result = await session.execute(
+            text(find_product_id),
+            {'product_id': product_id}
+        )
+        product_row = result.mappings().one_or_none()
+
+        if product_row is None:
             logger.warning(
                 "전처리 종료 후 상태 업데이트 실패: Product(id=%s)를 찾을 수 없습니다.",
                 product_id,
             )
             return
 
+        # 상태 업데이트
+        update_query = text(update_product_status)
         if returncode == 0:
-            product.analysis_status = AnalysisStatus.COMPLETED
+            await session.execute(
+                update_query,
+                {
+                    'product_id': product_id,
+                    "analysis_status": AnalysisStatus.COMPLETED.value
+                }
+            )
             logger.info(
                 "RAG 전처리 파이프라인 성공: product_pk=%s, doc_id=%s",
                 product_id,
                 doc_id,
             )
         else:
-            product.analysis_status = AnalysisStatus.FAILED
+            await session.execute(
+                update_query,
+                {
+                    'product_id': product_id,
+                    'analysis_status': AnalysisStatus.FAILED.value
+                }
+            )
             logger.error(
                 "RAG 전처리 파이프라인 실패: product_pk=%s, doc_id=%s, returncode=%s",
                 product_id,

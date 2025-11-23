@@ -5,6 +5,19 @@ import os
 import shutil
 from datetime import datetime
 
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import text, update
+from fastapi import Depends
+from typing import List
+from core.db_config import get_session
+from models.product import Product, AnalysisStatus
+from schemas.product import ProductCreate, ProductUpdate, Product as ProductSchema
+from module.document_pr import trigger_pdf_processing
+from core.query import (
+    find_all_product, find_product_id,
+    create_product, delete_product
+)
+
 router = APIRouter()
 
 # PDF 파일을 저장할 디렉토리 (예: Full/Backend/uploads/pdfs)
@@ -115,15 +128,6 @@ async def upload_3d_model(model_file: UploadFile = File(...)):
 
 # --- Product CRUD Endpoints ---
 
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import text, update, select
-from fastapi import Depends
-from typing import List
-from core.db_config import get_session
-from models.product import Product, AnalysisStatus
-from schemas.product import ProductCreate, ProductUpdate, Product as ProductSchema
-from module.document_pr import trigger_pdf_processing
-from core.query import find_product_id, find_all_product
 @router.get("/", response_model=List[ProductSchema])
 async def get_completed_products(session: AsyncSession = Depends(get_session)):
     """
@@ -136,7 +140,7 @@ async def get_completed_products(session: AsyncSession = Depends(get_session)):
             # .where(Product.analysis_status == AnalysisStatus.COMPLETED) # 임시로 필터 제거
         )
         products = result.mappings().all()
-        return products
+        return [dict(row) for row in products]
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"제품 목록을 불러오는 중 오류가 발생했습니다: {e}")
 
@@ -155,31 +159,42 @@ async def create_product(
         raise HTTPException(status_code=400, detail="Product ID는 필수입니다.")
 
     # product_name이 빈 문자열인 경우 None으로 변환
-    if product_data.product_name == '':
-        product_data.product_name = None
+    product_name = product_data.product_name if product_data.product_name != '' else None
 
-    # Pydantic 모델을 SQLAlchemy 모델 인스턴스로 변환
-    new_product = Product(
-        product_name=product_data.product_name,
-        product_id=product_data.product_id,
-        category=product_data.category,
-        manufacturer=product_data.manufacturer,
-        description=product_data.description,
-        release_date=product_data.release_date,
-        is_active=product_data.is_active,
-        image_url=product_data.image_url,
-        pdf_path=product_data.pdf_path, # 임시 경로
-        model3d_url=product_data.model3d_url,
-        analysis_status=AnalysisStatus.PENDING
-    )
+    now = datetime.utcnow()
+
+    create_query = text(create_product)
+    create_params = {
+        'product_name': product_name,
+        'product_id': product_data.product_id,
+        'category': product_data.category,
+        'manufacturer': product_data.manufacturer,
+        'description': product_data.description,
+        'release_date': product_data.release_date,
+        'is_active': product_data.is_active,
+        'analysis_status': AnalysisStatus.PENDING.value,
+        'image_url': product_data.image_url,
+        'pdf_path': product_data.pdf_path,  # 임시 경로
+        'model3d_url': product_data.model3d_url,
+        'width_mm': None,
+        'height_mm': None,
+        'depth_mm': None,
+        'created_at': now,
+        'updated_at': now
+    }
     
     try:
-        session.add(new_product)
+        await session.execute(create_query, create_params)
         await session.commit()
-        await session.refresh(new_product)
+        
+        # 생성된 제품 조회
+        result = await session.execute(
+            text(find_product_id).bindparams(product_id=product_data.product_id)
+        )
+        new_product_row = result.mappings().one()
 
         # --- PDF 파일명 변경 및 DB 업데이트 ---
-        new_pdf_path = new_product.pdf_path
+        new_pdf_path = new_product_row['pdf_path']
         if product_data.pdf_path and product_data.product_id:
             try:
                 # 1. 경로 설정
@@ -197,10 +212,27 @@ async def create_product(
                 os.rename(old_full_path, new_full_path)
 
                 # 4. DB 업데이트
-                new_product.pdf_path = new_relative_path
-                new_pdf_path = new_relative_path # 백그라운드 작업에 전달할 경로 업데이트
+                update_query = text(update_product)
+                update_params = {
+                    'product_id': product_data.product_id,
+                    'pdf_path': new_relative_path,
+                    'updated_at': datetime.utcnow(),
+                    'product_name': None,
+                    'category': None,
+                    'manufacturer': None,
+                    'description': None,
+                    'release_date': None,
+                    'is_active': None,
+                    'analysis_status': None,
+                    'image_url': None,
+                    'model3d_url': None,
+                    'width_mm': None,
+                    'height_mm': None,
+                    'depth_mm': None
+                }
+                await session.execute(update_query, update_params)
                 await session.commit()
-                await session.refresh(new_product)
+                new_pdf_path = new_relative_path
 
             except FileNotFoundError:
                 # 파일이 없는 경우 롤백하고 에러 발생
@@ -215,11 +247,15 @@ async def create_product(
         if new_pdf_path:
             background_tasks.add_task(
                 trigger_pdf_processing, 
-                product_id=new_product.internal_id, 
+                product_id=product_data.product_id, 
                 pdf_path=new_pdf_path # 변경된 경로를 전달
             )
         
-        return new_product
+        # 최종 제품 정보 조회
+        result = await session.execute(
+            text(find_product_id).bindparams(product_id=product_data.product_id)
+        )
+        return dict(result.mappings().one())
         
     except Exception as e:
         await session.rollback()
@@ -235,8 +271,7 @@ async def get_product(
     특정 제품코드의 제품 정보를 조회합니다.
     """
     result = await session.execute(
-        # select(Product).where(Product.product_id == product_id)
-        text(find_product_id).bindparams(product_id = product_id)
+        text(find_product_id).bindparams(product_id=product_id)
     )
     product = result.mappings().one_or_none()
 
@@ -312,8 +347,9 @@ async def update_product(
         if pdf_path_updated:
             update_data['analysis_status'] = AnalysisStatus.PENDING
 
-        # 4. 제품 정보 업데이트 (SQLAlchemy Core update 사용)
+        # 4. 제품 정보 업데이트 (raw SQL 사용)
         if update_data:
+            # 동적 쿼리라서 ORM 사용(SQLAlchemy Core의 update)
             update_stmt = (
                 update(Product)
                 .where(Product.product_id == product_id)
@@ -326,22 +362,21 @@ async def update_product(
         if pdf_path_updated and new_pdf_path:
             background_tasks.add_task(
                 trigger_pdf_processing,
-                product_id=existing_product_dict['internal_id'],
+                product_id=product_id,
                 pdf_path=new_pdf_path
             )
         
         # 6. 업데이트된 제품 정보 반환
-        updated_product_dict = {**existing_product_dict, **update_data}
-        return updated_product_dict
+        result = await session.execute(
+            text(find_product_id).bindparams(product_id=product_id)
+        )
+        return dict(result.mappings().one())
 
     except HTTPException:
         raise
     except Exception as e:
         await session.rollback()
         raise HTTPException(status_code=500, detail=f"제품 업데이트 중 오류 발생: {e}")
-
-from sqlalchemy import text, delete
-from core.query import find_product_id
 
 @router.delete("/{product_id}", status_code=204)
 async def delete_product(
@@ -378,9 +413,9 @@ async def delete_product(
                     # 파일 삭제 실패 시 500 에러 대신 경고 로그만 남김
                     print(f"Warning: Could not delete file {file_path}. Error: {e}")
 
-        # 3. DB에서 제품 레코드 삭제 (delete 구문 사용)
-        delete_stmt = delete(Product).where(Product.product_id == product_id)
-        await session.execute(delete_stmt)
+        # 3. DB에서 제품 레코드 삭제 (raw SQL 사용)
+        delete_query = text(delete_product)
+        await session.execute(delete_query, {'product_id': product_id})
         await session.commit()
         
         return
