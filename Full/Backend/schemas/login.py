@@ -7,12 +7,11 @@ class LoginRequest(BaseModel):
     password: str
 
 class Register(BaseModel):
+    companyId: int
     name: str
     email: str
-    companyId: str
     companyName:str
     department : str
-    languagePreference : str
     password : str
     role : str
 

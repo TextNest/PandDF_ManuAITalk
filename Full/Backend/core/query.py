@@ -1,11 +1,4 @@
 # ---------- 로그인 / 기업 회원 가입 ----------
-
-find_company= """
-SELECT id,name,existingDepartments
-FROM company
-WHERE code = :code
-"""
-
 find_company_and_department = """
 SELECT
     c.company_internal_id as id,
@@ -22,29 +15,63 @@ GROUP BY
 """
 
 regist_query = """
-INSERT INTO user (
-    user_id ,pw_hash,name,company_name,department,preferred_language,role
+INSERT INTO tb_admin (
+    email, password_hash, name, company_internal_id, department
 ) VALUES 
-(:user_id,:pw_hash,:name,:company_name,:department,:preferred_language,:role)
+(:email, :password_hash, :name, :company_internal_id,:department)
 """
 
 login_query = """
-SELECT company_name,pw_hash,name,role
-FROM user
-WHERE user_id = :user_id
+SELECT
+    a.admin_internal_id,
+    c.company_internal_id,
+    c.name as company_name,
+    a.password_hash as pw_hash,
+    a.name as name,
+    a.is_super as role
+FROM 
+    tb_admin a
+    LEFT JOIN tb_company c
+    ON a.company_internal_id = c.company_internal_id
+WHERE
+    email = :email
 """
 
 user_query = """
-SELECT name
-FROM google_login
-WHERE email = :email
+SELECT
+    user_internal_id,
+    name
+FROM
+    tb_user
+WHERE
+    email = :email
 """
 
+user_regist_query = """
+INSERT INTO tb_user (
+    name, email
+) VALUES 
+(:name, :email)
+"""
+
+# ---------- 채팅 관련 ----------
+
 session_search ="""
-SELECT id,productId,session_id,lastMessage,messageCount,updatedAt,message
-FROM test_session
-WHERE email = :email
-ORDER BY updatedAt DESC"""
+SELECT 
+    id,
+    productId,
+    session_id,
+    lastMessage,
+    messageCount,
+    updatedAt,
+    message
+FROM
+    test_session
+WHERE
+    email = :email
+ORDER BY
+    updatedAt DESC
+"""
 
 find_message = """
 SELECT id,role,content,timestamp,feedback
@@ -105,6 +132,8 @@ SELECT productId as product_id
 FROM test_session
 WHERE session_id = :sid;
 """
+
+# ---------- report ----------
 
 reset_all_rep = """
 TRUNCATE TABLE test_report;
@@ -173,15 +202,17 @@ SELECT
 FROM
     test_faqs
 WHERE
-    faq_id=:faq_id
-;
+    faq_id=:faq_id;
 """
 
 # 질문 목록 조회(product_id)
 find_faq_questions_by_product = """
-SELECT question
-FROM test_faqs
-WHERE product_id = :product_id;
+SELECT 
+    question
+FROM
+    test_faqs
+WHERE
+    product_id = :product_id;
 """
 
 # 생성

@@ -31,7 +31,6 @@ export default function RegisterPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [department, setDepartment] = useState('');
   const [customDepartment, setCustomDepartment] = useState('');
-  const [languagePreference, setLanguagePreference] = useState('ko');
 
   // 가입 코드 검증
   const handleVerifyCode = async (e: FormEvent) => {
@@ -95,7 +94,6 @@ export default function RegisterPage() {
         companyId: verifiedCompany?.id,
         companyName: verifiedCompany?.name,
         department: finalDepartment,
-        languagePreference,
         password,
         role: 'company_admin',
       };
@@ -136,7 +134,6 @@ export default function RegisterPage() {
     setConfirmPassword('');
     setDepartment('');
     setCustomDepartment('');
-    setLanguagePreference('ko');
   };
 
   return (
@@ -308,33 +305,6 @@ export default function RegisterPage() {
                   </div>
                 </div>
               )}
-
-              {/* 선호 언어 */}
-              <div className={styles.field}>
-                <label>선호 언어 *</label>
-                <div className={styles.radioGroup}>
-                  <label className={styles.radioLabel}>
-                    <input
-                      type="radio"
-                      name="language"
-                      value="ko"
-                      checked={languagePreference === 'ko'}
-                      onChange={(e) => setLanguagePreference(e.target.value)}
-                    />
-                    <span>🇰🇷 한국어</span>
-                  </label>
-                  <label className={styles.radioLabel}>
-                    <input
-                      type="radio"
-                      name="language"
-                      value="en"
-                      checked={languagePreference === 'en'}
-                      onChange={(e) => setLanguagePreference(e.target.value)}
-                    />
-                    <span>🇺🇸 English</span>
-                  </label>
-                </div>
-              </div>
 
               {/* 비밀번호 */}
               <div className={styles.field}>
