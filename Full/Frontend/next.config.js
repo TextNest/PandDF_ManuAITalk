@@ -3,12 +3,6 @@ const nextConfig = {
   // React Strict Mode 활성화
   reactStrictMode: true,
 
-  devIndicators: {
-    allowedDevOrigins: [
-      
-      'preactive-beryline-despina.ngrok-free.dev']
-  },
-
   // 이미지 최적화 설정
   images: {
     remotePatterns: [

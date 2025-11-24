@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/features/auth/hooks/useAuth';
 import SuperAdminSidebar from '@/components/layout/SuperAdminSidebar/SuperAdminSidebar';
-import { LogOut } from 'lucide-react';
+import { LogOut, Menu } from 'lucide-react'; // Menu 아이콘 추가
 import styles from './superadmin-layout.module.css';
 
 export default function SuperAdminLayout({
@@ -14,6 +14,7 @@ export default function SuperAdminLayout({
 }) {
   const router = useRouter();
   const { user, isAuthenticated, logout } = useAuth();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // 사이드바 상태
 
   useEffect(() => {
     // 로그인 안 되어있으면 로그인 페이지로
@@ -40,9 +41,23 @@ export default function SuperAdminLayout({
 
   return (
     <div className={styles.superAdminLayout}>
-      <SuperAdminSidebar />
+      {/* 사이드바 컴포넌트에 상태 전달 */}
+      <SuperAdminSidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+      
+      {/* 모바일 백드롭 */}
+      {isSidebarOpen && <div className={styles.backdrop} onClick={() => setIsSidebarOpen(false)} />}
+
       <div className={styles.mainContent}>
         <header className={styles.header}>
+          {/* 햄버거 메뉴 버튼 (모바일에서만 표시) */}
+          <button 
+            className={styles.menuButton} 
+            onClick={() => setIsSidebarOpen(true)}
+            title="메뉴 열기"
+          >
+            <Menu size={24} />
+          </button>
+
           <h1 className={styles.title}>슈퍼 관리자</h1>
           <div className={styles.userMenu}>
             <div className={styles.userInfo}>

@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { Move3d, Camera } from 'lucide-react';
 import ARUI from '@/components/ar/ARUI';
 import ARScene, { ARSceneHandle } from '@/components/ar/ARScene';
-import PlacedItemsCard from '@/components/ar/PlacedItemsCard'; // Import the card
+import PlacedItemsCard from '@/components/ar/PlacedItemsCard';
+import ARSummaryModal from '@/components/ar/ARSummaryModal'; // ARSummaryModal import
 import styles from './simulation-page.module.css';
 import { useARStore } from '@/store/useARStore';
 import { toast } from '@/store/useToastStore';
@@ -18,21 +19,21 @@ export default function SimulationPage() {
   const rawProductId = params.product_Id ? (params.product_Id as string[])[0] : undefined;
   const productId = rawProductId ? decodeURIComponent(rawProductId) : undefined;
 
-  // Use individual selectors for Zustand state to ensure correct re-renders
   const isARActive = useARStore(state => state.isARActive);
   const setARActive = useARStore(state => state.setARActive);
   const selectedFurniture = useARStore(state => state.selectedFurniture);
   const selectFurniture = useARStore(state => state.selectFurniture);
-  // const setDebugMessage = useARStore(state => state.setDebugMessage); // Debug message removed
+  const endARCounter = useARStore(state => state.endARCounter); // endARCounter 추가
+  const placedItems = useARStore(state => state.placedItems); // placedItems 추가
+  const reset = useARStore(state => state.reset); // reset 함수 추가
+
+  const [isSummaryModalOpen, setSummaryModalOpen] = useState(false); // 모달 상태 추가
 
   const arSceneRef = useRef<ARSceneHandle>(null);
   const uiOverlayRef = useRef<HTMLDivElement>(null);
   const lastUITouchTimeRef = useRef(0);
 
-  // This effect ONLY sets the initial furniture in the store
   useEffect(() => {
-    // On component mount, always clear the previous selection
-    // unless we are about to set a new one from the URL.
     if (!productId) {
       selectFurniture(null);
     }
@@ -40,7 +41,7 @@ export default function SimulationPage() {
     if (productId) {
       const fetchInitialProduct = async () => {
         try {
-          console.log("Fetching product with id:", productId); // Add console.log for debugging
+          console.log("Fetching product with id:", productId); // Debug code preserved
           const product = await apiClient.get<Product>(`/api/products/${productId}`);
           const mappedFurniture: FurnitureItem = {
             id: product.data.product_id ?? '',
@@ -49,21 +50,42 @@ export default function SimulationPage() {
             width_mm: product.data.width_mm ?? undefined,
             height_mm: product.data.height_mm ?? undefined,
             depth_mm: product.data.depth_mm ?? undefined,
-            // Add non-mm properties for ARUI compatibility
             width: product.data.width_mm ? product.data.width_mm / 1000 : 0,
-            height: product.data.depth_mm ? product.data.depth_mm / 1000 : 0, // 높이(H)는 depth_mm 사용
-            depth: product.data.height_mm ? product.data.height_mm / 1000 : 0, // 깊이(D)는 height_mm 사용
+            height: product.data.depth_mm ? product.data.depth_mm / 1000 : 0,
+            depth: product.data.height_mm ? product.data.height_mm / 1000 : 0,
           };
           selectFurniture(mappedFurniture);
-          console.log("Mapped furniture for AR:", mappedFurniture); // Test code
+          console.log("Mapped furniture for AR:", mappedFurniture); // Debug code preserved
         } catch (err) {
           console.error("Failed to fetch initial product", err);
-          selectFurniture(null); // Clear selection on error
+          selectFurniture(null);
         }
       };
       fetchInitialProduct();
     }
   }, [productId, selectFurniture]);
+
+  const prevIsARActive = useRef(isARActive);
+
+  useEffect(() => {
+    // isARActive가 true에서 false로 변경되었을 때를 감지
+    if (prevIsARActive.current && !isARActive) {
+      console.log("AR session has ended. Checking placed items:", placedItems.length); // Debug code
+      if (placedItems.length > 0) {
+        setSummaryModalOpen(true);
+      } else {
+        reset();
+      }
+    }
+    prevIsARActive.current = isARActive;
+  }, [isARActive, placedItems, reset]);
+
+  // 컴포넌트가 언마운트될 때 스토어를 리셋하는 useEffect 추가
+  useEffect(() => {
+    return () => {
+      reset();
+    };
+  }, [reset]);
 
   const handleStartAR = async () => {
     if (!('xr' in navigator)) {
@@ -80,23 +102,21 @@ export default function SimulationPage() {
     setARActive(true);
   };
 
+  const handleCloseModal = () => {
+    setSummaryModalOpen(false);
+    reset(); // 모달 닫을 때 스토어 상태 초기화
+  };
+
   return (
     <div className={`${styles.page} ${isARActive ? styles.arActive : ''}`}>
-      {/* The AR Scene is now a sibling to the UI, not a child of the main content */}
       <div className={styles.arSceneWrapper}>
         <ARScene ref={arSceneRef} uiOverlayRef={uiOverlayRef} lastUITouchTimeRef={lastUITouchTimeRef} />
       </div>
 
-      {/* This is the dedicated root for the DOM overlay */}
       <div ref={uiOverlayRef} className={styles.arOverlayContainer}>
-        {/* The ARUI component is the only child of the overlay root */}
         <ARUI lastUITouchTimeRef={lastUITouchTimeRef} />
-        {/* The PlacedItemsCard should also be part of the overlay */}
         <PlacedItemsCard />
       </div>
-
-      {/* The placed items card is now completely separate from the overlay */}
-      {/* <PlacedItemsCard /> */}
 
       <header className={styles.header}>
         <div className={styles.headerTitle}>
@@ -110,7 +130,6 @@ export default function SimulationPage() {
 
       <main className={styles.main}>
         <div className={styles.simulationContainer}>
-          {/* The ARScene wrapper is moved out, placeholder remains */}
           <div className={styles.placeholder}>
             <button
               className={styles.arButton}
@@ -171,6 +190,12 @@ export default function SimulationPage() {
           </div>
         </aside>
       </main>
+      
+      <ARSummaryModal
+        isOpen={isSummaryModalOpen}
+        onClose={handleCloseModal}
+        items={placedItems}
+      />
     </div>
   );
 }

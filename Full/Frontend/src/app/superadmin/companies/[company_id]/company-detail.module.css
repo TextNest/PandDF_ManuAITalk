@@ -1,0 +1,152 @@
+/* app/superadmin/companies/[company_id]/company-detail.module.css */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 4rem;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem; /* 간격 조정 */
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.titleGroup {
+  text-align: center;
+}
+
+.titleGroup h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.titleGroup p {
+  color: var(--text-secondary);
+}
+
+/* --- 새로운 상단 액션 버튼 스타일 --- */
+.bulkActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+}
+
+.selectionCount {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* 새로운 버튼 그룹 스타일 */
+.actionButtons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.editButton {
+  background-color: var(--color-primary-light); /* 주황색 계열 (예: #FFBF00의 밝은 버전) */
+  color: var(--color-primary-dark);
+}
+
+.editButton:hover {
+  background-color: var(--color-primary); /* 호버 시 더 진한 주황색 */
+  color: white;
+}
+
+
+
+.content {
+  background-color: white;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tableContainer {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table th {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  background-color: #f9fafb;
+}
+
+/* 체크박스 컬럼 너비 조정 */
+.table th:first-child, .table td:first-child {
+  width: 4rem;
+  text-align: center;
+}
+
+.table td {
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+/* 상태 컬럼만 중앙 정렬 */
+.table th:nth-child(6), .table td:nth-child(6) {
+  text-align: center;
+}
+
+.statusBadge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.statusBadge.active {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+.statusBadge.inactive {
+  background-color: #f3f4f6;
+  color: #6b7280;
+}
+
+.noData {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-secondary);
+}
