@@ -2,7 +2,6 @@ from langchain_openai import OpenAIEmbeddings
 import os  
 class path:
     FAISS_INDEX_PATH = "data\langchain_db"
-    DOCSTORE_PATH = "data/docstore.pkl"
     IMAGE_STORE_PATH = "data/image_store.pkl"
     PAGE_IMAGES_DIR = "data/page_images"
     UPLOAD_FILES_DIR = "data/upload"

@@ -85,9 +85,6 @@ class  ChatBotAgent:
         llm_with_tools = self.llm.bind_tools(self.tools)
         def agent_node(state):
             system_msg = SystemMessage(agent_prompt)
-#             system_msg = SystemMessage(
-#                 content=system_msg.format(product_id=state["product_id"])
-# )
             response = llm_with_tools.with_config({"run_name":"final_answer"}).invoke([system_msg]+state["messages"])
             return {"messages":[response]}
 

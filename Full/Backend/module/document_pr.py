@@ -31,7 +31,7 @@ import subprocess
 import sys
 from pathlib import Path
 from sqlalchemy import text
-
+from module.convert import re_embed_with_langchain
 # --- 로깅 설정 ------------------------------------------------
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -213,7 +213,7 @@ async def trigger_pdf_processing(product_id: str, pdf_path: str) -> None:
                 product_id,
                 doc_id,
             )
-            await re_embed_with_docstore()
+            await re_embed_with_langchain() ## 기본 faiss -> 랭체인 faiss 변환 함수
         else:
             await session.execute(
                 update_query,

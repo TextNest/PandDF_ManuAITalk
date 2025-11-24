@@ -1,32 +1,37 @@
 import pickle
 from langchain_classic.chains.retrieval import create_retrieval_chain
 from langchain_classic.chains.combine_documents import create_stuff_documents_chain
-
-from langchain_classic.chains.history_aware_retriever import create_history_aware_retriever
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder, PromptTemplate
-
+from langchain_classic.retrievers import ContextualCompressionRetriever
 from langchain_core.chat_history import InMemoryChatMessageHistory
-from langchain_classic.retrievers.multi_vector import MultiVectorRetriever
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_community.vectorstores import FAISS
 from core.config import path,load
 import os
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_openai import ChatOpenAI
-from langchain_openai import OpenAIEmbeddings
 from langchain_classic.retrievers.multi_query import MultiQueryRetriever
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_core.callbacks.manager import CallbackManagerForRetrieverRun
-
 from langchain_core.runnables import RunnableLambda
+from langchain_cohere import CohereRerank
+
 QA_SYSTEM_PROMPT =  """당신은 제품 매뉴얼 전문가입니다.
-            검색된 내용과 대화 기록을 종합하여 사용자의 질문에 답변하세요. 그리고 어떤 페이지에 있다고만 대답하는 것이 아닌 자세하게 대답을 해주세요.
-            만약 검색된 내용에서 사용자의 질문과 직접 관련된 정보를 찾을 수 없다면, "관련 정보를 찾을 수 없습니다.'라고 답변하세요.
-                
-            **중요**: 검색된 내용에 '(관련 이미지: 경로)'가 포함되어 있다면, 답변 작성 시 해당 내용을 참고하여 적절한 위치에 이미지를 삽입해주세요. 그리고 이미지 태그의 앞과 뒤에는 반드시 줄바꿈 문자 2개(\\n\\n)를 넣어서 텍스트와 분리해주세요.
-            이미지 삽입 형식: `![이미지 설명](경로)`
-            
-            검색된 내용:\n{context}"""
+검색된 내용과 대화 기록을 종합하여 사용자의 질문에 답변하세요.
+단순히 페이지만 언급하지 말고, 내용을 상세하게 설명해야 합니다.
+만약 검색된 내용에서 관련 정보를 찾을 수 없다면, "관련 정보를 찾을 수 없습니다."라고 답변하세요.
+
+**[이미지 삽입 절대 규칙]**
+1. 검색된 내용에 '(관련 이미지: 경로)' 형식의 정보가 있다면, 답변의 적절한 위치에 이미지를 반드시 삽입하세요.
+2. **절대 '바로가기 링크' 형식(`[설명](경로)`)으로 작성하지 마세요.** 반드시 이미지가 화면에 보이도록 **`!`(느낌표)**를 붙여야 합니다.
+3. 이미지 태그의 앞과 뒤에는 반드시 **빈 줄을 두 번 추가하여(Enter 두 번)** 본문과 명확히 분리하세요.
+
+**[이미지 작성 예시]**
+- (X) 잘못된 형식: [이미지 설명](경로)  <- 이렇게 하지 마세요.
+- (O) 올바른 형식: ![이미지 설명](경로)  <- 반드시 이렇게 하세요.
+
+검색된 내용:
+{context}
+"""
 load.envs()
 api_key = os.getenv("GEMINI_API_KEY")
 embeddings = GoogleGenerativeAIEmbeddings(model="text-embedding-004",api_key = api_key)
@@ -47,19 +52,27 @@ class HybridRAGChain:
             allow_dangerous_deserialization=True
         )
         self.pid = pid
-        with open(path.DOCSTORE_PATH, "rb") as f:
-            self.docstore = pickle.load(f)
 
         self.llm = ChatGoogleGenerativeAI(model = "gemini-2.5-flash",temperature=0,max_output_tokens=1024)
 
-        self.base_retriever = self.vectorstore.as_retriever(
-            search_type="mmr",
-            search_kwargs={
-                'k': 6, 
-                'fetch_k': 500, 
-                'lambda_mult': 0.5,
-                'filter': {"doc_id": self.pid}
-            }
+        retriever = self.vectorstore.as_retriever(
+                search_type="mmr",
+                search_kwargs={
+                    'k': 20, 
+                    'fetch_k': 1000, 
+                    'lambda_mult': 0.5,
+                    'filter': {"doc_id": self.pid}
+                }
+            )
+        compressor = CohereRerank(
+            cohere_api_key=os.getenv("COHERE_API_KEY"),
+            model="rerank-multilingual-v3.0", 
+            top_n=5
+            )
+        
+        self.base_retriever = ContextualCompressionRetriever(
+            base_compressor=compressor,
+            base_retriever=retriever
         )
         
 

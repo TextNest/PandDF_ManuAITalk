@@ -24,6 +24,7 @@ langchain-openai
 langchain-google-genai
 langgraph
 langchain-core
+langchain-cohere
 
 # Document Processing (PDF, Images, OCR)
 PyMuPDF
