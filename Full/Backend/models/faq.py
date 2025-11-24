@@ -6,15 +6,15 @@ import base64
 
 Base = declarative_base()
 
-def generate_short_id() -> str:
+def generate_short_id() -> bytes:
     """
-    짧은 URL-safe UUID 생성 (22자)
+    BINARY(16) DB용 UUID 생성
     
     Returns:
-        22자 URL-safe 문자열 (예: "VQ6EAOKbQdSnFkRmVUQAAA")
+        16바이트 바이너리
     """
     uid = uuid.uuid4()
-    encoded = base64.urlsafe_b64encode(uid.bytes).rstrip(b'=').decode('ascii')
+    encoded = uid.bytes
     return encoded
 
 class FAQ(Base):

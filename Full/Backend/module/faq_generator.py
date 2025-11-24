@@ -10,7 +10,6 @@ from core.query import (
     update_faq_generation_log
 )
 from models.faq import generate_short_id
-from models.faq_generation_log import generate_short_uuid
 import numpy as np
 import logging
 from sentence_transformers import SentenceTransformer
@@ -289,7 +288,7 @@ class FAQGenerator:
             min_qa_pair_count: 제품별 최소 QA 쌍 개수 (예: 3 = 최소 3개의 QA 쌍 필요)
         """
         # [0] 생성 로그 시작
-        generation_id = generate_short_uuid()
+        generation_id = generate_short_id()
         
         log_query = text(create_faq_generation_log)
         log_params = {

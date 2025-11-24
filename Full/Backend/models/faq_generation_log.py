@@ -1,15 +1,9 @@
 from datetime import datetime
 from sqlalchemy import Column, Integer, String, DateTime, Enum, Index
 from sqlalchemy.ext.declarative import declarative_base
-import uuid
-import base64
+from models.faq import generate_short_id
 
 Base = declarative_base()
-
-def generate_short_uuid() -> str:
-    """Short UUID 생성 (22자)"""
-    uid = uuid.uuid4()
-    return base64.urlsafe_b64encode(uid.bytes).rstrip(b'=').decode('ascii')
 
 class FAQGenerationLog(Base):
     """FAQ 생성 이력 추적"""
@@ -37,5 +31,5 @@ class FAQGenerationLog(Base):
     
     def __init__(self, **kwargs):
         if 'generation_id' not in kwargs:
-            kwargs['generation_id'] = generate_short_uuid()
+            kwargs['generation_id'] = generate_short_id()
         super().__init__(**kwargs)

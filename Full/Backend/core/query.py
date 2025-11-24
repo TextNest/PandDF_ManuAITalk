@@ -1,10 +1,31 @@
+# ---------- 로그인 / 기업 회원 가입 ----------
+
 find_company= """
 SELECT id,name,existingDepartments
 FROM company
 WHERE code = :code
 """
+
+find_company_and_department = """
+SELECT
+    c.company_internal_id as id,
+    c.name,
+    GROUP_CONCAT(DISTINCT a.department SEPARATOR ',') as existingDepartments
+FROM
+    tb_company c
+    LEFT JOIN tb_admin a
+    ON c.company_internal_id = a.company_internal_id
+WHERE
+    c.code = :code
+GROUP BY
+    c.name
+"""
+
 regist_query = """
-INSERT INTO user (user_id ,pw_hash,name,company_name,department,preferred_language,role)VALUES (:user_id,:pw_hash,:name,:company_name,:department,:preferred_language,:role)
+INSERT INTO user (
+    user_id ,pw_hash,name,company_name,department,preferred_language,role
+) VALUES 
+(:user_id,:pw_hash,:name,:company_name,:department,:preferred_language,:role)
 """
 
 login_query = """

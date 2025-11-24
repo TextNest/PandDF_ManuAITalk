@@ -15,14 +15,17 @@ class Register(BaseModel):
     languagePreference : str
     password : str
     role : str
+
 class FindCode(BaseModel):
     code:str
+
 class CompayCodeResponse(BaseModel):
-    id:str
+    id:int
     name:str
     existingDepartments:List[str]   
     class Config:
         from_attributes = True
+
 class AuthCodeRequest(BaseModel):
     code: str
     redirect_uri: str

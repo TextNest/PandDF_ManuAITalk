@@ -8,7 +8,7 @@ from core.auth import create_access_token,verify_password,get_password_hash,get_
 from core.db_config import get_session
 from dotenv import load_dotenv
 from schemas.login import LoginRequest,Register,FindCode,CompayCodeResponse,companyInfo,AuthCodeRequest
-from core.query import find_company,regist_query,login_query,user_query
+from core.query import find_company_and_department,regist_query,login_query,user_query
 
 load_dotenv()
 client_id = os.getenv("clinet_id")
@@ -20,17 +20,18 @@ router = APIRouter()
 @router.post("/register/code",response_model=CompayCodeResponse)
 async def regist_with_code(code:FindCode,session:AsyncSession=Depends(get_session)):
     print(code)
-    result = await session.execute(text(find_company),
+    result = await session.execute(text(find_company_and_department),
     params={"code":code.code})
     code_row = result.mappings().one_or_none()
     code_row_dict = dict(code_row)
     print(code_row_dict['existingDepartments'][0])
-    if 'existingDepartments' in code_row_dict and isinstance(code_row_dict['existingDepartments'], str):
-        departments_str = code_row_dict['existingDepartments'].strip()
+    if 'existingDepartments' in code_row_dict and code_row_dict['existingDepartments']:
+        departments_str = str(code_row_dict['existingDepartments']).strip()
         try:
-            parsed_list = json.loads(departments_str)
-            code_row_dict['existingDepartments'] = parsed_list
-            print("Parsed existingDepartments:", parsed_list[0])
+            if departments_str:
+                code_row_dict['existingDepartments'] = departments_str.split(',')
+            else:
+                code_row_dict['existingDepartments'] = []
         except json.JSONDecodeError as e:
             print(f"JSON 파싱 실패 (Data was not valid JSON string): {e}") 
             code_row_dict['existingDepartments'] = []
