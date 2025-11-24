@@ -50,6 +50,7 @@ requests
 python-multipart
 sentence-transformers
 aiofiles
+pydantic[email]
 
 # 전처리 관련
 google-genai
