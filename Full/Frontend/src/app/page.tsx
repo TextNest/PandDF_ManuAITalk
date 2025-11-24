@@ -3,18 +3,15 @@
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/features/auth/hooks/useAuth';
 // 1. 아이콘 추가 (History, Building 등)
-import { Sparkles, QrCode, Shield, Settings, History, Building, Box } from 'lucide-react'; 
+import { Sparkles, QrCode, Shield, Settings, History, Building, Box, LogOut } from 'lucide-react'; 
 import { useState, useEffect } from 'react';
 import SearchBar from '@/components/home/SearchBar/SearchBar';
-import RecentSearches from '@/components/home/RecentSearches/RecentSearches';
-import CategoryGrid from '@/components/home/CategoryGrid/CategoryGrid';
-import PopularProducts from '@/components/home/PopularProducts/PopularProducts';
 import styles from './page.module.css';
 import { toast } from '@/store/useToastStore';
 
 export default function HomePage() {
   const router = useRouter();
-  const { isAuthenticated, user } = useAuth(); // 👈 로그인 상태
+  const { isAuthenticated, user, logout } = useAuth(); // logout 함수 가져오기
   const [showDevTools, setShowDevTools] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -79,6 +76,11 @@ export default function HomePage() {
     router.push('/admin/login');
   };
 
+  const handleLogout = () => {
+    logout();
+    router.push('/login');
+  };
+
   // 🛑 2. 로그인 상태에 따라 버튼을 렌더링하는 함수
   const renderAuthButton = () => {
     
@@ -139,6 +141,21 @@ export default function HomePage() {
     <div className={styles.page}>
       {/* 히어로 섹션 */}
       <section className={styles.hero}>
+        {isAuthenticated && user && (
+          <div className={styles.topActions}>
+            <div className={styles.userInfo}>
+              <span className={styles.userName}>{user.name || '사용자'}님</span>
+            </div>
+            <button
+              className={styles.logoutButton}
+              onClick={handleLogout}
+              title="로그아웃"
+            >
+              <LogOut size={18} />
+              <span className={styles.logoutText}>로그아웃</span>
+            </button>
+          </div>
+        )}
         <div className={styles.heroBackground}>
           <div className={styles.circle1}></div>
           <div className={styles.circle2}></div>
@@ -180,26 +197,12 @@ export default function HomePage() {
             {/* 🛑 3. 위에서 만든 함수를 호출해 버튼 표시 */}
             {renderAuthButton()}
             
-          </div>
 
-          <p className={styles.hint}>
-            💡 로그인 없이도 사용 가능하지만, 로그인하면 대화 기록이 저장됩니다
-          </p>
-
-          {/* 스크롤 인디케이터 (기존과 동일) */}
-          <div className={styles.scrollIndicator}>
-            <span className={styles.scrollText}>아래로 스크롤</span>
-            <div className={styles.scrollArrow}>↓</div>
+            
           </div>
         </div>
       </section>
-
-      {/* --- 이하 섹션 (기존과 동일) --- */}
       
-      <RecentSearches />
-      <CategoryGrid />
-      <PopularProducts />
-
       {/* 푸터 (기존과 동일) */}
       <footer className={styles.footer}>
         <div className={styles.footerContent}>

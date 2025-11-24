@@ -9,6 +9,8 @@ from module import Scheduler_ARP
 from core.db_config import engine
 from models.base import Base
 from models.product import Product
+from models.company import Company
+from models.admin import Admin
 import os
 
 
@@ -90,5 +92,6 @@ templates = Jinja2Templates(directory="templates")
 app.include_router(chat.router, tags=["chat"])
 app.include_router(login.router, tags=["login"],prefix="/api")
 app.include_router(ar_models.router, tags=["ar_models"], prefix="/api")
-app.include_router(products.router, tags=["products"], prefix="/api/products")
+app.include_router(products.router, tags=["products"], prefix="/api/products") 
 app.include_router(faq.router, tags=["faq"])
+app.include_router(superadmin.router, tags=["superadmin"], prefix="/api/superadmin") 

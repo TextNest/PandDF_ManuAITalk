@@ -1,0 +1,145 @@
+/* Full/Frontend/src/components/ar/ARSummaryModal.module.css */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.modal {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: slide-up 0.3s ease-out;
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.header h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+  padding: 0.25rem;
+}
+.closeButton:hover {
+  color: #333;
+}
+
+.content p {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.itemList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #f9f9f9;
+}
+
+.item:not(:last-child) {
+  margin-bottom: 0.75rem;
+}
+
+.itemName {
+  font-weight: 600;
+  color: #444;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.chatButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #667eea;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+  flex-shrink: 0; /* 공간이 부족해도 버튼이 줄어들지 않도록 함 */
+}
+
+.chatButton:hover {
+  background-color: #5a67d8;
+}
+
+.emptyMessage {
+  text-align: center;
+  padding: 2rem 0;
+  color: #888;
+}
+
+.footer {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+  text-align: right;
+}
+
+.footerCloseButton {
+  background-color: #e2e8f0;
+  color: #4a5568;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.footerCloseButton:hover {
+  background-color: #cbd5e0;
+}

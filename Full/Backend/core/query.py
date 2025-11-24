@@ -258,3 +258,76 @@ UPDATE test_products
 SET analysis_status = :analysis_status
 WHERE product_id = :product_id;
 """
+
+# ---------- 슈퍼관리자 쿼리 ----------
+# 특정 기업 ID에 소속된 관리자 목록을 조회하는 쿼리
+GET_ADMINS_BY_COMPANY_ID_SQL = """
+SELECT
+    admin_internal_id,
+    company_internal_id,
+    email,
+    name,
+    department,
+    job_title,
+    is_super,
+    is_active,
+    created_at,
+    updated_at
+FROM tb_admin
+WHERE company_internal_id = :company_id
+"""
+
+# 특정 기업 ID로 기업 정보를 조회하는 순수 SQL 쿼리
+GET_COMPANY_BY_ID_SQL = """
+SELECT
+    c.company_internal_id,
+    c.name,
+    c.code,
+    c.contact,
+    c.is_active,
+    c.created_at,
+    c.updated_at,
+    (SELECT COUNT(*) FROM tb_admin a WHERE a.company_internal_id = c.company_internal_id) as admin_count
+FROM tb_company c
+WHERE c.company_internal_id = :company_id
+"""
+
+# 기업 목록과 각 기업별 관리자 수를 함께 조회하는 쿼리
+GET_COMPANIES_WITH_ADMIN_COUNT_SQL = """
+SELECT
+    c.company_internal_id,
+    c.name,
+    c.code,
+    c.contact,
+    c.is_active,
+    c.created_at,
+    c.updated_at,
+    (SELECT COUNT(*) FROM tb_admin a WHERE a.company_internal_id = c.company_internal_id) as admin_count
+FROM tb_company c
+ORDER BY c.created_at DESC
+LIMIT :limit OFFSET :skip
+"""
+
+# 관리자 상태(is_active)를 업데이트하는 쿼리
+UPDATE_ADMIN_STATUS_SQL = """
+UPDATE tb_admin
+SET is_active = :is_active
+WHERE admin_internal_id = :admin_id
+"""
+
+# 관리자를 ID로 삭제하는 쿼리
+DELETE_ADMIN_BY_ID_SQL = """
+DELETE FROM tb_admin
+WHERE admin_internal_id = :admin_id
+"""
+
+# 관리자 정보(이름, 이메일, 부서, 직책)를 업데이트하는 쿼리
+UPDATE_ADMIN_DETAILS_SQL = """
+UPDATE tb_admin
+SET
+    name = COALESCE(:name, name),
+    email = COALESCE(:email, email),
+    department = COALESCE(:department, department),
+    job_title = COALESCE(:job_title, job_title)
+WHERE admin_internal_id = :admin_id
+"""

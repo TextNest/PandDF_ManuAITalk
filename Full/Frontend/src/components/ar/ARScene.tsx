@@ -112,8 +112,6 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
         });
     }
 
-    useARStore.getState().reset();
-    
     if (rendererRef.current) {
       rendererRef.current.dispose();
       rendererRef.current = null;
@@ -129,7 +127,8 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
     }
 
     setDebugMessage('AR이 완전히 종료되었습니다.');
-  }, [measurement, furniture, setDebugMessage]);
+    setARActive(false); // 모든 정리가 끝난 후 AR 상태를 false로 설정
+  }, [measurement, furniture, setDebugMessage, setARActive]);
 
   const handleEndAR = useCallback(() => {
     setDebugMessage('AR 종료 요청 중...');
