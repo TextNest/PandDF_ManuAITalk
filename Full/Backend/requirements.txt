@@ -1,3 +1,5 @@
+# coding: utf-8
+
 #FASTAPI 및 서버관련 
 fastapi
 uvicorn[standard]
@@ -46,6 +48,7 @@ pydantic
 requests
 python-multipart
 sentence-transformers
+aiofiles
 
 # 전처리 관련
 google-genai

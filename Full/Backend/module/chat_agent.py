@@ -20,15 +20,11 @@ class AgentState(MessagesState):
     session_id : str
     tool_name: str
 
-catalog = {"SDH-E18KPA":"SDH-E18KPA_SDH-CP170E1_MANUAL",
-    "SIF-14SSWT":"2024년_SIF-14SSWT_W3514BL_D14BCSJ_BL2314_14JKS_MANUAL",
-    "SDH-E45KPA":"SDH-PM45_MANUAL"}  ## 데이터 베이스 추가시 변경 필요
 _rag_cache = {}
 def get_rag_chain(product_id: str) -> HybridRAGChain:
-    pdf_id = catalog.get(product_id,"")
     if product_id not in _rag_cache:
         print(f"RAG 체인 생성:[{product_id}]")
-        _rag_cache[product_id] = HybridRAGChain(pdf_id)
+        _rag_cache[product_id] = HybridRAGChain(product_id)
     else:
         print(f"[{product_id}] RAG 체인 재사용")
     return _rag_cache[product_id]

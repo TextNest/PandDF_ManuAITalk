@@ -213,6 +213,7 @@ async def trigger_pdf_processing(product_id: str, pdf_path: str) -> None:
                 product_id,
                 doc_id,
             )
+            await re_embed_with_docstore()
         else:
             await session.execute(
                 update_query,
