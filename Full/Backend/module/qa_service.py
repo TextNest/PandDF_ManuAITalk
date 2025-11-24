@@ -1,25 +1,41 @@
 import pickle
 from langchain_classic.chains.retrieval import create_retrieval_chain
 from langchain_classic.chains.combine_documents import create_stuff_documents_chain
-
-from langchain_classic.chains.history_aware_retriever import create_history_aware_retriever
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder, PromptTemplate
-
+from langchain_classic.retrievers import ContextualCompressionRetriever
 from langchain_core.chat_history import InMemoryChatMessageHistory
-from langchain_classic.retrievers.multi_vector import MultiVectorRetriever
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_community.vectorstores import FAISS
 from core.config import path,load
 import os
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_openai import ChatOpenAI
-from langchain_openai import OpenAIEmbeddings
 from langchain_classic.retrievers.multi_query import MultiQueryRetriever
-
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_core.callbacks.manager import CallbackManagerForRetrieverRun
+from langchain_core.runnables import RunnableLambda
+from langchain_cohere import CohereRerank
 
+QA_SYSTEM_PROMPT =  """당신은 제품 매뉴얼 전문가입니다.
+검색된 내용과 대화 기록을 종합하여 사용자의 질문에 답변하세요.
+단순히 페이지만 언급하지 말고, 내용을 상세하게 설명해야 합니다.
+만약 검색된 내용에서 관련 정보를 찾을 수 없다면, "관련 정보를 찾을 수 없습니다."라고 답변하세요.
+
+**[이미지 삽입 절대 규칙]**
+1. 검색된 내용에 '(관련 이미지: 경로)' 형식의 정보가 있다면, 답변의 적절한 위치에 이미지를 반드시 삽입하세요.
+2. **절대 '바로가기 링크' 형식(`[설명](경로)`)으로 작성하지 마세요.** 반드시 이미지가 화면에 보이도록 **`!`(느낌표)**를 붙여야 합니다.
+3. 이미지 태그의 앞과 뒤에는 반드시 **빈 줄을 두 번 추가하여(Enter 두 번)** 본문과 명확히 분리하세요.
+
+**[이미지 작성 예시]**
+- (X) 잘못된 형식: [이미지 설명](경로)  <- 이렇게 하지 마세요.
+- (O) 올바른 형식: ![이미지 설명](경로)  <- 반드시 이렇게 하세요.
+
+검색된 내용:
+{context}
+"""
 load.envs()
-embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+api_key = os.getenv("GEMINI_API_KEY")
+embeddings = GoogleGenerativeAIEmbeddings(model="text-embedding-004",api_key = api_key)
+api_key = os.getenv("GEMINI_API_KEY")
 # 세션 히스토리를 위한 인메모리 저장소
 store = {}
 def get_session_history(session_id: str):
@@ -27,7 +43,8 @@ def get_session_history(session_id: str):
         store[session_id] = InMemoryChatMessageHistory()
     return store[session_id]
 class HybridRAGChain:
-    def __init__(self,pid):
+    def __init__(self,pid,local_path="http://localhost:8000"):
+        self.base_url = local_path
         self.embeddings = embeddings
         self.vectorstore = FAISS.load_local(
             path.FAISS_INDEX_PATH,
@@ -35,34 +52,67 @@ class HybridRAGChain:
             allow_dangerous_deserialization=True
         )
         self.pid = pid
-        with open(path.DOCSTORE_PATH, "rb") as f:
-            self.docstore = pickle.load(f)
 
-        self.llm = ChatGoogleGenerativeAI(model = "gemini-2.5-flash",temperature=0)
+        self.llm = ChatGoogleGenerativeAI(model = "gemini-2.5-flash",temperature=0,max_output_tokens=1024)
 
-        self.base_retriever = MultiVectorRetriever(
-            vectorstore= self.vectorstore, 
-            docstore=self.docstore, 
-            id_key="doc_id",
-            search_kwargs={'k': 5, 'filter': {"product_id": self.pid}}
+        retriever = self.vectorstore.as_retriever(
+                search_type="mmr",
+                search_kwargs={
+                    'k': 20, 
+                    'fetch_k': 1000, 
+                    'lambda_mult': 0.5,
+                    'filter': {"doc_id": self.pid}
+                }
+            )
+        compressor = CohereRerank(
+            cohere_api_key=os.getenv("COHERE_API_KEY"),
+            model="rerank-multilingual-v3.0", 
+            top_n=5
+            )
+        
+        self.base_retriever = ContextualCompressionRetriever(
+            base_compressor=compressor,
+            base_retriever=retriever
         )
+        
 
         self.combined_retriever = MultiQueryRetriever.from_llm(
                 retriever= self.base_retriever, llm=self.llm
             )
 
-        
-        qa_prompt = ChatPromptTemplate.from_messages([
-            ("system", """당신은 제품 매뉴얼 전문가입니다.
-            검색된 내용과 대화 기록을 종합하여 사용자의 질문에 답변하세요. 그리고 어떤 페이지에 있다고만 대답하는 것이 아닌 자세하게 대답을 해주세요
-             만약 검색된 내용에서 사용자의 질문과 직접 관련된 정보를 찾을 수 없다면, "관련 정보를 찾을 수 없습니다.'라고 답변하세요
+
+        def inject_image_paths(docs):
+            for doc in docs:
+                if "image_file" in doc.metadata and doc.metadata["image_file"]:
+                   
+                    img_path = doc.metadata["image_file"].replace("\\", "/")
+                    server_path = img_path .replace(
+                        "data/caption_images/", 
+                        f"{self.base_url}/images/"
+                    )
+                    doc.page_content += f"\n\n(관련 이미지: {server_path})"
+            return docs
             
-            검색된 내용:\n{context}"""),
+        
+        def extract_query(x):
+            if isinstance(x, dict):
+                return x.get("input", "")
+            return x
+
+      
+        self.enhanced_base_retriever =RunnableLambda(extract_query)| self.base_retriever | RunnableLambda(inject_image_paths)
+        self.enhanced_combined_retriever = RunnableLambda(extract_query)|self.combined_retriever | RunnableLambda(inject_image_paths)
+        # -----------------------------
+
+        qa_prompt = ChatPromptTemplate.from_messages([
+            ("system", QA_SYSTEM_PROMPT),
             MessagesPlaceholder(variable_name="chat_history"), ("human", "{input}"),
         ])
         question_answer_chain = create_stuff_documents_chain(self.llm, qa_prompt)
-        rag_chain = create_retrieval_chain(self.combined_retriever,question_answer_chain)
-        light_chain = create_retrieval_chain(self.base_retriever,question_answer_chain)
+        
+        # Use ENHANCED retrievers here
+        light_chain = create_retrieval_chain(self.enhanced_base_retriever, question_answer_chain)
+        rag_chain = create_retrieval_chain(self.enhanced_combined_retriever, question_answer_chain)
         
         self.chain_with_history = RunnableWithMessageHistory(
             runnable=rag_chain, 
@@ -83,6 +133,7 @@ class HybridRAGChain:
         return check_context
     def invoke(self, query,session):
         initial_context = self.check(query)
+        print(initial_context,len(initial_context))
         if initial_context:
             print("검색 결과가 존재합니다. 결과를 출력 해드리겠습니다.")
             answer = self.light_with_history.invoke(
@@ -100,6 +151,7 @@ class HybridRAGChain:
             
             answer = self.chain_with_history.invoke(
             {"input": query},
-            config={"configurable": {"session_id": session}})
-        answer = answer.get("answer","")
+            config={"configurable": {"session_id": session}}
+        )
+            answer = answer.get("answer","")
         return {"answer": answer}

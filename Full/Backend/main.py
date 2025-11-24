@@ -1,7 +1,5 @@
 import asyncio
 from fastapi import FastAPI,Request, HTTPException
-from fastapi.responses import HTMLResponse
-from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from api import chat,login,admin,superadmin,ar_models, products, faq
@@ -38,19 +36,18 @@ async def on_startup():
     
     # 백그라운드 스케줄러 시작
     asyncio.create_task(Scheduler_ARP())
-
+app.mount("/images", StaticFiles(directory="data/caption_images"), name="caption_images")
 # CORS 설정
-# origins = [
-#     "http://localhost:3000",  
-#     "http://127.0.0.1:3000", 
-#     "https://subnotational-unmodified-myrl.ngrok-free.dev", # ngrok 테스트용
-#     "https://preactive-beryline-despina.ngrok-free.dev", # ngrok 테스트용 
-# ]
+origins = [
+    "http://localhost:3000",  
+    "http://127.0.0.1:3000", 
+    # "https://subnotational-unmodified-myrl.ngrok-free.dev", # ngrok 테스트용
+    # "https://preactive-beryline-despina.ngrok-free.dev", # ngrok 테스트용 
+]
 
 import os
 from fastapi.responses import FileResponse
 
-# ... (기존 코드 유지)
 
 app.add_middleware(
     CORSMiddleware,
@@ -71,22 +68,7 @@ async def add_cors_header(request: Request, call_next):
 
 
 
-templates = Jinja2Templates(directory="templates")
 
-# @app.get("/",response_class=HTMLResponse) # 리액트 연결 후 수정 예정 현재는 MVP를 위해서 임시로 작성 이후 router-> api로 풀더 이름 변경
-# async def main_page(request:Request):
-#     return templates.TemplateResponse("main.html",{"request":request})
-
-# @app.get("/login",response_class=HTMLResponse) # 리액트 연결 후 수정 예정 현재는 MVP를 위해서 임시로 작성 이후 router-> api로 풀더 이름 변경
-# async def main_page(request:Request):
-#     return templates.TemplateResponse("login.html",{"request":request})
-
-# @app.get("/register",response_class=HTMLResponse) # 리액트 연결 후 수정 예정 현재는 MVP를 위해서 임시로 작성 이후 router-> api로 풀더 이름 변경
-# async def main_page(request:Request):
-#     return templates.TemplateResponse("register.html",{"request":request})
-# @app.get("/chat/{pid}",response_class=HTMLResponse) # 리액트 연결 후 수정 예정 현재는 MVP를 위해서 임시로 작성 이후 router-> api로 풀더 이름 변경
-# async def main_page(request:Request,pid:str):
-#     return templates.TemplateResponse("chat.html",{"request":request,"pid":pid})
 
 
 app.include_router(chat.router, tags=["chat"])

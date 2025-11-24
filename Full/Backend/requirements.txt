@@ -1,3 +1,5 @@
+# coding: utf-8
+
 #FASTAPI 및 서버관련 
 fastapi
 uvicorn[standard]
@@ -22,6 +24,7 @@ langchain-openai
 langchain-google-genai
 langgraph
 langchain-core
+langchain-cohere
 
 # Document Processing (PDF, Images, OCR)
 PyMuPDF
@@ -46,6 +49,7 @@ pydantic
 requests
 python-multipart
 sentence-transformers
+aiofiles
 
 # 전처리 관련
 google-genai
