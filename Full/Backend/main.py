@@ -5,12 +5,18 @@ from fastapi.staticfiles import StaticFiles
 from api import chat,login,admin,superadmin,ar_models, products, faq
 from module import Scheduler_ARP
 from core.db_config import engine
-from models.base import Base
-from models.product import Product
-from models.company import Company
-from models.admin import Admin
 import os
 
+from models.base import Base
+from models.user import User
+from models.company import Company
+from models.admin import Admin
+from models.product import Product
+from models.faq import FAQ
+from models.faq_generation_log import FAQGenerationLog
+from models.session import ChatSession
+from models.message import ChatMessage
+from models.report import Report
 
 app = FastAPI() 
 
@@ -45,7 +51,6 @@ origins = [
     # "https://preactive-beryline-despina.ngrok-free.dev", # ngrok 테스트용 
 ]
 
-import os
 from fastapi.responses import FileResponse
 
 
