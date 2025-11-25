@@ -63,6 +63,7 @@ export default function ARUI({ lastUITouchTimeRef }: { lastUITouchTimeRef: React
       try {
         const response = await apiClient.get<Product[]>('/api/products', { signal });
         const mappedItems: FurnitureItem[] = response.data
+          .filter(p => p.model3d_url && p.status === 'completed') // AR에 배치 가능한 제품만 필터링
           .map(p => ({
             id: p.product_id || '',
             name: p.product_name || '',
@@ -71,8 +72,9 @@ export default function ARUI({ lastUITouchTimeRef }: { lastUITouchTimeRef: React
             height_mm: p.height_mm || 0,
             depth_mm: p.depth_mm || 0,
             width: (p.width_mm || 0) / 1000,
-            height: (p.depth_mm || 0) / 1000, // 높이는 depth_mm
-            depth: (p.height_mm || 0) / 1000,  // 깊이는 height_mm
+            height: (p.height_mm || 0) / 1000,
+            depth: (p.depth_mm || 0) / 1000,
+            status: p.status,
           }));
         setDbItems(mappedItems);
         setDebugMessage('가구 목록 로딩 완료.');

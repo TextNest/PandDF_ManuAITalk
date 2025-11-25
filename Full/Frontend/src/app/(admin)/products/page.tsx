@@ -13,6 +13,7 @@ import Button from '@/components/ui/Button/Button';
 import ProductList from '@/components/product/ProductList/ProductList';
 import { Product } from '@/types/product.types';
 import styles from './products-page.module.css';
+import apiClient from '@/lib/api/client'; // apiClient 임포트
 
 // 카테고리 타입을 문자열 기반으로 변경
 interface Category {
@@ -33,37 +34,30 @@ export default function ProductsPage() {
     const signal = abortController.signal;
 
     const fetchProducts = async () => {
-      const fetchOptions: RequestInit = {
-        headers: {
-          'ngrok-skip-browser-warning': 'true',
-        },
-        signal: signal, // Pass the signal to the fetch request
-      };
-
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+        // apiClient를 사용하여 인증된 요청 전송
+        const response = await apiClient.get('/api/products/admin', { signal });
         
-        // 제품 목록만 불러오기
-        const productsResponse = await fetch(`${apiUrl}/api/products`, fetchOptions);
-        if (!productsResponse.ok) {
-          const errorText = await productsResponse.text();
-          console.error("Products fetch failed:", errorText);
+        if (response.status !== 200) {
+          // apiClient는 에러를 자동으로 처리하지만, 만약을 위한 방어 코드
           throw new Error('제품 목록을 불러오는데 실패했습니다.');
         }
-        const productsData: Product[] = await productsResponse.json();
+
+        const productsData: Product[] = response.data;
         setProducts(productsData);
 
         // 제품 목록에서 카테고리 목록 동적 생성
-        const uniqueCategoryNames = [...new Set(productsData.map(p => p.category).filter(Boolean))]; // null이나 undefined 제외
+        const uniqueCategoryNames = [...new Set(productsData.map(p => p.category).filter(Boolean))];
         const categoryObjects: Category[] = uniqueCategoryNames.map(name => ({ id: name as string, name: name as string }));
         setCategories(categoryObjects);
 
       } catch (err: any) {
-        if (err.name === 'AbortError') {
-          // console.log('Fetch aborted'); // Removed console.log
+        // AbortError(fetch) 또는 CanceledError(axios)는 정상적인 취소이므로 무시
+        if (err.name === 'AbortError' || err.name === 'CanceledError') {
+          console.log('Fetch was canceled, this is expected in development.');
         } else {
           console.error("Error in fetchProducts:", err);
-          setError(err.message);
+          setError(err.message || '알 수 없는 오류가 발생했습니다.');
         }
       } finally {
         setLoading(false);
@@ -73,7 +67,7 @@ export default function ProductsPage() {
     fetchProducts();
 
     return () => {
-      abortController.abort(); // Abort the fetch request on component unmount
+      abortController.abort();
     };
   }, []);
 

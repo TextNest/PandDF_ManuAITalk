@@ -18,7 +18,7 @@ interface Admin {
   email: string;
   department: string | null;
   job_title: string | null;
-  is_active: 0 | 1;
+  is_active: boolean;
   created_at: string;
 }
 
@@ -104,7 +104,7 @@ export default function CompanyDetailPage() {
 
       // Optimistic UI Update
       if (action === 'activate' || action === 'deactivate') {
-        const newStatus = action === 'activate' ? 1 : 0;
+        const newStatus = action === 'activate' ? true : false;
         setAdmins(prevAdmins =>
           prevAdmins.map(admin =>
             selectedAdminIds.includes(admin.admin_internal_id)
@@ -191,19 +191,17 @@ export default function CompanyDetailPage() {
     <>
       <div className={styles.container}>
         <div className={styles.header}>
-        <Button variant="outline" onClick={() => router.back()}>
-          <ArrowLeft size={16} />
-          돌아가기
-        </Button>
-        <div className={styles.titleGroup}>
-          <h1>{company?.name}</h1>
-          <p>소속 관리자 목록</p>
+          <div className={styles.headerLeft}>
+            <Button variant="outline" onClick={() => router.back()}>
+              <ArrowLeft size={16} />
+              돌아가기
+            </Button>
+          </div>
+          <div className={styles.titleGroup}>
+            <h1>{company?.name}</h1>
+            <p>소속 관리자 목록</p>
+          </div>
         </div>
-        <Button variant="primary">
-          <UserPlus size={16} />
-          관리자 추가
-        </Button>
-      </div>
       
       {/* --- 상단 액션 버튼 그룹 --- */}
       <div className={styles.bulkActions}>
@@ -283,8 +281,8 @@ export default function CompanyDetailPage() {
                     <td>{admin.department || '-'}</td>
                     <td>{admin.job_title || '-'}</td>
                     <td>
-                      <span className={`${styles.statusBadge} ${admin.is_active === 1 ? styles.active : styles.inactive}`}>
-                        {admin.is_active === 1 ? '활성' : '비활성'}
+                      <span className={`${styles.statusBadge} ${admin.is_active ? styles.active : styles.inactive}`}>
+                        {admin.is_active ? '활성' : '비활성'}
                       </span>
                     </td>
                     <td>{new Date(admin.created_at).toLocaleDateString()}</td>

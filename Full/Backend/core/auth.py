@@ -50,17 +50,37 @@ def get_current_user(authorization: Optional[str] = Header(None))-> companyInfo:
     try:
         payload = jwt.decode(token,SECRET_KEY,algorithms=[ALGORITHM])
         role = payload.get("role")
+
+        if not role:
+            raise HTTPException(status_code=401, detail="인증 오류: 토큰에 'role' 정보가 없습니다.")
+
+        # 역할(role)에 따라 반환하는 정보 분기
         if role == "user":
+            # 일반 사용자
             print(payload.get("id"))
             unique_id = payload.get("id").split("_")[1]
             print(unique_id)
-            return {"name":payload.get("name"),"unique_id":unique_id}
+            return {
+                "name": payload.get("name"),
+                "email": payload.get("id"), # 기존 로직 유지 (id를 email 키에 반환)
+                "unique_id":unique_id
+            }
         elif role == "company_admin":
+            # 관리자 company_id 추가
             print(payload.get("id"))
             unique_id = payload.get("id").split("_")[1]
             print(unique_id)
-            return {"unique_id":unique_id,"name":payload.get("name"),"company_name":payload.get("company_name")}
-        if not role :
-            raise HTTPException(status_code=401,detail="인증 오류 : 토큰에 필수 정보가 없습니다.")
+            return {
+                "id": payload.get("id"),
+                "name": payload.get("name"),
+                "company_name": payload.get("company_name"),
+                "role": role,
+                "company_id": payload.get("company_id"),
+                "unique_id":unique_id
+            }
+        else:
+            # 예상치 못한 role일 경우
+            raise HTTPException(status_code=401, detail=f"알 수 없는 사용자 역할(role): {role}")
+
     except JWTError:
         raise HTTPException(status_code=401,detail="인증 오류 : 토큰이 유효하지 않거나 만료되었습니다.")

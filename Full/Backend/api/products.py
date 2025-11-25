@@ -10,11 +10,13 @@ from sqlalchemy import text, update
 from fastapi import Depends
 from typing import List
 from core.db_config import get_session
-from models.product import Product, AnalysisStatus
+from models.product import Product, Status
 from schemas.product import ProductCreate, ProductUpdate, Product as ProductSchema
 from module.document_pr import trigger_pdf_processing
+from core.auth import get_current_user
 from core.query import (
-    find_all_product, find_product_id, delete_product_query
+    find_all_product, find_product_id, delete_product_query, find_products_by_company_id,
+    find_product_with_company_name_by_id
 )
 
 router = APIRouter()
@@ -136,7 +138,7 @@ async def get_completed_products(session: AsyncSession = Depends(get_session)):
         result = await session.execute(
             text(find_all_product)
             # .options(selectinload(Product.category))
-            # .where(Product.analysis_status == AnalysisStatus.COMPLETED) # 임시로 필터 제거
+            # .where(Product.status == Status.COMPLETED) # 임시로 필터 제거
         )
         products = result.mappings().all()
         return [dict(row) for row in products]
@@ -173,7 +175,7 @@ async def create_product(
         image_url=product_data.image_url,
         pdf_path=product_data.pdf_path, # 임시 경로
         model3d_url=product_data.model3d_url,
-        analysis_status=AnalysisStatus.PENDING
+        status=Status.PENDING
     )
     
     try:
@@ -229,6 +231,35 @@ async def create_product(
         # unique 제약 조건 위반 등 DB 오류 처리
         raise HTTPException(status_code=500, detail=f"데이터베이스에 제품을 저장하는 중 오류가 발생했습니다: {e}")
 
+@router.get("/admin", response_model=List[ProductSchema])
+async def get_products_for_admin(
+    session: AsyncSession = Depends(get_session),
+    current_user: dict = Depends(get_current_user)
+):
+    """
+    [관리자 전용] 로그인된 회사 관리자의 소속 회사 제품 목록을 조회합니다.
+    """
+    user_role = current_user.get("role")
+    company_id = current_user.get("company_id")
+
+    # 회사 관리자만 접근 가능하도록 제한
+    if user_role != "company_admin" or not company_id:
+        raise HTTPException(
+            status_code=403,
+            detail="회사 관리자만 접근할 수 있습니다."
+        )
+
+    try:
+        # 회사 관리자용 쿼리 사용
+        result = await session.execute(
+            text(find_products_by_company_id),
+            {"company_id": company_id}
+        )
+        products = result.mappings().all()
+        return [dict(row) for row in products]
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"제품 목록을 불러오는 중 오류가 발생했습니다: {e}")
+
 @router.get("/{product_id}", response_model=ProductSchema)
 async def get_product(
     product_id: str,
@@ -238,7 +269,7 @@ async def get_product(
     특정 제품코드의 제품 정보를 조회합니다.
     """
     result = await session.execute(
-        text(find_product_id).bindparams(product_id=product_id)
+        text(find_product_with_company_name_by_id).bindparams(product_id=product_id)
     )
     product = result.mappings().one_or_none()
 
@@ -249,83 +280,93 @@ async def get_product(
 
 @router.put("/{product_id}", response_model=ProductSchema)
 async def update_product(
-    product_id: str, # 제품 코드를 식별자로 사용
+    product_id: str,
     product_data: ProductUpdate,
     session: AsyncSession = Depends(get_session),
-    background_tasks: BackgroundTasks = BackgroundTasks()
+    background_tasks: BackgroundTasks = BackgroundTasks(),
+    current_user: dict = Depends(get_current_user)
 ):
     """
-    기존 제품 정보를 업데이트합니다. PDF가 변경되면 분석을 다시 트리거하고 파일명을 제품 코드로 변경합니다.
+    기존 제품 정보를 업데이트합니다. 회사 관리자는 자기 회사 제품만 수정할 수 있습니다.
     """
+    user_role = current_user.get("role")
+    company_id = current_user.get("company_id")
+    # `id`는 'admin_123' 형식에서 숫자 ID만 추출
+    updated_by_str = current_user.get("id")
+    updated_by_id = int(updated_by_str.split('_')[1]) if updated_by_str and '_' in updated_by_str else None
+
+    if not company_id or not updated_by_id:
+        raise HTTPException(status_code=403, detail="제품을 수정할 권한이 없습니다.")
+        
     try:
-        # 1. 제품 조회 (text와 mappings 방식 유지)
+        # 1. 제품 조회
         find_stmt = text(find_product_id).bindparams(product_id=product_id)
         result = await session.execute(find_stmt)
         existing_product_row = result.mappings().one_or_none()
 
         if not existing_product_row:
             raise HTTPException(status_code=404, detail="Product not found")
-        
-        # RowMapping을 일반 딕셔너리로 변환
+
+        # 2. 소유권 확인 (회사 관리자인 경우)
+        if user_role == "company_admin" and existing_product_row.company_internal_id != company_id:
+            raise HTTPException(status_code=404, detail="Product not found")
+
         existing_product_dict = dict(existing_product_row)
 
-        # 2. 업데이트 데이터 준비
+        # 3. 업데이트 데이터 준비
         update_data = product_data.dict(exclude_unset=True)
 
+        # 'manufacturer'는 DB에 없으므로 제거 (혹시 Pydantic에 남아있을 경우)
+        update_data.pop('manufacturer', None)
+        
         # product_name이 빈 문자열인 경우 None으로 변환하여 DB에 NULL 값이 저장되도록 함
         if 'product_name' in update_data and update_data['product_name'] == '':
             update_data['product_name'] = None
             
         pdf_path_updated = 'pdf_path' in update_data and update_data['pdf_path'] != existing_product_dict.get('pdf_path')
         
-        # 3. PDF 파일명 변경 및 경로 업데이트 (PDF가 변경된 경우)
+        # 4. PDF 파일 처리 (필요 시)
         new_pdf_path = existing_product_dict.get('pdf_path')
         if pdf_path_updated and 'pdf_path' in update_data:
             try:
                 base_dir = os.path.dirname(__file__)
-                
-                # 이전 파일 삭제
                 if existing_product_dict.get('pdf_path'):
                     old_full_path = os.path.join(base_dir, "..", existing_product_dict['pdf_path'])
                     if os.path.exists(old_full_path):
                         os.remove(old_full_path)
-
-                # 새 파일명으로 변경
                 temp_pdf_path = update_data['pdf_path']
                 temp_full_path = os.path.join(base_dir, "..", temp_pdf_path)
-                
                 _, file_extension = os.path.splitext(temp_pdf_path)
                 new_filename = f"{product_id}{file_extension}"
                 new_relative_path = os.path.join("uploads", "pdfs", new_filename).replace('\\', '/')
                 new_full_path = os.path.join(base_dir, "..", new_relative_path)
-
                 os.rename(temp_full_path, new_full_path)
-                
-                # 업데이트할 데이터에 새 경로 반영
                 update_data['pdf_path'] = new_relative_path
                 new_pdf_path = new_relative_path
-
-            except FileNotFoundError:
-                raise HTTPException(status_code=404, detail=f"PDF 파일을 찾을 수 없습니다: {update_data['pdf_path']}")
             except Exception as e:
-                raise HTTPException(status_code=500, detail=f"PDF 파일명 변경 중 오류 발생: {e}")
+                raise HTTPException(status_code=500, detail=f"PDF 파일 처리 중 오류 발생: {e}")
 
-        # PDF가 변경되었다면 분석 상태를 PENDING으로 리셋
+        # PDF가 변경되면 상태를 PENDING으로 리셋
         if pdf_path_updated:
-            update_data['analysis_status'] = AnalysisStatus.PENDING
+            update_data['status'] = Status.PENDING # Enum 객체 사용
 
-        # 4. 제품 정보 업데이트
+        # 업데이트한 사용자 ID 및 시간 정보 추가
+        update_data['updated_by'] = updated_by_id
+        update_data['updated_at'] = datetime.now()
+
+        # 5. 제품 정보 업데이트
         if update_data:
-            # 동적 쿼리라서 ORM 사용(SQLAlchemy Core의 update)
             update_stmt = (
                 update(Product)
                 .where(Product.product_id == product_id)
-                .values(**update_data)
+                .values({
+                    getattr(Product, key): value for key, value in update_data.items()
+                })
             )
             await session.execute(update_stmt)
             await session.commit()
         
-        # 5. 백그라운드 작업 트리거 (PDF가 변경된 경우)
+        # 6. 백그라운드 작업 트리거
         if pdf_path_updated and new_pdf_path:
             background_tasks.add_task(
                 trigger_pdf_processing,
@@ -333,9 +374,9 @@ async def update_product(
                 pdf_path=new_pdf_path
             )
         
-        # 6. 업데이트된 제품 정보 반환
+        # 7. 업데이트된 제품 정보 반환
         result = await session.execute(
-            text(find_product_id).bindparams(product_id=product_id)
+            text(find_product_with_company_name_by_id).bindparams(product_id=product_id)
         )
         return dict(result.mappings().one())
 
@@ -348,13 +389,20 @@ async def update_product(
 @router.delete("/{product_id}", status_code=204)
 async def delete_product(
     product_id: str,
-    session: AsyncSession = Depends(get_session)
+    session: AsyncSession = Depends(get_session),
+    current_user: dict = Depends(get_current_user)
 ):
     """
-    특정 제품코드의 제품을 삭제하고, 연결된 파일도 함께 삭제합니다. (기존 형식 유지)
+    특정 제품코드의 제품을 삭제합니다. 회사 관리자는 자기 회사 제품만 삭제할 수 있습니다.
     """
+    user_role = current_user.get("role")
+    company_id = current_user.get("company_id")
+
+    if not company_id and user_role != "super_admin":
+        raise HTTPException(status_code=403, detail="제품을 삭제할 권한이 없습니다.")
+
     try:
-        # 1. 제품 조회 (사용자가 지정한 text() 및 mappings() 방식 유지)
+        # 1. 제품 조회
         stmt = text(find_product_id).bindparams(product_id=product_id)
         result = await session.execute(stmt)
         product_to_delete_row = result.mappings().one_or_none()
@@ -362,7 +410,11 @@ async def delete_product(
         if not product_to_delete_row:
             raise HTTPException(status_code=404, detail="Product not found")
 
-        # 2. 연결된 모든 파일 (이미지, PDF, 3D 모델) 삭제 시도
+        # 2. 소유권 확인 (회사 관리자인 경우)
+        if user_role == "company_admin" and product_to_delete_row.company_internal_id != company_id:
+            raise HTTPException(status_code=404, detail="Product not found")
+
+        # 3. 연결된 파일 삭제
         base_dir = os.path.dirname(__file__)
         files_to_delete = [
             product_to_delete_row.get("image_url"), 
@@ -377,10 +429,9 @@ async def delete_product(
                     if os.path.exists(full_path):
                         os.remove(full_path)
                 except Exception as e:
-                    # 파일 삭제 실패 시 500 에러 대신 경고 로그만 남김
                     print(f"Warning: Could not delete file {file_path}. Error: {e}")
 
-        # 3. DB에서 제품 레코드 삭제 (raw SQL 사용)
+        # 4. DB에서 제품 레코드 삭제
         delete_query = text(delete_product_query)
         await session.execute(delete_query, {'product_id': product_id})
         await session.commit()
@@ -388,9 +439,8 @@ async def delete_product(
         return
 
     except HTTPException:
-        # 404 에러는 그대로 다시 발생시킴
         raise
     except Exception as e:
         await session.rollback()
-        # 그 외 DB 작업 중 예외는 500 에러로 처리
         raise HTTPException(status_code=500, detail=f"제품 삭제 중 데이터베이스 오류 발생: {e}")
+
