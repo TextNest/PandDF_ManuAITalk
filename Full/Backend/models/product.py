@@ -1,8 +1,6 @@
-# Full/Backend/models/product.py
-from sqlalchemy import Column, Integer, String, Text, DateTime, Boolean, ForeignKey, Enum, Float
+from sqlalchemy import Column, Integer, String, Text, Date, Float, Boolean, TIMESTAMP, ForeignKey, Enum, func
 from sqlalchemy.orm import relationship
-from sqlalchemy.sql import func
-from models.base import Base
+from .base import Base
 import enum
 
 # DB의 enum 값에 맞춰 소문자로 정의
@@ -22,10 +20,10 @@ class Product(Base):
     company_internal_id = Column(Integer, ForeignKey("tb_company.company_internal_id"), nullable=False, comment="회사 내부 ID")
     
     description = Column(Text, nullable=True, comment="제품 설명") 
-    release_date = Column(DateTime, nullable=True, comment="출시일")
-    qr_code = Column(String(255), nullable=True, comment="QR 코드 URL")
-    is_active = Column(Boolean, nullable=False, default=True, comment="활성 상태 (True: 활성, False: 비활성)")
-    status = Column(Enum(Status, native_enum=False), nullable=False, default=Status.PENDING, comment="분석 상태")
+    release_date = Column(Date, nullable=True, comment="출시일") # DateTime -> Date 타입으로 변경 가능, 일단 DateTime 유지
+    qr_code = Column(String(255), nullable=True, comment="QR 코드 URL") # 추가
+    is_active = Column(Boolean, nullable=False, default=True, comment="활성 상태 (True: 활성, False: 비활성)") # tinyint -> Boolean
+    status = Column(Enum(Status), nullable=False, default=Status.PENDING, comment="분석 상태") # Enum 타입 수정 및 이름 변경
 
     image_url = Column(String(255), nullable=True, comment="제품 이미지 파일 경로")
     pdf_path = Column(String(255), nullable=True, comment="제품 설명서 PDF 파일 경로")
@@ -36,9 +34,9 @@ class Product(Base):
     depth_mm = Column(Float, nullable=True, comment="제품 깊이 길이 (mm)")
 
     created_by = Column(Integer, nullable=True, comment="생성한 관리자 ID") # 추가
-    created_at = Column(DateTime, server_default=func.now(), comment="생성일")
+    created_at = Column(TIMESTAMP, server_default=func.now(), comment="생성일")
     updated_by = Column(Integer, nullable=True, comment="수정한 관리자 ID") # 추가
-    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now(), comment="수정일")
+    updated_at = Column(TIMESTAMP, server_default=func.now(), onupdate=func.now(), comment="수정일")
 
     company = relationship("Company", back_populates="products") # Company 모델과의 관계 설정
 

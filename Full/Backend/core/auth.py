@@ -57,19 +57,27 @@ def get_current_user(authorization: Optional[str] = Header(None))-> companyInfo:
         # 역할(role)에 따라 반환하는 정보 분기
         if role == "user":
             # 일반 사용자
+            print(payload.get("id"))
+            unique_id = payload.get("id").split("_")[1]
+            print(unique_id)
             return {
                 "name": payload.get("name"),
-                "email": payload.get("id") 
+                "email": payload.get("id"), # 기존 로직 유지 (id를 email 키에 반환)
+                "unique_id":unique_id
             }
         elif role == "company_admin":
-            # 관리자 
+            # 관리자 company_id 추가
+            print(payload.get("id"))
+            unique_id = payload.get("id").split("_")[1]
+            print(unique_id)
             return {
                 "id": payload.get("id"),
                 "name": payload.get("name"),
                 "company_name": payload.get("company_name"),
                 "email": payload.get("email"),
                 "role": role,
-                "company_id": payload.get("company_id")
+                "company_id": payload.get("company_id"),
+                "unique_id":unique_id
             }
         elif role == "super_admin":
             # 슈퍼 관리자 

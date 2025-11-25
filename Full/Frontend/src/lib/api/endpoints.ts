@@ -51,8 +51,10 @@ export const API_ENDPOINTS = {
   
   // 로그
   LOGS: {
-    ANALYTICS: '/logs/analytics',
-    TOP_QUESTIONS: '/logs/top-questions',
-    UNANSWERED: '/logs/unanswered',
+    RECENT:'/logs/recent',
+    LIST:'/logs/session-list',
+    INFO: '/logs/session-info',
+    VIEW_REPORT: (id: string) => `/logs/view/${id}`,
+    VIEW_LOG: (id: string) => `/logs/view-detail/${id}`,
   },
 };

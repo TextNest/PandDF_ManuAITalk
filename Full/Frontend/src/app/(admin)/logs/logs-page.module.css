@@ -156,6 +156,36 @@
   outline: none;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  margin-top: 12px;
+}
+
+.pageNumber,
+.pageNumberActive {
+  display: inline-block;
+  margin: 0 4px;
+  padding: 0 2px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.pageNumber {
+  color: #333;
+}
+
+.pageNumber:hover {
+  text-decoration: underline;
+}
+
+.pageNumberActive {
+  color: #777;
+  border-bottom: 1px solid #777;
+}
+
 /* 미답변 질문 섹션 (강조) */
 .unansweredSection {
   background: white;
@@ -179,7 +209,7 @@
   gap: 0.75rem;
   font-size: 1.25rem;
   font-weight: 600;
-  margin: 0;
+  margin: 0 0 1rem 0;
   color: #1a1a1a;
 }
 
