@@ -24,7 +24,7 @@
 #        - depth_mm     : 세로/깊이(mm)
 #        - height_mm    : 높이(mm)
 #   3) tb_product 테이블의 해당 row를 업데이트
-#       - status = 'completed' 로 변경 (schemas.product.AnalysisStatus 사용)
+#       - status = 'completed' 로 변경 (schemas.product.status 사용)
 #
 # [사용 예시]
 #   1) CLI:
@@ -62,7 +62,7 @@ from sqlalchemy import text, update
 
 from core.db_config import get_session_text  # AsyncSession factory
 from models.product import Product
-from schemas.product import Status
+from schemas.product import AnalysisStatus
 
 
 # ----------------------------- 경로 / 상수 -----------------------------
@@ -391,7 +391,7 @@ async def _update_product_row(
             update_data["height_mm"] = h
 
         # status 는 항상 COMPLETED 로 업데이트
-        update_data["status"] = AnalysisStatus.COMPLETED
+        update_data["status"] = status.COMPLETED
 
         # DB 업데이트 (ORM 사용)
         if update_data:
