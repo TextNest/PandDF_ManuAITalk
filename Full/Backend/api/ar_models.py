@@ -7,11 +7,9 @@ import os
 
 router = APIRouter()
 
-# 3D 모델링 서버의 주소
-# 개발 환경에서는 127.0.0.1:8001, 배포 환경에서는 내부 IP 또는 Docker 서비스 이름
-# 여기서는 로컬 개발 환경을 기준으로 127.0.0.1:8001을 사용합니다.
-# 실제 배포 시에는 환경 변수 등으로 설정하는 것이 좋습니다.
-MODEL_SERVER_URL = os.getenv("MODEL_SERVER_URL", "http://127.0.0.1:8001")
+# MODEL_SERVER_URL은 환경변수로 변경.
+# .env에 있는 MODEL_SERVER_URL을 사용하며, 기본값은 http://127.0.0.1:8001로 설정.
+# 필요 시 Backend/core/config.py 내 load 클래스 확인
 
 @router.post("/ar/convert-2d-to-3d")
 async def convert_2d_to_3d_api(file: UploadFile = File(...)):
@@ -19,7 +17,7 @@ async def convert_2d_to_3d_api(file: UploadFile = File(...)):
         # 1. 업로드된 이미지를 3D 모델링 서버로 전달
         async with httpx.AsyncClient() as client:
             response = await client.post(
-                f"{MODEL_SERVER_URL}/convert-2d-to-3d",
+                f"{os.environ['MODEL_SERVER_URL']}/convert-2d-to-3d",
                 files={"file": (file.filename, await file.read(), file.content_type)}
             )
         

@@ -18,7 +18,7 @@ from models.session import ChatSession
 from models.message import ChatMessage
 from models.report import Report
 
-app = FastAPI() 
+app = FastAPI()
 
 # 데이터베이스 테이블 생성
 async def create_tables():
@@ -29,11 +29,7 @@ async def create_tables():
 async def on_startup():
     await create_tables()
     
-    # 필요한 디렉토리 생성
-    os.makedirs("uploads/images", exist_ok=True)
-    os.makedirs("uploads/models_3d", exist_ok=True)
-    os.makedirs("uploads/pdfs", exist_ok=True)
-    os.makedirs("data/page_images", exist_ok=True)
+    # 주석 : 폴더는 api/를 호출하는 그 순간 생성되도록 설계되어 있습니다
 
     app.mount("/uploads/models_3d", StaticFiles(directory="uploads/models_3d"), name="models_3d")
     app.mount("/uploads/pdfs", StaticFiles(directory="uploads/pdfs"), name="pdfs")
@@ -69,8 +65,6 @@ async def add_cors_header(request: Request, call_next):
     response.headers["Access-Control-Allow-Headers"] = "*"
     return response
 
-
-
 app.include_router(chat.router, tags=["chat"])
 app.include_router(login.router, tags=["login"],prefix="/api")
 app.include_router(ar_models.router, tags=["ar_models"], prefix="/api")
@@ -78,7 +72,3 @@ app.include_router(products.router, tags=["products"], prefix="/api/products")
 app.include_router(faq.router, tags=["faq"])
 app.include_router(superadmin.router, tags=["superadmin"], prefix="/api/superadmin")
 app.include_router(logs.router, tags=["logs"])
-
-@app.on_event("startup")
-async def set_scheduler():
-    asyncio.create_task(Scheduler_ARP())

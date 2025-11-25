@@ -6,19 +6,15 @@ import httpx
 import json
 from core.auth import create_access_token, verify_password, get_password_hash, get_current_user
 from core.db_config import get_session
-from dotenv import load_dotenv
 from schemas.login import LoginRequest, Register, FindCode, CompayCodeResponse, companyInfo, AuthCodeRequest
 from core.query import (
     find_company_and_department, regist_query, login_query,
     user_query, user_regist_query
 )
 
-load_dotenv()
-client_id = os.getenv("client_id")
-client_secret = os.getenv("client_secret")
+client_id = os.environ["client_id"]
+client_secret = os.environ["client_secret"]
 router = APIRouter()
-
-
 
 @router.post("/register/code",response_model=CompayCodeResponse)
 async def regist_with_code(code:FindCode,session:AsyncSession=Depends(get_session)):
