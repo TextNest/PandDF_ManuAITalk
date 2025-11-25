@@ -62,7 +62,7 @@ from sqlalchemy import text, update
 
 from core.db_config import get_session_text  # AsyncSession factory
 from models.product import Product
-from schemas.product import status
+from schemas.product import Status
 
 
 # ----------------------------- 경로 / 상수 -----------------------------
@@ -391,7 +391,7 @@ async def _update_product_row(
             update_data["height_mm"] = h
 
         # status 는 항상 COMPLETED 로 업데이트
-        update_data["status"] = status.COMPLETED
+        update_data["status"] = Status.COMPLETED.value
 
         # DB 업데이트 (ORM 사용)
         if update_data:
