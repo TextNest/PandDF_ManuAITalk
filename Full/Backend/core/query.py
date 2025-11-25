@@ -58,57 +58,56 @@ INSERT INTO tb_user (
 
 session_search ="""
 SELECT 
-    id,
-    productId,
-    session_id,
-    lastMessage,
-    messageCount,
-    updatedAt,
-    message
+    session.session_internal_id as id,
+    session.session_id,
+    product.product_id,
+    session.last_message,
+    session.message_count,
+    session.updated_at
 FROM
-    test_session
+    tb_session as session join tb_product as product on session.product_internal_id = product.product_internal_id
 WHERE
-    email = :email
+    user_internal_id = :user_internal_id
 ORDER BY
-    updatedAt DESC
+    updated_at DESC
 """
-
-find_message = """
-SELECT id,role,content,timestamp,feedback
-FROM test_message
-WHERE session_id = :session_id AND email = :user_id
-ORDER BY timestamp ASC
-"""
-find_session ="""
-SELECT id FROM test_session WHERE email = :email AND session_id = :session_id"""
-add_message ="""
-INSERT INTO test_message (email,session_id,role,content) VALUES (:email,:session_id,:role,:content)
-"""
-update_feedback = """
-UPDATE test_message SET feedback = :feedback WHERE id = :id AND email = :email"""
 
 add_session ="""
-INSERT INTO test_session (email,productId,session_id,lastMessage,messageCount) VALUES(:email,:productId,:session_id,:lastMessage,:messageCount)"""
+INSERT INTO tb_session (user_internal_id,product_internal_id,session_id) 
+VALUES(:user_internal_id,
+(SELECT product_internal_id FROM tb_product WHERE product_id = :productId),
+:session_id)"""
+
+find_message = """
+SELECT message_internal_id as id,role,content,created_at,feedback
+FROM tb_message
+WHERE session_internal_id = (SELECT session_internal_id FROM tb_session WHERE session_id = :session_id)
+ORDER BY created_at ASC
+"""
+find_session ="""
+SELECT session_internal_id FROM tb_session WHERE session_id = :session_id"""
+add_message ="""
+INSERT INTO tb_message (session_internal_id,role,content,tool_name) 
+VALUES ((SELECT session_internal_id FROM tb_session WHERE session_id = :session_id)
+,:role,:content,:tool_name)
+"""
+update_feedback =    """
+UPDATE tb_message SET feedback = :feedback WHERE message_internal_id = :id"""
 
 update_session ="""
-UPDATE test_session SET lastMessage = :lastMessage, messageCount = :messageCount , updatedAt = CURRENT_TIMESTAMP
-WHERE email = :email AND session_id = :session_id"""
+UPDATE tb_session SET last_message = :lastMessage, message_count = :messageCount , updated_at = CURRENT_TIMESTAMP
+WHERE user_internal_id = :user_internal_id AND session_id = :session_id"""
 
 
 delete_sessions = """
-DELETE FROM test_session WHERE email = :email AND session_id = :session_id
+DELETE FROM test_session WHERE user_internal_id = :user_internal_id AND session_id = :session_id
 """
 
 delete_message = """
-DELETE FROM test_message WHERE email = :email AND session_id = :session_id
+DELETE FROM test_message WHERE session_internal_id = (SELECT session_internal_id FROM tb_session WHERE session_id = :session_id)
 """
 
-guest_find_message= """
-SELECT id,role,content,timestamp,feedback
-FROM test_message
-WHERE session_id = :session_id 
-ORDER BY timestamp ASC
-"""
+
 
 find_session_for_rep = """
 SELECT tm.session_id

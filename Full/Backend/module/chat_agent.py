@@ -30,16 +30,16 @@ def get_rag_chain(product_id: str) -> HybridRAGChain:
     return _rag_cache[product_id]
 
 @tool
-def product_qa_tool(query: str, product_id:str,session_id:str) -> str:
+async def product_qa_tool(query: str, product_id:str,session_id:str) -> str:
     """
     제품의 정보 및 메뉴얼에 대한 질문에 답변합니다.
     """
     rag = get_rag_chain(product_id)
-    answer = rag.invoke(query,session_id)
+    answer = await rag.invoke(query,session_id)
     return answer["answer"]
 
 @tool
-def recommend_tool(product_id:str,count:int=3, *, config: RunnableConfig) -> str:
+async def recommend_tool(product_id:str,count:int=3, *, config: RunnableConfig) -> str:
     """
     상푼 추천을 해줍니다. 만약 유저가 'count'개 만큼 추천해달라고 하면 count 수만큼 추천을 해주고 작성을 하지않으면 기본값을 사용합니다.
     """
@@ -50,12 +50,14 @@ def recommend_tool(product_id:str,count:int=3, *, config: RunnableConfig) -> str
 
 
 
-
-
 class  ChatBotAgent:
     def __init__(self,product_id:str,session_id:str,initial_messages: Optional[List[Dict[str, Any]]] = None):
         self.product_id = product_id
-        self.llm = ChatGoogleGenerativeAI(model = "gemini-2.5-flash",temperature=0)
+        self.llm = ChatGoogleGenerativeAI(
+        model="gemini-2.5-flash", # 또는 사용 중인 모델
+        temperature=0,
+        streaming=True,
+    )
         self.tools = [product_qa_tool,recommend_tool]
         self.checkpoint = MemorySaver()
         self.graph =self._build_graph()
@@ -88,7 +90,7 @@ class  ChatBotAgent:
             response = llm_with_tools.with_config({"run_name":"final_answer"}).invoke([system_msg]+state["messages"])
             return {"messages":[response]}
 
-        def tool_node(state):
+        async def tool_node(state):
             last_msg = state["messages"][-1]
             
             if hasattr(last_msg,"tool_calls") and last_msg.tool_calls: #마지막 메세지에 too_calls 속성이 있고 값이 있으면
@@ -100,7 +102,7 @@ class  ChatBotAgent:
                     call['args']['session_id'] = state["session_id"]
                     print(f"도구 이름: {call['name']}")
                     print(f"전달된 인자: {call['args']}")
-            message_tool =  ToolNode(self.tools).invoke(state)    
+            message_tool =  await ToolNode(self.tools).ainvoke(state)    
             return {
                 "messages": message_tool["messages"],
                 "tool_name":find_name
@@ -130,18 +132,36 @@ class  ChatBotAgent:
         final_message = result["messages"][-1]
         tool_name = result.get("tool_name")
         return {"answer":final_message.content,"tool_name":tool_name}
-    # async def stream_chat(self,query:str,db_session: Optional[Any] = None):
+
+    # async def stream_chat(self,query:str,db_session: Optional[Any] = None): 오류가 많아서 수정중
     #     config = {"configurable":{"thread_id":self.session_id,"db":db_session}}
     #     initial_state = {
     #         "messages":[HumanMessage(content=query)],
     #         "product_id":self.product_id,
-    #         "session_id":self.session_id
+    #         "session_id":self.session_id,
+    #         "tool_name": None
     #     }
+    #     collect_tool_name = None
+    #     collect_content = ""
+
     #     async for event in self.graph.astream_events(
-    #         initial_state, config=config, version="v1"
+    #         initial_state, config=config, version="v2"
     #     ):
     #         kind = event["event"]
-    #         if (kind == "on_chat_model_stream" and event["name"]=="final_answer"):
+    #         if kind == "on_chain_start":
+    #             collect_tool_name = Tool_name.get(event["name"], event["name"])
+
+    #         elif kind == "on_chat_model_stream":
     #             chunk = event["data"]["chunk"]
     #             if content := chunk.content:    
-    #                 yield content
+    #                 collect_content+=content
+    #                 yield {
+    #                     "type": "token", 
+    #                     "message": content
+    #                 }
+    #     yield{
+    #         "type": "finish",
+    #         "tool_name":collect_tool_name,
+    #         "full_content": collect_content
+    #     }
+            
