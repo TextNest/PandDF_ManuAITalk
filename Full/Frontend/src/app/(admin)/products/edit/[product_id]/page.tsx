@@ -11,10 +11,9 @@ import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import ProductEditForm from '@/components/product/ProductEditForm/ProductEditForm';
+import apiClient from '@/lib/api/client';
 import { Product, ProductUpdate } from '@/types/product.types';
 import styles from './edit-page.module.css';
-
-const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export default function EditProductPage() {
   const router = useRouter();
@@ -30,23 +29,14 @@ export default function EditProductPage() {
 
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`${apiBaseUrl}/api/products/${product_id}`, {
-          headers: {
-            'ngrok-skip-browser-warning': 'true',
-          },
-        });
-        if (!response.ok) {
-          if (response.status === 404) {
-            throw new Error('제품을 찾을 수 없습니다.');
-          }
-          const errorData = await response.json().catch(() => ({ detail: '알 수 없는 오류' }));
-          throw new Error(errorData.detail || `제품 정보를 불러오는데 실패했습니다: ${response.status}`);
+        const response = await apiClient.get(`/api/products/${product_id}`);
+        if (response.status !== 200) {
+          throw new Error('제품 정보를 불러오는데 실패했습니다.');
         }
-        const data: Product = await response.json();
-        setProduct(data);
+        setProduct(response.data);
       } catch (err: any) {
         console.error('제품 정보 불러오기 실패:', err);
-        setError(err.message);
+        setError(err.response?.data?.detail || err.message || '알 수 없는 오류');
       } finally {
         setLoading(false);
       }
@@ -58,25 +48,17 @@ export default function EditProductPage() {
   const handleSubmit = async (data: Partial<ProductUpdate>) => {
     try {
       console.log('제품 수정 데이터:', data);
+      const response = await apiClient.put(`/api/products/${product_id}`, data);
 
-      const response = await fetch(`${apiBaseUrl}/api/products/${product_id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ detail: '알 수 없는 오류' }));
-        throw new Error(errorData.detail || '제품 수정 API 호출 실패');
+      if (response.status !== 200) {
+        throw new Error(response.data.detail || '제품 수정 API 호출 실패');
       }
       
       alert('제품이 성공적으로 수정되었습니다!');
       router.push('/products');
-    } catch (err) {
+    } catch (err: any) {
       console.error('제품 수정 실패:', err);
-      alert(`제품 수정에 실패했습니다: ${err instanceof Error ? err.message : '알 수 없는 오류'}`);
+      alert(`제품 수정에 실패했습니다: ${err.response?.data?.detail || err.message || '알 수 없는 오류'}`);
     }
   };
 

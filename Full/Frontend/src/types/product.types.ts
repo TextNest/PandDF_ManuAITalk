@@ -14,25 +14,26 @@ export type ProductCategory =
   | '기타';
 
 export interface Product {
-  product_internal_id: number; // DB의 product_internal_id에 맞춤
+  product_internal_id: number;
   product_name?: string | null;
-  product_id: string; // 제품 코드를 필수로 받도록 변경
-  category?: string | null; // DB에 맞춰 string으로 변경
-  company_internal_id: number; // DB에 맞춰 추가
-  discription?: string | null; // DB의 오타 discription에 맞춤
+  product_id: string;
+  category?: string | null;
+  company_internal_id: number;
+  company_name?: string | null; // 회사명 필드 추가
+  description?: string | null;
   release_date?: string | null;
-  qr_code?: string | null; // DB에 맞춰 추가
-  is_active?: boolean; // DB의 tinyint에 맞춰 boolean
-  status: 'pending' | 'completed' | 'failed'; // DB의 enum에 맞춤
+  qr_code?: string | null;
+  is_active?: boolean;
+  status: 'pending' | 'completed' | 'failed';
   image_url?: string | null;
   pdf_path?: string | null;
   model3d_url?: string | null;
   width_mm?: number | null;
   height_mm?: number | null;
   depth_mm?: number | null;
-  created_by?: number | null; // DB에 맞춰 추가
+  created_by?: number | null;
   created_at: string;
-  updated_by?: number | null; // DB에 맞춰 추가
+  updated_by?: number | null;
   updated_at: string;
 }
 
@@ -41,7 +42,7 @@ export interface ProductFormData {
   product_name?: string; // 제품명을 선택 사항으로 변경
   category?: string; // 추가
   company_internal_id: number; // 추가
-  discription?: string; // DB의 오타 반영
+  description?: string; 
   release_date?: string;
   is_active?: boolean;
   status?: 'pending' | 'completed' | 'failed'; // 추가

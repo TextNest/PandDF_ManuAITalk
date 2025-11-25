@@ -16,3 +16,4 @@ class Company(Base):
 
     # relationship에는 다시 문자열을 사용합니다.
     admins = relationship("Admin", back_populates="company")
+    products = relationship("Product", back_populates="company") # products 관계 추가

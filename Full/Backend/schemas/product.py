@@ -19,7 +19,7 @@ class ProductBase(BaseModel):
     product_id: str
     product_name: Optional[str] = None
     category: Optional[str] = None
-    discription: Optional[str] = None # DB 오타 반영
+    description: Optional[str] = None
     release_date: Optional[date] = None
     is_active: Optional[bool] = True
     status: Optional[Status] = Status.PENDING
@@ -42,7 +42,7 @@ class ProductUpdate(BaseModel):
     product_name: Optional[str] = None
     product_id: Optional[str] = None
     category: Optional[str] = None
-    discription: Optional[str] = None # DB 오타 반영
+    description: Optional[str] = None
     release_date: Optional[date] = None
     is_active: Optional[bool] = None
     status: Optional[Status] = None
@@ -56,8 +56,9 @@ class ProductUpdate(BaseModel):
 
 # Schema for reading/returning a product (used in GET responses)
 class Product(ProductBase):
-    product_internal_id: int # 수정
-    company_internal_id: int # 추가
+    product_internal_id: int
+    company_internal_id: int
+    company_name: Optional[str] = None # 회사명 필드 추가
     created_at: datetime
     updated_at: datetime
     pdf_path: Optional[str] = None

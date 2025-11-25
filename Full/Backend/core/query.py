@@ -302,6 +302,14 @@ ORDER BY created_at DESC;
 # 제품 조회 (제품 코드로)
 find_product_id = "SELECT * FROM tb_product WHERE product_id = :product_id;"
 
+# 제품 조회 (제품 코드로) with 회사명 (수정 페이지용)
+find_product_with_company_name_by_id = """
+SELECT p.*, c.name AS company_name
+FROM tb_product p
+LEFT JOIN tb_company c ON p.company_internal_id = c.company_internal_id
+WHERE p.product_id = :product_id;
+"""
+
 # 제품 삭제
 delete_product_query = """
 DELETE FROM tb_product
