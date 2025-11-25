@@ -26,20 +26,20 @@ async def regist_with_code(code:FindCode,session:AsyncSession=Depends(get_sessio
     result = await session.execute(text(find_company_and_department),
     params={"code":code.code})
     code_row = result.mappings().one_or_none()
-    code_row_dict = dict(code_row)
-    print(code_row_dict['existingDepartments'][0])
-    if 'existingDepartments' in code_row_dict and code_row_dict['existingDepartments']:
-        departments_str = str(code_row_dict['existingDepartments']).strip()
-        try:
-            if departments_str:
-                code_row_dict['existingDepartments'] = departments_str.split(',')
-            else:
-                code_row_dict['existingDepartments'] = []
-        except json.JSONDecodeError as e:
-            print(f"JSON 파싱 실패 (Data was not valid JSON string): {e}") 
-            code_row_dict['existingDepartments'] = []
+
     if not code_row:
         raise HTTPException(status_code=401,detail="현재 등록된 코드가 없습니다.")
+
+    code_row_dict = dict(code_row)
+    
+    # 'existingDepartments'가 None일 경우를 안전하게 처리
+    existing_departments = code_row_dict.get('existingDepartments')
+    
+    if existing_departments:
+        code_row_dict['existingDepartments'] = existing_departments.split(',')
+    else:
+        code_row_dict['existingDepartments'] = []
+
     print(code_row_dict)
     return code_row_dict
 
@@ -80,6 +80,7 @@ async def login_with_token(login_data:LoginRequest,session:AsyncSession=Depends(
     
     # from datetime import timedelta
     internal_id = user_row["admin_internal_id"]
+    company_id = user_row["company_internal_id"] # 회사 ID 가져오기
     prefixed_id = f"admin_{internal_id}"
     access_token = create_access_token(
         data ={
@@ -87,7 +88,8 @@ async def login_with_token(login_data:LoginRequest,session:AsyncSession=Depends(
             "email": login_data.email,    
             "company_name": user_row["company_name"],
             "name": user_row["name"],
-            "role": "super_admin" if user_row["role"] == 1 else "company_admin"
+            "role": "super_admin" if user_row["role"] == 1 else "company_admin",
+            "company_id": company_id # 토큰에 회사 ID 추가
         } # expire 미 작성시 30분  작성법  expires_delta = timedelta(days=1)
     )
     return {
@@ -95,6 +97,7 @@ async def login_with_token(login_data:LoginRequest,session:AsyncSession=Depends(
             "id": prefixed_id,
             "name":user_row["name"],
             "company_name":user_row["company_name"],
+            "company_id": company_id, # 응답에도 회사 ID 추가
             "role": "super_admin" if user_row["role"] == 1 else "company_admin"
         },
         "access_token":access_token,

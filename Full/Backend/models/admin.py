@@ -1,5 +1,5 @@
 # models/admin.py
-from sqlalchemy import Column, Integer, String, Boolean, DateTime, func, ForeignKey
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, func, ForeignKey, text
 from sqlalchemy.orm import relationship
 from .base import Base # base.py에서 Base를 임포트합니다.
 
@@ -17,7 +17,7 @@ class Admin(Base):
     job_title = Column(String(50))
     
     is_super = Column(Boolean, nullable=False, default=False)
-    is_active = Column(Boolean, nullable=False, default=True)
+    is_active = Column(Boolean, nullable=False, server_default=text('1'))
     
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())

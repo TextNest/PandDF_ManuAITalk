@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/features/auth/hooks/useAuth';
+import { useAuthStore } from '@/store/useAuthStore'; // useAuth 훅 대신 스토어 직접 사용
 import SuperAdminSidebar from '@/components/layout/SuperAdminSidebar/SuperAdminSidebar';
 import { LogOut, Menu } from 'lucide-react'; // Menu 아이콘 추가
 import styles from './superadmin-layout.module.css';
@@ -13,11 +13,16 @@ export default function SuperAdminLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const { user, isAuthenticated, logout } = useAuth();
+  const { user, isAuthenticated, logout, isInitialized } = useAuthStore(); // isInitialized 추가
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // 사이드바 상태
 
   useEffect(() => {
-    // 로그인 안 되어있으면 로그인 페이지로
+    // 초기화가 끝나지 않았으면 아무것도 하지 않음 (중요!)
+    if (!isInitialized) {
+      return;
+    }
+
+    // 초기화가 끝난 후 인증 상태 확인
     if (!isAuthenticated) {
       router.push('/admin/login');
       return;
@@ -28,10 +33,10 @@ export default function SuperAdminLayout({
       alert('접근 권한이 없습니다. 슈퍼 관리자만 접근할 수 있습니다.');
       router.push('/dashboard'); // 기업 관리자는 대시보드로
     }
-  }, [isAuthenticated, user, router]);
+  }, [isInitialized, isAuthenticated, user, router]);
 
-  // 인증 확인 전까지 로딩
-  if (!isAuthenticated || user?.role !== 'super_admin') {
+  // 초기화 중이거나, 인증되지 않았거나, 슈퍼 관리자가 아니면 로딩 화면 표시
+  if (!isInitialized || !isAuthenticated || user?.role !== 'super_admin') {
     return (
       <div className={styles.loading}>
         <p>권한 확인 중...</p>

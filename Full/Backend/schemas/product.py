@@ -2,58 +2,62 @@
 import enum
 from pydantic import BaseModel
 from typing import Optional, List
-from datetime import datetime
+from datetime import datetime, date
 
 # ==================
 # Enums
 # ==================
-class AnalysisStatus(str, enum.Enum):
-    PENDING = "PENDING"
-    COMPLETED = "COMPLETED"
-    FAILED = "FAILED"
+class Status(str, enum.Enum):
+    PENDING = "pending"
+    COMPLETED = "completed"
+    FAILED = "failed"
 
 # ==================
 # Product Schemas
 # ==================
 class ProductBase(BaseModel):
-    product_id: str # 제품 코드를 필수로 받도록 변경
+    product_id: str
     product_name: Optional[str] = None
     category: Optional[str] = None
-    manufacturer: Optional[str] = None
-    description: Optional[str] = None
-    release_date: Optional[datetime] = None
+    discription: Optional[str] = None # DB 오타 반영
+    release_date: Optional[date] = None
     is_active: Optional[bool] = True
-    analysis_status: Optional[AnalysisStatus] = AnalysisStatus.PENDING
+    status: Optional[Status] = Status.PENDING
     image_url: Optional[str] = None
     model3d_url: Optional[str] = None
     width_mm: Optional[float] = None
     height_mm: Optional[float] = None
     depth_mm: Optional[float] = None
+    qr_code: Optional[str] = None # 추가
+    created_by: Optional[int] = None # 추가
+    updated_by: Optional[int] = None # 추가
 
 # Schema for creating a new product (used in POST requests)
 class ProductCreate(ProductBase):
     pdf_path: str
+    company_internal_id: int # 추가
 
 # Schema for updating an existing product (used in PUT/PATCH requests)
 class ProductUpdate(BaseModel):
     product_name: Optional[str] = None
     product_id: Optional[str] = None
     category: Optional[str] = None
-    manufacturer: Optional[str] = None
-    description: Optional[str] = None
-    release_date: Optional[datetime] = None
+    discription: Optional[str] = None # DB 오타 반영
+    release_date: Optional[date] = None
     is_active: Optional[bool] = None
-    analysis_status: Optional[AnalysisStatus] = None
+    status: Optional[Status] = None
     image_url: Optional[str] = None
     pdf_path: Optional[str] = None
     model3d_url: Optional[str] = None
     width_mm: Optional[float] = None
     height_mm: Optional[float] = None
     depth_mm: Optional[float] = None
+    updated_by: Optional[int] = None
 
 # Schema for reading/returning a product (used in GET responses)
 class Product(ProductBase):
-    internal_id: int
+    product_internal_id: int # 수정
+    company_internal_id: int # 추가
     created_at: datetime
     updated_at: datetime
     pdf_path: Optional[str] = None

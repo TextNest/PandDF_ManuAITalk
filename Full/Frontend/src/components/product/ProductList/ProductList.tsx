@@ -26,7 +26,7 @@ export default function ProductList({ products, onProductUpdate, onProductDelete
   return (
     <div className={styles.grid}>
       {products.map((product) => (
-        <ProductCard key={product.internal_id} product={product} onProductUpdate={onProductUpdate} onProductDelete={onProductDelete} />
+        <ProductCard key={product.product_internal_id} product={product} onProductUpdate={onProductUpdate} onProductDelete={onProductDelete} />
       ))}
     </div>
   );

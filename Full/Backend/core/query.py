@@ -11,7 +11,7 @@ FROM
 WHERE
     c.code = :code
 GROUP BY
-    c.name
+    c.company_internal_id, c.name
 """
 
 regist_query = """
@@ -261,7 +261,7 @@ SELECT
     m.tool_name
 FROM test_message m
 JOIN test_session s ON m.session_id = s.session_id
-JOIN test_products p ON s.productId = p.product_id
+JOIN tb_product p ON s.productId = p.product_id
 WHERE m.timestamp >= :start_date
 ORDER BY m.id
 ;
@@ -292,23 +292,34 @@ WHERE generation_id = :generation_id;
 """
 
 # ---------- 제품관리, AR 관련 쿼리 ----------
-# 전체 제품 조회
-find_all_product = "SELECT * FROM test_products ORDER BY created_at DESC;"
+# 전체 제품 조회 -> 특정 회사 제품 조회로 변경
+find_all_product = """
+SELECT * FROM tb_product
+WHERE is_active = 1
+ORDER BY created_at DESC;
+"""
 
 # 제품 조회 (제품 코드로)
-find_product_id = "SELECT * FROM test_products WHERE product_id = :product_id;"
+find_product_id = "SELECT * FROM tb_product WHERE product_id = :product_id;"
 
 # 제품 삭제
 delete_product_query = """
-DELETE FROM test_products
+DELETE FROM tb_product
 WHERE product_id = :product_id;
 """
 
-# 제품 상태 업데이트 (analysis_status만)
+# 제품 상태 업데이트 (status만)
 update_product_status = """
-UPDATE test_products
-SET analysis_status = :analysis_status
+UPDATE tb_product
+SET status = :status
 WHERE product_id = :product_id;
+"""
+
+# 회사 관리자용 - 특정 회사 제품 조회
+find_products_by_company_id = """
+SELECT * FROM tb_product
+WHERE company_internal_id = :company_id
+ORDER BY created_at DESC;
 """
 
 # ---------- 슈퍼관리자 쿼리 ----------

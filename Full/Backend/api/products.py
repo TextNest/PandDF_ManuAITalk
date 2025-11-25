@@ -13,8 +13,9 @@ from core.db_config import get_session
 from models.product import Product, AnalysisStatus
 from schemas.product import ProductCreate, ProductUpdate, Product as ProductSchema
 from module.document_pr import trigger_pdf_processing
+from core.auth import get_current_user
 from core.query import (
-    find_all_product, find_product_id, delete_product_query
+    find_all_product, find_product_id, delete_product_query, find_products_by_company_id
 )
 
 router = APIRouter()
@@ -229,6 +230,35 @@ async def create_product(
         # unique 제약 조건 위반 등 DB 오류 처리
         raise HTTPException(status_code=500, detail=f"데이터베이스에 제품을 저장하는 중 오류가 발생했습니다: {e}")
 
+@router.get("/admin", response_model=List[ProductSchema])
+async def get_products_for_admin(
+    session: AsyncSession = Depends(get_session),
+    current_user: dict = Depends(get_current_user)
+):
+    """
+    [관리자 전용] 로그인된 회사 관리자의 소속 회사 제품 목록을 조회합니다.
+    """
+    user_role = current_user.get("role")
+    company_id = current_user.get("company_id")
+
+    # 회사 관리자만 접근 가능하도록 제한
+    if user_role != "company_admin" or not company_id:
+        raise HTTPException(
+            status_code=403,
+            detail="회사 관리자만 접근할 수 있습니다."
+        )
+
+    try:
+        # 회사 관리자용 쿼리 사용
+        result = await session.execute(
+            text(find_products_by_company_id),
+            {"company_id": company_id}
+        )
+        products = result.mappings().all()
+        return [dict(row) for row in products]
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"제품 목록을 불러오는 중 오류가 발생했습니다: {e}")
+
 @router.get("/{product_id}", response_model=ProductSchema)
 async def get_product(
     product_id: str,
@@ -394,3 +424,4 @@ async def delete_product(
         await session.rollback()
         # 그 외 DB 작업 중 예외는 500 에러로 처리
         raise HTTPException(status_code=500, detail=f"제품 삭제 중 데이터베이스 오류 발생: {e}")
+
