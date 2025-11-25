@@ -96,7 +96,7 @@ async def trigger_pdf_processing(product_id: str, pdf_path: str) -> None:
             update_query,
             {
                 "product_id": product_id,
-                "analysis_status": AnalysisStatus.PENDING.value,
+                "status": AnalysisStatus.PENDING.value,
             },
         )
         await session.commit()
@@ -125,7 +125,7 @@ async def trigger_pdf_processing(product_id: str, pdf_path: str) -> None:
                 {
                     "product_id": product_id,
                     # 파일 자체가 없으므로 status 는 failed 로 설정
-                    "analysis_status": AnalysisStatus.FAILED.value,
+                    "status": AnalysisStatus.FAILED.value,
                 },
             )
             await session.commit()
@@ -211,7 +211,7 @@ async def trigger_pdf_processing(product_id: str, pdf_path: str) -> None:
                 update_query,
                 {
                     "product_id": product_id,
-                    "analysis_status": AnalysisStatus.COMPLETED.value,
+                    "status": AnalysisStatus.COMPLETED.value,
                 },
             )
             await session.commit()
@@ -238,7 +238,7 @@ async def trigger_pdf_processing(product_id: str, pdf_path: str) -> None:
                 update_query,
                 {
                     "product_id": product_id,
-                    "analysis_status": AnalysisStatus.FAILED.value,
+                    "status": AnalysisStatus.FAILED.value,
                 },
             )
             await session.commit()
