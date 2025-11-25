@@ -14,8 +14,8 @@ type ChatSession = {
     messages?: Message[];
 }; 
 
-// 🚨 백엔드 주소 설정 (실제 도메인으로 변경 필요)
-const BACKEND_URL = 'http://localhost:8000'; 
+// 🚨 백엔드 주소 설정 (실제 도메인으로 변경 필요)4
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL; 
 
 // 💡 사용자 요청: 모든 함수는 에로우 함수로 작성합니다.
 export const useChat = (initialProductId: string) => {
@@ -83,9 +83,8 @@ export const useChat = (initialProductId: string) => {
 
     // 🚨 connectWebSocket은 이제 세션 ID를 파라미터로 받지 않습니다.
     const connectWebSocket = useCallback((targetSessionId?: string) => {
-        const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-        // 💡 productId만 사용하는 순수 WebSocket 주소 (토큰/세션 ID 없음)
-        let wsUrl = `${wsProtocol}//${BACKEND_URL.split('//')[1]}/ws/${productId}`;
+        const wsUrlBase = process.env.NEXT_PUBLIC_WS_URL;
+        let wsUrl = `${wsUrlBase}/ws/${productId}`;
         if (targetSessionId) {
           wsUrl += `?session_id=${targetSessionId}`; 
         }

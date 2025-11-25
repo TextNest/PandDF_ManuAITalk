@@ -5,34 +5,14 @@
   background: #f8f9fa;
 }
 
-/* 헤더 */
+/* 헤더 - 중앙 정렬 */
 .header {
   background: white;
   border-bottom: 1px solid #e0e0e0;
   padding: 1rem 2rem;
   display: flex;
   align-items: center;
-  gap: 2rem;
-}
-
-.backButton {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: #f8f9fa;
-  border: 1px solid #e0e0e0;
-  border-radius: 0.5rem;
-  color: #666;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-size: 0.875rem;
-}
-
-.backButton:hover {
-  background: #e9ecef;
-  border-color: #667eea;
-  color: #667eea;
+  justify-content: center; /* 🔥 중앙 정렬 */
 }
 
 .headerTitle {
@@ -208,6 +188,62 @@
   color: #333;
   margin-bottom: 0.75rem;
   line-height: 1.5;
+}
+
+.arButton {
+  margin-top: 2rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: #667eea;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.arButton:hover {
+  background-color: #5a67d8;
+}
+
+.arSceneWrapper {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+/* AR Active State */
+.page.arActive .placeholder {
+  display: none;
+}
+
+.page.arActive .arSceneWrapper {
+  display: block;
+}
+.page.arActive .sessionHistoryWrapper,
+.page.arActive > header,
+.page.arActive > main > aside {
+  display: none;
+}
+
+.page.arActive {
+  flex-direction: row; /* Adjust main flex direction if needed, or let main handle it */
+  padding: 0;
+}
+
+.page.arActive .main {
+  flex: 1;
+  padding: 0;
+  gap: 0;
+}
+
+.page.arActive .simulationContainer {
+  flex: 1;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+  background: transparent;
 }
 
 /* 반응형 */

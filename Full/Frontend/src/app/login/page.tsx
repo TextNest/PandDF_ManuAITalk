@@ -53,7 +53,7 @@ export default function UserLoginPage() {
 
       <div className={styles.container}>
         <div className={styles.logo}>
-          <h1>SeShat</h1>
+          <h1>ManuAI-talk</h1>
           <p>AI 제품 설명서 도우미</p>
         </div>
 

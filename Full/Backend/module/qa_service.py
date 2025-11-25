@@ -40,7 +40,7 @@ class HybridRAGChain:
 
         self.llm = ChatGoogleGenerativeAI(model = "gemini-2.5-flash",temperature=0)
 
-        base_retriever = MultiVectorRetriever(
+        self.base_retriever = MultiVectorRetriever(
             vectorstore= self.vectorstore, 
             docstore=self.docstore, 
             id_key="doc_id",
@@ -48,7 +48,7 @@ class HybridRAGChain:
         )
 
         self.combined_retriever = MultiQueryRetriever.from_llm(
-                retriever= base_retriever, llm=self.llm
+                retriever= self.base_retriever, llm=self.llm
             )
 
         
@@ -71,17 +71,36 @@ class HybridRAGChain:
             history_messages_key="chat_history", 
             output_messages_key="answer",
         )
-
+        self.light_with_history = RunnableWithMessageHistory(
+            runnable=rag_chain, 
+            get_session_history=get_session_history,
+            input_messages_key="input", 
+            history_messages_key="chat_history", 
+            output_messages_key="answer",
+        )
+    def check(self,query):
+        check_context = self.base_retriever.invoke(query)
+        return check_context
     def invoke(self, query,session):
-        
-        run_manager = CallbackManagerForRetrieverRun.get_noop_manager()
-        sub_queries = self.combined_retriever.generate_queries(query, run_manager=run_manager)
-        print("Generated sub-queries:", sub_queries)
-        
-        
-        answer = self.chain_with_history.invoke(
-        {"input": query},
-        config={"configurable": {"session_id": session}}
-    )
-        answer = answer.get("answer","")
+        initial_context = self.check(query)
+        if initial_context:
+            print("검색 결과가 존재합니다. 결과를 출력 해드리겠습니다.")
+            answer = self.light_with_history.invoke(
+                {"input":query,"context":initial_context},
+                config={"configurable": {"session_id": session}}
+            )
+
+        else:
+            print("검색결과가 없습니다. 쿼리를 재 작성하겠습니다.")
+            run_manager = CallbackManagerForRetrieverRun.get_noop_manager()
+            sub_queries = self.combined_retriever.generate_queries(query, run_manager=run_manager)
+
+            print(f"{sub_queries}가 생성되었습니다. 해당 쿼리들로 재 검색 하겠습니다.")
+            
+            
+            answer = self.chain_with_history.invoke(
+            {"input": query},
+            config={"configurable": {"session_id": session}}
+        )
+            answer = answer.get("answer","")
         return {"answer": answer}

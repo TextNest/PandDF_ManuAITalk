@@ -55,6 +55,13 @@ delete_message = """
 DELETE FROM test_message WHERE email = :email AND session_id = :session_id
 """
 
+guest_find_message= """
+SELECT id,role,content,timestamp,feedback
+FROM test_message
+WHERE session_id = :session_id 
+ORDER BY timestamp ASC
+"""
+
 find_session_for_rep = """
 SELECT tm.session_id
 FROM test_message tm
@@ -66,7 +73,7 @@ LIMIT 200;
 """
 
 find_message_for_rep = """
-SELECT role, content, timestamp
+SELECT role, content, timestamp, feedback
 FROM test_message
 WHERE session_id = :sid
 ORDER BY `timestamp` ASC;
@@ -78,16 +85,68 @@ FROM test_session
 WHERE session_id = :sid;
 """
 
+reset_all_rep = """
+TRUNCATE TABLE test_report;
+"""
+
 report_query = """
 INSERT INTO test_report (
-    session_id, product_id, status, content, timestamp_s, timestamp_e
+    session_id, product_id, status, content, timestamp_s, timestamp_e, positive, negative, satisfaction 
 ) VALUES (
-    :sid, :pid, :stat, :sum, :ts, :te
+    :sid, :pid, :stat, :sum, :ts, :te, :pos, :neg, :satis
 )
 ON DUPLICATE KEY UPDATE
     product_id = VALUES(product_id),
     status = VALUES(status),
     content = VALUES(content),
     timestamp_s = VALUES(timestamp_s),
-    timestamp_e = VALUES(timestamp_e);
+    timestamp_e = VALUES(timestamp_e),
+    positive = VALUES(positive),
+    negative = VALUES(negative),
+    satisfaction = VALUES(satisfaction);
 """
+
+class LogQuery:
+    view_recent = """
+    SELECT
+        r.session_id as sessionId,
+        r.status,
+        r.product_id as productId,
+        r.satisfaction,
+        (
+            SELECT m.content
+            FROM test_message AS m
+            WHERE m.session_id = r.session_id
+            ORDER BY m.`timestamp` ASC, m.id ASC
+            LIMIT 1
+        ) AS message
+    FROM test_report AS r
+    ORDER BY r.timestamp_e DESC
+    LIMIT 3
+    """
+    
+    product_info = """
+    SELECT DISTINCT product_id as productId FROM test_products
+    """
+
+    view_session_head = """
+    SELECT
+        r.session_id as sessionId,
+        r.status,
+        r.product_id as productId,
+        r.satisfaction,
+        DATE_FORMAT(r.timestamp_e, '%Y-%m-%d %H:%i:%s') as endedAt,
+        (
+            SELECT m.content
+            FROM test_message AS m
+            WHERE m.session_id = r.session_id
+            ORDER BY m.`timestamp` ASC, m.id ASC
+            LIMIT 1
+        ) AS message
+    FROM test_report AS r
+    """
+
+    view_session_tail = """
+    ORDER BY endedAt DESC
+    LIMIT :limit OFFSET :offset
+    """

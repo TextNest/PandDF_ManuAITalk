@@ -38,6 +38,7 @@ export const API_ENDPOINTS = {
     UPDATE: (faqId: string) => `/api/faqs/${faqId}`,
     DELETE: (faqId: string) => `/api/faqs/${faqId}`,
     FROM_CHATBOT: '/api/faqs/from-chatbot',
+    AUTO_GENERATE: '/api/faqs/auto_generate',
     HELPFUL: (faqId: string) => `/api/faqs/${faqId}/helpful`,
   },
   
@@ -50,8 +51,10 @@ export const API_ENDPOINTS = {
   
   // 로그
   LOGS: {
-    ANALYTICS: '/logs/analytics',
-    TOP_QUESTIONS: '/logs/top-questions',
-    UNANSWERED: '/logs/unanswered',
+    RECENT:'/logs/recent',
+    LIST:'/logs/session-list',
+    INFO: '/logs/session-info',
+    VIEW_REPORT: (id: string) => `/logs/view/${id}`,
+    VIEW_LOG: (id: string) => `/logs/view-detail/${id}`,
   },
 };

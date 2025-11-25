@@ -26,7 +26,7 @@ export default function LoginPage() {
 
       <div className={styles.container}>
         <div className={styles.logo}>
-          <h1>SeShat</h1>
+          <h1>ManuAI-talk</h1>
           <p>AI 기반 제품 설명서 질의응답 시스템</p>
         </div>
 

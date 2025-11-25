@@ -42,7 +42,7 @@ export default function HomePage() {
   const handleSearchSubmit = (query) => {
     const trimmedQuery = query.trim();
     if (!trimmedQuery) {
-      toast.show('제품 ID 또는 이름을 입력해주세요.', 'warning');
+      toast.warning('제품 ID 또는 이름을 입력해주세요.');
       return;
     }
     // 검색 쿼리(제품 ID 또는 슬러그)를 기반으로 채팅 페이지로 바로 이동

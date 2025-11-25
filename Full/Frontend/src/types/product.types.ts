@@ -13,38 +13,29 @@ export type ProductCategory =
   | '공기청정기'
   | '기타';
 
-export type ProductStatus = 
-  | 'active'      // 활성
-  | 'inactive'    // 비활성
-  | 'draft';      // 임시저장
-
 export interface Product {
-  id: string;
-  name: string;                    // 제품명
-  model: string;                   // 모델명
-  category: ProductCategory;       // 카테고리
-  manufacturer?: string;           // 제조사
-  description?: string;            // 설명
-  releaseDate?: Date;              // 출시일
-  status: ProductStatus;           // 상태
-  qrCodeUrl: string;              // QR 코드 URL (/chat/{productId})
-  documentIds: string[];          // 연결된 문서 ID들
-  imageUrl?: string;              // 제품 이미지
-  viewCount: number;              // 조회수
-  questionCount: number;          // 질문 수
-  createdAt: Date;
-  updatedAt: Date;
-  createdBy: string;              // 생성자
+  internal_id: number;
+  product_name: string;
+  product_id: string | null;
+  category: string | null;
+  manufacturer?: string | null;
+  description?: string | null;
+  release_date?: string | null; // Changed from Date to string
+  is_active: boolean;
+  analysis_status: 'PENDING' | 'COMPLETED' | 'FAILED';
+  pdf_path?: string | null;
+  image_url?: string | null;
+  model3d_url?: string | null;
+  width_mm?: number | null;
+  height_mm?: number | null;
+  depth_mm?: number | null;
+  created_at: string; // Changed from Date to string
+  updated_at: string; // Changed from Date to string
 }
 
 export interface ProductFormData {
-  name: string;
-  model: string;
-  category: ProductCategory;
-  manufacturer?: string;
-  description?: string;
-  releaseDate?: string;           // ISO string
-  status: ProductStatus;
-  documentIds: string[];
-  imageUrl?: string;
+  product_name: string;
+  pdf_path: string;
 }
+
+export type ProductUpdate = Partial<Omit<Product, 'internal_id' | 'created_at' | 'updated_at'>>;

@@ -6,7 +6,7 @@
 
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/features/auth/hooks/useAuth';
 import Sidebar from '@/components/layout/Sidebar/Sidebar';
@@ -20,16 +20,25 @@ export default function AdminLayout({
 }) {
   const router = useRouter();
   const { user, isAuthenticated, logout } = useAuth();
+  const [isHydrated, setIsHydrated] = useState(false); // persist 복원 완료 여부
+
+  // persist 복원 완료 확인
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
 
   useEffect(() => {
+    // persist 복원이 완료된 후에만 인증 체크
+    if (!isHydrated) return;
+
     // 로그인 안 되어있으면 로그인 페이지로
     if (!isAuthenticated) {
       router.push('/admin/login');
     }
-  }, [isAuthenticated, router]);
+  }, [isAuthenticated, isHydrated, router]);
 
-  // 인증 확인 전까지 로딩
-  if (!isAuthenticated) {
+  // persist 복원 중이거나 인증 확인 전까지 로딩
+  if (!isHydrated || !isAuthenticated) {
     return (
       <div className={styles.loading}>
         <p>권한 확인 중...</p>

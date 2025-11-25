@@ -79,12 +79,78 @@
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
+/* 드롭다운 섹션 스타일 */
+.detailsSection summary {
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none;
+}
+
+.detailsSection summary::-webkit-details-marker {
+  display: none;
+}
+
+.detailsSection summary::before {
+  content: '▶';
+  margin-right: 0.5rem;
+  font-size: 0.8em;
+  transition: transform 0.2s ease;
+}
+
+.detailsSection[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.sectionContent {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-left: 1rem;
+  border-left: 2px solid #e5e7eb;
+}
+
 .actions {
   display: flex;
   gap: 1rem;
   justify-content: flex-end;
   padding-top: 1rem;
   border-top: 1px solid #e5e7eb;
+}
+
+/* 파일 업로드 관련 스타일 */
+.hiddenInput {
+  display: none;
+}
+
+.fileInputContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.fileName {
+  font-size: 0.875rem;
+  color: #4a5568;
+  margin: 0;
+}
+
+.uploadStatus {
+  font-size: 0.875rem;
+  color: #3182ce;
+  margin-top: 0.5rem;
+}
+
+.errorMessage {
+  font-size: 0.875rem;
+  color: #e53e3e;
+  margin-top: 0.5rem;
+}
+
+.successMessage {
+  font-size: 0.875rem;
+  color: #38a169;
+  margin-top: 0.5rem;
 }
 
 /* 모바일 반응형 */

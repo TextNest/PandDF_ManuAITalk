@@ -1,8 +1,34 @@
+# Node
+node_modules
+.env
+.env.local
+.env.*
+.venv/
+
+# ngrok
+ngrok/
+
+# Python
 __pycache__/
+
+# General
+*.log
+.DS_Store
+.vscode/
+.idea/
+
+# Backend
 /Full/Backend/db
+/Full/Backend/data/logs
+/Full/Backend/data/page_images
+/Full/Backend/data/upload
+/Full/Backend/uploads/
+
+# Data
 ex_data/
 artifacts/
+
+# Other
 *test*
 *.ipynb
 *.png
-.env

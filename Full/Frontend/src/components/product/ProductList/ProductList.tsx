@@ -10,9 +10,11 @@ import styles from './ProductList.module.css';
 
 interface ProductListProps {
   products: Product[];
+  onProductUpdate: (updatedProduct: Product) => void;
+  onProductDelete: (deletedProductId: number) => void;
 }
 
-export default function ProductList({ products }: ProductListProps) {
+export default function ProductList({ products, onProductUpdate, onProductDelete }: ProductListProps) {
   if (products.length === 0) {
     return (
       <div className={styles.empty}>
@@ -24,7 +26,7 @@ export default function ProductList({ products }: ProductListProps) {
   return (
     <div className={styles.grid}>
       {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+        <ProductCard key={product.internal_id} product={product} onProductUpdate={onProductUpdate} onProductDelete={onProductDelete} />
       ))}
     </div>
   );

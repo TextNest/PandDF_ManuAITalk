@@ -184,7 +184,7 @@ export default function RegisterPage() {
 
       <div className={styles.container}>
         <div className={styles.logo}>
-          <h1>SeShat</h1>
+          <h1>ManuAI-talk</h1>
           <p>기업 관리자 회원가입</p>
         </div>
 

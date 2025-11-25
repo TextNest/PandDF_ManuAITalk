@@ -1,75 +1,115 @@
 // ============================================
 // 📄 src/app/(admin)/logs/page.tsx
 // ============================================
-// 로그 분석 페이지 (완전판)
+// 로그 분석 페이지 (개선판 ver.1.0)
 // ============================================
 
 'use client';
 
-import { useState } from 'react';
-import { 
-  AlertCircle, 
+import { useState, useEffect } from 'react';
+import {  
   BarChart3, 
   Clock, 
-  CheckCircle, 
-  ThumbsUp,
-  Search,
-  Filter 
+  History, 
+  ThumbsUp
 } from 'lucide-react';
 import Button from '@/components/ui/Button/Button';
 import ResponseTimeChart from '@/components/dashboard/ResponseTimeChart/ResponseTimeChart';
-import TopQuestionsTable from '@/components/logs/TopQuestionsTable/TopQuestionsTable';
-import UnansweredQueries from '@/components/logs/UnansweredQueries/UnansweredQueries';
-import { TopQuestion, UnansweredQuery } from '@/types/log.types';
+import RecentSessionTable from '@/components/logs/RecentSessionTable/RecentSessionTable';
+import SessionFilterTable from '@/components/logs/SessionFilter/SessionFilter';
+import SessionTable from '@/components/logs/SessionTable/SessionTable';
+import ReportTable from '@/components/logs/ReportTable/ReportTable';
+import LogTable from '@/components/logs/LogTable/LogTable';
+import {
+  SessionFilter,
+  SessionRecent,
+  SessionList,
+  SessionReport,
+  SessionLog,
+  SessionListResponse
+} from '@/types/log.types';
+import apiClient from '@/lib/api/client';
+import { API_ENDPOINTS } from '@/lib/api/endpoints';
 import styles from './logs-page.module.css';
-
-// ============================================
-// 📄 Mock 데이터 (TODO: 백엔드 연동)
-// ============================================
-const mockTopQuestions: TopQuestion[] = [
-  { question: '제품 사용법이 궁금해요', count: 234, averageResponseTime: 2.3, helpfulRate: 0.89 },
-  { question: '고장이 났어요', count: 187, averageResponseTime: 3.1, helpfulRate: 0.82 },
-  { question: 'A/S는 어떻게 받나요?', count: 156, averageResponseTime: 1.8, helpfulRate: 0.95 },
-  { question: '설치 방법을 알려주세요', count: 143, averageResponseTime: 2.5, helpfulRate: 0.87 },
-  { question: '제품 보증 기간은?', count: 128, averageResponseTime: 1.5, helpfulRate: 0.92 },
-];
-
-const mockUnanswered: UnansweredQuery[] = [
-  {
-    id: '1',
-    question: '이 제품은 해외에서도 사용 가능한가요?',
-    productId: 'WM-2024',
-    productName: '세탁기 WM-2024',
-    timestamp: new Date(Date.now() - 26 * 60 * 60 * 1000), // 26시간 전 (긴급)
-    attemptCount: 3,
-  },
-  {
-    id: '2',
-    question: '소음이 70dB 이상 나는데 정상인가요?',
-    productId: 'WM-2024',
-    productName: '세탁기 WM-2024',
-    timestamp: new Date(Date.now() - 8 * 60 * 60 * 1000), // 8시간 전 (주의)
-    attemptCount: 2,
-  },
-  {
-    id: '3',
-    question: '필터 청소는 어떻게 하나요?',
-    productId: 'AC-2024',
-    productName: '에어컨 AC-2024',
-    timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2시간 전 (최근)
-    attemptCount: 1,
-  },
-];
 
 export default function LogsPage() {
   const [dateRange, setDateRange] = useState('7days');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedProduct, setSelectedProduct] = useState('all');
+  const [recentSessions, setRecentSessions] = useState<SessionRecent[]>([]);
+  const [recentLoading, setRecentLoading] = useState(false);
+  const [filter, setFilter] = useState<SessionFilter>({status: 'all'});
+  const [productOptions, setProductOptions] = useState<{productId: string}[]>([]);
+  const [sessionsLoading, setSessionsLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const pageSize = 15;
+  const [sessions, setSessions] = useState<SessionList[]>([]);
+  const [totalSessions, setTotalSessions] = useState(0);
+  const totalPages = Math.max(1, Math.ceil(totalSessions / pageSize));
 
-  const unansweredCount = mockUnanswered.length;
-  const urgentCount = mockUnanswered.filter(
-    q => (Date.now() - q.timestamp.getTime()) / (1000 * 60 * 60) > 24
-  ).length;
+  const handleFilterChange = (next: SessionFilter) => {
+    setFilter(next);
+    setPage(1);
+  };
+
+  useEffect(() => {
+    const fetchRecentSessions = async () => {
+      try {
+        setRecentLoading(true);
+        const res = await apiClient.get<SessionRecent[]>(
+          API_ENDPOINTS.LOGS.RECENT
+        );
+
+        setRecentSessions(res.data);
+      } catch (error) {
+        console.error('최근 문의 불러오기 실패:', error);
+      } finally {
+        setRecentLoading(false);
+      }
+    };
+    fetchRecentSessions();
+  }, []);
+
+  useEffect(() => {
+    const fetchProductOptions = async () => {
+      try {
+        const res = await apiClient.get<{ productId: string }[]>(
+          API_ENDPOINTS.LOGS.INFO
+        );
+        setProductOptions(res.data);
+      } catch (error) {
+        console.error('제품 목록 불러오기 실패:', error);
+      }
+    };
+    fetchProductOptions();
+  }, []);
+
+  useEffect(() => {
+    const fetchSessions = async () => {
+      try {
+        setSessionsLoading(true);
+        const params: Record<string, string> = {};
+        if (filter.sessionId?.trim()) params.sessionId = filter.sessionId.trim();
+        if (filter.productId) params.productId = filter.productId;
+        if (filter.status && filter.status !== 'all') params.status = filter.status;
+        if (filter.from) params.from = filter.from;
+        if (filter.to) params.to = filter.to;
+        params.limit = String(pageSize);
+        params.offset = String((page - 1) * pageSize);
+
+        const res = await apiClient.get<SessionListResponse>(
+          API_ENDPOINTS.LOGS.LIST,
+          { params }
+        );
+
+        setSessions(res.data.items);
+        setTotalSessions(res.data.total);
+      } catch (error) {
+        console.error('세션 목록 불러오기 실패:', error);
+      } finally {
+        setSessionsLoading(false);
+      }
+    };
+    fetchSessions();
+  }, [filter, dateRange, page]);
 
   return (
     <div className={styles.page}>
@@ -90,95 +130,6 @@ export default function LogsPage() {
           <option value="30days">최근 30일</option>
           <option value="90days">최근 90일</option>
         </select>
-      </div>
-
-      {/* 🚨 긴급 알림 배너 */}
-      {unansweredCount > 0 && (
-        <div className={styles.urgentBanner}>
-          <div className={styles.bannerIcon}>
-            <AlertCircle size={24} />
-          </div>
-          <div className={styles.bannerContent}>
-            <h3 className={styles.bannerTitle}>
-              미답변 질문 {unansweredCount}건
-              {urgentCount > 0 && (
-                <span className={styles.urgentBadge}>
-                  긴급 {urgentCount}건
-                </span>
-              )}
-            </h3>
-            <p className={styles.bannerText}>
-              사용자가 답변을 기다리고 있습니다. 빠른 대응이 필요합니다.
-            </p>
-          </div>
-          <Button variant="primary" onClick={() => {
-            document.getElementById('unanswered-section')?.scrollIntoView({ 
-              behavior: 'smooth' 
-            });
-          }}>
-            지금 확인
-          </Button>
-        </div>
-      )}
-
-      {/* 필터 & 검색 */}
-      <div className={styles.toolbar}>
-        <div className={styles.searchWrapper}>
-          <Search className={styles.searchIcon} size={20} />
-          <input
-            type="text"
-            placeholder="질문 내용 검색..."
-            className={styles.searchInput}
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </div>
-
-        <div className={styles.filterGroup}>
-          <Filter size={18} />
-          <select
-            value={selectedProduct}
-            onChange={(e) => setSelectedProduct(e.target.value)}
-            className={styles.filterSelect}
-          >
-            <option value="all">전체 제품</option>
-            <option value="WM-2024">세탁기 WM-2024</option>
-            <option value="AC-2024">에어컨 AC-2024</option>
-            <option value="RF-2024">냉장고 RF-2024</option>
-          </select>
-        </div>
-      </div>
-
-      {/* 🚨 미답변 질문 (최우선) */}
-      <div id="unanswered-section" className={styles.unansweredSection}>
-        <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>
-            <AlertCircle size={24} className={styles.urgentIcon} />
-            미답변 질문
-          </h2>
-          <span className={styles.badge}>{unansweredCount}</span>
-        </div>
-        
-        {/* 🆕 우선순위 기준 안내 */}
-        <div className={styles.priorityGuide}>
-          <span className={styles.guideLabel}>우선순위 기준:</span>
-          <div className={styles.guideItems}>
-            <div className={styles.guideItem}>
-              <span className={`${styles.guideDot} ${styles.urgent}`}></span>
-              <span>긴급 (24시간 이상)</span>
-            </div>
-            <div className={styles.guideItem}>
-              <span className={`${styles.guideDot} ${styles.warning}`}></span>
-              <span>주의 (6-24시간)</span>
-            </div>
-            <div className={styles.guideItem}>
-              <span className={`${styles.guideDot} ${styles.recent}`}></span>
-              <span>최근 (6시간 미만)</span>
-            </div>
-          </div>
-        </div>
-        
-        <UnansweredQueries queries={mockUnanswered} />
       </div>
 
       {/* 핵심 지표 (간소화) */}
@@ -214,10 +165,90 @@ export default function LogsPage() {
         </div>
       </div>
 
-      {/* 자주 묻는 질문 Top 10 */}
+      {/* 최근 문의 섹션 */}
       <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>📈 자주 묻는 질문 Top 10</h2>
-        <TopQuestionsTable questions={mockTopQuestions} />
+        <h2 className={styles.sectionTitle}>
+          <History size={24} />
+          최근 문의
+        </h2>
+
+        {recentLoading ? (
+          <div className={styles.emptyState}>
+            최근 문의를 불러오는 중이에요…
+          </div>
+        ) : (
+          <RecentSessionTable
+            sessions={recentSessions}
+            onSelectSession={(sid) => {
+              console.log('최근 문의 클릭:', sid);
+              // TODO: 여기서 바로 리포트 조회 or 세션 목록으로 스크롤/이동 등 붙이면 돼요
+            }}
+          />
+        )}
+      </div>
+
+      {/* 필터 & 검색 */}
+      <SessionFilterTable
+        filter={filter}
+        onChangeFilter={handleFilterChange}
+        products={productOptions}
+      />
+
+      {/* 세션 목록 */}
+      {sessionsLoading ? (
+        <div className={styles.emptyState}>
+          세션 목록을 불러오는 중이에요…
+        </div>
+      ) : sessions.length === 0 ? (
+        <div className={styles.emptyState}>
+          조건에 해당하는 세션이 없어요.
+        </div>
+      ) : (
+        <SessionTable
+          sessions={sessions}
+          onSelectSession={(sid) => {
+            console.log('세션 선택:', sid);
+            // 나중에 상세 페이지로 이동하거나 오른쪽 패널에 로그 펼치는 용도로 쓸 수 있어요.
+          }}
+        />
+      )}
+
+      <div className={styles.pagination}>
+        {/* 이전 버튼 */}
+        <button
+          disabled={page <= 1}
+          onClick={() => setPage((p) => p - 1)}
+          className={styles.pageNavButton}
+        >
+          이전
+        </button>
+
+        {/* 번호 버튼 */}
+        {Array.from({ length: totalPages }, (_, idx) => {
+          const p = idx + 1;
+          const isActive = p === page;
+
+          return (
+            <span
+              key={p}
+              onClick={() => setPage(p)}
+              className={
+                isActive ? styles.pageNumberActive : styles.pageNumber
+              }
+            >
+              {p}
+            </span>
+          );
+        })}
+
+        {/* 다음 버튼 */}
+        <button
+          disabled={page >= totalPages}
+          onClick={() => setPage((p) => p + 1)}
+          className={styles.pageNavButton}
+        >
+          다음
+        </button>
       </div>
 
       {/* 응답 시간 차트 */}
