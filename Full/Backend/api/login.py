@@ -163,7 +163,8 @@ async def google_login_call_back(code_data:AuthCodeRequest,session:AsyncSession=
         )
         await session.commit()
 
-        new_id = result.lastrowid
+        result = await session.execute(text("SELECT LAST_INSERT_ID()"))
+        new_id = result.scalar_one()
         prefixed_id = f"user_{new_id}"
 
         # from datetime import timedelta
@@ -189,5 +190,5 @@ async def google_login_call_back(code_data:AuthCodeRequest,session:AsyncSession=
     return {
         "user": {"id": prefixed_id, "name": google_name, "role": "user"},
         "access_token": access_token,
-        "token_type": "Bearer"
+        "token_type": "Bearer"  
     }

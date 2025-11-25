@@ -3,4 +3,4 @@ from pydantic import BaseModel, Field
 
 class FeedBack(BaseModel):
     message_id:str|int
-    feedback: int | None = Field(default=None) 
+    feedback: str | None = Field(default=None) 

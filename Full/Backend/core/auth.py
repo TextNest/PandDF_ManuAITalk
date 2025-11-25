@@ -51,9 +51,15 @@ def get_current_user(authorization: Optional[str] = Header(None))-> companyInfo:
         payload = jwt.decode(token,SECRET_KEY,algorithms=[ALGORITHM])
         role = payload.get("role")
         if role == "user":
-            return {"name":payload.get("name"),"email":payload.get("id")}
+            print(payload.get("id"))
+            unique_id = payload.get("id").split("_")[1]
+            print(unique_id)
+            return {"name":payload.get("name"),"unique_id":unique_id}
         elif role == "company_admin":
-            return {"id":payload.get("id"),"name":payload.get("name"),"company_name":payload.get("company_name")}
+            print(payload.get("id"))
+            unique_id = payload.get("id").split("_")[1]
+            print(unique_id)
+            return {"unique_id":unique_id,"name":payload.get("name"),"company_name":payload.get("company_name")}
         if not role :
             raise HTTPException(status_code=401,detail="인증 오류 : 토큰에 필수 정보가 없습니다.")
     except JWTError:
