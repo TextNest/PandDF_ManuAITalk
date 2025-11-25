@@ -4,7 +4,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from api import chat,login,admin,superadmin,ar_models, products, faq
+from api import chat,login,admin,superadmin,ar_models, products,faq,logs
 from module import Scheduler_ARP
 from core.db_config import engine
 from models.base import Base
@@ -61,6 +61,7 @@ app.include_router(login.router, tags=["login"],prefix="/api")
 app.include_router(ar_models.router, tags=["ar_models"], prefix="/api")
 app.include_router(products.router, tags=["products"], prefix="/api/products")
 app.include_router(faq.router, tags=["faq"])
+app.include_router(logs.router, tags=["logs"])
 
 @app.on_event("startup")
 async def set_scheduler():

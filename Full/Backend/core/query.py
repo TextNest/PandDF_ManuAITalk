@@ -105,3 +105,48 @@ ON DUPLICATE KEY UPDATE
     negative = VALUES(negative),
     satisfaction = VALUES(satisfaction);
 """
+
+class LogQuery:
+    view_recent = """
+    SELECT
+        r.session_id as sessionId,
+        r.status,
+        r.product_id as productId,
+        r.satisfaction,
+        (
+            SELECT m.content
+            FROM test_message AS m
+            WHERE m.session_id = r.session_id
+            ORDER BY m.`timestamp` ASC, m.id ASC
+            LIMIT 1
+        ) AS message
+    FROM test_report AS r
+    ORDER BY r.timestamp_e DESC
+    LIMIT 3
+    """
+    
+    product_info = """
+    SELECT DISTINCT product_id as productId FROM test_products
+    """
+
+    view_session_head = """
+    SELECT
+        r.session_id as sessionId,
+        r.status,
+        r.product_id as productId,
+        r.satisfaction,
+        DATE_FORMAT(r.timestamp_e, '%Y-%m-%d %H:%i:%s') as endedAt,
+        (
+            SELECT m.content
+            FROM test_message AS m
+            WHERE m.session_id = r.session_id
+            ORDER BY m.`timestamp` ASC, m.id ASC
+            LIMIT 1
+        ) AS message
+    FROM test_report AS r
+    """
+
+    view_session_tail = """
+    ORDER BY endedAt DESC
+    LIMIT :limit OFFSET :offset
+    """

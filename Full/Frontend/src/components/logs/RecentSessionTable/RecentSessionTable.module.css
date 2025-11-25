@@ -1,0 +1,65 @@
+/* // ============================================
+// 📄 1. src/components/logs/RecentSessionTable/RecentSessionTable.module.css
+// ============================================ */
+
+.container {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.table td {
+  padding: var(--spacing-md);
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.row {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.row:hover {
+  background-color: var(--bg-secondary);
+}
+
+.status {
+  font-weight: var(--text-weight-semibold);
+  color: var(--color-primary);
+  width: 80px;
+}
+
+.product {
+  font-weight: var(--font-weight-medium);
+  width: 120px;
+  color: var(--text-secondary);
+}
+
+.message {
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.satisfy {
+  width: 60px;
+  text-align: right;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-success);
+}
+
+.empty {
+  padding: var(--spacing-lg);
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
