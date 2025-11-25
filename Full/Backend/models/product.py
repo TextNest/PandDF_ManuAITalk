@@ -23,7 +23,15 @@ class Product(Base):
     release_date = Column(Date, nullable=True, comment="출시일") # DateTime -> Date 타입으로 변경 가능, 일단 DateTime 유지
     qr_code = Column(String(255), nullable=True, comment="QR 코드 URL") # 추가
     is_active = Column(Boolean, nullable=False, default=True, comment="활성 상태 (True: 활성, False: 비활성)") # tinyint -> Boolean
-    status = Column(Enum(Status), nullable=False, default=Status.PENDING, comment="분석 상태") # Enum 타입 수정 및 이름 변경
+    
+    # 🔴 기존: status = Column(Enum(Status), nullable=False, default=Status.PENDING, ...)
+    # 🟢 변경: 그냥 문자열 컬럼으로 다룸 (DB쪽은 계속 enum('pending','completed','failed') 유지)
+    status = Column(
+        String(20),
+        nullable=False,
+        default=Status.PENDING.value,
+        comment="분석 상태(pending/completed/failed)",
+    )
 
     image_url = Column(String(255), nullable=True, comment="제품 이미지 파일 경로")
     pdf_path = Column(String(255), nullable=True, comment="제품 설명서 PDF 파일 경로")

@@ -24,7 +24,7 @@
 #        - depth_mm     : 세로/깊이(mm)
 #        - height_mm    : 높이(mm)
 #   3) tb_product 테이블의 해당 row를 업데이트
-#       - status = 'completed' 로 변경 (schemas.product.status 사용)
+#       - status = 'COMPLETED' 로 변경 (schemas.product.Status 사용)
 #
 # [사용 예시]
 #   1) CLI:
@@ -32,22 +32,25 @@
 #                       --doc-id SDM-WHT330HS \
 #                       --product-id SDM-WHT330HS
 #
-#   2) 코드 내에서 (document_pr.trigger_pdf_processing 에서):
+#   2) 코드 내에서 (document_pr.trigger_pdf_processing 등에서 직접 호출 시):
 #       from module.rag_pipeline.product_metadata_extractor import (
 #           extract_and_update_product_metadata,
 #       )
 #
-#       await extract_and_update_product_metadata(
+#       extract_and_update_product_metadata(
 #           doc_id=product.product_id,
 #           product_id=product.product_id,
 #       )
 #
+#   ※ 이 모듈은 전처리 파이프라인의 "마지막 단계"로 실행되며,
+#      FastAPI의 비동기 세션(aiomysql)을 쓰지 않고
+#      별도의 동기 세션(pymysql)으로 DB에 접속한다.
+#      → 다른 비동기 작업과 커넥션이 꼬이는 것을 방지하기 위함.
 # ============================================================
 
 from __future__ import annotations
 
 import argparse
-import asyncio
 import json
 import logging
 import os
@@ -58,9 +61,12 @@ from typing import Any, Dict, Optional
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
-from sqlalchemy import text, update
+from sqlalchemy import create_engine, text, update
+from sqlalchemy.orm import sessionmaker
 
-from core.db_config import get_session_text  # AsyncSession factory
+from models.company import Company  # Company 매퍼를 registry에 등록시키기 위함
+from models.admin import Admin      # Company가 relationship("Admin")을 가지므로 같이 등록
+
 from models.product import Product
 from schemas.product import Status
 
@@ -81,6 +87,96 @@ PARSED_DIR: Path = PROJECT_ROOT / "data" / "parsed"
 # LLM 기본 설정
 DEFAULT_MODEL_NAME: str = "gemini-2.5-flash"
 DEFAULT_MAX_CHARS: int = 16000  # LLM에 넘길 컨텍스트 최대 길이 (문자 기준)
+
+
+# ----------------------------- DB 세션 헬퍼 (동기) -----------------------------
+
+
+# 이 모듈 전용 동기 Session 팩토리 캐시
+_SESSIONMAKER: Optional[sessionmaker] = None
+
+
+def get_sync_sessionmaker() -> sessionmaker:
+    """
+    product_metadata_extractor 전용 동기(Session) 팩토리.
+
+    - .env 에서 DB URL 을 읽어 사용한다.
+      (여러 이름 후보를 시도한 뒤, 그래도 못 찾으면
+       환경변수 전체에서 mysql+aiomysql:// 패턴을 검색하거나,
+       DB_HOST / DB_USER / DB_PW / DB_DATABASE / DB_PORT 로부터
+       직접 pymysql URL 을 구성한다.)
+    - 프로젝트 전체에서 사용하는 비동기 URL(`mysql+aiomysql://...`)이더라도
+      이 모듈에서는 동기 드라이버(`mysql+pymysql://...`)로 변환해 사용한다.
+      → 전처리 파이프라인이 별도 프로세스로 동작하므로
+        FastAPI의 비동기 세션과 커넥션이 꼬이는 문제를 방지하기 위함.
+    """
+    global _SESSIONMAKER
+    if _SESSIONMAKER is not None:
+        return _SESSIONMAKER
+
+    # .env 로드 (이미 다른 곳에서도 호출될 수 있지만, idempotent 하므로 한 번 더 호출해도 안전)
+    if ENV_FILE_PATH.exists():
+        load_dotenv(ENV_FILE_PATH, override=False)
+
+    # 1차: 대표적인 이름들에서 찾아보기
+    candidate_keys = [
+        "DATABASE_URL",
+        "DATABASE_URL_TEXT",
+        "DB_URL",
+        "DB_URL_TEXT",
+        "ASYNC_DATABASE_URL",
+        "ASYNC_DB_URL",
+    ]
+
+    db_url: Optional[str] = None
+    for key in candidate_keys:
+        val = os.getenv(key)
+        if val:
+            db_url = val
+            logging.info("DB URL 환경변수 감지: %s", key)
+            break
+
+    # 2차: 그래도 못 찾으면, 값에 'mysql+aiomysql://' 이 들어있는 환경변수 자동 탐지
+    if not db_url:
+        for key, val in os.environ.items():
+            if isinstance(val, str) and "mysql+aiomysql://" in val:
+                db_url = val
+                logging.info("환경변수 %s 에서 aiomysql DB URL 자동 감지.", key)
+                break
+
+    # 3차: 여전히 못 찾으면, DB_HOST / DB_USER / DB_PW / DB_DATABASE / DB_PORT 로 직접 구성
+    if not db_url:
+        host = os.getenv("DB_HOST")
+        user = os.getenv("DB_USER")
+        pw = os.getenv("DB_PW")
+        database = os.getenv("DB_DATABASE")
+        port = os.getenv("DB_PORT", "3306")
+
+        if host and user and pw and database:
+            db_url = f"mysql+pymysql://{user}:{pw}@{host}:{port}/{database}"
+            logging.info(
+                "DB_HOST/DB_USER/DB_PW/DB_DATABASE 기반으로 pymysql URL 구성: %s",
+                db_url,
+            )
+
+    if not db_url:
+        # 여기까지 왔다는 건 URL도, 쪼갠 정보도 제대로 세팅 안 된 것
+        raise RuntimeError(
+            "DATABASE_URL / DATABASE_URL_TEXT / DB_URL / DB_URL_TEXT / "
+            "ASYNC_DATABASE_URL / ASYNC_DB_URL 환경변수도 없고, "
+            "DB_HOST / DB_USER / DB_PW / DB_DATABASE 로부터도 DB URL을 구성할 수 없습니다. "
+            ".env 설정을 확인해 주세요."
+        )
+
+    # 비동기용 URL이면 동기용으로 변환
+    # 예: mysql+aiomysql://user:pw@host/db → mysql+pymysql://user:pw@host/db
+    if "+aiomysql" in db_url:
+        db_url = db_url.replace("+aiomysql", "+pymysql")
+        logging.info("aiomysql URL을 pymysql URL로 변환: %s", db_url)
+
+    engine = create_engine(db_url, future=True)
+    _SESSIONMAKER = sessionmaker(bind=engine, autoflush=False, autocommit=False)
+    return _SESSIONMAKER
 
 
 # ----------------------------- 로깅 / 공통 유틸 -----------------------------
@@ -256,7 +352,7 @@ def _parse_date(value: Optional[str]) -> Optional[date]:
 # ----------------------------- 메인 로직 -----------------------------
 
 
-async def extract_and_update_product_metadata(
+def extract_and_update_product_metadata(
     doc_id: str,
     product_id: str,
     max_chars: int = DEFAULT_MAX_CHARS,
@@ -315,14 +411,18 @@ async def extract_and_update_product_metadata(
 
     metadata = _safe_json_loads(raw_text)
 
-    # 3) DB 업데이트
-    await _update_product_row(product_id, metadata)
+    # 3) DB 업데이트 (동기)
+    _update_product_row(product_id, metadata)
 
-    logging.info("메타데이터 추출 & DB 업데이트 완료 (doc_id=%s, product_id=%s)", doc_id, product_id)
+    logging.info(
+        "메타데이터 추출 & DB 업데이트 완료 (doc_id=%s, product_id=%s)",
+        doc_id,
+        product_id,
+    )
     return metadata
 
 
-async def _update_product_row(
+def _update_product_row(
     product_id: str,
     metadata: Dict[str, Any],
 ) -> None:
@@ -336,9 +436,12 @@ async def _update_product_row(
     """
     from core.query import find_product_id
 
-    async with get_session_text() as session:   # AsyncSession
-        # 제품 존재 여부 확인
-        result = await session.execute(
+    SessionLocal = get_sync_sessionmaker()
+
+    # 동기 Session 사용
+    with SessionLocal() as session:
+        # 1) 제품 존재 여부 확인
+        result = session.execute(
             text(find_product_id),
             {"product_id": product_id},
         )
@@ -351,7 +454,7 @@ async def _update_product_row(
             )
             return
 
-        # 메타데이터 준비
+        # 2) 메타데이터 준비
         release_date_str = metadata.get("release_date")
         parsed_date = _parse_date(release_date_str)
 
@@ -372,7 +475,7 @@ async def _update_product_row(
         d = _as_float(metadata.get("depth_mm"))   # 세로/깊이(mm)
         h = _as_float(metadata.get("height_mm"))  # 높이(mm)
 
-        # 업데이트 데이터 준비 (None/0이 아닌 값만 반영)
+        # 3) 업데이트 데이터 준비 (None/0이 아닌 값만 반영)
         update_data: Dict[str, Any] = {}
 
         if metadata.get("product_name"):
@@ -393,15 +496,15 @@ async def _update_product_row(
         # status 는 항상 COMPLETED 로 업데이트
         update_data["status"] = Status.COMPLETED.value
 
-        # DB 업데이트 (ORM 사용)
+        # 4) DB 업데이트 (ORM 사용)
         if update_data:
             update_stmt = (
                 update(Product)
                 .where(Product.product_id == product_id)
                 .values(**update_data)
             )
-            await session.execute(update_stmt)
-            await session.commit()
+            session.execute(update_stmt)
+            session.commit()
 
         logging.info(
             "Product (product_id=%s) 메타데이터 업데이트 완료: name=%s, category=%s",
@@ -414,15 +517,16 @@ async def _update_product_row(
 # ----------------------------- CLI 엔트리 -----------------------------
 
 
-async def _async_main(args: argparse.Namespace) -> None:
+def _main(args: argparse.Namespace) -> None:
     """
-    CLI 실행 시 실제 비동기 처리 엔트리 함수.
+    CLI 실행 시 실제 처리 엔트리 함수.
+    (비동기 X, 동기 방식으로 한 번만 실행됨)
     """
     configure_logging()
 
     client = load_gemini_client()
 
-    await extract_and_update_product_metadata(
+    extract_and_update_product_metadata(
         doc_id=args.doc_id,
         product_id=args.product_id,
         max_chars=args.max_chars,
@@ -462,7 +566,7 @@ def main() -> None:
     )
 
     args = parser.parse_args()
-    asyncio.run(_async_main(args))
+    _main(args)
 
 
 if __name__ == "__main__":

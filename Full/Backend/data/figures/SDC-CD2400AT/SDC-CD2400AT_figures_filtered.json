@@ -1,0 +1,515 @@
+{
+  "doc_id": "SDC-CD2400AT",
+  "source_pdf": "uploads/pdfs/SDC-CD2400AT.pdf",
+  "num_images_total": 19,
+  "num_images_kept": 11,
+  "created_by": "image_filter_for_caption.py",
+  "config": {
+    "SMALL_ICON_MAX_DIM": 96,
+    "SMALL_ICON_MAX_AREA": 9216,
+    "INK_INTENSITY_THRESHOLD": 190,
+    "PROCEDURE_BANNER_MIN_ASPECT": 4.0,
+    "PROCEDURE_BANNER_MAX_INK": 0.2,
+    "PROCEDURE_BANNER_MIN_TABLE_LINE": 0.03,
+    "ENABLE_QR_DETECTION": true,
+    "QR_SIZE_MIN": 80.0,
+    "QR_SIZE_MAX": 300.0,
+    "QR_SQUARE_ASPECT_TOL": 0.15,
+    "QR_MIN_EDGE_RATIO": 0.15,
+    "QR_MIN_TABLE_LINE_RATIO": 0.2,
+    "QR_MIN_INK_RATIO": 0.3
+  },
+  "images": [
+    {
+      "file": "data/figures/SDC-CD2400AT/page_002_figure_001.png",
+      "page": 2,
+      "index": 1,
+      "size_px": [
+        42,
+        40
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 42.0,
+        "height": 40.0,
+        "aspect_ratio": 1.05,
+        "ink_ratio": 0.4494047619047619,
+        "edge_ratio": 0.2357142857142857,
+        "table_line_ratio": 0.2785714285714286,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        43,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 41.0,
+        "aspect_ratio": 1.048780487804878,
+        "ink_ratio": 0.4293817356778219,
+        "edge_ratio": 0.2597844583096994,
+        "table_line_ratio": 0.24390243902439024,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        44,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0476190476190477,
+        "ink_ratio": 0.3333333333333333,
+        "edge_ratio": 0.18506493506493507,
+        "table_line_ratio": 0.15692640692640691,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        44,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 41.0,
+        "aspect_ratio": 1.0731707317073171,
+        "ink_ratio": 0.39301552106430154,
+        "edge_ratio": 0.25942350332594233,
+        "table_line_ratio": 0.2189578713968958,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        40,
+        40
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 40.0,
+        "height": 40.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.7125,
+        "edge_ratio": 0.121875,
+        "table_line_ratio": 0.734375,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        42,
+        40
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 42.0,
+        "height": 40.0,
+        "aspect_ratio": 1.05,
+        "ink_ratio": 0.5005952380952381,
+        "edge_ratio": 0.19464285714285715,
+        "table_line_ratio": 0.4398809523809524,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        42,
+        39
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 42.0,
+        "height": 39.0,
+        "aspect_ratio": 1.0769230769230769,
+        "ink_ratio": 0.18864468864468864,
+        "edge_ratio": 0.17399267399267399,
+        "table_line_ratio": 0.057387057387057384,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_004_figure_008.png",
+      "page": 4,
+      "index": 8,
+      "size_px": [
+        480,
+        743
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 480.0,
+        "height": 743.0,
+        "aspect_ratio": 0.6460296096904441,
+        "ink_ratio": 0.04495569762225213,
+        "edge_ratio": 0.04441453566621804,
+        "table_line_ratio": 0.010413862718707942,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDC-CD2400AT/page_004_figure_008.png"
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_006_figure_009.png",
+      "page": 6,
+      "index": 9,
+      "size_px": [
+        352,
+        251
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 352.0,
+        "height": 251.0,
+        "aspect_ratio": 1.402390438247012,
+        "ink_ratio": 0.04006700470843897,
+        "edge_ratio": 0.05884416877942775,
+        "table_line_ratio": 0.007934172401303875,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDC-CD2400AT/page_006_figure_009.png"
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_006_figure_010.png",
+      "page": 6,
+      "index": 10,
+      "size_px": [
+        367,
+        371
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 367.0,
+        "height": 371.0,
+        "aspect_ratio": 0.9892183288409704,
+        "ink_ratio": 0.023634480783213497,
+        "edge_ratio": 0.02948067304655655,
+        "table_line_ratio": 0.0043258884963681635,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDC-CD2400AT/page_006_figure_010.png"
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_006_figure_011.png",
+      "page": 6,
+      "index": 11,
+      "size_px": [
+        355,
+        250
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 355.0,
+        "height": 250.0,
+        "aspect_ratio": 1.42,
+        "ink_ratio": 0.04140845070422535,
+        "edge_ratio": 0.05783661971830986,
+        "table_line_ratio": 0.012,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDC-CD2400AT/page_006_figure_011.png"
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_006_figure_012.png",
+      "page": 6,
+      "index": 12,
+      "size_px": [
+        240,
+        315
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 240.0,
+        "height": 315.0,
+        "aspect_ratio": 0.7619047619047619,
+        "ink_ratio": 0.06126984126984127,
+        "edge_ratio": 0.07202380952380952,
+        "table_line_ratio": 0.02970899470899471,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDC-CD2400AT/page_006_figure_012.png"
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_007_figure_013.png",
+      "page": 7,
+      "index": 13,
+      "size_px": [
+        350,
+        258
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 350.0,
+        "height": 258.0,
+        "aspect_ratio": 1.3565891472868217,
+        "ink_ratio": 0.06115171650055371,
+        "edge_ratio": 0.06286821705426357,
+        "table_line_ratio": 0.025902547065337764,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDC-CD2400AT/page_007_figure_013.png"
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_007_figure_014.png",
+      "page": 7,
+      "index": 14,
+      "size_px": [
+        229,
+        243
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 229.0,
+        "height": 243.0,
+        "aspect_ratio": 0.9423868312757202,
+        "ink_ratio": 0.040109978974607795,
+        "edge_ratio": 0.04843028375294266,
+        "table_line_ratio": 0.0070983161715815766,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDC-CD2400AT/page_007_figure_014.png"
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_008_figure_015.png",
+      "page": 8,
+      "index": 15,
+      "size_px": [
+        764,
+        312
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 764.0,
+        "height": 312.0,
+        "aspect_ratio": 2.448717948717949,
+        "ink_ratio": 0.03983756208887099,
+        "edge_ratio": 0.0395858504497248,
+        "table_line_ratio": 0.015346019599946302,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDC-CD2400AT/page_008_figure_015.png"
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_008_figure_016.png",
+      "page": 8,
+      "index": 16,
+      "size_px": [
+        577,
+        247
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 577.0,
+        "height": 247.0,
+        "aspect_ratio": 2.3360323886639676,
+        "ink_ratio": 0.09686427774542342,
+        "edge_ratio": 0.08901269304443618,
+        "table_line_ratio": 0.062146099818269844,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDC-CD2400AT/page_008_figure_016.png"
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_009_figure_017.png",
+      "page": 9,
+      "index": 17,
+      "size_px": [
+        245,
+        152
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 245.0,
+        "height": 152.0,
+        "aspect_ratio": 1.611842105263158,
+        "ink_ratio": 0.05405477980665951,
+        "edge_ratio": 0.08466702470461869,
+        "table_line_ratio": 0.019226638023630505,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDC-CD2400AT/page_009_figure_017.png"
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_009_figure_018.png",
+      "page": 9,
+      "index": 18,
+      "size_px": [
+        243,
+        200
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 243.0,
+        "height": 200.0,
+        "aspect_ratio": 1.215,
+        "ink_ratio": 0.04888888888888889,
+        "edge_ratio": 0.06919753086419753,
+        "table_line_ratio": 0.020020576131687243,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDC-CD2400AT/page_009_figure_018.png"
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_011_figure_019.png",
+      "page": 11,
+      "index": 19,
+      "size_px": [
+        784,
+        153
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 784.0,
+        "height": 153.0,
+        "aspect_ratio": 5.124183006535947,
+        "ink_ratio": 0.08939409096972122,
+        "edge_ratio": 0.09151160464185674,
+        "table_line_ratio": 0.06062424969987995,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null
+    }
+  ]
+}

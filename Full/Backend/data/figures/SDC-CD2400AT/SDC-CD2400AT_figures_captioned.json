@@ -1,0 +1,560 @@
+{
+  "doc_id": "SDC-CD2400AT",
+  "source_pdf": "uploads/pdfs/SDC-CD2400AT.pdf",
+  "num_images_total": 19,
+  "num_images_kept": 11,
+  "created_by": "image_captioner_gemini.py",
+  "model": "gemini-2.5-flash",
+  "config": {
+    "CAPTION_MAX_CHARS": 320,
+    "UNSAFE_KEYWORDS": [
+      "폭발",
+      "감전",
+      "사망",
+      "질식",
+      "중독",
+      "화재",
+      "불이 날",
+      "불이날",
+      "가스 누출",
+      "가스누출",
+      "가스가 새",
+      "전기 충격",
+      "전기충격",
+      "고압",
+      "중상",
+      "심각한 부상"
+    ]
+  },
+  "images": [
+    {
+      "file": "data/figures/SDC-CD2400AT/page_002_figure_001.png",
+      "page": 2,
+      "index": 1,
+      "size_px": [
+        42,
+        40
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 42.0,
+        "height": 40.0,
+        "aspect_ratio": 1.05,
+        "ink_ratio": 0.4494047619047619,
+        "edge_ratio": 0.2357142857142857,
+        "table_line_ratio": 0.2785714285714286,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        43,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 41.0,
+        "aspect_ratio": 1.048780487804878,
+        "ink_ratio": 0.4293817356778219,
+        "edge_ratio": 0.2597844583096994,
+        "table_line_ratio": 0.24390243902439024,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        44,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0476190476190477,
+        "ink_ratio": 0.3333333333333333,
+        "edge_ratio": 0.18506493506493507,
+        "table_line_ratio": 0.15692640692640691,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        44,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 41.0,
+        "aspect_ratio": 1.0731707317073171,
+        "ink_ratio": 0.39301552106430154,
+        "edge_ratio": 0.25942350332594233,
+        "table_line_ratio": 0.2189578713968958,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        40,
+        40
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 40.0,
+        "height": 40.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.7125,
+        "edge_ratio": 0.121875,
+        "table_line_ratio": 0.734375,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        42,
+        40
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 42.0,
+        "height": 40.0,
+        "aspect_ratio": 1.05,
+        "ink_ratio": 0.5005952380952381,
+        "edge_ratio": 0.19464285714285715,
+        "table_line_ratio": 0.4398809523809524,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        42,
+        39
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 42.0,
+        "height": 39.0,
+        "aspect_ratio": 1.0769230769230769,
+        "ink_ratio": 0.18864468864468864,
+        "edge_ratio": 0.17399267399267399,
+        "table_line_ratio": 0.057387057387057384,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_004_figure_008.png",
+      "page": 4,
+      "index": 8,
+      "size_px": [
+        480,
+        743
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 480.0,
+        "height": 743.0,
+        "aspect_ratio": 0.6460296096904441,
+        "ink_ratio": 0.04495569762225213,
+        "edge_ratio": 0.04441453566621804,
+        "table_line_ratio": 0.010413862718707942,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDC-CD2400AT/page_004_figure_008.png",
+      "caption_short": "이 장면은 전기 세척기의 여러 부품이 분리되어 있는 모습이다. 왼쪽 위에는 권총 손잡이 형태의 제품 본체가 보인다. 본체 위쪽에는 (3) 터치패널이, 앞쪽에는 (4) 투명 물탱크가 장착되어 있다. 뒤로는 (1) 전원 코드가, 아래로는 (5) 구성품 연결 버튼이 있다. 본체 아래에는 (6) 연결 파이프 1과 (7) 연결 파이프 2가 일직선으로 분리되어 있으며, 가장 아래에는 납작한 (9) 스팀 헤드가 있다. 스팀 헤드 위에는 (8) 디퓨저 홈이 있고, 아래에는 (10) 전용 패드가 따로 놓여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_006_figure_009.png",
+      "page": 6,
+      "index": 9,
+      "size_px": [
+        352,
+        251
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 352.0,
+        "height": 251.0,
+        "aspect_ratio": 1.402390438247012,
+        "ink_ratio": 0.04006700470843897,
+        "edge_ratio": 0.05884416877942775,
+        "table_line_ratio": 0.007934172401303875,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDC-CD2400AT/page_006_figure_009.png",
+      "caption_short": "장면 왼쪽에는 벽에 달린 전기 콘센트가 보인다. 콘센트에는 동그란 구멍 두 개가 세로로 나란히 있다. 한 손이 길게 이어진 전선을 따라 하얀색 전기 플러그를 잡고, 콘센트의 위쪽 구멍에 플러그를 꽂는 중이다. 붉은색 화살표가 플러그가 꽂히는 방향을 알려준다. 장면 오른쪽에는 길쭉한 형태의 전자 제품 손잡이 부분이 보이며, 한 손이 손잡이를 감싸 쥐고 있다. 손잡이 위쪽 평평한 조작부에는 손가락이 닿아 어떤 버튼을 누르고 있고, 제품 아래쪽에서는 검은색 전원 코드가 길게 이어져 나와 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_006_figure_010.png",
+      "page": 6,
+      "index": 10,
+      "size_px": [
+        367,
+        371
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 367.0,
+        "height": 371.0,
+        "aspect_ratio": 0.9892183288409704,
+        "ink_ratio": 0.023634480783213497,
+        "edge_ratio": 0.02948067304655655,
+        "table_line_ratio": 0.0043258884963681635,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDC-CD2400AT/page_006_figure_010.png",
+      "caption_short": "이것은 긴 막대형의 바닥 청소 제품이다. 가장 위쪽에는 손으로 잡는 손잡이가 있는 본체가 있고, 본체 뒤편으로는 전원 코드가 연결되어 있다. 본체 아래로는 길고 가는 연장관이 아래를 향해 뻗어 있다. 이 연장관의 맨 아래 끝에는 바닥에 닿는 납작한 사각형 모양의 청소 헤드가 연결되어 있다. 청소 헤드와 바닥, 그리고 연장관 사이에는 45도에서 65도 사이의 각도가 표시되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_006_figure_011.png",
+      "page": 6,
+      "index": 11,
+      "size_px": [
+        355,
+        250
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 355.0,
+        "height": 250.0,
+        "aspect_ratio": 1.42,
+        "ink_ratio": 0.04140845070422535,
+        "edge_ratio": 0.05783661971830986,
+        "table_line_ratio": 0.012,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDC-CD2400AT/page_006_figure_011.png",
+      "caption_short": "장면 오른쪽에는 흰색 벽에 붙어 있는 직사각형 모양의 전기 콘센트가 보인다. 콘센트에는 위아래로 두 개의 전원 구멍이 있으며, 각 구멍 안에는 플러그 핀을 꽂을 수 있는 동그란 구멍 두 개가 나란히 있다. 왼쪽에서는 한 사람의 손이 전원 플러그를 잡고 있다. 플러그는 굵은 전원 코드에 연결되어 있고, 두 개의 금속 핀이 콘센트의 위쪽 구멍을 향하고 있으며, 빨간색 화살표가 플러그가 꽂힐 방향을 가리킨다. 오른쪽 아래에는 손잡이가 있는 길쭉한 청소 도구가 옆으로 누워 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_006_figure_012.png",
+      "page": 6,
+      "index": 12,
+      "size_px": [
+        240,
+        315
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 240.0,
+        "height": 315.0,
+        "aspect_ratio": 0.7619047619047619,
+        "ink_ratio": 0.06126984126984127,
+        "edge_ratio": 0.07202380952380952,
+        "table_line_ratio": 0.02970899470899471,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDC-CD2400AT/page_006_figure_012.png",
+      "caption_short": "눈앞에 두 개의 전자제품 부품이 나란히 있다. 왼쪽에 있는 주된 기기는 손으로 쥐는 형태로, 길쭉한 타원형 몸체를 가졌다. 기기 위쪽 뒤편에는 전원 코드가 나와 있고, 그 끝에는 표준 전기 플러그가 연결되어 있다. 몸통 위쪽 앞부분에는 잡기 편한 손잡이가 있고, 손잡이 아래 앞면에는 네모난 조작 패널이 보인다. 기기 아래쪽 끝에는 짧고 둥근 노즐이 아래를 향해 뻗어 있다. 오른쪽에는 이 기기를 벽에 거는 거치대가 있다. 거치대는 테두리가 둥근 직사각형 모양으로, 안쪽이 비어 있고, 중앙에는 전기 접점과 두 개의 둥근 나사 구멍이 뚜렷하게 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_007_figure_013.png",
+      "page": 7,
+      "index": 13,
+      "size_px": [
+        350,
+        258
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 350.0,
+        "height": 258.0,
+        "aspect_ratio": 1.3565891472868217,
+        "ink_ratio": 0.06115171650055371,
+        "edge_ratio": 0.06286821705426357,
+        "table_line_ratio": 0.025902547065337764,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDC-CD2400AT/page_007_figure_013.png",
+      "caption_short": "왼쪽 위에는 빨간색 바탕에 흰색 느낌표가 그려진 경고 표시가 있다. 장면의 중앙에는 길고 가는 막대가 앞에 연결된 전자 제품이 보인다. 이 제품은 스팀 청소기나 핸디형 다리미처럼 생겼으며, 옆에서 본 모습이다. 제품의 몸통은 가운데 부분이 가장 높고 뒤쪽으로 갈수록 완만하게 낮아지며, 위쪽에는 손으로 잡을 수 있는 손잡이가 돌출되어 있다. 몸통의 가장 앞쪽 아래에는 원통형의 길쭉한 막대가 연결되어 있으며, 이 막대와 본체가 만나는 연결 부위가 굵은 빨간색 원으로 둘러싸여 강조되어 있다. 제품의 뒷부분에는 전원 코드가 위로 꺾인 형태로 연결되어 아래로 길게 내려온다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_007_figure_014.png",
+      "page": 7,
+      "index": 14,
+      "size_px": [
+        229,
+        243
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 229.0,
+        "height": 243.0,
+        "aspect_ratio": 0.9423868312757202,
+        "ink_ratio": 0.040109978974607795,
+        "edge_ratio": 0.04843028375294266,
+        "table_line_ratio": 0.0070983161715815766,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDC-CD2400AT/page_007_figure_014.png",
+      "caption_short": "길고 얇은 막대 형태의 손잡이가 위에서 아래로 비스듬히 기울어져 있다. 손잡이의 아랫부분에는 납작하고 네모난 모양의 청소용 머리 부분이 연결되어 있다. 이 머리 부분은 아래쪽 면이 보이도록 살짝 들어 올려져 있으며, 그 아래쪽 면에는 천 같은 부착물이 붙어 있다. 한 손이 손바닥을 위로 향한 채 청소용 머리 부분의 아래쪽에 있는 천 부착물을 손가락으로 만지며 받치고 있다. 막대 손잡이에는 위쪽과 가운데에 작은 네모난 조작부가 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_008_figure_015.png",
+      "page": 8,
+      "index": 15,
+      "size_px": [
+        764,
+        312
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 764.0,
+        "height": 312.0,
+        "aspect_ratio": 2.448717948717949,
+        "ink_ratio": 0.03983756208887099,
+        "edge_ratio": 0.0395858504497248,
+        "table_line_ratio": 0.015346019599946302,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDC-CD2400AT/page_008_figure_015.png",
+      "caption_short": "정면에서 본 네모난 조작부이다. 위쪽 왼쪽에는 연기 그림이 있는 버튼이 있고, 이 버튼은 '1단계 / 초록색'이라고 적혀 있다. 위쪽 오른쪽에는 연기 그림이 두 개 겹쳐진 버튼이 있으며, 이 버튼은 '2단계 / 파란색'이라고 적혀 있다. 각 연기 버튼 안에는 작은 빨간 점이 하나씩 있다. 아래 가운데에는 전원 표시가 있는 버튼이 있고, 이 버튼 아래에는 '짧게 누르면 단계와 멈춤설정, 3초 이상 길게 누르면 전원 ON 또는 OFF 설정'이라고 설명되어 있다. 전원 버튼의 아래쪽에도 작은 빨간 점이 하나 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_008_figure_016.png",
+      "page": 8,
+      "index": 16,
+      "size_px": [
+        577,
+        247
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 577.0,
+        "height": 247.0,
+        "aspect_ratio": 2.3360323886639676,
+        "ink_ratio": 0.09686427774542342,
+        "edge_ratio": 0.08901269304443618,
+        "table_line_ratio": 0.062146099818269844,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDC-CD2400AT/page_008_figure_016.png",
+      "caption_short": "이것은 스팀 제품의 손잡이 부분이다. 손잡이는 길쭉하고 둥근 형태이며, 위에서 약간 비스듬하게 보인다. 손잡이의 오른쪽 위에는 전원 코드가 연결되어 있고, 코드 끝에는 전기 콘센트에 꽂는 플러그가 있다. 손잡이 앞면 위쪽에는 빨간색 원으로 강조된 슬라이딩 스팀 버튼이 있다. 이 버튼은 아래로 밀면 고정되는 형태이다. 오른쪽에는 점선 안에 두 개의 직사각형 패널이 나란히 보이는데, 각 패널에는 위쪽에 김이 피어오르는 모양의 스팀 아이콘이 있고, 그 아래에는 여러 개의 선이 그려져 있다. 오른쪽 패널 아래에는 '고정된 상태'라고 쓰여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_009_figure_017.png",
+      "page": 9,
+      "index": 17,
+      "size_px": [
+        245,
+        152
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 245.0,
+        "height": 152.0,
+        "aspect_ratio": 1.611842105263158,
+        "ink_ratio": 0.05405477980665951,
+        "edge_ratio": 0.08466702470461869,
+        "table_line_ratio": 0.019226638023630505,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDC-CD2400AT/page_009_figure_017.png",
+      "caption_short": "이것은 위에서 살짝 내려다 본 길쭉한 네모 모양의 전자제품이다. 제품의 윗면은 둥글고 부드러운 곡선으로 이루어져 있다. 앞면 왼쪽에는 두툼하고 주름진 천 같은 부분이 살짝 튀어나와 붙어 있다. 앞면 오른쪽 끝 부분에는 조작부가 보이는데, 조작부 위쪽에는 물방울 모양 아이콘 두 개와 옆으로 퍼지는 물결무늬 아이콘이 차례대로 나란히 놓여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_009_figure_018.png",
+      "page": 9,
+      "index": 18,
+      "size_px": [
+        243,
+        200
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 243.0,
+        "height": 200.0,
+        "aspect_ratio": 1.215,
+        "ink_ratio": 0.04888888888888889,
+        "edge_ratio": 0.06919753086419753,
+        "table_line_ratio": 0.020020576131687243,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDC-CD2400AT/page_009_figure_018.png",
+      "caption_short": "지금 눈앞에는 청소기의 바닥을 닦는 부분이 보인다. 위에서 비스듬히 내려다본 모습이다. 가장 위에는 길고 동그란 손잡이 기둥이 연결되어 있다. 기둥 아래쪽은 주름진 모양이고, 기둥 옆면에는 길쭉한 구멍이 하나 보인다. 손잡이 기둥 바로 아래에는 넓고 납작한 네모난 본체가 있다. 본체 윗면에는 발자국 모양의 작은 그림이 그려져 있고, 뒤쪽 양 끝에는 삼각형 모양으로 솟아오른 부분이 있다. 이 본체는 아래쪽으로 넓게 뚫려 있으며, 그 아래 바닥에는 본체와 똑같이 생긴 평평한 네모난 패드 한 장이 분리되어 놓여 있다. 이 패드 가장자리에는 테두리 선이 둘러져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDC-CD2400AT/page_011_figure_019.png",
+      "page": 11,
+      "index": 19,
+      "size_px": [
+        784,
+        153
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 784.0,
+        "height": 153.0,
+        "aspect_ratio": 5.124183006535947,
+        "ink_ratio": 0.08939409096972122,
+        "edge_ratio": 0.09151160464185674,
+        "table_line_ratio": 0.06062424969987995,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    }
+  ]
+}

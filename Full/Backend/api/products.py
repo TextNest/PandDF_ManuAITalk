@@ -188,7 +188,7 @@ async def create_product(
         image_url=product_data.image_url,
         pdf_path=product_data.pdf_path,
         model3d_url=product_data.model3d_url,
-        status=Status.PENDING,
+        status=Status.PENDING.value,
         created_by=created_by_id, # 토큰에서 가져온 user id 사용
         updated_by=created_by_id  # 생성 시에는 updated_by도 동일하게 설정
     )
@@ -364,7 +364,7 @@ async def update_product(
 
         # PDF가 변경되면 상태를 PENDING으로 리셋
         if pdf_path_updated:
-            update_data['status'] = Status.PENDING # Enum 객체 사용
+            update_data['status'] = Status.PENDING.value # Enum 객체 사용
 
         # 업데이트한 사용자 ID 및 시간 정보 추가
         update_data['updated_by'] = updated_by_id

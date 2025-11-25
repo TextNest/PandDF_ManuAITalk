@@ -64,4 +64,3 @@ class Product(ProductBase):
 
     class Config:
         from_attributes = True
-
