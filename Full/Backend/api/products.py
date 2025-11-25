@@ -149,12 +149,25 @@ async def get_completed_products(session: AsyncSession = Depends(get_session)):
 async def create_product(
     product_data: ProductCreate,
     session: AsyncSession = Depends(get_session),
-    background_tasks: BackgroundTasks = BackgroundTasks()
+    background_tasks: BackgroundTasks = BackgroundTasks(),
+    current_user: dict = Depends(get_current_user)
 ):
     """
-    새로운 제품 정보를 데이터베이스에 저장하고, PDF 분석을 백그라운드 작업으로 트리거합니다.
-    PDF 파일의 이름은 제품 코드를 따라 변경됩니다.
+    [관리자 전용] 새로운 제품 정보를 데이터베이스에 저장하고, PDF 분석을 백그라운드 작업으로 트리거합니다.
+    제품은 현재 로그인된 관리자의 회사에 소속됩니다.
     """
+    user_role = current_user.get("role")
+    company_id = current_user.get("company_id")
+    created_by_str = current_user.get("id")
+    created_by_id = int(created_by_str.split('_')[1]) if created_by_str and '_' in created_by_str else None
+
+    # 회사 관리자만 제품을 생성할 수 있도록 제한
+    if user_role != "company_admin" or not company_id or not created_by_id:
+        raise HTTPException(
+            status_code=403,
+            detail="제품을 생성할 권한이 없습니다."
+        )
+
     # product_id가 제공되었는지 확인
     if not product_data.product_id:
         raise HTTPException(status_code=400, detail="Product ID는 필수입니다.")
@@ -168,14 +181,16 @@ async def create_product(
         product_name=product_data.product_name,
         product_id=product_data.product_id,
         category=product_data.category,
-        manufacturer=product_data.manufacturer,
+        company_internal_id=company_id, # 토큰에서 가져온 company_id 사용
         description=product_data.description,
         release_date=product_data.release_date,
         is_active=product_data.is_active,
         image_url=product_data.image_url,
-        pdf_path=product_data.pdf_path, # 임시 경로
+        pdf_path=product_data.pdf_path,
         model3d_url=product_data.model3d_url,
-        status=Status.PENDING
+        status=Status.PENDING,
+        created_by=created_by_id, # 토큰에서 가져온 user id 사용
+        updated_by=created_by_id  # 생성 시에는 updated_by도 동일하게 설정
     )
     
     try:
@@ -199,22 +214,23 @@ async def create_product(
                 new_full_path = os.path.join(base_dir, "..", new_relative_path)
 
                 # 3. 파일명 변경
-                os.rename(old_full_path, new_full_path)
+                if os.path.exists(old_full_path):
+                    os.rename(old_full_path, new_full_path)
+                    # 4. DB 업데이트
+                    new_product.pdf_path = new_relative_path
+                    new_pdf_path = new_relative_path # 백그라운드 작업에 전달할 경로 업데이트
+                    await session.commit()
+                    await session.refresh(new_product)
+                else:
+                    # 임시 PDF 파일이 없어도 제품 생성은 유지하되, 로그를 남기거나 경고 처리
+                    print(f"Warning: Temporary PDF file not found at {old_full_path}, but product created without it.")
+                    new_pdf_path = None # PDF가 없으므로 백그라운드 작업을 트리거하지 않음
 
-                # 4. DB 업데이트
-                new_product.pdf_path = new_relative_path
-                new_pdf_path = new_relative_path # 백그라운드 작업에 전달할 경로 업데이트
-                await session.commit()
-                await session.refresh(new_product)
-
-            except FileNotFoundError:
-                # 파일이 없는 경우 롤백하고 에러 발생
-                await session.rollback()
-                raise HTTPException(status_code=404, detail=f"PDF 파일을 찾을 수 없습니다: {old_relative_path}")
             except Exception as e:
-                # 기타 파일 처리 오류
-                await session.rollback()
-                raise HTTPException(status_code=500, detail=f"PDF 파일명 변경 중 오류 발생: {e}")
+                # 파일 처리 오류 시에도 DB 트랜잭션은 유지될 수 있으므로, 일단 로깅만 하고 넘어감
+                print(f"Error renaming PDF file: {e}")
+                # 필요하다면 여기서 HTTPException을 발생시켜 전체 작업을 실패시킬 수 있음
+                # raise HTTPException(status_code=500, detail=f"PDF 파일명 변경 중 오류 발생: {e}")
 
         # PDF 분석을 백그라운드 작업으로 추가
         if new_pdf_path:

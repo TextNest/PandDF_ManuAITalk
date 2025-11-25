@@ -35,7 +35,6 @@ class ProductBase(BaseModel):
 # Schema for creating a new product (used in POST requests)
 class ProductCreate(ProductBase):
     pdf_path: str
-    company_internal_id: int # 추가
 
 # Schema for updating an existing product (used in PUT/PATCH requests)
 class ProductUpdate(BaseModel):

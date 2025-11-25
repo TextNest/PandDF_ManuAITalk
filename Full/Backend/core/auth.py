@@ -74,9 +74,17 @@ def get_current_user(authorization: Optional[str] = Header(None))-> companyInfo:
                 "id": payload.get("id"),
                 "name": payload.get("name"),
                 "company_name": payload.get("company_name"),
+                "email": payload.get("email"),
                 "role": role,
                 "company_id": payload.get("company_id"),
                 "unique_id":unique_id
+            }
+        elif role == "super_admin":
+            # 슈퍼 관리자 
+            return {
+                "id": payload.get("id"),
+                "name": payload.get("name"),
+                "role": role,
             }
         else:
             # 예상치 못한 role일 경우
