@@ -15,8 +15,8 @@ export type ProductCategory =
 
 export interface Product {
   internal_id: number;
-  product_name: string;
-  product_id: string | null;
+  product_id: string; // 제품 코드를 필수로 받도록 변경
+  product_name?: string | null; // 제품명을 선택 사항으로 변경
   category: string | null;
   manufacturer?: string | null;
   description?: string | null;
@@ -34,7 +34,8 @@ export interface Product {
 }
 
 export interface ProductFormData {
-  product_name: string;
+  product_id: string; // 제품 코드를 필수로 받도록 변경
+  product_name?: string; // 제품명을 선택 사항으로 변경
   pdf_path: string;
 }
 

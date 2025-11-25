@@ -1,0 +1,8 @@
+{
+  "doc_id": "SIF-PD10DIF_USER",
+  "source_caption_file": "data\\figures\\SIF-PD10DIF_USER\\SIF-PD10DIF_USER_figures_captioned.json",
+  "num_images_total": 42,
+  "num_keep_for_caption": 32,
+  "num_with_caption_text": 32,
+  "num_chunks_written": 32
+}

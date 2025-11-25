@@ -1,0 +1,12 @@
+{
+  "num_pages": 12,
+  "lines_before": 209,
+  "lines_after": 167,
+  "placeholders_removed_estimate": 42,
+  "repeated_lines_removed": 0,
+  "num_repeated_patterns": 0,
+  "repeated_patterns_sample": [],
+  "repeated_threshold": 8,
+  "doc_id": "SMX-SH350HSS_SMX-B350TW",
+  "source_parsed_file": "data\\parsed\\SMX-SH350HSS_SMX-B350TW.md"
+}

@@ -8,7 +8,7 @@ import React from 'react';
  * UI 패널(메뉴)의 드래그 이동 및 핀치 줌 확대/축소를 관리하는 커스텀 훅.
  * @param lastUITouchTimeRef - AR 객체와의 상호작용과 UI 터치를 구분하기 위한 마지막 터치 시간 ref.
  */
-export function usePanelInteraction(lastUITouchTimeRef: React.RefObject<number>) {
+export function usePanelInteraction(lastUITouchTimeRef: React.MutableRefObject<number>) {
     const panelRef = useRef<HTMLDivElement>(null); // 상호작용할 패널 div에 대한 ref
     const [isInteracting, setIsInteracting] = useState(false); // 사용자가 패널과 상호작용(드래그 또는 핀치) 중인지 여부
     const [panelPosition, setPanelPosition] = useState({ top: 20, left: 20 }); // 패널의 위치 (CSS top, left 값)
@@ -110,13 +110,12 @@ export function usePanelInteraction(lastUITouchTimeRef: React.RefObject<number>)
         }
         e.preventDefault();
 
-        const event = 'touches' in e ? e.nativeEvent : e;
-        const touches = 'touches' in event ? (event as TouchEvent).touches : [];
+        const touches = 'touches' in e ? e.touches : [];
 
         // 드래그 또는 핀치 줌 시작 정보 기록
         dragStartRef.current = {
-            startX: ('touches' in event ? touches[0]?.clientX : (event as MouseEvent).clientX) || 0,
-            startY: ('touches' in event ? touches[0]?.clientY : (event as MouseEvent).clientY) || 0,
+            startX: ('touches' in e ? touches[0]?.clientX : e.clientX) || 0,
+            startY: ('touches' in e ? touches[0]?.clientY : e.clientY) || 0,
             panelX: panelPosition.left,
             panelY: panelPosition.top,
         };

@@ -1,0 +1,8 @@
+{
+  "doc_id": "SMX-AR100JA",
+  "source_caption_file": "data\\figures\\SMX-AR100JA\\SMX-AR100JA_figures_captioned.json",
+  "num_images_total": 18,
+  "num_keep_for_caption": 10,
+  "num_with_caption_text": 10,
+  "num_chunks_written": 10
+}

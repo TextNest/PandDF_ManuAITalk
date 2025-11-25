@@ -1,0 +1,1185 @@
+{
+  "doc_id": "SIF-PD10DIF_USER",
+  "source_pdf": "data/raw/SIF-PD10DIF_USER.pdf",
+  "num_images_total": 42,
+  "num_images_kept": 32,
+  "created_by": "image_captioner_gemini.py",
+  "model": "gemini-2.5-flash",
+  "config": {
+    "CAPTION_MAX_CHARS": 320,
+    "UNSAFE_KEYWORDS": [
+      "폭발",
+      "감전",
+      "사망",
+      "질식",
+      "중독",
+      "화재",
+      "불이 날",
+      "불이날",
+      "가스 누출",
+      "가스누출",
+      "가스가 새",
+      "전기 충격",
+      "전기충격",
+      "고압",
+      "중상",
+      "심각한 부상"
+    ]
+  },
+  "images": [
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        914,
+        62
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 914.0,
+        "height": 62.0,
+        "aspect_ratio": 14.741935483870968,
+        "ink_ratio": 0.095168348980024,
+        "edge_ratio": 0.05920448930613397,
+        "table_line_ratio": 0.07217477235829745,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        824,
+        66
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 824.0,
+        "height": 66.0,
+        "aspect_ratio": 12.484848484848484,
+        "ink_ratio": 0.004927919976463665,
+        "edge_ratio": 0.009616799058546632,
+        "table_line_ratio": 0.0034385113268608413,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_002_figure_002.png",
+      "caption_short": "흰 바탕 화면의 중앙에 회색 선으로 그려진 동그란 원 하나가 눈에 띈다. 이 원의 정가운데를 수평으로 가로지르는 직선이 양옆으로 길게 뻗어 있다. 이 선은 원의 왼쪽 가장자리와 오른쪽 가장자리를 넘어선다. 또한 원의 정가운데를 수직으로 통과하는 직선은 위쪽과 아래쪽으로 길게 늘어져 있다. 이 세로선 역시 원의 위쪽과 아래쪽 경계를 넘어선다. 이렇게 가로선과 세로선은 원의 중심에서 정확히 교차하여 십자 모양을 이룬다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        45,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 43.0,
+        "aspect_ratio": 1.0465116279069768,
+        "ink_ratio": 0.4201550387596899,
+        "edge_ratio": 0.22170542635658916,
+        "table_line_ratio": 0.24806201550387597,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        45,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.38271604938271603,
+        "edge_ratio": 0.24987654320987654,
+        "table_line_ratio": 0.21975308641975308,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        44,
+        46
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 46.0,
+        "aspect_ratio": 0.9565217391304348,
+        "ink_ratio": 0.4090909090909091,
+        "edge_ratio": 0.2391304347826087,
+        "table_line_ratio": 0.21887351778656128,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        45,
+        46
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 46.0,
+        "aspect_ratio": 0.9782608695652174,
+        "ink_ratio": 0.3207729468599034,
+        "edge_ratio": 0.17246376811594202,
+        "table_line_ratio": 0.15845410628019324,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        43,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 45.0,
+        "aspect_ratio": 0.9555555555555556,
+        "ink_ratio": 0.48578811369509045,
+        "edge_ratio": 0.18449612403100776,
+        "table_line_ratio": 0.43669250645994834,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_002_figure_008.png",
+      "page": 2,
+      "index": 8,
+      "size_px": [
+        40,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 40.0,
+        "height": 44.0,
+        "aspect_ratio": 0.9090909090909091,
+        "ink_ratio": 0.6994318181818182,
+        "edge_ratio": 0.11079545454545454,
+        "table_line_ratio": 0.7164772727272727,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_002_figure_009.png",
+      "page": 2,
+      "index": 9,
+      "size_px": [
+        44,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.4147727272727273,
+        "edge_ratio": 0.259297520661157,
+        "table_line_ratio": 0.23192148760330578,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_002_figure_010.png",
+      "page": 2,
+      "index": 10,
+      "size_px": [
+        45,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 43.0,
+        "aspect_ratio": 1.0465116279069768,
+        "ink_ratio": 0.4563307493540052,
+        "edge_ratio": 0.2661498708010336,
+        "table_line_ratio": 0.22739018087855298,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_002_figure_011.png",
+      "page": 2,
+      "index": 11,
+      "size_px": [
+        483,
+        65
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 483.0,
+        "height": 65.0,
+        "aspect_ratio": 7.430769230769231,
+        "ink_ratio": 0.04054785793916229,
+        "edge_ratio": 0.0545309762701067,
+        "table_line_ratio": 0.011721611721611722,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_002_figure_011.png",
+      "caption_short": "보이는 부분은 왼편에서 오른편으로 길게 이어진 글자들이 있다. 가장 왼쪽에는 별표(*)와 영어 대문자 SIF-PD10DIF가 적혀 있고, 이어서 괄호가 열리고 숫자 10과 작은 동그라미(ㅇ)가 이어진다. 이후 세로선(|)으로 구분되어 'ㄴㅊ', 'ㅍㅗㄹㄷ', 'ㅇㅍㅐㄴ_ㅅ', 'ㄴㅇ', 'ㄹ'과 같은 한글과 기호들이 차례로 나타나고, 괄호가 닫힌다. 이어서 '.indd'라는 글자가 보이는데, 이 글자 오른편에는 가로선과 세로선이 교차하는 동그란 표식 안에 숫자 2가 겹쳐져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_003_figure_012.png",
+      "page": 3,
+      "index": 12,
+      "size_px": [
+        829,
+        66
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 829.0,
+        "height": 66.0,
+        "aspect_ratio": 12.56060606060606,
+        "ink_ratio": 0.004898197901816719,
+        "edge_ratio": 0.009540519793837044,
+        "table_line_ratio": 0.003417772416566144,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_003_figure_012.png",
+      "caption_short": "장면의 가운데에 동그란 원이 하나 있다. 이 원의 정중앙을 가로지르며, 길게 뻗은 두 개의 직선이 서로 만난다. 한 선은 왼쪽에서 오른쪽으로 길게 뻗어 있고, 다른 한 선은 위에서 아래로 길게 뻗어 있다. 두 선은 원 안에서 십자가 모양으로 만나며, 원 밖으로도 길게 이어져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_003_figure_013.png",
+      "page": 3,
+      "index": 13,
+      "size_px": [
+        46,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 43.0,
+        "aspect_ratio": 1.069767441860465,
+        "ink_ratio": 0.6142568250758341,
+        "edge_ratio": 0.10717896865520728,
+        "table_line_ratio": 0.6354903943377148,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_003_figure_014.png",
+      "page": 3,
+      "index": 14,
+      "size_px": [
+        481,
+        63
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 481.0,
+        "height": 63.0,
+        "aspect_ratio": 7.634920634920635,
+        "ink_ratio": 0.04200904200904201,
+        "edge_ratio": 0.056397056397056396,
+        "table_line_ratio": 0.012177012177012177,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_003_figure_014.png",
+      "caption_short": "가로로 길게 나열된 글자와 기호들이 있다. 왼쪽에는 별표, 영문 대문자 'SIF-PD', 숫자 '10', 영문 'DIF'가 연이어 있다. 괄호 안에 숫자 '10'과 한글 'ㅇ'이 있고, 그 뒤로 수직선과 함께 한글 'ㄴㅊ', 'ㅍㅗㄹㄷ', 'ㅇㅍㅂㅐㄴ_ㅅ', 'ㄴㅇ', 'ㄹ'이 차례로 놓여 있다. 마지막 한글 뒤에는 괄호가 닫히고 '.indd'와 숫자 '3'이 붙어 있다. 오른쪽 끝에는 가로선과 세로선이 교차하는 중앙에 원이 그려진 표식이 있고, 원의 바로 오른쪽에는 숫자 '3'이 놓여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_004_figure_015.png",
+      "page": 4,
+      "index": 15,
+      "size_px": [
+        822,
+        65
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 822.0,
+        "height": 65.0,
+        "aspect_ratio": 12.646153846153846,
+        "ink_ratio": 0.00503462474265394,
+        "edge_ratio": 0.009713644020213363,
+        "table_line_ratio": 0.0034999064196144488,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_004_figure_015.png",
+      "caption_short": "이것은 제품에 사용되는 '십자 고정핀'을 나타내는 기호이다. 이 기호는 동그란 원의 정중앙에 수평선과 수직선이 서로 직교하여 만나면서 전체적으로 십자가 모양을 이루고 있다. 수평선은 원의 왼쪽과 오른쪽 바깥쪽으로, 수직선은 원의 위쪽과 아래쪽 바깥쪽으로 각각 길게 뻗어 있다. 이러한 형태는 부품을 단단히 연결하거나 특정 위치에 고정하는 데 쓰이는 핀의 기능을 나타낸다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_004_figure_016.png",
+      "page": 4,
+      "index": 16,
+      "size_px": [
+        787,
+        828
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 787.0,
+        "height": 828.0,
+        "aspect_ratio": 0.9504830917874396,
+        "ink_ratio": 0.07863285637994218,
+        "edge_ratio": 0.07241312634661068,
+        "table_line_ratio": 0.021734526637570667,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_004_figure_016.png",
+      "caption_short": "눈앞에는 접이식 선풍기 하나와 여러 구성품이 놓여 있다. 선풍기는 둥근 머리 부분과 높이를 조절할 수 있는 기다란 기둥, 그리고 동그란 받침대로 이루어져 있다. 머리 앞쪽에는 '전망 (보호망)'이라는 안전망이 있고, 뒤쪽에는 '후망 (보호망)'이 있으며, 그 위에는 ‘ㄱ’자 모양의 '고정핀'이 있다. 기둥은 '슬라이드 파이프'로, 높이를 자유롭게 조절할 수 있다. 동그란 받침대 윗면에는 '전원 버튼', 'LED 표시창', '폴딩 레버'가 있고, 측면에는 '리모컨 수신부', '어댑터 연결포트', '외부 충전 단자', '리모컨 보관함'이 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_004_figure_017.png",
+      "page": 4,
+      "index": 17,
+      "size_px": [
+        486,
+        67
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 486.0,
+        "height": 67.0,
+        "aspect_ratio": 7.253731343283582,
+        "ink_ratio": 0.03897180762852405,
+        "edge_ratio": 0.052330937903077204,
+        "table_line_ratio": 0.011332227750138198,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_004_figure_017.png",
+      "caption_short": "하얀 바탕에 검은색 글자들과 하나의 도형이 나타난다. 왼쪽에는 한 줄로 길게 이어진 글자들이 보이는데, 별표(*)로 시작하여 'SIF-PD10DIF(10o 1 너 ㅊ I 표ㄹㄷ I 이패ㄴ_ ㅅ I ㄴㅇ I ㄹ).indd'라고 읽힌다. 이 글자들은 영어 알파벳, 숫자, 특수 기호와 함께 한글 글자들이 섞여 있는 모습이다. 글자들의 오른쪽 끝에는 십자 모양의 도형이 있다. 이 도형은 가로선과 세로선이 가운데에서 교차하고, 그 교차점을 중심으로 동그란 원이 그려진 형태이다. 원의 오른쪽 아래 칸에는 숫자 4가 쓰여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_005_figure_018.png",
+      "page": 5,
+      "index": 18,
+      "size_px": [
+        822,
+        66
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 822.0,
+        "height": 66.0,
+        "aspect_ratio": 12.454545454545455,
+        "ink_ratio": 0.004939910049399101,
+        "edge_ratio": 0.009640197596401976,
+        "table_line_ratio": 0.0034468775344687753,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_005_figure_018.png",
+      "caption_short": "시야의 중앙에 얇은 선으로만 그려진 동그란 원이 하나 보인다. 이 원의 정확한 중심을 가로질러 왼쪽 끝에서 오른쪽 끝까지 길게 뻗은 수평선이 있다. 마찬가지로, 원의 정확한 중심을 지나 위쪽 끝에서 아래쪽 끝까지 길게 뻗은 수직선도 있다. 이 두 개의 곧은 선은 원의 한가운데서 서로 직각으로 교차하고 있으며, 각각의 선은 원의 경계 밖으로도 일정하게 튀어나와 있다. 전체적으로 십자가 형태의 선이 둥근 원 안에 그려진 모습으로, 모든 요소가 중앙을 기준으로 좌우 대칭을 이루고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_005_figure_019.png",
+      "page": 5,
+      "index": 19,
+      "size_px": [
+        378,
+        207
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 378.0,
+        "height": 207.0,
+        "aspect_ratio": 1.826086956521739,
+        "ink_ratio": 0.10921964062060681,
+        "edge_ratio": 0.09172353858344197,
+        "table_line_ratio": 0.11791018071211308,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_005_figure_019.png",
+      "caption_short": "작고 납작하게 접혀 있는 모습의 선풍기이다. 옆에서 본 모습이다. 가장 위에는 수많은 세로 살로 이루어진 안전망 안쪽으로 선풍기 날개가 희미하게 보이는 둥근 머리 부분이 있다. 이 둥근 머리 부분은 아래쪽의 네모난 받침대 위에 납작하게 포개져 있는 상태이다. 받침대는 바닥에 평평하게 놓여 있고, 오른쪽 끝에는 위로 솟아오른 작은 조작부가 보인다. 조작부 바로 오른쪽에는 옆으로 튀어나온 접이식 관절 부분이 있다. 장면의 왼쪽 위에는 회색 동그라미 안에 숫자 '1'이 쓰여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_005_figure_020.png",
+      "page": 5,
+      "index": 20,
+      "size_px": [
+        381,
+        207
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 381.0,
+        "height": 207.0,
+        "aspect_ratio": 1.8405797101449275,
+        "ink_ratio": 0.1956711932747537,
+        "edge_ratio": 0.13516426388730393,
+        "table_line_ratio": 0.12462753749984151,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_005_figure_020.png",
+      "caption_short": "두 개의 선풍기 모습이 나란히 있다. 왼쪽은 선풍기가 둥근 바닥 받침대 위에 놓여 있고, 기둥이 짧게 세워진 채 둥근 선풍기 헤드가 위를 향해 기울어진 모습이다. 선풍기 헤드의 앞면에는 바람이 나오는 동그란 안전망이 덮여 있고, 안전망 가장자리 위쪽에는 작은 'ㄱ'자 모양의 고정핀이 끼워져 있다. 오른쪽은 선풍기 헤드의 정면 모습으로, 역시 둥근 안전망이 보이며, 그 위쪽 중앙에 동일한 'ㄱ'자 고정핀이 있다. 오른쪽 위에는 이 고정핀이 더 크게 확대되어 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_005_figure_021.png",
+      "page": 5,
+      "index": 21,
+      "size_px": [
+        379,
+        208
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 379.0,
+        "height": 208.0,
+        "aspect_ratio": 1.8221153846153846,
+        "ink_ratio": 0.03857570529734118,
+        "edge_ratio": 0.05259285569311955,
+        "table_line_ratio": 0.05364572762330018,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_005_figure_021.png",
+      "caption_short": "상단 왼쪽에는 숫자 3이 원 안에 표시되어 있다. 정면에 보이는 것은 둥글고 납작한 원통형의 기기 하단부이다. 이 기기를 위에서 비스듬히 내려다본 모습으로, 윗면과 옆면 일부가 함께 보인다. 기기의 윗면 오른쪽 부분에는 길쭉한 직사각형 모양의 폴딩 레버가 위치해 있다. 이 레버는 윗면에서 살짝 위로 튀어나와 있으며, 작은 사각형 탭이 달려 있다. 폴딩 레버의 오른쪽에는 두껍고 어두운 회색 화살표가 그려져 있는데, 이 화살표는 레버를 오른쪽으로 밀거나 당기는 방향을 가리키고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_005_figure_022.png",
+      "page": 5,
+      "index": 22,
+      "size_px": [
+        383,
+        207
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 383.0,
+        "height": 207.0,
+        "aspect_ratio": 1.8502415458937198,
+        "ink_ratio": 0.12240007063483054,
+        "edge_ratio": 0.09724902561773943,
+        "table_line_ratio": 0.0949029401748212,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_005_figure_022.png",
+      "caption_short": "'4' 숫자가 화면 왼쪽 위에 있다. 세 개의 접이식 선풍기가 왼쪽부터 오른쪽으로 차례로 놓여 있다. 가장 왼쪽은 둥근 받침대에 둥근 머리가 옆으로 눕혀진 접힌 상태이며, 가운데는 받침대에서 기둥이 비스듬히 솟아 머리와 연결된 상태이다. 이들 주변에 펼침 방향 화살표가 그려져 있다. 가장 오른쪽은 둥근 받침대 위로 긴 기둥이 수직으로 솟아 있고, 그 맨 위에 안전망 있는 둥근 머리가 정면을 향해 완전히 펼쳐져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_005_figure_023.png",
+      "page": 5,
+      "index": 23,
+      "size_px": [
+        379,
+        276
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 379.0,
+        "height": 276.0,
+        "aspect_ratio": 1.3731884057971016,
+        "ink_ratio": 0.09416465909525448,
+        "edge_ratio": 0.05969178998891056,
+        "table_line_ratio": 0.091937210814118,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_005_figure_023.png",
+      "caption_short": "회색 원 안에 숫자 5가 표시되어 있다. 이 장면은 선풍기 한 대의 높이가 조절되는 모습을 보여준다. 왼쪽에는 낮게 접혀 있는 선풍기가 있다. 둥근 선풍기 머리가 짧은 기둥으로 둥글고 납작한 받침대에 연결되어 있고, 받침대 앞쪽에 작은 네모 표시가 보인다. 선풍기 머리에서 받침대 쪽으로 아래를 가리키는 두꺼운 화살표가 있다. 오른쪽에는 높게 펼쳐진 선풍기가 있다. 둥근 선풍기 머리가 여러 단의 긴 원통형 기둥 위에 놓여 있다. 이 기둥은 왼쪽과 같은 둥글고 납작한 받침대에 연결되어 있고, 받침대에서 선풍기 머리 쪽으로 위를 가리키는 두꺼운 화살표가 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_005_figure_024.png",
+      "page": 5,
+      "index": 24,
+      "size_px": [
+        381,
+        278
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 381.0,
+        "height": 278.0,
+        "aspect_ratio": 1.370503597122302,
+        "ink_ratio": 0.0325440435053532,
+        "edge_ratio": 0.049330614248758474,
+        "table_line_ratio": 0.03119394248380823,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_005_figure_024.png",
+      "caption_short": "장면은 약간 위에서 아래를 내려다보는 모습이다. 왼쪽에는 둥글고 납작한 형태의 하단부 베이스가 놓여 있다. 베이스 중앙에서는 짧은 기둥이 위로 솟아 있으며, 베이스의 오른쪽 가장자리에는 작고 둥근 전원 코드 연결구가 있다. 오른쪽에는 전용 전원 코드와 어댑터가 보인다. 어댑터는 네모난 몸체에 긴 케이블이 연결되어 있고, 케이블 끝에는 원통형 플러그가 달려 있다. 이 플러그에서 베이스의 연결구를 향해 검은색 화살표가 뻗어 있어, 플러그를 베이스에 연결하는 방향을 알려준다. 장면의 왼쪽 위에는 회색 원 안에 숫자 6이 크게 쓰여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_005_figure_025.png",
+      "page": 5,
+      "index": 25,
+      "size_px": [
+        485,
+        66
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 485.0,
+        "height": 66.0,
+        "aspect_ratio": 7.348484848484849,
+        "ink_ratio": 0.03992502343017807,
+        "edge_ratio": 0.053577007185254606,
+        "table_line_ratio": 0.011527647610121837,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_005_figure_025.png",
+      "caption_short": "왼쪽에는 긴 문자들이 가로로 나열되어 있다. 알파벳 대문자 'SIF-PD10DIF(10'과 한글 'ㅇ'이 이어지고, 세로선으로 구분된 한글 'ㄴㅊ', 'ㅍㅗㄹㄷ', 'ㅇㅍㅐㄴㄴ_ㅅ', 'ㄴㅇ', 'ㄹ'이 차례로 쓰여 있다. 마지막으로 '.inddd'라는 글자가 붙어 있다. 오른쪽에는 얇은 선으로 그려진 커다란 동그라미가 있고, 그 중심을 가로지르는 수직선과 수평선이 있다. 동그라미 안에는 숫자 '5'가 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_006_figure_026.png",
+      "page": 6,
+      "index": 26,
+      "size_px": [
+        498,
+        349
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 498.0,
+        "height": 349.0,
+        "aspect_ratio": 1.4269340974212035,
+        "ink_ratio": 0.06098894143910887,
+        "edge_ratio": 0.06750210009090804,
+        "table_line_ratio": 0.02351526449638094,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_006_figure_026.png",
+      "caption_short": "눈앞에는 전자기기의 조작부가 보인다. 가로로 길고 모서리가 둥근 직사각형 형태이다. 조작부의 위쪽 절반은 여러 정보를 표시하는 화면이다. 화면 왼쪽에는 다양한 모드 아이콘과 배터리 잔량 표시가 있고, 중앙에는 큰 두 자리 숫자가 표시되는 디지털 창이 있다. 디지털 창 오른쪽에는 좌우 회전 아이콘 및 예약 관련 숫자('60', '120')와 시계 모양의 예약 아이콘들이 나열되어 있다. 조작부의 아래쪽 절반에는 기능을 조작하는 버튼들이 일렬로 놓여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_006_figure_027.png",
+      "page": 6,
+      "index": 27,
+      "size_px": [
+        281,
+        346
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 281.0,
+        "height": 346.0,
+        "aspect_ratio": 0.8121387283236994,
+        "ink_ratio": 0.06267870734165758,
+        "edge_ratio": 0.0771295743936807,
+        "table_line_ratio": 0.025816139715713903,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_006_figure_027.png",
+      "caption_short": "눈앞에는 직사각형 모양의 리모컨 앞면이 보인다. 위아래로 길쭉하고 모서리가 둥글다. 가장 위쪽에는 진한 회색 바탕에 '리모컨'이라는 글자가 쓰여 있다. 리모컨 본체의 윗부분에는 왼쪽부터 전원 버튼과 조명 버튼이 있다. 그 아래 가운데 부분에는 왼쪽부터 예약 버튼, 모드 버튼이 차례로 위치한다. 이어서 왼쪽에는 바람 세기와 예약 시간을 줄이는 마이너스(-) 버튼이, 오른쪽에는 늘리는 플러스(+) 버튼이 나란히 있다. 아랫부분에는 왼쪽부터 터보풍 버튼과 좌우회전 버튼이 있다. 리모컨의 맨 아래쪽에는 'Shinil'이라는 글자가 새겨져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_006_figure_028.png",
+      "page": 6,
+      "index": 28,
+      "size_px": [
+        329,
+        328
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 329.0,
+        "height": 328.0,
+        "aspect_ratio": 1.0030487804878048,
+        "ink_ratio": 0.05353436133145526,
+        "edge_ratio": 0.06532174364296835,
+        "table_line_ratio": 0.025956334791311438,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_006_figure_028.png",
+      "caption_short": "이곳에는 세 가지 다른 바람 패턴을 보여주는 그래프가 위에서 아래로 차례대로 놓여 있다. 가장 위쪽의 그래프는 왼쪽에 작은 선풍기 모양이 있고, 그 옆에는 '이오, 이, 삼 바람세기'라고 적혀 있다. 이 그래프는 바람 세기 1부터 5까지를 수직선으로 나타내고, 시간 변화를 수평선으로 보여준다. 바람 세기는 1에서 시작하여 8초 간격으로 2, 3, 4, 5로 점차 강해지고, 가장 강한 5단에 도달한 후 다시 8초 간격으로 4, 3, 2, 1로 약해지는 부드러운 흐름이다. 가운데 그래프는 왼쪽에 선풍기 모양과 '사, 오, 육 바람세기'라는 글자가 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_006_figure_029.png",
+      "page": 6,
+      "index": 29,
+      "size_px": [
+        313,
+        271
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 313.0,
+        "height": 271.0,
+        "aspect_ratio": 1.154981549815498,
+        "ink_ratio": 0.04851278544734329,
+        "edge_ratio": 0.060714664654633765,
+        "table_line_ratio": 0.024203341074944297,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_006_figure_029.png",
+      "caption_short": "이곳에는 선풍기 바람 세기가 어떻게 바뀌는지 보여주는 두 개의 그래프가 위아래로 나란히 있다. 각 바람 세기 변화는 8초 간격으로 이루어진다. 위쪽 그래프는 설정 바람 세기가 9단계와 10단계일 때의 모습이다. 왼쪽에는 1부터 11까지 숫자로 바람 세기 단계가 표시되어 있다. 바람 세기는 3단계에서 시작하여 11단계까지 서서히 올라갔다가, 다시 3단계로 점차 낮아지는 흐름이다. 아래쪽 그래프는 설정 바람 세기가 11단계와 'Po'일 때의 모습이다. 왼쪽에는 1부터 12까지 숫자로 바람 세기 단계가 표시되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_006_figure_030.png",
+      "page": 6,
+      "index": 30,
+      "size_px": [
+        484,
+        66
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 484.0,
+        "height": 66.0,
+        "aspect_ratio": 7.333333333333333,
+        "ink_ratio": 0.04019534184823441,
+        "edge_ratio": 0.05371900826446281,
+        "table_line_ratio": 0.011582769847232657,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_006_figure_030.png",
+      "caption_short": "왼쪽부터 '*SIF-PD10DIF(10'이라는 글자가 보이며, 그 옆에 작은 동그라미와 세로선이 있다. 이어서 'L ㅊ', 세로선, 'ㅍ ㅗ ㄹ ㄷ', 세로선, 'ㅇ ㅐ ㅐ ㄴ _ ㅅ', 세로선, 'L ㅇ', 세로선이 차례로 나타나고 '2 ).indd'로 글자가 마무리된다. 이 글자의 맨 오른쪽에는 얇은 선으로 그려진 표적 모양이 있다. 표적은 가로선과 세로선이 서로 교차하고 그 교차점 주위를 얇은 원이 감싸고 있는 형태이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_007_figure_031.png",
+      "page": 7,
+      "index": 31,
+      "size_px": [
+        493,
+        64
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 493.0,
+        "height": 64.0,
+        "aspect_ratio": 7.703125,
+        "ink_ratio": 0.04012423935091278,
+        "edge_ratio": 0.053942697768762676,
+        "table_line_ratio": 0.011726673427991887,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_007_figure_031.png",
+      "caption_short": "가로로 긴 네모난 화면이 보입니다. 화면 왼쪽 끝에는 `*SIF-PD10DIF(10ㅇ`이라고 적혀 있습니다. 그 옆에는 수직선으로 구분된 글자들이 오른쪽으로 이어집니다. 첫 번째 글자는 `ㄴㅊㅣ`이고, 두 번째 글자는 `ㅍㅗㄹㄹㄷ`입니다. 세 번째는 `ㅇㅍㅐㄴㅡ ㅅ`이고, 네 번째는 `L O`입니다. 마지막으로 수직선과 함께 `ㄹ)`이라는 글자가 보입니다. 화면 오른쪽에는 작은 글씨로 `.indd`라고 적혀 있고, 그 위에 십자 모양의 선이 그어진 동그란 원형 그림이 살짝 겹쳐 있습니다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_008_figure_032.png",
+      "page": 8,
+      "index": 32,
+      "size_px": [
+        827,
+        65
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 827.0,
+        "height": 65.0,
+        "aspect_ratio": 12.723076923076922,
+        "ink_ratio": 0.0049855827364896285,
+        "edge_ratio": 0.00971072458375965,
+        "table_line_ratio": 0.0034787461631476144,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_008_figure_032.png",
+      "caption_short": "넓은 흰색 바탕의 한가운데에 아주 심플한 모양이 그려져 있다. 이 모양은 하나의 얇은 원과 두 개의 얇은 직선으로 이루어져 있다. 정가운데에 동그란 원이 자리하고 있으며, 그 원의 중심을 정확히 통과하는 가로선이 왼쪽과 오른쪽으로 곧게 뻗어 있다. 이와 마찬가지로 원의 중심을 통과하는 세로선도 위쪽과 아래쪽으로 곧게 뻗어 있다. 가로선과 세로선은 원의 한가운데에서 십자 모양으로 만나 교차하고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_008_figure_033.png",
+      "page": 8,
+      "index": 33,
+      "size_px": [
+        594,
+        134
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 594.0,
+        "height": 134.0,
+        "aspect_ratio": 4.432835820895522,
+        "ink_ratio": 0.08225287702899643,
+        "edge_ratio": 0.07922508668777326,
+        "table_line_ratio": 0.0051887029498969795,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_008_figure_033.png",
+      "caption_short": "가로로 긴 평평한 직사각형 기기가 비스듬히 놓여 있고, 윗면 가운데에는 작은 네모 형태가 보인다. 기기 오른쪽 끝에서는 U자 모양의 작은 서랍이 바깥으로 빠져나오고 있는데, 서랍 끝에는 'PUSH' 글자와 화살표 1번이, 서랍이 빠지는 방향에는 화살표 2번이 있다. 이어서 U자 서랍이 기기에서 분리되어 아래에 놓여 있고, 그 위로 '+' 표시가 있는 동그란 건전지가 화살표 3번 방향을 따라 서랍 안으로 들어가고 있다. 마지막으로 건전지를 넣은 U자 서랍이 기기 오른쪽의 원래 위치로 화살표 4번 방향을 따라 다시 밀려 들어가는 모습이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_008_figure_034.png",
+      "page": 8,
+      "index": 34,
+      "size_px": [
+        269,
+        223
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 269.0,
+        "height": 223.0,
+        "aspect_ratio": 1.2062780269058295,
+        "ink_ratio": 0.08080084018203944,
+        "edge_ratio": 0.07664994082051112,
+        "table_line_ratio": 0.06443062663577108,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_008_figure_034.png",
+      "caption_short": "장면의 오른쪽에는 높이 서 있는 선풍기가 있다. 선풍기의 가장 위쪽에는 나선형 무늬가 있는 동그란 안전망이 보이고, 그 아래로 길게 뻗은 기둥이 받침대와 연결되어 있다. 받침대는 동그랗고 납작한 모양이며, 받침대의 앞쪽 위에는 작은 네모난 수신부가 있다. 장면의 왼쪽에는 길쭉한 네모 모양의 리모컨이 놓여 있다. 리모컨의 윗면에는 여러 개의 동그란 버튼들이 배열되어 있다. 리모컨의 앞쪽 끝에서 선풍기 받침대의 수신부 쪽으로 선이 이어져 있고, 그 선 옆에는 '약 3m 이내'라고 쓰여 있다. 리모컨 아래에는 '리모컨'이라는 글자가 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_008_figure_035.png",
+      "page": 8,
+      "index": 35,
+      "size_px": [
+        271,
+        219
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 271.0,
+        "height": 219.0,
+        "aspect_ratio": 1.2374429223744292,
+        "ink_ratio": 0.05720399669750122,
+        "edge_ratio": 0.07956326138603852,
+        "table_line_ratio": 0.04434784073868136,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_008_figure_035.png",
+      "caption_short": "위에서 비스듬히 내려다본 모습으로, 둥글고 납작한 형태의 받침대가 보인다. 받침대의 뒤쪽 가운데에서는 위로 길쭉하게 뻗은 원통형 기둥이 세워져 있다. 받침대의 오른쪽 옆면에는 가로로 길게 파인 직사각형 모양의 홈이 있다. 이 홈을 향해 오른쪽 아래에 놓인 직사각형 모양의 리모컨에서 화살표가 이어져 있다. 리모컨에는 위에서 아래로 전원, 선풍기, 시계, 전구 모양의 아이콘 버튼과, 숫자 0, 그리고 볼륨을 조절하는 듯한 +/- 버튼 등이 여러 줄로 배열되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_008_figure_036.png",
+      "page": 8,
+      "index": 36,
+      "size_px": [
+        486,
+        68
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 486.0,
+        "height": 68.0,
+        "aspect_ratio": 7.147058823529412,
+        "ink_ratio": 0.03897361413701283,
+        "edge_ratio": 0.051742919389978215,
+        "table_line_ratio": 0.011195836359235052,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_008_figure_036.png",
+      "caption_short": "길쭉한 직사각형 형태의 공간에 글자와 기호가 가로로 나란히 놓여 있다. 왼쪽에는 '*SIF-PD10DIF(10'으로 시작하는 영문자와 숫자가 보이고, 이어서 한글 글자 'ㅇ | ㄴㅊ | ㅍㅗㄹㄹㄷ | ㅇㅐㅐㄴ_ㅅ | ㄴㅇ | ㄹ'이 수직선 기호 ' | '로 구분되어 이어진다. 문자열의 끝에는 ' ).indd'라는 영문자가 붙어 있다. 오른쪽에는 기하학적 형태의 표식이 하나 있다. 이 표식은 가운데가 교차하는 가로선과 세로선으로 이루어진 십자 모양이다. 십자 교차점을 중심으로 동그란 원이 그려져 있고, 원 안의 세로선 아래쪽에 작은 숫자 '8'과 비슷한 모양이 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_009_figure_037.png",
+      "page": 9,
+      "index": 37,
+      "size_px": [
+        822,
+        67
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 822.0,
+        "height": 67.0,
+        "aspect_ratio": 12.26865671641791,
+        "ink_ratio": 0.004866180048661801,
+        "edge_ratio": 0.009496314050187022,
+        "table_line_ratio": 0.0033954316011184952,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_009_figure_037.png",
+      "caption_short": "넓고 깨끗한 하얀 바탕의 정확히 한가운데, 얇고 일정한 두께의 선으로 이루어진 특별한 표식이 하나 놓여 있다. 이 표식은 매끄럽게 그려진 둥근 원 하나와, 그 원의 중심을 완벽하게 가로지르는 두 개의 곧은 직선으로 구성되어 있다. 한 직선은 원을 가로질러 좌우로 쭉 뻗어 있고, 다른 직선은 원을 세로로 가로질러 위아래로 곧게 뻗어 있다. 이 두 직선은 원의 한가운데에서 만나 정확한 십자 모양을 이루며 서로 교차하고 있으며, 원의 테두리 밖으로도 각 선의 끝부분이 짧게 더 이어져 나오는 모습이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_009_figure_038.png",
+      "page": 9,
+      "index": 38,
+      "size_px": [
+        782,
+        300
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 782.0,
+        "height": 300.0,
+        "aspect_ratio": 2.6066666666666665,
+        "ink_ratio": 0.1261466325660699,
+        "edge_ratio": 0.08265132139812446,
+        "table_line_ratio": 0.0590153452685422,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_009_figure_038.png",
+      "caption_short": "눈앞에 보이는 장면은 둥근 형태의 선풍기 부품들이 분해된 상태로 나열된 모습이다. 왼쪽에는 둥근 그물망 모양의 전면 안전망 '2'가 위에서 아래로 향하는 화살표가 있는 나사 '1'와 함께 보인다. 이 안전망에는 반시계 방향으로 돌려 분리할 수 있음을 나타내는 곡선 화살표가 그려져 있다. 전면 안전망의 오른쪽에는 '스피너'라고 적힌 작은 둥근 부품 '3'이 시계 방향으로 돌려 분리하는 화살표와 함께 놓여 있다. 스피너 오른쪽으로는 겹겹이 날개가 달린 선풍기 날개 '4'가 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_010_figure_039.png",
+      "page": 10,
+      "index": 39,
+      "size_px": [
+        806,
+        64
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 806.0,
+        "height": 64.0,
+        "aspect_ratio": 12.59375,
+        "ink_ratio": 0.005195409429280397,
+        "edge_ratio": 0.010138802729528535,
+        "table_line_ratio": 0.003625155086848635,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_010_figure_039.png",
+      "caption_short": "화면 중앙에 둥근 원이 하나 있다. 이 원의 한가운데를 가로지르는 두 개의 선이 보인다. 첫 번째 선은 왼쪽에서 오른쪽으로 길게 뻗어 있는 가로선으로, 원 안을 지나 양쪽 바깥으로도 약간 튀어나와 있다. 두 번째 선은 위에서 아래로 길게 뻗어 있는 세로선으로, 역시 원 안을 통과하여 위쪽과 아래쪽 바깥으로도 조금 더 뻗어 있다. 이 두 선은 원의 중심에서 정확히 직각으로 만나고 있으며, 전체적으로 과녁판이나 특정 지점을 가리키는 표시와 같은 모양이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_011_figure_040.png",
+      "page": 11,
+      "index": 40,
+      "size_px": [
+        815,
+        67
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 815.0,
+        "height": 67.0,
+        "aspect_ratio": 12.164179104477611,
+        "ink_ratio": 0.0049079754601227,
+        "edge_ratio": 0.009559564142477795,
+        "table_line_ratio": 0.003424594817324421,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_011_figure_040.png",
+      "caption_short": "화면의 정중앙에는 얇고 깨끗한 선으로 그려진 하나의 원형 표시가 선명하게 보인다. 이 원형 표시는 속이 비어 있는 고리 모양이며, 그 정확한 중심을 지나가는 가로선이 왼쪽과 오른쪽으로 일정하게 길게 뻗어 있다. 동시에 원의 동일한 중심을 통과하는 세로선 역시 위쪽과 아래쪽으로 균등하게 길게 이어져 있다. 이 가로선과 세로선은 둥근 원의 한가운데에서 서로 직각으로 만나며 완벽하게 교차하는 형태를 이룬다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_011_figure_041.png",
+      "page": 11,
+      "index": 41,
+      "size_px": [
+        485,
+        66
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 485.0,
+        "height": 66.0,
+        "aspect_ratio": 7.348484848484849,
+        "ink_ratio": 0.04020618556701031,
+        "edge_ratio": 0.053327085285848175,
+        "table_line_ratio": 0.011558887847547642,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_011_figure_041.png",
+      "caption_short": "흰 배경 위에 검은색 선과 글자들이 가로로 길게 나타난 장면이다. 왼쪽에는 `*SIF-PD10DIF(10ㅇ | ㄴㅊ | ㅍㅗㄹㄷ | ㅇㅍㅐㄴㄴ_ㅅ | ㄴㅇ | ㄹ ).indd`라는 긴 문자열이 왼쪽에서 오른쪽으로 이어진다. 이 문자열의 오른쪽 끝에는 십자 모양으로 교차하는 두 선과 그 중앙을 둘러싼 원형 표시가 보인다. 이 원형 표시의 중심에는 위아래로 숫자 '1'이 하나씩 놓여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SIF-PD10DIF_USER/page_012_figure_042.png",
+      "page": 12,
+      "index": 42,
+      "size_px": [
+        838,
+        70
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 838.0,
+        "height": 70.0,
+        "aspect_ratio": 11.971428571428572,
+        "ink_ratio": 0.004568700988748721,
+        "edge_ratio": 0.008881691101261507,
+        "table_line_ratio": 0.0031878622570746676,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SIF-PD10DIF_USER/page_012_figure_042.png",
+      "caption_short": "화면의 정중앙에 동그란 원이 보인다. 이 원을 가로지르며 직선 두 개가 열십자 모양으로 놓여 있다. 하나의 선은 원의 왼쪽 가장자리에서 오른쪽 가장자리까지 수평으로 길게 지나가고, 그 양 끝이 원 밖으로도 조금씩 뻗어 있다. 다른 하나의 선은 원의 위쪽 가장자리에서 아래쪽 가장자리까지 수직으로 길게 이어져 있으며, 이 역시 양 끝이 원 바깥으로 뻗어 나온다. 두 선은 원의 정확한 중심에서 만나고 있다.",
+      "caption_fallback_reason": null
+    }
+  ]
+}

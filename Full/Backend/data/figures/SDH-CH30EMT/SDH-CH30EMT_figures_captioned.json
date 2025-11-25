@@ -1,0 +1,859 @@
+{
+  "doc_id": "SDH-CH30EMT",
+  "source_pdf": "data/raw/SDH-CH30EMT.pdf",
+  "num_images_total": 30,
+  "num_images_kept": 21,
+  "created_by": "image_captioner_gemini.py",
+  "model": "gemini-2.5-flash",
+  "config": {
+    "CAPTION_MAX_CHARS": 320,
+    "UNSAFE_KEYWORDS": [
+      "폭발",
+      "감전",
+      "사망",
+      "질식",
+      "중독",
+      "화재",
+      "불이 날",
+      "불이날",
+      "가스 누출",
+      "가스누출",
+      "가스가 새",
+      "전기 충격",
+      "전기충격",
+      "고압",
+      "중상",
+      "심각한 부상"
+    ]
+  },
+  "images": [
+    {
+      "file": "data/figures/SDH-CH30EMT/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        511,
+        755
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 511.0,
+        "height": 755.0,
+        "aspect_ratio": 0.6768211920529801,
+        "ink_ratio": 0.9071577610450875,
+        "edge_ratio": 0.06778294734386542,
+        "table_line_ratio": 0.8582392659504153,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDH-CH30EMT/page_001_figure_001.png",
+      "caption_short": "이 제품은 높고 네모난 형태의 제습기이다. 보는 각도는 앞쪽 오른쪽에서 살짝 위를 내려다보는 모습이다. 제품의 제일 위쪽에는 공기가 빠져나가는 사각형 모양의 격자무늬 구멍이 있다. 앞면 왼쪽 위에는 여러 개의 가로줄 모양 통풍구가 자리한다. 이 통풍구 바로 아래, 제품 앞면의 가운데에는 'shinil'이라는 글자가 쓰여 있고, 그 밑에는 '29L DEHUMIDIFIER'라고 작은 글씨가 보인다. 제품의 오른쪽 옆면 위쪽에는 세로로 길게 파여 있는 손잡이가 있다. 제품의 바닥면 네 귀퉁이에는 이동을 쉽게 해주는 작은 바퀴가 달려 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        46,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 43.0,
+        "aspect_ratio": 1.069767441860465,
+        "ink_ratio": 0.32406471183013147,
+        "edge_ratio": 0.27451971688574317,
+        "table_line_ratio": 0.11931243680485339,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        45,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0227272727272727,
+        "ink_ratio": 0.39595959595959596,
+        "edge_ratio": 0.26565656565656565,
+        "table_line_ratio": 0.18131313131313131,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        47,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 47.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0444444444444445,
+        "ink_ratio": 0.3295508274231678,
+        "edge_ratio": 0.24444444444444444,
+        "table_line_ratio": 0.14184397163120568,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        45,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 43.0,
+        "aspect_ratio": 1.0465116279069768,
+        "ink_ratio": 0.35658914728682173,
+        "edge_ratio": 0.2351421188630491,
+        "table_line_ratio": 0.18242894056847545,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        47,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 47.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0444444444444445,
+        "ink_ratio": 0.24775413711583924,
+        "edge_ratio": 0.17494089834515367,
+        "table_line_ratio": 0.08888888888888889,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        43,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 43.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.5035154137371552,
+        "edge_ratio": 0.19091400757166035,
+        "table_line_ratio": 0.4607896160086533,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_002_figure_008.png",
+      "page": 2,
+      "index": 8,
+      "size_px": [
+        42,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 42.0,
+        "height": 41.0,
+        "aspect_ratio": 1.024390243902439,
+        "ink_ratio": 0.7166085946573751,
+        "edge_ratio": 0.10801393728222997,
+        "table_line_ratio": 0.7305458768873403,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_004_figure_009.png",
+      "page": 4,
+      "index": 9,
+      "size_px": [
+        788,
+        511
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 788.0,
+        "height": 511.0,
+        "aspect_ratio": 1.5420743639921721,
+        "ink_ratio": 0.12159148479640795,
+        "edge_ratio": 0.10346985606007927,
+        "table_line_ratio": 0.053592537773053735,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDH-CH30EMT/page_004_figure_009.png",
+      "caption_short": "이 장면은 직사각형 모양의 키 큰 제습기 제품을 두 가지 방향에서 보여주고 있다. 먼저, 제품의 앞면과 오른쪽 옆면을 비스듬히 본 모습이다. 위쪽에는 제품을 조작하는 '조작부'가 있고, 그 뒤로는 '상부 공기 배출구'가 보인다. 앞면 위쪽에는 가로줄 무늬의 '전면 공기 배출구'가 여러 줄 있다. 제품의 몸통은 전체적으로 매끈한 직사각형 형태이다. 오른쪽 옆면 가운데쯤에는 움푹 들어간 형태의 '물통 손잡이'가 있고, 아래쪽으로는 '전원 코드'가 연결되어 있다. 제품의 바닥에는 작은 바퀴인 '캐스터'가 달려 있어 쉽게 이동할 수 있게 되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_004_figure_010.png",
+      "page": 4,
+      "index": 10,
+      "size_px": [
+        140,
+        107
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 140.0,
+        "height": 107.0,
+        "aspect_ratio": 1.308411214953271,
+        "ink_ratio": 0.12089452603471296,
+        "edge_ratio": 0.1157543391188251,
+        "table_line_ratio": 0.04392523364485981,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDH-CH30EMT/page_004_figure_010.png",
+      "caption_short": "눈앞에 길고 유연한 호스가 놓여 있다. 이 호스는 위에서 내려다본 모습으로, 여러 겹으로 느슨하게 겹쳐진 채 불규칙한 원형으로 감겨 있다. 호스의 왼쪽 아랫부분에서 시작하여 시계 방향으로 둥글게 돌아가며 감겨 있으며, 한쪽 끝은 오른쪽 위로 살짝 튀어나와 있다. 전체적으로 연한 회색의 굵지 않은 원통 모양 호스가 자유롭게 놓여 있는 형태이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_004_figure_011.png",
+      "page": 4,
+      "index": 11,
+      "size_px": [
+        626,
+        288
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 626.0,
+        "height": 288.0,
+        "aspect_ratio": 2.173611111111111,
+        "ink_ratio": 0.0938054668086617,
+        "edge_ratio": 0.10331247781327653,
+        "table_line_ratio": 0.04344715122470714,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDH-CH30EMT/page_004_figure_011.png",
+      "caption_short": "이 장면은 직사각형 형태의 물탱크와 그 부속품을 보여준다. 왼쪽에는 돌돌 말린 펌프 배수 호스(백색: 400 cm)와 함께 작은 바퀴인 캐스터 4개가 놓여 있다. 오른쪽에는 물통의 윗면과 옆면이 보인다. 물통 윗면의 왼쪽 위에는 연속 배수구 마개 보관 홀과 배수구가 있으며, 가운데에는 움푹 들어간 손잡이가 있다. 손잡이의 오른쪽에는 작은 수납 뚜껑이 열려 있는 모습이다. 물통 옆면에는 길쭉한 수위 표시창이 있다. 왼쪽에 있는 펌프 배수 호스와 캐스터 4개는 물통 내부에 보관된다고 적혀 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_005_figure_012.png",
+      "page": 5,
+      "index": 12,
+      "size_px": [
+        549,
+        242
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 549.0,
+        "height": 242.0,
+        "aspect_ratio": 2.268595041322314,
+        "ink_ratio": 0.13463246473678664,
+        "edge_ratio": 0.11869815893660901,
+        "table_line_ratio": 0.09197037438468139,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDH-CH30EMT/page_005_figure_012.png",
+      "caption_short": "이것은 네모난 형태의 판을 위에서 내려다본 모습이다. 판의 네 모서리에는 고정하는 역할을 하는 직사각형 모양의 부품이 있다. 왼쪽 위에는 '후크 1'이 있고, 오른쪽 위에는 '후크 2'가 있다. 왼쪽 아래에는 '후크 3'이, 오른쪽 아래에는 '후크 4'가 있다. 왼쪽 가운데에는 'Place Stopper'라고 쓰여 있는 둥근 마개 고정 장치가 있는데, 회전 방향을 가리키는 화살표도 보인다. 판의 중앙에는 직사각형 모양의 손잡이 같은 구조물이 있고, 오른쪽에는 커다란 직사각형 부품이 배치되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_005_figure_013.png",
+      "page": 5,
+      "index": 13,
+      "size_px": [
+        458,
+        197
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 458.0,
+        "height": 197.0,
+        "aspect_ratio": 2.3248730964467006,
+        "ink_ratio": 0.09011814776228581,
+        "edge_ratio": 0.10206592334803716,
+        "table_line_ratio": 0.03370425376277348,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDH-CH30EMT/page_005_figure_013.png",
+      "caption_short": "전자제품의 한쪽 연결 부위를 가까이서 본 모습이다. 화면 왼쪽에는 손이 위에서 아래로 비스듬히 놓인 납작한 부품을 누르고 있다. 이 납작한 부품 아래에는 세로로 선 네모난 고정 장치가 있고, 그 왼쪽 면에 빨간색 열쇠 구멍 모양의 걸쇠가 보인다. 걸쇠와 납작한 부품 모두 오른쪽으로 움직임을 나타내는 빨간색 화살표가 그려져 있다. 오른쪽 그림은 이 걸쇠가 네모난 고정 장치 중앙으로 이동하고, 손과 납작한 부품도 오른쪽으로 움직인 상태를 보여준다. 그 옆에는 '① 물통 손잡이'와 '맞추고 안쪽'이라는 글자가 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_005_figure_014.png",
+      "page": 5,
+      "index": 14,
+      "size_px": [
+        146,
+        143
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 146.0,
+        "height": 143.0,
+        "aspect_ratio": 1.020979020979021,
+        "ink_ratio": 0.11753999425232302,
+        "edge_ratio": 0.10479931027876234,
+        "table_line_ratio": 0.019733690966567678,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDH-CH30EMT/page_005_figure_014.png",
+      "caption_short": "이것은 위쪽이 약간 넓고 아래로 내려올수록 좁아지는 U자 모양의 손잡이이다. 손으로 잡는 위쪽 가로 부분은 가운데가 살짝 들어가 있어 잡기 편하게 되어 있고, 양쪽으로 둥글게 이어지는 두 개의 기둥이 아래로 내려와 있다. 각 기둥의 아래쪽 끝에는 작은 회전축 같은 부품이 바깥쪽으로 돌출되어 있으며, 이 회전축 옆에는 작은 고리 모양의 잠금쇠가 보인다. 이 회전축을 안쪽으로 미는 듯한 빨간색 화살표가 양쪽에 하나씩 그려져 있고, 왼쪽 기둥의 회전축과 잠금쇠 부분은 빨간색 원으로 크게 강조되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_005_figure_015.png",
+      "page": 5,
+      "index": 15,
+      "size_px": [
+        366,
+        319
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 366.0,
+        "height": 319.0,
+        "aspect_ratio": 1.1473354231974922,
+        "ink_ratio": 0.1203127944224609,
+        "edge_ratio": 0.12833821539304863,
+        "table_line_ratio": 0.06681569796323894,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDH-CH30EMT/page_005_figure_015.png",
+      "caption_short": "직사각형 형태의 높고 긴 통 두 개가 나란히 놓여 있다. 왼쪽 통은 윗부분 뚜껑이 본체 위로 분리되는 모습이다. 뚜껑 안쪽 면에는 여러 구조물이 연결되어 있고, 두 개의 위쪽 화살표는 뚜껑이 분리되는 방향을 보여준다. 오른쪽 통은 뚜껑이 제거된 모습이며, 통 안에는 길게 돌돌 말린 호스와 네 개의 작은 바퀴가 들어있다. 통 바깥 오른쪽 위에는 네 개의 바퀴가 자세히 그려진 작은 네모가 보인다. 통 안의 호스와 바퀴는 두 개의 굽은 화살표를 따라 위쪽으로 꺼내지는 모습이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_006_figure_016.png",
+      "page": 6,
+      "index": 16,
+      "size_px": [
+        443,
+        376
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 443.0,
+        "height": 376.0,
+        "aspect_ratio": 1.178191489361702,
+        "ink_ratio": 0.10551846693242399,
+        "edge_ratio": 0.09613491186782576,
+        "table_line_ratio": 0.03352984967100524,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDH-CH30EMT/page_006_figure_016.png",
+      "caption_short": "높고 네모난 가전제품 본체가 바닥에서 한쪽으로 약 45도 비스듬히 기울어져 있다. 본체 위쪽 면에는 가는 선들이 빽빽하게 채워져 어둡게 보이는 그릴 모양의 통풍구가 있다. 아래쪽 바닥에는 동그란 바퀴 네 개가 나란히 놓여 있고, 빨간색 화살표가 들려 있는 본체 바닥의 둥근 구멍을 향해 위로 솟아 있다. 왼쪽 위에는 제품 바닥에 바퀴를 끼우라는 설명 문구가 쓰여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_008_figure_017.png",
+      "page": 8,
+      "index": 17,
+      "size_px": [
+        384,
+        230
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 384.0,
+        "height": 230.0,
+        "aspect_ratio": 1.6695652173913043,
+        "ink_ratio": 0.17745697463768115,
+        "edge_ratio": 0.12434329710144927,
+        "table_line_ratio": 0.10093976449275362,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDH-CH30EMT/page_008_figure_017.png",
+      "caption_short": "높고 네모난 제품의 한쪽 면이 가까이에서 보인다. 제품의 위쪽에는 작은 원형 구멍들이 촘촘하게 배열된 직사각형의 격자 모양 부분이 있다. 이 격자 부분 아래, 제품의 가운데 높이쯤에는 둥근 구멍이 있으며, 이 구멍에서 원통 모양의 마개가 절반쯤 밖으로 당겨져 나오고 있다. 한 손이 마개의 바깥쪽 끝을 잡고 제품 바깥 방향인 오른쪽으로 마개를 빼고 있고, 빨간색 화살표가 그 움직임을 가리키고 있다. 마개가 빠져나오는 둥근 구멍 주위는 빨간색 점선 원으로 강조되어 있으며, 장면의 왼쪽 위에는 빨간색 원 안에 숫자 '1'이 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_008_figure_018.png",
+      "page": 8,
+      "index": 18,
+      "size_px": [
+        388,
+        228
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 388.0,
+        "height": 228.0,
+        "aspect_ratio": 1.7017543859649122,
+        "ink_ratio": 0.15860689093868693,
+        "edge_ratio": 0.12129227708446373,
+        "table_line_ratio": 0.10907261710978478,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDH-CH30EMT/page_008_figure_018.png",
+      "caption_short": "장면은 두 부분으로 나뉘어 있다. 왼쪽에는 빨간색 숫자 2가 보인다. 위쪽에는 작은 구멍이 촘촘한 네모난 안전망이 있고, 그 아래에서 손이 네모난 물통을 바깥으로 빼내고 있다. 물통 앞면에는 물 높이를 알 수 있는 세로 막대 표시가 있으며, 빨간색 화살표 두 개는 물통을 빼내는 방향을 가리킨다. 오른쪽에는 빨간색 숫자 3이 보인다. 이곳은 물통 내부 위쪽 모습이다. 물통 안쪽 가운데에는 위로 솟은 회색 기둥 부품이 있고, 그 위에는 뚜껑이 덮여 있다. 물통 오른쪽 위 모서리를 향해 아래로 내려가는 빨간색 화살표가 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_008_figure_019.png",
+      "page": 8,
+      "index": 19,
+      "size_px": [
+        384,
+        229
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 384.0,
+        "height": 229.0,
+        "aspect_ratio": 1.6768558951965065,
+        "ink_ratio": 0.053857350800582245,
+        "edge_ratio": 0.06152201601164483,
+        "table_line_ratio": 0.0264283114992722,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDH-CH30EMT/page_008_figure_019.png",
+      "caption_short": "네모난 전자제품 조작판을 정면에서 본 모습이다. 왼쪽 위에는 동그라미 안에 숫자 4가 쓰여 있다. 조작판의 위쪽에는 왼쪽부터 만수, 펌프, 제상 글자와 함께 각각 동그란 표시등이 놓여 있다. 특히 만수 표시등은 빨간색 점선 원으로 강조되어 있고, 그 안에 빨간색 불이 켜져 있다. 조작판의 아래쪽에는 왼쪽부터 건조, 음이온, 타이머 글자가 쓰여 있고, 각 글자 위에는 해당 기능을 나타내는 네모난 그림이 함께 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_008_figure_020.png",
+      "page": 8,
+      "index": 20,
+      "size_px": [
+        381,
+        228
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 381.0,
+        "height": 228.0,
+        "aspect_ratio": 1.6710526315789473,
+        "ink_ratio": 0.07289220426394069,
+        "edge_ratio": 0.07210940737670948,
+        "table_line_ratio": 0.015817101809642214,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDH-CH30EMT/page_008_figure_020.png",
+      "caption_short": "두 손이 길쭉한 네모 모양의 용기를 잡고 있다. 용기는 왼쪽 아랫방향으로 비스듬히 기울어져 있으며, 용기의 왼쪽 끝에 있는 좁은 배출구에서 맑은 물이 아래쪽으로 시원하게 흘러나오고 있다. 왼쪽 손은 용기의 바닥을 받치듯이 잡고 있고, 오른쪽 손은 용기의 윗부분을 안정감 있게 잡고 있다. 용기의 옆면 중앙에는 길쭉한 타원형의 홈이 보이며, 이 장면의 왼쪽 위 모퉁이에는 빨간색 동그라미 안에 숫자 '5'가 쓰여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_009_figure_021.png",
+      "page": 9,
+      "index": 21,
+      "size_px": [
+        782,
+        986
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 782.0,
+        "height": 986.0,
+        "aspect_ratio": 0.7931034482758621,
+        "ink_ratio": 0.1095075299720382,
+        "edge_ratio": 0.0855467594922262,
+        "table_line_ratio": 0.04862317975960117,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDH-CH30EMT/page_009_figure_021.png",
+      "caption_short": "이 장면은 위로 긴 네모 형태의 전자제품 배수 호스 연결을 묘사한다. 윗부분에는 제품 뒷면 아래 동그란 '연속 배수구'에 '내경 12mm의 투명 배수 호스'가 연결된 모습이다. 이 120cm 길이 호스는 아래로 향하게 놓여 있다. 가운데에서는 제품 옆면 아래에서 나온 투명 호스가 바닥의 네모난 '집수통'으로 이어진다. 호스 끝은 집수통 안 물 위로 노출되어 '공간 필요'가 표시되고, 제품 배수구는 집수통 수위보다 '14cm 이상' 높다. 아랫부분에는 같은 제품 옆면과 함께, 배수 호스가 바닥으로 바로 이어져 물방울이 떨어지는 모습이 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_010_figure_022.png",
+      "page": 10,
+      "index": 22,
+      "size_px": [
+        386,
+        230
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 386.0,
+        "height": 230.0,
+        "aspect_ratio": 1.6782608695652175,
+        "ink_ratio": 0.17007208830817752,
+        "edge_ratio": 0.12569272358639333,
+        "table_line_ratio": 0.09915521513854472,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDH-CH30EMT/page_010_figure_022.png",
+      "caption_short": "사각형 형태의 제품 측면을 가까이서 보여주는 장면으로, 위쪽에는 작은 원형 구멍들이 여러 줄로 촘촘하게 배열되어 있고, 그 아래쪽에는 길쭉한 원통형 부품이 제품 본체에서 나와 있다. 오른손이 이 원통형 부품의 끝을 엄지와 검지로 잡고 왼쪽으로 당기는 모습이다. 부품이 빠져나오는 부분은 빨간 점선 원으로 강조되어 있으며, 빨간 화살표가 왼쪽 방향을 가리키고 있다. 왼쪽 위에는 빨간 동그라미 안에 숫자 '1'이 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_010_figure_023.png",
+      "page": 10,
+      "index": 23,
+      "size_px": [
+        383,
+        227
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 383.0,
+        "height": 227.0,
+        "aspect_ratio": 1.6872246696035242,
+        "ink_ratio": 0.1724617844285205,
+        "edge_ratio": 0.13042178028778137,
+        "table_line_ratio": 0.08804821660666429,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDH-CH30EMT/page_010_figure_023.png",
+      "caption_short": "이 장면은 전자제품의 한쪽 구석을 가까이에서 보여준다. 왼쪽 위에는 작은 동그란 구멍들이 촘촘하게 뚫려 있는 네모난 판이 보인다. 이 판은 숫자 2로 표시되어 있다. 이 판의 아래쪽으로는 제품 본체의 회색 직사각형 구조물이 가로지르고 있다. 본체 오른쪽 벽면에는 동그란 연결 구멍이 하나 있는데, 이 구멍은 빨간 점선 원으로 강조되어 있다. 하얀색 호스 하나가 오른쪽에서 왼쪽 방향으로 이 동그란 구멍 안으로 연결되고 있다. 빨간색 화살표가 호스가 구멍에 끼워지는 방향을 정확히 알려준다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_010_figure_024.png",
+      "page": 10,
+      "index": 24,
+      "size_px": [
+        104,
+        98
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 104.0,
+        "height": 98.0,
+        "aspect_ratio": 1.0612244897959184,
+        "ink_ratio": 0.14717425431711145,
+        "edge_ratio": 0.24156200941915226,
+        "table_line_ratio": 0.03551805337519623,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDH-CH30EMT/page_010_figure_024.png",
+      "caption_short": "길고 가는 호스가 둥글게 감겨 있는 모습이다. 위에서 아래로 내려다본 형태로, 호스는 안쪽부터 바깥쪽으로 여러 겹의 동심원 모양으로 나선형으로 감겨 있다. 감긴 호스는 전체적으로 커다란 원반 형태를 이룬다. 호스의 단면은 동그랗고 매끄러우며, 균일한 두께를 유지하고 있다. 감긴 원의 왼쪽 바깥 부분에서 호스의 한쪽 끝이 외부로 길게 뻗어 나와 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_010_figure_025.png",
+      "page": 10,
+      "index": 25,
+      "size_px": [
+        781,
+        274
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 781.0,
+        "height": 274.0,
+        "aspect_ratio": 2.8503649635036497,
+        "ink_ratio": 0.09288110881613504,
+        "edge_ratio": 0.0897501799115863,
+        "table_line_ratio": 0.023374487135153322,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDH-CH30EMT/page_010_figure_025.png",
+      "caption_short": "이 장면은 펌프 배수 마개를 분리하는 방법을 보여주고 있으며, 세 개의 부분으로 나누어 설명하고 있다. 첫 번째 장면에는 동그란 배수구의 한쪽 면을 가까이서 보고 있다. 배수구 안쪽에는 원뿔 형태의 마개가 끼워져 있고, 마개 옆에 고정 클립이 바깥쪽으로 당겨지고 있는 모습이다. 그 아래에는 '배수구 중간에 있는 고정 클립을 잡아당겨 분리하십시오'라고 적혀 있다. 두 번째 장면에는 배수구 안쪽 마개의 연결 부위가 뒤쪽으로 살짝 밀려들어 간 상태이다. 마개의 위쪽과 아래쪽에서 안쪽으로 향하는 붉은색 화살표 두 개가 보이며, 연결 부위가 밀착된 채 유지되고 있음을 나타낸다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_010_figure_026.png",
+      "page": 10,
+      "index": 26,
+      "size_px": [
+        780,
+        272
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 780.0,
+        "height": 272.0,
+        "aspect_ratio": 2.8676470588235294,
+        "ink_ratio": 0.07610294117647058,
+        "edge_ratio": 0.07754996229260935,
+        "table_line_ratio": 0.012697963800904977,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDH-CH30EMT/page_010_figure_026.png",
+      "caption_short": "지금 보이는 것은 펌프 배수 호스를 연결하는 세 단계이다. 왼쪽부터 4번, 5번, 6번으로 이어진다. 4번은 둥근 배수구 안으로 회색 배수 호스를 끝까지 밀어 넣는 모습이다. 붉은 화살표가 삽입 방향을 보여준다. '배수구에 배수 호스를 끝까지 끼워 주십시오'라는 설명이 있다. 5번은 호스를 감싼 회색 둥근 결합구를 앞쪽으로 당겨 공간을 만드는 모습이다. 붉은 화살표는 결합구를 양옆으로 당기는 방향을 가리킨다. '배수구 결합구를 앞쪽으로 당겨 공간을 만들어 주십시오'라는 설명이 있다. 6번은 5번에서 만들어진 공간에 회색 C자형 고정 클립을 끼워 넣는 모습이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_011_figure_027.png",
+      "page": 11,
+      "index": 27,
+      "size_px": [
+        358,
+        165
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 358.0,
+        "height": 165.0,
+        "aspect_ratio": 2.16969696969697,
+        "ink_ratio": 0.25415608599966144,
+        "edge_ratio": 0.15964110377518198,
+        "table_line_ratio": 0.19294057897409853,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDH-CH30EMT/page_011_figure_027.png",
+      "caption_short": "제습기의 뒷부분이 보인다. 제습기는 전체적으로 네모난 형태를 가졌다. 기기 중앙 하단에는 '제습기 후면'이라고 적힌 회색의 표식이 부착되어 있다. 그 위쪽으로는 가로로 긴 흡입구가 보이며, 여러 개의 가는 선으로 이루어진 안전망이 덮여 있다. 이 흡입구 안에는 '프리 필터'라는 이름의 직사각형 필터가 삽입되어 있는데, 필터는 작은 사각형 구멍들로 이루어진 격자무늬를 가지고 있다. 현재 이 프리 필터는 기기 본체에서 절반 정도 오른쪽으로 빠져나와 있는 상태이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_011_figure_028.png",
+      "page": 11,
+      "index": 28,
+      "size_px": [
+        534,
+        175
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 534.0,
+        "height": 175.0,
+        "aspect_ratio": 3.0514285714285716,
+        "ink_ratio": 0.09044408774745853,
+        "edge_ratio": 0.08360620652755484,
+        "table_line_ratio": 0.05573033707865169,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDH-CH30EMT/page_011_figure_028.png",
+      "caption_short": "가운데에 키 크고 네모난 모양의 가전제품이 서 있다. 제품 위쪽과 옆면에는 공기가 드나드는 가로 격자 무늬가 있고, 바닥에는 작은 바퀴가 달려 있다. 이 제품 왼쪽에는 텔레비전이 낮은 수납장 위에 놓여 있으며, 가전제품과는 \"1m 이상\" 떨어져 있어야 한다. 제품 오른쪽으로는 벽 모서리와 창문이 보인다. 창문에서 커튼이 안으로 휘날리고, 가전제품과 벽 사이는 \"25cm 이상\" 거리를 두어야 한다. 가장 오른쪽에는 강한 햇빛을 나타내는 태양 그림이 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_013_figure_029.png",
+      "page": 13,
+      "index": 29,
+      "size_px": [
+        783,
+        153
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 783.0,
+        "height": 153.0,
+        "aspect_ratio": 5.117647058823529,
+        "ink_ratio": 0.09173699279626708,
+        "edge_ratio": 0.09129458509670364,
+        "table_line_ratio": 0.06541790832978572,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SDH-CH30EMT/page_016_figure_030.png",
+      "page": 16,
+      "index": 30,
+      "size_px": [
+        116,
+        113
+      ],
+      "keep_for_caption": false,
+      "category": "qr_code_heuristic",
+      "tags": [
+        "qr_code"
+      ],
+      "metrics": {
+        "width": 116.0,
+        "height": 113.0,
+        "aspect_ratio": 1.0265486725663717,
+        "ink_ratio": 0.5966585291425084,
+        "edge_ratio": 0.23153799206591394,
+        "table_line_ratio": 0.3878547451937748,
+        "is_qr_code": true,
+        "qr_heuristic": true,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "num_pages": 20,
+  "lines_before": 399,
+  "lines_after": 345,
+  "placeholders_removed_estimate": 61,
+  "repeated_lines_removed": 0,
+  "num_repeated_patterns": 0,
+  "repeated_patterns_sample": [],
+  "repeated_threshold": 12,
+  "doc_id": "SVC-S350IM",
+  "source_parsed_file": "data\\parsed\\SVC-S350IM.md"
+}

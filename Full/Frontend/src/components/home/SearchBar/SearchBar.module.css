@@ -33,6 +33,7 @@
   font-size: 1rem;
   color: #1a1a1a;
   background: transparent;
+  min-width: 0; /* flex 아이템이 부모보다 작아질 수 있도록 허용 */
 }
 
 .input::placeholder {

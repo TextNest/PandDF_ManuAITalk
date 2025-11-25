@@ -1,0 +1,1615 @@
+{
+  "doc_id": "SVC-BH1",
+  "source_pdf": "data/raw/SVC-BH1.pdf",
+  "num_images_total": 58,
+  "num_images_kept": 49,
+  "created_by": "image_captioner_gemini.py",
+  "model": "gemini-2.5-flash",
+  "config": {
+    "CAPTION_MAX_CHARS": 320,
+    "UNSAFE_KEYWORDS": [
+      "폭발",
+      "감전",
+      "사망",
+      "질식",
+      "중독",
+      "화재",
+      "불이 날",
+      "불이날",
+      "가스 누출",
+      "가스누출",
+      "가스가 새",
+      "전기 충격",
+      "전기충격",
+      "고압",
+      "중상",
+      "심각한 부상"
+    ]
+  },
+  "images": [
+    {
+      "file": "data/figures/SVC-BH1/page_002_figure_001.png",
+      "page": 2,
+      "index": 1,
+      "size_px": [
+        418,
+        563
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 418.0,
+        "height": 563.0,
+        "aspect_ratio": 0.7424511545293073,
+        "ink_ratio": 0.4281701751553112,
+        "edge_ratio": 0.018964535511230847,
+        "table_line_ratio": 0.2224285483610528,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_002_figure_001.png",
+      "caption_short": "바닥에 하얀색의 높은 직사각형 기기가 정면을 향해 놓여 있다. 기기의 맨 위쪽에는 작은 검은색 점들이 가로로 길게 줄지어 있으며, 그 아래 가운데에는 'shinil'이라는 글자가 은은하게 적혀 있다. 기기의 아래쪽에는 검은색으로 넓게 움푹 들어간 공간이 있고, 그 안에는 납작한 하얀색 원반 모양의 로봇청소기가 정면을 보며 살짝 들어가 있다. 로봇청소기 앞면 중앙에는 작고 길쭉한 검은색 센서 창이 보인다. 이 하얀색 기기는 검은색의 넓고 낮은 받침대 위에 단단히 놓여 있으며, 오른쪽 뒤편으로는 벽에 기기의 그림자가 길게 비치고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_003_figure_002.png",
+      "page": 3,
+      "index": 2,
+      "size_px": [
+        341,
+        323
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 341.0,
+        "height": 323.0,
+        "aspect_ratio": 1.0557275541795665,
+        "ink_ratio": 0.18608536175698864,
+        "edge_ratio": 0.11703875870459313,
+        "table_line_ratio": 0.11897260833643536,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_003_figure_002.png",
+      "caption_short": "이 안내문에는 신일 로봇 청소기 앱을 내려받는 방법이 설명되어 있다. 가장 위쪽에 적힌 글에는 \"아래 QR코드를 휴대폰 카메라로 찍으면 신일 로봇 청소기 앱 다운로드 페이지로 연결됩니다. 앱을 다운로드 해주십시오. 앱에서 보다 많은 기능을 사용할 수 있습니다.\"라고 쓰여 있다. 글 아래에는 두 개의 네모난 QR코드가 나란히 놓여 있다. 왼쪽 QR코드 바로 아래에는 \"안드로이드\"라고 쓰인 어두운 배경의 글자가 있고, 오른쪽 QR코드 아래에는 \"iOS\"라고 쓰인 어두운 배경의 글자가 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_003_figure_003.png",
+      "page": 3,
+      "index": 3,
+      "size_px": [
+        336,
+        321
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 336.0,
+        "height": 321.0,
+        "aspect_ratio": 1.0467289719626167,
+        "ink_ratio": 0.11368862186619196,
+        "edge_ratio": 0.07840083073727934,
+        "table_line_ratio": 0.06982458092271177,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_003_figure_003.png",
+      "caption_short": "눈앞에는 글자와 네모난 그림이 펼쳐져 있다. 제일 위쪽에는 '아래 QR코드를 휴대폰 카메라로 찍으면 로봇 청소기 앱 연결 방법을 볼 수 있습니다'라는 설명 글이 적혀 있다. 그 아래, 한가운데에는 수많은 작은 검은색 네모들이 흰색 바탕에 빼곡히 모여 만들어진 커다란 정사각형 모양의 QR 코드가 보인다. 가장 아래쪽에는 '*참고 영상은 실제 제품과 다소 차이가 있을 수 있습니다'라는 작은 글씨가 쓰여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_005_figure_004.png",
+      "page": 5,
+      "index": 4,
+      "size_px": [
+        135,
+        149
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 135.0,
+        "height": 149.0,
+        "aspect_ratio": 0.9060402684563759,
+        "ink_ratio": 0.17380064628386777,
+        "edge_ratio": 0.14173502361421825,
+        "table_line_ratio": 0.08187919463087248,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_005_figure_004.png",
+      "caption_short": "이것은 로봇 청소기가 스스로 물을 채우고 먼지를 비우는 네모난 기지국이다. 정면에서 살짝 왼쪽을 보고 위에서 아래로 내려다본 모습이며, 폭이 넓고 높이가 적당하다. 가장 위쪽에는 세 개의 직사각형 뚜껑이 나란히 있는데, 왼쪽 뚜껑에는 '물', 오른쪽 뚜껑에는 '먼지'라고 한글로 적혀 있다. 가운데 뚜껑에는 글자가 보이지 않는다. 제품의 앞면은 부드러운 곡선으로 이루어져 있고, 왼쪽 옆면 중간쯤에는 세로로 길쭉한 타원형 창문이 보인다. 가장 아래쪽 앞부분에는 로봇 청소기가 들어가는 공간이 있고, 그 안에는 두 개의 네모난 슬롯이 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_005_figure_005.png",
+      "page": 5,
+      "index": 5,
+      "size_px": [
+        133,
+        118
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 133.0,
+        "height": 118.0,
+        "aspect_ratio": 1.1271186440677967,
+        "ink_ratio": 0.13584809481330445,
+        "edge_ratio": 0.100547980119791,
+        "table_line_ratio": 0.051357206575761434,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_005_figure_005.png",
+      "caption_short": "이것은 로봇 청소기이다. 둥글고 납작한 원반 모양의 본체가 바닥에 놓여 있으며, 위에서 살짝 비스듬히 내려다본 모습이다. 본체 윗면의 앞쪽 가운데에는 길쭉한 타원형의 버튼 두 개가 나란히 있다. 본체 오른쪽 옆면에는 작은 동그란 구멍 두 개가 보이고, 왼쪽 옆면의 뒤쪽에는 네모난 스위치 하나가 돌출되어 있다. 본체 앞쪽 아래에서는 가늘고 긴 솔 두 개가 양옆으로 뻗어 나와 바닥을 향하고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_005_figure_006.png",
+      "page": 5,
+      "index": 6,
+      "size_px": [
+        124,
+        98
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 124.0,
+        "height": 98.0,
+        "aspect_ratio": 1.2653061224489797,
+        "ink_ratio": 0.07809414088215931,
+        "edge_ratio": 0.054394338380513496,
+        "table_line_ratio": 0.05233706385780119,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_005_figure_006.png",
+      "caption_short": "이것은 기기를 청소할 때 사용하는 솔이다. 제품 전체를 왼쪽 위에서 오른쪽 아래 방향으로 비스듬히 놓은 옆모습이다. 솔의 왼쪽 끝에는 짧고 빽빽한 검은색 털이 촘촘히 박힌 브러시 부분이 위치한다. 이 브러시 부분은 손잡이와 연결되는 곳에서 위쪽으로 살짝 솟아올라 있어, 솔 부분이 손잡이보다 높은 위치에 있다. 브러시 부분에서 시작하여 오른쪽 아래로 길게 뻗은 손잡이가 연결되어 있다. 손잡이는 브러시 바로 아래에서 한번 꺾인 다음, 완만한 S자 곡선으로 부드럽게 구부러져 있다가, 끝부분은 다시 편평한 형태로 길게 이어진다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_005_figure_007.png",
+      "page": 5,
+      "index": 7,
+      "size_px": [
+        120,
+        95
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 120.0,
+        "height": 95.0,
+        "aspect_ratio": 1.263157894736842,
+        "ink_ratio": 0.12973684210526315,
+        "edge_ratio": 0.11605263157894737,
+        "table_line_ratio": 0.05157894736842105,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_005_figure_007.png",
+      "caption_short": "전기 제품에 전원을 연결하는 케이블이다. 케이블은 길게 뻗은 선을 여러 번 접어서 동그란 형태로 말아 놓았고, 가운데 부분을 얇고 가는 끈으로 단단하게 묶어 깔끔하게 정리한 상태이다. 케이블의 한쪽 끝에는 벽면 콘센트에 꽂아 전기를 공급받는 플러그가 있다. 이 플러그는 직사각형 본체에서 납작한 금속 단자 두 개가 튀어나와 있다. 다른 쪽 끝에는 제품에 전원을 연결하는 직사각형 모양의 커넥터가 있는데, 커넥터 안쪽에는 세 개의 작은 구멍이 보인다. 이 커넥터는 플러그와는 반대 방향으로 향하고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_005_figure_008.png",
+      "page": 5,
+      "index": 8,
+      "size_px": [
+        104,
+        83
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 104.0,
+        "height": 83.0,
+        "aspect_ratio": 1.2530120481927711,
+        "ink_ratio": 0.1157321594068582,
+        "edge_ratio": 0.15094995366079703,
+        "table_line_ratio": 0.05143651529193698,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_005_figure_009.png",
+      "page": 5,
+      "index": 9,
+      "size_px": [
+        56,
+        145
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 56.0,
+        "height": 145.0,
+        "aspect_ratio": 0.38620689655172413,
+        "ink_ratio": 0.20283251231527094,
+        "edge_ratio": 0.25073891625615763,
+        "table_line_ratio": 0.11527093596059114,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_005_figure_010.png",
+      "page": 5,
+      "index": 10,
+      "size_px": [
+        114,
+        66
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 114.0,
+        "height": 66.0,
+        "aspect_ratio": 1.7272727272727273,
+        "ink_ratio": 0.09649122807017543,
+        "edge_ratio": 0.12533227006911218,
+        "table_line_ratio": 0.02046783625730994,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_005_figure_011.png",
+      "page": 5,
+      "index": 11,
+      "size_px": [
+        90,
+        107
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 90.0,
+        "height": 107.0,
+        "aspect_ratio": 0.8411214953271028,
+        "ink_ratio": 0.23011422637590861,
+        "edge_ratio": 0.13229491173416408,
+        "table_line_ratio": 0.017964693665628244,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_005_figure_011.png",
+      "caption_short": "이것은 기다란 직사각형 모양의 필터이다. 위에서 비스듬히 내려다본 모습이며, 필터의 윗면과 함께 앞쪽 가장자리가 보인다. 전체적으로 두툼한 테두리가 둘러져 있고, 테두리 안쪽에는 많은 작은 직사각형 구멍들이 촘촘하게 나 있는 격자 모양이 펼쳐져 있다. 이 격자 모양은 가운데를 기준으로 왼쪽과 오른쪽, 두 개의 커다란 부분으로 나뉘어 있다. 각 격자 부분은 세로 방향으로 길게 뻗은 선들이 빽빽하게 배열된 형태로 이루어져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_005_figure_012.png",
+      "page": 5,
+      "index": 12,
+      "size_px": [
+        107,
+        113
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 107.0,
+        "height": 113.0,
+        "aspect_ratio": 0.9469026548672567,
+        "ink_ratio": 0.06318749483086593,
+        "edge_ratio": 0.05053345463567943,
+        "table_line_ratio": 0.009676618972789678,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_005_figure_012.png",
+      "caption_short": "가운데에는 둥글고 납작한 작은 중심 부품이 있다. 이 중심 부품에서 세 개의 기다란 막대 모양의 팔이 바깥쪽으로 똑같은 간격으로 뻗어 나온다. 위에서 아래를 내려다본 모습이다. 각각의 팔은 두 개의 부분으로 나뉘어 있고, 이 두 부분은 작은 동그란 연결 부품으로 이어져 있다. 팔들은 바깥쪽으로 갈수록 살짝 꺾이는 듯한 모양이며, 전체적으로 바닥의 먼지나 이물질을 쓸어 모으는 솔 부분과 비슷하게 생겼다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_005_figure_013.png",
+      "page": 5,
+      "index": 13,
+      "size_px": [
+        122,
+        33
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 122.0,
+        "height": 33.0,
+        "aspect_ratio": 3.696969696969697,
+        "ink_ratio": 0.15846994535519127,
+        "edge_ratio": 0.18951813214108296,
+        "table_line_ratio": 0.09687034277198212,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_005_figure_014.png",
+      "page": 5,
+      "index": 14,
+      "size_px": [
+        120,
+        65
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 120.0,
+        "height": 65.0,
+        "aspect_ratio": 1.8461538461538463,
+        "ink_ratio": 0.07205128205128206,
+        "edge_ratio": 0.09346153846153846,
+        "table_line_ratio": 0.0,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_005_figure_015.png",
+      "page": 5,
+      "index": 15,
+      "size_px": [
+        100,
+        80
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 100.0,
+        "height": 80.0,
+        "aspect_ratio": 1.25,
+        "ink_ratio": 0.118875,
+        "edge_ratio": 0.18125,
+        "table_line_ratio": 0.059375,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_006_figure_016.png",
+      "page": 6,
+      "index": 16,
+      "size_px": [
+        722,
+        302
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 722.0,
+        "height": 302.0,
+        "aspect_ratio": 2.390728476821192,
+        "ink_ratio": 0.03889123296215443,
+        "edge_ratio": 0.049425803966171966,
+        "table_line_ratio": 0.007787419053035167,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_006_figure_016.png",
+      "caption_short": "이것은 둥글납작한 로봇 청소기이다. 위에서 살짝 내려다본 모습으로, 제품의 윗면과 앞면이 잘 보인다. 윗면의 앞쪽 중앙에는 왼쪽부터 '홈/전원 버튼'과 'Wi-Fi 연결 표시등'이 나란히 위치한다. 윗면의 뒤쪽으로는 제품 전체를 덮는 '로봇 청소기 커버'가 있다. 제품의 왼쪽 앞 옆면에는 '벽 감지 센서'가 있으며, 앞면 중앙에는 튀어나온 '범퍼'가 있다. 범퍼 아래에는 두 개의 '장애물 인식 및 회피 센서'가 나란히 있고, 그 아래쪽에는 '카메라'가 위치한다. 제품 바닥 부분에서는 청소용 바퀴 같은 것이 살짝 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_007_figure_017.png",
+      "page": 7,
+      "index": 17,
+      "size_px": [
+        978,
+        543
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 978.0,
+        "height": 543.0,
+        "aspect_ratio": 1.8011049723756907,
+        "ink_ratio": 0.0427225856504235,
+        "edge_ratio": 0.06644333721241154,
+        "table_line_ratio": 0.0025552956949764054,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_007_figure_017.png",
+      "caption_short": "이 로봇 청소기는 둥글고 납작한 형태이며, 왼쪽에는 윗부분이 분리된 모습과 앞면이, 오른쪽에는 내부 구조가 보인다. 왼쪽을 보면, 먼저 둥근 본체 위로 커버가 살짝 들어 올려져 있다. 본체 윗면의 뒤쪽에는 먼지통을 열기 위한 버튼이 있고, 그 오른쪽에는 전원을 켜고 끄는 스위치가 보인다. 본체 앞쪽 가운데에는 레이저 거리 측정 센서가 둥글게 튀어나와 있으며, 그 아래에는 내장 카메라 버튼이 위치한다. 오른쪽 내부를 보면, 본체 왼쪽 바깥에는 사이드 브러시가 돌출되어 있다. 본체 앞쪽에는 추락 감지 센서와 360도 회전 바퀴가 있고, 안쪽에는 초음파 센서가 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_008_figure_018.png",
+      "page": 8,
+      "index": 18,
+      "size_px": [
+        991,
+        606
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 991.0,
+        "height": 606.0,
+        "aspect_ratio": 1.6353135313531353,
+        "ink_ratio": 0.06377030235818738,
+        "edge_ratio": 0.07464374086248181,
+        "table_line_ratio": 0.02420297529248384,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_008_figure_018.png",
+      "caption_short": "둥글고 납작한 로봇 청소기 본체와 먼지통, 필터가 보인다. 본체는 위에서 본 모습으로, 오른쪽 아래에 '물 보충 주입구', '배터리 충전 단자', '먼지 봉투 먼지 흡입구'가 있다. 오른쪽 위 직사각형 먼지통에는 '먼지통 열림 버튼'과 '먼지통 가이드 및 망 필터'가 보이며, 안쪽 '헤파 필터 누락감지 스위치'는 필터 장착 여부를 감지한다. 오른쪽 아래에는 뚜껑이 열린 먼지통 안에 '헤파 필터 (세척가능)'가 장착되어 있다. 아래 가운데에는 검은색 바탕의 '필터 세척시 주의사항' 경고문이 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_009_figure_019.png",
+      "page": 9,
+      "index": 19,
+      "size_px": [
+        871,
+        553
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 871.0,
+        "height": 553.0,
+        "aspect_ratio": 1.5750452079566004,
+        "ink_ratio": 0.041938035514457205,
+        "edge_ratio": 0.06570776663351763,
+        "table_line_ratio": 0.0091640836020205,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_009_figure_019.png",
+      "caption_short": "이것은 로봇 청소기 스테이션의 구조이다. 네모난 형태의 높은 기기이다. 왼쪽에는 앞부분과 옆부분을 비스듬히 본 스테이션이 있다. 윗면에는 정수통, 먼지통 등 뚜껑 달린 통 세 개가 나란히 있다. 앞면에는 작은 상태 표시등이 있다. 옆면 아래쪽에는 소프트웨어 프로그래밍 연결부, 전원 코드 보관부, 가장 아래에 전원 연결부가 위치한다. 오른쪽에는 스테이션의 뒷모습이 보인다. 위쪽에는 정수통 손잡이가 있는 길쭉한 통이 꽂혀 있다. 뒷면 가운데에는 스테이션 신호 송수신부가 있으며, 아래에 자동 물 공급부가 있다. 바닥에는 스테이션 세척 필터와 먼지 흡수구가 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_010_figure_020.png",
+      "page": 10,
+      "index": 20,
+      "size_px": [
+        296,
+        187
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 296.0,
+        "height": 187.0,
+        "aspect_ratio": 1.5828877005347595,
+        "ink_ratio": 0.1172315363491834,
+        "edge_ratio": 0.09894854747795924,
+        "table_line_ratio": 0.0663751987281399,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_010_figure_020.png",
+      "caption_short": "화면 왼쪽 위에는 '이렇게 하면 안 된다'는 의미의 굵은 X자 표시가 동그라미 안에 그려져 있다. 이 장면은 바닥에 물건들이 어지럽게 놓여 있는 모습을 보여준다. 왼쪽 아래에는 납작하고 둥근 로봇 청소기가 바닥에 놓여 있고, 그 옆으로 구불구불 길게 늘어진 전선이 멀리까지 이어져 있다. 전선 가까이에는 슬리퍼 두 짝이 나란히 있고, 오른쪽에는 커다란 장난감 자동차와 작은 장난감 잠수함이 놓여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_010_figure_021.png",
+      "page": 10,
+      "index": 21,
+      "size_px": [
+        312,
+        190
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 312.0,
+        "height": 190.0,
+        "aspect_ratio": 1.6421052631578947,
+        "ink_ratio": 0.15129892037786774,
+        "edge_ratio": 0.14274628879892037,
+        "table_line_ratio": 0.0882085020242915,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_010_figure_021.png",
+      "caption_short": "장면은 위에서 아래로 내려다보는 듯한 모습이다. 둥글고 납작한 로봇 청소기 한 대가 바닥에 놓여 있다. 로봇 청소기는 윗부분이 살짝 튀어나온 원통 모양이며, 아래쪽에는 바퀴와 회전 솔이 보인다. 이 로봇 청소기가 있는 바닥은 계단으로 연결되어 아래로 내려간다. 로봇 청소기는 계단 바로 앞에 있어, 자칫하면 아래로 떨어질 수도 있는 위험한 위치에 있다. 장면 왼쪽 위에는 굵은 선으로 된 커다란 'X' 표시가 동그라미 안에 그려져 있어, 이러한 상황이 바람직하지 않음을 알린다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_010_figure_022.png",
+      "page": 10,
+      "index": 22,
+      "size_px": [
+        317,
+        189
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 317.0,
+        "height": 189.0,
+        "aspect_ratio": 1.6772486772486772,
+        "ink_ratio": 0.09323519102698913,
+        "edge_ratio": 0.13154073406439337,
+        "table_line_ratio": 0.061389014070402086,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_010_figure_022.png",
+      "caption_short": "지금 보이는 장면은 집 안의 한 공간이다. 바닥에는 둥글고 납작한 로봇 청소기가 놓여 있다. 로봇 청소기는 약간 위에서 앞쪽을 내려다보는 모습이며, 윗면 중앙 앞부분에는 작고 둥글게 튀어나온 부분이 있다. 아래쪽 양옆으로는 작은 솔 두 개가 밖으로 나와 있다. 로봇 청소기 왼쪽으로는 주방이 보인다. 싱크대와 조리대가 있는 긴 카운터와 위아래로 캐비닛이 늘어서 있다. 로봇 청소기 오른쪽에는 식탁과 의자들이 놓인 식사 공간이 있다. 직사각형 식탁 위에는 병 하나와 유리컵 두 개가 있으며, 그 뒤 벽에는 창문이 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_010_figure_023.png",
+      "page": 10,
+      "index": 23,
+      "size_px": [
+        315,
+        192
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 315.0,
+        "height": 192.0,
+        "aspect_ratio": 1.640625,
+        "ink_ratio": 0.25072751322751324,
+        "edge_ratio": 0.1509424603174603,
+        "table_line_ratio": 0.2056878306878307,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_010_figure_023.png",
+      "caption_short": "장면 가운데에는 둥글고 납작한 로봇 청소기가 있다. 로봇 청소기는 위에서 내려다본 모습으로, 본체 옆에는 바닥을 쓸어내는 솔 두 개가 달려 있다. 이 로봇 청소기는 아래로 내려가는 계단 옆의 높은 바닥 위에 놓여 있다. 로봇 청소기 앞쪽과 오른쪽에는 여러 칸의 계단이 아래로 이어지고, 계단 옆과 높은 바닥 가장자리에는 안전 난간이 튼튼하게 세워져 있다. 장면 왼쪽 위 모서리에는 검은색 테두리의 흰색 동그라미 안에 검은 점이 있는 기호가 표시되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_011_figure_024.png",
+      "page": 11,
+      "index": 24,
+      "size_px": [
+        371,
+        285
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 371.0,
+        "height": 285.0,
+        "aspect_ratio": 1.3017543859649123,
+        "ink_ratio": 0.039438218186976876,
+        "edge_ratio": 0.047883860594883434,
+        "table_line_ratio": 0.013391970492268406,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_011_figure_024.png",
+      "caption_short": "이것은 로봇 청소기가 쉬거나 충전하는 데 사용하는 본체이다. 높고 네모난 형태이지만, 앞면과 윗면의 모서리들은 둥글게 처리되어 있다. 제품은 방의 한쪽 구석에 놓여 있고, 오른쪽 앞을 비스듬히 보는 모습이다. 가장 위쪽에는 덮개 세 개가 나란히 놓여 있으며, 각각 위로 열릴 수 있다. 제품 앞면의 가운데 부분에는 작은 점들이 줄지어 있는 표시등 같은 것이 있고, 왼쪽 옆면의 아래쪽에는 길쭉한 세로 모양의 창문이 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_011_figure_025.png",
+      "page": 11,
+      "index": 25,
+      "size_px": [
+        259,
+        181
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 259.0,
+        "height": 181.0,
+        "aspect_ratio": 1.430939226519337,
+        "ink_ratio": 0.10569764713411123,
+        "edge_ratio": 0.10426843576014846,
+        "table_line_ratio": 0.10337251221229121,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_011_figure_025.png",
+      "caption_short": "네모난 형태의 전자 제품 뒷면을 보여주는 장면이다. 제품 뒷면 가운데에는 안쪽으로 깊게 들어간 직사각형 모양의 넓은 공간이 있다. 이 공간의 오른쪽 벽에는 전원 코드가 전기 구멍에 꽂혀 있고, 코드는 아래쪽으로 내려와 왼쪽으로 크게 한 바퀴 돌아 다시 오른쪽으로 길게 뻗어 있다. 전원 코드는 제품 바깥으로 나와 있으며, 그 끝에는 두 개의 쇠붙이가 달린 플러그가 연결되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_011_figure_026.png",
+      "page": 11,
+      "index": 26,
+      "size_px": [
+        515,
+        383
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 515.0,
+        "height": 383.0,
+        "aspect_ratio": 1.3446475195822454,
+        "ink_ratio": 0.03674617861035768,
+        "edge_ratio": 0.039311516134756266,
+        "table_line_ratio": 0.01037795634870339,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_011_figure_026.png",
+      "caption_short": "방 한쪽 구석에 모서리가 둥근 직사각형 모양의 제품이 놓여 있다. 왼쪽 벽의 전원 콘센트에 코드가 꽂혀 제품 왼쪽 면으로 연결된다. 제품 위에는 평평한 덮개 세 개가 나란히 보이고, 왼쪽 아래에는 길쭉한 타원형의 홈이 있다. 제품 앞면 아래쪽에는 넓은 입구가 있으며, 그 위로는 작은 점선들이 가로로 길게 이어져 있다. 제품의 왼쪽과 오른쪽으로는 '50cm 이상'이라는 글자와 함께 바깥으로 향하는 화살표가, 앞쪽으로는 '150cm 이상'이라는 글자와 함께 앞으로 향하는 화살표가 공간을 가리킨다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_013_figure_027.png",
+      "page": 13,
+      "index": 27,
+      "size_px": [
+        820,
+        317
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 820.0,
+        "height": 317.0,
+        "aspect_ratio": 2.586750788643533,
+        "ink_ratio": 0.056666923136108334,
+        "edge_ratio": 0.06776563822420559,
+        "table_line_ratio": 0.019262137416326843,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_013_figure_027.png",
+      "caption_short": "왼쪽에는 네모난 본체 위로 길쭉한 사각형 물통이 살짝 들려 있는 모습이다. 물통 위에는 위로 향하는 화살표가 있다. 본체 앞면 왼쪽에는 세로로 긴 타원형 창이 보인다. 가운데는 물통만 따로 놓여 있고, 뚜껑이 위로 열려 있다. 물통 안쪽에는 'MAX' 선이 표시되어 있으며, 수도꼭지에서 물이 채워지고 있다. 물통 아래쪽에는 '나노 항균 모듈 (내부)'라는 글자가 연결되어 있다. 우측에는 물통이 본체 안으로 완전히 다시 들어간 모습이며, 물통 위에는 아래로 향하는 화살표가 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_015_figure_028.png",
+      "page": 15,
+      "index": 28,
+      "size_px": [
+        307,
+        307
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 307.0,
+        "height": 307.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.4885781281499008,
+        "edge_ratio": 0.11368820889346307,
+        "table_line_ratio": 0.49143226983840677,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_015_figure_028.png",
+      "caption_short": "바닥을 위에서 내려다보는 장면이다. 둥글고 납작한 로봇 청소기가 네모난 방바닥의 오른쪽 아래 칸에 놓여 있다. 로봇 청소기는 몸체 아래에 바퀴가 있고 옆쪽에 작은 회전솔이 보인다. 방바닥은 가상의 선으로 네 칸으로 나뉘어 있는데, 왼쪽 위, 오른쪽 위, 그리고 오른쪽 아래 칸의 일부가 회색으로 칠해져 있다. 회색 부분에는 로봇 청소기가 지나간 지그재그 형태의 청소 경로가 검은 선으로 표시되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_016_figure_029.png",
+      "page": 16,
+      "index": 29,
+      "size_px": [
+        148,
+        105
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 148.0,
+        "height": 105.0,
+        "aspect_ratio": 1.4095238095238096,
+        "ink_ratio": 0.0761904761904762,
+        "edge_ratio": 0.09498069498069497,
+        "table_line_ratio": 0.03314028314028314,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_016_figure_029.png",
+      "caption_short": "이것은 둥글고 납작한 로봇 청소기이다. 제품의 위쪽을 내려다보는 시점으로, 본체의 윗면과 옆면 일부가 보인다. 둥근 윗면의 앞쪽 가운데 부분에는 나란히 배치된 두 개의 작은 타원형 버튼이 있다. 오른쪽에서 뻗어 나온 사람의 검지와 중지 두 손가락이 이 두 개의 버튼을 동시에 누르고 있는 현재의 상태를 보여준다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_017_figure_030.png",
+      "page": 17,
+      "index": 30,
+      "size_px": [
+        649,
+        300
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 649.0,
+        "height": 300.0,
+        "aspect_ratio": 2.1633333333333336,
+        "ink_ratio": 0.05640472521828454,
+        "edge_ratio": 0.06889060092449922,
+        "table_line_ratio": 0.02504879301489471,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_017_figure_030.png",
+      "caption_short": "앞에 보이는 것은 직사각형 형태의 리모컨이다. 상단에는 빈 화면이 있고, 그 아래로 여러 조작 버튼들이 배치되어 있다. 화면 바로 아래 첫 번째 줄에는 왼쪽부터 '시간'을 나타내는 시계 모양 버튼, 그리고 오른쪽에는 '스테이션 복귀'를 나타내는 집 모양 버튼이 있다. 그 아래 가운데에는 위, 아래, 왼쪽, 오른쪽 화살표와 중앙의 '시작/일시정지/요일변경' 버튼으로 구성된 원형 방향키가 있다. 방향키 아래에는 '전체 청소', '청소 모드', '물 양 조절' 버튼이 왼쪽에, '예약 설정', '스테이션 청소', '흡입력 조절' 버튼이 오른쪽에 세로로 나란히 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_018_figure_031.png",
+      "page": 18,
+      "index": 31,
+      "size_px": [
+        370,
+        114
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 370.0,
+        "height": 114.0,
+        "aspect_ratio": 3.245614035087719,
+        "ink_ratio": 0.07731152204836415,
+        "edge_ratio": 0.10201517306780465,
+        "table_line_ratio": 0.0077524893314367,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_018_figure_031.png",
+      "caption_short": "장면에는 두 종류의 부품이 위아래로 분리되어 놓여 있다. 위쪽에는 길고 납작한 형태의 덮개가 보인다. 이 덮개는 '고무 브러시 커버'라고 불리며, 덮개의 안쪽 면 오른쪽 끝에는 두 개의 작은 원형 '고무 브러시 커버 분리 버튼'이 있다. 아래쪽에는 나선형 무늬가 있는 길쭉한 원통 모양의 솔이 놓여 있다. 이 솔은 '고무 브러시'라고 하며, 고무 브러시의 오른쪽 끝에는 작고 동그란 '고무 브러시 캡'이 분리되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_018_figure_032.png",
+      "page": 18,
+      "index": 32,
+      "size_px": [
+        237,
+        148
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 237.0,
+        "height": 148.0,
+        "aspect_ratio": 1.6013513513513513,
+        "ink_ratio": 0.140152811038887,
+        "edge_ratio": 0.19044360816512715,
+        "table_line_ratio": 0.0766621051431178,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_018_figure_032.png",
+      "caption_short": "눈앞에 보이는 것은 윗면 덮개가 열려 내부가 드러난 원반 모양의 로봇 청소기이다. 제품을 위에서 비스듬히 내려다보고 있다. 왼쪽 윗부분에는 길고 가는 막대 모양의 청소 도구가 덮개 위에 놓여 있고, 그 아래 제품의 왼쪽 가장자리에는 작은 사이드 브러시가 바깥쪽으로 향해 있다. 제품 중앙에는 길쭉한 직사각형 형태의 공간이 보이는데, 이곳에 메인 브러시가 장착된다. 오른쪽에는 두 개의 커다란 동그란 물통이 나란히 놓여 있고, 제품의 옆면에는 환기구와 센서로 보이는 작은 사각형 구멍들이 여러 개 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_018_figure_033.png",
+      "page": 18,
+      "index": 33,
+      "size_px": [
+        215,
+        224
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 215.0,
+        "height": 224.0,
+        "aspect_ratio": 0.9598214285714286,
+        "ink_ratio": 0.10654069767441861,
+        "edge_ratio": 0.16663205980066445,
+        "table_line_ratio": 0.095328073089701,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_018_figure_033.png",
+      "caption_short": "바닥을 청소하는 로봇 청소기의 뒤집힌 아랫면을 위에서 내려다보고 있다. 로봇 청소기는 둥근 원반 모양이다. 왼쪽 위에는 세 개의 솔이 달린 작은 보조 브러시가 보인다. 로봇 청소기 중앙에는 길고 통통한 주 브러시가 있는데, 털과 고무 날이 섞여 있는 모습이다. 이 주 브러시는 직사각형의 덮개로 덮여 있다. 오른쪽 위에서 사람의 손이 들어와 검지 손가락으로 주 브러시 덮개 위에 있는 작은 네모난 버튼을 누르려고 하고 있다. 아래쪽에는 두 개의 크고 둥근 바퀴가 나란히 위치해 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_019_figure_034.png",
+      "page": 19,
+      "index": 34,
+      "size_px": [
+        434,
+        176
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 434.0,
+        "height": 176.0,
+        "aspect_ratio": 2.465909090909091,
+        "ink_ratio": 0.04562473816506075,
+        "edge_ratio": 0.059868558860494345,
+        "table_line_ratio": 0.020972978634268957,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_019_figure_034.png",
+      "caption_short": "왼쪽에는 사람의 한 손이 작은 둥근 바퀴 모양 부품을 잡고 있다. 이 부품의 테두리에는 톱니 모양이 있다. 그 오른쪽에는 길쭉한 원통형 브러시가 놓여 있으며, 표면에는 나선형 홈이 파여 있다. 브러시의 왼쪽 끝은 둥근 구멍과 가운데 핀이 보인다. 잡고 있는 부품과 브러시 사이에는 왼쪽으로 당기는 검은색 화살표가 있다. 오른쪽으로는 큰 검은색 화살표가 왼쪽 장면에서 이어진다고 알려준다. 오른쪽에는 동일한 원통형 브러시가 있다. 브러시의 양쪽 끝에서는 둥근 바퀴 모양 부품들이 본체에서 살짝 떨어져 나와 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_019_figure_035.png",
+      "page": 19,
+      "index": 35,
+      "size_px": [
+        227,
+        144
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 227.0,
+        "height": 144.0,
+        "aspect_ratio": 1.5763888888888888,
+        "ink_ratio": 0.15862090063631915,
+        "edge_ratio": 0.18716348507097405,
+        "table_line_ratio": 0.10285119921683798,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_019_figure_035.png",
+      "caption_short": "로봇 청소기의 윗부분을 위에서 아래로 내려다본 모습이다. 둥글고 납작한 청소기의 윗 덮개가 열려 있어 내부가 보인다. 청소기 안쪽 가운데의 길고 넓적한 공간에는 커다란 둥근 바퀴 두 개가 나란히 있고, 그 옆에서는 길쭉한 막대 모양의 고무 브러시가 위쪽으로 뽑히는 중이다. 고무 브러시 위에는 직사각형 모양의 작은 덮개가 붙어 있으며, 청소기 왼쪽 끝 부분에서는 얇은 선이 바깥으로 나와 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_019_figure_036.png",
+      "page": 19,
+      "index": 36,
+      "size_px": [
+        181,
+        166
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 181.0,
+        "height": 166.0,
+        "aspect_ratio": 1.0903614457831325,
+        "ink_ratio": 0.21034413898688678,
+        "edge_ratio": 0.19922785062903547,
+        "table_line_ratio": 0.13342874259468815,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_019_figure_036.png",
+      "caption_short": "지금 보는 것은 둥근 모양의 로봇 청소기 아랫면을 위에서 내려다본 모습이다. 왼쪽 위에는 작은 솔이 달린 사이드 브러시가 보인다. 청소기 한가운데에는 길쭉한 직사각형 홈이 있고, 그 안에 긴 막대 모양의 고무 브러시가 가로로 놓여 있다. 이 고무 브러시의 오른쪽 끝 위에는 아래쪽으로 향하는 화살표가 그려져 있어, 브러시를 끼우는 방향을 보여준다. 아래쪽에는 크고 둥근 바퀴 두 개가 나란히 위치한다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_019_figure_037.png",
+      "page": 19,
+      "index": 37,
+      "size_px": [
+        220,
+        201
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 220.0,
+        "height": 201.0,
+        "aspect_ratio": 1.0945273631840795,
+        "ink_ratio": 0.09988692899140661,
+        "edge_ratio": 0.12853912256897332,
+        "table_line_ratio": 0.050746268656716415,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_019_figure_037.png",
+      "caption_short": "둥글고 납작한 로봇 청소기의 윗부분을 비스듬히 위에서 내려다보는 모습이다. 제품의 왼쪽 앞 가장자리에는 세 갈래로 된 솔이 달린 사이드 브러시가 있다. 한 손은 위에서 드라이버를 잡고 사이드 브러시 가운데 있는 나사를 왼쪽으로 돌려 풀고 있다. 다른 한 손은 사이드 브러시 근처의 로봇 청소기 가장자리를 부드럽게 받치고 있다. 로봇 청소기 내부에는 두 개의 커다란 둥근 부품과 긴 직사각형 모양의 빈 공간이 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_019_figure_038.png",
+      "page": 19,
+      "index": 38,
+      "size_px": [
+        293,
+        178
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 293.0,
+        "height": 178.0,
+        "aspect_ratio": 1.646067415730337,
+        "ink_ratio": 0.12781378226022932,
+        "edge_ratio": 0.15950837903133028,
+        "table_line_ratio": 0.07403075507151896,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_019_figure_038.png",
+      "caption_short": "둥글고 납작한 로봇 청소기를 위에서 내려다본 모습이다. 청소기 본체의 중앙에는 길쭉한 회전 브러시가 가로로 놓여 있고, 그 아래쪽으로는 두 개의 큰 원형 바퀴가 나란히 보인다. 청소기 위쪽 양 끝에는 별 모양의 작은 사이드 브러시가 하나씩 달려 있다. 청소기 상단 중앙 부근에는 작은 바퀴가 하나 있는데, 사람이 손에 든 얇은 드라이버를 이용해 이 작은 바퀴 옆 틈새를 들어 올리며 분리하려는 동작을 하고 있다. 드라이버가 닿아있는 작은 바퀴 부분은 오른쪽 둥근 테두리 안에서 확대되어 더 자세히 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_020_figure_039.png",
+      "page": 20,
+      "index": 39,
+      "size_px": [
+        270,
+        136
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 270.0,
+        "height": 136.0,
+        "aspect_ratio": 1.9852941176470589,
+        "ink_ratio": 0.12448257080610022,
+        "edge_ratio": 0.16941721132897603,
+        "table_line_ratio": 0.08905228758169935,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_020_figure_039.png",
+      "caption_short": "둥근 로봇 청소기의 바닥면이 보인다. 중앙에는 길쭉한 막대 모양의 회전 브러시가 자리하고 있고, 그 아래쪽 좌우에는 커다란 원형 바퀴 두 개가 각각 놓여 있다. 이 브러시의 위쪽, 좌우 양쪽에는 작고 네모난 부품이 하나씩 있는데, 여러 개의 세로줄 무늬가 특징이다. 현재 왼쪽의 네모난 부품은 사람의 손이 부드러운 천으로 닦고 있는 모습이다. 오른쪽에도 같은 모양의 네모난 부품이 보인다. 그림에서는 이 두 개의 네모난 부품 주변에 검은색 원이 그려져 있어, 해당 부분을 특히 강조하고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_020_figure_040.png",
+      "page": 20,
+      "index": 40,
+      "size_px": [
+        184,
+        200
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 184.0,
+        "height": 200.0,
+        "aspect_ratio": 0.92,
+        "ink_ratio": 0.05451086956521739,
+        "edge_ratio": 0.12206521739130435,
+        "table_line_ratio": 0.026222826086956523,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_020_figure_040.png",
+      "caption_short": "둥글고 납작한 로봇 청소기가 위에서 내려다본 모습이다. 청소기 윗면의 가운데 부분에서 직사각형 모양의 덮개가 위로 열려 있고, 그 안쪽으로는 비어 있는 로봇 청소기 내부 구조가 보인다. 열린 덮개 뒤쪽, 청소기 윗면에는 작은 원형 버튼과 두 개의 타원형 표시등이 나란히 있다. 사람의 오른손이 길쭉한 직사각형 형태의 먼지통 위쪽 손잡이를 잡고 열린 공간에서 위로 들어 올리는 중이다. 먼지통의 옆면에는 손으로 누르는 듯한 작은 단추 두 개가 있으며, 로봇 청소기 앞쪽 아래에는 바닥을 쓸어주는 가느다란 솔 두 개가 밖으로 나와 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_020_figure_041.png",
+      "page": 20,
+      "index": 41,
+      "size_px": [
+        219,
+        256
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 219.0,
+        "height": 256.0,
+        "aspect_ratio": 0.85546875,
+        "ink_ratio": 0.0572738299086758,
+        "edge_ratio": 0.11030251141552512,
+        "table_line_ratio": 0.031142979452054794,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_020_figure_041.png",
+      "caption_short": "네모난 상자 모양의 제품이 위아래 두 장면으로 보인다. 위쪽 장면에서는 상자의 왼쪽 앞쪽에 작은 걸쇠가 있고, 왼손이 그 걸쇠를 누르고 있다. 상자의 오른쪽 옆면에서는 여러 칸으로 나뉜 네모난 필터가 밖으로 당겨져 나오고 있다. 필터는 상자에서 분리되는 중이다. 아래쪽 장면에는 같은 상자 부품이 약간 기울어진 채 보인다. 필터는 상자의 오른쪽 옆면에 완전히 열려 있는 상태이다. 상자 안에서 작은 조각들이 아래로 쏟아지고 있으며, 이 조각들은 아래에 놓인 원통 모양의 쓰레기통 안으로 떨어지고 있다. 손은 상자 부품의 윗부분을 잡고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_020_figure_042.png",
+      "page": 20,
+      "index": 42,
+      "size_px": [
+        246,
+        154
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 246.0,
+        "height": 154.0,
+        "aspect_ratio": 1.5974025974025974,
+        "ink_ratio": 0.051974448315911734,
+        "edge_ratio": 0.13277373033470594,
+        "table_line_ratio": 0.04801499313694436,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_020_figure_042.png",
+      "caption_short": "약간 위에서 비스듬히 내려다보는 네모난 통이 있다. 이 통은 오른쪽으로 뚜껑이 활짝 열려 있는 상태이다. 통의 열린 안쪽 면에는 가운데가 높고 양옆이 낮은 형태로 여러 칸이 나뉘어 있다. 왼쪽 가장자리에는 작은 구멍들이 촘촘히 박힌 부분이 보인다. 왼쪽 위에는 수도꼭지에서 물이 세차게 뿜어져 나오며, 그 물이 통의 열린 내부로 직접 떨어지고 있다. 주변에는 작은 물방울들이 튀어 오르고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_020_figure_043.png",
+      "page": 20,
+      "index": 43,
+      "size_px": [
+        447,
+        163
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 447.0,
+        "height": 163.0,
+        "aspect_ratio": 2.7423312883435584,
+        "ink_ratio": 0.033488423161911036,
+        "edge_ratio": 0.09671840902540453,
+        "table_line_ratio": 0.01442472653408545,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_020_figure_043.png",
+      "caption_short": "네모난 통이 약간 비스듬히 놓여 있고, 통의 윗면 덮개가 위로 활짝 열려 있다. 오른손이 열린 덮개 안쪽에서 길고 네모난 격자무늬 필터를 잡고 있으며, 이 필터는 위로 들어 올리거나 아래로 넣는 중인 것처럼 보인다. 그 옆에는 U자 모양의 수도꼭지가 아래로 물줄기를 뿜어내고 있다. 오른손이 같은 격자무늬 필터를 수평으로 잡고 있으며, 필터가 수도꼭지 아래 둥근 세면대 안에서 물에 씻기고 있는 모습이다. 세면대 바닥에는 물방울과 물이 튀는 모습이 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_021_figure_044.png",
+      "page": 21,
+      "index": 44,
+      "size_px": [
+        255,
+        133
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 255.0,
+        "height": 133.0,
+        "aspect_ratio": 1.9172932330827068,
+        "ink_ratio": 0.1361639392599145,
+        "edge_ratio": 0.16615067079463364,
+        "table_line_ratio": 0.0841515553589857,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_021_figure_044.png",
+      "caption_short": "이 로봇 청소기는 위에서 살짝 비스듬히 내려다본 모습이다. 전체적으로 둥글고 납작한 원반 모양이며, 검은색 선으로만 그려져 있다. 로봇 청소기의 윗면 중앙보다 오른쪽에 있는 둥근 홈 안으로 사람의 손이 들어가 있고, 진한 회색으로 채색된 반달 모양 걸레패드를 잡고 위로 들어 올리는 중이다. 로봇의 윗면에는 사각형 무늬가 있는 부분들과 가장자리 옆면에는 여러 개의 작은 네모난 구멍들이 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_021_figure_045.png",
+      "page": 21,
+      "index": 45,
+      "size_px": [
+        182,
+        101
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 182.0,
+        "height": 101.0,
+        "aspect_ratio": 1.801980198019802,
+        "ink_ratio": 0.013165052769013166,
+        "edge_ratio": 0.11070612555761071,
+        "table_line_ratio": 0.019475573931019476,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_021_figure_045.png",
+      "caption_short": "정면에서 약간 오른쪽 아래를 내려다보는 장면이다. 왼쪽에는 사람의 오른손이 보이며, 손은 둥글고 납작한 모양의 물건을 잡고 있다. 이 물건은 가운데 부분이 뚫려 있고 가장자리에는 작은 구멍들이 여럿 나 있다. 물건 아래쪽에는 넓고 오목한 세면대가 놓여 있고, 오른쪽 위에서는 구부러진 수도꼭지에서 물이 세면대를 향해 세차게 쏟아져 내리고 있다. 수도꼭지에서 나온 물이 손에 들린 둥근 물건 위로 떨어지면서 물방울들이 튀어 오르는 모습이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_021_figure_046.png",
+      "page": 21,
+      "index": 46,
+      "size_px": [
+        158,
+        182
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 158.0,
+        "height": 182.0,
+        "aspect_ratio": 0.8681318681318682,
+        "ink_ratio": 0.13764084017248573,
+        "edge_ratio": 0.11521073862846015,
+        "table_line_ratio": 0.08078314090972319,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_021_figure_046.png",
+      "caption_short": "높고 네모난 모양의 장치가 정면에 보인다. 장치의 위쪽 면과 앞쪽 면이 주로 보인다. 위쪽 면에는 세 개의 뚜껑이 나란히 있다. 두 손이 가운데 뚜껑과 오른쪽 뚜껑을 아래로 눌러 닫고 있다. 왼쪽 뚜껑은 가만히 닫혀 있다. 장치의 앞면 아래쪽에는 서랍 같은 부분이 살짝 나와 있고, 그 안에는 톱니 모양의 부품들이 보인다. 화면 오른쪽 아래에는 테두리가 흰색인 검은색 동그라미 표시가 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_021_figure_047.png",
+      "page": 21,
+      "index": 47,
+      "size_px": [
+        172,
+        181
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 172.0,
+        "height": 181.0,
+        "aspect_ratio": 0.9502762430939227,
+        "ink_ratio": 0.12957728382371836,
+        "edge_ratio": 0.10513298214056277,
+        "table_line_ratio": 0.07683412565848645,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_021_figure_047.png",
+      "caption_short": "이 제품은 네모난 상자 형태의 로봇 청소기 스테이션이다. 앞면과 오른쪽 옆면이 보이도록 약간 위에서 내려다본 모습이다. 제품의 위쪽 평평한 면은 두 개의 뚜껑처럼 나뉘어 있다. 제품의 앞면 아래쪽에는 로봇 청소기가 들어가는 네모난 구멍이 있다. 두 손이 이 스테이션을 옮기려는 듯 잡고 있다. 한 손은 위쪽 왼쪽 가장자리를, 다른 한 손은 앞면 아래쪽 구멍 근처를 잡고 있다. 이 장면의 오른쪽 아래에는 X자 표시가 있는 동그라미가 있어서, 이런 방식으로 스테이션을 잡으면 안 된다는 것을 나타낸다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_021_figure_048.png",
+      "page": 21,
+      "index": 48,
+      "size_px": [
+        357,
+        261
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 357.0,
+        "height": 261.0,
+        "aspect_ratio": 1.367816091954023,
+        "ink_ratio": 0.08655569507496486,
+        "edge_ratio": 0.12270195434495637,
+        "table_line_ratio": 0.06626098715348208,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_021_figure_048.png",
+      "caption_short": "이 장면은 둥근 로봇 청소기의 바닥 면을 위에서 내려다본 모습이다. 제품 중앙에는 길쭉한 메인 브러시가 가로로 있고, 그 왼쪽 위에는 회전하는 작은 솔이 있다. 아래쪽에는 두 개의 커다란 바퀴가 배치되어 있다. 로봇 청소기 테두리 곳곳에는 작은 직사각형이나 타원형의 센서들이 붙어 있다. 오른쪽에 있는 센서 하나를 손에 든 천으로 닦고 있다. 왼쪽의 확대된 세 그림은 길쭉한 직사각형, 납작한 직사각형, 그리고 여러 줄의 빗금 무늬가 있는 센서의 다양한 형태를 보여준다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_022_figure_049.png",
+      "page": 22,
+      "index": 49,
+      "size_px": [
+        330,
+        157
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 330.0,
+        "height": 157.0,
+        "aspect_ratio": 2.1019108280254777,
+        "ink_ratio": 0.06828797529434472,
+        "edge_ratio": 0.06931094383323683,
+        "table_line_ratio": 0.05597375024126616,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_022_figure_049.png",
+      "caption_short": "두 장면이 나란히 배치되어 있다. 왼쪽 장면에는 뚜껑이 열린 채 왼쪽 위로 비스듬히 들려 있는 네모난 물통이 있다. 물통의 아래쪽 절반은 어두운색 액체로 채워져 있고, 물통 오른쪽 옆에는 위아래 방향으로 움직임을 나타내는 두 개의 화살표가 그려져 있다. 이 화살표들은 물통을 넣거나 빼는 동작을 나타낸다. 오른쪽 장면에는 물통보다 크고 네모난 본체 기기가 놓여 있다. 본체 기기 위쪽에는 사람의 손이 본체 기기의 손잡이 같은 부분을 꽉 잡고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_022_figure_050.png",
+      "page": 22,
+      "index": 50,
+      "size_px": [
+        132,
+        149
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 132.0,
+        "height": 149.0,
+        "aspect_ratio": 0.8859060402684564,
+        "ink_ratio": 0.08099450884685784,
+        "edge_ratio": 0.12299166158226561,
+        "table_line_ratio": 0.054199715273540776,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_022_figure_050.png",
+      "caption_short": "네모난 모양의 큰 기기 정면을 위에서 살짝 내려다보는 모습이다. 기기는 높고 반듯한 직사각형 형태를 하고 있다. 기기 맨 위에는 네모난 세 개의 뚜껑이 왼쪽부터 오른쪽으로 나란히 놓여 있다. 각 뚜껑에는 동그라미 안에 숫자 '1', '2', '3'이 차례로 적혀 있다. 뚜껑들 바로 아래, 기기 앞면 중간쯤에는 작은 점들이 가로로 길게 줄지어 있다. 기기 아래쪽 앞부분에는 안으로 깊숙이 들어간 넓은 공간이 있으며, 이 공간 바닥에는 여러 개의 작은 돌출부들이 보인다. 한 손이 부드러운 천을 이용해 이 깊은 공간의 오른쪽 앞 가장자리를 깨끗하게 닦고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_022_figure_051.png",
+      "page": 22,
+      "index": 51,
+      "size_px": [
+        336,
+        172
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 336.0,
+        "height": 172.0,
+        "aspect_ratio": 1.9534883720930232,
+        "ink_ratio": 0.06594338316722037,
+        "edge_ratio": 0.09852574750830564,
+        "table_line_ratio": 0.04737679955703211,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_022_figure_051.png",
+      "caption_short": "장면은 왼쪽과 오른쪽, 두 부분으로 나뉘어 있다. 먼저 왼쪽 장면이다. 앞면이 평평하고 위로 긴 네모난 기기가 정면을 약간 비스듬하게 보여주고 있다. 기기 맨 위에는 나란히 세 개의 네모난 덮개가 얹혀 있다. 기기 앞면 아래쪽에는 움푹 들어간 넓은 세척 홈이 보이는데, 그 바닥은 여러 개의 가로줄이 있는 격자 모양이다. 이 홈의 오른쪽에는 작은 손잡이가 달린 기기 청소용 브러시가 홈을 향해 놓여 있다. 다음으로 오른쪽 장면이다. 왼쪽과 똑같은 기기가 보인다. 기기 앞면 아래쪽의 움푹 들어간 세척 홈도 그대로 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_022_figure_052.png",
+      "page": 22,
+      "index": 52,
+      "size_px": [
+        356,
+        131
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 356.0,
+        "height": 131.0,
+        "aspect_ratio": 2.717557251908397,
+        "ink_ratio": 0.0281542156274123,
+        "edge_ratio": 0.08686422506218372,
+        "table_line_ratio": 0.017733081739428766,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_022_figure_052.png",
+      "caption_short": "왼쪽에는 뚜껑이 위로 활짝 열려 있는 직사각형 모양의 큰 통이 보인다. 통의 뚜껑은 테두리가 두껍게 그려져 있고, 안쪽에는 가운데를 가르는 칸막이가 있다. 한쪽 공간에는 구부러진 호스 같은 부품이 아래로 내려가 놓여 있다. 이 통의 위쪽 중앙에는 작고 짙은 회색의 원통형 부품 하나와 그보다 작은 납작한 원형 부품 하나가 분리되어 공중에 살짝 떠 있는 모습이다. 오른쪽 장면에서는 한 손이 왼쪽에 보였던 짙은 회색의 원통형 부품을 잡고 있다. 수도꼭지에서 힘차게 쏟아지는 물줄기 아래에서 이 부품을 깨끗하게 씻고 있으며, 물은 둥근 세면대 안으로 흘러내리고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_022_figure_053.png",
+      "page": 22,
+      "index": 53,
+      "size_px": [
+        290,
+        160
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 290.0,
+        "height": 160.0,
+        "aspect_ratio": 1.8125,
+        "ink_ratio": 0.07297413793103448,
+        "edge_ratio": 0.14691810344827586,
+        "table_line_ratio": 0.05622844827586207,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_022_figure_053.png",
+      "caption_short": "앞에 보이는 것은 네모난 모양의 큰 기기이다. 기기 위쪽에는 세 개의 네모난 뚜껑이 나란히 놓여 있고, 아래쪽 앞부분에는 넓은 직사각형 구멍이 있다. 이 구멍 안쪽을 확대한 작은 부분이 오른쪽에 보인다. 확대된 안쪽에는 가운데에 위아래로 움직이는 부품이 있고, 그 양옆에는 좌우로 움직이는 길고 빗살무늬가 있는 부품들이 각각 자리 잡고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_023_figure_054.png",
+      "page": 23,
+      "index": 54,
+      "size_px": [
+        73,
+        91
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 73.0,
+        "height": 91.0,
+        "aspect_ratio": 0.8021978021978022,
+        "ink_ratio": 0.3445732349841939,
+        "edge_ratio": 0.09995483968086707,
+        "table_line_ratio": 0.35721812434141204,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_023_figure_055.png",
+      "page": 23,
+      "index": 55,
+      "size_px": [
+        223,
+        98
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 223.0,
+        "height": 98.0,
+        "aspect_ratio": 2.2755102040816326,
+        "ink_ratio": 0.061270248009517705,
+        "edge_ratio": 0.09833440102498399,
+        "table_line_ratio": 0.05028827674567585,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_023_figure_055.png",
+      "caption_short": "눈앞에는 부품을 세척하는 장면이 펼쳐진다. 왼편에는 윗부분이 둥글고 아랫부분에 빗살처럼 뭉툭한 돌기가 여러 개 달린 회색 부품이 놓여 있다. 오른편에는 둥근 모양의 세면대가 놓여 있고, 위쪽의 곡선형 수도꼭지에서 물줄기가 세면대 안으로 힘차게 떨어지며 물방울이 튀고 있다. 한 손이 세면대 안에서 왼쪽의 부품과 같은 모양의 작은 회색 부품을 단단히 잡고 있으며, 부품의 뭉툭한 빗살 부분이 아래를 향해 물줄기에 닿아 세척되고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_023_figure_056.png",
+      "page": 23,
+      "index": 56,
+      "size_px": [
+        210,
+        282
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 210.0,
+        "height": 282.0,
+        "aspect_ratio": 0.7446808510638298,
+        "ink_ratio": 0.05481256332320162,
+        "edge_ratio": 0.08407632556568727,
+        "table_line_ratio": 0.028622087132725432,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-BH1/page_023_figure_056.png",
+      "caption_short": "이 장면은 높고 네모난 모양의 가전제품을 위에서 비스듬히 내려다본 모습이다. 제품의 위쪽에는 덮개가 활짝 열려 있고, 그 안에서 사람의 손이 작은 직사각형 모양의 물건을 잡고 위로 들어 올리고 있다. 이 물건은 위쪽에 동그란 무늬가 있으며, 먼지 봉투처럼 보인다. 제품의 맨 위쪽 면에는 세 개의 칸이 나란히 있는데, 손은 그중 가장 왼쪽에 있는 칸에서 먼지 봉투를 꺼내는 중이다. 그림 오른쪽에는 위쪽 방향을 가리키는 화살표가 그려져 있어 물건을 위로 뽑아 올리는 동작을 나타낸다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_024_figure_057.png",
+      "page": 24,
+      "index": 57,
+      "size_px": [
+        76,
+        108
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 76.0,
+        "height": 108.0,
+        "aspect_ratio": 0.7037037037037037,
+        "ink_ratio": 0.17288011695906433,
+        "edge_ratio": 0.09149610136452242,
+        "table_line_ratio": 0.11513157894736842,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-BH1/page_027_figure_058.png",
+      "page": 27,
+      "index": 58,
+      "size_px": [
+        498,
+        97
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 498.0,
+        "height": 97.0,
+        "aspect_ratio": 5.134020618556701,
+        "ink_ratio": 0.09839357429718876,
+        "edge_ratio": 0.12474640831366704,
+        "table_line_ratio": 0.06893553595826606,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    }
+  ]
+}

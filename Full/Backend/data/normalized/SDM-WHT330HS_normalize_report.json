@@ -1,0 +1,12 @@
+{
+  "num_pages": 8,
+  "lines_before": 165,
+  "lines_after": 132,
+  "placeholders_removed_estimate": 31,
+  "repeated_lines_removed": 0,
+  "num_repeated_patterns": 0,
+  "repeated_patterns_sample": [],
+  "repeated_threshold": 5,
+  "doc_id": "SDM-WHT330HS",
+  "source_parsed_file": "data\\parsed\\SDM-WHT330HS.md"
+}

@@ -1,0 +1,55 @@
+/* Full/Frontend/src/components/ar/PlacedItemsCard.module.css */
+
+.card {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border-radius: 10px;
+  padding: 15px;
+  width: 300px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1001; /* Ensure it's above other UI elements */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.title {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 5px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.listItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.listItem:last-child {
+  border-bottom: none;
+}
+
+.itemName {
+  font-weight: 500;
+}
+
+.itemDimensions {
+  font-size: 12px;
+  color: #ccc;
+  white-space: nowrap;
+  margin-left: 10px;
+}

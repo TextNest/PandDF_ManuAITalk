@@ -1,0 +1,12 @@
+{
+  "num_pages": 8,
+  "lines_before": 156,
+  "lines_after": 130,
+  "placeholders_removed_estimate": 26,
+  "repeated_lines_removed": 0,
+  "num_repeated_patterns": 0,
+  "repeated_patterns_sample": [],
+  "repeated_threshold": 5,
+  "doc_id": "SEH-CH2000A",
+  "source_parsed_file": "data\\parsed\\SEH-CH2000A.md"
+}

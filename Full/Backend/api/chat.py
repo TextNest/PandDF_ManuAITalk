@@ -129,7 +129,7 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[st
             data = await websocket.receive_text()
             async with get_session_text() as session:      
                 start = time.time()
-                answer = agent.chat(data,session)
+                answer = await agent.chat(data,session)
                 end  = time.time()
                 total_time = end - start 
                 print(f"{total_time:0.2f}초 걸렸습니다.")
@@ -181,6 +181,15 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[st
                 if find_sessions:
                     await session.execute(text(update_session),params={
                         "email":user_id,
+                        "session_id":session_id,
+                        "lastMessage":last_message,
+                        "messageCount":message_count
+                    })
+                else:
+                    await session.execute(text(add_session),
+                    params={
+                        "email":user_id,
+                        "productId":pid,
                         "session_id":session_id,
                         "lastMessage":last_message,
                         "messageCount":message_count

@@ -1,0 +1,160 @@
+{
+  "doc_id": "SMX-SH350HSS_SMX-B350TW",
+  "source_pdf": "data/raw/SMX-SH350HSS_SMX-B350TW.pdf",
+  "num_figures": 17,
+  "images": [
+    {
+      "file": "data/figures/SMX-SH350HSS_SMX-B350TW/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        367,
+        631
+      ]
+    },
+    {
+      "file": "data/figures/SMX-SH350HSS_SMX-B350TW/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        45,
+        44
+      ]
+    },
+    {
+      "file": "data/figures/SMX-SH350HSS_SMX-B350TW/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        45,
+        44
+      ]
+    },
+    {
+      "file": "data/figures/SMX-SH350HSS_SMX-B350TW/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        45,
+        44
+      ]
+    },
+    {
+      "file": "data/figures/SMX-SH350HSS_SMX-B350TW/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        44,
+        44
+      ]
+    },
+    {
+      "file": "data/figures/SMX-SH350HSS_SMX-B350TW/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        43,
+        43
+      ]
+    },
+    {
+      "file": "data/figures/SMX-SH350HSS_SMX-B350TW/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        42,
+        42
+      ]
+    },
+    {
+      "file": "data/figures/SMX-SH350HSS_SMX-B350TW/page_004_figure_008.png",
+      "page": 4,
+      "index": 8,
+      "size_px": [
+        134,
+        140
+      ]
+    },
+    {
+      "file": "data/figures/SMX-SH350HSS_SMX-B350TW/page_004_figure_009.png",
+      "page": 4,
+      "index": 9,
+      "size_px": [
+        357,
+        437
+      ]
+    },
+    {
+      "file": "data/figures/SMX-SH350HSS_SMX-B350TW/page_005_figure_010.png",
+      "page": 5,
+      "index": 10,
+      "size_px": [
+        320,
+        200
+      ]
+    },
+    {
+      "file": "data/figures/SMX-SH350HSS_SMX-B350TW/page_005_figure_011.png",
+      "page": 5,
+      "index": 11,
+      "size_px": [
+        319,
+        202
+      ]
+    },
+    {
+      "file": "data/figures/SMX-SH350HSS_SMX-B350TW/page_005_figure_012.png",
+      "page": 5,
+      "index": 12,
+      "size_px": [
+        315,
+        198
+      ]
+    },
+    {
+      "file": "data/figures/SMX-SH350HSS_SMX-B350TW/page_005_figure_013.png",
+      "page": 5,
+      "index": 13,
+      "size_px": [
+        314,
+        201
+      ]
+    },
+    {
+      "file": "data/figures/SMX-SH350HSS_SMX-B350TW/page_005_figure_014.png",
+      "page": 5,
+      "index": 14,
+      "size_px": [
+        320,
+        200
+      ]
+    },
+    {
+      "file": "data/figures/SMX-SH350HSS_SMX-B350TW/page_005_figure_015.png",
+      "page": 5,
+      "index": 15,
+      "size_px": [
+        320,
+        201
+      ]
+    },
+    {
+      "file": "data/figures/SMX-SH350HSS_SMX-B350TW/page_007_figure_016.png",
+      "page": 7,
+      "index": 16,
+      "size_px": [
+        642,
+        199
+      ]
+    },
+    {
+      "file": "data/figures/SMX-SH350HSS_SMX-B350TW/page_008_figure_017.png",
+      "page": 8,
+      "index": 17,
+      "size_px": [
+        659,
+        128
+      ]
+    }
+  ]
+}

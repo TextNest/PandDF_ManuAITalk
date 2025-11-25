@@ -21,7 +21,7 @@ interface ProductFormProps {
 }
 
 export default function ProductForm({ onSubmit, onCancel }: ProductFormProps) {
-  const [productName, setProductName] = useState('');
+  const [productId, setProductId] = useState(''); // 제품 코드로 변경
   const [pdfFile, setPdfFile] = useState<File | null>(null);
   
   const [isUploading, setIsUploading] = useState(false);
@@ -30,8 +30,8 @@ export default function ProductForm({ onSubmit, onCancel }: ProductFormProps) {
   const pdfInputRef = useRef<HTMLInputElement>(null);
 
   const validate = (): boolean => {
-    if (!productName.trim()) {
-      setError('제품명을 입력해주세요.');
+    if (!productId.trim()) { // 제품 코드 유효성 검사
+      setError('제품 코드를 입력해주세요.');
       return false;
     }
     if (!pdfFile) {
@@ -80,7 +80,7 @@ export default function ProductForm({ onSubmit, onCancel }: ProductFormProps) {
 
       // 2. 최종 데이터 전송
       onSubmit({
-        product_name: productName,
+        product_id: productId, // 제품 코드로 변경
         pdf_path: pdfPath,
       });
 
@@ -97,10 +97,10 @@ export default function ProductForm({ onSubmit, onCancel }: ProductFormProps) {
         <h2 className={styles.sectionTitle}>제품 정보</h2>
         <div className={styles.field}>
             <Input
-              label="제품명"
-              placeholder="예: 시스템 에어컨 2024"
-              value={productName}
-              onChange={(e) => setProductName(e.target.value)}
+              label="제품 코드" // 라벨 변경
+              placeholder="예: AC2024-001" // 플레이스홀더 변경
+              value={productId} // 값 변경
+              onChange={(e) => setProductId(e.target.value)} // 핸들러 변경
               required
               disabled={isUploading}
             />

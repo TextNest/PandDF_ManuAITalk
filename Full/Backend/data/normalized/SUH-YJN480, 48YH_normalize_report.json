@@ -1,0 +1,12 @@
+{
+  "num_pages": 8,
+  "lines_before": 176,
+  "lines_after": 143,
+  "placeholders_removed_estimate": 37,
+  "repeated_lines_removed": 0,
+  "num_repeated_patterns": 0,
+  "repeated_patterns_sample": [],
+  "repeated_threshold": 5,
+  "doc_id": "SUH-YJN480, 48YH",
+  "source_parsed_file": "data\\parsed\\SUH-YJN480, 48YH.md"
+}

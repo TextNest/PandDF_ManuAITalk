@@ -25,27 +25,31 @@ export default function MobileHeader() {
 
   return (
     <header className={styles.header}>
+      <div className={styles.left} />
+      <div className={styles.center}>
         <Link href="/" className={styles.title}>
           <h1>ManuAI-Talk</h1>
         </Link>
-      
-      <button 
-        className={styles.authButton}
-        onClick={handleAuth}
-        aria-label={isAuthenticated ? '로그아웃' : '로그인'}
-      >
-        {isAuthenticated ? (
-          <>
-            <LogOut size={18} />
-            <span>로그아웃</span>
-          </>
-        ) : (
-          <>
-            <LogIn size={18} />
-            <span>로그인</span>
-          </>
-        )}
-      </button>
+      </div>
+      <div className={styles.right}>
+        <button
+          className={styles.authButton}
+          onClick={handleAuth}
+          aria-label={isAuthenticated ? '로그아웃' : '로그인'}
+        >
+          {isAuthenticated ? (
+            <>
+              <LogOut size={18} />
+              <span>로그아웃</span>
+            </>
+          ) : (
+            <>
+              <LogIn size={18} />
+              <span>로그인</span>
+            </>
+          )}
+        </button>
+      </div>
     </header>
   );
 }

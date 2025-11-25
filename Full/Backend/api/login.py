@@ -4,15 +4,18 @@ from sqlalchemy import text
 import os
 import httpx
 import json
-from core.auth import create_access_token,verify_password,get_password_hash,get_current_user
+from core.auth import create_access_token, verify_password, get_password_hash, get_current_user
 from core.db_config import get_session
 from dotenv import load_dotenv
-from schemas.login import LoginRequest,Register,FindCode,CompayCodeResponse,companyInfo,AuthCodeRequest
-from core.query import find_company,regist_query,login_query,user_query
+from schemas.login import LoginRequest, Register, FindCode, CompayCodeResponse, companyInfo, AuthCodeRequest
+from core.query import (
+    find_company_and_department, regist_query, login_query,
+    user_query, user_regist_query
+)
 
 load_dotenv()
-client_id = os.getenv("clinet_id")
-client_secret = os.getenv("clinet_secret")
+client_id = os.getenv("client_id")
+client_secret = os.getenv("client_secret")
 router = APIRouter()
 
 
@@ -20,17 +23,18 @@ router = APIRouter()
 @router.post("/register/code",response_model=CompayCodeResponse)
 async def regist_with_code(code:FindCode,session:AsyncSession=Depends(get_session)):
     print(code)
-    result = await session.execute(text(find_company),
+    result = await session.execute(text(find_company_and_department),
     params={"code":code.code})
     code_row = result.mappings().one_or_none()
     code_row_dict = dict(code_row)
     print(code_row_dict['existingDepartments'][0])
-    if 'existingDepartments' in code_row_dict and isinstance(code_row_dict['existingDepartments'], str):
-        departments_str = code_row_dict['existingDepartments'].strip()
+    if 'existingDepartments' in code_row_dict and code_row_dict['existingDepartments']:
+        departments_str = str(code_row_dict['existingDepartments']).strip()
         try:
-            parsed_list = json.loads(departments_str)
-            code_row_dict['existingDepartments'] = parsed_list
-            print("Parsed existingDepartments:", parsed_list[0])
+            if departments_str:
+                code_row_dict['existingDepartments'] = departments_str.split(',')
+            else:
+                code_row_dict['existingDepartments'] = []
         except json.JSONDecodeError as e:
             print(f"JSON 파싱 실패 (Data was not valid JSON string): {e}") 
             code_row_dict['existingDepartments'] = []
@@ -44,13 +48,11 @@ async def regist_with_hash_pw(write_info:Register,session:AsyncSession=Depends(g
     print(write_info.password)
     pw_hash = get_password_hash(write_info.password)
     params = {
-        "company_name":write_info.companyName,
-        "user_id":write_info.email,
-        "department":write_info.department,
-        "preferred_language":write_info.languagePreference,
-        "pw_hash":pw_hash,
+        "email":write_info.email,
+        "password_hash":pw_hash,
         "name":write_info.name,
-        "role":write_info.role
+        "company_internal_id":write_info.companyId,
+        "department":write_info.department
     }
     try:
         await session.execute(text(regist_query),params=params)
@@ -65,28 +67,36 @@ async def regist_with_hash_pw(write_info:Register,session:AsyncSession=Depends(g
 
 @router.post("/login")
 async def login_with_token(login_data:LoginRequest,session:AsyncSession=Depends(get_session)):
-    result = await session.execute(text(login_query),params={"user_id":login_data.email})
+    result = await session.execute(text(login_query),params={"email":login_data.email})
     user_row = result.mappings().one_or_none()
     if not user_row:
         raise HTTPException(status_code=401,detail="아이디를 찾을 수 없습니다.")
-    if user_row["role"] == "super_admin":
-        if user_row["pw_hash"]!= login_data.password:
+    if user_row["role"] == 1:
+        if user_row["pw_hash"] != login_data.password:
             raise HTTPException(status_code=401,detail="비밀번호가 일치하지 않습니다.")
     else:
-        if not verify_password(login_data.password,user_row["pw_hash"]):
+        if not verify_password(login_data.password, user_row["pw_hash"]):
             raise HTTPException(status_code=401,detail="비밀번호가 일치하지 않습니다.")
     
-    from datetime import timedelta
+    # from datetime import timedelta
+    internal_id = user_row["admin_internal_id"]
+    prefixed_id = f"admin_{internal_id}"
     access_token = create_access_token(
         data ={
-            "id":login_data.email,    
-            "company_name":user_row["company_name"],
-            "name":user_row["name"],
-            "role":user_row["role"]
+            "id": prefixed_id,
+            "email": login_data.email,    
+            "company_name": user_row["company_name"],
+            "name": user_row["name"],
+            "role": "super_admin" if user_row["role"] == 1 else "company_admin"
         } # expire 미 작성시 30분  작성법  expires_delta = timedelta(days=1)
     )
     return {
-        "user":{"name":user_row["name"],"company_name":user_row["company_name"],"role":user_row["role"]},
+        "user": {
+            "id": prefixed_id,
+            "name":user_row["name"],
+            "company_name":user_row["company_name"],
+            "role": "super_admin" if user_row["role"] == 1 else "company_admin"
+        },
         "access_token":access_token,
         "token_type":"Bearer"
     }
@@ -109,7 +119,7 @@ async def google_login_call_back(code_data:AuthCodeRequest,session:AsyncSession=
         "redirect_uri": code_data.redirect_uri,
         "grant_type": "authorization_code", 
     }
-    print("데이터확인")
+    print("데이터 확인")
     try:
         async with httpx.AsyncClient() as client:
             response = await client.post(token_url, data=token_data)
@@ -132,36 +142,52 @@ async def google_login_call_back(code_data:AuthCodeRequest,session:AsyncSession=
             audience=client_id,
             algorithms=["RS256"]
             )
-        google_unique_id = user_info.get("sub")
+        # google_unique_id = user_info.get("sub")
         google_email = user_info.get("email")
         google_name = user_info.get("name")
 
     except Exception as e:
         print("ID Token Verification Failed:", e)
         raise HTTPException(status_code=400, detail="Invalid Google ID Token.")
-    result = await session.execute(text(user_query),params={"email":google_email})
+
+    result = await session.execute(
+        text(user_query),
+        params = {"email": google_email}
+    )
     user_row = result.mappings().one_or_none()
+
     if not user_row:
-        await session.execute(text("""INSERT INTO google_login(name,email) VALUES (:name,:email)"""),params={"name":google_name,"email":google_email})
+        await session.execute(
+            text(user_regist_query),
+            params={"name": google_name, "email": google_email}
+        )
         await session.commit()
-        from datetime import timedelta
-        data ={
-            "id":google_email,    
-            "name":google_name,
-            "role":"user"
+
+        new_id = result.lastrowid
+        prefixed_id = f"user_{new_id}"
+
+        # from datetime import timedelta
+        data = {
+            "id": prefixed_id,
+            "email": google_email,    
+            "name": google_name,
+            "role": "user"
         } 
     else:
-        data ={
-            "id":google_email,    
-            "name":user_row["name"],
-            "role":"user"
+        internal_id = user_row["user_internal_id"]
+        prefixed_id = f"user_{internal_id}"
+        data = {
+            "id": prefixed_id,
+            "email": google_email,    
+            "name": user_row["name"],
+            "role": "user"
         } 
     
     access_token = create_access_token(
-        data=data
+        data = data
     )
     return {
-        "user":{"name":google_name,"role":"user"},
-        "access_token":access_token,
-        "token_type":"Bearer"
+        "user": {"id": prefixed_id, "name": google_name, "role": "user"},
+        "access_token": access_token,
+        "token_type": "Bearer"
     }

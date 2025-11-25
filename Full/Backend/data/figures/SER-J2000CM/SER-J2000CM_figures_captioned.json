@@ -1,0 +1,593 @@
+{
+  "doc_id": "SER-J2000CM",
+  "source_pdf": "data/raw/SER-J2000CM.pdf",
+  "num_images_total": 20,
+  "num_images_kept": 9,
+  "created_by": "image_captioner_gemini.py",
+  "model": "gemini-2.5-flash",
+  "config": {
+    "CAPTION_MAX_CHARS": 320,
+    "UNSAFE_KEYWORDS": [
+      "폭발",
+      "감전",
+      "사망",
+      "질식",
+      "중독",
+      "화재",
+      "불이 날",
+      "불이날",
+      "가스 누출",
+      "가스누출",
+      "가스가 새",
+      "전기 충격",
+      "전기충격",
+      "고압",
+      "중상",
+      "심각한 부상"
+    ]
+  },
+  "images": [
+    {
+      "file": "data/figures/SER-J2000CM/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        530,
+        754
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 530.0,
+        "height": 754.0,
+        "aspect_ratio": 0.7029177718832891,
+        "ink_ratio": 0.9594865121865772,
+        "edge_ratio": 0.07769881387317952,
+        "table_line_ratio": 0.9238576647815425,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SER-J2000CM/page_001_figure_001.png",
+      "caption_short": "정면에 보이는 물건은 이동식 라디에이터이다. 왼쪽에는 세로로 긴 조작부가 위치한다. 조작부 맨 위에는 네모난 화면이, 그 아래에는 둥근 조절 다이얼이, 다이얼 바로 밑에는 사각형 버튼이 하나 있다. 조작부 오른쪽으로는 여러 개의 얇은 열판이 세로로 길게 늘어서 있다. 열판은 약 12개 정도로 오른쪽으로 이어져 있으며, 제품의 아래쪽 양 끝에는 바퀴가 달려 있어 이동할 수 있는 형태이다. 왼쪽 바퀴는 두툼한 받침대 아래에, 오른쪽 바퀴는 열판 아래쪽에 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_003_figure_002.png",
+      "page": 3,
+      "index": 2,
+      "size_px": [
+        46,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0952380952380953,
+        "ink_ratio": 0.41304347826086957,
+        "edge_ratio": 0.2168737060041408,
+        "table_line_ratio": 0.2484472049689441,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_003_figure_003.png",
+      "page": 3,
+      "index": 3,
+      "size_px": [
+        46,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 43.0,
+        "aspect_ratio": 1.069767441860465,
+        "ink_ratio": 0.390798786653185,
+        "edge_ratio": 0.24721941354903942,
+        "table_line_ratio": 0.20525783619817997,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_003_figure_004.png",
+      "page": 3,
+      "index": 4,
+      "size_px": [
+        47,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 47.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0681818181818181,
+        "ink_ratio": 0.3984526112185687,
+        "edge_ratio": 0.23839458413926498,
+        "table_line_ratio": 0.21711798839458413,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_003_figure_005.png",
+      "page": 3,
+      "index": 5,
+      "size_px": [
+        45,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0227272727272727,
+        "ink_ratio": 0.46414141414141413,
+        "edge_ratio": 0.2590909090909091,
+        "table_line_ratio": 0.2883838383838384,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_003_figure_006.png",
+      "page": 3,
+      "index": 6,
+      "size_px": [
+        46,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0454545454545454,
+        "ink_ratio": 0.3255928853754941,
+        "edge_ratio": 0.17440711462450592,
+        "table_line_ratio": 0.16798418972332016,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_003_figure_007.png",
+      "page": 3,
+      "index": 7,
+      "size_px": [
+        43,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0238095238095237,
+        "ink_ratio": 0.508859357696567,
+        "edge_ratio": 0.1921373200442968,
+        "table_line_ratio": 0.4728682170542636,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_003_figure_008.png",
+      "page": 3,
+      "index": 8,
+      "size_px": [
+        41,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 41.0,
+        "height": 41.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.734681737061273,
+        "edge_ratio": 0.10945865556216537,
+        "table_line_ratio": 0.7441998810232004,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_005_figure_009.png",
+      "page": 5,
+      "index": 9,
+      "size_px": [
+        788,
+        188
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 788.0,
+        "height": 188.0,
+        "aspect_ratio": 4.191489361702128,
+        "ink_ratio": 0.08353358894049033,
+        "edge_ratio": 0.0930243546819311,
+        "table_line_ratio": 0.03626876552543471,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_005_figure_010.png",
+      "page": 5,
+      "index": 10,
+      "size_px": [
+        374,
+        251
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 374.0,
+        "height": 251.0,
+        "aspect_ratio": 1.4900398406374502,
+        "ink_ratio": 0.22011419562392143,
+        "edge_ratio": 0.07618722969086222,
+        "table_line_ratio": 0.2116453970215395,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SER-J2000CM/page_005_figure_010.png",
+      "caption_short": "눈앞에는 여러 개의 얇고 평평한 판이 나란히 서 있는 형태의 길쭉한 물체가 놓여 있다. 이 물체는 아래쪽의 평평한 바닥판 위에 서 있고, 위쪽으로는 각 판의 끝이 둥근 관들로 연결되어 있다. 물체 가장 위쪽, 둥근 관들이 이어진 부분을 확대해서 보여주는 원이 있다. 원 안에는 두 개의 둥근 관 위로 가로로 놓인 길쭉한 막대가 보인다. 이 막대 양 끝에는 둥근 반구형 덮개가 씌워져 있으며, 덮개와 막대는 나비 날개 모양 손잡이가 달린 나사(나비 너트) 두 개로 둥근 관에 단단히 고정되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_005_figure_011.png",
+      "page": 5,
+      "index": 11,
+      "size_px": [
+        377,
+        253
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 377.0,
+        "height": 253.0,
+        "aspect_ratio": 1.4901185770750989,
+        "ink_ratio": 0.27174175150187146,
+        "edge_ratio": 0.10252566024679968,
+        "table_line_ratio": 0.25502982774347094,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SER-J2000CM/page_005_figure_011.png",
+      "caption_short": "이것은 난방을 위한 라디에이터이다. 넓고 평평한 받침대 위에 높이 솟은 여러 개의 얇고 긴 난방판이 세로로 나란히 세워져 있다. 각 난방판은 위아래로 둥글게 구부러진 관으로 연결되어 있어 옆의 난방판과 이어진다. 난방판의 가장 위쪽에는 모든 난방판을 가로지르는 긴 가로 막대가 있고, 이 막대 위에는 둥근 버섯 모양의 조작부 두 개가 놓여 있다. 오른쪽 위에 확대된 모습에서는 이 가로 막대 아래로 작은 U자형 관이 난방판과 연결된 것이 더 선명하게 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_006_figure_012.png",
+      "page": 6,
+      "index": 12,
+      "size_px": [
+        145,
+        273
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 145.0,
+        "height": 273.0,
+        "aspect_ratio": 0.5311355311355311,
+        "ink_ratio": 0.2933434381710244,
+        "edge_ratio": 0.0709106984969054,
+        "table_line_ratio": 0.27275483137552103,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SER-J2000CM/page_006_figure_012.png",
+      "caption_short": "이 장면은 전자제품의 조작부를 정면에서 바라본 모습이다. 가장 위쪽에는 은색 원형 다이얼이 있다. 다이얼 위쪽 왼쪽에는 '최대'라는 글자가, 오른쪽에는 '최소'라는 글자가 보이며, 다이얼 주변에는 작은 검은 점들이 오른쪽에서 왼쪽으로 갈수록 커지는 모양으로 표시되어 있다. 다이얼의 아래쪽 5시 방향에는 현재 설정된 위치를 가리키는 표시가 있다. 다이얼 오른쪽 위에는 온도계 그림과 '온도세기'라는 글자가 함께 보인다. 그 아래쪽에는 네모난 형태의 스위치 조작부가 있다. 이 조작부에는 두 개의 길쭉한 스위치가 나란히 놓여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_006_figure_013.png",
+      "page": 6,
+      "index": 13,
+      "size_px": [
+        164,
+        175
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 164.0,
+        "height": 175.0,
+        "aspect_ratio": 0.9371428571428572,
+        "ink_ratio": 0.14334494773519163,
+        "edge_ratio": 0.06790940766550523,
+        "table_line_ratio": 0.09254355400696865,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SER-J2000CM/page_006_figure_013.png",
+      "caption_short": "장면에는 전자제품의 조작 버튼과 기능 표시가 보인다. 왼쪽에는 위에서 아래로 세 개의 조작 요소가 세로로 나란히 배치되어 있다. 가장 위쪽에는 작은 직사각형 형태의 표시 옆에 '켜짐'이라는 글자가 있고, 그 아래에 지름이 큰 둥근 버튼이 놓여 있다. 이 둥근 버튼 아래에는 다시 작은 직사각형 형태의 표시 옆에 '꺼짐'이라는 글자가 보인다. 오른쪽 위에는 정사각형 모양의 테두리 안에 네 개의 날개가 펼쳐진 바람개비 모양의 그림이 선명하게 그려져 있으며, 그 아래에는 '온 풍'이라는 두 글자가 적혀 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_006_figure_014.png",
+      "page": 6,
+      "index": 14,
+      "size_px": [
+        256,
+        336
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 256.0,
+        "height": 336.0,
+        "aspect_ratio": 0.7619047619047619,
+        "ink_ratio": 0.39760044642857145,
+        "edge_ratio": 0.12820870535714285,
+        "table_line_ratio": 0.35096958705357145,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SER-J2000CM/page_006_figure_014.png",
+      "caption_short": "이것은 동그란 모양의 시간 조절 다이얼이다. 정면에서 본 모습이다. 가장 바깥쪽에는 1부터 24까지의 숫자가 원을 따라 새겨져 있어 시간을 나타낸다. 이 숫자들 안쪽으로는 작은 조절 막대들이 촘촘하게 박혀 있다. 다이얼의 오른쪽 중간에는 세로로 길쭉한 '타이머 기능 선택 스위치'가 있다. 이 스위치는 세 가지 위치를 가지고 있으며, 현재 가운데 위치가 빨간색으로 표시되어 있다. 가장 위쪽 위치는 '타이머 기능 꺼짐'으로, 가운데 위치는 '타이머 기능 켜짐'으로, 가장 아래쪽 위치는 '전원 켜짐'으로 적혀 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_007_figure_015.png",
+      "page": 7,
+      "index": 15,
+      "size_px": [
+        175,
+        175
+      ],
+      "keep_for_caption": false,
+      "category": "qr_code_heuristic",
+      "tags": [
+        "qr_code"
+      ],
+      "metrics": {
+        "width": 175.0,
+        "height": 175.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.6089469387755102,
+        "edge_ratio": 0.18416326530612245,
+        "table_line_ratio": 0.45655510204081634,
+        "is_qr_code": true,
+        "qr_heuristic": true,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_007_figure_016.png",
+      "page": 7,
+      "index": 16,
+      "size_px": [
+        173,
+        174
+      ],
+      "keep_for_caption": false,
+      "category": "qr_code_heuristic",
+      "tags": [
+        "qr_code"
+      ],
+      "metrics": {
+        "width": 173.0,
+        "height": 174.0,
+        "aspect_ratio": 0.9942528735632183,
+        "ink_ratio": 0.6227160985980998,
+        "edge_ratio": 0.18649923593116735,
+        "table_line_ratio": 0.4384758487808119,
+        "is_qr_code": true,
+        "qr_heuristic": true,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_007_figure_017.png",
+      "page": 7,
+      "index": 17,
+      "size_px": [
+        413,
+        203
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 413.0,
+        "height": 203.0,
+        "aspect_ratio": 2.0344827586206895,
+        "ink_ratio": 0.49634418349455506,
+        "edge_ratio": 0.14269015613258745,
+        "table_line_ratio": 0.44523431815742076,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SER-J2000CM/page_007_figure_017.png",
+      "caption_short": "두 개의 둥근 24시간 타이머 다이얼이 나란히 놓여 있다. 각 다이얼은 숫자 1부터 24까지의 시간 표시와, 그 안쪽에 작은 조절 핀들, 그리고 'I'(켜짐)와 'O'(꺼짐) 스위치로 구성되어 있다. 왼쪽 다이얼은 스위치가 'O' 방향으로 밀려 있고, 일부 조절 핀(예: 11시부터 17시)이 바깥으로 밀려 나와 빨간색을 띤다. 이 핀들 위에는 흰색 화살표가 있다. 오른쪽 다이얼은 스위치가 'I' 방향으로 밀려 있고, 모든 조절 핀이 안쪽으로 들어가 검은색만 보인다. 두 다이얼 사이에는 오른쪽을 가리키는 회색 화살표가 놓여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_007_figure_018.png",
+      "page": 7,
+      "index": 18,
+      "size_px": [
+        409,
+        197
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 409.0,
+        "height": 197.0,
+        "aspect_ratio": 2.0761421319796955,
+        "ink_ratio": 0.4871855336154791,
+        "edge_ratio": 0.15054670919538804,
+        "table_line_ratio": 0.4122596899705857,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SER-J2000CM/page_007_figure_018.png",
+      "caption_short": "둥근 시간 설정 다이얼이 위에서 비스듬히 보인다. 바깥 1부터 24까지의 시간 숫자와 안쪽 붉은 띠를 따라 안팎으로 밀리는 짧은 막대 스위치들이 박혀 있다. 중앙에는 시계방향 회전 화살표가 있다. 왼쪽 다이얼은 스위치 일부가 안쪽으로 밀린 상태이고, 오른쪽 다이얼에서는 모든 스위치가 바깥쪽으로 밀려 나와 있다. 오른쪽 회색 화살표는 이 변화를 보여준다. 숫자 3, 4와 23, 24 주변 스위치들이 하얀 동그라미로 강조되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_007_figure_019.png",
+      "page": 7,
+      "index": 19,
+      "size_px": [
+        404,
+        191
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 404.0,
+        "height": 191.0,
+        "aspect_ratio": 2.115183246073298,
+        "ink_ratio": 0.4943496967497797,
+        "edge_ratio": 0.14018195013218598,
+        "table_line_ratio": 0.43732828780260224,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SER-J2000CM/page_007_figure_019.png",
+      "caption_short": "정면에서 본 두 개의 둥근 타이머 다이얼이 왼쪽에서 오른쪽으로 가는 회색 화살표와 함께 나란히 놓여 있다. 이 다이얼들은 바깥쪽의 숫자 1부터 24까지 시계 방향으로 표시된 시간, 안쪽 붉은 고리 안팎으로 움직이는 작은 검은색 스위치 핀들, 위쪽의 검은색 삼각형 기준점, 그리고 오른쪽 가운데 'I'와 'O' 글자가 있는 빨간색 전환 스위치를 공통으로 가지고 있다. 왼쪽 타이머는 모든 검은색 스위치 핀이 붉은 고리 안쪽으로 밀려 들어가 있으며, 빨간색 전환 스위치는 'O' 위치에 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SER-J2000CM/page_011_figure_020.png",
+      "page": 11,
+      "index": 20,
+      "size_px": [
+        783,
+        153
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 783.0,
+        "height": 153.0,
+        "aspect_ratio": 5.117647058823529,
+        "ink_ratio": 0.09172864548118098,
+        "edge_ratio": 0.0888237798312173,
+        "table_line_ratio": 0.0672960542241588,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    }
+  ]
+}

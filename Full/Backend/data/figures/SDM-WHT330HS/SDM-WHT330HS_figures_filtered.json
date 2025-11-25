@@ -1,0 +1,288 @@
+{
+  "doc_id": "SDM-WHT330HS",
+  "source_pdf": "data/raw/SDM-WHT330HS.pdf",
+  "num_images_total": 10,
+  "num_images_kept": 3,
+  "created_by": "image_filter_for_caption.py",
+  "config": {
+    "SMALL_ICON_MAX_DIM": 96,
+    "SMALL_ICON_MAX_AREA": 9216,
+    "INK_INTENSITY_THRESHOLD": 190,
+    "PROCEDURE_BANNER_MIN_ASPECT": 4.0,
+    "PROCEDURE_BANNER_MAX_INK": 0.2,
+    "PROCEDURE_BANNER_MIN_TABLE_LINE": 0.03,
+    "ENABLE_QR_DETECTION": true,
+    "QR_SIZE_MIN": 80.0,
+    "QR_SIZE_MAX": 300.0,
+    "QR_SQUARE_ASPECT_TOL": 0.15,
+    "QR_MIN_EDGE_RATIO": 0.15,
+    "QR_MIN_TABLE_LINE_RATIO": 0.2,
+    "QR_MIN_INK_RATIO": 0.3
+  },
+  "images": [
+    {
+      "file": "data/figures/SDM-WHT330HS/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        552,
+        818
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 552.0,
+        "height": 818.0,
+        "aspect_ratio": 0.6748166259168704,
+        "ink_ratio": 0.8118068105311648,
+        "edge_ratio": 0.04982326990538961,
+        "table_line_ratio": 0.788989139293434,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDM-WHT330HS/page_001_figure_001.png"
+    },
+    {
+      "file": "data/figures/SDM-WHT330HS/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        45,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0714285714285714,
+        "ink_ratio": 0.4354497354497355,
+        "edge_ratio": 0.22380952380952382,
+        "table_line_ratio": 0.2857142857142857,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SDM-WHT330HS/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        45,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0227272727272727,
+        "ink_ratio": 0.3929292929292929,
+        "edge_ratio": 0.25252525252525254,
+        "table_line_ratio": 0.2202020202020202,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SDM-WHT330HS/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        46,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 43.0,
+        "aspect_ratio": 1.069767441860465,
+        "ink_ratio": 0.4089989888776542,
+        "edge_ratio": 0.24216380182002023,
+        "table_line_ratio": 0.21587462082912032,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SDM-WHT330HS/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        46,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 46.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0222222222222221,
+        "ink_ratio": 0.32367149758454106,
+        "edge_ratio": 0.17053140096618358,
+        "table_line_ratio": 0.1748792270531401,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SDM-WHT330HS/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        43,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 43.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.5127095727420227,
+        "edge_ratio": 0.19307733910221742,
+        "table_line_ratio": 0.4553812871822607,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SDM-WHT330HS/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        41,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 41.0,
+        "height": 41.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.7412254610350981,
+        "edge_ratio": 0.11838191552647234,
+        "table_line_ratio": 0.7674003569303985,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/SDM-WHT330HS/page_004_figure_008.png",
+      "page": 4,
+      "index": 8,
+      "size_px": [
+        761,
+        611
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 761.0,
+        "height": 611.0,
+        "aspect_ratio": 1.2454991816693943,
+        "ink_ratio": 0.06573958375898711,
+        "edge_ratio": 0.07122809809644043,
+        "table_line_ratio": 0.009469407769516809,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDM-WHT330HS/page_004_figure_008.png"
+    },
+    {
+      "file": "data/figures/SDM-WHT330HS/page_005_figure_009.png",
+      "page": 5,
+      "index": 9,
+      "size_px": [
+        794,
+        198
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 794.0,
+        "height": 198.0,
+        "aspect_ratio": 4.01010101010101,
+        "ink_ratio": 0.2877833753148615,
+        "edge_ratio": 0.08884181869068519,
+        "table_line_ratio": 0.28661934203495915,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SDM-WHT330HS/page_005_figure_009.png"
+    },
+    {
+      "file": "data/figures/SDM-WHT330HS/page_007_figure_010.png",
+      "page": 7,
+      "index": 10,
+      "size_px": [
+        784,
+        153
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 784.0,
+        "height": 153.0,
+        "aspect_ratio": 5.124183006535947,
+        "ink_ratio": 0.08991930105375484,
+        "edge_ratio": 0.0900110044017607,
+        "table_line_ratio": 0.0689859277044151,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null
+    }
+  ]
+}

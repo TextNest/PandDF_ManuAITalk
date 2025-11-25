@@ -11,23 +11,36 @@
   padding: 0 1rem;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* 🔥 space-between */
+  justify-content: space-between;
   height: 56px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-.title {
+.left, .right {
+  flex: 1;
+}
+
+.center {
+  flex: 2;
+  text-align: center;
+}
+
+.right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.title h1 {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 6vw, 2rem); /* Responsive font size, slightly larger */
+  white-space: nowrap; /* Prevent wrapping */
   font-weight: 700;
   color: var(--color-primary);
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  display: inline-block; /* Allow text-align to work */
 }
 
 /* 🆕 로그인/로그아웃 버튼 */
@@ -44,7 +57,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
-  margin-left: auto; /* 🔥 오른쪽 정렬 */
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 .authButton:hover {

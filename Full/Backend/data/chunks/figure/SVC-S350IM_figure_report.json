@@ -1,0 +1,8 @@
+{
+  "doc_id": "SVC-S350IM",
+  "source_caption_file": "data\\figures\\SVC-S350IM\\SVC-S350IM_figures_captioned.json",
+  "num_images_total": 43,
+  "num_keep_for_caption": 36,
+  "num_with_caption_text": 36,
+  "num_chunks_written": 36
+}

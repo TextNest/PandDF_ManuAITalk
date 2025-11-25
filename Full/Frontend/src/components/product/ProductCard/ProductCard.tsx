@@ -7,17 +7,13 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation'; // useRouter 임포트
 import {
-  Package,
   MoreVertical,
   Edit,
   Trash2,
   Power,
   QrCode,
-  Eye,
-  MessageSquare,
   Hourglass, // 분석 상태 아이콘 추가
   CheckCircle, // 분석 완료 아이콘 추가
   XCircle // 분석 실패 아이콘 추가
@@ -32,7 +28,7 @@ import styles from './ProductCard.module.css';
 interface ProductCardProps {
   product: Product;
   onProductUpdate: (updatedProduct: Product) => void;
-  onProductDelete: (deletedProductId: number) => void;
+  onProductDelete: (deletedProductId: string) => void; // internal_id -> product_id
 }
 
 export default function ProductCard({ product, onProductUpdate, onProductDelete }: ProductCardProps) {
@@ -72,15 +68,21 @@ export default function ProductCard({ product, onProductUpdate, onProductDelete 
   };
 
   const handleEdit = () => {
-    console.log('수정하기:', product.internal_id);
-    router.push(`/products/edit/${product.internal_id}`); // 수정 페이지로 이동
+    if (!product.product_id) {
+      toast.error('제품 코드가 없어 수정할 수 없습니다.');
+      setIsMenuOpen(false);
+      return;
+    }
+    console.log('수정하기:', product.product_id);
+    const encodedProductId = encodeURIComponent(product.product_id);
+    router.push(`/products/edit/${encodedProductId}`); // 수정 페이지로 이동
     setIsMenuOpen(false);
   };
 
   const handleToggleActive = async () => {
     const newIsActive = !isActive;
     try {
-      const response = await apiClient.put(`/api/products/${product.internal_id}`, { is_active: newIsActive });
+      const response = await apiClient.put(`/api/products/${product.product_id}`, { is_active: newIsActive }); // internal_id -> product_id
       if (response.status === 200) {
         setIsActive(newIsActive);
         onProductUpdate(response.data);
@@ -96,11 +98,15 @@ export default function ProductCard({ product, onProductUpdate, onProductDelete 
   };
 
   const handleDelete = async () => {
-    if (confirm(`"${product.product_name}" 제품을 삭제하시겠습니까?`)) {
+    if (confirm(`"${product.product_id}" 제품을 삭제하시겠습니까?`)) {
       try {
-        const response = await apiClient.delete(`/api/products/${product.internal_id}`);
+        if (!product.product_id) {
+          toast.error('제품 코드가 없어 삭제할 수 없습니다.');
+          return;
+        }
+        const response = await apiClient.delete(`/api/products/${product.product_id}`);
         if (response.status === 204) {
-          onProductDelete(product.internal_id);
+          onProductDelete(product.product_id);
           toast.success('제품이 삭제되었습니다.');
         } else {
           toast.error('제품 삭제에 실패했습니다.');
@@ -113,15 +119,29 @@ export default function ProductCard({ product, onProductUpdate, onProductDelete 
     setIsMenuOpen(false);
   };
 
+  const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    // 메뉴 버튼이나 드롭다운 내부를 클릭한 경우 네비게이션 방지
+    if (menuRef.current && menuRef.current.contains(e.target as Node)) {
+      return;
+    }
+    handleEdit();
+  };
+
   const currentAnalysisStatus = analysisStatusMap[product.analysis_status];
   const isAnalysisComplete = product.analysis_status === 'COMPLETED';
 
   return (
     <>
-      <div className={`${styles.card} ${isMenuOpen ? styles.menuOpen : ''}`}>
+      <div 
+        className={`${styles.card} ${isMenuOpen ? styles.menuOpen : ''}`}
+        onClick={handleCardClick}
+      >
         <div className={styles.header}>
-          <div className={styles.iconWrapper}>
-            <Package size={24} />
+          <div>
+            <h3 className={styles.title}>{product.product_id}</h3>
+            {product.product_name && (
+              <p className={styles.model}>{product.product_name}</p>
+            )}
           </div>
 
           {/* 케밥 메뉴 */}
@@ -138,11 +158,6 @@ export default function ProductCard({ product, onProductUpdate, onProductDelete 
                 <button className={styles.dropdownItem} onClick={handleViewQR} disabled={!isAnalysisComplete}>
                   <QrCode size={16} />
                   QR 코드 보기
-                </button>
-
-                <button className={styles.dropdownItem} onClick={handleEdit}>
-                  <Edit size={16} />
-                  수정하기
                 </button>
 
                 <div className={styles.divider} />
@@ -169,30 +184,16 @@ export default function ProductCard({ product, onProductUpdate, onProductDelete 
           </div>
         </div>
 
-        <div className={styles.content}>
-          <h3 className={styles.title}>{product.product_name}</h3>
-          {isAnalysisComplete && (
-            <>
-              <p className={styles.model}>{product.product_id}</p>
-              {product.manufacturer && (
-                <p className={styles.manufacturer}>{product.manufacturer}</p>
-              )}
-            </>
-          )}
-        </div>
-
-        {isAnalysisComplete && (
-          <div className={styles.meta}>
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>카테고리</span>
-              <span className={styles.metaValue}>{product.category || '미지정'}</span>
-            </div>
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>문서</span>
-              <span className={styles.metaValue}>{product.pdf_path ? '1개' : '0개'}</span>
-            </div>
+        <div className={styles.meta}>
+          <div className={styles.metaItem}>
+            <span className={styles.metaLabel}>카테고리</span>
+            <span className={styles.metaValue}>{product.category || '미지정'}</span>
           </div>
-        )}
+          <div className={styles.metaItem}>
+            <span className={styles.metaLabel}>문서</span>
+            <span className={styles.metaValue}>{product.pdf_path ? '1개' : '0개'}</span>
+          </div>
+        </div>
 
         {/* 통계 (제거됨) */}
 
@@ -216,14 +217,14 @@ export default function ProductCard({ product, onProductUpdate, onProductDelete 
       </div>
 
       {/* QR 코드 모달 */}
-      {showQRModal && (
+      {showQRModal && product.product_id && (
         <Modal
           isOpen={showQRModal}
           onClose={() => setShowQRModal(false)}
           title="QR 코드"
         >
           <QRCodeDisplay
-            productId={product.internal_id}
+            productId={product.product_id}
             productName={product.product_name}
             size={256}
           />

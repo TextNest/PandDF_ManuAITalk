@@ -1,12 +1,13 @@
 from langchain_openai import OpenAIEmbeddings
 import os  
 class path:
-    FAISS_INDEX_PATH = "data/faiss_index"
-    DOCSTORE_PATH = "data/docstore.pkl"
+    FAISS_INDEX_PATH = "data\langchain_db"
     IMAGE_STORE_PATH = "data/image_store.pkl"
     PAGE_IMAGES_DIR = "data/page_images"
     UPLOAD_FILES_DIR = "data/upload"
     LOGSTORE_DIR = "data/logs"
+    
+
 
     @classmethod
     def setup(cls):

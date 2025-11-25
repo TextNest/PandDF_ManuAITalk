@@ -1,0 +1,8 @@
+{
+  "doc_id": "SEP-DU812",
+  "source_caption_file": "data\\figures\\SEP-DU812\\SEP-DU812_figures_captioned.json",
+  "num_images_total": 12,
+  "num_keep_for_caption": 4,
+  "num_with_caption_text": 4,
+  "num_chunks_written": 4
+}

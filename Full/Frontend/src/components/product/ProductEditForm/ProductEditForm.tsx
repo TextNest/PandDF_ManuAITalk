@@ -7,12 +7,11 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { Save, X, Upload, Sparkles } from 'lucide-react';
+import { Save, X, Upload, Sparkles, Info } from 'lucide-react';
 import { toast } from '@/store/useToastStore';
 import Button from '@/components/ui/Button/Button';
 import Input from '@/components/ui/Input/Input';
-import { Product } from '@/types/product.types';
-import { ProductUpdate } from '@/schemas/product';
+import { Product, ProductUpdate } from '@/types/product.types';
 import styles from '@/styles/Form.module.css';
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -26,7 +25,6 @@ interface ProductEditFormProps {
 export default function ProductEditForm({ initialData, onSubmit, onCancel }: ProductEditFormProps) {
   const [formData, setFormData] = useState({
     product_name: initialData.product_name || '',
-    product_id: initialData.product_id || '',
     category: initialData.category || '',
     manufacturer: initialData.manufacturer || '',
     description: initialData.description || '',
@@ -44,6 +42,8 @@ export default function ProductEditForm({ initialData, onSubmit, onCancel }: Pro
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [generated3DModel, setGenerated3DModel] = useState<Blob | null>(null);
 
+  const [activeTab, setActiveTab] = useState<'product' | 'ar'>('product');
+
   const [isUploading, setIsUploading] = useState(false);
   const [isConverting3D, setIsConverting3D] = useState(false);
   
@@ -57,34 +57,67 @@ export default function ProductEditForm({ initialData, onSubmit, onCancel }: Pro
   };
 
   const trigger3DConversion = async (file: File) => {
-    const colabApiBaseUrl = process.env.NEXT_PUBLIC_COLAB_API_URL;
-    if (!colabApiBaseUrl) {
+    // 1. 환경 변수에서 URL 목록 가져오기 (빈 값 필터링)
+    const apiUrls = [
+      process.env.NEXT_PUBLIC_COLAB_NG_API_URL, // 1순위 (예: Ngrok)
+      process.env.NEXT_PUBLIC_COLAB_CF_API_URL   // 2순위 (예: Cloudflare)
+    ].filter((url): url is string => !!url); // TypeScript: null/undefined 제거
+
+    if (apiUrls.length === 0) {
       setError('3D 변환 API URL이 설정되지 않았습니다.');
       return;
     }
+
     setIsConverting3D(true);
     setError(null);
     setGenerated3DModel(null);
+
     const conversionFormData = new FormData();
     conversionFormData.append('file', file);
-    try {
-      const response = await fetch(`${colabApiBaseUrl}/convert-2d-to-3d`, {
-        method: 'POST',
-        body: conversionFormData,
-      });
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ detail: '알 수 없는 3D 변환 서버 오류' }));
-        throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
+
+    let lastError: any = null;
+    let isSuccess = false;
+
+    // 2. URL 목록을 순회하며 요청 시도 (Failover 로직)
+    for (const baseUrl of apiUrls) {
+      try {
+        console.log(`Trying API connection to: ${baseUrl}`); // 디버깅용 로그
+
+        const response = await fetch(`${baseUrl}/convert-2d-to-3d`, {
+          method: 'POST',
+          body: conversionFormData,
+        });
+
+        if (!response.ok) {
+          // 서버가 응답은 했지만 에러인 경우 (예: 500, 404)
+          const errorData = await response.json().catch(() => ({ detail: '알 수 없는 3D 변환 서버 오류' }));
+          throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
+        }
+
+        // 성공 시 처리
+        const blob = await response.blob();
+        setGenerated3DModel(blob);
+        isSuccess = true;
+        console.log(`Success! Connected via: ${baseUrl}`);
+        
+        break; // 성공했으므로 루프(반복문) 종료
+
+      } catch (err: any) {
+        console.warn(`Failed to connect to ${baseUrl}:`, err.message);
+        lastError = err;
+        // 여기서 return 하지 않고 다음 URL(continue)로 넘어갑니다.
       }
-      const blob = await response.blob();
-      setGenerated3DModel(blob);
-    } catch (err: any) {
-      const errorMessage = err.message || '3D 모델 변환 중 오류가 발생했습니다.';
-      setError(errorMessage); // Keep the state for inline message
-      toast.error(errorMessage); // Add toast notification
-    } finally {
-      setIsConverting3D(false);
     }
+
+    // 3. 모든 URL 시도가 실패했을 경우 최종 에러 처리
+    if (!isSuccess) {
+      const errorMessage = lastError?.message || '모든 AI 서버 연결에 실패했습니다.';
+      setError(errorMessage);
+      toast.error(errorMessage);
+    }
+
+    // 4. 마무리 (로딩 상태 해제)
+    setIsConverting3D(false);
   };
 
   const handlePdfFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -103,9 +136,9 @@ export default function ProductEditForm({ initialData, onSubmit, onCancel }: Pro
   const handleImageFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
-      const allowedTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"];
+      const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
       if (!allowedTypes.includes(file.type)) {
-        setError('이미지 파일(JPG, PNG, GIF, WEBP)만 업로드할 수 있습니다.');
+        setError('이미지 파일(JPG, PNG, WEBP)만 업로드할 수 있습니다.');
         setImageFile(null);
       } else {
         setImageFile(file);
@@ -171,109 +204,139 @@ export default function ProductEditForm({ initialData, onSubmit, onCancel }: Pro
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      {/* --- PDF Section --- */}
-      <div className={styles.section}>
-        <div className={styles.field}>
-          <label className={styles.label}>제품 설명서 (PDF) <span className={styles.required}>*</span></label>
-          <div className={styles.fileInputContainer}>
-            <input type="file" accept=".pdf" onChange={handlePdfFileChange} className={styles.hiddenInput} ref={pdfInputRef} disabled={isUploading} />
-            <Button type="button" variant="outline" onClick={() => pdfInputRef.current?.click()} disabled={isUploading}>
-              <Upload size={16} /> 파일 변경
-            </Button>
-            {pdfFile && <p className={styles.fileName}>{pdfFile.name}</p>}
-            {!pdfFile && formData.pdf_path && <p className={styles.fileName}>기존 파일: {formData.pdf_path.split('\\').pop()?.split('/').pop()}</p>}
-          </div>
-        </div>
-        <div className={styles.grid}>
-          <div className={`${styles.field} ${styles.fullWidth}`}>
-            <Input
-              label="제품명"
-              value={formData.product_name}
-              onChange={(e) => handleChange('product_name', e.target.value)}
-              required
-            />
-          </div>
-          <div className={styles.field}>
-            <Input
-              label="모델명"
-              value={formData.product_id || ''}
-              onChange={(e) => handleChange('product_id', e.target.value)}
-            />
-          </div>
-          <div className={styles.field}>
-            <Input
-              label="카테고리"
-              value={formData.category || ''}
-              onChange={(e) => handleChange('category', e.target.value)}
-            />
-          </div>
-          <div className={`${styles.field} ${styles.fullWidth}`}>
-            <Input
-              label="제조사"
-              value={formData.manufacturer || ''}
-              onChange={(e) => handleChange('manufacturer', e.target.value)}
-            />
-          </div>
-          <div className={`${styles.field} ${styles.fullWidth}`}>
-            <label className={styles.label}>제품 설명</label>
-            <textarea
-              value={formData.description || ''}
-              onChange={(e) => handleChange('description', e.target.value)}
-              className={styles.textarea}
-              rows={5}
-            />
-          </div>
-        </div>
-        <div className={styles.grid}>
-          <div className={styles.field}>
-            <Input
-              label="출시일"
-              type="date"
-              value={formData.release_date || ''}
-              onChange={(e) => handleChange('release_date', e.target.value)}
-            />
-          </div>
-
-          <div className={`${styles.field} ${styles.fullWidth}`}>
-            <label className={styles.label}>제품 이미지</label>
-            <div className={styles.fileInputContainer}>
-              <input type="file" accept="image/*" onChange={handleImageFileChange} className={styles.hiddenInput} ref={imageInputRef} disabled={isUploading || isConverting3D} />
-              <Button type="button" variant="outline" onClick={() => imageInputRef.current?.click()} disabled={isUploading || isConverting3D}>
-                <Upload size={16} /> 이미지 변경
-              </Button>
-              {imageFile && <p className={styles.fileName}>{imageFile.name}</p>}
-              {!imageFile && formData.image_url && <p className={styles.fileName}>기존 이미지: {formData.image_url.split('\\').pop()?.split('/').pop()}</p>}
-            </div>
-            <p className={styles.arDescription}>3D 모델링을 통해 AR에서 확인 가능합니다.</p>
-            {isConverting3D && <p className={styles.uploadStatus}><Sparkles size={16} /> 3D 모델 변환 중...</p>}
-            {generated3DModel && !isConverting3D && <p className={styles.successMessage}>✅ 3D 모델 생성 완료. 등록 시 함께 업로드됩니다.</p>}
-          </div>
-          <div className={styles.field}>
-            <Input
-              label="가로 (mm)"
-              type="number"
-              value={formData.width_mm || ''}
-              onChange={(e) => handleChange('width_mm', parseFloat(e.target.value))}
-            />
-          </div>
-          <div className={styles.field}>
-            <Input
-              label="세로 (mm)"
-              type="number"
-              value={formData.height_mm || ''}
-              onChange={(e) => handleChange('height_mm', parseFloat(e.target.value))}
-            />
-          </div>
-          <div className={styles.field}>
-            <Input
-              label="깊이 (mm)"
-              type="number"
-              value={formData.depth_mm || ''}
-              onChange={(e) => handleChange('depth_mm', parseFloat(e.target.value))}
-            />
-          </div>
-        </div>
+      <div className={styles.infoBox}>
+        <Info size={20} />
+        <p>
+          {activeTab === 'product'
+            ? '제품의 기본 정보(제품명, 카테고리 등)와 PDF 설명서를 수정합니다.'
+            : '제품의 AR(증강 현실) 관련 정보 (이미지, 3D 모델, 크기 등)를 수정합니다.'}
+        </p>
       </div>
+
+      {/* --- Tab Buttons --- */}
+      <div className={styles.tabContainer}>
+        <Button
+          type="button"
+          variant={activeTab === 'product' ? 'primary' : 'outline'}
+          onClick={() => setActiveTab('product')}
+        >
+          제품 정보 수정
+        </Button>
+        <Button
+          type="button"
+          variant={activeTab === 'ar' ? 'primary' : 'outline'}
+          onClick={() => setActiveTab('ar')}
+        >
+          AR 정보 수정
+        </Button>
+      </div>
+
+      {activeTab === 'product' && (
+        <div className={styles.section}>
+          <div className={styles.field}>
+            <label className={styles.label}>제품 설명서 (PDF)<span className={styles.required}>*</span></label>
+              <div className={styles.fileInputContainer}>
+                <input type="file" accept=".pdf" onChange={handlePdfFileChange} className={styles.hiddenInput} ref={pdfInputRef} disabled={isUploading} />
+                <Button type="button" variant="outline" onClick={() => pdfInputRef.current?.click()} disabled={isUploading}>
+                  <Upload size={16} /> 파일 변경
+                </Button>
+                {pdfFile && <p className={styles.fileName}>{pdfFile.name}</p>}
+              </div>
+              <p className={styles.fieldDescription}>
+                <Info size={14} />
+                <span>파일변경 시 해당제품의 챗봇 정보가 업데이트됩니다!</span>
+              </p>
+          </div>
+          <div className={styles.grid}>
+            <div className={styles.field}>
+              <Input
+                label="제품명"
+                value={formData.product_name}
+                onChange={(e) => handleChange('product_name', e.target.value)}
+              />
+            </div>
+            <div className={styles.field}>
+              <Input
+                label="제조사"
+                value={formData.manufacturer || ''}
+                onChange={(e) => handleChange('manufacturer', e.target.value)}
+              />
+            </div>
+            <div className={styles.field}>
+              <Input
+                label="카테고리"
+                value={formData.category || ''}
+                onChange={(e) => handleChange('category', e.target.value)}
+              />
+            </div>
+            <div className={styles.field}>
+              <Input
+                label="출시일"
+                type="date"
+                value={formData.release_date || ''}
+                onChange={(e) => handleChange('release_date', e.target.value)}
+              />
+            </div>
+            <div className={`${styles.field} ${styles.fullWidth}`}>
+              <label className={styles.label}>제품 설명</label>
+              <textarea
+                value={formData.description || ''}
+                onChange={(e) => handleChange('description', e.target.value)}
+                className={styles.textarea}
+                rows={5}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {activeTab === 'ar' && (
+        <div className={styles.section}>
+          <div className={styles.grid}>
+            <div className={`${styles.field} ${styles.fullWidth}`}>
+              <label className={styles.label}>제품 이미지 (JPG, PNG, WEBP)</label>
+              <div className={styles.fileInputContainer}>
+                <input type="file" accept="image/*" onChange={handleImageFileChange} className={styles.hiddenInput} ref={imageInputRef} disabled={isUploading || isConverting3D} />
+                <Button type="button" variant="outline" onClick={() => imageInputRef.current?.click()} disabled={isUploading || isConverting3D}>
+                  <Upload size={16} /> 이미지 변경
+                </Button>
+                {imageFile && <p className={styles.fileName}>{imageFile.name}</p>}
+
+              </div>
+              <p className={styles.fieldDescription}>
+                <Info size={14} />
+                <span>이미지 등록시 3D모델 생성 및 AR에서 확인 가능합니다!</span>
+              </p>
+              {isConverting3D && <p className={styles.uploadStatus}><Sparkles size={16} /> 3D 모델 변환 중...</p>}
+              {generated3DModel && !isConverting3D && <p className={styles.successMessage}>✅ 3D 모델 생성 완료. 등록 시 함께 업로드됩니다.</p>}
+            </div>
+            <div className={styles.field}>
+              <Input
+                label="가로 (mm)"
+                type="number"
+                value={formData.width_mm || ''}
+                onChange={(e) => handleChange('width_mm', parseFloat(e.target.value))}
+              />
+            </div>
+            <div className={styles.field}>
+              <Input
+                label="세로 (mm)"
+                type="number"
+                value={formData.height_mm || ''}
+                onChange={(e) => handleChange('height_mm', parseFloat(e.target.value))}
+              />
+            </div>
+            <div className={styles.field}>
+              <Input
+                label="깊이 (mm)"
+                type="number"
+                value={formData.depth_mm || ''}
+                onChange={(e) => handleChange('depth_mm', parseFloat(e.target.value))}
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       {error && <p className={`${styles.errorMessage} ${styles.fullWidth}`}>{error}</p>}
 

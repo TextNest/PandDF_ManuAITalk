@@ -115,6 +115,23 @@
   color: #666;
 }
 
+.loading,
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem;
+  font-size: 1.2rem;
+  color: #666;
+  background-color: #f8f9fa;
+  border-radius: 0.75rem;
+  min-height: 200px;
+}
+
+.error {
+  color: #d32f2f;
+}
+
 /* 모바일 반응형 */
 @media (max-width: 768px) {
   .header {

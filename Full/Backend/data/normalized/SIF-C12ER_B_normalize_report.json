@@ -1,0 +1,12 @@
+{
+  "num_pages": 12,
+  "lines_before": 240,
+  "lines_after": 193,
+  "placeholders_removed_estimate": 50,
+  "repeated_lines_removed": 0,
+  "num_repeated_patterns": 0,
+  "repeated_patterns_sample": [],
+  "repeated_threshold": 8,
+  "doc_id": "SIF-C12ER_B",
+  "source_parsed_file": "data\\parsed\\SIF-C12ER_B.md"
+}

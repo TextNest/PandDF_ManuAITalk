@@ -1,0 +1,12 @@
+{
+  "num_pages": 12,
+  "lines_before": 182,
+  "lines_after": 146,
+  "placeholders_removed_estimate": 39,
+  "repeated_lines_removed": 0,
+  "num_repeated_patterns": 0,
+  "repeated_patterns_sample": [],
+  "repeated_threshold": 8,
+  "doc_id": "SVC-BCL20",
+  "source_parsed_file": "data\\parsed\\SVC-BCL20.md"
+}

@@ -1,0 +1,8 @@
+{
+  "doc_id": "SFD-AR500KP",
+  "source_caption_file": "data\\figures\\SFD-AR500KP\\SFD-AR500KP_figures_captioned.json",
+  "num_images_total": 14,
+  "num_keep_for_caption": 7,
+  "num_with_caption_text": 7,
+  "num_chunks_written": 7
+}

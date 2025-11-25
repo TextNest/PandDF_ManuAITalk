@@ -1,0 +1,223 @@
+{
+  "doc_id": "SVC-R100KP",
+  "source_pdf": "data/raw/SVC-R100KP.pdf",
+  "num_figures": 24,
+  "images": [
+    {
+      "file": "data/figures/SVC-R100KP/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        532,
+        477
+      ]
+    },
+    {
+      "file": "data/figures/SVC-R100KP/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        40,
+        38
+      ]
+    },
+    {
+      "file": "data/figures/SVC-R100KP/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        40,
+        38
+      ]
+    },
+    {
+      "file": "data/figures/SVC-R100KP/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        41,
+        39
+      ]
+    },
+    {
+      "file": "data/figures/SVC-R100KP/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        40,
+        38
+      ]
+    },
+    {
+      "file": "data/figures/SVC-R100KP/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        40,
+        40
+      ]
+    },
+    {
+      "file": "data/figures/SVC-R100KP/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        38,
+        38
+      ]
+    },
+    {
+      "file": "data/figures/SVC-R100KP/page_002_figure_008.png",
+      "page": 2,
+      "index": 8,
+      "size_px": [
+        38,
+        37
+      ]
+    },
+    {
+      "file": "data/figures/SVC-R100KP/page_003_figure_009.png",
+      "page": 3,
+      "index": 9,
+      "size_px": [
+        56,
+        56
+      ]
+    },
+    {
+      "file": "data/figures/SVC-R100KP/page_003_figure_010.png",
+      "page": 3,
+      "index": 10,
+      "size_px": [
+        54,
+        57
+      ]
+    },
+    {
+      "file": "data/figures/SVC-R100KP/page_003_figure_011.png",
+      "page": 3,
+      "index": 11,
+      "size_px": [
+        54,
+        55
+      ]
+    },
+    {
+      "file": "data/figures/SVC-R100KP/page_003_figure_012.png",
+      "page": 3,
+      "index": 12,
+      "size_px": [
+        55,
+        54
+      ]
+    },
+    {
+      "file": "data/figures/SVC-R100KP/page_003_figure_013.png",
+      "page": 3,
+      "index": 13,
+      "size_px": [
+        55,
+        57
+      ]
+    },
+    {
+      "file": "data/figures/SVC-R100KP/page_003_figure_014.png",
+      "page": 3,
+      "index": 14,
+      "size_px": [
+        55,
+        56
+      ]
+    },
+    {
+      "file": "data/figures/SVC-R100KP/page_004_figure_015.png",
+      "page": 4,
+      "index": 15,
+      "size_px": [
+        719,
+        727
+      ]
+    },
+    {
+      "file": "data/figures/SVC-R100KP/page_005_figure_016.png",
+      "page": 5,
+      "index": 16,
+      "size_px": [
+        167,
+        167
+      ]
+    },
+    {
+      "file": "data/figures/SVC-R100KP/page_005_figure_017.png",
+      "page": 5,
+      "index": 17,
+      "size_px": [
+        167,
+        167
+      ]
+    },
+    {
+      "file": "data/figures/SVC-R100KP/page_006_figure_018.png",
+      "page": 6,
+      "index": 18,
+      "size_px": [
+        263,
+        189
+      ]
+    },
+    {
+      "file": "data/figures/SVC-R100KP/page_006_figure_019.png",
+      "page": 6,
+      "index": 19,
+      "size_px": [
+        447,
+        321
+      ]
+    },
+    {
+      "file": "data/figures/SVC-R100KP/page_006_figure_020.png",
+      "page": 6,
+      "index": 20,
+      "size_px": [
+        264,
+        271
+      ]
+    },
+    {
+      "file": "data/figures/SVC-R100KP/page_007_figure_021.png",
+      "page": 7,
+      "index": 21,
+      "size_px": [
+        212,
+        193
+      ]
+    },
+    {
+      "file": "data/figures/SVC-R100KP/page_007_figure_022.png",
+      "page": 7,
+      "index": 22,
+      "size_px": [
+        523,
+        254
+      ]
+    },
+    {
+      "file": "data/figures/SVC-R100KP/page_007_figure_023.png",
+      "page": 7,
+      "index": 23,
+      "size_px": [
+        200,
+        185
+      ]
+    },
+    {
+      "file": "data/figures/SVC-R100KP/page_009_figure_024.png",
+      "page": 9,
+      "index": 24,
+      "size_px": [
+        695,
+        137
+      ]
+    }
+  ]
+}

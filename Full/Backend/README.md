@@ -52,7 +52,8 @@
     - **회원가입/정보**: 
         - Method: Post
         - URL : /api/register/info
-        - Request : company_name,name,user_id,department,preferred_language,pw
+        - Request : company_name,name,user_id,department,~preferred_language~,pw
+            - 2025.11.24 선호 언어 삭제 
         - Response : 200 - 로그인 성공  / 400 - 요청실패 
     - **검증(Only User)**:
         - Method: Post

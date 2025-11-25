@@ -1,0 +1,8 @@
+{
+  "doc_id": "SVC-BL1822",
+  "source_caption_file": "data\\figures\\SVC-BL1822\\SVC-BL1822_figures_captioned.json",
+  "num_images_total": 17,
+  "num_keep_for_caption": 8,
+  "num_with_caption_text": 8,
+  "num_chunks_written": 8
+}

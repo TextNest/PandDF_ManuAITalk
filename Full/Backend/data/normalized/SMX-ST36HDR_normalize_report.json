@@ -1,0 +1,12 @@
+{
+  "num_pages": 7,
+  "lines_before": 241,
+  "lines_after": 216,
+  "placeholders_removed_estimate": 35,
+  "repeated_lines_removed": 0,
+  "num_repeated_patterns": 0,
+  "repeated_patterns_sample": [],
+  "repeated_threshold": 5,
+  "doc_id": "SMX-ST36HDR",
+  "source_parsed_file": "data\\parsed\\SMX-ST36HDR.md"
+}

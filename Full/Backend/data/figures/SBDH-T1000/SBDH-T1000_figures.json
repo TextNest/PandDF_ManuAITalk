@@ -1,0 +1,43 @@
+{
+  "doc_id": "SBDH-T1000",
+  "source_pdf": "data/raw/SBDH-T1000.pdf",
+  "num_figures": 4,
+  "images": [
+    {
+      "file": "data/figures/SBDH-T1000/page_004_figure_001.png",
+      "page": 4,
+      "index": 1,
+      "size_px": [
+        659,
+        529
+      ]
+    },
+    {
+      "file": "data/figures/SBDH-T1000/page_004_figure_002.png",
+      "page": 4,
+      "index": 2,
+      "size_px": [
+        384,
+        221
+      ]
+    },
+    {
+      "file": "data/figures/SBDH-T1000/page_006_figure_003.png",
+      "page": 6,
+      "index": 3,
+      "size_px": [
+        679,
+        267
+      ]
+    },
+    {
+      "file": "data/figures/SBDH-T1000/page_006_figure_004.png",
+      "page": 6,
+      "index": 4,
+      "size_px": [
+        783,
+        530
+      ]
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import apiClient from '@/lib/api/client';
 import { API_ENDPOINTS } from '@/lib/api/endpoints';
@@ -16,8 +16,12 @@ const AuthCallbackPage = () => {
   const { login } = useAuthStore();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const processed = useRef(false); // 중복 실행 방지용 ref
 
   useEffect(() => {
+    if (processed.current) return; // 이미 처리했으면 중단
+    processed.current = true;
+    
     // 💡 사용자 요청에 따라 함수는 에로우 함수로 작성합니다.
     const processAuthCode = async () => {
       const code = searchParams.get('code');
@@ -62,10 +66,10 @@ const AuthCallbackPage = () => {
           err.message || 
           '로그인 처리 중 오류가 발생했습니다.'
         );
-        // setTimeout(() => router.push('/login'), 5000);
-      } finally {
-        setLoading(false);
-      }
+        setLoading(false); // 에러일 때 로딩 끄기
+        setTimeout(() => router.push('/login'), 5000);
+      } 
+      // finally {setLoading(false);}
     };
 
     processAuthCode();

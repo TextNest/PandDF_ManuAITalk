@@ -1,0 +1,781 @@
+{
+  "doc_id": "SVC-WN2200MR",
+  "source_pdf": "data/raw/SVC-WN2200MR.pdf",
+  "num_images_total": 27,
+  "num_images_kept": 17,
+  "created_by": "image_captioner_gemini.py",
+  "model": "gemini-2.5-flash",
+  "config": {
+    "CAPTION_MAX_CHARS": 320,
+    "UNSAFE_KEYWORDS": [
+      "폭발",
+      "감전",
+      "사망",
+      "질식",
+      "중독",
+      "화재",
+      "불이 날",
+      "불이날",
+      "가스 누출",
+      "가스누출",
+      "가스가 새",
+      "전기 충격",
+      "전기충격",
+      "고압",
+      "중상",
+      "심각한 부상"
+    ]
+  },
+  "images": [
+    {
+      "file": "data/figures/SVC-WN2200MR/page_002_figure_001.png",
+      "page": 2,
+      "index": 1,
+      "size_px": [
+        43,
+        53
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 53.0,
+        "aspect_ratio": 0.8113207547169812,
+        "ink_ratio": 0.3282141290039491,
+        "edge_ratio": 0.23913997367266346,
+        "table_line_ratio": 0.15313734093900833,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        43,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 41.0,
+        "aspect_ratio": 1.048780487804878,
+        "ink_ratio": 0.36755530346001136,
+        "edge_ratio": 0.2733976176971072,
+        "table_line_ratio": 0.14577424844015882,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        44,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 41.0,
+        "aspect_ratio": 1.0731707317073171,
+        "ink_ratio": 0.3231707317073171,
+        "edge_ratio": 0.2749445676274945,
+        "table_line_ratio": 0.13248337028824833,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        45,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0714285714285714,
+        "ink_ratio": 0.25925925925925924,
+        "edge_ratio": 0.1873015873015873,
+        "table_line_ratio": 0.08571428571428572,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        41,
+        40
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 41.0,
+        "height": 40.0,
+        "aspect_ratio": 1.025,
+        "ink_ratio": 0.6939024390243902,
+        "edge_ratio": 0.11890243902439024,
+        "table_line_ratio": 0.7176829268292683,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        42,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 42.0,
+        "height": 41.0,
+        "aspect_ratio": 1.024390243902439,
+        "ink_ratio": 0.49419279907084784,
+        "edge_ratio": 0.19337979094076654,
+        "table_line_ratio": 0.44773519163763065,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_002_figure_007.png",
+      "page": 2,
+      "index": 7,
+      "size_px": [
+        43,
+        41
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 43.0,
+        "height": 41.0,
+        "aspect_ratio": 1.048780487804878,
+        "ink_ratio": 0.4078275666477595,
+        "edge_ratio": 0.3023255813953488,
+        "table_line_ratio": 0.16392512762336925,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_004_figure_008.png",
+      "page": 4,
+      "index": 8,
+      "size_px": [
+        793,
+        771
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 793.0,
+        "height": 771.0,
+        "aspect_ratio": 1.0285343709468222,
+        "ink_ratio": 0.053764865399744524,
+        "edge_ratio": 0.058189115853209745,
+        "table_line_ratio": 0.006982301362603717,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-WN2200MR/page_004_figure_008.png",
+      "caption_short": "이것은 길고 날씬한 무선 청소기를 옆에서 본 모습이다. 청소기 위쪽 본체에 작동스위치와 손잡이가 있고, 손잡이 아래에 분리형 배터리, 본체 앞에는 원통형 먼지통과 먼지통 분리버튼이 달려 있다. 본체 아래로 길게 뻗은 연장봉이 연결되며, 연장봉 상하단에 분리버튼이, 중간에는 헤드 거치대가 있다. 연장봉 끝에는 헤드LED 라이트가 있는 바닥청소용 헤드가 연결되어 있다. 오른쪽 아래에는 2in1 브러쉬, 틈새노즐, 충전 어댑터 등 구성품이 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_005_figure_009.png",
+      "page": 5,
+      "index": 9,
+      "size_px": [
+        386,
+        241
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 386.0,
+        "height": 241.0,
+        "aspect_ratio": 1.6016597510373445,
+        "ink_ratio": 0.09726313073764324,
+        "edge_ratio": 0.05944574635048266,
+        "table_line_ratio": 0.0690452131662116,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-WN2200MR/page_005_figure_009.png",
+      "caption_short": "이것은 연한 회색의 길쭉한 직사각형 조작부이다. 왼쪽 위에는 'OFF/ON'이라는 글자가 있고, 그 아래 동그란 버튼은 '전원 스위치'이다. 가운데 위쪽에는 세로 막대 네 개가 나란히 있어 배터리 잔량을 표시한다. 그중 두 번째 막대 위에는 작은 점이 표시되어 있다. 배터리 표시등 아래에는 왼쪽부터 구부러진 화살표 모양, 'L' 글자, 'H' 글자, 그리고 선풍기 날개 모양이 있다. 오른쪽 위에는 'I/II'라는 글자가 있고, 그 아래 동그란 버튼은 '1단/2단 선택 버튼'이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_005_figure_010.png",
+      "page": 5,
+      "index": 10,
+      "size_px": [
+        293,
+        142
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 293.0,
+        "height": 142.0,
+        "aspect_ratio": 2.063380281690141,
+        "ink_ratio": 0.11084939672162669,
+        "edge_ratio": 0.11214728644906985,
+        "table_line_ratio": 0.09352016536076528,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-WN2200MR/page_005_figure_010.png",
+      "caption_short": "장면 중앙에는 서로 떨어진 두 개의 부품이 보인다. 왼쪽에 있는 부품은 길쭉한 원통 모양의 막대 끝부분으로, 연결 부위 아랫면에는 사각형으로 튀어나온 부분이 있다. 이 부분 아래에는 점선으로 된 반원형의 자국이 보인다. 윗면에는 작은 사각형 구멍이 하나 나 있다. 붉은색 화살표가 이 막대에서 오른쪽으로 길게 뻗어 있으며, 두 부품이 연결되는 방향을 명확히 알려준다. 오른쪽에 있는 부품은 본체에 연결될 것으로 보이는 커넥터 부분이다. 커넥터는 왼쪽 막대와 연결될 수 있도록 비어 있는 형태로, 윗면에는 움직이는 걸쇠 같은 부분이 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_005_figure_011.png",
+      "page": 5,
+      "index": 11,
+      "size_px": [
+        272,
+        217
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 272.0,
+        "height": 217.0,
+        "aspect_ratio": 1.2534562211981566,
+        "ink_ratio": 0.08896381133098401,
+        "edge_ratio": 0.07901870425589591,
+        "table_line_ratio": 0.0699207102195717,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-WN2200MR/page_005_figure_011.png",
+      "caption_short": "눈앞에는 전자기기 부품 두 개가 연결되거나 분리되는 장면이 보인다. 왼쪽에는 안이 비어있을 것 같은 길고 둥근 막대 모양의 부품이 있고, 그 오른쪽 끝은 튀어나온 부분이 있어 다른 부품에 삽입될 준비를 하고 있다. 오른쪽에는 이 막대를 받아들일 수 있는 넓적한 모양의 연결 부품이 있다. 연결 부품의 위쪽 면, 막대 부품과 만나는 지점에는 둥근 버튼이 하나 튀어나와 있다. 이 버튼을 사람의 검지 손가락이 아래쪽으로 누르고 있으며, 그 동작을 가리키는 짧은 수직의 빨간색 화살표가 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_006_figure_012.png",
+      "page": 6,
+      "index": 12,
+      "size_px": [
+        747,
+        260
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 747.0,
+        "height": 260.0,
+        "aspect_ratio": 2.873076923076923,
+        "ink_ratio": 0.09946452476572959,
+        "edge_ratio": 0.10380496344351767,
+        "table_line_ratio": 0.025393883225208528,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-WN2200MR/page_006_figure_012.png",
+      "caption_short": "이것은 길쭉한 타원형의 본체와 손잡이가 있는 휴대용 청소기처럼 생긴 기기이다. 왼쪽 모습에서는 기기의 전체적인 형태를 볼 수 있다. 본체 뒷부분에서 위로 비스듬히 솟아올라 잡기 편하게 디자인된 '손잡이'가 있고, 앞쪽은 먼지를 모으는 통처럼 생긴 원통형 몸체이다. 오른쪽 모습은 기기의 뒷면 아래쪽을 보여준다. 이 부분에 충전기를 꽂을 수 있는 작은 원형 '충전홀'이 선명하게 보이며, 그 옆에는 이 충전홀에 연결하는 L자형 플러그가 달린 케이블이 놓여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_006_figure_013.png",
+      "page": 6,
+      "index": 13,
+      "size_px": [
+        174,
+        46
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 174.0,
+        "height": 46.0,
+        "aspect_ratio": 3.782608695652174,
+        "ink_ratio": 0.25,
+        "edge_ratio": 0.24662668665667167,
+        "table_line_ratio": 0.24187906046976512,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_006_figure_014.png",
+      "page": 6,
+      "index": 14,
+      "size_px": [
+        170,
+        35
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon",
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 170.0,
+        "height": 35.0,
+        "aspect_ratio": 4.857142857142857,
+        "ink_ratio": 0.10134453781512605,
+        "edge_ratio": 0.15008403361344538,
+        "table_line_ratio": 0.12033613445378151,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": true
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_006_figure_015.png",
+      "page": 6,
+      "index": 15,
+      "size_px": [
+        289,
+        142
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 289.0,
+        "height": 142.0,
+        "aspect_ratio": 2.035211267605634,
+        "ink_ratio": 0.10663287684585018,
+        "edge_ratio": 0.10716896534918856,
+        "table_line_ratio": 0.09125688386373605,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-WN2200MR/page_006_figure_015.png",
+      "caption_short": "두 개의 길고 둥근 부품이 가로로 나란히 놓여 있고, 왼쪽 부품의 끝이 오른쪽 부품의 입구 쪽을 향하고 있다. 왼쪽 부품은 굵은 원통 형태이며, 오른쪽 끝부분이 안쪽으로 들어가면서 약간 가늘어진다. 이 끝부분 위쪽에는 작은 네모난 돌기가, 아래쪽에는 길쭉한 홈이 있다. 오른쪽 부품은 연결 부위처럼 생겼고, 위쪽에는 둥근 고정 장치가 있으며 아래쪽에 작은 나사가 박혀 있다. 그 옆으로는 세 개의 얇은 세로선이 나란히 튀어나와 있다. 왼쪽 부품을 오른쪽 부품 안으로 밀어 넣는 방향을 가리키는 빨간색 화살표가 두 부품 위에 놓여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_007_figure_016.png",
+      "page": 7,
+      "index": 16,
+      "size_px": [
+        471,
+        231
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 471.0,
+        "height": 231.0,
+        "aspect_ratio": 2.038961038961039,
+        "ink_ratio": 0.11489784101249069,
+        "edge_ratio": 0.11285741858990267,
+        "table_line_ratio": 0.029089806159869853,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-WN2200MR/page_007_figure_016.png",
+      "caption_short": "지금 보이는 것은 손으로 들 수 있는 청소기의 본체 부분이다. 오른쪽에는 손잡이가 달린 두툼한 원통 모양이며, 왼쪽으로는 짧은 원통형 흡입구가 연결되어 있다. 흡입구가 본체에 연결되는 위쪽에는 작은 사각형 모양의 버튼이 위로 튀어나와 있다. 이 버튼에는 아래쪽을 가리키는 빨간색 화살표가 그려져 있어, 버튼을 누르는 동작을 보여준다. 본체의 가장 아래쪽에는 빨간색의 굽은 화살표가 시계 방향으로 돌아가는 모습을 나타내고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_007_figure_017.png",
+      "page": 7,
+      "index": 17,
+      "size_px": [
+        226,
+        209
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 226.0,
+        "height": 209.0,
+        "aspect_ratio": 1.0813397129186604,
+        "ink_ratio": 0.17970106279375025,
+        "edge_ratio": 0.1848033196426303,
+        "table_line_ratio": 0.05172121776686285,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-WN2200MR/page_007_figure_017.png",
+      "caption_short": "이것은 손으로 잡고 쓰는 청소기의 본체 일부이다. 오른쪽에는 손으로 잡을 수 있는 손잡이가 달린 세로 방향의 네모난 몸통이 보인다. 몸통의 왼쪽 옆면에는 투명해 보이는 원통 모양의 먼지통이 위에서 아래로 길게 붙어 있다. 먼지통의 제일 위쪽은 넓적하고 둥근 형태이며, 그 아래로 길쭉한 투명한 몸체가 이어진다. 먼지통의 가장 아랫부분은 작은 구멍들이 촘촘히 뚫린 둥근 필터 모양인데, 이 부분에서 오른쪽으로 향하는 빨간색 굽은 화살표가 그려져 있다. 이 화살표는 먼지통의 아랫부분을 돌려서 여는 동작을 나타낸다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_007_figure_018.png",
+      "page": 7,
+      "index": 18,
+      "size_px": [
+        110,
+        206
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 110.0,
+        "height": 206.0,
+        "aspect_ratio": 0.5339805825242718,
+        "ink_ratio": 0.1680935569285084,
+        "edge_ratio": 0.1614298323036187,
+        "table_line_ratio": 0.05812003530450133,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-WN2200MR/page_007_figure_018.png",
+      "caption_short": "비스듬히 위에서 내려다본 모습이다. 위쪽에 하나, 아래쪽에 하나, 총 두 개의 부품이 분리된 채 놓여 있다. 위쪽 부품은 윗부분에 넓은 테두리가 있는 원통형 필터이다. 필터의 옆면에는 세로 방향으로 잔잔한 주름들이 촘촘하게 잡혀 있다. 아래쪽 부품은 위가 넓고 아래로 갈수록 좁아지는 원통형의 통이다. 이 통의 위쪽 가장자리 안팎과 중간 부분 옆면에는 작은 동그란 구멍들이 촘촘히 뚫려 있다. 아래쪽은 구멍 없이 좁고 긴 원통 형태로 이어진다. 위의 필터는 아래 통의 입구 위에 살짝 떠 있는 상태이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_007_figure_019.png",
+      "page": 7,
+      "index": 19,
+      "size_px": [
+        577,
+        264
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 577.0,
+        "height": 264.0,
+        "aspect_ratio": 2.1856060606060606,
+        "ink_ratio": 0.11775248148731685,
+        "edge_ratio": 0.1360747859881309,
+        "table_line_ratio": 0.027197888766346306,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-WN2200MR/page_007_figure_019.png",
+      "caption_short": "기기는 손잡이가 달린 본체와 아래에 연결된 원통형 먼지통으로 이루어져 있다. 본체는 오른쪽에 손잡이가 있고, 위쪽에는 조작부와 둥근 통풍구들이 보인다. 본체 아래의 먼지통은 여러 층으로 나뉘며, 가장 아랫부분에는 작은 구멍들이 촘촘히 뚫린 둥근 필터가 있다. 먼지통과 본체 연결 부위에는 작은 네모난 잠금장치와 조립 방향을 나타내는 삼각형 화살표들이 일렬로 맞춰져 있다. 먼지통 아래로는 둥근 흡입구가 아래를 향하고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_008_figure_020.png",
+      "page": 8,
+      "index": 20,
+      "size_px": [
+        403,
+        247
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 403.0,
+        "height": 247.0,
+        "aspect_ratio": 1.631578947368421,
+        "ink_ratio": 0.11909665364020856,
+        "edge_ratio": 0.13932952250831315,
+        "table_line_ratio": 0.02433168242231844,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-WN2200MR/page_008_figure_020.png",
+      "caption_short": "이것은 전자제품의 윗부분을 비스듬히 위에서 내려다본 모습이다. 아래쪽에는 길고 납작하며 모서리가 둥근 본체가 놓여 있고, 본체 앞쪽 위에는 여러 개의 네모난 홈이 파여 있다. 본체 위로, 비슷한 형태의 작은 덮개가 위로 들어 올려져 본체에서 분리되고 있는 중이다. 이 덮개의 앞쪽에는 작은 뚜껑이 열려 있으며, 본체 오른쪽 뒤편에는 덮개를 고정하는 듯한 작은 고리 모양의 부품이 보인다. 덮개 양쪽 끝에서 위로 휘어진 빨간색 화살표 두 개가 덮개가 열리는 방향을 나타내고 있다. 장면의 왼쪽 위에는 '청소하기'라는 글자가 쓰여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_008_figure_021.png",
+      "page": 8,
+      "index": 21,
+      "size_px": [
+        449,
+        320
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 449.0,
+        "height": 320.0,
+        "aspect_ratio": 1.403125,
+        "ink_ratio": 0.07382377505567929,
+        "edge_ratio": 0.091021714922049,
+        "table_line_ratio": 0.014636692650334076,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-WN2200MR/page_008_figure_021.png",
+      "caption_short": "전자 제품의 분리된 부품들이 보이는 장면이다. 아래쪽에는 손잡이처럼 잡을 수 있는 부분이 있는 기기 본체가 약간 기울어진 모습으로 놓여 있다. 본체 오른쪽 면에는 세로로 길쭉한 손잡이 형태의 홈이 파여 있다. 본체 위쪽에는 깊이 파인 원형 공간이 있고, 그 안에는 바구니 형태의 부품과 둥근 돔 모양의 부품이 보인다. 이 원형 공간 위로는 두 개의 고리 모양 필터가 차례로 놓여 있다. 가장 위에 있는 두꺼운 고리는 '스펀지 필터'이고, 그 아래에 있는 얇은 고리는 '패브릭 필터'이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_008_figure_022.png",
+      "page": 8,
+      "index": 22,
+      "size_px": [
+        451,
+        237
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 451.0,
+        "height": 237.0,
+        "aspect_ratio": 1.9029535864978904,
+        "ink_ratio": 0.1096391516274196,
+        "edge_ratio": 0.13433813279444648,
+        "table_line_ratio": 0.03353073806917586,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-WN2200MR/page_008_figure_022.png",
+      "caption_short": "이것은 전자제품의 윗부분으로, 필터가 들어가는 헤드 부분이다. 위쪽에는 둥근 형태의 덮개가 아래쪽 본체와 분리된 채 살짝 떠 있다. 덮개의 앞면에는 네 개의 직사각형 모양 홈이 파여 있고, 안쪽은 약간 움푹 들어가 있다. 아래쪽 본체는 윗면이 둥글게 열려 있는 원통형이다. 본체의 오른쪽 옆면에는 가로로 길쭉한 사각형 모양의 줄무늬가 여러 개 나란히 배치되어 있다. 본체의 왼쪽 아랫부분에는 작은 사각형 모양의 부품이 튀어나와 있으며, 그 위에는 작은 구멍 세 개가 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_009_figure_023.png",
+      "page": 9,
+      "index": 23,
+      "size_px": [
+        682,
+        329
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 682.0,
+        "height": 329.0,
+        "aspect_ratio": 2.072948328267477,
+        "ink_ratio": 0.07781957232883795,
+        "edge_ratio": 0.08760217133587071,
+        "table_line_ratio": 0.03427697902646427,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-WN2200MR/page_009_figure_023.png",
+      "caption_short": "바닥을 청소하는 진공청소기의 헤드 부분이다. 헤드는 넓고 납작한 직사각형 모양이며, 정면에서 살짝 위쪽을 내려다보는 모습이다. 헤드 안쪽 앞부분에는 둥근 솔이 긴 막대 형태로 가로로 놓여 있고, 헤드 뒷면 양 옆에는 둥근 바퀴가 하나씩 달려 있다. 헤드 뒷면 가운데에서는 위로 솟아오른 연결 부분이 몸통과 이어진다. 헤드의 왼쪽 옆면 위쪽에 있는 작은 사각형 모양의 잠금쇠 부분이 확대되어 보이는데, 이 잠금쇠 위에는 위쪽을 가리키는 빨간 화살표가 그려져 있으며, 아래쪽에는 짧은 가로줄들이 함께 있어 잠금쇠를 위로 밀어 올리는 동작을 나타낸다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_009_figure_024.png",
+      "page": 9,
+      "index": 24,
+      "size_px": [
+        524,
+        333
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 524.0,
+        "height": 333.0,
+        "aspect_ratio": 1.5735735735735736,
+        "ink_ratio": 0.09866354904522844,
+        "edge_ratio": 0.0941762373060083,
+        "table_line_ratio": 0.03471792403090113,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-WN2200MR/page_009_figure_024.png",
+      "caption_short": "이것은 청소기의 바닥용 헤드 모습이다. 헤드는 넓적한 판처럼 생긴 아래쪽 본체와, 그 위쪽에 가로로 길게 놓인 원통 모양의 솔로 이루어져 있다. 본체의 왼쪽 편에는 동그란 바퀴가 보이고, 본체 앞쪽에는 길고 납작한 흡입구처럼 보이는 부분이 있다. 원통 모양의 솔은 왼쪽 끝이 본체에 연결되어 있거나 가까이 있고, 오른쪽 끝은 본체에서 위로 크게 들어 올려져 있다. 빨간색 굽은 화살표는 솔이 왼쪽에서 오른쪽 위로 회전하며 들어 올려지는 움직임을 보여준다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_010_figure_025.png",
+      "page": 10,
+      "index": 25,
+      "size_px": [
+        324,
+        210
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 324.0,
+        "height": 210.0,
+        "aspect_ratio": 1.542857142857143,
+        "ink_ratio": 0.17122281011169901,
+        "edge_ratio": 0.15264550264550264,
+        "table_line_ratio": 0.07689594356261023,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-WN2200MR/page_010_figure_025.png",
+      "caption_short": "이것은 손으로 잡고 사용하는 청소기의 본체이다. 제품이 왼쪽 옆면으로 바닥에 누워 있는 모습이다. 가장 왼쪽에는 공기가 빠져나가는 둥근 그릴 모양의 안전망이 있다. 이 안전망 오른쪽으로는 본체와 이어진 길쭉한 몸통 부분이 보인다. 몸통의 위쪽에는 긴 투명한 먼지통이 자리 잡고 있으며, 먼지통 뒤편으로는 손잡이가 연결되어 있다. 본체 아래쪽에는 사각형 모양의 배터리 부품이 끼워져 있다. 이 배터리 아래에는 오른쪽 방향을 가리키는 빨간색 화살표가 그려져 있으며, 이는 배터리 부품이 오른쪽으로 분리될 수 있음을 나타낸다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_010_figure_026.png",
+      "page": 10,
+      "index": 26,
+      "size_px": [
+        260,
+        269
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 260.0,
+        "height": 269.0,
+        "aspect_ratio": 0.966542750929368,
+        "ink_ratio": 0.1328281384043466,
+        "edge_ratio": 0.1278381469831284,
+        "table_line_ratio": 0.05860737775235916,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/SVC-WN2200MR/page_010_figure_026.png",
+      "caption_short": "비스듬한 아래쪽에서 본 무선 청소기 본체가 길게 놓여 있다. 본체의 오른쪽에는 배터리가 들어가는 부분이 있고, 그 옆으로는 속이 보이는 먼지통과 둥근 모양의 환기구가 차례로 보인다. 본체 왼쪽 끝은 청소용 솔이나 다른 부품이 연결되는 곳이다. 본체 아래쪽에는 직사각형 모양의 배터리 팩이 있고, 빨간색 화살표가 배터리 팩에서 본체 바닥을 향해 위로 솟아 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/SVC-WN2200MR/page_011_figure_027.png",
+      "page": 11,
+      "index": 27,
+      "size_px": [
+        782,
+        153
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 782.0,
+        "height": 153.0,
+        "aspect_ratio": 5.111111111111111,
+        "ink_ratio": 0.08827708406465741,
+        "edge_ratio": 0.09065911104424719,
+        "table_line_ratio": 0.061356000200591745,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    }
+  ]
+}

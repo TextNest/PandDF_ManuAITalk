@@ -1,0 +1,8 @@
+{
+  "doc_id": "SDH-CH30EMT",
+  "source_caption_file": "data\\figures\\SDH-CH30EMT\\SDH-CH30EMT_figures_captioned.json",
+  "num_images_total": 30,
+  "num_keep_for_caption": 21,
+  "num_with_caption_text": 21,
+  "num_chunks_written": 21
+}

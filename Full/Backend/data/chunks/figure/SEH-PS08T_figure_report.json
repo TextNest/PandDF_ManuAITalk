@@ -1,0 +1,8 @@
+{
+  "doc_id": "SEH-PS08T",
+  "source_caption_file": "data\\figures\\SEH-PS08T\\SEH-PS08T_figures_captioned.json",
+  "num_images_total": 15,
+  "num_keep_for_caption": 6,
+  "num_with_caption_text": 6,
+  "num_chunks_written": 6
+}

@@ -13,9 +13,6 @@ export function makeTextSprite(message: string, opts: { fontsize: number, fontfa
   const context = canvas.getContext('2d')!;
   context.font = `Bold ${fontsize}px ${fontface}`;
 
-  const metrics = context.measureText(message);
-  const textWidth = metrics.width;
-
   context.fillStyle = `rgba(${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, ${backgroundColor.a})`;
   context.strokeStyle = `rgba(${borderColor.r}, ${borderColor.g}, ${borderColor.b}, ${borderColor.a})`;
   context.lineWidth = 4;

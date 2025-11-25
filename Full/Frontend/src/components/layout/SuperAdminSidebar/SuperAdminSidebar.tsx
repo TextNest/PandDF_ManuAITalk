@@ -9,10 +9,15 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '@/features/auth/hooks/useAuth';
-import { LayoutDashboard, Building2, Users, Settings, LogOut } from 'lucide-react';
+import { LayoutDashboard, Building2, Users, Settings, LogOut, X } from 'lucide-react'; // X 아이콘 추가
 import styles from './SuperAdminSidebar.module.css';
 
-export default function SuperAdminSidebar() {
+interface SuperAdminSidebarProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export default function SuperAdminSidebar({ isOpen, onClose }: SuperAdminSidebarProps) {
   const pathname = usePathname();
   const { user, logout } = useAuth();
 
@@ -40,16 +45,19 @@ export default function SuperAdminSidebar() {
   ];
 
   return (
-    <aside className={styles.sidebar}>
+    <aside className={`${styles.sidebar} ${isOpen ? styles.mobileOpen : ''}`}>
       <div className={styles.header}>
         <h1 className={styles.logo}>ManuAI-Talk</h1>
         <p className={styles.subtitle}>슈퍼 관리자</p>
+        <button className={styles.closeButton} onClick={onClose} title="메뉴 닫기">
+          <X size={24} />
+        </button>
       </div>
 
       {/* 사용자 정보 */}
       <div className={styles.userInfo}>
         <div className={styles.avatar}>
-          {user?.name.charAt(0)}
+          {user?.name?.charAt(0)}
         </div>
         <div className={styles.userDetails}>
           <p className={styles.userName}>{user?.name}</p>
@@ -68,6 +76,7 @@ export default function SuperAdminSidebar() {
               key={item.href}
               href={item.href}
               className={`${styles.navItem} ${isActive ? styles.active : ''}`}
+              onClick={onClose} // 메뉴 아이템 클릭 시 사이드바 닫기
             >
               <Icon size={20} />
               <span>{item.label}</span>

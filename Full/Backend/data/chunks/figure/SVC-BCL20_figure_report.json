@@ -1,0 +1,8 @@
+{
+  "doc_id": "SVC-BCL20",
+  "source_caption_file": "data\\figures\\SVC-BCL20\\SVC-BCL20_figures_captioned.json",
+  "num_images_total": 23,
+  "num_keep_for_caption": 10,
+  "num_with_caption_text": 10,
+  "num_chunks_written": 10
+}

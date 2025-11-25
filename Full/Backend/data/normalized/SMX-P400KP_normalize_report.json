@@ -1,0 +1,12 @@
+{
+  "num_pages": 16,
+  "lines_before": 243,
+  "lines_after": 213,
+  "placeholders_removed_estimate": 38,
+  "repeated_lines_removed": 0,
+  "num_repeated_patterns": 0,
+  "repeated_patterns_sample": [],
+  "repeated_threshold": 10,
+  "doc_id": "SMX-P400KP",
+  "source_parsed_file": "data\\parsed\\SMX-P400KP.md"
+}

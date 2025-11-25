@@ -7,22 +7,24 @@ class LoginRequest(BaseModel):
     password: str
 
 class Register(BaseModel):
+    companyId: int
     name: str
     email: str
-    companyId: str
     companyName:str
     department : str
-    languagePreference : str
     password : str
     role : str
+
 class FindCode(BaseModel):
     code:str
+
 class CompayCodeResponse(BaseModel):
-    id:str
+    id:int
     name:str
     existingDepartments:List[str]   
     class Config:
         from_attributes = True
+
 class AuthCodeRequest(BaseModel):
     code: str
     redirect_uri: str

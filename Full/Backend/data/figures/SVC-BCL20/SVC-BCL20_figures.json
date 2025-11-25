@@ -1,0 +1,214 @@
+{
+  "doc_id": "SVC-BCL20",
+  "source_pdf": "data/raw/SVC-BCL20.pdf",
+  "num_figures": 23,
+  "images": [
+    {
+      "file": "data/figures/SVC-BCL20/page_002_figure_001.png",
+      "page": 2,
+      "index": 1,
+      "size_px": [
+        42,
+        41
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        42,
+        43
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        43,
+        42
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        44,
+        43
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        40,
+        41
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        43,
+        42
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_004_figure_007.png",
+      "page": 4,
+      "index": 7,
+      "size_px": [
+        610,
+        287
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_004_figure_008.png",
+      "page": 4,
+      "index": 8,
+      "size_px": [
+        660,
+        478
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_004_figure_009.png",
+      "page": 4,
+      "index": 9,
+      "size_px": [
+        61,
+        61
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_004_figure_010.png",
+      "page": 4,
+      "index": 10,
+      "size_px": [
+        61,
+        59
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_004_figure_011.png",
+      "page": 4,
+      "index": 11,
+      "size_px": [
+        60,
+        59
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_004_figure_012.png",
+      "page": 4,
+      "index": 12,
+      "size_px": [
+        60,
+        60
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_004_figure_013.png",
+      "page": 4,
+      "index": 13,
+      "size_px": [
+        61,
+        63
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_004_figure_014.png",
+      "page": 4,
+      "index": 14,
+      "size_px": [
+        62,
+        61
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_005_figure_015.png",
+      "page": 5,
+      "index": 15,
+      "size_px": [
+        374,
+        275
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_005_figure_016.png",
+      "page": 5,
+      "index": 16,
+      "size_px": [
+        317,
+        216
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_005_figure_017.png",
+      "page": 5,
+      "index": 17,
+      "size_px": [
+        321,
+        213
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_005_figure_018.png",
+      "page": 5,
+      "index": 18,
+      "size_px": [
+        315,
+        266
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_006_figure_019.png",
+      "page": 6,
+      "index": 19,
+      "size_px": [
+        245,
+        196
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_006_figure_020.png",
+      "page": 6,
+      "index": 20,
+      "size_px": [
+        200,
+        179
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_006_figure_021.png",
+      "page": 6,
+      "index": 21,
+      "size_px": [
+        221,
+        218
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_006_figure_022.png",
+      "page": 6,
+      "index": 22,
+      "size_px": [
+        201,
+        191
+      ]
+    },
+    {
+      "file": "data/figures/SVC-BCL20/page_009_figure_023.png",
+      "page": 9,
+      "index": 23,
+      "size_px": [
+        784,
+        153
+      ]
+    }
+  ]
+}

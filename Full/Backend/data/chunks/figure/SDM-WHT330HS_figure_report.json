@@ -1,0 +1,8 @@
+{
+  "doc_id": "SDM-WHT330HS",
+  "source_caption_file": "data\\figures\\SDM-WHT330HS\\SDM-WHT330HS_figures_captioned.json",
+  "num_images_total": 10,
+  "num_keep_for_caption": 3,
+  "num_with_caption_text": 3,
+  "num_chunks_written": 3
+}

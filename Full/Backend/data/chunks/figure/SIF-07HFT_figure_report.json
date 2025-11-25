@@ -1,0 +1,8 @@
+{
+  "doc_id": "SIF-07HFT",
+  "source_caption_file": "data\\figures\\SIF-07HFT\\SIF-07HFT_figures_captioned.json",
+  "num_images_total": 21,
+  "num_keep_for_caption": 12,
+  "num_with_caption_text": 12,
+  "num_chunks_written": 12
+}

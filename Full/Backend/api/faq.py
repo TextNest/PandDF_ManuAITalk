@@ -1,33 +1,64 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, update, delete, func, desc
+from sqlalchemy import text
 from typing import List, Optional
 from core.db_config import get_session
-from models.faq import FAQ
+from core.query import (
+    find_faq, 
+    find_faq_by_id, 
+    create_faq as create, 
+    update_faq as update, 
+    delete_faq as delete
+)
+from models.faq import generate_short_id
 from module.faq_generator import FAQGenerator
 from schemas.faq import FAQCreate, FAQUpdate, FAQResponse
-from datetime import datetime
 import logging
 
 logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/faqs", tags=["FAQ"])
 
-# PDF에서 FAQ 생성
+# FAQ 생성 (PDF/수동)
 @router.post("/", response_model=FAQResponse, status_code=201)
 async def create_faq(
     faq_data: FAQCreate, 
     session: AsyncSession = Depends(get_session)
 ):
     """
-    PDF 파싱 또는 수동 생성 시 사용
+    FAQ 수동 생성 시 사용
     faq_id는 22자 Short UUID 생성
     """
-    new_faq = FAQ(**faq_data.model_dump())
-    session.add(new_faq)
+    faq_id = generate_short_id()
+
+    query = text(create)
+    params = {
+        'faq_id': faq_id,
+        'question': faq_data.question,
+        'answer': faq_data.answer,
+        'category': faq_data.category,
+        'tags': faq_data.tags,
+        'product_id': faq_data.product_id,
+        'product_name': faq_data.product_name,
+        'status': faq_data.status,
+        'is_auto_generated': faq_data.is_auto_generated,
+        'source': faq_data.source,
+        'view_count': 0,
+        'helpful_count': 0,
+        'created_by': faq_data.created_by
+    }
+    
+
+    await session.execute(query, params)
     await session.commit()
-    await session.refresh(new_faq)
-    return new_faq
+
+    # 생성된 FAQ 조회
+    result = await session.execute(
+        text(find_faq_by_id),
+        {'faq_id':faq_id}
+    )
+    row = result.mappings().one()
+    return dict(row)
 
 # 챗봇 분석으로 자동 생성된 FAQ 추가
 @router.post("/auto_generate")
@@ -76,17 +107,28 @@ async def get_faqs(
     """
     FAQ 목록 조회 (필터링 가능)
     """
-    query = select(FAQ)
+    query_str = find_faq.strip().rstrip(';')
+
+    conditions = []
+    params = {}
     
     if status:
-        query = query.where(FAQ.status == status)
+        conditions.append("status = :status")
+        params['status'] = status
     if category:
-        query = query.where(FAQ.category == category)
+        conditions.append("category = :category")
+        params['category'] = category
+
+    if conditions:
+        query_str += " AND " + " AND ".join(conditions)
+
+    query_str += " ORDER BY created_at DESC LIMIT :limit OFFSET :skip"
+    params['limit'] = limit
+    params['skip'] = skip
     
-    query = query.offset(skip).limit(limit)
-    result = await session.execute(query)
-    faqs = result.scalars().all()
-    return faqs
+    result = await session.execute(text(query_str), params)
+    rows = result.mappings().all()
+    return [dict(row) for row in rows]
 
 # faq_id로 단일 FAQ 조회
 @router.get("/{faq_id}", response_model=FAQResponse)
@@ -97,19 +139,22 @@ async def get_faq(
     """
     URL 예시: GET /api/faqs/VQ6EAOKbQdSnFkRmVUQAAA
     """
-    query = select(FAQ).where(FAQ.faq_id == faq_id)
-    result = await session.execute(query)
-    faq = result.scalar_one_or_none()
+    result = await session.execute(
+        text(find_faq_by_id),
+        {'faq_id': faq_id}
+    )
+    row = result.mappings().one_or_none()
     
-    if not faq:
+    if not row:
         raise HTTPException(status_code=404, detail="FAQ not found")
     
-    # 조회수 증가
-    faq.view_count += 1
-    await session.commit()
-    await session.refresh(faq)
-    
-    return faq
+    # 업데이트된 FAQ 다시 조회
+    result = await session.execute(
+        text(find_faq_by_id),
+        {'faq_id': faq_id}
+    )
+    row = result.mappings().one()
+    return dict(row)
 
 # FAQ 수정
 @router.patch("/{faq_id}", response_model=FAQResponse)
@@ -121,20 +166,33 @@ async def update_faq(
     """
     faq_id로 FAQ 수정
     """
-    query = select(FAQ).where(FAQ.faq_id == faq_id)
-    result = await session.execute(query)
-    faq = result.scalar_one_or_none()
+    # 기존 FAQ 확인
+    result = await session.execute(
+        text(find_faq_by_id),
+        {'faq_id': faq_id}
+    )
+    existing = result.mappings().one_or_none()
     
-    if not faq:
+    if not existing:
         raise HTTPException(status_code=404, detail="FAQ not found")
     
     # 수정할 필드만 업데이트
-    for key, value in faq_update.model_dump(exclude_unset=True).items():
-        setattr(faq, key, value)
+    update_data = faq_update.model_dump(exclude_unset=True)
+    update_data['faq_id'] = faq_id
     
+    # None 값은 제외 (COALESCE를 사용하므로 None이면 기존 값 유지)
+    params = {k: v for k, v in update_data.items() if v is not None}
+    
+    await session.execute(text(update), params)
     await session.commit()
-    await session.refresh(faq)
-    return faq
+    
+    # 업데이트된 FAQ 조회
+    result = await session.execute(
+        text(find_faq_by_id),
+        {'faq_id': faq_id}
+    )
+    row = result.mappings().one()
+    return dict(row)
 
 # FAQ 삭제
 @router.delete("/{faq_id}", status_code=204)
@@ -145,33 +203,15 @@ async def delete_faq(
     """
     faq_id로 FAQ 삭제
     """
-    query = select(FAQ).where(FAQ.faq_id == faq_id)
-    result = await session.execute(query)
-    faq = result.scalar_one_or_none()
+    # 기존 FAQ 확인
+    result = await session.execute(
+        text(find_faq_by_id),
+        {'faq_id': faq_id}
+    )
+    existing = result.mappings().one_or_none()
     
-    if not faq:
+    if not existing:
         raise HTTPException(status_code=404, detail="FAQ not found")
     
-    await session.delete(faq)
+    await session.execute(text(delete), {'faq_id': faq_id})
     await session.commit()
-
-# 도움이 됨 카운트 증가
-@router.post("/{faq_id}/helpful", response_model=FAQResponse)
-async def mark_helpful(
-    faq_id: str,
-    session: AsyncSession = Depends(get_session)
-):
-    """
-    FAQ 도움이 됨 카운트 증가
-    """
-    query = select(FAQ).where(FAQ.faq_id == faq_id)
-    result = await session.execute(query)
-    faq = result.scalar_one_or_none()
-    
-    if not faq:
-        raise HTTPException(status_code=404, detail="FAQ not found")
-    
-    faq.helpful_count += 1
-    await session.commit()
-    await session.refresh(faq)
-    return faq

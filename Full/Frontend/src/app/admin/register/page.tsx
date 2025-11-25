@@ -10,42 +10,6 @@ import { toast } from '@/store/useToastStore';
 import apiClient from '@/lib/api/client'; // apiClient는 세션 로딩에 필요
 import { API_ENDPOINTS } from '@/lib/api/endpoints';
 
-
-// Mock 기업 데이터
-const mockCompanies = [
-  {
-    id: 'company-001',
-    name: '삼성전자',
-    code: 'SAMSUNG24',
-    // 실제로는 API에서 기존 사용자들의 부서 목록을 가져옴
-    existingDepartments: ['무선사업부', 'DS부문', 'SDC', '경영지원팀', 'Global마케팅']
-  },
-  {
-    id: 'company-002',
-    name: 'LG전자',
-    code: 'LG2024XY',
-    existingDepartments: ['H&A사업본부', 'BS사업본부', 'VS사업본부', '경영관리']
-  },
-  {
-    id: 'company-003',
-    name: '현대자동차',
-    code: 'HYUNDAI8',
-    existingDepartments: ['상품개발본부', '생산본부', '영업본부', '디자인센터']
-  },
-  {
-    id: 'company-004',
-    name: 'SK하이닉스',
-    code: 'SKHYNIX9',
-    existingDepartments: ['DRAM개발', 'NAND개발', '생산기술', 'Quality']
-  },
-  {
-    id: 'company-005',
-    name: '네이버',
-    code: 'NAVER123',
-    existingDepartments: ['Search', 'AI Lab', 'Clova', 'Webtoon', 'Cloud']
-  },
-];
-
 export default function RegisterPage() {
   const router = useRouter();
   const [step, setStep] = useState<'code' | 'info'>('code');
@@ -67,7 +31,6 @@ export default function RegisterPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [department, setDepartment] = useState('');
   const [customDepartment, setCustomDepartment] = useState('');
-  const [languagePreference, setLanguagePreference] = useState('ko');
 
   // 가입 코드 검증
   const handleVerifyCode = async (e: FormEvent) => {
@@ -131,7 +94,6 @@ export default function RegisterPage() {
         companyId: verifiedCompany?.id,
         companyName: verifiedCompany?.name,
         department: finalDepartment,
-        languagePreference,
         password,
         role: 'company_admin',
       };
@@ -172,7 +134,6 @@ export default function RegisterPage() {
     setConfirmPassword('');
     setDepartment('');
     setCustomDepartment('');
-    setLanguagePreference('ko');
   };
 
   return (
@@ -344,33 +305,6 @@ export default function RegisterPage() {
                   </div>
                 </div>
               )}
-
-              {/* 선호 언어 */}
-              <div className={styles.field}>
-                <label>선호 언어 *</label>
-                <div className={styles.radioGroup}>
-                  <label className={styles.radioLabel}>
-                    <input
-                      type="radio"
-                      name="language"
-                      value="ko"
-                      checked={languagePreference === 'ko'}
-                      onChange={(e) => setLanguagePreference(e.target.value)}
-                    />
-                    <span>🇰🇷 한국어</span>
-                  </label>
-                  <label className={styles.radioLabel}>
-                    <input
-                      type="radio"
-                      name="language"
-                      value="en"
-                      checked={languagePreference === 'en'}
-                      onChange={(e) => setLanguagePreference(e.target.value)}
-                    />
-                    <span>🇺🇸 English</span>
-                  </label>
-                </div>
-              </div>
 
               {/* 비밀번호 */}
               <div className={styles.field}>

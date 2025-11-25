@@ -31,7 +31,6 @@ export const useChat = (initialProductId: string) => {
     const [error, setError] = useState<string | null>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const ws = useRef<WebSocket | null>(null);
-
     
     // 🚩 [수정]: sessionId 상태를 URL에서 읽어온 값으로 초기화합니다.
     const [sessionId, setSessionId] = useState<string>(initialSessionIdFromUrl);
@@ -308,6 +307,6 @@ export const useChat = (initialProductId: string) => {
         startNewSession: handleNewSession,
         deleteSession: handleDeleteSession,
         sendFeedback: sendFeedback,
-        isNewSession: isNewSession
+        isNewSession: isNewSession,
     };
 };

@@ -1,0 +1,12 @@
+{
+  "num_pages": 12,
+  "lines_before": 206,
+  "lines_after": 171,
+  "placeholders_removed_estimate": 40,
+  "repeated_lines_removed": 0,
+  "num_repeated_patterns": 0,
+  "repeated_patterns_sample": [],
+  "repeated_threshold": 8,
+  "doc_id": "SVC-BL1822",
+  "source_parsed_file": "data\\parsed\\SVC-BL1822.md"
+}
