@@ -41,7 +41,7 @@ export interface ProductFormData {
   product_id: string; // 제품 코드를 필수로 받도록 변경
   product_name?: string; // 제품명을 선택 사항으로 변경
   category?: string; // 추가
-  company_internal_id: number; // 추가
+
   description?: string; 
   release_date?: string;
   is_active?: boolean;

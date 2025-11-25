@@ -12,24 +12,24 @@ class Status(str, enum.Enum):
     FAILED = "failed"
 
 class Product(Base):
-    __tablename__ = "tb_product" # 테이블 이름 수정
+    __tablename__ = "tb_product"
 
-    product_internal_id = Column(Integer, primary_key=True, autoincrement=True, index=True) # 컬럼명 수정 및 AI, PK
-    product_name = Column(String(50), nullable=True, comment="제품명") # 길이 50으로 수정
-    product_id = Column(String(50), nullable=False, unique=True, comment="모델명") # 길이 50으로 수정
+    product_internal_id = Column(Integer, primary_key=True, autoincrement=True, index=True)
+    product_name = Column(String(50), nullable=True, comment="제품명")
+    product_id = Column(String(50), nullable=False, unique=True, comment="모델명")
     
-    category = Column(String(50), nullable=True, comment="카테고리명") # 길이 50으로 수정
-    company_internal_id = Column(Integer, ForeignKey("tb_company.company_internal_id"), nullable=False, comment="회사 내부 ID") # 추가
+    category = Column(String(50), nullable=True, comment="카테고리명")
+    company_internal_id = Column(Integer, ForeignKey("tb_company.company_internal_id"), nullable=False, comment="회사 내부 ID")
     
     description = Column(Text, nullable=True, comment="제품 설명") 
-    release_date = Column(DateTime, nullable=True, comment="출시일") # DateTime -> Date 타입으로 변경 가능, 일단 DateTime 유지
-    qr_code = Column(String(255), nullable=True, comment="QR 코드 URL") # 추가
-    is_active = Column(Boolean, nullable=False, default=True, comment="활성 상태 (True: 활성, False: 비활성)") # tinyint -> Boolean
-    status = Column(Enum(Status), nullable=False, default=Status.PENDING, comment="분석 상태") # Enum 타입 수정 및 이름 변경
+    release_date = Column(DateTime, nullable=True, comment="출시일")
+    qr_code = Column(String(255), nullable=True, comment="QR 코드 URL")
+    is_active = Column(Boolean, nullable=False, default=True, comment="활성 상태 (True: 활성, False: 비활성)")
+    status = Column(Enum(Status, native_enum=False), nullable=False, default=Status.PENDING, comment="분석 상태")
 
-    image_url = Column(String(255), nullable=True, comment="제품 이미지 파일 경로") # 길이 255로 수정
-    pdf_path = Column(String(255), nullable=True, comment="제품 설명서 PDF 파일 경로") # 길이 255로 수정
-    model3d_url = Column(String(255), nullable=True, comment="3D 모델 파일 경로") # 길이 255로 수정
+    image_url = Column(String(255), nullable=True, comment="제품 이미지 파일 경로")
+    pdf_path = Column(String(255), nullable=True, comment="제품 설명서 PDF 파일 경로")
+    model3d_url = Column(String(255), nullable=True, comment="3D 모델 파일 경로")
 
     width_mm = Column(Float, nullable=True, comment="제품 가로 길이 (mm)")
     height_mm = Column(Float, nullable=True, comment="제품 세로 길이 (mm)")

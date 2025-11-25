@@ -56,7 +56,7 @@ async def trigger_pdf_processing(product_id: str, pdf_path: str) -> None:
     """
     # 지연 import 를 사용하여 앱 기동 시점의 순환 참조를 방지한다.
     from core.db_config import get_session_text
-    from models.product import AnalysisStatus
+    from models.product import Status
     from core.query import find_product_id, update_product_status
 
     logger.info(
@@ -92,7 +92,7 @@ async def trigger_pdf_processing(product_id: str, pdf_path: str) -> None:
             update_query,
             {
                 'product_id': product_id,
-                'analysis_status': AnalysisStatus.PENDING.value
+                'analysis_status': Status.PENDING.value
             }
         )
         await session.commit()
@@ -120,7 +120,7 @@ async def trigger_pdf_processing(product_id: str, pdf_path: str) -> None:
                 update_query,
                 {
                     'product_id': product_id,
-                    'analysis_status': AnalysisStatus.PENDING.value
+                    'analysis_status': Status.PENDING.value
                 }
             )
             await session.commit()
@@ -205,7 +205,7 @@ async def trigger_pdf_processing(product_id: str, pdf_path: str) -> None:
                 update_query,
                 {
                     'product_id': product_id,
-                    "analysis_status": AnalysisStatus.COMPLETED.value
+                    "analysis_status": Status.COMPLETED.value
                 }
             )
             logger.info(
@@ -219,7 +219,7 @@ async def trigger_pdf_processing(product_id: str, pdf_path: str) -> None:
                 update_query,
                 {
                     'product_id': product_id,
-                    'analysis_status': AnalysisStatus.FAILED.value
+                    'analysis_status': Status.FAILED.value
                 }
             )
             logger.error(

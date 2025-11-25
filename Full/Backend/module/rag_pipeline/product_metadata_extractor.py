@@ -64,7 +64,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.db_config import get_session_text  # AsyncSession factory
 from models.product import Product
-from schemas.product import AnalysisStatus
+from schemas.product import Status
 
 # ----------------------------- 경로 / 상수 -----------------------------
 
@@ -374,7 +374,7 @@ async def _update_product_row(
             update_data['depth_mm'] = d
         
         # analysis_status는 항상 업데이트
-        update_data['analysis_status'] = AnalysisStatus.COMPLETED
+        update_data['analysis_status'] = Status.COMPLETED
 
         # DB 업데이트 (ORM 사용)
         if update_data:

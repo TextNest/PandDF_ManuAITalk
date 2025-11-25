@@ -59,16 +59,24 @@ def get_current_user(authorization: Optional[str] = Header(None))-> companyInfo:
             # 일반 사용자
             return {
                 "name": payload.get("name"),
-                "email": payload.get("id") # 기존 로직 유지 (id를 email 키에 반환)
+                "email": payload.get("id") 
             }
         elif role == "company_admin":
-            # 관리자 company_id 추가
+            # 관리자 
             return {
                 "id": payload.get("id"),
                 "name": payload.get("name"),
                 "company_name": payload.get("company_name"),
+                "email": payload.get("email"),
                 "role": role,
                 "company_id": payload.get("company_id")
+            }
+        elif role == "super_admin":
+            # 슈퍼 관리자 
+            return {
+                "id": payload.get("id"),
+                "name": payload.get("name"),
+                "role": role,
             }
         else:
             # 예상치 못한 role일 경우
