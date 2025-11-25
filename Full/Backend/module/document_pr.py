@@ -60,7 +60,7 @@ async def trigger_pdf_processing(product_id: str, pdf_path: str) -> None:
     # 지연 import 를 사용하여 앱 기동 시점의 순환 참조를 방지한다.
     from core.db_config import get_session_text
     from core.query import find_product_id, update_product_status
-    from schemas.product import status  # status: 'pending' | 'completed' | 'failed'
+    from schemas.product import Status  # Status: 'pending' | 'completed' | 'failed'
 
     logger.info(
         "PDF 전처리 트리거 호출: product_id=%s, pdf_path=%s",
@@ -96,7 +96,7 @@ async def trigger_pdf_processing(product_id: str, pdf_path: str) -> None:
             update_query,
             {
                 "product_id": product_id,
-                "status": status.PENDING.value,
+                "status": Status.PENDING.value,
             },
         )
         await session.commit()
@@ -125,7 +125,7 @@ async def trigger_pdf_processing(product_id: str, pdf_path: str) -> None:
                 {
                     "product_id": product_id,
                     # 파일 자체가 없으므로 status 는 failed 로 설정
-                    "status": status.FAILED.value,
+                    "status": Status.FAILED.value,
                 },
             )
             await session.commit()
@@ -211,7 +211,7 @@ async def trigger_pdf_processing(product_id: str, pdf_path: str) -> None:
                 update_query,
                 {
                     "product_id": product_id,
-                    "status": status.COMPLETED.value,
+                    "status": Status.COMPLETED.value,
                 },
             )
             await session.commit()
@@ -238,7 +238,7 @@ async def trigger_pdf_processing(product_id: str, pdf_path: str) -> None:
                 update_query,
                 {
                     "product_id": product_id,
-                    "status": status.FAILED.value,
+                    "status": Status.FAILED.value,
                 },
             )
             await session.commit()
