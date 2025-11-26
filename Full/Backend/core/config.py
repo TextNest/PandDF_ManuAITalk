@@ -29,7 +29,6 @@ class load:
         from dotenv import load_dotenv
         load_dotenv(dotenv_path=env_path)
         os.environ["MAIT_PROTOCOL_CODE"] = os.getenv('UUID_PROTOCOL_SESHAT')
-        os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
         os.environ["GOOGLE_API_KEY"] = os.getenv("GEMINI_API_KEY")
         os.environ["client_id"] = os.getenv("client_id")
         os.environ["client_secret"] = os.getenv("client_secret")

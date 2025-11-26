@@ -107,53 +107,79 @@ delete_message = """
 DELETE FROM test_message WHERE session_internal_id = (SELECT session_internal_id FROM tb_session WHERE session_id = :session_id)
 """
 
-
-
-find_session_for_rep = """
-SELECT tm.session_id
-FROM test_message tm
-WHERE NOT EXISTS (SELECT 1 FROM test_report r WHERE r.session_id = tm.session_id)
-GROUP BY tm.session_id
-HAVING MAX(tm.`timestamp`) < NOW() - INTERVAL 30 MINUTE
-ORDER BY MAX(tm.`timestamp`) ASC
-LIMIT 200;
-"""
-
-find_message_for_rep = """
-SELECT role, content, timestamp, feedback
-FROM test_message
-WHERE session_id = :sid
-ORDER BY `timestamp` ASC;
-"""
-
-find_product_for_rep = """
-SELECT productId as product_id
-FROM test_session
-WHERE session_id = :sid;
-"""
-
 # ---------- report ----------
 
-reset_all_rep = """
-TRUNCATE TABLE test_report;
-"""
+class AutoReportProcess_v2:
+    find_session_for_rep = """
+    SELECT MSG.session_internal_id
+    FROM tb_message MSG
+    WHERE NOT EXISTS (SELECT 1 FROM tb_report RP WHERE RP.session_internal_id = MSG.session_internal_id)
+    GROUP BY MSG.session_internal_id
+    HAVING MAX(MSG.created_at) < NOW() - INTERVAL 30 MINUTE
+    ORDER BY MAX(MSG.created_at) ASC
+    LIMIT 200
+    """
 
-report_query = """
-INSERT INTO test_report (
-    session_id, product_id, status, content, timestamp_s, timestamp_e, positive, negative, satisfaction 
-) VALUES (
-    :sid, :pid, :stat, :sum, :ts, :te, :pos, :neg, :satis
-)
-ON DUPLICATE KEY UPDATE
-    product_id = VALUES(product_id),
-    status = VALUES(status),
-    content = VALUES(content),
-    timestamp_s = VALUES(timestamp_s),
-    timestamp_e = VALUES(timestamp_e),
-    positive = VALUES(positive),
-    negative = VALUES(negative),
-    satisfaction = VALUES(satisfaction);
-"""
+    find_message_for_rep = """
+    SELECT role, content, feedback, created_at
+    FROM tb_message
+    WHERE session_internal_id = :sid
+    ORDER BY created_at ASC
+    """
+
+    find_product_for_rep = """
+    SELECT TS.session_id, TP.product_name, TP.product_id, TP.category
+    FROM tb_session TS
+    LEFT JOIN tb_product TP
+    ON TS.product_internal_id = TP.product_internal_id
+    WHERE TS.session_internal_id = :sid
+    """
+
+    reset_all_rep = """
+    TRUNCATE TABLE tb_report
+    """
+
+    report_query = """
+    INSERT INTO tb_report (
+        session_internal_id,
+        session_id,
+        product_name,
+        product_id,
+        category,
+        is_resolved,
+        content,
+        started_at,
+        completed_at,
+        positive,
+        negative,
+        satisfaction
+    ) VALUES (
+        :sid,
+        :session,
+        :product_name,
+        :pid,
+        :ctg,
+        :stat,
+        :summary,
+        :started_at,
+        :ended_at,
+        :pos,
+        :neg,
+        :satisfy
+    )
+    ON DUPLICATE KEY UPDATE
+        session_id = VALUES(session_id),
+        product_name = VALUES(product_name),
+        product_id = VALUES(product_id),
+        category = VALUES(category),
+        is_resolved = VALUES(is_resolved),
+        content = VALUES(content),
+        started_at = VALUES(started_at),
+        completed_at = VALUES(completed_at),
+        positive = VALUES(positive),
+        negative = VALUES(negative),
+        satisfaction = VALUES(satisfaction)
+    """
 
 class LogQuery:
     view_recent = """

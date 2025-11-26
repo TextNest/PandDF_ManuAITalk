@@ -37,7 +37,7 @@ async def on_startup():
     app.mount("/page_images", StaticFiles(directory="data/page_images"), name="page_images")
     
     # 백그라운드 스케줄러 시작
-    asyncio.create_task(Scheduler_ARP())
+    asyncio.create_task(Scheduler_ARP(2))
 app.mount("/images", StaticFiles(directory="data/caption_images"), name="caption_images")
 # CORS 설정
 origins = [
