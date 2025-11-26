@@ -26,7 +26,7 @@ export default function ProductEditForm({ initialData, onSubmit, onCancel }: Pro
   const [formData, setFormData] = useState({
     product_name: initialData.product_name || '',
     category: initialData.category || '',
-    manufacturer: initialData.manufacturer || '',
+    company_name: initialData.company_name || '', // 회사명 추가
     description: initialData.description || '',
     release_date: initialData.release_date ? new Date(initialData.release_date).toISOString().split('T')[0] : '',
     pdf_path: initialData.pdf_path || '',
@@ -35,7 +35,7 @@ export default function ProductEditForm({ initialData, onSubmit, onCancel }: Pro
     width_mm: initialData.width_mm || undefined,
     height_mm: initialData.height_mm || undefined,
     depth_mm: initialData.depth_mm || undefined,
-    analysis_status: initialData.analysis_status || 'PENDING',
+    status: initialData.status || 'pending',
   });
 
   const [pdfFile, setPdfFile] = useState<File | null>(null);
@@ -257,9 +257,9 @@ export default function ProductEditForm({ initialData, onSubmit, onCancel }: Pro
             </div>
             <div className={styles.field}>
               <Input
-                label="제조사"
-                value={formData.manufacturer || ''}
-                onChange={(e) => handleChange('manufacturer', e.target.value)}
+                label="회사명"
+                value={formData.company_name}
+                disabled // 읽기 전용으로 설정
               />
             </div>
             <div className={styles.field}>

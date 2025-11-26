@@ -38,11 +38,11 @@ export default function ProductCard({ product, onProductUpdate, onProductDelete 
   const menuRef = useRef<HTMLDivElement>(null);
   const router = useRouter(); // useRouter 초기화
 
-  // analysis_status에 따른 스타일 및 라벨
+  // status에 따른 스타일 및 라벨
   const analysisStatusMap = {
-    PENDING: { label: '분석 대기중', color: styles.statusPending, icon: <Hourglass size={16} /> },
-    COMPLETED: { label: '분석 완료', color: styles.statusCompleted, icon: <CheckCircle size={16} /> },
-    FAILED: { label: '분석 실패', color: styles.statusFailed, icon: <XCircle size={16} /> },
+    pending: { label: '분석 대기중', color: styles.statusPending, icon: <Hourglass size={16} /> },
+    completed: { label: '분석 완료', color: styles.statusCompleted, icon: <CheckCircle size={16} /> },
+    failed: { label: '분석 실패', color: styles.statusFailed, icon: <XCircle size={16} /> },
   };
 
   // 외부 클릭 시 메뉴 닫기
@@ -127,8 +127,8 @@ export default function ProductCard({ product, onProductUpdate, onProductDelete 
     handleEdit();
   };
 
-  const currentAnalysisStatus = analysisStatusMap[product.analysis_status];
-  const isAnalysisComplete = product.analysis_status === 'COMPLETED';
+  const currentAnalysisStatus = analysisStatusMap[product.status];
+  const isAnalysisComplete = product.status === 'completed';
 
   return (
     <>

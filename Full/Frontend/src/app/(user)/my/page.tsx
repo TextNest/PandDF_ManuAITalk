@@ -20,46 +20,6 @@ interface ChatSession {
     updatedAt: string;
 }
 
-// Mock 데이터 유지 (실제 API 호출 전까지)
-const mockSessions: ChatSession[] = [
-    {
-        id: 'session-1',
-        productId: 'samsung-wf123',
-        productName: '삼성 세탁기 WF-123',
-        lastMessage: '세탁기 소음이 너무 심한데 어떻게 해야 하나요?',
-        messageCount: 5,
-        createdAt: '2025-01-20T15:30:00',
-        updatedAt: '2025-01-20T15:45:00',
-    },
-    {
-        id: 'session-2',
-        productId: 'samsung-wf123',
-        productName: '삼성 세탁기 WF-123',
-        lastMessage: '세탁기 설치 방법을 알려주세요',
-        messageCount: 3,
-        createdAt: '2025-01-15T10:20:00',
-        updatedAt: '2025-01-15T10:35:00',
-    },
-    {
-        id: 'session-3',
-        productId: 'lg-rf456',
-        productName: 'LG 냉장고 RF-456',
-        lastMessage: '냉장고 온도 조절은 어떻게 하나요?',
-        messageCount: 8,
-        createdAt: '2025-01-18T14:00:00',
-        updatedAt: '2025-01-18T14:20:00',
-    },
-    {
-        id: 'session-4',
-        productId: 'lg-rf456',
-        productName: 'LG 냉장고 RF-456',
-        lastMessage: 'A/S 신청 방법이 궁금합니다',
-        messageCount: 4,
-        createdAt: '2025-01-10T09:15:00',
-        updatedAt: '2025-01-10T09:30:00',
-    },
-];
-
 
 // 💡 사용자 요청에 따라 함수는 에로우 함수로 작성합니다.
 const MyChatsPage = () => {

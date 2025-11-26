@@ -1,0 +1,355 @@
+{
+  "doc_id": "PLX-PAC07SIWH",
+  "source_pdf": "uploads/pdfs/PLX-PAC07SIWH.pdf",
+  "num_images_total": 13,
+  "num_images_kept": 10,
+  "created_by": "image_filter_for_caption.py",
+  "config": {
+    "SMALL_ICON_MAX_DIM": 96,
+    "SMALL_ICON_MAX_AREA": 9216,
+    "INK_INTENSITY_THRESHOLD": 190,
+    "PROCEDURE_BANNER_MIN_ASPECT": 4.0,
+    "PROCEDURE_BANNER_MAX_INK": 0.2,
+    "PROCEDURE_BANNER_MIN_TABLE_LINE": 0.03,
+    "ENABLE_QR_DETECTION": true,
+    "QR_SIZE_MIN": 80.0,
+    "QR_SIZE_MAX": 300.0,
+    "QR_SQUARE_ASPECT_TOL": 0.15,
+    "QR_MIN_EDGE_RATIO": 0.15,
+    "QR_MIN_TABLE_LINE_RATIO": 0.2,
+    "QR_MIN_INK_RATIO": 0.3
+  },
+  "images": [
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_005_figure_001.png",
+      "page": 5,
+      "index": 1,
+      "size_px": [
+        990,
+        671
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 990.0,
+        "height": 671.0,
+        "aspect_ratio": 1.4754098360655739,
+        "ink_ratio": 0.14471842117147632,
+        "edge_ratio": 0.08939770281051951,
+        "table_line_ratio": 0.09495702178265517,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/PLX-PAC07SIWH/page_005_figure_001.png"
+    },
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_005_figure_002.png",
+      "page": 5,
+      "index": 2,
+      "size_px": [
+        34,
+        33
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 34.0,
+        "height": 33.0,
+        "aspect_ratio": 1.0303030303030303,
+        "ink_ratio": 0.6853832442067737,
+        "edge_ratio": 0.23618538324420676,
+        "table_line_ratio": 0.5980392156862745,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_006_figure_003.png",
+      "page": 6,
+      "index": 3,
+      "size_px": [
+        760,
+        319
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 760.0,
+        "height": 319.0,
+        "aspect_ratio": 2.3824451410658307,
+        "ink_ratio": 0.08206979046361987,
+        "edge_ratio": 0.07009156904801188,
+        "table_line_ratio": 0.012811417257878238,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/PLX-PAC07SIWH/page_006_figure_003.png"
+    },
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_006_figure_004.png",
+      "page": 6,
+      "index": 4,
+      "size_px": [
+        316,
+        132
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 316.0,
+        "height": 132.0,
+        "aspect_ratio": 2.393939393939394,
+        "ink_ratio": 0.05669831223628692,
+        "edge_ratio": 0.05842443421557346,
+        "table_line_ratio": 0.011099923283467587,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/PLX-PAC07SIWH/page_006_figure_004.png"
+    },
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_006_figure_005.png",
+      "page": 6,
+      "index": 5,
+      "size_px": [
+        324,
+        120
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 324.0,
+        "height": 120.0,
+        "aspect_ratio": 2.7,
+        "ink_ratio": 0.07399691358024692,
+        "edge_ratio": 0.1356224279835391,
+        "table_line_ratio": 0.3674125514403292,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/PLX-PAC07SIWH/page_006_figure_005.png"
+    },
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_006_figure_006.png",
+      "page": 6,
+      "index": 6,
+      "size_px": [
+        283,
+        110
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 283.0,
+        "height": 110.0,
+        "aspect_ratio": 2.5727272727272728,
+        "ink_ratio": 0.25030517185994217,
+        "edge_ratio": 0.17224542242210086,
+        "table_line_ratio": 0.1985544490844844,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/PLX-PAC07SIWH/page_006_figure_006.png"
+    },
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_006_figure_007.png",
+      "page": 6,
+      "index": 7,
+      "size_px": [
+        37,
+        18
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 37.0,
+        "height": 18.0,
+        "aspect_ratio": 2.0555555555555554,
+        "ink_ratio": 0.31681681681681684,
+        "edge_ratio": 0.13063063063063063,
+        "table_line_ratio": 0.3048048048048048,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_006_figure_008.png",
+      "page": 6,
+      "index": 8,
+      "size_px": [
+        145,
+        110
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 145.0,
+        "height": 110.0,
+        "aspect_ratio": 1.3181818181818181,
+        "ink_ratio": 0.3514733542319749,
+        "edge_ratio": 0.21122257053291535,
+        "table_line_ratio": 0.2077115987460815,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/PLX-PAC07SIWH/page_006_figure_008.png"
+    },
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_006_figure_009.png",
+      "page": 6,
+      "index": 9,
+      "size_px": [
+        550,
+        257
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 550.0,
+        "height": 257.0,
+        "aspect_ratio": 2.140077821011673,
+        "ink_ratio": 0.14007782101167315,
+        "edge_ratio": 0.08542624690484613,
+        "table_line_ratio": 0.11624336752741422,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/PLX-PAC07SIWH/page_006_figure_009.png"
+    },
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_009_figure_010.png",
+      "page": 9,
+      "index": 10,
+      "size_px": [
+        38,
+        39
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 38.0,
+        "height": 39.0,
+        "aspect_ratio": 0.9743589743589743,
+        "ink_ratio": 0.18353576248313092,
+        "edge_ratio": 0.1417004048582996,
+        "table_line_ratio": 0.07557354925775979,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null
+    },
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_010_figure_011.png",
+      "page": 10,
+      "index": 11,
+      "size_px": [
+        333,
+        153
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 333.0,
+        "height": 153.0,
+        "aspect_ratio": 2.176470588235294,
+        "ink_ratio": 0.19293803607529098,
+        "edge_ratio": 0.11623388093976329,
+        "table_line_ratio": 0.16365384992835974,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/PLX-PAC07SIWH/page_010_figure_011.png"
+    },
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_010_figure_012.png",
+      "page": 10,
+      "index": 12,
+      "size_px": [
+        370,
+        194
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 370.0,
+        "height": 194.0,
+        "aspect_ratio": 1.907216494845361,
+        "ink_ratio": 0.1741014210086375,
+        "edge_ratio": 0.12970186681526888,
+        "table_line_ratio": 0.12645583728057955,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/PLX-PAC07SIWH/page_010_figure_012.png"
+    },
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_010_figure_013.png",
+      "page": 10,
+      "index": 13,
+      "size_px": [
+        218,
+        159
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 218.0,
+        "height": 159.0,
+        "aspect_ratio": 1.371069182389937,
+        "ink_ratio": 0.20829727078645202,
+        "edge_ratio": 0.11430384859500317,
+        "table_line_ratio": 0.19006404708326122,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/PLX-PAC07SIWH/page_010_figure_013.png"
+    }
+  ]
+}

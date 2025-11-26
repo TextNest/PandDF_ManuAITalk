@@ -1,0 +1,8 @@
+{
+  "doc_id": "SDC-CD2400AT",
+  "source_caption_file": "data\\figures\\SDC-CD2400AT\\SDC-CD2400AT_figures_captioned.json",
+  "num_images_total": 19,
+  "num_keep_for_caption": 11,
+  "num_with_caption_text": 11,
+  "num_chunks_written": 11
+}

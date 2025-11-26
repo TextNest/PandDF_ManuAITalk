@@ -1,0 +1,12 @@
+{
+  "num_pages": 14,
+  "lines_before": 257,
+  "lines_after": 218,
+  "placeholders_removed_estimate": 15,
+  "repeated_lines_removed": 0,
+  "num_repeated_patterns": 0,
+  "repeated_patterns_sample": [],
+  "repeated_threshold": 9,
+  "doc_id": "PLX-PAC07SIWH",
+  "source_parsed_file": "data\\parsed\\PLX-PAC07SIWH.md"
+}

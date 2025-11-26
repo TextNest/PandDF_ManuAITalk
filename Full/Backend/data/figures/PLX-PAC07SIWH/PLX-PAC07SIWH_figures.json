@@ -1,0 +1,124 @@
+{
+  "doc_id": "PLX-PAC07SIWH",
+  "source_pdf": "uploads/pdfs/PLX-PAC07SIWH.pdf",
+  "num_figures": 13,
+  "images": [
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_005_figure_001.png",
+      "page": 5,
+      "index": 1,
+      "size_px": [
+        990,
+        671
+      ]
+    },
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_005_figure_002.png",
+      "page": 5,
+      "index": 2,
+      "size_px": [
+        34,
+        33
+      ]
+    },
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_006_figure_003.png",
+      "page": 6,
+      "index": 3,
+      "size_px": [
+        760,
+        319
+      ]
+    },
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_006_figure_004.png",
+      "page": 6,
+      "index": 4,
+      "size_px": [
+        316,
+        132
+      ]
+    },
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_006_figure_005.png",
+      "page": 6,
+      "index": 5,
+      "size_px": [
+        324,
+        120
+      ]
+    },
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_006_figure_006.png",
+      "page": 6,
+      "index": 6,
+      "size_px": [
+        283,
+        110
+      ]
+    },
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_006_figure_007.png",
+      "page": 6,
+      "index": 7,
+      "size_px": [
+        37,
+        18
+      ]
+    },
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_006_figure_008.png",
+      "page": 6,
+      "index": 8,
+      "size_px": [
+        145,
+        110
+      ]
+    },
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_006_figure_009.png",
+      "page": 6,
+      "index": 9,
+      "size_px": [
+        550,
+        257
+      ]
+    },
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_009_figure_010.png",
+      "page": 9,
+      "index": 10,
+      "size_px": [
+        38,
+        39
+      ]
+    },
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_010_figure_011.png",
+      "page": 10,
+      "index": 11,
+      "size_px": [
+        333,
+        153
+      ]
+    },
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_010_figure_012.png",
+      "page": 10,
+      "index": 12,
+      "size_px": [
+        370,
+        194
+      ]
+    },
+    {
+      "file": "data/figures/PLX-PAC07SIWH/page_010_figure_013.png",
+      "page": 10,
+      "index": 13,
+      "size_px": [
+        218,
+        159
+      ]
+    }
+  ]
+}

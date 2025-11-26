@@ -780,6 +780,32 @@ def append_to_existing_index(
 # ----------------------------- replace-doc 전용 유틸 -----------------------------
 
 
+def _extract_all_vectors(index: faiss.Index, d: int) -> np.ndarray:
+    """
+    FAISS IndexFlat 계열에서 전체 벡터를 안전하게 추출하기 위한 헬퍼.
+
+    - 일부 빌드에서는 index.xb 속성이 없어 AttributeError 가 발생한다.
+    - 우선 index.xb + faiss.vector_to_array 를 시도하고,
+      실패하면 reconstruct(i) 를 이용해 하나씩 복원한다.
+    """
+    # 1) index.xb 속성이 있는 경우: 빠른 경로
+    if hasattr(index, "xb"):
+        try:
+            return faiss.vector_to_array(index.xb).reshape(-1, d)
+        except Exception as e:
+            logging.warning(
+                "[REPLACE] index.xb 접근 실패, reconstruct() fallback 사용: %s",
+                e,
+            )
+
+    # 2) xb 가 없거나 실패한 경우: reconstruct로 하나씩 복원
+    n = index.ntotal
+    mat = np.zeros((n, d), dtype="float32")
+    for i in range(n):
+        mat[i] = index.reconstruct(i)
+    return mat
+
+
 def load_existing_meta_excluding_doc(
     exclude_doc_id: str,
 ) -> Tuple[List[ChunkRecord], List[int], int]:
@@ -910,8 +936,10 @@ def rebuild_index_with_replacement(
     index = faiss.read_index(str(FAISS_INDEX_PATH))
     d = index.d
 
-    # IndexFlatIP 의 벡터는 xb 에 연속 배열로 저장된다.
-    xb = faiss.vector_to_array(index.xb).reshape(-1, d)
+    # IndexFlatIP 의 벡터는 내부에 연속 배열로 저장된다.
+    # 빌드 환경에 따라 index.xb 가 없을 수 있으므로 헬퍼로 안전하게 추출한다.
+    xb = _extract_all_vectors(index, d)
+
     if xb.shape[0] < max(keep_indices) + 1:
         logging.warning(
             "[REPLACE] 기존 인덱스 벡터 수(%d) < 메타의 최대 vector_index(%d). "

@@ -9,4 +9,5 @@ export interface FurnitureItem {
   width_mm?: number;
   depth_mm?: number;
   height_mm?: number;
+  status?: 'pending' | 'completed' | 'failed';
 }
