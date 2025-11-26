@@ -81,7 +81,7 @@ VALUES(:user_internal_id,
 :session_id)"""
 
 find_message = """
-SELECT message_internal_id as id,role,content,created_at,feedback
+SELECT message_internal_id as id,role,content,created_at as timestamp,feedback
 FROM tb_message
 WHERE session_internal_id = (SELECT session_internal_id FROM tb_session WHERE session_id = :session_id)
 ORDER BY created_at ASC

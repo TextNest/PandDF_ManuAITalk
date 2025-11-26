@@ -16,7 +16,7 @@ from langchain_core.runnables import RunnableLambda
 from langchain_cohere import CohereRerank
 
 QA_SYSTEM_PROMPT =  """당신은 제품 매뉴얼 전문가입니다.
-검색된 내용과 대화 기록을 종합하여 사용자의 질문에 답변하세요.
+검색된 내용과 대화 기록을 종합하여 사용자의 질문에 **마크다운형식** 으로 답변하세요.
 단순히 페이지만 언급하지 말고, 내용을 상세하게 설명해야 합니다.
 만약 검색된 내용에서 관련 정보를 찾을 수 없다면, "관련 정보를 찾을 수 없습니다."라고 답변하세요.
 **절대로 (관련 이미지: 경로) 작성하지마세요**. 무조건 이미지경로눈 아래 규칙을 따르세요.
@@ -57,7 +57,7 @@ class HybridRAGChain:
         )
         self.pid = pid
 
-        self.llm = ChatGoogleGenerativeAI(model = "gemini-2.5-flash",temperature=0,max_output_tokens=1024)
+        self.llm = ChatGoogleGenerativeAI(model = "gemini-2.5-flash",temperature=0)
 
         retriever = self.vectorstore.as_retriever(
                 search_type="mmr",
@@ -161,5 +161,7 @@ class HybridRAGChain:
             {"input": query},
             config={"configurable": {"session_id": session}}
             )
+        print(answer.get("response_metadata",""))   
         answer = answer.get("answer","")
+        
         return {"answer": answer}
