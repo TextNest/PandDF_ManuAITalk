@@ -198,6 +198,21 @@
 @media (max-width: 768px) {
   .messageInner {
     max-width: 90%;
+
+  }
+  .assistantMessage .text{
+    font-size: 13px;
+  }
+  .assistantMessage .text img{
+      max-width: 200px !important; /* 강제로 크기 제한 */
+      width: 100%;                 /* 화면 작으면 알아서 줄어듬 */
+      height: auto;                /* 비율 유지 */
+      border-radius: 8px;          /* 모서리 둥글게 */
+      display: block;              /* 줄바꿈 */
+      margin: 10px 0;
+  }
+  .userMessage .text{
+    font-size: 13px;
   }
 }
 .assistantMessage .text p {
@@ -270,7 +285,7 @@
   width: 100%;
   border-collapse: collapse;
   margin: 1rem 0;
-  border: 1px solid #e0e0e_0;
+  border: 1px solid;
 }
 
 .assistantMessage .text th,
