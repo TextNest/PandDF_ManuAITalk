@@ -1,0 +1,250 @@
+{
+  "doc_id": "abfl-f1rt",
+  "source_pdf": "uploads/pdfs/abfl-f1rt.pdf",
+  "num_figures": 27,
+  "images": [
+    {
+      "file": "data/figures/abfl-f1rt/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        336,
+        669
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_003_figure_002.png",
+      "page": 3,
+      "index": 2,
+      "size_px": [
+        750,
+        881
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_008_figure_003.png",
+      "page": 8,
+      "index": 3,
+      "size_px": [
+        240,
+        217
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_008_figure_004.png",
+      "page": 8,
+      "index": 4,
+      "size_px": [
+        238,
+        216
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_008_figure_005.png",
+      "page": 8,
+      "index": 5,
+      "size_px": [
+        238,
+        218
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_008_figure_006.png",
+      "page": 8,
+      "index": 6,
+      "size_px": [
+        28,
+        47
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_009_figure_007.png",
+      "page": 9,
+      "index": 7,
+      "size_px": [
+        163,
+        184
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_009_figure_008.png",
+      "page": 9,
+      "index": 8,
+      "size_px": [
+        167,
+        187
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_009_figure_009.png",
+      "page": 9,
+      "index": 9,
+      "size_px": [
+        741,
+        295
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_010_figure_010.png",
+      "page": 10,
+      "index": 10,
+      "size_px": [
+        168,
+        184
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_011_figure_011.png",
+      "page": 11,
+      "index": 11,
+      "size_px": [
+        163,
+        180
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_011_figure_012.png",
+      "page": 11,
+      "index": 12,
+      "size_px": [
+        168,
+        181
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_012_figure_013.png",
+      "page": 12,
+      "index": 13,
+      "size_px": [
+        166,
+        173
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_013_figure_014.png",
+      "page": 13,
+      "index": 14,
+      "size_px": [
+        54,
+        49
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_014_figure_015.png",
+      "page": 14,
+      "index": 15,
+      "size_px": [
+        762,
+        676
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_015_figure_016.png",
+      "page": 15,
+      "index": 16,
+      "size_px": [
+        360,
+        209
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_015_figure_017.png",
+      "page": 15,
+      "index": 17,
+      "size_px": [
+        359,
+        207
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_015_figure_018.png",
+      "page": 15,
+      "index": 18,
+      "size_px": [
+        359,
+        207
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_015_figure_019.png",
+      "page": 15,
+      "index": 19,
+      "size_px": [
+        361,
+        204
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_015_figure_020.png",
+      "page": 15,
+      "index": 20,
+      "size_px": [
+        259,
+        176
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_015_figure_021.png",
+      "page": 15,
+      "index": 21,
+      "size_px": [
+        355,
+        204
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_016_figure_022.png",
+      "page": 16,
+      "index": 22,
+      "size_px": [
+        409,
+        175
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_016_figure_023.png",
+      "page": 16,
+      "index": 23,
+      "size_px": [
+        416,
+        221
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_016_figure_024.png",
+      "page": 16,
+      "index": 24,
+      "size_px": [
+        37,
+        41
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_016_figure_025.png",
+      "page": 16,
+      "index": 25,
+      "size_px": [
+        37,
+        41
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_018_figure_026.png",
+      "page": 18,
+      "index": 26,
+      "size_px": [
+        606,
+        816
+      ]
+    },
+    {
+      "file": "data/figures/abfl-f1rt/page_020_figure_027.png",
+      "page": 20,
+      "index": 27,
+      "size_px": [
+        44,
+        52
+      ]
+    }
+  ]
+}

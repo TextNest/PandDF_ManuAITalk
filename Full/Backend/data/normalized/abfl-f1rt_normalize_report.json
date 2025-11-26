@@ -1,0 +1,12 @@
+{
+  "num_pages": 20,
+  "lines_before": 409,
+  "lines_after": 357,
+  "placeholders_removed_estimate": 79,
+  "repeated_lines_removed": 0,
+  "num_repeated_patterns": 0,
+  "repeated_patterns_sample": [],
+  "repeated_threshold": 12,
+  "doc_id": "abfl-f1rt",
+  "source_parsed_file": "data\\parsed\\abfl-f1rt.md"
+}
