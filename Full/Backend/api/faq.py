@@ -161,7 +161,8 @@ async def get_faq(
 async def update_faq(
     faq_id: str,
     faq_update: FAQUpdate,
-    session: AsyncSession = Depends(get_session)
+    session: AsyncSession = Depends(get_session),
+    current_user: dict = Depends(get_current_user) 
 ):
     """
     faq_id로 FAQ 수정
@@ -182,7 +183,8 @@ async def update_faq(
     
     # None 값은 제외 (COALESCE를 사용하므로 None이면 기존 값 유지)
     params = {k: v for k, v in update_data.items() if v is not None}
-    
+    params['updated_by'] = current_user["unique_id"]
+
     await session.execute(text(update), params)
     await session.commit()
     

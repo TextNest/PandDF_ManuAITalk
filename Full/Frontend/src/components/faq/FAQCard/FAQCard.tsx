@@ -5,7 +5,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { ChevronDown, ChevronUp, Eye, ThumbsUp, Sparkles, Edit, Trash2, Save, X } from 'lucide-react';
+import { ChevronDown, ChevronUp, Sparkles, Edit, Trash2, Save, X } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { FAQ } from '@/types/faq.types';
@@ -30,15 +30,66 @@ export default function FAQCard({ faq, onUpdate, onDelete }: FAQCardProps) {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  
+
+  const STATUS_LABELS: Record<string, string> = {
+    draft: '임시저장',
+    candidate: '후보',
+    active: '활성',
+    inactive: '비활성',
+  };
+
   // 수정 폼 상태
   const [editForm, setEditForm] = useState({
     question: faq.question,
     answer: faq.answer,
-    category: faq.category || '',
     tags: Array.isArray(faq.tags) ? faq.tags.join(', ') : (faq.tags || ''),
     status: faq.status,
   });
+
+  // 제품 목록 관련 state 추가 (product_internal_id 포함)
+  const [products, setProducts] = useState<Array<{
+    product_internal_id: number;
+    product_id: string;
+    product_name: string;
+  }>>([]);
+  const [selectedProductId, setSelectedProductId] = useState<string>(faq.productId || '');
+  const [isLoadingProducts, setIsLoadingProducts] = useState(false);
+
+  // 제품 목록 가져오기
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setIsLoadingProducts(true);
+      try {
+        const response = await apiClient.get('/api/products/admin');
+        setProducts(response.data);
+        // 로그 추가
+        console.log('✅ 제품 목록 로드됨:', response.data);
+        console.log('첫 번째 제품:', response.data[0]);
+        console.log('product_id 타입:', typeof response.data[0]?.product_id);
+      } catch (error) {
+        console.error('제품 목록 조회 실패:', error);
+      } finally {
+        setIsLoadingProducts(false);
+      }
+    };
+
+    if (isEditing) {
+      fetchProducts();
+    }
+  }, [isEditing]);
+
+  useEffect(() => {
+    if (products.length > 0 && faq.productId) {
+      setSelectedProductId(faq.productId);
+    }
+  }, [products, faq.productId]);
+
+
+  // 로그 추가
+  console.log('FAQ 카드 초기화');
+  console.log('faq.productId:', faq.productId);
+  console.log('faq.productInternalId:', faq.productInternalId);
+  console.log('초기 selectedProductId:', faq.productId || '');
 
   // faq가 변경되면 폼 업데이트
   useEffect(() => {
@@ -46,7 +97,6 @@ export default function FAQCard({ faq, onUpdate, onDelete }: FAQCardProps) {
       setEditForm({
         question: faq.question,
         answer: faq.answer,
-        category: faq.category || '',
         tags: Array.isArray(faq.tags) ? faq.tags.join(', ') : (faq.tags || ''),
         status: faq.status,
       });
@@ -56,6 +106,11 @@ export default function FAQCard({ faq, onUpdate, onDelete }: FAQCardProps) {
   // 수정 모드 시작
   const handleEdit = (e: React.MouseEvent) => {
     e.stopPropagation();
+
+    // 로그 추가
+    console.log('📝 수정 모드 시작');
+    console.log('현재 FAQ:', faq);
+
     setIsEditing(true);
     setIsExpanded(true);
   };
@@ -66,7 +121,6 @@ export default function FAQCard({ faq, onUpdate, onDelete }: FAQCardProps) {
     setEditForm({
       question: faq.question,
       answer: faq.answer,
-      category: faq.category || '',
       tags: Array.isArray(faq.tags) ? faq.tags.join(', ') : (faq.tags || ''),
       status: faq.status,
     });
@@ -78,23 +132,27 @@ export default function FAQCard({ faq, onUpdate, onDelete }: FAQCardProps) {
     e.stopPropagation();
     try {
       setIsSaving(true);
-      
+
+      // 선택된 제품 찾기(있으면)
+      const selectedProduct = products.find(p => p.product_id === selectedProductId);
+
       const updateData: any = {
+        // 사용자가 수정한 값들
         question: editForm.question,
         answer: editForm.answer,
-        category: editForm.category || null,
         tags: editForm.tags || null,
-        status: editForm.status,
+        product_internal_id: selectedProduct?.product_internal_id || faq.productInternalId,
+        faq_status: editForm.status,
       };
 
       const response = await apiClient.patch(
         API_ENDPOINTS.FAQ.UPDATE(faq.faqId),
         updateData
       );
-      
+
       const updatedFaq = convertFAQResponseToFAQ(response.data);
       setIsEditing(false);
-      
+
       if (onUpdate) {
         onUpdate(updatedFaq);
       }
@@ -118,7 +176,7 @@ export default function FAQCard({ faq, onUpdate, onDelete }: FAQCardProps) {
       setIsDeleting(true);
       await apiClient.delete(API_ENDPOINTS.FAQ.DELETE(faq.faqId));
       setShowDeleteModal(false);
-      
+
       if (onDelete) {
         onDelete(faq.faqId);
       }
@@ -156,7 +214,7 @@ export default function FAQCard({ faq, onUpdate, onDelete }: FAQCardProps) {
               <span className={styles.product}>{faq.productName}</span>
             )}
             <span className={`${styles.status} ${styles[faq.status]}`}>
-              {faq.status === 'published' ? '게시됨' : '임시저장'}
+              {STATUS_LABELS[faq.status]||faq.status}
             </span>
           </div>
         </div>
@@ -191,13 +249,21 @@ export default function FAQCard({ faq, onUpdate, onDelete }: FAQCardProps) {
               </div>
 
               <div className={styles.formGroup}>
-                <label className={styles.formLabel}>카테고리</label>
-                <Input
-                  value={editForm.category}
-                  onChange={(e) => setEditForm({ ...editForm, category: e.target.value })}
-                  placeholder="카테고리를 입력하세요"
-                  fullWidth
-                />
+                <label className={styles.formLabel}>제품 선택 *</label>
+                <select
+                  className={styles.select}
+                  value={selectedProductId}
+                  onChange={(e) => setSelectedProductId(e.target.value)}
+                  disabled={isLoadingProducts}
+                >
+                  <option value="">제품을 선택하세요</option>
+                  {products.map(product => (
+                    <option key={product.product_id} value={product.product_id}>
+                      {product.product_name} ({product.product_id})
+                    </option>
+                  ))}
+                </select>
+                {isLoadingProducts && <p>제품 목록 로딩 중...</p>}
               </div>
 
               <div className={styles.formGroup}>
@@ -215,10 +281,12 @@ export default function FAQCard({ faq, onUpdate, onDelete }: FAQCardProps) {
                 <select
                   className={styles.select}
                   value={editForm.status}
-                  onChange={(e) => setEditForm({ ...editForm, status: e.target.value as 'draft' | 'published' })}
+                  onChange={(e) => setEditForm({ ...editForm, status: e.target.value as 'draft' | 'candidate' | 'active' | 'inactive'})}
                 >
-                  <option value="draft">임시저장</option>
-                  <option value="published">게시됨</option>
+                  <option value="draft">임시작성</option>
+                  <option value="candidate">후보</option>
+                  <option value="active">활성</option>
+                  <option value="inactive">비활성</option>
                 </select>
               </div>
 
@@ -260,14 +328,6 @@ export default function FAQCard({ faq, onUpdate, onDelete }: FAQCardProps) {
               )}
 
               <div className={styles.stats}>
-                <div className={styles.statItem}>
-                  <Eye size={16} />
-                  <span>{faq.viewCount}</span>
-                </div>
-                <div className={styles.statItem}>
-                  <ThumbsUp size={16} />
-                  <span>{faq.helpfulCount}</span>
-                </div>
                 <div className={styles.statItem}>
                   <span className={styles.date}>
                     {formatRelativeTime(faq.updatedAt)}
