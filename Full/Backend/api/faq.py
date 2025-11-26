@@ -54,7 +54,7 @@ async def create_faq(
     # 생성된 FAQ 조회
     result = await session.execute(
         text(find_faq_by_id),
-        {'faq_id':faq_id}
+        {'faq_id':faq_id.hex()}
     )
     row = result.mappings().one()
     return dict(row)
