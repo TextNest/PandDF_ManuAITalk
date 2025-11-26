@@ -40,7 +40,7 @@ export default function ProductCard({ product, onProductUpdate, onProductDelete 
 
   // status에 따른 스타일 및 라벨
   const analysisStatusMap = {
-    pending: { label: '분석 대기중', color: styles.statusPending, icon: <Hourglass size={16} /> },
+    pending: { label: '분석 중', color: styles.statusPending, icon: <Hourglass size={16} /> },
     completed: { label: '분석 완료', color: styles.statusCompleted, icon: <CheckCircle size={16} /> },
     failed: { label: '분석 실패', color: styles.statusFailed, icon: <XCircle size={16} /> },
   };
@@ -190,8 +190,10 @@ export default function ProductCard({ product, onProductUpdate, onProductDelete 
             <span className={styles.metaValue}>{product.category || '미지정'}</span>
           </div>
           <div className={styles.metaItem}>
-            <span className={styles.metaLabel}>문서</span>
-            <span className={styles.metaValue}>{product.pdf_path ? '1개' : '0개'}</span>
+            <span className={styles.metaLabel}>최종 수정일</span>
+            <span className={styles.metaValue}>
+              {new Date(product.updated_at).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' })}
+            </span>
           </div>
         </div>
 

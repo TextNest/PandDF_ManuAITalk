@@ -90,5 +90,6 @@ def get_current_user(authorization: Optional[str] = Header(None))-> companyInfo:
             # 예상치 못한 role일 경우
             raise HTTPException(status_code=401, detail=f"알 수 없는 사용자 역할(role): {role}")
 
-    except JWTError:
+    except JWTError as e:
+        print(f"JWT 디코딩 오류 발생: {e}")
         raise HTTPException(status_code=401,detail="인증 오류 : 토큰이 유효하지 않거나 만료되었습니다.")

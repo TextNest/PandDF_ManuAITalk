@@ -147,7 +147,7 @@ export default function SimulationPage() {
                 <li>🎯 <strong>실제 크기 배치:</strong> 가구가 실제 크기대로 정확하게 보여서, 미리 놓아본 것처럼 느껴져요.</li>
                 <li>📏 <strong>공간 길이 측정:</strong> AR로 내 방의 길이를 바로 재볼 수 있어요.</li>
                 <li>🔗 <strong>가구 정보 확인:</strong> 가구의 크기나 3D 모델 정보를 바로 불러와서 볼 수 있어요.</li>
-                <li>🖐️ <strong>움직이는 메뉴:</strong> 화면에 뜨는 메뉴를 드래그하거나 확대/축소해서 편하게 쓸 수 있어요.</li>
+                <li>🖐️ <strong>제품 챗봇 연결:</strong> AR 종료 후 배치된 제품들에 대해 챗봇과 대화할 수 있어요.</li>
               </ul>
             </div>
           </div>
@@ -181,11 +181,11 @@ export default function SimulationPage() {
           <div className={styles.infoCard}>
             <h3>사용 가이드</h3>
             <ol className={styles.guideList}>
-              <li><strong>AR 시작:</strong> 'AR 카메라 시작' 버튼을 눌러 AR 모드를 활성화하세요.</li>
-              <li><strong>공간 스캔:</strong> 화면 안내에 따라 휴대폰을 움직여 바닥을 인식시키세요.</li>
-              <li><strong>제품 선택:</strong> AR 모드 진입 후 나타나는 메뉴에서 배치할 가구를 선택하세요.</li>
-              <li><strong>제품 배치:</strong> 가구 미리보기가 나타나면, 원하는 위치로 이동 후 화면을 터치하여 배치하세요.</li>
-              <li><strong>기타 기능:</strong> 메뉴에서 '측정 삭제' 또는 '가구 삭제'를 사용하여 배치된 객체를 관리할 수 있습니다.</li>
+              <li><strong>AR 시작:</strong> 'AR로 제품 보기' 버튼을 눌러 AR 모드를 활성화하고, 화면 안내에 따라 휴대폰을 움직여 바닥을 인식시키세요.</li>
+              <li><strong>제품 선택 및 배치:</strong> AR 메뉴에서 원하는 제품을 선택한 후, 원하는 위치를 터치하여 공간에 배치합니다.</li>
+              <li><strong>객체 조작:</strong> 배치된 제품을 터치하여 선택하고, 드래그하여 이동하거나 두 손가락으로 회전시킬 수 있습니다.</li>
+              <li><strong>공간 측정:</strong> AR 메뉴에서 측정 모드를 선택하고 화면을 터치하여 실제 공간의 길이를 측정할 수 있습니다.</li>
+              <li><strong>AR 종료 및 챗봇 연결:</strong> AR 모드 종료 후 나타나는 요약 화면에서, 배치했던 제품을 선택하여 AI 챗봇에게 추가 정보를 문의할 수 있습니다.</li>
             </ol>
           </div>
         </aside>

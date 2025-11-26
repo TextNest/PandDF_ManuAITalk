@@ -88,6 +88,9 @@ export function useFurniturePlacement(
                 const scaleZ = size.z > 0 ? itemDepthMeters / size.z : 1;
                 model.scale.set(scaleX, scaleY, scaleZ);
 
+                // 모델이 앞을 보도록 Y축으로 180도(Math.PI 라디안) 회전
+                model.rotation.y = Math.PI;
+
                 model.visible = false;
                 previewModelRef.current = model;
                 sceneRef.current?.add(model);

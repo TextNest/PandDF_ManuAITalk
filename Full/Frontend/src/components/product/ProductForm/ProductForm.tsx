@@ -133,12 +133,6 @@ export default function ProductForm({ onSubmit, onCancel }: ProductFormProps) {
       {error && <p className={styles.errorMessage}>{error}</p>}
 
       <div className={styles.actions}>
-        {onCancel && (
-          <Button type="button" variant="outline" size="lg" onClick={onCancel} disabled={isUploading}>
-            <X size={20} />
-            취소
-          </Button>
-        )}
         <Button type="submit" variant="primary" size="lg" disabled={isUploading}>
           <Save size={20} />
           {isUploading ? '저장 중...' : '등록하기'}

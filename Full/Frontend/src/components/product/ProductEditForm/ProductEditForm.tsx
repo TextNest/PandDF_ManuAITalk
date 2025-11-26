@@ -75,6 +75,11 @@ export default function ProductEditForm({ initialData, onSubmit, onCancel }: Pro
     const conversionFormData = new FormData();
     conversionFormData.append('file', file);
 
+    // 고품질 설정을 위한 파라미터 추가
+    conversionFormData.append('bake_resolution', '2048'); // 텍스처 해상도
+    conversionFormData.append('vertex_count', '30000'); // 모델 정점 수
+    conversionFormData.append('remesh', 'Triangle');    // 메시 재구성 방식
+
     let lastError: any = null;
     let isSuccess = false;
 
@@ -85,6 +90,9 @@ export default function ProductEditForm({ initialData, onSubmit, onCancel }: Pro
 
         const response = await fetch(`${baseUrl}/convert-2d-to-3d`, {
           method: 'POST',
+          headers: {
+            'ngrok-skip-browser-warning': 'true',
+          },
           body: conversionFormData,
         });
 

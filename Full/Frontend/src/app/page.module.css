@@ -293,6 +293,13 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
+/* 480px 이하 화면에서 '구글' 텍스트 숨김 */
+@media (max-width: 480px) {
+  .loginButton .googleText {
+    display: none;
+  }
+}
+
 .logoutButton {
   background: #f1f5f9;
   color: #475569;

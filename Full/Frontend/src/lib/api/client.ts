@@ -49,4 +49,17 @@ apiClient.interceptors.request.use(
 //   }
 // );
 
+// 응답 인터셉터
+apiClient.interceptors.response.use(
+  (response) => response,
+  (error) => {
+      if (error.response && error.response.status === 401) {
+      // 인증 오류 처리
+      localStorage.removeItem('auth-storage'); 
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  }
+);
+
 export default apiClient;

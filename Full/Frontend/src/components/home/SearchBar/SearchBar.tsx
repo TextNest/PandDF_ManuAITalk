@@ -77,7 +77,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
           ref={inputRef}
           type="text"
           className={styles.input}
-          placeholder="제품명이나 모델명을 검색하세요..."
+          placeholder="제품/모델명을 검색하세요..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
