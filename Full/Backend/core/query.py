@@ -60,16 +60,18 @@ session_search ="""
 SELECT 
     session.session_internal_id as id,
     session.session_id,
-    product.product_id,
-    session.last_message,
-    session.message_count,
-    session.updated_at
+    product.product_id as productId,
+    session.last_message as lastMessage,
+    session.message_count as messageCount,
+    session.updated_at as updatedAt,
+    product.product_name as productName,
+    session.created_at as createdAt
 FROM
     tb_session as session join tb_product as product on session.product_internal_id = product.product_internal_id
 WHERE
     user_internal_id = :user_internal_id
 ORDER BY
-    updated_at DESC
+    session.updated_at DESC
 """
 
 add_session ="""

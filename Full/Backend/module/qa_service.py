@@ -137,14 +137,19 @@ class HybridRAGChain:
         return check_context
     async def invoke(self, query,session):
         initial_context = self.check(query)
+        need_self_query = False
         if initial_context:
             print("검색 결과가 존재합니다. 결과를 출력 해드리겠습니다.")
             answer = await self.light_with_history.ainvoke(
                 {"input":query,"context":initial_context},
                 config={"configurable": {"session_id": session}}
             )
-
+            if "찾을 수 없습니다" in answer.get("answer", ""): 
+                need_self_query = True
         else:
+            need_self_query = True
+
+        if need_self_query:
             print("검색결과가 없습니다. 쿼리를 재 작성하겠습니다.")
             run_manager = CallbackManagerForRetrieverRun.get_noop_manager()
             sub_queries = self.combined_retriever.generate_queries(query, run_manager=run_manager)
@@ -155,6 +160,6 @@ class HybridRAGChain:
             answer = await self.chain_with_history.ainvoke(
             {"input": query},
             config={"configurable": {"session_id": session}}
-        )
-            answer = answer.get("answer","")
+            )
+        answer = answer.get("answer","")
         return {"answer": answer}

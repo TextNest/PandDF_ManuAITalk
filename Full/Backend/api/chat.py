@@ -19,7 +19,7 @@ router = APIRouter()
 
 @router.post("/chat/history")
 async def history_session(user_info: Dict = Depends(get_current_user),session:AsyncSession=Depends(get_session)):
-    user_id = user_info.get("email")
+    user_id = user_info.get("unique_id")
 
     results = await session.execute(text(session_search),
     params={
@@ -83,6 +83,7 @@ async def feedback(feedback_data:FeedBack,session:AsyncSession=Depends(get_sessi
 async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[str] = Query(None, alias="session_id")):
     await websocket.accept()
     print("연결 성공")  
+    pid = pid.upper()
     message = None
     user_id = None
     final_answer = None
@@ -124,8 +125,8 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[st
                 print(initial_messages,type(initial_messages))
                 final_message = []
                 for i in initial_messages:
-                    if isinstance(i["timestamp"],datetime.datetime):
-                        i['timestamp'] = i['timestamp'].isoformat()
+                    if isinstance(i["created_at"],datetime.datetime):
+                        i['created_at'] = i['created_at'].isoformat()
                     final_message.append(i)
                 message = final_message
                 await websocket.send_json({"type":"session_init", "message":final_message})
