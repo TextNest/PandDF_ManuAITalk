@@ -208,13 +208,15 @@ export default function HomePage() {
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
           <p>© 2025 ManuAI-Talk. All rights reserved.</p>
-          <button
-            className={styles.adminLink}
-            onClick={handleAdminLogin}
-          >
-            <Shield size={16} />
-            관리자 로그인
-          </button>
+          {!isAuthenticated && (
+            <button
+              className={styles.adminLink}
+              onClick={handleAdminLogin}
+            >
+              <Shield size={16} />
+              관리자 로그인
+            </button>
+          )}
         </div>
       </footer>
 
