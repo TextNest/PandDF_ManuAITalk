@@ -26,7 +26,7 @@ export default function QRCodeDisplay({
   const qrRef = useRef<HTMLDivElement>(null);
   
   // QR 코드가 가리킬 URL
-  const qrUrl = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/chat/${productId}`;
+  const qrUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/chat/${productId}`;
 
   // QR 코드 다운로드
   const handleDownload = () => {

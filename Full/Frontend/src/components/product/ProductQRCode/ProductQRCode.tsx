@@ -18,7 +18,7 @@ interface ProductQRCodeProps {
 }
 
 export default function ProductQRCode({ productId, productName }: ProductQRCodeProps) {
-  const [qrValue] = useState(`${process.env.NEXT_PUBLIC_API_URL}/chat/${productId}`);
+  const [qrValue] = useState(`${process.env.NEXT_PUBLIC_APP_URL}/chat/${productId}`);
 
   const handleDownload = () => {
     const svg = document.getElementById('qr-code-svg');
