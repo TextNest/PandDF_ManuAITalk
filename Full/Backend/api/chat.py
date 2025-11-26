@@ -125,8 +125,8 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[st
                 print(initial_messages,type(initial_messages))
                 final_message = []
                 for i in initial_messages:
-                    if isinstance(i["created_at"],datetime.datetime):
-                        i['created_at'] = i['created_at'].isoformat()
+                    if isinstance(i["timestamp"],datetime.datetime):
+                        i['timestamp'] = i['timestamp'].isoformat() 
                     final_message.append(i)
                 message = final_message
                 await websocket.send_json({"type":"session_init", "message":final_message})
