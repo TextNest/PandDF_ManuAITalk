@@ -123,7 +123,9 @@ export default function ProductSelector() {
       </div>
 
       {/* 하단: 제품 선택 (검색창 대체) */}
-      <div className={`${styles.selectWrapper} ${styles.productSelect}`}>
+      <div className={`${styles.selectWrapper} ${styles.productSelect} ${
+        selectedCategory ? styles.activeCategory : styles.inactiveCategory
+      }`}>
         <Box className={styles.icon} size={20} />
         <select 
           value={selectedProduct} 

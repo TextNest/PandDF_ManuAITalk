@@ -359,7 +359,7 @@ FROM tb_message m
     ON s.product_internal_id = p.product_internal_id
 WHERE 
     m.created_at >= :start_date
-    -- 파이썬 로직으로 "AND p.company_internal_id = :company_id" 추가되는 곳
+    -- 파이썬 로직으로 회사 ID 필터링 조건이 추가되는 곳
 ORDER BY
     m.message_internal_id ASC
 ;

@@ -5,7 +5,7 @@
   /* align-items: center; */
   justify-content: center;
   padding: 2rem;
-  padding-top: 4rem;          /* 헤더 높이(+여유) */
+  padding-top: 2rem;          /* 헤더 높이(+여유) */
   padding-bottom: 4rem;       /* 푸터 영역 */
   position: relative;
   overflow: hidden;
@@ -68,7 +68,7 @@
 /* 로고 */
 .logo {
   position: relative;  /* 추가 */
-  margin-top: 11.5rem;  /* 추가 */
+  margin-top: 15vh;  /* 추가 */
   display: flex;
   align-items: center;
   justify-content: center;
