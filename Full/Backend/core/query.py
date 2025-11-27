@@ -228,6 +228,56 @@ class LogQuery:
     LIMIT :limit OFFSET :offset
     """
 
+class LogQuery_v2:
+    view_recent = """
+    SELECT
+        RP.session_internal_id as sid,
+        RP.is_resolved as status,
+        RP.product_id as productId,
+        DATE_FORMAT(RP.completed_at, '%Y-%m-%d %H:%i:%s') as endedAt,
+        (
+            SELECT TM.content
+            FROM tb_message AS TM
+            WHERE TM.session_internal_id = RP.session_internal_id
+            ORDER BY TM.message_internal_id ASC
+            LIMIT 1
+        ) AS message
+    FROM tb_report AS RP
+    ORDER BY RP.completed_at DESC
+    LIMIT 3
+    """
+    
+    product_info = """
+    SELECT
+        category,
+        product_id AS productId
+    FROM tb_product
+    ORDER BY category, product_id
+    """
+
+    view_session_head = """
+    SELECT
+        RP.session_internal_id AS sid,
+        RP.session_id AS sessionId,
+        RP.is_resolved AS status,
+        RP.product_id AS productId,
+        RP.satisfaction,
+        DATE_FORMAT(RP.completed_at, '%Y-%m-%d %H:%i:%s') as endedAt,
+        (
+            SELECT TM.content
+            FROM tb_message AS TM
+            WHERE TM.session_internal_id = RP.session_internal_id
+            ORDER BY TM.created_at ASC, TM.message_internal_id ASC
+            LIMIT 1
+        ) AS message
+    FROM tb_report AS RP
+    """
+
+    view_session_tail = """
+    ORDER BY RP.report_internal_id DESC
+    LIMIT :limit OFFSET :offset
+    """
+
 # ---------- FAQ 관련 쿼리 ----------
 # 목록 조회 (필터링 가능)
 find_faq = """

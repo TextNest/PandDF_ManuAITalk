@@ -4,8 +4,6 @@
 // 로그 관련 포멧 정의
 // ============================================
 
-import type {SessionStatus} from '@/types/log.types';
-
 export const formatProductId = (id: string | null) => id ?? "Unknown";
 
 export const formatTimestamp = (ts: string) => {
@@ -18,6 +16,10 @@ export const formatTimestamp = (ts: string) => {
   return `${year}-${month}-${day} ${hour}:${minute}`;
 }
 
-export function statusColor(status: SessionStatus) {
+export function statusColor_v2(status: number) {
+  return status === 1 ? "#22c55e" : "#ef4444";
+}
+
+export function statusColor(status: string) {
   return status === "resolved" ? "#22c55e" : "#ef4444";
 }

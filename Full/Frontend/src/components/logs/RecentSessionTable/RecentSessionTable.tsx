@@ -7,12 +7,12 @@
 'use client';
 
 import { SessionRecent } from '@/types/log.types';
-import { formatProductId } from '@/lib/utils/log.utils';
+import { formatProductId, formatTimestamp, statusColor_v2 } from '@/lib/utils/log.utils';
 import styles from './RecentSessionTable.module.css';
 
 interface RecentSessionTableProps {
   sessions: SessionRecent[];
-  onSelectSession?: (sessionId: string) => void;
+  onSelectSession?: (sid: number) => void;
 }
 
 export default function RecentSessionTable({sessions, onSelectSession,}: RecentSessionTableProps) {
@@ -30,12 +30,15 @@ export default function RecentSessionTable({sessions, onSelectSession,}: RecentS
         <tbody>
           {sessions.map((session) => (
             <tr
-              key={session.sessionId}
+              key={session.sid}
               className={styles.row}
-              onClick={() => onSelectSession?.(session.sessionId)}
+              onClick={() => onSelectSession?.(session.sid)}
             >
               <td className={styles.status}>
-                {session.status === 'resolved' ? '해결' : '미해결'}
+                  <span
+                  className={styles.statusDot}
+                  style={{ backgroundColor: statusColor_v2(session.status) }}
+                />
               </td>
               <td className={styles.product}>
                 {formatProductId(session.productId)}
@@ -43,8 +46,8 @@ export default function RecentSessionTable({sessions, onSelectSession,}: RecentS
               <td className={styles.message}>
                 {session.message}
               </td>
-              <td className={styles.satisfy}>
-                {session.satisfaction.toFixed(2)}
+              <td className={styles.endedAt}>
+                {formatTimestamp(session.endedAt)}
               </td>
             </tr>
           ))}

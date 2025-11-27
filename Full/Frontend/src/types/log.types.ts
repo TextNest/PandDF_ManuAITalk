@@ -17,36 +17,42 @@ export interface ChatLog {
 }
 
 // ============================================
-// 로그 관련 타입 재정의 (ver.1.1)
+// 로그 관련 타입 재정의 (ver.2.0)
 // ============================================
 
-export type SessionStatus = "resolved" | "unresolved";
 export type MessageFeedback = "positive" | "negative";
 
 // 최근 문의
 export interface SessionRecent {
-  sessionId: string;
+  sid: number; // session_internal_id
   productId: string | null;
   message: string;
-  status: SessionStatus;
-  satisfaction: number;
+  status: number;
+  endedAt: string;
+}
+
+export interface ProductInfo {
+  category: string | null;
+  productId: string;
 }
 
 // 필터
 export interface SessionFilter {
   from?: string;
   to?: string;
+  category?: string | "all";
   productId?: string;
-  status?: SessionStatus | "all";
-  sessionId?: string;
+  status?: number | "all";
+  sessionId?: string; // session_id
 }
 
 // 세션
 export interface SessionList {
+  sid: number;
   sessionId: string;
   productId: string | null;
   message: string;
-  status: SessionStatus;
+  status: number;
   endedAt: string;
   satisfaction: number;
 }
@@ -57,11 +63,11 @@ export interface SessionListResponse {
   items: SessionList[];
 }
 
-// 상세 리포트
+// 상세 리포트, 좀 나중에 수정해도 됨
 export interface SessionReport {
   sessionId: string;
   productId: string | null;
-  status: SessionStatus;
+  status: number;
   summary: string;
   timestamp_s: string;
   timestamp_e: string;
@@ -70,11 +76,11 @@ export interface SessionReport {
   satisfaction: number;
 }
 
-// 상세 로그
+// 상세 로그, 좀 나중에 수정해도 됨
 export interface SessionLog {
   sessionId: string;
   role: string;
   message: string;
   timestamp: string;
-  feedback: MessageFeedback;
+  feedback: MessageFeedback | null;
 }

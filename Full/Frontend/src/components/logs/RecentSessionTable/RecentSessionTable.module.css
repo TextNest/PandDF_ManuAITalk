@@ -6,7 +6,7 @@
   background-color: var(--bg-primary);
   border: 1px solid var(--border-light);
   border-radius: var(--border-radius-lg);
-  padding: var(--spacing-lg);
+  padding: var(--spacing-sm) var(--spacing-lg);
 }
 
 .table {
@@ -16,15 +16,24 @@
 }
 
 .table td {
-  padding: var(--spacing-md);
+  padding: 12px 0;
   font-size: var(--font-size-sm);
+  line-height: 1.45;
   color: var(--text-primary);
   border-bottom: 1px solid var(--border-light);
 }
 
+.table tr {
+  margin-top: 4px;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
 .row {
   cursor: pointer;
-  transition: background-color 0.15s ease;
+  transition: background-color 0.16s ease;
 }
 
 .row:hover {
@@ -32,15 +41,25 @@
 }
 
 .status {
-  font-weight: var(--text-weight-semibold);
-  color: var(--color-primary);
-  width: 80px;
+  width: 32px;
+  text-align: center;
+}
+
+.statusDot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
 }
 
 .product {
+  width: 110px;
   font-weight: var(--font-weight-medium);
-  width: 120px;
   color: var(--text-secondary);
+  padding-right: var(--spacing-md);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .message {
@@ -48,13 +67,14 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  padding-right: var(--spacing-md);
 }
 
-.satisfy {
-  width: 60px;
+.table td.endedAt {
+  width: 120px;
   text-align: right;
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-success);
+  white-space: nowrap;
+  padding-right: 8px;
 }
 
 .empty {
