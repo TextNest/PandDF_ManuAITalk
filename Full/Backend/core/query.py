@@ -109,6 +109,17 @@ delete_message = """
 DELETE FROM test_message WHERE session_internal_id = (SELECT session_internal_id FROM tb_session WHERE session_id = :session_id)
 """
 
+find_answer = """
+SELECT answer FROM tb_faq WHERE question = :last_msg AND 
+product_internal_id = (SELECT product_internal_id FROM tb_product WHERE product_id = :product_id) """
+
+find_questions = """
+SELECT question FROM tb_faq WHERE product_internal_id = (SELECT product_internal_id FROM tb_product WHERE product_id = :productId) ORDER BY RAND() Limit 4
+"""
+
+origin_query = """
+SELECT product_id,product_name FROM tb_product WHERE category = (SELECT category FROM tb_product WhERE product_id = :product_id) and product_id != :product_id """
+
 # ---------- report ----------
 
 class AutoReportProcess_v2:

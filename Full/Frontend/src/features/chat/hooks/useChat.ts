@@ -39,6 +39,7 @@ export const useChat = (initialProductId: string) => {
     const [isNewSession, setIsNewSession] = useState<boolean>(
     () => !initialSessionIdFromUrl
   );
+    const [suggestedQuestions, setSuggestedQuestions] = useState<string[]>([]);
 
     // ----------------------------------------------------
     // 1. HTTP REST API: 회원 세션 목록 로드 (변경 없음)
@@ -298,6 +299,31 @@ export const useChat = (initialProductId: string) => {
     }
     }, [isAuthenticated, jwtToken]);
 
+    const fetchSuggestedQuestions = useCallback(async () => {
+        if (!productId) return;
+        try {
+            const response = await fetch(`${BACKEND_URL}/chat/suggestions/${productId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',}
+        });
+
+        if (response.ok){
+            const data = await response.json();
+            setSuggestedQuestions(data.question || []);
+        }}
+        catch (error) {
+            console.error('추천 질문 로드 실패:', error);
+            // 에러 발생 시 빈 배열로 두어 UI가 깨지지 않게 함
+            setSuggestedQuestions([]); 
+        }
+        }, [productId]); 
+        useEffect(() => {
+
+        fetchSuggestedQuestions();
+
+    }, [fetchSuggestedQuestions]);
+
 
     return {
         messages, isLoading, error, sendMessage, messagesEndRef,
@@ -308,5 +334,7 @@ export const useChat = (initialProductId: string) => {
         deleteSession: handleDeleteSession,
         sendFeedback: sendFeedback,
         isNewSession: isNewSession,
+        suggestedQuestions,
+        refreshSuggestedQuestions: fetchSuggestedQuestions,
     };
 };
