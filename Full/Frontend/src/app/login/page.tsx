@@ -102,8 +102,8 @@ export default function UserLoginPage() {
           <div className={styles.info}>
             <p>💡 <strong>로그인 시 추가 기능</strong></p>
             <ul>
-              <li>과거 대화 기록 확인</li>
-              <li>즐겨찾기 관리</li>
+              <li>과거 대화기록 확인</li>
+              {/* <li>즐겨찾기 관리</li> */}
             </ul>
           </div>
         </div>

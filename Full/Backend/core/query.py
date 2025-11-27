@@ -387,11 +387,13 @@ WHERE generation_id = :generation_id;
 """
 
 # ---------- 제품관리, AR 관련 쿼리 ----------
-# 전체 제품 조회 -> 특정 회사 제품 조회로 변경
+# 전체 제품 조회 (회사명 포함)
 find_all_product = """
-SELECT * FROM tb_product
-WHERE is_active = 1
-ORDER BY created_at DESC;
+SELECT p.*, c.name as company_name
+FROM tb_product p
+LEFT JOIN tb_company c ON p.company_internal_id = c.company_internal_id
+WHERE p.is_active = 1
+ORDER BY p.created_at DESC;
 """
 
 # 제품 조회 (제품 코드로)

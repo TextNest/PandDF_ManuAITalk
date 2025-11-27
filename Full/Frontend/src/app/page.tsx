@@ -5,7 +5,8 @@ import { useAuth } from '@/features/auth/hooks/useAuth';
 // 1. 아이콘 추가 (History, Building 등)
 import { Sparkles, QrCode, Shield, Settings, History, Building, Box, LogOut } from 'lucide-react'; 
 import { useState, useEffect } from 'react';
-import SearchBar from '@/components/home/SearchBar/SearchBar';
+// import SearchBar from '@/components/home/SearchBar/SearchBar';
+import ProductSelector from '@/components/home/ProductSelector/ProductSelector';
 import styles from './page.module.css';
 import { toast } from '@/store/useToastStore';
 
@@ -32,20 +33,20 @@ export default function HomePage() {
   */
 
   // --- 검색창 핸들러 (기존과 동일) ---
-  const handleSearchChange = (query) => {
-    setSearchQuery(query);
-  };
+  // const handleSearchChange = (query) => {
+  //   setSearchQuery(query);
+  // };
 
-  const handleSearchSubmit = (query) => {
-    const trimmedQuery = query.trim();
-    if (!trimmedQuery) {
-      toast.warning('제품 ID 또는 이름을 입력해주세요.');
-      return;
-    }
-    // 검색 쿼리(제품 ID 또는 슬러그)를 기반으로 채팅 페이지로 바로 이동
-    console.log('채팅 페이지로 이동:', trimmedQuery);
-    router.push(`/chat/${encodeURIComponent(trimmedQuery)}`);
-  };
+  // const handleSearchSubmit = (query) => {
+  //   const trimmedQuery = query.trim();
+  //   if (!trimmedQuery) {
+  //     toast.warning('제품 ID 또는 이름을 입력해주세요.');
+  //     return;
+  //   }
+  //   // 검색 쿼리(제품 ID 또는 슬러그)를 기반으로 채팅 페이지로 바로 이동
+  //   console.log('채팅 페이지로 이동:', trimmedQuery);
+  //   router.push(`/chat/${encodeURIComponent(trimmedQuery)}`);
+  // };
 
   // --- 버튼 핸들러 (기존과 동일) ---
   const handleGoogleLogin = () => {
@@ -114,7 +115,7 @@ export default function HomePage() {
               onClick={() => router.push('/my')}
             >
               <History size={20} />
-              과거기록 바로가기
+              대화 기록
             </button>
           );
       }
@@ -174,16 +175,16 @@ export default function HomePage() {
 
           <p className={styles.description}>
             복잡한 설명서는 이제 그만!<br />
-            제품을 검색하거나 QR 코드를 스캔하고 AI에게 물어보세요.
+            제품을 고르고 AI에게 물어보세요.
           </p>
 
-
-          {/* 검색창 (기존과 동일) */}
+          <ProductSelector />
+          {/* 
           <SearchBar
             value={searchQuery}
             onChange={handleSearchChange}
             onSubmit={handleSearchSubmit}
-          />
+          /> */}
 
           {/* QR 스캔 버튼 */}
           <div className={styles.quickActions}>
@@ -213,108 +214,14 @@ export default function HomePage() {
               className={styles.adminLink}
               onClick={handleAdminLogin}
             >
-              <Shield size={16} />
-              관리자 로그인
+              <Shield size={14} />
+              admin
             </button>
           )}
         </div>
       </footer>
 
       {/* 개발자 도구 (기존과 동일) */}
-      <div className={styles.devTools}>
-        <button
-          className={styles.devToolsButton}
-          onClick={() => setShowDevTools(!showDevTools)}
-          title="개발자 도구"
-        >
-          <Settings size={24} />
-        </button>
-
-        {showDevTools && (
-          <div className={styles.devToolsPanel}>
-            <div className={styles.devToolsHeader}>
-              <h3>🔧 개발자 도구</h3>
-              <button
-                className={styles.closeButton}
-                onClick={() => setShowDevTools(false)}
-              >
-                ✕
-              </button>
-            </div>
-
-            <div className={styles.devToolsContent}>
-              {/* 인증 */}
-              <div className={styles.devSection}>
-                <h4>🔐 인증</h4>
-                <a href="/admin/login" className={styles.devLink}>
-                  관리자 로그인
-                </a>
-                <a href="/admin/register" className={styles.devLink}>
-                  관리자 회원가입
-                </a>
-                <a href="/login" className={styles.devLink}>
-                  일반 사용자 로그인
-                </a>
-              </div>
-
-              {/* 일반 사용자 */}
-              <div className={styles.devSection}>
-                <h4>👤 일반 사용자</h4>
-                <a href="/chat/test-product" className={styles.devLink}>
-                  챗봇 (테스트 제품)
-                </a>
-                <a href="/my" className={styles.devLink}>
-                  내 대화 목록
-                </a>
-              </div>
-
-              {/* 관리자 */}
-              <div className={styles.devSection}>
-                <h4>🏢 관리자</h4>
-                <a href="/dashboard" className={styles.devLink}>
-                  기업 관리자 대시보드
-                </a>
-                <a href="/documents" className={styles.devLink}>
-                  문서 관리
-                </a>
-                <a href="/faq" className={styles.devLink}>
-                  FAQ 관리
-                </a>
-                <a href="/logs" className={styles.devLink}>
-                  로그 분석
-                </a>
-                <a href="/products" className={styles.devLink}>
-                  제품 관리
-                </a>
-                <a href="/profile" className={styles.devLink}>
-                  프로필 설정
-                </a>
-              </div>
-
-              {/* 슈퍼 관리자 */}
-              <div className={styles.devSection}>
-                <h4>🔴 슈퍼 관리자</h4>
-                <a href="/superadmin" className={styles.devLink}>
-                  슈퍼 관리자 대시보드
-                </a>
-                <a href="/superadmin/companies" className={styles.devLink}>
-                  기업 관리
-                </a>
-                <a href="/superadmin/users" className={styles.devLink}>
-                  사용자 관리
-                </a>
-                <a href="/superadmin/settings" className={styles.devLink}>
-                  시스템 설정
-                </a>
-              </div>
-            </div>
-
-            <div className={styles.devToolsFooter}>
-              <small>⚠️ 개발 전용 - 프로덕션에서는 제거됩니다</small>
-            </div>
-          </div>
-        )}
-      </div>
     </div>
   );
 }
