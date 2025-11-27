@@ -8,6 +8,7 @@ from langchain_core.tools import tool
 from langchain_google_genai import ChatGoogleGenerativeAI
 from module.qa_service import HybridRAGChain
 from core.prompt import agent_prompt
+from core.query import find_answer,origin_query
 from typing import List, Dict, Any, Optional
 from langchain_core.runnables import RunnableConfig
 from module.qa_recommend import RecommendRAGChain
@@ -46,8 +47,7 @@ async def recommend_tool(product_id:str, config: RunnableConfig = None,count:int
     상품을 추천을 해줍니다. 만약 유저가 'count'개 만큼 추천해달라고 하면 count 수만큼 추천을 해주고 작성을 하지않으면 기본값을 사용합니다.
     """
     db_session = config.get("configurable", {}).get("db") if config else None
-    origin_query = """
-    SELECT product_id,product_name FROM tb_product WHERE category = (SELECT category FROM tb_product WhERE product_id = :product_id) and product_id != :product_id """
+
     results = await db_session.execute(text(origin_query),
     params={
         "product_id":product_id
@@ -107,13 +107,31 @@ class  ChatBotAgent:
     def _build_graph(self) :
         work  = StateGraph(AgentState)
         llm_with_tools = self.llm.bind_tools(self.tools)
+        async def faq_node(state,config):
+            last_msg = state["messages"][-1]
+            db_session = config.get("configurable", {}).get("db")
+
+            result = await db_session.execute(text(find_answer),params={"last_msg":last_msg.content,"product_id":self.product_id})
+            answer = result.mappings().one_or_none()
+            if answer:
+                return {"messages":[AIMessage(answer["answer"])],"tool_name":"FAQ"}
+            else:
+                return {}
+
+
+        def faq_router(state):
+            last_msg = state["messages"][-1]
+            if isinstance(last_msg, AIMessage):
+                return "end"
+            else:
+                return "agent"
         def agent_node(state):
             formatted_prompt = agent_prompt.format(product_id=self.product_id)
             system_msg = SystemMessage(formatted_prompt)
             response = llm_with_tools.with_config({"run_name":"final_answer"}).invoke([system_msg]+state["messages"])
             return {"messages":[response]}
 
-        async def tool_node(state,config):
+        async def tool_node(state):
             last_msg = state["messages"][-1]
             if hasattr(last_msg,"tool_calls") and last_msg.tool_calls: #마지막 메세지에 too_calls 속성이 있고 값이 있으면
                 print(last_msg.tool_calls[0]["name"])
@@ -135,9 +153,11 @@ class  ChatBotAgent:
             if hasattr(last_msg,"tool_calls") and last_msg.tool_calls:
                 return "tools"
             return "end"
+        work.add_node("faq",faq_node)
         work.add_node("agent",agent_node)
         work.add_node("tools",tool_node)
-        work.add_edge(START,"agent")
+        work.add_edge(START,"faq")
+        work.add_conditional_edges("faq",faq_router,{"agent":"agent","end":END})
         work.add_conditional_edges("agent",end_node,{"tools":"tools","end":END})
         work.add_edge("tools","agent")
         return work.compile(checkpointer=self.checkpoint)

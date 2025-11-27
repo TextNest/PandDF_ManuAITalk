@@ -50,7 +50,8 @@ export default function ChatPage({
     startNewSession,
     deleteSession,
     sendFeedback,
-    isNewSession
+    isNewSession,
+    suggestedQuestions
   } = useChat(params.productId);
 
   // 로그인 배너 상태
@@ -179,7 +180,7 @@ export default function ChatPage({
         {/* 추천 질문 (메시지가 1개일 때만) */}
         {!isLoading && (
           <SuggestedQuestions
-            questions={SUGGESTED_QUESTIONS}
+            questions={suggestedQuestions.length > 0?suggestedQuestions:SUGGESTED_QUESTIONS}
             onSelect={handleSuggestedQuestion}
           />
         )}

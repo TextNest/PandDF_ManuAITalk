@@ -19,7 +19,7 @@ export default function SuggestedQuestions({
 
   return (
     <div className={styles.container}>
-      <p className={styles.title}>추천 질문</p>
+      <p className={styles.title}>자주 묻는 질문</p>
       <div className={styles.questions}>
         {questions.map((question, index) => (
           <button
