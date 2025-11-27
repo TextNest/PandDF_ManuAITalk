@@ -102,7 +102,10 @@ WHERE user_internal_id = :user_internal_id AND session_id = :session_id"""
 
 
 delete_sessions = """
-DELETE FROM test_session WHERE user_internal_id = :user_internal_id AND session_id = :session_id
+DELETE FROM tb_session WHERE user_internal_id = :user_internal_id AND session_id = :session_id
+"""
+delete_sessions_chat = """
+DELETE FROM tb_session WHERE session_id = :session_id
 """
 
 delete_message = """
