@@ -268,16 +268,11 @@ export const useChat = (initialProductId: string) => {
     feedbackType: 'positive' | 'negative' | null
     ) => {
 
-     if (!isAuthenticated || !jwtToken) {
-     console.error('피드백은 로그인이 필요합니다.');
-    throw new Error('Feedback requires authentication');
-    }
 
     try {
         const response = await fetch(`${BACKEND_URL}/chat/feedback`, { 
         method: 'POST',
         headers: {
-        'Authorization': `Bearer ${jwtToken}`, 
         'Content-Type': 'application/json',
         },
         body: JSON.stringify({
