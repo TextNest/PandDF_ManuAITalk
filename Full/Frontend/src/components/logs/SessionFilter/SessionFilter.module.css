@@ -10,11 +10,11 @@
   align-items: stretch;
 }
 
+/* 🔹 검색창 */
 .searchWrapper {
   display: flex;
   align-items: center;
   gap: 8px;
-
   padding: 10px 14px;
   border-radius: 999px;
   border: 1px solid var(--border-light);
@@ -41,29 +41,131 @@
   color: #b3b3b3 !important;
 }
 
+/* 🔹 필터 그룹 전체: 아이콘 + 두 줄 */
 .filterGroup {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
-  justify-content: center;
+  align-items: flex-start; /* 위쪽 정렬 */
   width: 100%;
+  gap: 12px;
+  justify-content: center; /* 중앙 정렬 */
 }
 
-.filterGroup > svg {
+/* 아이콘 박스 - 첫 번째 행에 맞춰 정렬 */
+.leftBlock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  height: 40px; /* select와 동일한 높이 */
+  margin-left: 40px; /* 왼쪽 여백 */
+}
+
+.leftBlock .filterIcon {
   color: var(--text-secondary);
 }
 
+/* 오른쪽 필터 컬럼 (위/아래 두 줄) */
+.filterColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 0 1 auto; /* flex-grow 제거 */
+  margin-right: 40px; /* 오른쪽 여백 */
+}
+
+/* 각 줄 내부 정렬 */
+.filterRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+/* 첫 번째 줄: 카테고리 + 제품 (1:1 비율) */
+.filterRow:first-child > select {
+  flex: 1;
+  min-width: 0;
+}
+
+/* 두 번째 줄: 상태 (고정 너비) + 날짜 (고정 너비) */
+.filterRow:last-child > select {
+  flex: 0 0 auto;
+  width: 150px; /* 상태 셀렉트 고정 너비 */
+}
+
+.filterRow:last-child .dateInput {
+  flex: 0 0 auto;
+  width: 150px; /* 날짜 입력란 고정 너비 */
+}
+
+/* ~ 표시 */
+.tilde {
+  font-size: 14px;
+  padding: 0px;
+  margin: 0 -4px;
+  color: var(--text-secondary);
+  line-height: 40px;
+  flex-shrink: 0;
+}
+
+/* 넓은 화면(전체화면)에서 한 줄로 배치 */
+@media (min-width: 1280px) {
+  .filterColumn {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .filterRow {
+    flex: 0 0 auto;
+    width: auto;
+  }
+
+  /* 전체화면에서 카테고리/제품 너비 조정 */
+  .filterRow:first-child {
+    gap: 8px;
+  }
+
+  .filterRow:first-child > select {
+    width: 180px;
+    flex: 0 0 auto;
+  }
+
+  /* 전체화면에서 상태/날짜 너비 유지 */
+  .filterRow:last-child > select {
+    width: 150px;
+  }
+
+  .filterRow:last-child .dateInput {
+    width: 150px;
+  }
+}
+
+/* 🔹 셀렉트 및 입력 공통 스타일 */
 .filterSelect,
 .dateInput {
-  height: 34px;
+  height: 40px;
   padding: 0 12px;
   border-radius: 8px;
   border: 1px solid var(--border-light);
   background-color: var(--bg-primary);
   font-size: 14px;
   color: var(--text-primary);
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.filterSelect {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+}
+
+.dateInput {
+  text-align: center;
 }
 
 .filterSelect:focus,
@@ -74,31 +176,7 @@
   box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.12);
 }
 
-.filterSelect {
-  min-width: 120px;
-}
-
-.dateInput {
-  width: 110px;
-  height: 32px;
-  line-height: 32px;
-  padding: 0 10px;
-  border-radius: 8px;
-  border: 1px solid var(--border-light);
-  background-color: var(--bg-primary);
-  font-size: 14px;
-  color: var(--text-primary);
-  box-sizing: border-box;
-}
-
-.tilde {
-  font-size: 14px;
-  padding: 0px;
-  margin: 0 -4px;
-  color: var(--text-secondary);
-  line-height: 32px;
-}
-
+/* 모바일 반응형 */
 @media (max-width: 768px) {
   .toolbar {
     margin-bottom: 20px;
@@ -108,7 +186,31 @@
     gap: 8px;
   }
 
+  .leftBlock {
+    margin-left: 20px; /* 모바일에서는 여백 줄임 */
+  }
+
+  .filterColumn {
+    margin-right: 20px; /* 모바일에서는 여백 줄임 */
+    gap: 6px;
+  }
+
+  .filterRow {
+    gap: 6px;
+  }
+
+  .filterSelect,
   .dateInput {
-    width: 100px;
+    height: 36px;
+    font-size: 13px;
+  }
+
+  /* 모바일에서 날짜 입력란 너비 조정 */
+  .filterRow:last-child > select {
+    width: 120px;
+  }
+
+  .filterRow:last-child .dateInput {
+    width: 110px;
   }
 }

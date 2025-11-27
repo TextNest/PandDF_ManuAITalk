@@ -8,8 +8,8 @@ from typing import  Dict,Optional
 from sqlalchemy import text 
 from datetime import date
 import json
-from schemas.logs import RecentSession,FilterInfo,SessionListResponse,ReportData,LogDetail
-from core.query import LogQuery
+from schemas.logs import RecentSession_v2,FilterInfo_v2,SessionListResponse,ReportData,LogDetail
+from core.query import LogQuery, LogQuery_v2
 
 router = APIRouter()
 
@@ -42,14 +42,14 @@ def code_fetch(results):
     json_safe_rows = [dict(row) for row in code_row]
     return json_safe_rows
 
-@router.get("/logs/recent", response_model=list[RecentSession])
+@router.get("/logs/recent", response_model=list[RecentSession_v2])
 async def view_recent(user_info:Dict = Depends(get_current_user), session:AsyncSession = Depends(get_session)):
-    results = await session.execute(text(LogQuery.view_recent))
+    results = await session.execute(text(LogQuery_v2.view_recent))
     return code_fetch(results)
 
-@router.get("/logs/session-info", response_model=list[FilterInfo])
+@router.get("/logs/session-info", response_model=list[FilterInfo_v2])
 async def get_info(user_info:Dict = Depends(get_current_user), session:AsyncSession = Depends(get_session)):
-    results = await session.execute(text(LogQuery.product_info))
+    results = await session.execute(text(LogQuery_v2.product_info))
     return code_fetch(results)
 
 @router.get("/logs/session-list", response_model=SessionListResponse)
@@ -57,15 +57,16 @@ async def view_session(
     user_info:Dict = Depends(get_current_user),
     session:AsyncSession = Depends(get_session),
     session_id:str | None = Query(None, alias="sessionId"),
+    category:str | None = Query(None),
     product_id:str | None = Query(None, alias="productId"),
-    status:str | None = Query(None),
+    status:int | None = Query(None),
     from_date:date | None = Query(None, alias="from"),
     to_date:date | None = Query(None, alias="to"),
     limit:int | None = Query(50, ge=1, le=200),
     offset:int | None = Query(0, ge=0)):
 
-    query_front = LogQuery.view_session_head
-    query_end = LogQuery.view_session_tail
+    query_front = LogQuery_v2.view_session_head
+    query_end = LogQuery_v2.view_session_tail
     conditions = []
     params={
         "limit":limit,
@@ -73,22 +74,25 @@ async def view_session(
     }
 
     if session_id:
-        conditions.append("r.session_id = :session_id")
-        params["session_id"] = session_id
+        conditions.append("RP.session_id LIKE :session_id")
+        params["session_id"] = f"%{session_id}%"
+    if category:
+        conditions.append("RP.category = :category")
+        params["category"] = category
     if product_id:
-        conditions.append("r.product_id = :product_id")
+        conditions.append("RP.product_id = :product_id")
         params["product_id"] = product_id
-    if status in ("resolved", "unresolved"):
-        conditions.append("r.status = :status")
+    if status is not None:
+        conditions.append("RP.is_resolved = :status")
         params["status"] = status
     if from_date:
-        conditions.append("DATE(r.timestamp_e) >= :from_date")
+        conditions.append("DATE(RP.completed_at) >= :from_date")
         params["from_date"] = from_date
     if to_date:
-        conditions.append("DATE(r.timestamp_e) <= :to_date")
+        conditions.append("DATE(RP.completed_at) <= :to_date")
         params["to_date"] = to_date
 
-    count_query = "SELECT COUNT(*) FROM test_report AS r"
+    count_query = "SELECT COUNT(*) FROM tb_report AS RP"
     if conditions:
         count_query += " WHERE " + " AND ".join(conditions)
 

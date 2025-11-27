@@ -7,12 +7,12 @@
 'use client';
 
 import { SessionList } from '@/types/log.types';
-import { formatProductId, formatTimestamp, statusColor } from '@/lib/utils/log.utils';
+import { formatProductId, formatTimestamp, statusColor_v2 } from '@/lib/utils/log.utils';
 import styles from './SessionTable.module.css';
 
 interface SessionTableProps {
   sessions: SessionList[];
-  onSelectSession?: (sessionId: string) => void;
+  onSelectSession?: (sid: number) => void;
 }
 
 export default function SessionTable({ sessions, onSelectSession }: SessionTableProps) {
@@ -43,13 +43,13 @@ export default function SessionTable({ sessions, onSelectSession }: SessionTable
             <tr
               key={s.sessionId}
               className={styles.row}
-              onClick={() => onSelectSession?.(s.sessionId)}
+              onClick={() => onSelectSession?.(s.sid)}
             >
               {/* 1. 해결 여부 + 색상 원 */}
               <td>
                 <span
                   className={styles.statusDot}
-                  style={{ backgroundColor: statusColor(s.status) }}
+                  style={{ backgroundColor: statusColor_v2(s.status) }}
                 />
               </td>
 

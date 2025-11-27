@@ -21,6 +21,7 @@ import SessionTable from '@/components/logs/SessionTable/SessionTable';
 import ReportTable from '@/components/logs/ReportTable/ReportTable';
 import LogTable from '@/components/logs/LogTable/LogTable';
 import {
+  ProductInfo,
   SessionFilter,
   SessionRecent,
   SessionList,
@@ -37,7 +38,7 @@ export default function LogsPage() {
   const [recentSessions, setRecentSessions] = useState<SessionRecent[]>([]);
   const [recentLoading, setRecentLoading] = useState(false);
   const [filter, setFilter] = useState<SessionFilter>({status: 'all'});
-  const [productOptions, setProductOptions] = useState<{productId: string}[]>([]);
+  const [productOptions, setProductOptions] = useState<ProductInfo[]>([]);
   const [sessionsLoading, setSessionsLoading] = useState(false);
   const [page, setPage] = useState(1);
   const pageSize = 15;
@@ -57,6 +58,7 @@ export default function LogsPage() {
         const res = await apiClient.get<SessionRecent[]>(
           API_ENDPOINTS.LOGS.RECENT
         );
+        console.log('최근 문의 결과',res.data);
 
         setRecentSessions(res.data);
       } catch (error) {
@@ -71,7 +73,7 @@ export default function LogsPage() {
   useEffect(() => {
     const fetchProductOptions = async () => {
       try {
-        const res = await apiClient.get<{ productId: string }[]>(
+        const res = await apiClient.get<ProductInfo[]>(
           API_ENDPOINTS.LOGS.INFO
         );
         setProductOptions(res.data);
@@ -88,8 +90,9 @@ export default function LogsPage() {
         setSessionsLoading(true);
         const params: Record<string, string> = {};
         if (filter.sessionId?.trim()) params.sessionId = filter.sessionId.trim();
+        if (filter.category) params.category = filter.category;
         if (filter.productId) params.productId = filter.productId;
-        if (filter.status && filter.status !== 'all') params.status = filter.status;
+        if (filter.status !== undefined && filter.status !== 'all') params.status = String(filter.status);
         if (filter.from) params.from = filter.from;
         if (filter.to) params.to = filter.to;
         params.limit = String(pageSize);
