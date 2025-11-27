@@ -331,6 +331,8 @@ SELECT
     m.role,
     m.content,
     s.session_id,
+    p.company_internal_id,
+    p.product_internal_id,
     p.product_id,
     p.product_name,
     p.category,
@@ -340,33 +342,35 @@ FROM tb_message m
     JOIN tb_session s
     ON m.session_internal_id = s.session_internal_id
     JOIN tb_product p 
-    ON s.product_id = p.product_id
+    ON s.product_internal_id = p.product_internal_id
 WHERE 
     m.created_at >= :start_date
-ORDER BY m.id
+    -- 파이썬 로직으로 "AND p.company_internal_id = :company_id" 추가되는 곳
+ORDER BY
+    m.message_internal_id ASC
 ;
 """
 
 # 자동 생성 로그 생성
 create_faq_generation_log = """
-INSERT INTO test_faq_generation_log (
+INSERT INTO tb_faq_generation_log (
     generation_id, status, messages_analyzed,
-    messages_extracted, faqs_created, created_by
+    messages_extracted, faq_created, created_by, is_scheduled
 ) VALUES (
     :generation_id, :status, :messages_analyzed,
-    :messages_extracted, :faqs_created, :created_by
+    :messages_extracted, :faq_created, :created_by, :is_scheduled
 );
 """
 
 # 자동 생성 로그 업데이트
 update_faq_generation_log = """
-UPDATE test_faq_generation_log
+UPDATE tb_faq_generation_log
 SET 
     completed_at = :completed_at,
     status = :status,
     messages_analyzed = COALESCE(:messages_analyzed, messages_analyzed),
     messages_extracted = COALESCE(:messages_extracted, messages_extracted),
-    faqs_created = COALESCE(:faqs_created, faqs_created),
+    faq_created = COALESCE(:faq_created, faq_created),
     error_message = :error_message
 WHERE generation_id = :generation_id;
 """

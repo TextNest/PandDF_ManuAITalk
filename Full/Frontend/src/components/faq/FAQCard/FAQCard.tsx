@@ -62,10 +62,10 @@ export default function FAQCard({ faq, onUpdate, onDelete }: FAQCardProps) {
       try {
         const response = await apiClient.get('/api/products/admin');
         setProducts(response.data);
-        // 로그 추가
-        console.log('✅ 제품 목록 로드됨:', response.data);
-        console.log('첫 번째 제품:', response.data[0]);
-        console.log('product_id 타입:', typeof response.data[0]?.product_id);
+        // 점검용 로그
+        // console.log('✅ 제품 목록 로드됨:', response.data);
+        // console.log('첫 번째 제품:', response.data[0]);
+        // console.log('product_id 타입:', typeof response.data[0]?.product_id);
       } catch (error) {
         console.error('제품 목록 조회 실패:', error);
       } finally {
@@ -85,11 +85,11 @@ export default function FAQCard({ faq, onUpdate, onDelete }: FAQCardProps) {
   }, [products, faq.productId]);
 
 
-  // 로그 추가
-  console.log('FAQ 카드 초기화');
-  console.log('faq.productId:', faq.productId);
-  console.log('faq.productInternalId:', faq.productInternalId);
-  console.log('초기 selectedProductId:', faq.productId || '');
+  // 점검용 로그 
+  // console.log('FAQ 카드 초기화');
+  // console.log('faq.productId:', faq.productId);
+  // console.log('faq.productInternalId:', faq.productInternalId);
+  // console.log('초기 selectedProductId:', faq.productId || '');
 
   // faq가 변경되면 폼 업데이트
   useEffect(() => {
@@ -107,9 +107,9 @@ export default function FAQCard({ faq, onUpdate, onDelete }: FAQCardProps) {
   const handleEdit = (e: React.MouseEvent) => {
     e.stopPropagation();
 
-    // 로그 추가
-    console.log('📝 수정 모드 시작');
-    console.log('현재 FAQ:', faq);
+    // 점검용 로그
+    // console.log('📝 수정 모드 시작');
+    // console.log('현재 FAQ:', faq);
 
     setIsEditing(true);
     setIsExpanded(true);

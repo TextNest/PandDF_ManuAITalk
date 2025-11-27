@@ -16,7 +16,6 @@ httpx
 # OpenAI
 openai==2.6.0
 
-
 # LangChain 모듈
 langchain-community     
 langchain-classic       
@@ -43,15 +42,16 @@ passlib
 bcrypt==4.0.1
 PyJWT
 
-#기타 
-ipython
-pydantic
-requests
-python-multipart
-sentence-transformers
-aiofiles
-pydantic[email]
-
 # 전처리 관련
 google-genai
 opencv-python-headless
+
+#기타 
+ipython
+pydantic
+pydantic[email]
+requests
+python-multipart
+aiofiles
+sentence-transformers
+apscheduler
