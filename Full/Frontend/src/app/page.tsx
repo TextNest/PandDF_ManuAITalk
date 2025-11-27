@@ -78,7 +78,7 @@ export default function HomePage() {
 
   const handleLogout = () => {
     logout();
-    router.push('/login');
+    // router.push('/login');
   };
 
   // 🛑 2. 로그인 상태에 따라 버튼을 렌더링하는 함수

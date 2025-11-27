@@ -8,6 +8,8 @@ import apiClient from '@/lib/api/client';
 import { API_ENDPOINTS } from '@/lib/api/endpoints';
 import { useAuthStore } from '@/store/useAuthStore';
 import type { User } from '@/types/auth.types';
+import { Sparkles } from 'lucide-react';
+import styles from './callback.module.css';
 
 // 💡 사용자 요청에 따라 함수는 에로우 함수로 작성합니다.
 const AuthCallbackPage = () => {
@@ -75,24 +77,42 @@ const AuthCallbackPage = () => {
     processAuthCode();
   }, [searchParams, router, login]);
 
-  // 로딩 UI
-  if (loading) {
-    return (
-      <div style={{ padding: '20px', textAlign: 'center' }}>
-        <h1>Google 로그인 처리 중...</h1>
-        <p>잠시만 기다려 주세요.</p>
+  // 로딩 & 에러 UI
+return (
+    <div className={styles.page}>
+      {/* 배경 */}
+      <div className={styles.background}>
+        <div className={styles.circle1}></div>
+        <div className={styles.circle2}></div>
       </div>
-    );
-  }
 
-  // 에러 UI
-  return (
-    <div style={{ padding: '20px', textAlign: 'center' }}>
-      <h1 style={{ color: '#e53e3e' }}>로그인 실패</h1>
-      <p style={{ color: '#666', marginTop: '10px' }}>{error}</p>
-      <p style={{ color: '#999', marginTop: '20px', fontSize: '14px' }}>
-        잠시 후 로그인 페이지로 이동합니다...
-      </p>
+      {/* 컨텐츠 */}
+      <div className={styles.container}>
+        {/* 로고 */}
+        <div className={styles.logo}>
+          <Sparkles size={48} className={styles.logoIcon} />
+          <h1>ManuAI-Talk</h1>
+        </div>
+
+        {/* 카드 */}
+        <div className={styles.card}>
+          {loading ? (
+            <>
+              {/* 로딩 스피너 */}
+              <div className={styles.spinner}></div>
+              <h2 className={styles.title}>Google 로그인 처리 중...</h2>
+              <p className={styles.message}>잠시만 기다려 주세요.</p>
+            </>
+          ) : (
+            <>
+              {/* 에러 메시지 */}
+              <h2 className={`${styles.title} ${styles.titleError}`}>로그인 실패</h2>
+              <p className={styles.message}>{error}</p>
+              <p className={styles.messageSmall}>잠시 후 로그인 페이지로 이동합니다...</p>
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

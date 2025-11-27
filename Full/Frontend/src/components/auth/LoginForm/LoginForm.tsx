@@ -28,7 +28,7 @@ export default function LoginForm() {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.header}>
-        <h1>관리자 로그인</h1>
+        <h2>관리자 로그인</h2>
         <p>ManuAI-Talk 관리자 대시보드에 접속하세요</p>
       </div>
 

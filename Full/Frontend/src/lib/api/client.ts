@@ -56,7 +56,7 @@ apiClient.interceptors.response.use(
       if (error.response && error.response.status === 401) {
       // 인증 오류 처리
       localStorage.removeItem('auth-storage'); 
-      window.location.href = '/login';
+      window.location.href = '/';
     }
     return Promise.reject(error);
   }

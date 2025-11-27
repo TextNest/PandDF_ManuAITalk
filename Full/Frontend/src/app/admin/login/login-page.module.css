@@ -5,18 +5,24 @@
 .page {
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;  /* center → flex-start 변경 */
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+  padding-top: 2rem;  /* 상단 고정 패딩 추가 */
   position: relative;
   overflow: hidden;
-  padding: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .background {
   position: absolute;
-  inset: 0;
+  /* inset: 0; */
   overflow: hidden;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
 }
 
 .circle1,
@@ -31,34 +37,50 @@
   height: 500px;
   top: -250px;
   right: -250px;
+  animation: float 20s ease-in-out infinite;
 }
 
 .circle2 {
-  width: 300px;
+  /* width: 300px;
   height: 300px;
   bottom: -150px;
-  left: -150px;
+  left: -150px; */
+  width: 400px;
+  height: 400px;
+  bottom: -200px;
+  left: -200px;
+  animation: float 15s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(30px, 30px);
+  }
 }
 
 .container {
   position: relative;
   z-index: 1;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 2rem; */
   width: 100%;
   max-width: 420px;
 }
 
 .logo {
   text-align: center;
-  color: white;
+  margin-bottom: 2rem;
 }
 
 .logo h1 {
   font-size: 2.5rem;
   font-weight: 700;
+  color: white;
   margin-bottom: 0.5rem;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
@@ -66,9 +88,11 @@
 .logo p {
   font-size: 1rem;
   opacity: 0.9;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .footer {
+  margin-top: var(--spacing-lg);
   text-align: center;
 }
 
@@ -89,10 +113,11 @@
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* 반응형 */
+/* 모바일 반응형 */
 @media (max-width: 768px) {
   .page {
     padding: 1rem;
+    padding-top: 1rem;  /* 모바일에서 상단 패딩 줄이기 */
   }
 
   .logo h1 {

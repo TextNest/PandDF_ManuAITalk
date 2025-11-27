@@ -721,3 +721,8 @@
   border-radius: 0.5rem;
 }
 
+@media (max-width: 375px) {
+  .logo h1 {
+    font-size: 2rem;
+  }
+}
