@@ -1,4 +1,4 @@
-from typing import Literal
+from typing import Literal,List
 from langgraph.graph import StateGraph, MessagesState, START, END
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.prebuilt import ToolNode
@@ -8,8 +8,11 @@ from langchain_core.tools import tool
 from langchain_google_genai import ChatGoogleGenerativeAI
 from module.qa_service import HybridRAGChain
 from core.prompt import agent_prompt
+from core.query import find_answer,origin_query
 from typing import List, Dict, Any, Optional
 from langchain_core.runnables import RunnableConfig
+from module.qa_recommend import RecommendRAGChain
+from sqlalchemy import text 
 Tool_name={
     "product_qa_tool":"질문",
     "recommend_tool":"추천"
@@ -39,14 +42,33 @@ async def product_qa_tool(query: str, product_id:str,session_id:str) -> str:
     return answer["answer"]
 
 @tool
-async def recommend_tool(product_id:str,count:int=3, *, config: RunnableConfig) -> str:
+async def recommend_tool(product_id:str, config: RunnableConfig = None,count:int=3) -> str:
     """
-    상푼 추천을 해줍니다. 만약 유저가 'count'개 만큼 추천해달라고 하면 count 수만큼 추천을 해주고 작성을 하지않으면 기본값을 사용합니다.
+    상품을 추천을 해줍니다. 만약 유저가 'count'개 만큼 추천해달라고 하면 count 수만큼 추천을 해주고 작성을 하지않으면 기본값을 사용합니다.
     """
-    db_session = config.get("configurable", {}).get("db_session")
-    print("연결됨")
-    data = [{"id":"abc","name":"거대한풍선"},{"id":"cde","name":"거대한선풍기"},{"id":"efg","name":"작은 선풍기"}]
-    return data[:count]
+    db_session = config.get("configurable", {}).get("db") if config else None
+
+    results = await db_session.execute(text(origin_query),
+    params={
+        "product_id":product_id
+    })
+    code_row = results.mappings().all()
+    return code_row[:count]
+
+@tool
+async def compare_tool(query: str, product_id:str,rec_product_id:List[str],session_id:str):
+    """
+    기존 상품과 비교 상품을 찾아서 사용자가 원하는 키워드를 비교해줍니다.
+
+    query: 비교할 기준 (예: "기능 비교해줘", "가격 차이 알려줘")
+    product_id: 기존 상품 ID
+    rec_product_id: 비교할 대상 상품 ID들의 리스트 (문자열 리스트)
+    session_id: 세션 ID
+
+    """
+    rag = RecommendRAGChain(product_id)
+    answer = await rag.compare_invoke(query,rec_product_id,session_id)
+    return answer["answer"]
 
 
 
@@ -58,7 +80,7 @@ class  ChatBotAgent:
         temperature=0,
         streaming=True,
     )
-        self.tools = [product_qa_tool,recommend_tool]
+        self.tools = [product_qa_tool,recommend_tool,compare_tool]
         self.checkpoint = MemorySaver()
         self.graph =self._build_graph()
         self.session_id = session_id    
@@ -85,6 +107,24 @@ class  ChatBotAgent:
     def _build_graph(self) :
         work  = StateGraph(AgentState)
         llm_with_tools = self.llm.bind_tools(self.tools)
+        async def faq_node(state,config):
+            last_msg = state["messages"][-1]
+            db_session = config.get("configurable", {}).get("db")
+
+            result = await db_session.execute(text(find_answer),params={"last_msg":last_msg.content,"product_id":self.product_id})
+            answer = result.mappings().one_or_none()
+            if answer:
+                return {"messages":[AIMessage(answer["answer"])],"tool_name":"FAQ"}
+            else:
+                return {}
+
+
+        def faq_router(state):
+            last_msg = state["messages"][-1]
+            if isinstance(last_msg, AIMessage):
+                return "end"
+            else:
+                return "agent"
         def agent_node(state):
             formatted_prompt = agent_prompt.format(product_id=self.product_id)
             system_msg = SystemMessage(formatted_prompt)
@@ -93,7 +133,6 @@ class  ChatBotAgent:
 
         async def tool_node(state):
             last_msg = state["messages"][-1]
-            
             if hasattr(last_msg,"tool_calls") and last_msg.tool_calls: #마지막 메세지에 too_calls 속성이 있고 값이 있으면
                 print(last_msg.tool_calls[0]["name"])
                 tool_name = last_msg.tool_calls[0]["name"]
@@ -114,9 +153,11 @@ class  ChatBotAgent:
             if hasattr(last_msg,"tool_calls") and last_msg.tool_calls:
                 return "tools"
             return "end"
+        work.add_node("faq",faq_node)
         work.add_node("agent",agent_node)
         work.add_node("tools",tool_node)
-        work.add_edge(START,"agent")
+        work.add_edge(START,"faq")
+        work.add_conditional_edges("faq",faq_router,{"agent":"agent","end":END})
         work.add_conditional_edges("agent",end_node,{"tools":"tools","end":END})
         work.add_edge("tools","agent")
         return work.compile(checkpointer=self.checkpoint)

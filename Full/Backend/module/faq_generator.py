@@ -9,6 +9,7 @@ from core.query import (
     create_faq_generation_log,
     update_faq_generation_log
 )
+from core.auth import get_current_user
 from models.faq import generate_short_id
 import numpy as np
 import logging
@@ -30,7 +31,8 @@ class FAQGenerator:
     @staticmethod
     async def extract_qa_pairs_by_product(
         session: AsyncSession,
-        days_range: int
+        days_range: int,
+        company_id: Optional[int] = None # 기업 관리자가 실행했을 경우 필터링용
     ) -> Dict[str, Dict[str, any]]:
         """
         조인을 통해 제품별 User-Assistant 쌍 추출
@@ -38,6 +40,7 @@ class FAQGenerator:
         Returns:
             {
                 'WM-2024': {
+                    'product_internal_id': 21,
                     'product_name': '세탁기 2024',
                     'product_id': 'PROD_001',
                     'qa_pairs': [(user, assistant), ...],
@@ -50,9 +53,15 @@ class FAQGenerator:
         start_date = datetime.utcnow() - timedelta(days=days_range)
         
         # [JOIN] message - session - product
-        query = text(find_faq_messages)
+        query_str = find_faq_messages
         params = {"start_date": start_date}
+
+        # company_id가 있으면 조건 추가
+        if company_id:
+            query_str = query_str.replace("ORDER BY", "AND p.company_internal_id = :company_id ORDER BY")
+            params["company_id"] = company_id
         
+        query = text(query_str)
         result = await session.execute(query, params)
         messages = result.mappings().all()
         
@@ -65,9 +74,11 @@ class FAQGenerator:
         # 제품별 QA 쌍 저장
         product_qa_pairs: Dict[str, Dict] = defaultdict(
             lambda: {
+                'product_internal_id': None,
                 'product_name': None,
                 'product_id': None,
                 'category': None,
+                'company_internal_id': None,
                 'qa_pairs': []
             }
         )
@@ -78,10 +89,12 @@ class FAQGenerator:
             messages_by_session[row['session_id']].append({
                 'role': row.get('role'),
                 'content': row.get('content'),
+                'company_internal_id': row.get('company_internal_id'),
+                'product_internal_id': row.get('product_internal_id'),
                 'product_id': row.get('product_id'),
                 'product_name': row.get('product_name'),
                 'category': row.get('category'),
-                'timestamp': row.get('timestamp'),
+                'created_at': row.get('created_at'),
                 'tool_name': row.get('tool_name')  # 추가: tool_name도 추적
             })
 
@@ -96,12 +109,14 @@ class FAQGenerator:
             pending_tool_name = None   # tool_name 추적
             
             for msg in session_messages:
-                role = msg['role']
-                content = msg['content']
-                product_id = msg['product_id']
-                product_name = msg['product_name']
-                category = msg['category']
-                tool_name = msg['tool_name']
+                role = msg.get('role')
+                content = msg.get('content')
+                company_internal_id = msg.get('company_internal_id')
+                product_internal_id = msg.get('product_internal_id')
+                product_id = msg.get('product_id')
+                product_name = msg.get('product_name')
+                category = msg.get('category')
+                tool_name = msg.get('tool_name')
                 
                 # product_id가 없으면 건너뛰기
                 if not product_id:
@@ -109,12 +124,16 @@ class FAQGenerator:
                     continue
                 
                 # 제품 정보 저장
+                if company_internal_id:
+                    product_qa_pairs[product_id]['company_internal_id'] = company_internal_id
+                if product_internal_id:
+                    product_qa_pairs[product_id]['product_internal_id'] = product_internal_id                
+                if product_id:
+                    product_qa_pairs[product_id]['product_id'] = product_id
                 if product_name:
                     product_qa_pairs[product_id]['product_name'] = product_name
                 if category:
                     product_qa_pairs[product_id]['category'] = category
-                if product_id:
-                    product_qa_pairs[product_id]['product_id'] = product_id
                 
                 if role == 'user':
                     # tool_name이 None/빈값은 FAQ 후보에서 제외
@@ -276,7 +295,10 @@ class FAQGenerator:
         days_range: int = 7,
         min_cluster_size: int = 2,        # ← 클러스터 내 QA 쌍 최소 개수
         min_qa_pair_count: int = 3,       # ← 제품 전체 QA 쌍 최소 개수
-        similarity_threshold: float = 0.8
+        similarity_threshold: float = 0.8,
+        created_by: Optional[str] = None,
+        company_id: Optional[int] = None,
+        is_scheduled: bool = False,
     ) -> Dict:
         """
         로깅과 함께 제품별 FAQ 자동 생성
@@ -293,11 +315,12 @@ class FAQGenerator:
         log_query = text(create_faq_generation_log)
         log_params = {
             'generation_id': generation_id,
-            'status': 'processing',
+            'status': 'pending',
             'messages_analyzed': 0,
-            'questions_extracted': 0,
-            'faqs_created': 0,
-            'created_by': 'PRODUCT_GENERATOR'
+            'messages_extracted': 0,
+            'faq_created': 0,
+            'created_by': created_by,
+            'is_scheduled': is_scheduled
         }
         await session.execute(log_query, log_params)
         await session.commit()
@@ -307,7 +330,7 @@ class FAQGenerator:
         try:
             # [1] 조인을 통해 제품별 QA 쌍 추출
             product_qa_data = await FAQGenerator.extract_qa_pairs_by_product(
-                session, days_range
+                session, days_range, company_id
             )
             
             # 전체 메시지 수 집계
@@ -320,11 +343,11 @@ class FAQGenerator:
             log_update_query = text(update_faq_generation_log)
             await session.execute(log_update_query, {
                 'generation_id': generation_id,
-                'messages_analyzed': total_messages_analyzed,
                 'completed_at': None,
-                'status': 'processing',
-                'questions_extracted': None,
-                'faqs_created': None,
+                'status': 'pending',
+                'messages_analyzed': total_messages_analyzed,
+                'messages_extracted': None,
+                'faq_created': None,
                 'error_message': None
             })
             await session.commit()
@@ -341,16 +364,16 @@ class FAQGenerator:
                     'completed_at': datetime.utcnow(),
                     'status': 'completed',
                     'messages_analyzed': None,
-                    'questions_extracted': None,
-                    'faqs_created': None,
+                    'messages_extracted': None,
+                    'faq_created': None,
                     'error_message': None
                 })
                 await session.commit()
                 
                 return {
-                    'status': 'insufficient_data',
-                    'generation_id': generation_id,
-                    'message': 'QA 쌍이 없습니다'
+                    'status': 'failed',
+                    'generation_id': generation_id.hex(),
+                    'error_message': 'QA 쌍이 없습니다'
                 }
             
             results = {}
@@ -363,7 +386,7 @@ class FAQGenerator:
                 qa_pairs = product_data['qa_pairs']
                 product_name = product_data['product_name']
                 product_id = product_data['product_id']
-                category = product_data['category']
+                company_internal_id = product_data['company_internal_id']
                 
                 logger.info(f"\n>>> 제품 처리: {product_id} ({product_name})")
                 
@@ -371,11 +394,11 @@ class FAQGenerator:
                 if len(qa_pairs) < min_qa_pair_count:
                     logger.warning(f"  QA 쌍 부족: {len(qa_pairs)}개 (필요: {min_qa_pair_count}개)")
                     results[product_id] = {
-                        'status': 'insufficient_data',
+                        'status': 'failed',
                         'product_name': product_name,
                         'product_id': product_id,
                         'created_faqs': 0,
-                        'message': f'QA 쌍이 {min_qa_pair_count}개 이상 필요합니다 (현재: {len(qa_pairs)}개)'
+                        'error_message': f'QA 쌍이 {min_qa_pair_count}개 이상 필요합니다 (현재: {len(qa_pairs)}개)'
                     }
                     continue
                 
@@ -393,22 +416,22 @@ class FAQGenerator:
                 if len(valid_question_indices) == 0:
                     logger.warning(f"  유효한 질문이 없습니다 (필터링 후)")
                     results[product_id] = {
-                        'status': 'insufficient_data',
+                        'status': 'failed',
                         'product_name': product_name,
                         'product_id': product_id,
                         'created_faqs': 0,
-                        'message': f'유효한 질문이 없습니다'
+                        'error_message': f'유효한 질문이 없습니다'
                     }
                     continue
 
                 if len(valid_question_indices) < min_qa_pair_count:
                     logger.warning(f"  유효한 질문 부족: {len(valid_question_indices)}개 (필요: {min_qa_pair_count}개)")
                     results[product_id] = {
-                        'status': 'insufficient_data',
+                        'status': 'failed',
                         'product_name': product_name,
                         'product_id': product_id,
                         'created_faqs': 0,
-                        'message': f'유효한 질문이 {min_qa_pair_count}개 이상 필요합니다'
+                        'error_message': f'유효한 질문이 {min_qa_pair_count}개 이상 필요합니다'
                     }
                     continue
 
@@ -447,11 +470,11 @@ class FAQGenerator:
                 if len(valid_clusters) == 0:
                     logger.info(f"  조건과 일치하는 FAQ 후보가 없습니다.")
                     results[product_id] = {
-                        'status': 'insufficient_data',
+                        'status': 'failed',
                         'product_name': product_name,
                         'product_id': product_id,
                         'created_faqs': 0,
-                        'message': '조건과 일치하는 FAQ 후보가 없습니다.'
+                        'error_message': '조건과 일치하는 FAQ 후보가 없습니다.'
                     }
                     continue
                 
@@ -492,16 +515,13 @@ class FAQGenerator:
                         'faq_id': faq_id,
                         'question': representative_question,
                         'answer': best_answer,
-                        'category': category,
+                        'company_internal_id': company_internal_id,
+                        'product_internal_id': product_data.get('product_internal_id'),
                         'tags': None,
-                        'product_id': product_id,
-                        'product_name': product_name,
-                        'status': 'draft',
+                        'faq_status': 'candidate',
                         'is_autogenerated': True,
-                        'source': 'chatbot',
-                        'view_count': 0,
-                        'helpful_count': 0,
-                        'created_by': f'PRODUCT_GENERATOR (제품: {product_id}, 클러스터: {len(cluster_indices)}개)'
+                        'source': 'Chatbot',
+                        'created_by': created_by
                     }
                     
                     await session.execute(create_query, create_params)
@@ -536,8 +556,8 @@ class FAQGenerator:
                 'completed_at': datetime.utcnow(),
                 'status': 'completed',
                 'messages_analyzed': None,
-                'questions_extracted': total_questions_extracted,
-                'faqs_created': total_created,
+                'messages_extracted': total_questions_extracted,
+                'faq_created': total_created,
                 'error_message': None
             })
             await session.commit()
@@ -546,25 +566,25 @@ class FAQGenerator:
             if total_created == 0:
                 return {
                     'status': 'insufficient_data',
-                    'generation_id': generation_id,
+                    'generation_id': generation_id.hex(),
                     'products': results,
                     'total_products': len(results),
                     'total_created_faqs': total_created,
                     'total_skipped': total_skipped,
                     'messages_analyzed': total_messages_analyzed,
-                    'questions_extracted': total_questions_extracted,
+                    'messages_extracted': total_questions_extracted,
                     'message': '조건을 만족하는 FAQ 후보가 없습니다.'
                 }
             
             return {
                 'status': 'success',
-                'generation_id': generation_id,
+                'generation_id': generation_id.hex(),
                 'products': results,
                 'total_products': len(results),
                 'total_created_faqs': total_created,
                 'total_skipped': total_skipped,
                 'messages_analyzed': total_messages_analyzed,
-                'questions_extracted': total_questions_extracted,
+                'messages_extracted': total_questions_extracted,
                 'summary': f'{len([r for r in results.values() if r["status"] == "success"])}개 제품 처리, 총 {total_created}개 FAQ 생성'
             }
         
@@ -578,14 +598,14 @@ class FAQGenerator:
                 'completed_at': datetime.utcnow(),
                 'status': 'failed',
                 'messages_analyzed': None,
-                'questions_extracted': None,
-                'faqs_created': None,
+                'messages_extracted': None,
+                'faq_created': None,
                 'error_message': str(e)[:1000]  # 1000자 제한
             })
             await session.commit()
             
             return {
                 'status': 'error',
-                'generation_id': generation_id,
+                'generation_id': generation_id.hex(),
                 'error': str(e)
             }

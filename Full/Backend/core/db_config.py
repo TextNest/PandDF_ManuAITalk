@@ -33,3 +33,5 @@ async def get_session() -> AsyncGenerator[AsyncSession, None]:
 async def get_session_text() -> AsyncGenerator[AsyncSession, None]:
     async with AsyncSessionFactory() as session:
         yield session
+
+async_session_factory = AsyncSessionFactory

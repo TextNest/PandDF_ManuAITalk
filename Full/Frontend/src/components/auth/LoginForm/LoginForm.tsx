@@ -28,7 +28,7 @@ export default function LoginForm() {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.header}>
-        <h1>관리자 로그인</h1>
+        <h2>관리자 로그인</h2>
         <p>ManuAI-Talk 관리자 대시보드에 접속하세요</p>
       </div>
 
@@ -95,14 +95,14 @@ export default function LoginForm() {
       </div>
 
       <div className={styles.footer}>
-        <div className={styles.hint}>
+        {/* <div className={styles.hint}>
           <p className={styles.hintTitle}>💡 테스트 계정</p>
           <ul className={styles.accounts}>
             <li><strong>슈퍼 관리자:</strong> super@manuai-talk.com / super123</li>
             <li><strong>삼성전자:</strong> admin@samsung.com / admin123</li>
             <li><strong>LG전자:</strong> admin@lg.com / admin123</li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </form>
   );

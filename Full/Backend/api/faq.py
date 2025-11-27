@@ -59,6 +59,7 @@ async def create_faq(
     row = result.mappings().one()
     return dict(row)
 
+
 # 챗봇 분석으로 자동 생성된 FAQ 추가
 @router.post("/auto_generate")
 async def generate_faqs_by_products(
@@ -66,7 +67,8 @@ async def generate_faqs_by_products(
     min_cluster_size: int = 2,
     min_qa_pair_count: int = 3,
     similarity_threshold: float = 0.8,
-    session: AsyncSession = Depends(get_session)
+    session: AsyncSession = Depends(get_session),
+    current_user: dict = Depends(get_current_user) 
 ):
     """
     제품별 FAQ 자동 생성 (로깅 포함)
@@ -81,7 +83,10 @@ async def generate_faqs_by_products(
             days_range=days_range,
             min_cluster_size=min_cluster_size,
             min_qa_pair_count=min_qa_pair_count,
-            similarity_threshold=similarity_threshold
+            similarity_threshold=similarity_threshold,
+            created_by=current_user["unique_id"],
+            is_scheduled=False,
+            company_id=current_user["company_id"]
         )
         logger.info(f"FAQ 생성 완료: {result}")
         return result
@@ -130,6 +135,7 @@ async def get_faqs(
     rows = result.mappings().all()
     return [dict(row) for row in rows]
 
+
 # faq_id로 단일 FAQ 조회
 @router.get("/{faq_id}", response_model=FAQResponse)
 async def get_faq(
@@ -156,6 +162,7 @@ async def get_faq(
     row = result.mappings().one()
     return dict(row)
 
+
 # FAQ 수정
 @router.patch("/{faq_id}", response_model=FAQResponse)
 async def update_faq(
@@ -178,12 +185,16 @@ async def update_faq(
         raise HTTPException(status_code=404, detail="FAQ not found")
     
     # 수정할 필드만 업데이트
-    update_data = faq_update.model_dump(exclude_unset=True)
-    update_data['faq_id'] = faq_id
-    
-    # None 값은 제외 (COALESCE를 사용하므로 None이면 기존 값 유지)
-    params = {k: v for k, v in update_data.items() if v is not None}
-    params['updated_by'] = current_user["unique_id"]
+    update_data = faq_update.model_dump()
+    params = {
+        'faq_id': faq_id,
+        'question': update_data.get('question'),
+        'answer': update_data.get('answer'),
+        'product_internal_id': update_data.get('product_internal_id'),
+        'tags': update_data.get('tags'),
+        'faq_status': update_data.get('faq_status'),
+        'updated_by': current_user["unique_id"]
+    }
 
     await session.execute(text(update), params)
     await session.commit()
@@ -195,6 +206,7 @@ async def update_faq(
     )
     row = result.mappings().one()
     return dict(row)
+
 
 # FAQ 삭제
 @router.delete("/{faq_id}", status_code=204)

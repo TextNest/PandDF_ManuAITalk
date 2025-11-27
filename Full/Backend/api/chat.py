@@ -10,7 +10,7 @@ from typing import  Dict,Optional
 from sqlalchemy import text 
 import datetime
 import json
-from core.query import session_search,find_message,add_message,find_session,update_session,add_session,delete_sessions,delete_message,update_feedback
+from core.query import session_search,find_message,add_message,find_session,update_session,add_session,delete_sessions,delete_message,update_feedback,find_questions,delete_sessions_chat
 from schemas.chat import FeedBack
 
 
@@ -73,7 +73,17 @@ async def feedback(feedback_data:FeedBack,session:AsyncSession=Depends(get_sessi
         # )
 
     
-
+@router.get("/chat/suggestions/{productId}")
+async def get_suggestions(productId:str,session:AsyncSession=Depends(get_session)):
+    result = await session.execute(text(find_questions),
+    params={
+        "productId":productId
+    })
+    code_row = result.mappings().all()
+    if not code_row:
+        return []
+    questions_list = [row['question'] for row in code_row]
+    return {"question": questions_list }
     
 
 
@@ -197,6 +207,8 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[st
                     "lastMessage":last_message,
                     "messageCount":message_count
                 })
+            if message_count < 1 :
+                await session.execute(text(delete_sessions_chat),params={"session_id":session_id})
             await session.commit()
 
             print(f"{user_id}_{session_id}가 저장되었습니다.")

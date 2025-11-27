@@ -102,12 +102,26 @@ WHERE user_internal_id = :user_internal_id AND session_id = :session_id"""
 
 
 delete_sessions = """
-DELETE FROM test_session WHERE user_internal_id = :user_internal_id AND session_id = :session_id
+DELETE FROM tb_session WHERE user_internal_id = :user_internal_id AND session_id = :session_id
+"""
+delete_sessions_chat = """
+DELETE FROM tb_session WHERE session_id = :session_id
 """
 
 delete_message = """
 DELETE FROM test_message WHERE session_internal_id = (SELECT session_internal_id FROM tb_session WHERE session_id = :session_id)
 """
+
+find_answer = """
+SELECT answer FROM tb_faq WHERE question = :last_msg AND 
+product_internal_id = (SELECT product_internal_id FROM tb_product WHERE product_id = :product_id) """
+
+find_questions = """
+SELECT question FROM tb_faq WHERE product_internal_id = (SELECT product_internal_id FROM tb_product WHERE product_id = :productId) ORDER BY RAND() Limit 4
+"""
+
+origin_query = """
+SELECT product_id,product_name FROM tb_product WHERE category = (SELECT category FROM tb_product WhERE product_id = :product_id) and product_id != :product_id """
 
 # ---------- report ----------
 
@@ -381,6 +395,8 @@ SELECT
     m.role,
     m.content,
     s.session_id,
+    p.company_internal_id,
+    p.product_internal_id,
     p.product_id,
     p.product_name,
     p.category,
@@ -390,43 +406,47 @@ FROM tb_message m
     JOIN tb_session s
     ON m.session_internal_id = s.session_internal_id
     JOIN tb_product p 
-    ON s.product_id = p.product_id
+    ON s.product_internal_id = p.product_internal_id
 WHERE 
     m.created_at >= :start_date
-ORDER BY m.id
+    -- 파이썬 로직으로 "AND p.company_internal_id = :company_id" 추가되는 곳
+ORDER BY
+    m.message_internal_id ASC
 ;
 """
 
 # 자동 생성 로그 생성
 create_faq_generation_log = """
-INSERT INTO test_faq_generation_log (
+INSERT INTO tb_faq_generation_log (
     generation_id, status, messages_analyzed,
-    messages_extracted, faqs_created, created_by
+    messages_extracted, faq_created, created_by, is_scheduled
 ) VALUES (
     :generation_id, :status, :messages_analyzed,
-    :messages_extracted, :faqs_created, :created_by
+    :messages_extracted, :faq_created, :created_by, :is_scheduled
 );
 """
 
 # 자동 생성 로그 업데이트
 update_faq_generation_log = """
-UPDATE test_faq_generation_log
+UPDATE tb_faq_generation_log
 SET 
     completed_at = :completed_at,
     status = :status,
     messages_analyzed = COALESCE(:messages_analyzed, messages_analyzed),
     messages_extracted = COALESCE(:messages_extracted, messages_extracted),
-    faqs_created = COALESCE(:faqs_created, faqs_created),
+    faq_created = COALESCE(:faq_created, faq_created),
     error_message = :error_message
 WHERE generation_id = :generation_id;
 """
 
 # ---------- 제품관리, AR 관련 쿼리 ----------
-# 전체 제품 조회 -> 특정 회사 제품 조회로 변경
+# 전체 제품 조회 (회사명 포함)
 find_all_product = """
-SELECT * FROM tb_product
-WHERE is_active = 1
-ORDER BY created_at DESC;
+SELECT p.*, c.name as company_name
+FROM tb_product p
+LEFT JOIN tb_company c ON p.company_internal_id = c.company_internal_id
+WHERE p.is_active = 1
+ORDER BY p.created_at DESC;
 """
 
 # 제품 조회 (제품 코드로)

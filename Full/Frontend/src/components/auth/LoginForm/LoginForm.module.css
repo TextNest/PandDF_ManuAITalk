@@ -9,6 +9,7 @@
   padding: var(--spacing-2xl);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-xl);
+  min-height: 500px; /*추가*/
 }
 
 .header {

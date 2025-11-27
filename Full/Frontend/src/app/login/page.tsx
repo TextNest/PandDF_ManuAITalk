@@ -54,7 +54,7 @@ export default function UserLoginPage() {
       <div className={styles.container}>
         <div className={styles.logo}>
           <h1>ManuAI-talk</h1>
-          <p>AI 제품 설명서 도우미</p>
+          <p>AI 기반 제품 설명서 질의응답 시스템</p>
         </div>
 
         <div className={styles.card}>
@@ -102,9 +102,8 @@ export default function UserLoginPage() {
           <div className={styles.info}>
             <p>💡 <strong>로그인 시 추가 기능</strong></p>
             <ul>
-              <li>대화 기록 저장</li>
-              <li>즐겨찾기 관리</li>
-              <li>맞춤형 추천</li>
+              <li>과거 대화기록 확인</li>
+              {/* <li>즐겨찾기 관리</li> */}
             </ul>
           </div>
         </div>

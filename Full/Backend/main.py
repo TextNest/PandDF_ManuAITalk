@@ -18,7 +18,17 @@ from models.session import ChatSession
 from models.message import ChatMessage
 from models.report import Report
 
-app = FastAPI()
+from contextlib import asynccontextmanager
+from core.scheduler import start_scheduler
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # 앱 시작 시 스케줄러 가동
+    start_scheduler()
+    yield
+    # 앱 종료 시 정리 로직 (필요 시)
+
+app = FastAPI(lifespan=lifespan)
 
 # 데이터베이스 테이블 생성
 async def create_tables():
