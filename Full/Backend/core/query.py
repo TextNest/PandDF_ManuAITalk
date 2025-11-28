@@ -117,7 +117,7 @@ SELECT answer FROM tb_faq WHERE question = :last_msg AND
 product_internal_id = (SELECT product_internal_id FROM tb_product WHERE product_id = :product_id) """
 
 find_questions = """
-SELECT question FROM tb_faq WHERE product_internal_id = (SELECT product_internal_id FROM tb_product WHERE product_id = :productId) ORDER BY RAND() Limit 4
+SELECT question FROM tb_faq WHERE product_internal_id = (SELECT product_internal_id FROM tb_product WHERE product_id = :productId) AND faq_status = 'active' ORDER BY RAND() Limit 4
 """
 
 origin_query = """
