@@ -95,7 +95,7 @@ export default function HomePage() {
               onClick={() => router.push('/superadmin')}
             >
               <Shield size={20} />
-              슈퍼관리자
+              슈퍼 관리자
             </button>
           );
         case 'company_admin':
@@ -209,7 +209,7 @@ export default function HomePage() {
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
           <p>© 2025 ManuAI-Talk. All rights reserved.</p>
-          {!isAuthenticated && (
+          {/* {!isAuthenticated && (
             <button
               className={styles.adminLink}
               onClick={handleAdminLogin}
@@ -217,7 +217,7 @@ export default function HomePage() {
               <Shield size={14} />
               admin
             </button>
-          )}
+          )} */}
         </div>
       </footer>
 

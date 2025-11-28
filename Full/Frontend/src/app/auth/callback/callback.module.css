@@ -68,7 +68,7 @@
 /* 로고 */
 .logo {
   position: relative;  /* 추가 */
-  margin-top: 15vh;  /* 추가 */
+  margin-top: 2rem;  /* 추가 */
   display: flex;
   align-items: center;
   justify-content: center;

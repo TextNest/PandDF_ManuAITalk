@@ -72,8 +72,8 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           <div className={styles.logo}>
             <Link href="/dashboard" className={styles.logoLink}>
               <h2>ManuAI-Talk</h2>
+              <span className={styles.badge}>Admin</span>
             </Link>
-            <span className={styles.badge}>Admin</span>
           </div>
           <button className={styles.closeButton} onClick={onClose}>
             <X size={24} />

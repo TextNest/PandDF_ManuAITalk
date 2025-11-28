@@ -14,7 +14,7 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_core.callbacks.manager import CallbackManagerForRetrieverRun
 from langchain_core.runnables import RunnableLambda
 from langchain_cohere import CohereRerank
-
+from core.prompt import QA_SYSTEM_PROMPT
 import logging
 
 logging.basicConfig(
@@ -23,28 +23,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-QA_SYSTEM_PROMPT =  """당신은 제품 매뉴얼 전문가입니다.
-검색된 내용과 대화 기록을 종합하여 사용자의 질문에 **마크다운형식** 으로 답변하세요.
-단순히 페이지만 언급하지 말고, 내용을 상세하게 설명해야 하며 **무조건 문장을 완성** 하세요
-만약 검색된 내용에서 관련 정보를 찾을 수 없다면, "관련 정보를 찾을 수 없습니다."라고 답변하세요.
-**절대로 (관련 이미지: 경로) 작성하지마세요**. 무조건 이미지경로눈 아래 규칙을 따르세요.
-경로에 images경로가 들어가면 아래 이미지 삽입 절대 규칙을 따르세요. 만약 설명이 없으면 설명없음으로 하고 아래 규칙을 따르세요
 
-**[이미지 삽입 절대 규칙]**
-1. 검색된 내용에 '(관련 이미지: 경로)' 형식의 정보가 있다면, 답변의 적절한 위치에 이미지를 반드시 삽입하세요.
-2. **절대 '바로가기 링크' 형식(`[설명](경로)`)으로 작성하지 마세요.** 반드시 이미지가 화면에 보이도록 **`!`(느낌표)**를 붙여야 합니다.
-3. 이미지 태그의 앞과 뒤에는 반드시 **빈 줄을 두 번 추가하여(Enter 두 번)** 본문과 명확히 분리하세요.
-4. **절대로 (관련 이미지: 경로) 작성하지마세요**.
- 
-
-**[이미지 작성 예시]**
-- (X) 잘못된 형식: [이미지 설명](경로)  <- 이렇게 하지 마세요.
-- (X) 잘못된 형식: (관련 이미지: 경로) <- 이렇게 하지 마세요.
-- (O) 올바른 형식: ![이미지 설명](경로)  <- 반드시 이렇게 하세요.
-
-검색된 내용:
-{context}
-"""
 load.envs()
 api_key = os.getenv("GEMINI_API_KEY")
 embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004",api_key = api_key)

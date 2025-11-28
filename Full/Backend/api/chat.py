@@ -97,7 +97,7 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[st
     Issession = False
     try:
         first_message = await websocket.receive_json()
-        if first_message.get("token")=="pass":
+        if first_message.get("token")=="pass" :
             logger.info("비회원확인")
             first_message = None
             user_id = None
@@ -106,7 +106,11 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[st
             auth_token = first_message["token"]
             authorization_header = f"Bearer {auth_token}"
             user_info = get_current_user(authorization=authorization_header)
-            user_id = user_info.get("unique_id")
+            if user_info.get("role") == 'user':
+                user_id = user_info.get("unique_id")
+            else:
+                logger.info("admin이상의 등급은 user_id를 제공하지 않습니다.")
+                user_id = None
             
         if not session_id : 
             logger.info("새 세션 생성")

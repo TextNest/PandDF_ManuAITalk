@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Search, Building2, Grid, Box } from 'lucide-react';
+import { Building2, Grid, Box, MessageCircle } from 'lucide-react';
 import apiClient from '@/lib/api/client';
 import styles from './ProductSelector.module.css';
 
@@ -11,6 +11,7 @@ interface Product {
   product_name: string;
   category: string;
   company_name: string;
+  description?: string;
 }
 
 export default function ProductSelector() {
@@ -27,6 +28,9 @@ export default function ProductSelector() {
   const [companies, setCompanies] = useState<string[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+
+  // 선택된 제품 찾기
+  const currentProduct = products.find(p => p.product_id === selectedProduct);
 
   // 1. 초기 데이터 로드
   useEffect(() => {
@@ -80,10 +84,16 @@ export default function ProductSelector() {
     setSelectedProduct(''); // 카테고리 변경 시 제품 초기화
   }, [selectedCategory, selectedCompany, products]);
 
-  // 4. 제품 선택 시 채팅방 이동
+  // 4. 제품 선택
   const handleProductSelect = (productId: string) => {
-    if (!productId) return;
-    router.push(`/chat/${productId}`);
+    // if (!productId) return;
+    // router.push(`/chat/${productId}`);
+    setSelectedProduct(productId);
+  };
+
+  const handleStartChat = () => {
+    if (!selectedProduct) return;
+    router.push(`/chat/${selectedProduct}`);
   };
 
   if (loading) return <div className={styles.loading}>제품 목록을 불러오는 중...</div>;
@@ -143,6 +153,26 @@ export default function ProductSelector() {
           ))}
         </select>
       </div>
+
+      {/* 설명(Description) 표시 영역 */}
+      {/* 제품이 선택되었고, 설명이 있을 때만 표시 */}
+      {selectedProduct && currentProduct?.description && (
+        <div className={styles.descriptionBox}>
+          <p className={styles.descriptionText}>
+            {currentProduct.description}
+          </p>
+        </div>
+      )}
+
+      {/* 챗봇과 대화하기 버튼 */}
+      <button 
+        className={styles.chatButton}
+        onClick={handleStartChat}
+        disabled={!selectedProduct} // 제품이 선택되지 않으면 비활성화
+      >
+        <MessageCircle size={20} />
+        챗봇과 대화하기
+      </button>      
     </div>
   );
 }

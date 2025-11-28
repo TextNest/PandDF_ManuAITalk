@@ -113,7 +113,7 @@ export default function UserLoginPage() {
             onClick={() => router.push('/')}
             className={styles.backButton}
           >
-            ← 메인으로 돌아가기
+            ← 메인으로
           </button>
         </div>
       </div>
