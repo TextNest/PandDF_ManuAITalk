@@ -14,35 +14,14 @@ from langchain_core.runnables import RunnableLambda
 from langchain_cohere import CohereRerank
 from langchain_core.output_parsers import StrOutputParser
 import logging
+from core.prompt import QA_REC_PROMPT
 
 logging.basicConfig(
     level=logging.INFO, # INFO 레벨 이상만 출력 (DEBUG는 무시)
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
-QA_SYSTEM_PROMPT =  """당신은 제품 매뉴얼 비교 전문가입니다.
-기존 상품 검색내용과 비교 상품 검색내용, 그리고 대화 기록을 종합하여 사용자의 질문을 종합하여 **카드 형태**로 작성하세요.
-단순히 페이지만 언급하지 말고, 내용을 상세하게 설명해야 하며 **무조건 문장을 완성** 하세요
-만약 검색된 내용에서 관련 정보를 찾을 수 없다면, "관련 정보를 찾을 수 없습니다."라고 작성하세요
 
-**[카드 형태 작성방법]**
-각 비교 항목을 소제목(###)으로 구분하고, 내용을 리스트 형태로 작성하세요.
-요청 질문이 기능이고 검색을 통해서 찾은 내용들이 전력이라고 가정하고 비교 상품이 N개일때,
-### 전력에 맞는 이모지 **전력**
-* **기존상품**: 150W
-* **비교상품1**: 300W
-* **비교상품2**: 200W
-...
-* **비교상품N**: 100W
-
-같이 작성하세요 그리고 각각의 비교 내용이 끝나면 선을 그어서 분리하세요.
-
-기존 상품({origin_pid}) 검색된 내용:
-{origin_context}
-
-비교 상품({target_pid}) 검색내용:
-{recommend_context}
-"""
 load.envs()
 api_key = os.getenv("GEMINI_API_KEY")
 embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004",api_key = api_key)
@@ -67,7 +46,7 @@ class RecommendRAGChain:
         self.llm = ChatGoogleGenerativeAI(model = "gemini-2.5-flash",temperature=0)
 
         self.qa_prompt = ChatPromptTemplate.from_messages([
-            ("system", QA_SYSTEM_PROMPT),
+            ("system", QA_REC_PROMPT),
             MessagesPlaceholder(variable_name="chat_history"),
             ("human", "{input}"),
         ])
