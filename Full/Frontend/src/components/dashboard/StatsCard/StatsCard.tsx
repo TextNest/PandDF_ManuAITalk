@@ -5,14 +5,14 @@
 // ============================================
 
 
-import { FileText, MessageSquare, Clock, HelpCircle, TrendingUp, TrendingDown } from 'lucide-react';
+import { FileText, MessageSquare, Clock, HelpCircle, BarChart3, TrendingUp, TrendingDown } from 'lucide-react';
 import styles from './StatsCard.module.css';
 
 interface StatsCardProps {
   title: string;
   value: string | number;
     change?: number; // 변화율 (%)
-    icon: 'file' | 'message' | 'clock' | 'help';
+    icon: 'file' | 'message' | 'bar' | 'help';
     color: 'primary' | 'success' | 'secondary' | 'warning';
 }
 
@@ -23,6 +23,7 @@ const iconMap = {
   message: MessageSquare,
   clock: Clock,
   help: HelpCircle,
+  bar: BarChart3, 
 };
 
 export default function StatsCard({ 

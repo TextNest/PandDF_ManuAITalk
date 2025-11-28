@@ -136,7 +136,7 @@ export default function LogsPage() {
       </div>
 
       {/* 핵심 지표 (간소화) */}
-      <div className={styles.metricsGrid}>
+      {/* <div className={styles.metricsGrid}>
         <div className={styles.metricCard}>
           <div className={styles.metricIcon} style={{ backgroundColor: '#667eea' }}>
             <BarChart3 size={24} />
@@ -166,7 +166,7 @@ export default function LogsPage() {
             <div className={styles.metricLabel}>도움이 됨</div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* 최근 문의 섹션 */}
       <div className={styles.section}>
@@ -255,10 +255,10 @@ export default function LogsPage() {
       </div>
 
       {/* 응답 시간 차트 */}
-      <div className={styles.section}>
+      {/* <div className={styles.section}>
         <h2 className={styles.sectionTitle}>⏱️ 응답 시간 추이</h2>
         <ResponseTimeChart />
-      </div>
+      </div> */}
     </div>
   );
 }

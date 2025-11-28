@@ -20,11 +20,11 @@ import {
 import styles from './Sidebar.module.css';
 
 const menuItems = [
-  {
-    icon: LayoutDashboard,
-    label: '대시보드',
-    href: '/dashboard',
-  },
+  // {
+  //   icon: LayoutDashboard,
+  //   label: '대시보드',
+  //   href: '/dashboard',
+  // },
   {
     icon: Package,
     label: '제품 관리',
@@ -45,11 +45,11 @@ const menuItems = [
     label: '로그 분석',
     href: '/logs',
   },
-  {
-    icon: Settings,
-    label: '설정',
-    href: '/profile',
-  },
+  // {
+  //   icon: Settings,
+  //   label: '설정',
+  //   href: '/profile',
+  // },
 ];
 
 interface SidebarProps {
@@ -70,7 +70,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       <aside className={`${styles.sidebar} ${isOpen ? styles.mobileOpen : ''}`}>
         <div className={styles.header}>
           <div className={styles.logo}>
-            <h2>ManuAI-Talk</h2>
+            <Link href="/dashboard" className={styles.logoLink}>
+              <h2>ManuAI-Talk</h2>
+            </Link>
             <span className={styles.badge}>Admin</span>
           </div>
           <button className={styles.closeButton} onClick={onClose}>

@@ -118,7 +118,7 @@ async def get_faqs(
     params = {'company_internal_id': current_user["company_id"]}
     
     if status:
-        conditions.append("status = :status")
+        conditions.append("faq_status = :status")
         params['status'] = status
     if category:
         conditions.append("category = :category")

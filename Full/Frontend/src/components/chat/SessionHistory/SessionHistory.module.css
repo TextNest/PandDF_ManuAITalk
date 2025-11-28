@@ -6,7 +6,7 @@
 .toggleButton {
   position: fixed;
   left: 1rem; /* 🔥 left: 0 → left: 1rem (여백 추가) */
-  top: 4.0rem; /* 🔥 top: 50% → top: 4.0rem (헤더 아래) */
+  top: 7.7rem; /* 🔥 top: 50% → top: 4.0rem (헤더 아래) */
   transform: none; /* 🔥 translateY 제거 */
   z-index: 1000;
   width: 40px;
@@ -195,6 +195,9 @@
   .sidebar {
     width: 100%;
     max-width: 320px;
+  }
+  .toggleButton {
+    top: 9.2rem;
   }
 }
 

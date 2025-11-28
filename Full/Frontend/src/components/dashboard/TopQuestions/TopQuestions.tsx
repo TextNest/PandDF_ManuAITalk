@@ -1,41 +1,52 @@
 // ============================================
-// 📄 7. src/components/dashboard/TopQuestions/TopQuestions.tsx
+// 📄 src/components/dashboard/TopQuestions/TopQuestions.tsx
 // ============================================
-// 자주 묻는 질문 Top 10
+// 가장 많이 질문한 제품 Top 5 (기존 TopQuestions 재활용)
 // ============================================
 
-import { BarChart3 } from 'lucide-react';
+import { BarChart3, Package } from 'lucide-react';
 import styles from './TopQuestions.module.css';
 
-type TopQuestionItem = { id?: string; question: string; count: number };
+// 타입 변경: question -> product_name
+type TopProductItem = { id?: string; product_name: string; count: number };
 
-const defaultTopQuestions: TopQuestionItem[] = [
-  { question: '제품 사용법이 궁금해요', count: 234 },
-  { question: '고장이 났어요', count: 187 },
-  { question: 'A/S는 어떻게 받나요?', count: 156 },
-  { question: '설치 방법을 알려주세요', count: 143 },
-  { question: '제품 보증 기간은?', count: 128 },
-];
+export default function TopQuestions({ questions }: { questions?: any[] }) {
+  // props 이름은 호환성을 위해 questions 유지하되, 내부는 product 로직으로 변경
+  const list = questions && questions.length ? questions : [];
 
-export default function TopQuestions({ questions }: { questions?: { id?: string; question: string; count: number }[] }) {
-  const list = questions && questions.length ? questions : defaultTopQuestions;
+  // 데이터가 없을 경우 처리
+  if (list.length === 0) {
+    return (
+      <div className={styles.card}>
+        <div className={styles.header}>
+          <h3 className={styles.title}>
+            <Package size={20} />
+            가장 많이 질문한 제품 Top 5
+          </h3>
+        </div>
+        <div className={styles.empty}>데이터가 없습니다.</div>
+      </div>
+    );
+  }
+
   const maxCount = Math.max(...list.map(q => q.count));
 
   return (
     <div className={styles.card}>
       <div className={styles.header}>
         <h3 className={styles.title}>
-          <BarChart3 size={20} />
-          자주 묻는 질문 Top 5
+          <Package size={20} />
+          가장 많이 질문한 제품 Top 5
         </h3>
       </div>
-      
+
       <div className={styles.list}>
         {list.map((item, index) => (
-          <div key={(item as any).id ?? index} className={styles.item}>
+          <div key={item.product_id || index} className={styles.item}>
             <div className={styles.rank}>{index + 1}</div>
             <div className={styles.content}>
-              <div className={styles.question}>{item.question}</div>
+              {/* 질문 대신 제품명 표시 */}
+              <div className={styles.question}>{item.product_name}</div>
               <div className={styles.barWrapper}>
                 <div
                   className={styles.bar}

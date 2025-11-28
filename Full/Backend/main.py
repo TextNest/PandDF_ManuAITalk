@@ -2,7 +2,7 @@ import asyncio
 from fastapi import FastAPI,Request, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from api import chat,login,admin,superadmin,ar_models, products,faq,logs
+from api import chat,login,admin,superadmin,ar_models, products,faq,logs,dashboard
 from module import Scheduler_ARP
 from core.db_config import engine
 import os
@@ -82,3 +82,4 @@ app.include_router(products.router, tags=["products"], prefix="/api/products")
 app.include_router(faq.router, tags=["faq"])
 app.include_router(superadmin.router, tags=["superadmin"], prefix="/api/superadmin")
 app.include_router(logs.router, tags=["logs"])
+app.include_router(dashboard.router, prefix="/api/dashboard", tags=["Dashboard"])

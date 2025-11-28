@@ -89,9 +89,10 @@
 .card {
   background: white;
   border-radius: 1rem;
-  padding: 2rem;
+  padding: var(--spacing-2xl);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   min-height: 500px; /*추가*/
+  box-shadow: var(--shadow-xl);
 }
 
 .header {
@@ -241,9 +242,13 @@
   border: none;
   color: white;
   font-size: 0.875rem;
-  font-weight: 600;
+  /* font-weight: 600; */
   cursor: pointer;
-  transition: opacity 0.2s;
+  /* transition: opacity 0.2s; */
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+  opacity: 0.8;
 }
 
 .backButton:hover {

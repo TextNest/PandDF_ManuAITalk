@@ -47,7 +47,7 @@ export default function DashboardPage() {
         <h1>대시보드</h1>
         <p className={styles.subtitle}>시스템 현황을 한눈에 확인하세요</p>
       </div>
-      
+
       {/* 통계 카드 */}
       <div className={styles.statsGrid}>
         <StatsCard
@@ -65,27 +65,27 @@ export default function DashboardPage() {
           color="success"
         />
         <StatsCard
-          title="평균 응답 시간"
-          value={data.stats.avgResponseTime}
-          change={data.stats.responseTimeChange}
-          icon="clock"
+          title="제품별 평균 질문 수"
+          value={data.stats.avgQuestionsPerSession}
+          change={data.stats.questionCountChange}
+          icon="bar"
           color="secondary"
         />
         <StatsCard
-          title="FAQ 항목"
+          title="자동 생성된 FAQ 수"
           value={data.stats.totalFAQs}
           change={data.stats.faqChange}
           icon="help"
           color="warning"
         />
       </div>
-      
+
       {/* 차트 영역 */}
       <div className={styles.chartsGrid}>
         <QueryAnalytics data={data.analytics} />
         <TopQuestions questions={data.topQuestions} />
       </div>
-      
+
       {/* 최근 활동 */}
       <RecentActivity activities={data.recentActivity} />
     </div>

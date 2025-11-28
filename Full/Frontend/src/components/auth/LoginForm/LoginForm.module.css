@@ -24,6 +24,14 @@
   margin-bottom: var(--spacing-sm);
 }
 
+.header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+
 .header p {
   font-size: var(--font-size-sm);
   color: var(--text-secondary);

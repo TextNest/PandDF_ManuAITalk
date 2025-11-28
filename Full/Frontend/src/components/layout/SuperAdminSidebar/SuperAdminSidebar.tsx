@@ -32,16 +32,16 @@ export default function SuperAdminSidebar({ isOpen, onClose }: SuperAdminSidebar
       label: '기업 관리', 
       href: '/superadmin/companies' 
     },
-    { 
-      icon: Users, 
-      label: '관리자 관리', 
-      href: '/superadmin/users' 
-    },
-    { 
-      icon: Settings, 
-      label: '시스템 설정', 
-      href: '/superadmin/settings' 
-    },
+    // { 
+    //   icon: Users, 
+    //   label: '관리자 관리', 
+    //   href: '/superadmin/users' 
+    // },
+    // { 
+    //   icon: Settings, 
+    //   label: '시스템 설정', 
+    //   href: '/superadmin/settings' 
+    // },
   ];
 
   return (

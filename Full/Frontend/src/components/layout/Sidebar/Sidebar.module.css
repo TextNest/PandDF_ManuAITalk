@@ -93,6 +93,10 @@
   z-index: 150;
 }
 
+.logoLink {
+  text-decoration: none;
+  color: inherit;
+}
 
 /* ------------------- */
 /* 반응형 스타일 */

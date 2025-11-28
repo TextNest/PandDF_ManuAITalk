@@ -1,20 +1,21 @@
 // ============================================
 // 📄 src/features/dashboard/hooks/useDashboardData.ts
 // ============================================
-// 대시보드 데이터 페칭 훅
+// 대시보드 데이터 페칭 훅 (실제 API 연동)
 // ============================================
 
 import { useState, useEffect } from 'react';
+import { getCompanyAdminStats } from '@/lib/api/dashboard';
 
 // 타입 정의
 export interface DashboardStats {
-  totalDocuments: number;
-  totalQueries: number;
-  avgResponseTime: string;
-  totalFAQs: number;
+  totalDocuments: string;
+  totalQueries: string;
+  avgQuestionsPerSession: string; // 이름 변경
+  totalFAQs: string;
   documentChange: number;
   queryChange: number;
-  responseTimeChange: number;
+  questionCountChange: number; // responseTimeChange -> questionCountChange
   faqChange: number;
 }
 
@@ -25,7 +26,7 @@ export interface QueryAnalyticsData {
 
 export interface TopQuestion {
   id: string;
-  question: string;
+  question: string; // UI 호환성을 위해 이름 유지 (실제로는 제품명)
   count: number;
   trend: 'up' | 'down' | 'stable';
 }
@@ -41,7 +42,7 @@ export interface RecentActivityItem {
 interface DashboardData {
   stats: DashboardStats;
   analytics: QueryAnalyticsData[];
-  topQuestions: TopQuestion[];
+  topQuestions: any[]; // TopProduct 타입으로 변경됨
   recentActivity: RecentActivityItem[];
 }
 
@@ -50,116 +51,59 @@ export function useDashboardData() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
-  useEffect(() => {
-    // 실제로는 API 호출
-    // const response = await apiClient.get('/api/dashboard');
-    
-    // Mock 데이터 페칭 시뮬레이션 (1.5초 딜레이)
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        
-        // Mock 데이터
-        const mockData: DashboardData = {
-          stats: {
-            totalDocuments: 24,
-            totalQueries: 1547,
-            avgResponseTime: '2.3s',
-            totalFAQs: 156,
-            documentChange: +12,
-            queryChange: +23,
-            responseTimeChange: -15,
-            faqChange: +8,
-          },
-          analytics: [
-            { date: '2024-10-10', queries: 45 },
-            { date: '2024-10-11', queries: 52 },
-            { date: '2024-10-12', queries: 48 },
-            { date: '2024-10-13', queries: 61 },
-            { date: '2024-10-14', queries: 55 },
-            { date: '2024-10-15', queries: 67 },
-            { date: '2024-10-16', queries: 72 },
-          ],
-          topQuestions: [
-            {
-              id: '1',
-              question: '제품 A/S 문의는 어디로 하나요?',
-              count: 145,
-              trend: 'up',
-            },
-            {
-              id: '2',
-              question: '보증 기간은 얼마나 되나요?',
-              count: 132,
-              trend: 'stable',
-            },
-            {
-              id: '3',
-              question: '배터리 교체는 어떻게 하나요?',
-              count: 98,
-              trend: 'down',
-            },
-            {
-              id: '4',
-              question: '초기화 방법을 알려주세요',
-              count: 87,
-              trend: 'up',
-            },
-            {
-              id: '5',
-              question: '소프트웨어 업데이트 방법',
-              count: 76,
-              trend: 'stable',
-            },
-          ],
-          recentActivity: [
-            {
-              id: '1',
-              type: 'document',
-              title: 'Galaxy S24 사용 설명서 업로드',
-              timestamp: '2024-10-16T14:30:00',
-              user: '관리자',
-            },
-            {
-              id: '2',
-              type: 'query',
-              title: '사용자가 "배터리 수명" 질문',
-              timestamp: '2024-10-16T14:25:00',
-            },
-            {
-              id: '3',
-              type: 'faq',
-              title: 'FAQ 자동 생성 완료 (15개)',
-              timestamp: '2024-10-16T14:20:00',
-              user: '시스템',
-            },
-            {
-              id: '4',
-              type: 'document',
-              title: 'AirPods Pro 매뉴얼 수정',
-              timestamp: '2024-10-16T14:15:00',
-              user: '김현태',
-            },
-            {
-              id: '5',
-              type: 'query',
-              title: '사용자가 "초기화 방법" 질문',
-              timestamp: '2024-10-16T14:10:00',
-            },
-          ],
-        };
-        
-        setData(mockData);
-        setError(null);
-      } catch (err) {
-        setError(err as Error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      setIsLoading(true);
 
+      // 실제 API 호출
+      const stats = await getCompanyAdminStats();
+
+      // API 응답을 DashboardData 형식으로 변환
+      const dashboardData: DashboardData = {
+        stats: {
+          totalDocuments: `${stats.total_documents}개`,
+          totalQueries: `${stats.total_questions}개`,
+          avgQuestionsPerSession: `${stats.avg_questions_per_session}개`,
+          totalFAQs: `${stats.total_faqs}개`,
+          documentChange: 0,
+          queryChange: 0,
+          questionCountChange: 0,
+          faqChange: 0,
+        },
+        // 일별 질문 수 차트 데이터 매핑
+        analytics: stats.daily_queries ? stats.daily_queries.map(d => ({
+          date: d.date,
+          queries: d.count
+        })) : [],
+
+        // 상위 제품 매핑 (기존 TopQuestions 컴포넌트 재활용)
+        topQuestions: stats.top_products ? stats.top_products.map(p => ({
+          id: p.product_id,
+          product_name: p.product_name, // 컴포넌트에서 이 필드를 사용하도록 수정함
+          count: p.count,
+          trend: 'stable'
+        })) : [],
+
+        recentActivity: stats.recent_activity ? stats.recent_activity.map((activity: any, index: number) => ({
+          id: `activity-${index}`,
+          type: activity.type === 'query' ? 'query' : 'document',
+          title: activity.content,
+          timestamp: activity.created_at,
+          user: 'User'
+        })) : []
+      };
+
+      setData(dashboardData);
+      setError(null);
+    } catch (err) {
+      console.error("Failed to fetch dashboard data:", err);
+      setError(err as Error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -167,9 +111,6 @@ export function useDashboardData() {
     data,
     isLoading,
     error,
-    refetch: () => {
-      setIsLoading(true);
-      // 리페치 로직
-    },
+    refetch: fetchData,
   };
 }
