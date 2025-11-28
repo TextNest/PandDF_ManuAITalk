@@ -34,7 +34,6 @@ import { API_ENDPOINTS } from '@/lib/api/endpoints';
 import styles from './logs-page.module.css';
 
 export default function LogsPage() {
-  const [dateRange, setDateRange] = useState('7days');
   const [recentSessions, setRecentSessions] = useState<SessionRecent[]>([]);
   const [recentLoading, setRecentLoading] = useState(false);
   const [filter, setFilter] = useState<SessionFilter>({status: 'all'});
@@ -112,7 +111,7 @@ export default function LogsPage() {
       }
     };
     fetchSessions();
-  }, [filter, dateRange, page]);
+  }, [filter, page]);
 
   return (
     <div className={styles.page}>
@@ -122,51 +121,7 @@ export default function LogsPage() {
           <h1>로그 분석</h1>
           <p className={styles.subtitle}>대화 로그와 사용자 질문을 분석합니다</p>
         </div>
-        
-        <select 
-          className={styles.dateSelect}
-          value={dateRange}
-          onChange={(e) => setDateRange(e.target.value)}
-        >
-          <option value="24hours">최근 24시간</option>
-          <option value="7days">최근 7일</option>
-          <option value="30days">최근 30일</option>
-          <option value="90days">최근 90일</option>
-        </select>
       </div>
-
-      {/* 핵심 지표 (간소화) */}
-      {/* <div className={styles.metricsGrid}>
-        <div className={styles.metricCard}>
-          <div className={styles.metricIcon} style={{ backgroundColor: '#667eea' }}>
-            <BarChart3 size={24} />
-          </div>
-          <div className={styles.metricContent}>
-            <div className={styles.metricValue}>1,547</div>
-            <div className={styles.metricLabel}>총 질문 수</div>
-          </div>
-        </div>
-
-        <div className={styles.metricCard}>
-          <div className={styles.metricIcon} style={{ backgroundColor: '#10b981' }}>
-            <Clock size={24} />
-          </div>
-          <div className={styles.metricContent}>
-            <div className={styles.metricValue}>2.3s</div>
-            <div className={styles.metricLabel}>평균 응답 시간</div>
-          </div>
-        </div>
-
-        <div className={styles.metricCard}>
-          <div className={styles.metricIcon} style={{ backgroundColor: '#f59e0b' }}>
-            <ThumbsUp size={24} />
-          </div>
-          <div className={styles.metricContent}>
-            <div className={styles.metricValue}>87.5%</div>
-            <div className={styles.metricLabel}>도움이 됨</div>
-          </div>
-        </div>
-      </div> */}
 
       {/* 최근 문의 섹션 */}
       <div className={styles.section}>
@@ -191,11 +146,13 @@ export default function LogsPage() {
       </div>
 
       {/* 필터 & 검색 */}
-      <SessionFilterTable
-        filter={filter}
-        onChangeFilter={handleFilterChange}
-        products={productOptions}
-      />
+      <div className={styles.filterBlock}>
+        <SessionFilterTable
+          filter={filter}
+          onChangeFilter={handleFilterChange}
+          products={productOptions}
+        />
+      </div>
 
       {/* 세션 목록 */}
       {sessionsLoading ? (
