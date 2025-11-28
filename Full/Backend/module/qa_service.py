@@ -15,6 +15,14 @@ from langchain_core.callbacks.manager import CallbackManagerForRetrieverRun
 from langchain_core.runnables import RunnableLambda
 from langchain_cohere import CohereRerank
 
+import logging
+
+logging.basicConfig(
+    level=logging.INFO, # INFO 레벨 이상만 출력 (DEBUG는 무시)
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
 QA_SYSTEM_PROMPT =  """당신은 제품 매뉴얼 전문가입니다.
 검색된 내용과 대화 기록을 종합하여 사용자의 질문에 **마크다운형식** 으로 답변하세요.
 단순히 페이지만 언급하지 말고, 내용을 상세하게 설명해야 하며 **무조건 문장을 완성** 하세요
@@ -106,7 +114,7 @@ class HybridRAGChain:
       
         self.enhanced_base_retriever =RunnableLambda(extract_query)| self.base_retriever | RunnableLambda(inject_image_paths)
         self.enhanced_combined_retriever = RunnableLambda(extract_query)|self.combined_retriever | RunnableLambda(inject_image_paths)
-        # -----------------------------
+        
 
         qa_prompt = ChatPromptTemplate.from_messages([
             ("system", QA_SYSTEM_PROMPT),
@@ -114,7 +122,7 @@ class HybridRAGChain:
         ])
         question_answer_chain = create_stuff_documents_chain(self.llm, qa_prompt)
         
-        # Use ENHANCED retrievers here
+        
         light_chain = create_retrieval_chain(self.enhanced_base_retriever, question_answer_chain)
         rag_chain = create_retrieval_chain(self.enhanced_combined_retriever, question_answer_chain)
         
@@ -124,7 +132,7 @@ class HybridRAGChain:
             input_messages_key="input", 
             history_messages_key="chat_history", 
             output_messages_key="answer",
-        )
+        )   
         self.light_with_history = RunnableWithMessageHistory(
             runnable=light_chain, 
             get_session_history=get_session_history,
@@ -132,36 +140,33 @@ class HybridRAGChain:
             history_messages_key="chat_history", 
             output_messages_key="answer",
         )
-    def check(self,query):
-        check_context = self.base_retriever.invoke(query)
-        return check_context
     async def invoke(self, query,session):
-        initial_context = self.check(query)
+        import time 
+        start = time.time()
         need_self_query = False
-        if initial_context:
-            print("검색 결과가 존재합니다. 결과를 출력 해드리겠습니다.")
-            answer = await self.light_with_history.ainvoke(
-                {"input":query,"context":initial_context},
-                config={"configurable": {"session_id": session}}
-            )
-            if "찾을 수 없습니다" in answer.get("answer", ""): 
-                need_self_query = True
-        else:
+        answer = await self.light_with_history.ainvoke(
+            {"input":query},
+            config={"configurable": {"session_id": session}}
+        )
+        end = time.time()
+        total_time = end - start
+        
+        if "찾을 수 없습니다" in answer.get("answer", ""): 
+            logger.info("정확한 내용을 찾지 못했습니다. 멀티쿼리를 실행하겠습니다.")
             need_self_query = True
 
         if need_self_query:
-            print("검색결과가 없습니다. 쿼리를 재 작성하겠습니다.")
             run_manager = CallbackManagerForRetrieverRun.get_noop_manager()
             sub_queries = self.combined_retriever.generate_queries(query, run_manager=run_manager)
-
-            print(f"{sub_queries}가 생성되었습니다. 해당 쿼리들로 재 검색 하겠습니다.")
-            
-            
+            logger.info(f"{sub_queries}가 생성되었습니다. 해당 쿼리들로 재 검색 하겠습니다.")      
+            start = time.time()      
             answer = await self.chain_with_history.ainvoke(
             {"input": query},
             config={"configurable": {"session_id": session}}
             )
-        print(answer.get("response_metadata",""))   
+            end = time.time()
+            total_time = end - start
+        logger.info(f"답변생성완료가 {total_time:0.2f}초 걸렸습니다.")
         answer = answer.get("answer","")
         
         return {"answer": answer}

@@ -13,6 +13,14 @@ from typing import List, Dict, Any, Optional
 from langchain_core.runnables import RunnableConfig
 from module.qa_recommend import RecommendRAGChain
 from sqlalchemy import text 
+import logging
+
+logging.basicConfig(
+    level=logging.INFO, # INFO 레벨 이상만 출력 (DEBUG는 무시)
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
 Tool_name={
     "product_qa_tool":"질문",
     "recommend_tool":"추천"
@@ -102,7 +110,7 @@ class  ChatBotAgent:
             session_id=self.session_id
         )
         self.graph.update_state(config, final_state_to_put)
-        print("메모리 저장완료했습니다.")
+        logger.info("메모리 저장완료했습니다.")
     
     def _build_graph(self) :
         work  = StateGraph(AgentState)
@@ -133,15 +141,15 @@ class  ChatBotAgent:
 
         async def tool_node(state):
             last_msg = state["messages"][-1]
-            if hasattr(last_msg,"tool_calls") and last_msg.tool_calls: #마지막 메세지에 too_calls 속성이 있고 값이 있으면
-                print(last_msg.tool_calls[0]["name"])
+            if hasattr(last_msg,"tool_calls") and last_msg.tool_calls: 
                 tool_name = last_msg.tool_calls[0]["name"]
+                logger.info(f"도구호출:{tool_name}")
                 find_name = Tool_name.get(tool_name,tool_name)
                 for call in last_msg.tool_calls:
                     call['args']['product_id'] = state["product_id"]
                     call['args']['session_id'] = state["session_id"]
-                    print(f"도구 이름: {call['name']}")
-                    print(f"전달된 인자: {call['args']}")
+                    logger.info(f"도구 이름: {call['name']}")
+                    logger.info(f"전달된 인자: {call['args']}")
             message_tool =  await ToolNode(self.tools).ainvoke(state)    
             return {
                 "messages": message_tool["messages"],
@@ -175,35 +183,4 @@ class  ChatBotAgent:
         tool_name = result.get("tool_name")
         return {"answer":final_message.content,"tool_name":tool_name}
 
-    # async def stream_chat(self,query:str,db_session: Optional[Any] = None): 오류가 많아서 수정중
-    #     config = {"configurable":{"thread_id":self.session_id,"db":db_session}}
-    #     initial_state = {
-    #         "messages":[HumanMessage(content=query)],
-    #         "product_id":self.product_id,
-    #         "session_id":self.session_id,
-    #         "tool_name": None
-    #     }
-    #     collect_tool_name = None
-    #     collect_content = ""
-
-    #     async for event in self.graph.astream_events(
-    #         initial_state, config=config, version="v2"
-    #     ):
-    #         kind = event["event"]
-    #         if kind == "on_chain_start":
-    #             collect_tool_name = Tool_name.get(event["name"], event["name"])
-
-    #         elif kind == "on_chat_model_stream":
-    #             chunk = event["data"]["chunk"]
-    #             if content := chunk.content:    
-    #                 collect_content+=content
-    #                 yield {
-    #                     "type": "token", 
-    #                     "message": content
-    #                 }
-    #     yield{
-    #         "type": "finish",
-    #         "tool_name":collect_tool_name,
-    #         "full_content": collect_content
-    #     }
             

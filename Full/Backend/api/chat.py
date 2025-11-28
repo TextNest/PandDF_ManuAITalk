@@ -12,7 +12,13 @@ import datetime
 import json
 from core.query import session_search,find_message,add_message,find_session,update_session,add_session,delete_sessions,delete_message,update_feedback,find_questions,delete_sessions_chat
 from schemas.chat import FeedBack
+import logging
 
+logging.basicConfig(
+    level=logging.INFO, # INFO 레벨 이상만 출력 (DEBUG는 무시)
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
@@ -26,7 +32,6 @@ async def history_session(user_info: Dict = Depends(get_current_user),session:As
         "user_internal_id":user_id
     })
     code_row = results.mappings().all()
-    print(code_row,type(code_row))
     if not code_row:
         return [] 
     json_safe_rows = [dict(row) for row in code_row]
@@ -47,7 +52,7 @@ async def delete_session(session_id:str,user_info:Dict=Depends(get_current_user)
         "session_id":session_id
     })
     await session.commit()
-    print(f"{user_id}의 {session_id}가 삭제 되었습니다.")
+    logger.info(f"{user_id}의 {session_id}가 삭제 되었습니다.")
     return {"message":"세션이 삭제되었습니다."}
 
 @router.post("/chat/feedback")
@@ -59,18 +64,10 @@ async def feedback(feedback_data:FeedBack,session:AsyncSession=Depends(get_sessi
             "id": feedback_data.message_id,
         })
         await session.commit()
-        print(f"{feedback_data.id}가 업데이트 되었습니다.")
+        logger.info(f"{feedback_data.id}가 업데이트 되었습니다.")
     except Exception as e:
         await session.rollback()
         
-        # # 위에서 발생시킨 HTTPException도 여기서 잡힐 수 있음
-        # if isinstance(e, HTTPException):
-        #     raise e
-        
-        # raise HTTPException(
-        #     status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-        #     detail=f"Database error: {str(e)}"
-        # )
 
     
 @router.get("/chat/suggestions/{productId}")
@@ -92,47 +89,40 @@ async def get_suggestions(productId:str,session:AsyncSession=Depends(get_session
 @router.websocket("/ws/{pid}")
 async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[str] = Query(None, alias="session_id")):
     await websocket.accept()
-    print("연결 성공")  
+    logger.info("연결 성공")  
     pid = pid.upper()
     message = None
     user_id = None
     final_answer = None
+    Issession = False
     try:
         first_message = await websocket.receive_json()
         if first_message.get("token")=="pass":
-            print("비회원확인")
+            logger.info("비회원확인")
             first_message = None
             user_id = None
         if first_message and first_message.get("type") == 'auth' and first_message.get("token"):
-            print("회원확인")
+            logger.info("회원확인")
             auth_token = first_message["token"]
             authorization_header = f"Bearer {auth_token}"
             user_info = get_current_user(authorization=authorization_header)
             user_id = user_info.get("unique_id")
-            print(user_id,type(user_id))
+            
         if not session_id : 
-            print("새 세션 생성")
+            logger.info("새 세션 생성")
+
             session_id = str(random.randint(100000,999999))
-            async with get_session_text() as session:
-                await session.execute(text(add_session),
-                    params={
-                        "user_internal_id":user_id,
-                        "productId":pid,
-                        "session_id":session_id
-                    })
-                await session.commit()
+
             await websocket.send_json({"type":"bot", "message": f"{pid} 상품의 정보 입니다."})
             await asyncio.sleep(0.5)
             await websocket.send_json({"type":"bot","message":"무엇을 도와드릴까요?"})
         else:
             async with get_session_text() as session:
-                print(f"기존 세션 ID: {session_id} 로 연결합니다.")
+                logger.info(f"기존 세션 ID: {session_id} 로 연결합니다.")
                 results = await session.execute(text(find_message),
                 params={"session_id":session_id,"user_id":user_id})
                 code_row = results.mappings().all()
-                print(code_row,type(code_row))
                 initial_messages = [dict(row) for row in code_row]
-                print(initial_messages,type(initial_messages))
                 final_message = []
                 for i in initial_messages:
                     if isinstance(i["timestamp"],datetime.datetime):
@@ -140,6 +130,7 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[st
                     final_message.append(i)
                 message = final_message
                 await websocket.send_json({"type":"session_init", "message":final_message})
+                Issession = True
         agent = ChatBotAgent(product_id = pid,session_id = session_id,initial_messages=message)
 
         while True:
@@ -147,31 +138,33 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[st
             async with get_session_text() as session:      
                 start = time.time()
                 answer = await agent.chat(data,session)
-                print(type(answer["answer"]))
                 if isinstance(answer["answer"],list):
                     final_answer = answer["answer"][0]["text"]
                 elif isinstance(answer["answer"],str):
                     final_answer = answer["answer"]
-                # async for token in agent.stream_chat(data): 
-                #     if token["type"] != "final":
-                #         await websocket.send_json({"type": "token", "message": token}) 
-                #     elif token["type"] == "final":
-                #         final_answer = token["full_content"]
-                #         tool = token["tool_name"]
-                #         await websocket.send_json({"type":"stream_end"})
                 end  = time.time()
                 total_time = end - start 
-                print(f"{total_time:0.2f}초 걸렸습니다.")
-  
+                logger.info(f"{total_time:0.2f}초 걸렸습니다.")
+
+
                 
+                #Human Message가 들어오고 AI메세지를 생성완료 했을 때 세션 생성
+                if not Issession:
+                    await session.execute(text(add_session),
+                        params={
+                            "user_internal_id":user_id,
+                            "productId":pid,
+                            "session_id":session_id
+                        })
+                    Issession = True
                 await session.execute(text(add_message),
                 params={
                     "session_id":session_id,
                     "role":"user",
-                    "content":data,
+                    "content":data, 
                     "tool_name":answer["tool_name"]
                 })
-                await session.commit()
+                
                 
                 await session.execute(text(add_message),
                 params={
@@ -181,12 +174,9 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[st
                     "tool_name":answer["tool_name"]
                 })
                 result = await session.execute(text("SELECT LAST_INSERT_ID()"))
-                new_message_id = result.scalar_one()
+                message_id = result.scalar_one()
                 await session.commit()
-                if session_id and user_id :
-                    await websocket.send_json({"type":"bot","message":final_answer,"message_id":new_message_id})
-                else:
-                    await websocket.send_json({"type":"bot","message":final_answer})
+                await websocket.send_json({"type":"bot","message":final_answer ,"message_id":message_id})
                 await websocket.send_json({"type":"stream_end"})
                 
     except WebSocketDisconnect:
@@ -207,12 +197,9 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[st
                     "lastMessage":last_message,
                     "messageCount":message_count
                 })
-            if message_count < 1 :
-                await session.execute(text(delete_sessions_chat),params={"session_id":session_id})
             await session.commit()
 
-            print(f"{user_id}_{session_id}가 저장되었습니다.")
-            print("연결 종료")
+            logger.info(f"{user_id}_{session_id}가 저장되었습니다. \n\n 연결종료")
 
                 
         

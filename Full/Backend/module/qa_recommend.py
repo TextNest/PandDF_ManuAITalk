@@ -13,7 +13,13 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_core.runnables import RunnableLambda
 from langchain_cohere import CohereRerank
 from langchain_core.output_parsers import StrOutputParser
+import logging
 
+logging.basicConfig(
+    level=logging.INFO, # INFO 레벨 이상만 출력 (DEBUG는 무시)
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
 QA_SYSTEM_PROMPT =  """당신은 제품 매뉴얼 비교 전문가입니다.
 기존 상품 검색내용과 비교 상품 검색내용, 그리고 대화 기록을 종합하여 사용자의 질문을 종합하여 **카드 형태**로 작성하세요.
 단순히 페이지만 언급하지 말고, 내용을 상세하게 설명해야 하며 **무조건 문장을 완성** 하세요
@@ -106,7 +112,7 @@ class RecommendRAGChain:
             doc_text = format_docs(target_docs)
             recommend_context.append(f"=== [{i}] 제품의 상세 내용 ===\n{doc_text}")
         final_recommend_context = "\n\n".join(recommend_context)
-        print("검색완료")
+        logger.info("검색 완료: 기준군(A) vs 비교군(B)")
         chain = self.qa_prompt | self.llm | StrOutputParser()
 
         chain_with_history = RunnableWithMessageHistory(
@@ -116,7 +122,9 @@ class RecommendRAGChain:
             history_messages_key="chat_history",
         )
 
-        print("체인생성완료")
+        logger.info("체인생성 완료")
+        import time
+        start = time.time()
         response = await chain_with_history.ainvoke(
             {
                 "origin_context": origin_context,
@@ -127,8 +135,9 @@ class RecommendRAGChain:
             },
             config={"configurable": {"session_id": session_id}}
         )
-        print("답변생성완료 ")
-
+        end = time.time()
+        total_time = end - start
+        logger.info(f"답변생성완료가 {total_time:0.2f}초 걸렸습니다.")
         return {"answer": response}
 
 
