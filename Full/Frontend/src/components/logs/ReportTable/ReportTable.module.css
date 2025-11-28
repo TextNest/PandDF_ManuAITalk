@@ -2,112 +2,97 @@
 // 📄 4. src/components/logs/ReportTable/ReportTable.module.css
 // ============================================ */
 
-.card {
-  background-color: var(--bg-primary);
-  border: 1px solid var(--border-light);
-  border-radius: var(--border-radius-lg);
-  padding: var(--spacing-lg);
-}
-
-.header {
-  margin-bottom: var(--spacing-lg);
-}
-
-.title {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
-  margin: 0;
-}
-
-.tableWrapper {
-  overflow-x: auto;
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.table thead {
-  background-color: var(--bg-secondary);
-}
-
-.table th {
-  padding: var(--spacing-md);
-  text-align: left;
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  color: var(--text-secondary);
-  border-bottom: 2px solid var(--border-light);
-}
-
-.table td {
-  padding: var(--spacing-md);
-  font-size: var(--font-size-sm);
-  border-bottom: 1px solid var(--border-light);
-}
-
-.table tbody tr:hover {
-  background-color: var(--bg-secondary);
-}
-
-.rank {
-  width: 32px;
-  height: 32px;
+/* 화면 전체를 덮는 어두운 배경 */
+.backdrop {
+  position: fixed;
+  inset: 0; /* top:0, right:0, bottom:0, left:0 축약 */
+  background: rgba(0, 0, 0, 0.35); /* 주변을 어둡게 */
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-primary);
-  color: white;
-  border-radius: var(--border-radius-md);
-  font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-sm);
+  z-index: 1000; /* 헤더/테이블 위에 올라오도록 충분히 크게 */
 }
 
-.questionCell {
-  font-weight: var(--font-weight-medium);
-  color: var(--text-primary);
-  max-width: 400px;
-}
-
-.count {
-  display: inline-block;
-  padding: 4px 12px;
-  background-color: var(--color-primary);
-  color: white;
-  border-radius: var(--border-radius-full);
-  font-weight: var(--font-weight-semibold);
-}
-
-.rateBar {
-  position: relative;
-  width: 100px;
-  height: 24px;
-  background-color: var(--bg-tertiary);
-  border-radius: var(--border-radius-full);
+/* 가운데 떠 있는 팝업 카드 */
+.modal {
+  background: var(--bg-primary, #ffffff);
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+  width: 100%;
+  max-width: 720px;        /* 팝업 최대 가로 */
+  max-height: 80vh;        /* 너무 길어지면 내부 스크롤 */
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
 }
 
-.rateBarFill {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  background: linear-gradient(90deg, var(--color-success), var(--color-success-light));
-  border-radius: var(--border-radius-full);
-  transition: width var(--transition-base);
+/* 상단 헤더 영역 (제목 + 닫기 버튼) */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-light, #e5e7eb);
 }
 
-.rateText {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-bold);
-  color: var(--text-primary);
-  z-index: 1;
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary, #111827);
+}
+
+.subtitle {
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--text-muted, #6b7280);
+}
+
+/* X 버튼 */
+.closeButton {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--text-muted, #6b7280);
+}
+
+.closeButton:hover {
+  color: var(--text-primary, #111827);
+}
+
+/* 본문 스크롤 영역 */
+.content {
+  padding: 16px 20px 20px;
+  overflow-y: auto;
+}
+
+/* 섹션 구분 */
+.section + .section {
+  margin-top: 16px;
+}
+
+.section h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.logBox {
+  padding: 10px 12px;
+  background: var(--bg-secondary, #f9fafb);
+  border-radius: 10px;
+  border: 1px solid var(--border-light, #e5e7eb);
+  max-height: 40vh;
+  overflow-y: auto;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* 작은 화면 대응: 좌우 여백만 조금 줄이기 */
+@media (max-width: 768px) {
+  .modal {
+    margin: 0 12px;
+    max-width: 100%;
+  }
 }

@@ -8,13 +8,9 @@
 
 import { useState, useEffect } from 'react';
 import {  
-  BarChart3, 
-  Clock, 
   History, 
-  ThumbsUp
 } from 'lucide-react';
 import Button from '@/components/ui/Button/Button';
-import ResponseTimeChart from '@/components/dashboard/ResponseTimeChart/ResponseTimeChart';
 import RecentSessionTable from '@/components/logs/RecentSessionTable/RecentSessionTable';
 import SessionFilterTable from '@/components/logs/SessionFilter/SessionFilter';
 import SessionTable from '@/components/logs/SessionTable/SessionTable';
@@ -44,10 +40,22 @@ export default function LogsPage() {
   const [sessions, setSessions] = useState<SessionList[]>([]);
   const [totalSessions, setTotalSessions] = useState(0);
   const totalPages = Math.max(1, Math.ceil(totalSessions / pageSize));
+  const [selectedSessionId, setSelectedSessionId] = useState<number | null>(null);
+  const [isDetailOpen, setIsDetailOpen] = useState(false);
 
   const handleFilterChange = (next: SessionFilter) => {
     setFilter(next);
     setPage(1);
+  };
+
+  const handleSelectSession = (sid: number) => {
+    setSelectedSessionId(sid);
+    setIsDetailOpen(true);
+  };
+
+  const handleCloseDetail = () => {
+    setIsDetailOpen(false);
+    setSelectedSessionId(null);
   };
 
   useEffect(() => {
@@ -138,8 +146,8 @@ export default function LogsPage() {
           <RecentSessionTable
             sessions={recentSessions}
             onSelectSession={(sid) => {
-              console.log('최근 문의 클릭:', sid);
-              // TODO: 여기서 바로 리포트 조회 or 세션 목록으로 스크롤/이동 등 붙이면 돼요
+              console.log('최근 문의 클릭:', sid,);
+              handleSelectSession(sid);
             }}
           />
         )}
@@ -168,7 +176,7 @@ export default function LogsPage() {
           sessions={sessions}
           onSelectSession={(sid) => {
             console.log('세션 선택:', sid);
-            // 나중에 상세 페이지로 이동하거나 오른쪽 패널에 로그 펼치는 용도로 쓸 수 있어요.
+            handleSelectSession(sid);
           }}
         />
       )}
@@ -209,13 +217,14 @@ export default function LogsPage() {
         >
           다음
         </button>
-      </div>
 
-      {/* 응답 시간 차트 */}
-      {/* <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>⏱️ 응답 시간 추이</h2>
-        <ResponseTimeChart />
-      </div> */}
+        {/* 맨 아래에 모달 추가 */}
+        <ReportTable
+        open={isDetailOpen}
+        sessionId={selectedSessionId}
+        onClose={handleCloseDetail}
+        />
+      </div>
     </div>
   );
 }
