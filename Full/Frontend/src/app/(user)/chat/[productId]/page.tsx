@@ -136,7 +136,7 @@ export default function ChatPage({
         {!isAuthenticated && showLoginBanner && (
           <div className={styles.loginBanner}>
             <div className={styles.bannerContent}>
-              <span>💡 로그인하면 대화 기록이 저장되고 더 많은 기능을 사용할 수 있어요!</span>
+              <span>💡 로그인하면 이전 대화 기록을 확인할 수 있어요!</span>
               <button
                 className={styles.loginButton}
                 onClick={handleGoogleLogin}

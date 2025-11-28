@@ -124,8 +124,8 @@
   width: 100%;
   margin-top: 0.5rem; /* 위쪽 여백 */
   padding: 1rem;
-  background: var(--bg-primary);
-  color: var(--color-primary);
+  background: #667eea;
+  color: var(--text-inverse);
   border: none;
   border-radius: 0.75rem;
   font-size: 1rem;

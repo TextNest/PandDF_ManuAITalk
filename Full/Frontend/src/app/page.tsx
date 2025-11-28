@@ -95,7 +95,7 @@ export default function HomePage() {
               onClick={() => router.push('/superadmin')}
             >
               <Shield size={20} />
-              슈퍼관리자
+              슈퍼 관리자
             </button>
           );
         case 'company_admin':
