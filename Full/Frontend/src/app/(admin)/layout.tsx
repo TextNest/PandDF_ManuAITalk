@@ -34,6 +34,7 @@ export default function AdminLayout({
     }
     else {
         if (!isCompanyAdmin()){
+            alert('접근 권한이 없습니다. 관리자만 접근할 수 있습니다.');
             if (!isSuperAdmin()){
                 router.push('/')
             }

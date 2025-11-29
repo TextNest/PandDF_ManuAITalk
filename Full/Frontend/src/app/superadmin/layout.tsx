@@ -6,14 +6,16 @@ import { useAuthStore } from '@/store/useAuthStore'; // useAuth 훅 대신 스�
 import SuperAdminSidebar from '@/components/layout/SuperAdminSidebar/SuperAdminSidebar';
 import { LogOut, Menu } from 'lucide-react'; // Menu 아이콘 추가
 import styles from './superadmin-layout.module.css';
+import { useAuth } from '@/features/auth/hooks/useAuth';
 
 export default function SuperAdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const router = useRouter();
-  const { user, isAuthenticated, logout, isInitialized } = useAuthStore(); // isInitialized 추가
+  const router = useRouter();const 
+  const {isCompanyAdmin,isSuperAdmin} = useAuth();
+  const { user, isAuthenticated, logout, isInitialized,} = useAuthStore(); // isInitialized 추가
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // 사이드바 상태
 
   useEffect(() => {
@@ -25,15 +27,29 @@ export default function SuperAdminLayout({
     // 초기화가 끝난 후 인증 상태 확인
     if (!isAuthenticated) {
       router.push('/admin/login');
-      return;
     }
-
+    else {
+        if (!isSuperAdmin()){
+          alert('접근 권한이 없습니다. 슈퍼 관리자만 접근할 수 있습니다.');
+          if (!isCompanyAdmin()){
+              router.push('/')
+          }
+          else{
+              router.push('/dashboard')
+          }   
+      }
+        else{
+            router.push('/superadmin')  
+        }
+    
+    }
+  }, [isInitialized,isAuthenticated, router,isCompanyAdmin,isSuperAdmin]);
     // 슈퍼 관리자가 아니면 접근 불가! 🔥
     if (user?.role !== 'super_admin') {
-      alert('접근 권한이 없습니다. 슈퍼 관리자만 접근할 수 있습니다.');
+      
       router.push('/dashboard'); // 기업 관리자는 대시보드로
     }
-  }, [isInitialized, isAuthenticated, user, router]);
+
 
   // 초기화 중이거나, 인증되지 않았거나, 슈퍼 관리자가 아니면 로딩 화면 표시
   if (!isInitialized || !isAuthenticated || user?.role !== 'super_admin') {
