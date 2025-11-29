@@ -19,7 +19,7 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const { user, isAuthenticated, logout } = useAuth();
+  const { user, isAuthenticated, logout,isCompanyAdmin,isSuperAdmin } = useAuth();
   const [isHydrated, setIsHydrated] = useState(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false); // 모바일 사이드바 상태
 
@@ -29,10 +29,24 @@ export default function AdminLayout({
 
   useEffect(() => {
     if (!isHydrated) return;
-    if (!isAuthenticated) {
+    if (!isAuthenticated){
       router.push('/admin/login');
     }
-  }, [isAuthenticated, isHydrated, router]);
+    else {
+        if (!isCompanyAdmin()){
+            if (!isSuperAdmin()){
+                router.push('/')
+            }
+            else{
+                router.push('/superadmin')
+            }   
+        }
+        else{
+            router.push('/dashboard')  
+        }
+      
+    }
+  }, [isAuthenticated, isHydrated, router,isCompanyAdmin,isSuperAdmin]);
 
   if (!isHydrated || !isAuthenticated) {
     return (
