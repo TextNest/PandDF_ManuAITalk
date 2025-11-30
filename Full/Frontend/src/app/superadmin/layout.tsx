@@ -13,7 +13,7 @@ export default function SuperAdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const router = useRouter();const 
+  const router = useRouter();
   const {isCompanyAdmin,isSuperAdmin} = useAuth();
   const { user, isAuthenticated, logout, isInitialized,} = useAuthStore(); // isInitialized 추가
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // 사이드바 상태

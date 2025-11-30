@@ -554,9 +554,9 @@ WHERE admin_internal_id = :admin_id
 """
 
 # ---------- 대시보드 관련 ----------
-total_companies = "SELECT COUNT(*) FROM tb_company",
-total_users = "SELECT COUNT(*) FROM tb_admin", 
-total_documents = "SELECT COUNT(*) FROM tb_product",
+total_companies = "SELECT COUNT(*) FROM tb_company"
+total_users = "SELECT COUNT(*) FROM tb_admin"
+total_documents = "SELECT COUNT(*) FROM tb_product"
 total_questions = "SELECT COUNT(*) FROM tb_message WHERE role='user'"
 
 recent_company = """
