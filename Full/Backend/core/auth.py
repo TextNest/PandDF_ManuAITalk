@@ -1,7 +1,7 @@
 import os
 from datetime import datetime, timedelta,timezone
-from typing import  Dict, Any, Optional
-from fastapi import Depends, Header, HTTPException
+from typing import  Dict, Optional
+from fastapi import  Header, HTTPException
 from jose import jwt
 from jose.exceptions import JWTError
 from passlib.context import CryptContext

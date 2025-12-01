@@ -181,6 +181,7 @@ class  ChatBotAgent:
         result = await self.graph.ainvoke(initial_state,config=config)
         final_message = result["messages"][-1]
         tool_name = result.get("tool_name")
+        print(f"==================답변=================\n{final_message}\n===================================")
         return {"answer":final_message.content,"tool_name":tool_name}
 
             

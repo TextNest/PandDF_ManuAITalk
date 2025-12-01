@@ -1,4 +1,4 @@
-from fastapi import APIRouter,WebSocket,WebSocketDisconnect,Request,Depends,Query
+from fastapi import APIRouter,WebSocket,WebSocketDisconnect,Depends,Query
 import asyncio
 import random
 from module.chat_agent import ChatBotAgent
@@ -10,7 +10,7 @@ from typing import  Dict,Optional
 from sqlalchemy import text 
 import datetime
 import json
-from core.query import session_search,find_message,add_message,find_session,update_session,add_session,delete_sessions,delete_message,update_feedback,find_questions,delete_sessions_chat
+from core.query import session_search,find_message,add_message,find_session,update_session,add_session,delete_sessions,delete_message,update_feedback,find_questions
 from schemas.chat import FeedBack
 import logging
 

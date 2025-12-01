@@ -2,7 +2,7 @@ import asyncio
 from fastapi import FastAPI,Request, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from api import chat,login,admin,superadmin,ar_models, products,faq,logs,dashboard
+from api import chat,login,superadmin,ar_models, products,faq,logs,dashboard
 from module import Scheduler_ARP
 from core.db_config import engine
 import os

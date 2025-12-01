@@ -147,5 +147,5 @@ class HybridRAGChain:
             total_time = end - start
         logger.info(f"답변생성완료가 {total_time:0.2f}초 걸렸습니다.")
         answer = answer.get("answer","")
-        
+        print(f"==================답변=================\n{answer}\n===================================")
         return {"answer": answer}

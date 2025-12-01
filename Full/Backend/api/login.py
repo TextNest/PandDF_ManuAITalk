@@ -3,7 +3,6 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text 
 import os
 import httpx
-import json
 from core.auth import create_access_token, verify_password, get_password_hash, get_current_user
 from core.db_config import get_session
 from schemas.login import LoginRequest, Register, FindCode, CompayCodeResponse, companyInfo, AuthCodeRequest
@@ -74,7 +73,7 @@ async def login_with_token(login_data:LoginRequest,session:AsyncSession=Depends(
         if not verify_password(login_data.password, user_row["pw_hash"]):
             raise HTTPException(status_code=401,detail="비밀번호가 일치하지 않습니다.")
     
-    # from datetime import timedelta
+    
     internal_id = user_row["admin_internal_id"]
     company_id = user_row["company_internal_id"] # 회사 ID 가져오기
     prefixed_id = f"admin_{internal_id}"
@@ -86,7 +85,7 @@ async def login_with_token(login_data:LoginRequest,session:AsyncSession=Depends(
             "name": user_row["name"],
             "role": "super_admin" if user_row["role"] == 1 else "company_admin",
             "company_id": company_id # 토큰에 회사 ID 추가
-        } # expire 미 작성시 30분  작성법  expires_delta = timedelta(days=1)
+        }
     )
     return {
         "user": {
@@ -166,7 +165,7 @@ async def google_login_call_back(code_data:AuthCodeRequest,session:AsyncSession=
         new_id = result.scalar_one()
         prefixed_id = f"user_{new_id}"
 
-        # from datetime import timedelta
+        
         data = {
             "id": prefixed_id,
             "email": google_email,    
