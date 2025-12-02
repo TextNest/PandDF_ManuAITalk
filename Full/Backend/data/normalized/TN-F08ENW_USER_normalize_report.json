@@ -1,0 +1,12 @@
+{
+  "num_pages": 4,
+  "lines_before": 150,
+  "lines_after": 121,
+  "placeholders_removed_estimate": 35,
+  "repeated_lines_removed": 0,
+  "num_repeated_patterns": 0,
+  "repeated_patterns_sample": [],
+  "repeated_threshold": 3,
+  "doc_id": "TN-F08ENW_USER",
+  "source_parsed_file": "data\\parsed\\TN-F08ENW_USER.md"
+}

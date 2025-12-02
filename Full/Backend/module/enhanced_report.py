@@ -133,6 +133,7 @@ async def reset_report(terminal):
 #--------------------------------------------------
 
 async def Scheduler_ARP(verbose:int = 0):
+    if verbose>0: print(verbose_msg("SCHEDULER_ARP : ARP Activated"))
     while True:
         try:
             await execute_report(verbose)

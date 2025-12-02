@@ -290,6 +290,41 @@ class LogQuery_v2:
     LIMIT :limit OFFSET :offset
     """
 
+    view_report = """
+    SELECT
+        session_id as sessionId,
+        product_name as productName,
+        product_id as productId,
+        category,
+        is_resolved as status,
+        content as summary,
+        DATE_FORMAT(started_at, '%Y-%m-%d %H:%i:%s') as startedAt,
+        DATE_FORMAT(completed_at, '%Y-%m-%d %H:%i:%s') as endedAt,
+        positive,
+        negative,
+        satisfaction
+    FROM tb_report
+    WHERE session_internal_id = :sid
+    """
+
+    view_log = """
+    SELECT
+        session_internal_id as sid,
+        session_id as sessionId,
+        product_name as productName,
+        product_id as productId,
+        category,
+        is_resolved as status,
+        content,
+        started_at as startedAt,
+        completed_at as endedAt,
+        positive,
+        negative,
+        satisfaction
+    FROM tb_report
+    WHERE session_internal_id = 1
+    """
+
 # ---------- FAQ 관련 쿼리 ----------
 # 목록 조회 (필터링 가능)
 find_faq = """
