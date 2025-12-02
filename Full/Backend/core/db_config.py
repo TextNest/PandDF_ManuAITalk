@@ -1,4 +1,3 @@
-import os
 from core.config import load
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
@@ -14,7 +13,7 @@ print(DATABASE_URL)
 
 engine: Engine = create_async_engine(
     DATABASE_URL, 
-    echo= os.environ["SQL_ECHO"]=="1",
+    echo=True,
     pool_pre_ping=True,
     pool_recycle=3600,
     pool_timeout=30

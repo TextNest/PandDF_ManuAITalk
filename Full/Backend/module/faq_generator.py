@@ -9,6 +9,7 @@ from core.query import (
     create_faq_generation_log,
     update_faq_generation_log
 )
+from core.auth import get_current_user
 from models.faq import generate_short_id
 import numpy as np
 import logging

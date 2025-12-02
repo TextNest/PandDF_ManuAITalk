@@ -63,16 +63,14 @@ export interface SessionListResponse {
   items: SessionList[];
 }
 
-// 상세 리포트
+// 상세 리포트, 좀 나중에 수정해도 됨
 export interface SessionReport {
   sessionId: string;
-  productName: string | null;
   productId: string | null;
-  category: string | null;
   status: number;
   summary: string;
-  startedAt: string;
-  endedAt: string;
+  timestamp_s: string;
+  timestamp_e: string;
   positive: number;
   negative: number;
   satisfaction: number;
