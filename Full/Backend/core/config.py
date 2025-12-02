@@ -33,6 +33,7 @@ class load:
         os.environ["client_id"] = os.getenv("client_id")
         os.environ["client_secret"] = os.getenv("client_secret")
         os.environ["MODEL_SERVER_URL"] = os.getenv("MODEL_SERVER_URL", "http://127.0.0.1:8001")
+        os.environ["SQL_ECHO"] = os.getenv("SQL_ECHO", "0")
         DB_HOST = os.getenv("DB_HOST")
         DB_USER = os.getenv("DB_USER")
         DB_PASSWORD = os.getenv("DB_PW")

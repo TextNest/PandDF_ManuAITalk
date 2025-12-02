@@ -221,7 +221,7 @@ export default function LogsPage() {
         {/* 맨 아래에 모달 추가 */}
         <ReportTable
         open={isDetailOpen}
-        sessionId={selectedSessionId}
+        sid={selectedSessionId}
         onClose={handleCloseDetail}
         />
       </div>
