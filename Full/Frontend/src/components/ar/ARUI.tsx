@@ -86,9 +86,12 @@ export default function ARUI({ lastUITouchTimeRef }: { lastUITouchTimeRef: React
           }
 
           const productData = response.data;
+          /*
+          // 임시로 상태 검사 비활성화
           if (productData.status !== 'completed') {
             throw new Error('제품 분석이 완료되지 않아 AR로 볼 수 없습니다.');
           }
+          */
 
           let item = mapProductToFurnitureItem(productData);
           let debugMsg = `${item.name}이(가) 선택되었습니다. 표면을 스캔하고 배치하세요.`;

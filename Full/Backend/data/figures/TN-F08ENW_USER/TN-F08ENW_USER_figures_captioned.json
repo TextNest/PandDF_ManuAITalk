@@ -1,0 +1,450 @@
+{
+  "doc_id": "TN-F08ENW_USER",
+  "source_pdf": "uploads/pdfs/TN-F08ENW_USER.pdf",
+  "num_images_total": 15,
+  "num_images_kept": 8,
+  "created_by": "image_captioner_gemini.py",
+  "model": "gemini-2.5-flash",
+  "config": {
+    "CAPTION_MAX_CHARS": 320,
+    "UNSAFE_KEYWORDS": [
+      "폭발",
+      "감전",
+      "사망",
+      "질식",
+      "중독",
+      "화재",
+      "불이 날",
+      "불이날",
+      "가스 누출",
+      "가스누출",
+      "가스가 새",
+      "전기 충격",
+      "전기충격",
+      "고압",
+      "중상",
+      "심각한 부상"
+    ]
+  },
+  "images": [
+    {
+      "file": "data/figures/TN-F08ENW_USER/page_002_figure_001.png",
+      "page": 2,
+      "index": 1,
+      "size_px": [
+        44,
+        42
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 42.0,
+        "aspect_ratio": 1.0476190476190477,
+        "ink_ratio": 0.43777056277056275,
+        "edge_ratio": 0.22510822510822512,
+        "table_line_ratio": 0.2683982683982684,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/TN-F08ENW_USER/page_002_figure_002.png",
+      "page": 2,
+      "index": 2,
+      "size_px": [
+        45,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.38567901234567903,
+        "edge_ratio": 0.2528395061728395,
+        "table_line_ratio": 0.20592592592592593,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/TN-F08ENW_USER/page_002_figure_003.png",
+      "page": 2,
+      "index": 3,
+      "size_px": [
+        45,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0227272727272727,
+        "ink_ratio": 0.4035353535353535,
+        "edge_ratio": 0.24848484848484848,
+        "table_line_ratio": 0.1919191919191919,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/TN-F08ENW_USER/page_002_figure_004.png",
+      "page": 2,
+      "index": 4,
+      "size_px": [
+        45,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 45.0,
+        "height": 45.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.3269135802469136,
+        "edge_ratio": 0.17580246913580247,
+        "table_line_ratio": 0.16592592592592592,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/TN-F08ENW_USER/page_002_figure_005.png",
+      "page": 2,
+      "index": 5,
+      "size_px": [
+        44,
+        45
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 45.0,
+        "aspect_ratio": 0.9777777777777777,
+        "ink_ratio": 0.4823232323232323,
+        "edge_ratio": 0.17676767676767677,
+        "table_line_ratio": 0.43333333333333335,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/TN-F08ENW_USER/page_002_figure_006.png",
+      "page": 2,
+      "index": 6,
+      "size_px": [
+        42,
+        43
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 42.0,
+        "height": 43.0,
+        "aspect_ratio": 0.9767441860465116,
+        "ink_ratio": 0.6888150609080842,
+        "edge_ratio": 0.10908084163898117,
+        "table_line_ratio": 0.698781838316722,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/TN-F08ENW_USER/page_003_figure_007.png",
+      "page": 3,
+      "index": 7,
+      "size_px": [
+        382,
+        396
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 382.0,
+        "height": 396.0,
+        "aspect_ratio": 0.9646464646464646,
+        "ink_ratio": 0.0916164260405098,
+        "edge_ratio": 0.13564308001480777,
+        "table_line_ratio": 0.03885054735840076,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/TN-F08ENW_USER/page_003_figure_007.png",
+      "caption_short": "이것은 선풍기의 앞면을 보여주는 그림이다. 선풍기는 둥근 머리 부분과 넓고 둥근 받침대로 구성되어 있다. 선풍기의 가장 위쪽에는 둥근 바람 토출구가 있다. 이곳은 전체를 감싸는 '전망(보호망)'으로 덮여 있으며, 그 안쪽으로는 여러 장의 '날개'가 보인다. 전망의 아래쪽 중앙에는 '전망 고정 나사'가 박혀 있다. 선풍기 머리 아랫부분에는 넓은 받침대가 연결되어 있다. 이 받침대의 앞쪽 가운데에는 동그란 '다이얼(바람세기)'이 튀어나와 있다. 가장 아래, 바닥에 닿는 부분은 '회전 받침대'이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/TN-F08ENW_USER/page_003_figure_008.png",
+      "page": 3,
+      "index": 8,
+      "size_px": [
+        383,
+        402
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 383.0,
+        "height": 402.0,
+        "aspect_ratio": 0.9527363184079602,
+        "ink_ratio": 0.10327604795864022,
+        "edge_ratio": 0.1438239611342764,
+        "table_line_ratio": 0.043490121195588635,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/TN-F08ENW_USER/page_003_figure_008.png",
+      "caption_short": "여기에는 동그란 모양의 전기 선풍기가 뒤에서 본 모습으로 놓여 있다. 선풍기 본체의 가장 위쪽에는 움푹 들어간 형태의 손잡이가 있는데, 이곳은 '운반 손잡이'라고 부른다. 둥근 선풍기 본체의 뒷면 전체를 감싸고 있는 보호망은 '후망'이라고 표시되어 있다. 선풍기 본체는 넓적하고 안정적인 '본체 받침대' 위에 고정되어 있다. 본체 받침대의 뒷부분 아래쪽에서는 전기를 연결하는 '전원코드'가 바깥으로 길게 뻗어 나온다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/TN-F08ENW_USER/page_003_figure_009.png",
+      "page": 3,
+      "index": 9,
+      "size_px": [
+        258,
+        228
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 258.0,
+        "height": 228.0,
+        "aspect_ratio": 1.131578947368421,
+        "ink_ratio": 0.08401332789337686,
+        "edge_ratio": 0.0512375900992792,
+        "table_line_ratio": 0.056932544539643685,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/TN-F08ENW_USER/page_003_figure_009.png",
+      "caption_short": "위쪽에는 '바람 세기'라는 글자가 보인다. 가운데에는 커다란 원형 조절기가 놓여 있다. 이 조절기 중앙에는 작은 동그라미 표시가 있고, 테두리 주변에는 '0', '1', '2', '3' 숫자들이 새겨져 있다. 가장 위쪽에는 '0'이 있으며, 오른쪽으로 '1', '2', '3'이 차례로 이어지고, 조절기 왼쪽에도 '3', '2', '1' 숫자가 표시되어 있다. 조절기 위쪽에는 왼쪽 위에서 오른쪽 아래를 향하는 큰 곡선 화살표가 그려져 있고, 각 숫자 옆에도 작은 곡선 화살표들이 함께 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/TN-F08ENW_USER/page_003_figure_010.png",
+      "page": 3,
+      "index": 10,
+      "size_px": [
+        235,
+        210
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 235.0,
+        "height": 210.0,
+        "aspect_ratio": 1.119047619047619,
+        "ink_ratio": 0.08310030395136778,
+        "edge_ratio": 0.05714285714285714,
+        "table_line_ratio": 0.05189463019250253,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/TN-F08ENW_USER/page_003_figure_010.png",
+      "caption_short": "둥근 형태의 조절 다이얼이 정면에서 보인다. 다이얼의 가장 위쪽에는 숫자 '0'이 선명하게 표시되어 있으며, 이것은 전원이 꺼진 상태를 의미한다. 다이얼을 시계 방향으로 돌려 기능을 조절할 수 있는데, 오른쪽에는 숫자 '1'이, 왼쪽 아래에는 숫자 '2'가, 그리고 왼쪽 위에는 숫자 '3'이 각각 고정된 위치에 있다. 각 숫자 옆에는 다이얼 안쪽을 가리키는 작은 꺾인 화살표가 붙어 있고, 다이얼 위쪽에는 시작점에서 왼쪽 위 '3'을 지나 아래쪽으로 크게 휘어진 화살표가 그려져 있어 다이얼을 돌리는 움직임을 직관적으로 보여준다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/TN-F08ENW_USER/page_003_figure_011.png",
+      "page": 3,
+      "index": 11,
+      "size_px": [
+        208,
+        223
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 208.0,
+        "height": 223.0,
+        "aspect_ratio": 0.9327354260089686,
+        "ink_ratio": 0.11441445325974474,
+        "edge_ratio": 0.13140307002414625,
+        "table_line_ratio": 0.06737236978268368,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/TN-F08ENW_USER/page_003_figure_011.png",
+      "caption_short": "이것은 작은 선풍기의 옆모습을 약간 앞에서 바라본 장면이다. 넓고 납작한 받침대 위에 동그란 모양의 선풍기 몸체가 놓여 있다. 선풍기 몸체 앞면에는 촘촘한 안전망이 보이며, 몸체는 뒤쪽이 앞으로 살짝 기울어진 상태이다. 한 손은 선풍기 바닥의 넓은 받침대를 잡고 있고, 다른 한 손은 동그란 몸체의 위쪽 앞부분을 아래로 누르고 있다. 몸체 위에는 곡선 화살표가 그려져 있어, 선풍기 몸체가 아래쪽으로 기울어지도록 각도를 조절하는 모습임을 보여준다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/TN-F08ENW_USER/page_003_figure_012.png",
+      "page": 3,
+      "index": 12,
+      "size_px": [
+        200,
+        234
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 200.0,
+        "height": 234.0,
+        "aspect_ratio": 0.8547008547008547,
+        "ink_ratio": 0.12675213675213676,
+        "edge_ratio": 0.12754273504273506,
+        "table_line_ratio": 0.08042735042735043,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/TN-F08ENW_USER/page_003_figure_012.png",
+      "caption_short": "이것은 작은 선풍기를 옆에서 바라본 모습이다. 선풍기의 몸통은 둥근 공처럼 생겼으며, 그 아래 절반은 여러 가닥의 살로 이루어진 안전망으로 덮여 있다. 둥근 몸통은 아래쪽의 넓고 납작한 받침대 위에 올려져 있다. 받침대는 바닥에 안정적으로 놓여 있고, 받침대의 앞쪽 왼쪽에는 작고 둥근 조절 다이얼이 튀어나와 있다. 둥근 선풍기 몸통은 위쪽으로 최대한 기울어져 있어 마치 하늘을 보고 있는 듯하다. 몸통의 왼쪽 위에는 ‘90도’라는 숫자와 함께, 본체가 아래에서 위로 크게 움직이는 방향을 가리키는 둥근 화살표가 그려져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/TN-F08ENW_USER/page_003_figure_013.png",
+      "page": 3,
+      "index": 13,
+      "size_px": [
+        461,
+        224
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 461.0,
+        "height": 224.0,
+        "aspect_ratio": 2.0580357142857144,
+        "ink_ratio": 0.14185969941121784,
+        "edge_ratio": 0.1555333901456461,
+        "table_line_ratio": 0.04817748682987295,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/TN-F08ENW_USER/page_003_figure_013.png",
+      "caption_short": "둥근 머리 부분과 넓적한 받침대로 이루어진 탁상용 선풍기이다. 왼쪽은 선풍기 왼쪽 앞 측면에서 본 모습으로, 선풍기 앞 안전망 아래에 있는 작은 나사를 오른손에 든 일자 드라이버로 풀고 있다. 선풍기 받침대 위에는 둥근 조작 다이얼이 놓여 있다. 오른쪽은 선풍기 정면에서 본 모습이다. 두 손으로 선풍기 앞 안전망의 가장자리를 잡고 있으며, 왼쪽 손 위에는 '풀림' 글자와 반시계 방향 화살표가, 오른쪽 손 위에는 '잠김' 글자와 시계 방향 화살표가 함께 보인다. 안전망 안쪽으로는 바람을 내보내는 날개가 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/TN-F08ENW_USER/page_003_figure_014.png",
+      "page": 3,
+      "index": 14,
+      "size_px": [
+        191,
+        220
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 191.0,
+        "height": 220.0,
+        "aspect_ratio": 0.8681818181818182,
+        "ink_ratio": 0.1001665873393622,
+        "edge_ratio": 0.15511661113755354,
+        "table_line_ratio": 0.04419324131366016,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/TN-F08ENW_USER/page_003_figure_014.png",
+      "caption_short": "눈앞에는 탁자 위에 놓인 작은 선풍기가 정면을 보고 있다. 이 선풍기는 위쪽에 둥근 몸통이 있고, 그 아래에는 넓고 평평한 받침대가 연결되어 있다. 둥근 몸통의 앞쪽에는 여러 개의 가는 선으로 이루어진 안전망이 씌워져 있고, 안전망 안쪽으로는 바람을 일으키는 세 개의 날개가 보인다. 오른쪽에서 사람의 손이 천을 들고 안전망 사이로 들어가 날개 하나를 조심스럽게 닦고 있다. 선풍기 아래쪽 받침대의 정면 한가운데에는 바람 세기를 조절할 수 있는 작은 둥근 다이얼이 달려 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/TN-F08ENW_USER/page_004_figure_015.png",
+      "page": 4,
+      "index": 15,
+      "size_px": [
+        783,
+        155
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 783.0,
+        "height": 155.0,
+        "aspect_ratio": 5.051612903225807,
+        "ink_ratio": 0.08504099204877848,
+        "edge_ratio": 0.08967165162938244,
+        "table_line_ratio": 0.06037160631153957,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    }
+  ]
+}
