@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { usePanelInteraction } from '@/features/ar/hooks/usePanelInteraction';
 import { FurnitureItem } from '@/lib/ar/types';
 import styles from './ARUI.module.css';
 import { useARStore } from '@/store/useARStore';
 import apiClient from '@/lib/api/client';
 import { Product } from '@/types/product.types';
+import { DEFAULT_3D_MODEL_URL } from '@/lib/ar/constants'; // DEFAULT_3D_MODEL_URL import
 
 // Moved outside the component to avoid stale closures
 const handleSelectItemExternal = (
@@ -45,53 +47,83 @@ export default function ARUI({ lastUITouchTimeRef }: { lastUITouchTimeRef: React
     triggerEndAR,
     debugMessage,
     arStatus,
-    setDebugMessage, // Get setDebugMessage from the store
-    hasInitialScanCompleted, // Get the new state
+    setDebugMessage,
+    hasInitialScanCompleted,
   } = useARStore();
+
+  const searchParams = useSearchParams();
+  const productId = searchParams.get('productId');
 
   const { panelRef, panelStyle, handleInteractionStart } = usePanelInteraction(lastUITouchTimeRef);
   const [dbItems, setDbItems] = useState<FurnitureItem[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isPanelCollapsed, setIsPanelCollapsed] = useState(false);
 
+  const mapProductToFurnitureItem = (p: Product): FurnitureItem => ({
+    id: p.product_id || '',
+    name: p.product_name || '',
+    model3dUrl: p.model3d_url || undefined,
+    width_mm: p.width_mm || 0,
+    height_mm: p.height_mm || 0,
+    depth_mm: p.depth_mm || 0,
+    width: (p.width_mm || 0) / 1000,
+    height: (p.height_mm || 0) / 1000,
+    depth: (p.depth_mm || 0) / 1000,
+    status: p.status,
+  });
+
   useEffect(() => {
     const abortController = new AbortController();
     const signal = abortController.signal;
 
-    async function fetchDbItems() {
-      setDebugMessage('가구 목록 로딩 중...');
+    async function fetchAndSetItems() {
+      setDebugMessage('가구 정보 로딩 중...');
       try {
-        const response = await apiClient.get<Product[]>('/api/products', { signal });
-        const mappedItems: FurnitureItem[] = response.data
-          .filter(p => p.model3d_url && p.status === 'completed') // AR에 배치 가능한 제품만 필터링
-          .map(p => ({
-            id: p.product_id || '',
-            name: p.product_name || '',
-            model3dUrl: p.model3d_url || undefined,
-            width_mm: p.width_mm || 0,
-            height_mm: p.height_mm || 0,
-            depth_mm: p.depth_mm || 0,
-            width: (p.width_mm || 0) / 1000,
-            height: (p.height_mm || 0) / 1000,
-            depth: (p.depth_mm || 0) / 1000,
-            status: p.status,
-          }));
-        setDbItems(mappedItems);
-        setDebugMessage('가구 목록 로딩 완료.');
+        if (productId) {
+          const response = await apiClient.get<Product>(`/api/products/${productId}`, { signal });
+          if (!response.data) {
+            throw new Error('제품을 찾을 수 없습니다.');
+          }
+
+          const productData = response.data;
+          if (productData.status !== 'completed') {
+            throw new Error('제품 분석이 완료되지 않아 AR로 볼 수 없습니다.');
+          }
+
+          let item = mapProductToFurnitureItem(productData);
+          let debugMsg = `${item.name}이(가) 선택되었습니다. 표면을 스캔하고 배치하세요.`;
+
+          if (!item.model3dUrl) {
+            item = { ...item, model3dUrl: DEFAULT_3D_MODEL_URL };
+            debugMsg = `${item.name}의 3D 모델이 없어 기본 모델로 대체되었습니다.`;
+          }
+          
+          setDbItems([item]);
+          selectFurniture(item); // 자동으로 선택
+          setIsPlacing(true);     // 배치 모드로 전환
+          setDebugMessage(debugMsg);
+        } else {
+          const response = await apiClient.get<Product[]>('/api/products', { signal });
+          const mappedItems = response.data
+            .filter(p => p.model3d_url && p.status === 'completed')
+            .map(mapProductToFurnitureItem);
+          setDbItems(mappedItems);
+          setDebugMessage('가구 목록 로딩 완료. 배치할 가구를 선택하세요.');
+        }
       } catch (error) {
         if ((error as Error).name !== 'AbortError') {
-          console.error("가구 목록을 불러오는 데 실패했습니다:", error);
-          setDebugMessage("제품 목록을 가져올 수 없습니다.");
+          console.error("가구 정보를 불러오는 데 실패했습니다:", error);
+          setDebugMessage(`오류: ${(error as Error).message}`);
         }
       }
     }
 
-    fetchDbItems();
+    fetchAndSetItems();
 
     return () => {
       abortController.abort();
     };
-  }, [setDebugMessage]);
+  }, [productId, setDebugMessage, selectFurniture, setIsPlacing]);
 
   const handleClearFurniture = () => {
     triggerClearFurniture();
@@ -132,7 +164,7 @@ export default function ARUI({ lastUITouchTimeRef }: { lastUITouchTimeRef: React
               <div className={styles.section}>
                 <h3 className={styles.subSectionTitle}>DB 아이템 선택 ({dbItems.length}개)</h3>
                 <div className={styles.dropdownContainer}>
-                  <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className={styles.dropdownButton} disabled={arStatus === 'SCANNING'}>
+                  <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className={styles.dropdownButton} disabled={arStatus === 'SCANNING' || !!productId}>
                     {selectedFurniture
                       ? `${selectedFurniture.name || '알 수 없는 제품'} (W:${selectedFurniture.width || 0}, D:${selectedFurniture.depth || 0}, H:${selectedFurniture.height || 0})`
                       : '-- 아이템 선택 --'}
@@ -143,10 +175,10 @@ export default function ARUI({ lastUITouchTimeRef }: { lastUITouchTimeRef: React
                         -- 아이템 선택 --
                       </button>
                       {dbItems.map((item, index) => {
-                        const identifier = item.id?.toString() || item.name; // Use id or name as identifier
+                        const identifier = item.id?.toString() || item.name;
                         return (
                           <button
-                            key={item.id || item.name || index} // Prioritize id, then name, then index for key
+                            key={item.id || item.name || index}
                             onClick={() => identifier && handleSelectItemExternal(identifier, selectFurniture, setIsPlacing, dbItems, setIsDropdownOpen, setDebugMessage)}
                             className={`${styles.dropdownItem} ${selectedFurniture?.id === item.id ? styles.dropdownItemSelected : ''}`}>
                             {item.name || '알 수 없는 제품'} (W:{item.width || 0}, D:{item.depth || 0}, H:{item.height || 0})

@@ -18,3 +18,7 @@ export const COLORS = {
   // 측정 선 색상
   MEASUREMENT_LINE: 0xffffff, // White
 };
+
+// 기본 3D 모델 경로 (model3d_url이 없는 경우 폴백)
+// TODO: 실제 사용 시에는 유효한 기본 3D 모델 파일 경로로 대체해야 합니다.
+export const DEFAULT_3D_MODEL_URL = '/uploads/models_3d/default_cube.glb'; 

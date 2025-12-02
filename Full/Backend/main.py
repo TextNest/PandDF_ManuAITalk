@@ -2,7 +2,7 @@ import asyncio
 from fastapi import FastAPI,Request, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from api import chat,login,superadmin,ar_models, products,faq,logs,dashboard
+from api import chat,login,superadmin,ar_models, products,faq,logs,dashboard,voice
 from module import Scheduler_ARP
 from core.db_config import engine
 import os
@@ -75,6 +75,7 @@ async def add_cors_header(request: Request, call_next):
     response.headers["Access-Control-Allow-Headers"] = "*"
     return response
 
+app.include_router(voice.router, prefix="/voice", tags=["Voice"])
 app.include_router(chat.router, tags=["chat"])
 app.include_router(login.router, tags=["login"],prefix="/api")
 app.include_router(ar_models.router, tags=["ar_models"], prefix="/api")

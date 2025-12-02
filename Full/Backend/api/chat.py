@@ -86,7 +86,7 @@ async def get_suggestions(productId:str,session:AsyncSession=Depends(get_session
 
 
 
-@router.websocket("/ws/{pid}")
+@router.websocket("/chat/ws/{pid}")
 async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[str] = Query(None, alias="session_id")):
     await websocket.accept()
     logger.info("연결 성공")  

@@ -6,9 +6,10 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { Send } from 'lucide-react';
+import { Send, Mic } from 'lucide-react';
+import { playTextToSpeech } from '@/features/chat/utils/tts';
 import { useAuth } from '@/features/auth/hooks/useAuth';
 import { useChat } from '@/features/chat/hooks/useChat';
 import ChatMessage from '@/components/chat/ChatMessage/ChatMessage';
@@ -54,26 +55,239 @@ export default function ChatPage({
     suggestedQuestions
   } = useChat(params.productId);
 
+  // STT & TTS 상태
+  const [isRecording, setIsRecording] = useState(false);
+  const socketRef = useRef<WebSocket | null>(null);
+  const audioProcessorRef = useRef<{
+    audioContext: AudioContext;
+    scriptProcessor: ScriptProcessorNode;
+    source: MediaStreamAudioSourceNode;
+    stream: MediaStream;
+    analyser: AnalyserNode;
+  } | null>(null);
+  const lastFinalTranscriptRef = useRef('');
+  const silenceTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const lastIsRecordingRef = useRef(false);
+  const lastPlayedMessageId = useRef<string | null>(null);
+  const isAutoPlayingRef = useRef(false);
+  const isUserSpeakingRef = useRef(false);
+
   // 로그인 배너 상태
   const [showLoginBanner, setShowLoginBanner] = useState(true);
 
-  // 로그인 시 배너 자동 숨김
+  // --- 함수 정의 (컴포넌트 렌더링 로직보다 위에 정의) ---
+
+  const handleSend = useCallback(async () => {
+    if (!inputValue.trim() || isLoading) return;
+    await sendMessage(inputValue);
+    setInputValue('');
+  }, [inputValue, isLoading, sendMessage]);
+
+  const stopRecording = useCallback(() => {
+    if (silenceTimerRef.current) {
+      clearTimeout(silenceTimerRef.current);
+      silenceTimerRef.current = null;
+    }
+    if (audioProcessorRef.current) {
+      const { stream, scriptProcessor, source, audioContext, analyser } = audioProcessorRef.current;
+      stream.getTracks().forEach(track => track.stop());
+      scriptProcessor.onaudioprocess = null;
+      scriptProcessor.disconnect();
+      source.disconnect();
+      analyser.disconnect();
+      if (audioContext.state !== 'closed') {
+        audioContext.close().catch(console.error);
+      }
+      audioProcessorRef.current = null;
+    }
+    if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
+      socketRef.current.close();
+      socketRef.current = null;
+    }
+    setIsRecording(false);
+  }, []);
+
+  const floatTo16BitPCM = (input: Float32Array): Int16Array => {
+    const output = new Int16Array(input.length);
+    for (let i = 0; i < input.length; i++) {
+      const s = Math.max(-1, Math.min(1, input[i]));
+      output[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+    }
+    return output;
+  };
+
+  const downsampleBuffer = (buffer: Float32Array, fromSampleRate: number, toSampleRate: number): Float32Array => {
+    if (fromSampleRate === toSampleRate) return buffer;
+    const sampleRateRatio = fromSampleRate / toSampleRate;
+    const newLength = Math.round(buffer.length / sampleRateRatio);
+    const result = new Float32Array(newLength);
+    let offsetResult = 0;
+    let offsetBuffer = 0;
+    while (offsetResult < result.length) {
+      const nextOffsetBuffer = Math.round((offsetResult + 1) * sampleRateRatio);
+      let accum = 0, count = 0;
+      for (let i = offsetBuffer; i < nextOffsetBuffer && i < buffer.length; i++) {
+        accum += buffer[i];
+        count++;
+      }
+      result[offsetResult] = accum / count;
+      offsetResult++;
+      offsetBuffer = nextOffsetBuffer;
+    }
+    return result;
+  };
+
+  const checkForSilence = useCallback(() => {
+    if (!audioProcessorRef.current) return;
+    const { analyser } = audioProcessorRef.current;
+    const dataArray = new Uint8Array(analyser.frequencyBinCount);
+    analyser.getByteFrequencyData(dataArray);
+    const average = dataArray.reduce((acc, val) => acc + val, 0) / dataArray.length;
+
+    const SILENCE_THRESHOLD = 20;
+    const LONG_DELAY = 5000;  // 사용자가 말 시작하기 전 대기 시간
+    const SHORT_DELAY = 2000; // 사용자가 말한 후 멈춤 대기 시간
+
+    if (average < SILENCE_THRESHOLD) {
+      if (!silenceTimerRef.current) {
+        const delay = isUserSpeakingRef.current ? SHORT_DELAY : LONG_DELAY;
+        silenceTimerRef.current = setTimeout(() => {
+          stopRecording();
+        }, delay);
+      }
+    } else {
+      isUserSpeakingRef.current = true; // 사용자가 말하기 시작함
+      if (silenceTimerRef.current) {
+        clearTimeout(silenceTimerRef.current);
+        silenceTimerRef.current = null;
+      }
+    }
+    if (audioProcessorRef.current) {
+      requestAnimationFrame(checkForSilence);
+    }
+  }, [stopRecording]);
+
+  const startAudioProcessing = useCallback((stream: MediaStream, audioContext: AudioContext) => {
+    const source = audioContext.createMediaStreamSource(stream);
+    const analyser = audioContext.createAnalyser();
+    analyser.fftSize = 512;
+    const bufferSize = 2048;
+    const scriptProcessor = audioContext.createScriptProcessor(bufferSize, 1, 1);
+    const TARGET_SAMPLE_RATE = 16000;
+
+    scriptProcessor.onaudioprocess = (event) => {
+      const inputData = event.inputBuffer.getChannelData(0);
+      const downsampledBuffer = downsampleBuffer(inputData, audioContext.sampleRate, TARGET_SAMPLE_RATE);
+      const pcmBuffer = floatTo16BitPCM(downsampledBuffer);
+      if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
+        socketRef.current.send(pcmBuffer);
+      }
+    };
+
+    source.connect(analyser);
+    analyser.connect(scriptProcessor);
+    scriptProcessor.connect(audioContext.destination);
+    audioProcessorRef.current = { audioContext, scriptProcessor, source, stream, analyser };
+    requestAnimationFrame(checkForSilence);
+  }, [checkForSilence]);
+
+  const handleMicClick = useCallback(async () => {
+    if (isRecording) {
+      stopRecording();
+      return;
+    }
+    try {
+      // 1. AudioContext를 사용자 제스처 내에서 생성 또는 재개 (모바일 브라우저 정책 대응)
+      let audioContext = audioProcessorRef.current?.audioContext;
+      if (!audioContext || audioContext.state === 'closed') {
+        audioContext = new AudioContext();
+      } else if (audioContext.state === 'suspended') {
+        await audioContext.resume();
+      }
+
+      isUserSpeakingRef.current = false;
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000';
+      const wsUrl = `${backendUrl.replace(/^http/, 'ws')}/voice/stt`;
+      socketRef.current = new WebSocket(wsUrl);
+
+      socketRef.current.onopen = () => {
+        setIsRecording(true);
+        setInputValue('');
+        lastFinalTranscriptRef.current = '';
+        // 2. 미리 생성된 AudioContext를 전달
+        startAudioProcessing(stream, audioContext!);
+      };
+      socketRef.current.onclose = () => stopRecording();
+      socketRef.current.onerror = () => {
+        toast.error("음성 인식 연결에 실패했습니다.");
+        stopRecording();
+      };
+      socketRef.current.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        const transcript = data.transcript || '';
+        if (data.is_final) {
+          lastFinalTranscriptRef.current += transcript.trim() + ' ';
+          setInputValue(lastFinalTranscriptRef.current);
+        } else {
+          setInputValue(lastFinalTranscriptRef.current + transcript);
+        }
+      };
+    } catch (error) {
+      toast.error("마이크 접근 권한이 필요합니다.");
+    }
+  }, [isRecording, startAudioProcessing, stopRecording]);
+
+  // --- useEffect 훅 ---
+
   useEffect(() => {
     if (isAuthenticated) {
       setShowLoginBanner(false);
     }
   }, [isAuthenticated]);
 
-  // 구글 로그인 함수
+  useEffect(() => {
+    return () => stopRecording();
+  }, [stopRecording]);
+
+  useEffect(() => {
+    if (lastIsRecordingRef.current && !isRecording && inputValue.trim()) {
+      handleSend();
+    }
+    lastIsRecordingRef.current = isRecording;
+  }, [isRecording, inputValue, handleSend]);
+
+  useEffect(() => {
+    const lastMessage = messages[messages.length - 1];
+    if (
+      messages.length > 2 &&
+      lastMessage &&
+      lastMessage.role === 'assistant' &&
+      !isLoading &&
+      lastMessage.id !== lastPlayedMessageId.current &&
+      !isAutoPlayingRef.current
+    ) {
+      isAutoPlayingRef.current = true;
+      lastPlayedMessageId.current = lastMessage.id;
+      playTextToSpeech(lastMessage.content)
+        .then(() => handleMicClick())
+        .catch(err => {
+          if (err.name === 'NotAllowedError') {
+            toast.info("음성 자동 재생이 차단되었습니다. 스피커를 클릭해 들어보세요.", 5000);
+          }
+        })
+        .finally(() => {
+          isAutoPlayingRef.current = false;
+        });
+    }
+  }, [messages, isLoading, handleMicClick]);
+
   const handleGoogleLogin = () => {
-
-
-    // 1. Google OAuth 인증 URL 구성
     const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
     // 리디렉션 URI는 Google Cloud Console에 등록된 주소여야 합니다.
     const REDIRECT_URI = `${window.location.origin}/auth/callback`; 
     const SCOPE = 'openid profile email'; // 요청할 권한
-
+    // 2. 사용자를 Google 인증 페이지로 리디렉션
     const AUTH_URL = 
       `https://accounts.google.com/o/oauth2/v2/auth?` +
       `client_id=${GOOGLE_CLIENT_ID}` +
@@ -82,20 +296,8 @@ export default function ChatPage({
       `&scope=${SCOPE}` +
       `&access_type=offline` +
       `&prompt=select_account`;
-
-    // 2. 사용자를 Google 인증 페이지로 리디렉션
     window.location.href = AUTH_URL;
   };
-
-
-  // 메시지 전송
-  const handleSend = async () => {
-    if (!inputValue.trim() || isLoading) return;
-
-    await sendMessage(inputValue);
-    setInputValue('');
-  };
-
   // 추천 질문 선택
   const handleSuggestedQuestion = (question: string) => {
     setInputValue(question);
@@ -109,7 +311,8 @@ export default function ChatPage({
     }
   };
 
-  // 세션 로딩 중
+  // --- 렌더링 로직 ---
+
   if (isSessionLoading) {
     return (
       <div className={styles.chatPage}>
@@ -137,18 +340,11 @@ export default function ChatPage({
           <div className={styles.loginBanner}>
             <div className={styles.bannerContent}>
               <span>💡 로그인하면 이전 대화 기록을 확인할 수 있어요!</span>
-              <button
-                className={styles.loginButton}
-                onClick={handleGoogleLogin}
-              >
+              <button className={styles.loginButton} onClick={handleGoogleLogin}>
                 구글로 로그인
               </button>
             </div>
-            <button
-              className={styles.closeBanner}
-              onClick={() => setShowLoginBanner(false)}
-              aria-label="배너 닫기"
-            >
+            <button className={styles.closeBanner} onClick={() => setShowLoginBanner(false)} aria-label="배너 닫기">
               ✕
             </button>
           </div>
@@ -167,7 +363,7 @@ export default function ChatPage({
               message={message}
               sessionId={sessionId}
               productId={params.productId}
-              isFirstMessage={isNewSession?(index < 2) : (index === 0)} 
+              isFirstMessage={isNewSession?(index < 2) : (index === 0)}
               onSendFeedback={sendFeedback}
             />
           ))}
@@ -190,12 +386,19 @@ export default function ChatPage({
           <input
             type="text"
             className={styles.input}
-            placeholder="메시지를 입력하세요..."
+            placeholder={isRecording ? "듣고 있어요..." : "메시지를 입력하세요..."}
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyPress={handleKeyPress}
-            disabled={isLoading}
+            disabled={isLoading || isRecording}
           />
+          <button
+            className={styles.micButton}
+            onClick={handleMicClick}
+            aria-label="음성으로 입력"
+          >
+            <Mic size={20} className={isRecording ? styles.recordingIcon : ''} />
+          </button>
           <button
             className={styles.sendButton}
             onClick={handleSend}

@@ -13,7 +13,7 @@ export interface ChatSession {
   id: string;
   productId: string;
   productName?: string;
-  messages: any[];
+  messages?: any[];
   createdAt: number;
   updatedAt: number;
 }

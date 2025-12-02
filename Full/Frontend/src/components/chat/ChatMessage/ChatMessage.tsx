@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { User, Bot, ThumbsUp, ThumbsDown } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { User, Bot, ThumbsUp, ThumbsDown, Volume2, Square } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { playTextToSpeech } from '@/features/chat/utils/tts';
 // 2. IndexedDB 로직
 // import { dbManager, MessageFeedback } from '@/lib/db/indexedDB';
 // 3. CSS 파일
@@ -42,6 +43,8 @@ export default function ChatMessage({
 }: ChatMessageProps) {
   const [feedback, setFeedback] = useState<'positive' | 'negative' | null>(message.feedback || null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // 5. 피드백 로드 로직
   useEffect(() => {
@@ -50,27 +53,57 @@ export default function ChatMessage({
     }
   }, [message.feedback]);
 
+  // 컴포넌트 언마운트 시 오디오 정리
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
 
-  // 6. 피드백 핸들러 로직
   const handleFeedback = async (type: 'positive' | 'negative') => {
     if (isLoading) return;
     setIsLoading(true);
     const previousFeedback = feedback;
-    const newFeedbackType = (feedback===type)?null:type;
+    const newFeedbackType = (feedback === type) ? null : type;
 
     try {
       await onSendFeedback(message.id, newFeedbackType);
       setFeedback(newFeedbackType);
-      console.log(`피드백 저장됨: ${newFeedbackType}`);
-    } catch (error){
+    } catch (error) {
       setFeedback(previousFeedback);
-      console.log(`피드백 저장 실패: ${error}`)
-    }finally{
+      console.error(`피드백 저장 실패: ${error}`);
+    } finally {
       setIsLoading(false);
     }
   };
 
-  // 7. 새 CSS 클래스 이름 적용
+// ... (생략) ...
+
+  const handlePlaySound = async () => {
+    if (isPlaying && audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0; // 재생 위치를 처음으로
+      setIsPlaying(false);
+      return;
+    }
+
+    setIsPlaying(true);
+    try {
+      audioRef.current = await playTextToSpeech(message.content);
+      // playTextToSpeech 내부의 onended에서 isPlaying을 false로 설정할 수도 있지만,
+      // 중복 방지를 위해 audioRef를 통해 직접 제어
+      audioRef.current.onended = () => {
+        setIsPlaying(false);
+      };
+    } catch (error) {
+      console.error("TTS playback failed in ChatMessage:", error);
+      setIsPlaying(false);
+    }
+  };
+  
   const messageClass = message.role === 'user'
     ? `${styles.message} ${styles.userMessage}`
     : `${styles.message} ${styles.assistantMessage}`;
@@ -106,37 +139,43 @@ export default function ChatMessage({
             </div>
           )}
 
-          {/* 피드백 (AI 응답 + 첫 메시지가 아닐 때) */}
-          {message.role === 'assistant' && !isFirstMessage && (
-            <div className={styles.feedbackButtons}>
-              <button
-                className={`${styles.feedbackButton} ${feedback === 'positive' ? styles.active : ''}`}
-                onClick={() => handleFeedback('positive')}
-                disabled={isLoading}
-                title="도움이 되었어요"
-              >
-                <ThumbsUp size={16} />
-                {feedback === 'positive' && <span className={styles.feedbackLabel}>도움됨</span>}
-              </button>
-              
-              <button
-                className={`${styles.feedbackButton} ${feedback === 'negative' ? styles.active : ''}`}
-                onClick={() => handleFeedback('negative')}
-                disabled={isLoading}
-                title="도움이 안 되었어요"
-              >
-                <ThumbsDown size={16} />
-                {feedback === 'negative' && <span className={styles.feedbackLabel}>아쉬워요</span>}
-              </button>
+          <div className={styles.messageMeta}>
+            {message.role === 'assistant' && !isFirstMessage && (
+              <div className={styles.messageActions}>
+                <div className={styles.feedbackButtons}>
+                  <button
+                    className={`${styles.feedbackButton} ${feedback === 'positive' ? styles.active : ''}`}
+                    onClick={() => handleFeedback('positive')}
+                    disabled={isLoading}
+                    title="도움이 되었어요"
+                  >
+                    <ThumbsUp size={16} />
+                  </button>
+                  <button
+                    className={`${styles.feedbackButton} ${feedback === 'negative' ? styles.active : ''}`}
+                    onClick={() => handleFeedback('negative')}
+                    disabled={isLoading}
+                    title="도움이 안 되었어요"
+                  >
+                    <ThumbsDown size={16} />
+                  </button>
+                </div>
+                <button
+                  className={`${styles.voiceButton} ${isPlaying ? styles.playing : ''}`}
+                  onClick={handlePlaySound}
+                  title={isPlaying ? "재생 중지" : "음성으로 듣기"}
+                >
+                  {isPlaying ? <Square size={16} /> : <Volume2 size={16} />}
+                </button>
+              </div>
+            )}
+            
+            <div className={styles.timestamp}>
+              {new Date(message.timestamp).toLocaleTimeString('ko-KR', {
+                hour: '2-digit',
+                minute: '2-digit',
+              })}
             </div>
-          )}
-          
-          {/* 타임스탬프 */}
-          <div className={styles.timestamp}>
-            {new Date(message.timestamp).toLocaleTimeString('ko-KR', {
-              hour: '2-digit',
-              minute: '2-digit',
-            })}
           </div>
         </div>
       </div>

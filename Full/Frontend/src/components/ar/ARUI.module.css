@@ -149,6 +149,11 @@
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 4px;
   font-size: 14px;
+  max-width: 100%; /* 부모 요소의 너비를 넘지 않도록 설정 */
+  overflow-wrap: break-word; /* 긴 텍스트 강제 줄바꿈 */
+  white-space: normal; /* 텍스트가 자연스럽게 줄바꿈되도록 함 */
+  max-height: 100px; /* 최대 높이 제한 */
+  overflow-y: auto; /* 내용이 넘칠 경우 세로 스크롤 생성 */
 }
 
 /* Moved from ARScene.module.css */

@@ -137,6 +137,26 @@
   background-color: white;
 }
 
+.micButton {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--text-secondary);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.micButton:hover {
+  background-color: var(--bg-secondary);
+  color: var(--color-primary);
+}
+
 .sendButton {
   width: 44px;
   height: 44px;
@@ -333,4 +353,20 @@
   color: white;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.recordingIcon {
+  color: #ef4444; /* red-500 */
+  animation: pulsate 1.5s infinite;
+}
+
+@keyframes pulsate {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
 }

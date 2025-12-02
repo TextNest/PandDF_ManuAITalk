@@ -11,6 +11,7 @@ type ChatSession = {
     productId: string;
     lastMessage: string;
     updatedAt: number;
+    createdAt: number; // createdAt 속성 추가
     messages?: Message[];
 }; 
 
@@ -84,7 +85,7 @@ export const useChat = (initialProductId: string) => {
     // 🚨 connectWebSocket은 이제 세션 ID를 파라미터로 받지 않습니다.
     const connectWebSocket = useCallback((targetSessionId?: string) => {
         const wsUrlBase = process.env.NEXT_PUBLIC_WS_URL;
-        let wsUrl = `${wsUrlBase}/ws/${productId}`;
+        let wsUrl = `${wsUrlBase}/chat/ws/${productId}`;
         if (targetSessionId) {
           wsUrl += `?session_id=${targetSessionId}`; 
         }

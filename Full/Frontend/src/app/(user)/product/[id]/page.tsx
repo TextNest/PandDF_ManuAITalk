@@ -41,7 +41,7 @@ export default function ProductDetailPage({
         </a>
 
         <a 
-          href={`/simulation/${params.id}`}
+          href={`/ar?productId=${params.id}`}
           className={`${styles.actionButton} ${styles.primary}`}
         >
           <View size={24} />
