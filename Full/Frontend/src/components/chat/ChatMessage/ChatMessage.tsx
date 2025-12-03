@@ -1,16 +1,12 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { User, Bot, ThumbsUp, ThumbsDown, Volume2, Square } from 'lucide-react';
+import { User, Bot, ThumbsUp, ThumbsDown, Volume2, Square, Loader } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { playTextToSpeech } from '@/features/chat/utils/tts';
-// 2. IndexedDB 로직
-// import { dbManager, MessageFeedback } from '@/lib/db/indexedDB';
-// 3. CSS 파일
+import { streamTextToSpeech } from '@/features/chat/utils/tts';
 import styles from './ChatMessage.module.css';
 
-// 4. Message 타입 정의
 interface Message {
   id: string;
   role: 'user' | 'assistant';
@@ -36,36 +32,32 @@ interface ChatMessageProps {
 
 export default function ChatMessage({
   message,
-  sessionId,
-  productId,
+  onSendFeedback,
   isFirstMessage = false,
-  onSendFeedback
 }: ChatMessageProps) {
   const [feedback, setFeedback] = useState<'positive' | 'negative' | null>(message.feedback || null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [feedbackLoading, setFeedbackLoading] = useState(false);
+  const [ttsState, setTtsState] = useState<'idle' | 'loading' | 'playing' | 'error'>('idle');
+  
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const stopStreamingRef = useRef<(() => void) | null>(null);
 
-  // 5. 피드백 로드 로직
+  useEffect(() => {
+    // 컴포넌트가 언마운트될 때 스트리밍 정리
+    return () => {
+      stopStreamingRef.current?.();
+    };
+  }, []);
+
   useEffect(() => {
     if (message.feedback !== feedback) {
       setFeedback(message.feedback || null);
     }
   }, [message.feedback]);
 
-  // 컴포넌트 언마운트 시 오디오 정리
-  useEffect(() => {
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
-    };
-  }, []);
-
   const handleFeedback = async (type: 'positive' | 'negative') => {
-    if (isLoading) return;
-    setIsLoading(true);
+    if (feedbackLoading) return;
+    setFeedbackLoading(true);
     const previousFeedback = feedback;
     const newFeedbackType = (feedback === type) ? null : type;
 
@@ -76,56 +68,71 @@ export default function ChatMessage({
       setFeedback(previousFeedback);
       console.error(`피드백 저장 실패: ${error}`);
     } finally {
-      setIsLoading(false);
+      setFeedbackLoading(false);
     }
   };
 
-// ... (생략) ...
+  const handlePlayClick = () => {
+    if (ttsState === 'loading' || ttsState === 'playing') {
+      stopStreamingRef.current?.();
+      setTtsState('idle');
+    } else {
+      if (audioRef.current) {
+        const stop = streamTextToSpeech(message.content, audioRef.current, {
+          onStart: () => setTtsState('loading'),
+          onEnd: () => setTtsState('idle'),
+          onError: (error) => {
+            console.error('TTS Error:', error);
+            setTtsState('error');
+            setTimeout(() => setTtsState('idle'), 2000); // 2초 후 아이콘 복원
+          },
+        });
+        
+        // onStart 콜백에서 바로 playing으로 바꾸면 MSE가 준비되기 전에 play를 시도할 수 있으므로,
+        // audioEl의 play 이벤트를 감지하여 상태를 변경
+        const onPlay = () => setTtsState('playing');
+        audioRef.current.addEventListener('play', onPlay);
 
-  const handlePlaySound = async () => {
-    if (isPlaying && audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0; // 재생 위치를 처음으로
-      setIsPlaying(false);
-      return;
-    }
-
-    setIsPlaying(true);
-    try {
-      audioRef.current = await playTextToSpeech(message.content);
-      // playTextToSpeech 내부의 onended에서 isPlaying을 false로 설정할 수도 있지만,
-      // 중복 방지를 위해 audioRef를 통해 직접 제어
-      audioRef.current.onended = () => {
-        setIsPlaying(false);
-      };
-    } catch (error) {
-      console.error("TTS playback failed in ChatMessage:", error);
-      setIsPlaying(false);
+        stopStreamingRef.current = () => {
+          stop();
+          audioRef.current?.removeEventListener('play', onPlay);
+        };
+      }
     }
   };
   
+  const getVoiceButtonIcon = () => {
+    switch (ttsState) {
+      case 'loading':
+        return <Loader size={16} className={styles.loaderIcon} />;
+      case 'playing':
+        return <Square size={16} />;
+      case 'error':
+        return <Volume2 size={16} color="red" />;
+      default:
+        return <Volume2 size={16} />;
+    }
+  };
+
   const messageClass = message.role === 'user'
     ? `${styles.message} ${styles.userMessage}`
     : `${styles.message} ${styles.assistantMessage}`;
 
   return (
     <div className={messageClass}>
+      <audio ref={audioRef} style={{ display: 'none' }} />
       <div className={styles.messageInner}>
-        {/* 아바타 */}
         <div className={styles.avatar}>
           {message.role === 'user' ? <User size={20} /> : <Bot size={20} />}
         </div>
         
-        {/* 컨텐츠 */}
         <div className={styles.content}>
-          {/* 8. 🛑 핵심! message.content를 ReactMarkdown으로 렌더링 */}
           <div className={styles.text}>
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {message.content}
             </ReactMarkdown>
           </div>
           
-          {/* 출처 (AI 응답 + sources가 있을 때) */}
           {message.role === 'assistant' && message.sources && (
             <div className={styles.sources}>
               <p className={styles.sourcesTitle}>📚 출처:</p>
@@ -146,7 +153,7 @@ export default function ChatMessage({
                   <button
                     className={`${styles.feedbackButton} ${feedback === 'positive' ? styles.active : ''}`}
                     onClick={() => handleFeedback('positive')}
-                    disabled={isLoading}
+                    disabled={feedbackLoading}
                     title="도움이 되었어요"
                   >
                     <ThumbsUp size={16} />
@@ -154,18 +161,18 @@ export default function ChatMessage({
                   <button
                     className={`${styles.feedbackButton} ${feedback === 'negative' ? styles.active : ''}`}
                     onClick={() => handleFeedback('negative')}
-                    disabled={isLoading}
+                    disabled={feedbackLoading}
                     title="도움이 안 되었어요"
                   >
                     <ThumbsDown size={16} />
                   </button>
                 </div>
                 <button
-                  className={`${styles.voiceButton} ${isPlaying ? styles.playing : ''}`}
-                  onClick={handlePlaySound}
-                  title={isPlaying ? "재생 중지" : "음성으로 듣기"}
+                  className={`${styles.voiceButton} ${ttsState === 'playing' ? styles.playing : ''}`}
+                  onClick={handlePlayClick}
+                  title={ttsState === 'playing' ? "재생 중지" : "음성으로 듣기"}
                 >
-                  {isPlaying ? <Square size={16} /> : <Volume2 size={16} />}
+                  {getVoiceButtonIcon()}
                 </button>
               </div>
             )}

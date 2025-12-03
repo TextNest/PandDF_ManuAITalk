@@ -9,7 +9,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { Send, Mic } from 'lucide-react';
-import { playTextToSpeech } from '@/features/chat/utils/tts';
 import { useAuth } from '@/features/auth/hooks/useAuth';
 import { useChat } from '@/features/chat/hooks/useChat';
 import ChatMessage from '@/components/chat/ChatMessage/ChatMessage';
@@ -18,6 +17,7 @@ import TypingIndicator from '@/components/chat/TypingIndicator/TypingIndicator';
 import SessionHistory from '@/components/chat/SessionHistory/SessionHistory';
 import styles from './chat-page.module.css';
 import { toast } from '@/store/useToastStore';
+import { Message } from '@/types/chat.types';
 
 const SUGGESTED_QUESTIONS = [
   '제품 사용법이 궁금해요',
@@ -55,7 +55,7 @@ export default function ChatPage({
     suggestedQuestions
   } = useChat(params.productId);
 
-  // STT & TTS 상태
+  // STT 상태
   const [isRecording, setIsRecording] = useState(false);
   const socketRef = useRef<WebSocket | null>(null);
   const audioProcessorRef = useRef<{
@@ -68,8 +68,6 @@ export default function ChatPage({
   const lastFinalTranscriptRef = useRef('');
   const silenceTimerRef = useRef<NodeJS.Timeout | null>(null);
   const lastIsRecordingRef = useRef(false);
-  const lastPlayedMessageId = useRef<string | null>(null);
-  const isAutoPlayingRef = useRef(false);
   const isUserSpeakingRef = useRef(false);
 
   // 로그인 배너 상태
@@ -143,10 +141,10 @@ export default function ChatPage({
     const dataArray = new Uint8Array(analyser.frequencyBinCount);
     analyser.getByteFrequencyData(dataArray);
     const average = dataArray.reduce((acc, val) => acc + val, 0) / dataArray.length;
-
+    
     const SILENCE_THRESHOLD = 20;
-    const LONG_DELAY = 5000;  // 사용자가 말 시작하기 전 대기 시간
-    const SHORT_DELAY = 2000; // 사용자가 말한 후 멈춤 대기 시간
+    const LONG_DELAY = 5000;
+    const SHORT_DELAY = 1500;
 
     if (average < SILENCE_THRESHOLD) {
       if (!silenceTimerRef.current) {
@@ -156,7 +154,7 @@ export default function ChatPage({
         }, delay);
       }
     } else {
-      isUserSpeakingRef.current = true; // 사용자가 말하기 시작함
+      isUserSpeakingRef.current = true;
       if (silenceTimerRef.current) {
         clearTimeout(silenceTimerRef.current);
         silenceTimerRef.current = null;
@@ -197,7 +195,6 @@ export default function ChatPage({
       return;
     }
     try {
-      // 1. AudioContext를 사용자 제스처 내에서 생성 또는 재개 (모바일 브라우저 정책 대응)
       let audioContext = audioProcessorRef.current?.audioContext;
       if (!audioContext || audioContext.state === 'closed') {
         audioContext = new AudioContext();
@@ -215,7 +212,6 @@ export default function ChatPage({
         setIsRecording(true);
         setInputValue('');
         lastFinalTranscriptRef.current = '';
-        // 2. 미리 생성된 AudioContext를 전달
         startAudioProcessing(stream, audioContext!);
       };
       socketRef.current.onclose = () => stopRecording();
@@ -257,48 +253,14 @@ export default function ChatPage({
     lastIsRecordingRef.current = isRecording;
   }, [isRecording, inputValue, handleSend]);
 
-  useEffect(() => {
-    const lastMessage = messages[messages.length - 1];
-    if (
-      messages.length > 2 &&
-      lastMessage &&
-      lastMessage.role === 'assistant' &&
-      !isLoading &&
-      lastMessage.id !== lastPlayedMessageId.current &&
-      !isAutoPlayingRef.current
-    ) {
-      isAutoPlayingRef.current = true;
-      lastPlayedMessageId.current = lastMessage.id;
-      playTextToSpeech(lastMessage.content)
-        .then(() => handleMicClick())
-        .catch(err => {
-          if (err.name === 'NotAllowedError') {
-            toast.info("음성 자동 재생이 차단되었습니다. 스피커를 클릭해 들어보세요.", 5000);
-          }
-        })
-        .finally(() => {
-          isAutoPlayingRef.current = false;
-        });
-    }
-  }, [messages, isLoading, handleMicClick]);
-
   const handleGoogleLogin = () => {
     const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
-    // 리디렉션 URI는 Google Cloud Console에 등록된 주소여야 합니다.
-    const REDIRECT_URI = `${window.location.origin}/auth/callback`; 
-    const SCOPE = 'openid profile email'; // 요청할 권한
-    // 2. 사용자를 Google 인증 페이지로 리디렉션
-    const AUTH_URL = 
-      `https://accounts.google.com/o/oauth2/v2/auth?` +
-      `client_id=${GOOGLE_CLIENT_ID}` +
-      `&redirect_uri=${REDIRECT_URI}` +
-      `&response_type=code` + // 인가 코드를 받기 위함
-      `&scope=${SCOPE}` +
-      `&access_type=offline` +
-      `&prompt=select_account`;
+    const REDIRECT_URI = `${window.location.origin}/auth/callback`;
+    const SCOPE = 'openid profile email';
+    const AUTH_URL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=${SCOPE}&access_type=offline&prompt=select_account`;
     window.location.href = AUTH_URL;
   };
-  // 추천 질문 선택
+  
   const handleSuggestedQuestion = (question: string) => {
     setInputValue(question);
   };
@@ -367,13 +329,9 @@ export default function ChatPage({
               onSendFeedback={sendFeedback}
             />
           ))}
-
           {isLoading && <TypingIndicator />}
-
           <div ref={messagesEndRef} />
         </div>
-
-        {/* 추천 질문 (메시지가 1개일 때만) */}
         {!isLoading && (
           <SuggestedQuestions
             questions={suggestedQuestions.length > 0?suggestedQuestions:SUGGESTED_QUESTIONS}
