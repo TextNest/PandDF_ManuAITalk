@@ -24,8 +24,11 @@ from collections import Counter
 
 #--------------------------------------------------
 
-__ver__ = 2.0
+__ver__ = 2.1
+
+ACTIVATE = os.environ["AUTOMATIC_REPORT_ACTIVATE"]=="1"
 INTERVAL = int(os.environ.get("AUTOMATIC_REPORT_INTERVAL", "1800"))
+MODEL = os.environ.get("AUTOMATIC_REPORT_MODEL", "gemini-2.5-flash")
 
 #--------------------------------------------------
 
@@ -33,7 +36,7 @@ class ReportFormat(BaseModel):
     status:str = Field(description="'1' 또는 '0'")
     summary:str = Field(description="요약 텍스트 전체")
 parser = PydanticOutputParser(pydantic_object=ReportFormat)
-llm = ChatGoogleGenerativeAI(model = "gemini-2.5-flash", temperature = 0)
+llm = ChatGoogleGenerativeAI(model = MODEL, temperature = 0)
 prompt = ChatPromptTemplate.from_messages([
     ("system", analysis_prompt + "\n{format}"),
     ("user", "{input}")
@@ -133,11 +136,16 @@ async def reset_report(terminal):
 #--------------------------------------------------
 
 async def Scheduler_ARP(verbose:int = 0):
-    while True:
-        try:
-            await execute_report(verbose)
-        except Exception as e:
-            print(f'SCHEDULER_ARP : ERROR!\n>>> {e}')
-        await asyncio.sleep(INTERVAL)
+    if ACTIVATE:
+        print(verbose_msg("SCHEDULER_ARP : Activated"))
+        while True:
+            try:
+                await execute_report(verbose)
+            except Exception as e:
+                print(f'SCHEDULER_ARP : ERROR!\n>>> {e}')
+            await asyncio.sleep(INTERVAL)
+    else:
+        print(verbose_msg("SCHEDULER_ARP : Deactivated"))
+        return
 
 
