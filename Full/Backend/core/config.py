@@ -34,6 +34,8 @@ class load:
         os.environ["client_secret"] = os.getenv("client_secret")
         os.environ["MODEL_SERVER_URL"] = os.getenv("MODEL_SERVER_URL", "http://127.0.0.1:8001")
         os.environ["GOOGLE_APPLICATION_CREDENTIALS_JSON"] = os.getenv("GOOGLE_APPLICATION_CREDENTIALS_JSON")
+        os.environ["SQL_ECHO"] = os.getenv("SQL_ECHO", "0")
+        os.environ["AUTOMATIC_REPORT_ACTIVATE"] = os.getenv("AUTOMATIC_REPORT_ACTIVATE", "0")
         DB_HOST = os.getenv("DB_HOST")
         DB_USER = os.getenv("DB_USER")
         DB_PASSWORD = os.getenv("DB_PW")
