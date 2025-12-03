@@ -1,0 +1,23 @@
+# docker-compose.yml
+version: '3.8'
+services:
+  backend:
+    build: ./Backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./Backend/.env
+    volumes:
+      - ./Backend/uploads:/app/uploads
+      - ./Backend/data:/app/data
+  frontend:
+    build: ./Frontend
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./Frontend/.env
+    depends_on:
+      - backend
+    volumes:
+      - ./Frontend:/app
+      - /app/node_modules
