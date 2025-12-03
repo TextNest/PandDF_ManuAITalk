@@ -18,6 +18,8 @@ import TypingIndicator from '@/components/chat/TypingIndicator/TypingIndicator';
 import SessionHistory from '@/components/chat/SessionHistory/SessionHistory';
 import styles from './chat-page.module.css';
 import { toast } from '@/store/useToastStore';
+import { Message } from '@/types/chat.types';
+import { useChatStore } from '@/store/useChatStore'; // useChatStore 임포트
 
 const SUGGESTED_QUESTIONS = [
   '제품 사용법이 궁금해요',
@@ -55,8 +57,8 @@ export default function ChatPage({
     suggestedQuestions
   } = useChat(params.productId);
 
-  // STT & TTS 상태
-  const [isRecording, setIsRecording] = useState(false);
+  // STT 상태 (useChatStore에서 가져옴)
+  const { isRecording, startRecording, stopRecording } = useChatStore();
   const socketRef = useRef<WebSocket | null>(null);
   const audioProcessorRef = useRef<{
     audioContext: AudioContext;
@@ -83,7 +85,9 @@ export default function ChatPage({
     setInputValue('');
   }, [inputValue, isLoading, sendMessage]);
 
-  const stopRecording = useCallback(() => {
+  const stopRecordingCallback = useCallback(() => { // 이름 변경: stopRecording은 전역 액션과 이름 충돌
+    if (!audioProcessorRef.current) return; // Guard: ref가 없으면 아무것도 하지 않음
+
     if (silenceTimerRef.current) {
       clearTimeout(silenceTimerRef.current);
       silenceTimerRef.current = null;
@@ -104,8 +108,8 @@ export default function ChatPage({
       socketRef.current.close();
       socketRef.current = null;
     }
-    setIsRecording(false);
-  }, []);
+    // stopRecording(); // 상태 업데이트는 useEffect에서 처리하므로 여기서 호출하지 않음
+  }, []); // stopRecording 종속성 제거
 
   const floatTo16BitPCM = (input: Float32Array): Int16Array => {
     const output = new Int16Array(input.length);
@@ -143,6 +147,8 @@ export default function ChatPage({
     const dataArray = new Uint8Array(analyser.frequencyBinCount);
     analyser.getByteFrequencyData(dataArray);
     const average = dataArray.reduce((acc, val) => acc + val, 0) / dataArray.length;
+    
+    console.log('Current average volume:', average.toFixed(2)); // 실시간 볼륨값 로그 추가
 
     const SILENCE_THRESHOLD = 20;
     const LONG_DELAY = 5000;  // 사용자가 말 시작하기 전 대기 시간
@@ -165,7 +171,7 @@ export default function ChatPage({
     if (audioProcessorRef.current) {
       requestAnimationFrame(checkForSilence);
     }
-  }, [stopRecording]);
+  }, [stopRecordingCallback]);
 
   const startAudioProcessing = useCallback((stream: MediaStream, audioContext: AudioContext) => {
     const source = audioContext.createMediaStreamSource(stream);
@@ -191,11 +197,10 @@ export default function ChatPage({
     requestAnimationFrame(checkForSilence);
   }, [checkForSilence]);
 
-  const handleMicClick = useCallback(async () => {
-    if (isRecording) {
-      stopRecording();
-      return;
-    }
+  const startRecordingProcess = useCallback(async () => {
+    // 이미 처리 중이면 중복 실행 방지
+    if (audioProcessorRef.current) return;
+    
     try {
       // 1. AudioContext를 사용자 제스처 내에서 생성 또는 재개 (모바일 브라우저 정책 대응)
       let audioContext = audioProcessorRef.current?.audioContext;
@@ -212,16 +217,15 @@ export default function ChatPage({
       socketRef.current = new WebSocket(wsUrl);
 
       socketRef.current.onopen = () => {
-        setIsRecording(true);
         setInputValue('');
         lastFinalTranscriptRef.current = '';
         // 2. 미리 생성된 AudioContext를 전달
         startAudioProcessing(stream, audioContext!);
       };
-      socketRef.current.onclose = () => stopRecording();
+      socketRef.current.onclose = () => stopRecordingCallback();
       socketRef.current.onerror = () => {
         toast.error("음성 인식 연결에 실패했습니다.");
-        stopRecording();
+        stopRecordingCallback();
       };
       socketRef.current.onmessage = (event) => {
         const data = JSON.parse(event.data);
@@ -235,10 +239,30 @@ export default function ChatPage({
       };
     } catch (error) {
       toast.error("마이크 접근 권한이 필요합니다.");
+      stopRecording(); // 에러 발생 시 전역 상태를 다시 false로 설정
     }
-  }, [isRecording, startAudioProcessing, stopRecording]);
+  }, [startAudioProcessing, stopRecordingCallback, stopRecording]);
+
+
+  const handleMicClick = useCallback(async () => {
+    if (isRecording) {
+      stopRecording();
+    } else {
+      startRecording();
+    }
+  }, [isRecording, startRecording, stopRecording]);
 
   // --- useEffect 훅 ---
+  
+  useEffect(() => {
+    if (isRecording) {
+      startRecordingProcess();
+    } else {
+      // isRecording이 false가 될 때 stopRecordingCallback을 호출하여 정리
+      // (예: 사용자가 수동으로 중지 버튼을 누르거나, 침묵 감지로 중지될 때)
+      stopRecordingCallback();
+    }
+  }, [isRecording, startRecordingProcess, stopRecordingCallback]);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -247,10 +271,13 @@ export default function ChatPage({
   }, [isAuthenticated]);
 
   useEffect(() => {
-    return () => stopRecording();
-  }, [stopRecording]);
+    // 컴포넌트 언마운트 시 녹음 정리
+    return () => stopRecordingCallback();
+  }, [stopRecordingCallback]);
 
   useEffect(() => {
+    // 녹음이 중지되고 입력값이 있을 때 메시지 전송
+    // isRecording이 useChatStore의 상태이므로, 이 Effect는 전역 isRecording 변화에 반응합니다.
     if (lastIsRecordingRef.current && !isRecording && inputValue.trim()) {
       handleSend();
     }

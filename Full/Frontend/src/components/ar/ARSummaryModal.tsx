@@ -29,7 +29,7 @@ const ARSummaryModal: React.FC<ARSummaryModalProps> = ({ isOpen, onClose, items 
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <div className={styles.header}>
-          <h2>AR 세션 요약</h2>
+          <h2>AR 세션 제품 리스트</h2>
           <button onClick={onClose} className={styles.closeButton}>
             <X size={24} />
           </button>

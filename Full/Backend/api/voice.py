@@ -4,6 +4,7 @@ from pydantic import BaseModel
 import io
 import os
 import json
+import asyncio
 
 # Google Cloud Text-to-Speech 비동기 클라이언트 임포트
 from google.cloud import texttospeech_v1 as texttospeech
@@ -174,4 +175,54 @@ async def websocket_stt_endpoint(websocket: WebSocket):
         task.cancel()
     
     # print("STT WebSocket connection closed and tasks cleaned up.")
+
+
+@router.websocket("/ws/tts")
+async def websocket_tts_endpoint(websocket: WebSocket):
+    """
+    WebSocket을 통해 텍스트를 받아 TTS 스트리밍을 실시간으로 전송하고 연결을 종료합니다.
+    """
+    await websocket.accept()
+    
+    if not tts_client:
+        await websocket.close(code=1011, reason="TTS client is not initialized.")
+        return
+
+    try:
+        # 클라이언트로부터 단일 텍스트 메시지(JSON) 수신
+        message = await websocket.receive_text()
+        data = json.loads(message)
+        text = data.get("text")
+        
+        if text:
+            # Google Cloud TTS 요청 생성
+            synthesis_input = texttospeech.SynthesisInput(text=text)
+            voice = texttospeech.VoiceSelectionParams(
+                language_code="ko-KR", name="ko-KR-Wavenet-B"
+            )
+            audio_config = texttospeech.AudioConfig(
+                audio_encoding=texttospeech.AudioEncoding.MP3
+            )
+            
+            response_stream = await tts_client.synthesize_speech(
+                input=synthesis_input, voice=voice, audio_config=audio_config
+            )
+            
+            # 오디오 데이터를 클라이언트로 전송
+            await websocket.send_bytes(response_stream.audio_content)
+
+        # 성공적으로 전송 후 연결 종료
+        await websocket.close()
+        print("TTS WebSocket connection closed by server.")
+
+    except WebSocketDisconnect:
+        # 클라이언트가 먼저 연결을 끊은 경우, 조용히 종료
+        print("Client disconnected from TTS WebSocket.")
+    except Exception as e:
+        # 그 외 예외 처리
+        print(f"An error occurred in TTS WebSocket: {e}")
+        if websocket.client_state.name != 'DISCONNECTED':
+            await websocket.close(code=1011)
+
+
 
