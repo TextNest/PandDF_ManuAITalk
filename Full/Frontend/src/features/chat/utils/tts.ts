@@ -1,3 +1,4 @@
+import { useChatStore } from '@/store/useChatStore';
 // src/features/chat/utils/tts.ts
 
 interface TTSStreamCallbacks {
@@ -20,7 +21,6 @@ export const streamTextToSpeech = (
 ): (() => void) => {
   const { onStart, onEnd, onError } = callbacks;
   
-  // 1. 마크다운 문법 제거
   const plainText = text.replace(/(\*\*|__|\*|_|~~|`|---|#+\s)/g, '');
   if (!plainText.trim()) {
     onError?.("Text cannot be empty.");
@@ -30,22 +30,39 @@ export const streamTextToSpeech = (
   const wsUrl = (process.env.NEXT_PUBLIC_API_URL || 'ws://127.0.0.1:8000')
     .replace(/^http/, 'ws');
   
-  const socket = new WebSocket(`${wsUrl}/ws/tts`);
+  const socket = new WebSocket(`${wsUrl}/voice/ws/tts`);
   let mediaSource = new MediaSource();
   let sourceBuffer: SourceBuffer | null = null;
   let audioQueue: ArrayBuffer[] = [];
   let isSourceBufferUpdating = false;
+  let isSocketOpen = false;
+  let isMediaSourceOpen = false;
+  let objectUrl: string | null = null;
 
-  audioEl.src = URL.createObjectURL(mediaSource);
+  const onPlaybackEnded = () => {
+    // onEnd 콜백은 여기서만 호출되어야 가장 정확합니다.
+    onEnd?.();
+  };
 
   const cleanup = () => {
-    if (socket.readyState === WebSocket.OPEN) {
+    if (socket.readyState === WebSocket.OPEN || socket.readyState === WebSocket.CONNECTING) {
       socket.close();
     }
-    if (audioEl.src) {
-      URL.revokeObjectURL(audioEl.src);
+    if (audioEl) {
+      // 이벤트 리스너를 정리합니다.
+      audioEl.removeEventListener('ended', onPlaybackEnded);
+      audioEl.pause();
+      audioEl.src = '';
+      if (objectUrl) {
+          URL.revokeObjectURL(objectUrl);
+          objectUrl = null;
+      }
+      audioEl.load();
     }
   };
+
+  // onended 이벤트를 onEnd 콜백에 연결
+  audioEl.addEventListener('ended', onPlaybackEnded);
 
   const appendNextAudioChunk = () => {
     if (isSourceBufferUpdating || !sourceBuffer || audioQueue.length === 0) {
@@ -62,15 +79,21 @@ export const streamTextToSpeech = (
     }
   };
 
+  const trySendText = () => {
+    if (isSocketOpen && isMediaSourceOpen && socket.readyState === 1 /* OPEN */) {
+      socket.send(JSON.stringify({ text: plainText }));
+    }
+  };
+
   mediaSource.addEventListener('sourceopen', () => {
+    isMediaSourceOpen = true;
     try {
       sourceBuffer = mediaSource.addSourceBuffer('audio/mpeg');
       sourceBuffer.addEventListener('updateend', () => {
         isSourceBufferUpdating = false;
         appendNextAudioChunk();
       });
-      // MediaSource가 준비되면 WebSocket에 텍스트 전송
-      socket.send(JSON.stringify({ text: plainText }));
+      trySendText();
     } catch (e) {
       console.error("Error setting up MediaSource:", e);
       onError?.("Unsupported audio format or browser.");
@@ -78,9 +101,13 @@ export const streamTextToSpeech = (
     }
   });
 
+  objectUrl = URL.createObjectURL(mediaSource);
+  audioEl.src = objectUrl;
+
   socket.onopen = () => {
     onStart?.();
-    // sourceopen 이벤트가 발생하면 텍스트를 전송하므로 여기서는 대기
+    isSocketOpen = true;
+    trySendText();
   };
 
   socket.onmessage = async (event) => {
@@ -94,12 +121,17 @@ export const streamTextToSpeech = (
         appendNextAudioChunk();
       }
       if (audioEl.paused) {
-        audioEl.play().catch(e => console.error("Audio play failed:", e));
+        audioEl.play().catch(e => {
+          if (e.name !== 'AbortError') {
+            console.error("Audio play failed:", e);
+          }
+        });
       }
     }
   };
 
   socket.onclose = () => {
+    // 서버가 연결을 닫으면, 스트림이 끝났음을 브라우저에 알립니다.
     const endStream = () => {
       if (sourceBuffer && !isSourceBufferUpdating && mediaSource.readyState === 'open') {
         try {
@@ -108,7 +140,7 @@ export const streamTextToSpeech = (
           console.warn("Error ending stream:", e);
         }
       }
-      onEnd?.();
+      // 더 이상 onEnd()를 여기서 호출하지 않습니다.
     };
 
     const checkBuffer = setInterval(() => {
@@ -125,8 +157,5 @@ export const streamTextToSpeech = (
     cleanup();
   };
 
-  // 중지 함수 반환
-  return () => {
-    cleanup();
-  };
+  return cleanup;
 };

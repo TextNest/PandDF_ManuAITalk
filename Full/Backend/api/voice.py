@@ -4,6 +4,7 @@ from pydantic import BaseModel
 import io
 import os
 import json
+import asyncio
 
 # Google Cloud Text-to-Speech 비동기 클라이언트 임포트
 from google.cloud import texttospeech_v1 as texttospeech
@@ -212,7 +213,7 @@ async def websocket_stt_endpoint(websocket: WebSocket):
 @router.websocket("/ws/tts")
 async def websocket_tts_endpoint(websocket: WebSocket):
     """
-    WebSocket을 통해 텍스트를 받아 TTS 스트리밍을 실시간으로 전송합니다.
+    WebSocket을 통해 텍스트를 받아 TTS 스트리밍을 실시간으로 전송하고 연결을 종료합니다.
     """
     await websocket.accept()
     
@@ -221,51 +222,40 @@ async def websocket_tts_endpoint(websocket: WebSocket):
         return
 
     try:
-        while True:
-            # 클라이언트로부터 텍스트 메시지(JSON) 수신 대기
-            message = await websocket.receive_text()
-            try:
-                data = json.loads(message)
-                text = data.get("text")
-                if not text:
-                    continue
+        # 클라이언트로부터 단일 텍스트 메시지(JSON) 수신
+        message = await websocket.receive_text()
+        data = json.loads(message)
+        text = data.get("text")
+        
+        if text:
+            # Google Cloud TTS 요청 생성
+            synthesis_input = texttospeech.SynthesisInput(text=text)
+            voice = texttospeech.VoiceSelectionParams(
+                language_code="ko-KR", name="ko-KR-Wavenet-B"
+            )
+            audio_config = texttospeech.AudioConfig(
+                audio_encoding=texttospeech.AudioEncoding.MP3
+            )
+            
+            response_stream = await tts_client.synthesize_speech(
+                input=synthesis_input, voice=voice, audio_config=audio_config
+            )
+            
+            # 오디오 데이터를 클라이언트로 전송
+            await websocket.send_bytes(response_stream.audio_content)
 
-                # Google Cloud TTS 스트리밍 요청 생성
-                synthesis_input = texttospeech.SynthesisInput(text=text)
-                voice = texttospeech.VoiceSelectionParams(
-                    language_code="ko-KR", name="ko-KR-Wavenet-B"
-                )
-                audio_config = texttospeech.AudioConfig(
-                    audio_encoding=texttospeech.AudioEncoding.MP3
-                )
-                
-                # 비동기 스트리밍 호출
-                response_stream = await tts_client.synthesize_speech(
-                    input=synthesis_input, voice=voice, audio_config=audio_config
-                )
-                
-                # FastAPI에서는 synthesize_speech가 전체 응답을 반환하므로,
-                # 스트리밍 효과를 내기 위해 바이트를 직접 전송합니다.
-                # 참고: 진정한 스트리밍을 위해서는 google-cloud-texttospeech의 스트리밍 API를 사용해야 하지만,
-                # 현재 라이브러리의 비동기 클라이언트는 스트리밍 RPC를 직접 노출하지 않을 수 있습니다.
-                # 이 코드는 단일 요청 후 받은 오디오를 스트리밍하는 방식입니다.
-                # 만약 라이브러리가 stream-out을 지원한다면 아래 코드를 수정해야 합니다.
-                # 현재는 단일 응답을 가정하고 구현합니다.
-                await websocket.send_bytes(response_stream.audio_content)
-
-            except json.JSONDecodeError:
-                # 간단한 텍스트로 처리할 수도 있음
-                pass
-            except Exception as e:
-                print(f"Error during TTS synthesis: {e}")
-                # 클라이언트에 오류 알림 (선택적)
-                await websocket.send_json({"error": str(e)})
+        # 성공적으로 전송 후 연결 종료
+        await websocket.close()
+        print("TTS WebSocket connection closed by server.")
 
     except WebSocketDisconnect:
+        # 클라이언트가 먼저 연결을 끊은 경우, 조용히 종료
         print("Client disconnected from TTS WebSocket.")
     except Exception as e:
+        # 그 외 예외 처리
         print(f"An error occurred in TTS WebSocket: {e}")
-    finally:
         if websocket.client_state.name != 'DISCONNECTED':
-            await websocket.close()
+            await websocket.close(code=1011)
+
+
 

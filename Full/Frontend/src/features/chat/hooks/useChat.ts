@@ -2,9 +2,10 @@
 
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { Message } from '@/types/chat.types';
-import { useAuth } from '@/features/auth/hooks/useAuth'; 
-import { connect } from 'http2';
+import { useAuth } from '@/features/auth/hooks/useAuth';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useChatStore } from '@/store/useChatStore';
+
 // ChatSession 타입은 백엔드 응답을 위한 타입이므로 그대로 유지합니다.
 type ChatSession = {
     id: string;
@@ -15,7 +16,7 @@ type ChatSession = {
     messages?: Message[];
 }; 
 
-// 🚨 백엔드 주소 설정 (실제 도메인으로 변경 필요)4
+// 🚨 백엔드 주소 설정 (실제 도메인으로 변경 필요)
 const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL; 
 
 // 💡 사용자 요청: 모든 함수는 에로우 함수로 작성합니다.
@@ -37,14 +38,22 @@ export const useChat = (initialProductId: string) => {
     const [sessionId, setSessionId] = useState<string>(initialSessionIdFromUrl);
     const [sessions, setSessions] = useState<ChatSession[]>([]); 
     const [isSessionLoading, setIsSessionLoading] = useState(true); 
-    const [isNewSession, setIsNewSession] = useState<boolean>(
-    () => !initialSessionIdFromUrl
-  );
+    const [isNewSession, setIsNewSession] = useState<boolean>(() => !initialSessionIdFromUrl);
     const [suggestedQuestions, setSuggestedQuestions] = useState<string[]>([]);
+    const lastPlayedMessageId = useRef<string | null>(null); // 마지막으로 재생한 메시지 ID 추적
 
-    // ----------------------------------------------------
-    // 1. HTTP REST API: 회원 세션 목록 로드 (변경 없음)
-    // ----------------------------------------------------
+    // --- 자동 재생 로직 ---
+    useEffect(() => {
+        const { isAutoPlayEnabled, playTTS } = useChatStore.getState();
+        if (!isAutoPlayEnabled) return;
+
+        const lastMessage = messages[messages.length - 1];
+        
+        if (lastMessage && lastMessage.role === 'assistant' && lastMessage.id !== lastPlayedMessageId.current) {
+            playTTS(lastMessage.id);
+            lastPlayedMessageId.current = lastMessage.id;
+        }
+    }, [messages]);
 
     const fetchSessions = useCallback(async () => {
         if (!isAuthenticated || !jwtToken) {
@@ -57,14 +66,13 @@ export const useChat = (initialProductId: string) => {
         try {
             const response = await fetch(`${BACKEND_URL}/chat/history`, {
                 method: 'POST', 
-                headers: { 'Authorization': `Bearer ${jwtToken}` }, // 🔑 JWT 인증
+                headers: { 'Authorization': `Bearer ${jwtToken}` },
             });
             
             if (response.ok) {
                 console.log(response)
                 const data: ChatSession[] = await response.json();
                 setSessions(data); 
-                
             }
         } catch (error) {
             console.error('세션 기록 로드 실패:', error);
@@ -89,15 +97,14 @@ export const useChat = (initialProductId: string) => {
         if (targetSessionId) {
           wsUrl += `?session_id=${targetSessionId}`; 
         }
-        const protocols: string[] = []; 
-
+        
         if (ws.current) {
             console.log('기존 WebSocket 연결 정리 (재연결)');
             ws.current.close();
             ws.current = null;
         }
         
-        const wsInstance = new WebSocket(wsUrl, protocols);
+        const wsInstance = new WebSocket(wsUrl);
         ws.current = wsInstance;
 
         // --- 이벤트 핸들러 ---
@@ -105,15 +112,13 @@ export const useChat = (initialProductId: string) => {
             console.log('WebSocket 연결 성공');
             if (isAuthenticated && jwtToken) {
                wsInstance.send(JSON.stringify({ type: 'auth', token: jwtToken }));
-              console.log("메세지보냄");
-
-            }else{
+            } else {
               wsInstance.send(JSON.stringify({ type: 'auth', token: "pass" }))
             }
             // setError(null);
         };
 
-        wsInstance.onclose = (event) => {
+        wsInstance.onclose = () => {
             console.log('WebSocket 연결 종료');
             setIsLoading(false);
             // 💡 세션 저장 후 목록 갱신은 유지
@@ -154,12 +159,10 @@ export const useChat = (initialProductId: string) => {
                         break;
                         
                     case 'bot':
-                        const message_id= data.message_id?data.message_id:`bot-${Date.now()}`;
-                        const botMessage: Message = { id: message_id, role: 'assistant', content: data.message, timestamp: new Date().toISOString(),feedback:null };
-                        
+                        const message_id = data.message_id ? data.message_id : `bot-${Date.now()}`;
+                        const botMessage: Message = { id: message_id, role: 'assistant', content: data.message, timestamp: new Date().toISOString(), feedback:null };
                         setMessages(prev => [...prev, botMessage]);
                         break;
-                    
                 }
             } catch (e) {
                 console.error('수신 데이터 처리 오류:', e);
@@ -172,42 +175,31 @@ export const useChat = (initialProductId: string) => {
              setIsLoading(false);
         };
 
-    }, [isAuthenticated, fetchSessions, productId]); // 🚨 의존성에서 jwtToken 제거 (연결 시 사용하지 않음)
+    }, [isAuthenticated, fetchSessions, productId, jwtToken]);
 
     // 🚨 초기 연결: 컴포넌트 마운트 시
     useEffect(() => {
         if (productId) {
-            connectWebSocket(initialSessionIdFromUrl); // 🚨 세션 ID 없이 순수 연결
+            connectWebSocket(initialSessionIdFromUrl);
         }
         
         return () => {
-             if (ws.current) { ws.current.close(); ws.current = null; }
+             if (ws.current) { ws.current.close(); }
         };
-    }, [productId, connectWebSocket]); 
-
-
-    // ----------------------------------------------------
-    // 3. 세션 핸들러 함수들 (API 기반 로직)
-    // ----------------------------------------------------
+    }, [productId, connectWebSocket, initialSessionIdFromUrl]);
 
     const handleLoadSession = useCallback(async (loadSessionId: string, newProductId: string) => {
       if (productId !== newProductId) {
           setProductId(newProductId); 
           setIsNewSession(false);
           router.push(`/chat/${newProductId}?session_id=${loadSessionId}`); 
-        
-
-        }else {
-
+      } else {
         connectWebSocket(loadSessionId); 
-    }
-
-      // 2. UI 상태 업데이트
+      }
       setMessages([]); 
       setSessionId(loadSessionId); 
       setIsSessionLoading(true);
-
-    }, [isAuthenticated, jwtToken, connectWebSocket, productId]);
+    }, [connectWebSocket, productId, router]);
 
     // 새 세션 시작: WebSocket 재연결 (원래 코드 유지)
     const handleNewSession = useCallback(async () => {
@@ -215,11 +207,9 @@ export const useChat = (initialProductId: string) => {
         setIsSessionLoading(true);
         setIsNewSession(true);
         connectWebSocket(); 
-        
     }, [connectWebSocket]);
 
     const handleDeleteSession = useCallback(async (deleteSessionId: string) => {
-
         if (!isAuthenticated || !jwtToken) return;
         
         try {
@@ -230,7 +220,6 @@ export const useChat = (initialProductId: string) => {
             
             if (response.ok) {
                 await fetchSessions();
-                
                 if (deleteSessionId === sessionId) {
                     await handleNewSession(); 
                 }
@@ -239,11 +228,6 @@ export const useChat = (initialProductId: string) => {
             console.error('세션 삭제 API 오류:', e);
         }
     }, [isAuthenticated, jwtToken, sessionId, fetchSessions, handleNewSession]);
-
-
-    // ----------------------------------------------------
-    // 4. 메시지 전송 및 유틸리티
-    // ----------------------------------------------------
 
     const sendMessage = useCallback(async (content: string) => {
         if (!content.trim() || !ws.current || ws.current.readyState !== WebSocket.OPEN) return;
@@ -268,62 +252,47 @@ export const useChat = (initialProductId: string) => {
     messageId: string | number, 
     feedbackType: 'positive' | 'negative' | null
     ) => {
+        try {
+            const response = await fetch(`${BACKEND_URL}/chat/feedback`, { 
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    message_id: messageId,      
+                    feedback: feedbackType,
+                }),
+            });
 
-
-    try {
-        const response = await fetch(`${BACKEND_URL}/chat/feedback`, { 
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-        message_id: messageId,      
-        feedback: feedbackType,
-
-        }),
-        });
-
-    if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.detail || '피드백 서버 전송 실패');
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.detail || '피드백 서버 전송 실패');
+            }
+        } catch (err) {
+            console.error('Failed to send feedback:', err);
+            throw err;
         }
-        console.log('피드백 전송 성공');
-
-    } catch (err) {
-        console.error('Failed to send feedback:', err);
-        throw err; // ⭐️ ChatMessage 컴포넌트가 롤백할 수 있게 에러를 다시 던짐
-    }
-    }, [isAuthenticated, jwtToken]);
+    }, []);
 
     const fetchSuggestedQuestions = useCallback(async () => {
         if (!productId) return;
         try {
-            const response = await fetch(`${BACKEND_URL}/chat/suggestions/${productId}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',}
-        });
-
-        if (response.ok){
-            const data = await response.json();
-            setSuggestedQuestions(data.question || []);
-        }}
-        catch (error) {
+            const response = await fetch(`${BACKEND_URL}/chat/suggestions/${productId}`);
+            if (response.ok) {
+                const data = await response.json();
+                setSuggestedQuestions(data.question || []);
+            }
+        } catch (error) {
             console.error('추천 질문 로드 실패:', error);
             // 에러 발생 시 빈 배열로 두어 UI가 깨지지 않게 함
             setSuggestedQuestions([]); 
         }
-        }, [productId]); 
-        useEffect(() => {
+    }, [productId]); 
 
+    useEffect(() => {
         fetchSuggestedQuestions();
-
     }, [fetchSuggestedQuestions]);
-
 
     return {
         messages, isLoading, error, sendMessage, messagesEndRef,
-        // 세션 관련 (백엔드 기반)
         sessionId, sessions, isSessionLoading,
         loadSession: handleLoadSession,
         startNewSession: handleNewSession,

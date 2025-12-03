@@ -5,6 +5,7 @@ import { User, Bot, ThumbsUp, ThumbsDown, Volume2, Square, Loader } from 'lucide
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { streamTextToSpeech } from '@/features/chat/utils/tts';
+import { useChatStore } from '@/store/useChatStore'; // Zustand 스토어 임포트
 import styles from './ChatMessage.module.css';
 
 interface Message {
@@ -37,17 +38,70 @@ export default function ChatMessage({
 }: ChatMessageProps) {
   const [feedback, setFeedback] = useState<'positive' | 'negative' | null>(message.feedback || null);
   const [feedbackLoading, setFeedbackLoading] = useState(false);
-  const [ttsState, setTtsState] = useState<'idle' | 'loading' | 'playing' | 'error'>('idle');
   
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const stopStreamingRef = useRef<(() => void) | null>(null);
+  // 전역 TTS 상태 사용
+  const { 
+    ttsPlayingMessageId, 
+    ttsState, 
+    playTTS, 
+    stopTTS, 
+    setTTSState 
+  } = useChatStore();
 
+  const isCurrentPlaying = ttsPlayingMessageId === message.id;
+
+  const audioRef = useRef<HTMLAudioElement>(null);
+  
   useEffect(() => {
-    // 컴포넌트가 언마운트될 때 스트리밍 정리
+    // 이 Effect는 isCurrentPlaying 상태가 변경될 때 스트림의 생명주기를 관리합니다.
+    let stopStreaming: (() => void) | null = null;
+
+    if (isCurrentPlaying && audioRef.current) {
+      // 재생을 시작해야 하지만, 이미 재생/로딩 중인 상태 변경으로 인한 재실행을 방지
+      if (ttsState === 'idle' || ttsState === 'error') {
+        // playTTS가 호출되면 loading 상태가 되므로, 바로 스트림을 시작하지 않고
+        // ttsState가 loading으로 바뀐 후의 Effect 실행에 맡깁니다.
+        // 이 부분은 직접적인 스트림 시작이 아닌 상태 동기화에 가깝습니다.
+      } else if (ttsState === 'loading') {
+        const audioEl = audioRef.current;
+        const stop = streamTextToSpeech(message.content, audioEl, {
+          onStart: () => setTTSState('loading'),
+          onEnd: () => {
+            const { ttsPlayingMessageId, isAutoPlayEnabled, startRecording, stopTTS: zustandStopTTS } = useChatStore.getState();
+            if (ttsPlayingMessageId === message.id) {
+              zustandStopTTS(); // 상태를 먼저 초기화
+              if (isAutoPlayEnabled) {
+                console.log("DEBUG: Attempting to start recording after TTS ended."); // 디버그 로그 추가
+                startRecording(); // 그 다음에 녹음 시작
+              }
+            }
+          },
+          onError: (error) => {
+            console.error('TTS Error:', error);
+            if (useChatStore.getState().ttsPlayingMessageId === message.id) {
+              setTTSState('error');
+              setTimeout(() => stopTTS(), 2000);
+            }
+          },
+        });
+  
+        const onPlay = () => setTTSState('playing');
+        audioEl.addEventListener('play', onPlay, { once: true });
+  
+        stopStreaming = () => {
+          stop();
+          audioEl.removeEventListener('play', onPlay);
+        };
+      }
+    }
+
     return () => {
-      stopStreamingRef.current?.();
+      if (stopStreaming) {
+        stopStreaming();
+      }
     };
-  }, []);
+    // ttsState를 제거하여, 재생 상태 변경으로 인해 Effect가 재실행되지 않도록 합니다.
+  }, [isCurrentPlaying, message.content, message.id, setTTSState, stopTTS]);
 
   useEffect(() => {
     if (message.feedback !== feedback) {
@@ -73,35 +127,16 @@ export default function ChatMessage({
   };
 
   const handlePlayClick = () => {
-    if (ttsState === 'loading' || ttsState === 'playing') {
-      stopStreamingRef.current?.();
-      setTtsState('idle');
+    if (isCurrentPlaying && (ttsState === 'loading' || ttsState === 'playing')) {
+      stopTTS();
     } else {
-      if (audioRef.current) {
-        const stop = streamTextToSpeech(message.content, audioRef.current, {
-          onStart: () => setTtsState('loading'),
-          onEnd: () => setTtsState('idle'),
-          onError: (error) => {
-            console.error('TTS Error:', error);
-            setTtsState('error');
-            setTimeout(() => setTtsState('idle'), 2000); // 2초 후 아이콘 복원
-          },
-        });
-        
-        // onStart 콜백에서 바로 playing으로 바꾸면 MSE가 준비되기 전에 play를 시도할 수 있으므로,
-        // audioEl의 play 이벤트를 감지하여 상태를 변경
-        const onPlay = () => setTtsState('playing');
-        audioRef.current.addEventListener('play', onPlay);
-
-        stopStreamingRef.current = () => {
-          stop();
-          audioRef.current?.removeEventListener('play', onPlay);
-        };
-      }
+      playTTS(message.id);
     }
   };
   
   const getVoiceButtonIcon = () => {
+    if (!isCurrentPlaying) return <Volume2 size={16} />;
+
     switch (ttsState) {
       case 'loading':
         return <Loader size={16} className={styles.loaderIcon} />;
@@ -168,9 +203,9 @@ export default function ChatMessage({
                   </button>
                 </div>
                 <button
-                  className={`${styles.voiceButton} ${ttsState === 'playing' ? styles.playing : ''}`}
+                  className={`${styles.voiceButton} ${isCurrentPlaying && ttsState === 'playing' ? styles.playing : ''}`}
                   onClick={handlePlayClick}
-                  title={ttsState === 'playing' ? "재생 중지" : "음성으로 듣기"}
+                  title={isCurrentPlaying && ttsState === 'playing' ? "재생 중지" : "음성으로 듣기"}
                 >
                   {getVoiceButtonIcon()}
                 </button>
