@@ -8,20 +8,10 @@ class RecentSession_v2(BaseModel):
     message: str
     endedAt: str
 
-class RecentSession(BaseModel):
-    sessionId: str
-    status: str
-    productId: str | None = None
-    satisfaction: float | None = None
-    message: str
-
 class SessionSearchResult_v2(RecentSession_v2):
     sessionId: Optional[str] = None
     category: Optional[str] = None
     satisfaction: float
-
-class SessionSearchResult(RecentSession):
-    endedAt: str
 
 class SessionListResponse(BaseModel):
     total: int
@@ -31,13 +21,21 @@ class FilterInfo_v2(BaseModel):
     category: str | None = None
     productId: str
 
-class FilterInfo(BaseModel):
-    productId: str
-
 class ReportData(BaseModel):
-    is_auto_generated: bool = False
-    created_by: Optional[str] = None
+    sessionId: str
+    productName: Optional[str] = None
+    productId: Optional[str] = None
+    category: Optional[str] = None
+    status: int
+    summary: str
+    startedAt: str
+    endedAt: str
+    positive: int
+    negative: int
+    satisfaction: float
 
 class LogDetail(BaseModel):
-    is_auto_generated: bool = False
-    created_by: Optional[str] = None
+    createdAt: str
+    userMessage: str | None = None
+    botMessage: str | None = None
+    feedback: str | None = None

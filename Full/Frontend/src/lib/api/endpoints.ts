@@ -54,7 +54,7 @@ export const API_ENDPOINTS = {
     RECENT:'/api/logs/recent',
     LIST:'/api/logs/session-list',
     INFO: '/api/logs/session-info',
-    VIEW_REPORT: (id: string) => `/api/logs/view/${id}`,
-    VIEW_LOG: (id: string) => `/api/logs/view-detail/${id}`,
+    VIEW_REPORT: (sid: number) => `/api/logs/view/${sid}`,
+    VIEW_LOG: (sid: number) => `/api/logs/view-detail/${sid}`,
   },
 };

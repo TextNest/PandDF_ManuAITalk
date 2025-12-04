@@ -4,61 +4,145 @@
 // 상세 로그 조회 컴포넌트
 // ============================================
 
-import { TrendingUp } from 'lucide-react';
-import { TopQuestion } from '@/types/log.types';
-import styles from './LogTable.module.css';
+'use client';
 
-interface TopQuestionsTableProps {
-  questions: TopQuestion[];
+import React, { useEffect, useState } from "react";
+import styles from "./LogTable.module.css";
+import type { SessionLog } from "@/types/log.types.ts";
+import apiClient from "@/lib/api/client";
+import { API_ENDPOINTS } from "@/lib/api/endpoints";
+
+type LogTableProps = {
+  open: boolean;
+  sid: number | null;      // session_internal_id
+  onClose: () => void;
+};
+
+// 상세 로그 조회 API 호출
+async function fetchLogDetail(sid: number): Promise<SessionLog[]> {
+  const res = await apiClient.get<SessionLog[]>(
+    API_ENDPOINTS.LOGS.VIEW_LOG(sid)
+  );
+  return res.data;
 }
 
-export default function LogTable({ questions }: TopQuestionsTableProps) {
-  return (
-    <div className={styles.card}>
-      <div className={styles.header}>
-        <h3 className={styles.title}>
-          <TrendingUp size={20} />
-          자주 묻는 질문 Top {questions.length}
-        </h3>
-      </div>
+export default function LogTable({ open, sid, onClose }: LogTableProps) {
+  const [logs, setLogs] = useState<SessionLog[] | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-      <div className={styles.tableWrapper}>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>순위</th>
-              <th>질문</th>
-              <th>횟수</th>
-              <th>평균 응답 시간</th>
-              <th>도움됨</th>
-            </tr>
-          </thead>
-          <tbody>
-            {questions.map((question, index) => (
-              <tr key={index}>
-                <td>
-                  <div className={styles.rank}>{index + 1}</div>
-                </td>
-                <td className={styles.questionCell}>{question.question}</td>
-                <td>
-                  <span className={styles.count}>{question.count}</span>
-                </td>
-                <td>{question.averageResponseTime.toFixed(1)}s</td>
-                <td>
-                  <div className={styles.rateBar}>
-                    <div 
-                      className={styles.rateBarFill}
-                      style={{ width: `${question.helpfulRate * 100}%` }}
-                    />
-                    <span className={styles.rateText}>
-                      {Math.round(question.helpfulRate * 100)}%
-                    </span>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+  // ESC 로 닫기
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [open, onClose]);
+
+  // 모달 열릴 때마다 로그 조회
+  useEffect(() => {
+    if (!open || sid == null) {
+      return;
+    }
+    let cancelled = false;
+
+    const run = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const data = await fetchLogDetail(sid);
+        if (!cancelled) {
+          setLogs(data);
+        }
+      } catch (err: any) {
+        if (!cancelled) {
+          setError(err.message ?? "상세 로그 조회 중 오류가 발생했어요.");
+        }
+      } finally {
+        if (!cancelled) {
+          setLoading(false);
+        }
+      }
+    };
+
+    run();
+    return () => {
+      cancelled = true;
+    };
+  }, [open, sid]);
+
+  if (!open || sid == null) {
+    return null;
+  }
+
+  const hasNoLogs = !loading && !error && (logs == null || logs.length === 0);
+
+  return (
+    <div className={styles.backdrop} onClick={onClose}>
+      {/* 모달 내부 클릭 시 닫힘 방지 */}
+      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+        <div className={styles.logCard}>
+          <header className={styles.header}>
+            <div>
+              <h2 className={styles.title}>상세 로그</h2>
+              {sid != null && (
+                <p className={styles.subtitle}>세션 ID: {sid}</p>
+              )}
+            </div>
+            <button className={styles.closeButton} onClick={onClose}>
+              ✕
+            </button>
+          </header>
+
+          <div className={styles.content}>
+            {loading && <p>로그를 불러오는 중이에요…</p>}
+            {error && <p className={styles.error}>{error}</p>}
+
+            {hasNoLogs && (
+              <p className={styles.empty}>
+                이 세션에는 저장된 로그가 없어요.
+              </p>
+            )}
+
+            {logs && !loading && !error && logs.length > 0 && (
+              <div className={styles.logList}>
+                {logs.map((turn) => (
+                  <article
+                    key={turn.createdAt}
+                    className={styles.logItem}
+                  >
+                    <div className={styles.metaRow}>
+                      <span className={styles.timestamp}>
+                        {turn.createdAt}
+                      </span>
+                      {turn.feedback && (
+                        <span className={styles.feedback}>
+                          피드백: {turn.feedback}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className={styles.messageBlock}>
+                      <div className={styles.messageLabel}>USER</div>
+                      <div className={styles.messageBody}>
+                        {turn.userMessage || "(메시지 없음)"}
+                      </div>
+                    </div>
+
+                    <div className={styles.messageBlock}>
+                      <div className={styles.messageLabel}>BOT</div>
+                      <div className={styles.messageBody}>
+                        {turn.botMessage || "(메시지 없음)"}
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

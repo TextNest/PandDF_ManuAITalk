@@ -64,7 +64,7 @@ export const useChat = (initialProductId: string) => {
 
         setIsSessionLoading(true);
         try {
-            const response = await fetch(`${BACKEND_URL}/chat/history`, {
+            const response = await fetch(`${BACKEND_URL}/api/chat/history`, {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${jwtToken}` },
             });
@@ -93,7 +93,7 @@ export const useChat = (initialProductId: string) => {
     // 🚨 connectWebSocket은 이제 세션 ID를 파라미터로 받지 않습니다.
     const connectWebSocket = useCallback((targetSessionId?: string) => {
         const wsUrlBase = process.env.NEXT_PUBLIC_WS_URL;
-        let wsUrl = `${wsUrlBase}/chat/ws/${productId}`;
+        let wsUrl = `${wsUrlBase}/api/chat/ws/${productId}`;
         if (targetSessionId) {
             wsUrl += `?session_id=${targetSessionId}`;
         }
@@ -192,7 +192,7 @@ export const useChat = (initialProductId: string) => {
         if (productId !== newProductId) {
             setProductId(newProductId);
             setIsNewSession(false);
-            router.push(`/chat/${newProductId}?session_id=${loadSessionId}`);
+            router.push(`/api/chat/${newProductId}?session_id=${loadSessionId}`);
         } else {
             connectWebSocket(loadSessionId);
         }
@@ -213,7 +213,7 @@ export const useChat = (initialProductId: string) => {
         if (!isAuthenticated || !jwtToken) return;
 
         try {
-            const response = await fetch(`${BACKEND_URL}/chat/history/${deleteSessionId}`, {
+            const response = await fetch(`${BACKEND_URL}/api/chat/history/${deleteSessionId}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${jwtToken}` },
             });
@@ -253,7 +253,7 @@ export const useChat = (initialProductId: string) => {
         feedbackType: 'positive' | 'negative' | null
     ) => {
         try {
-            const response = await fetch(`${BACKEND_URL}/chat/feedback`, {
+            const response = await fetch(`${BACKEND_URL}/api/chat/feedback`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -275,7 +275,7 @@ export const useChat = (initialProductId: string) => {
     const fetchSuggestedQuestions = useCallback(async () => {
         if (!productId) return;
         try {
-            const response = await fetch(`${BACKEND_URL}/chat/suggestions/${productId}`);
+            const response = await fetch(`${BACKEND_URL}/api/chat/suggestions/${productId}`);
             if (response.ok) {
                 const data = await response.json();
                 setSuggestedQuestions(data.question || []);

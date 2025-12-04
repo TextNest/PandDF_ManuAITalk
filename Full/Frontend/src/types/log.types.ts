@@ -63,24 +63,25 @@ export interface SessionListResponse {
   items: SessionList[];
 }
 
-// 상세 리포트, 좀 나중에 수정해도 됨
+// 상세 리포트
 export interface SessionReport {
   sessionId: string;
+  productName: string | null;
   productId: string | null;
+  category: string | null;
   status: number;
   summary: string;
-  timestamp_s: string;
-  timestamp_e: string;
+  startedAt: string;
+  endedAt: string;
   positive: number;
   negative: number;
   satisfaction: number;
 }
 
-// 상세 로그, 좀 나중에 수정해도 됨
+// 상세 로그
 export interface SessionLog {
-  sessionId: string;
-  role: string;
-  message: string;
-  timestamp: string;
+  createdAt: string;
+  userMessage: string | null;
+  botMessage: string | null;
   feedback: MessageFeedback | null;
 }

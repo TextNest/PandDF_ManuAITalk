@@ -21,33 +21,26 @@ from models.report import Report
 from contextlib import asynccontextmanager
 from core.scheduler import start_scheduler
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    # 앱 시작 시 스케줄러 가동
-    start_scheduler()
-    yield
-    # 앱 종료 시 정리 로직 (필요 시)
-
-app = FastAPI(lifespan=lifespan)
-
 # 데이터베이스 테이블 생성
 async def create_tables():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
 
-@app.on_event("startup")
-async def on_startup():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     await create_tables()
-    
-    # 주석 : 폴더는 api/를 호출하는 그 순간 생성되도록 설계되어 있습니다
-
-    app.mount("/uploads/models_3d", StaticFiles(directory="uploads/models_3d"), name="models_3d")
-    app.mount("/uploads/pdfs", StaticFiles(directory="uploads/pdfs"), name="pdfs")
-    app.mount("/uploads/images", StaticFiles(directory="uploads/images"), name="images")
-    app.mount("/page_images", StaticFiles(directory="data/page_images"), name="page_images")
-    
-    # 백그라운드 스케줄러 시작
+    # 앱 시작 시 스케줄러 가동
+    start_scheduler()
     asyncio.create_task(Scheduler_ARP(2))
+    yield
+    # 앱 종료 시 정리 로직 (필요 시)
+
+app = FastAPI(lifespan=lifespan)
+
+app.mount("/uploads/models_3d", StaticFiles(directory="uploads/models_3d"), name="models_3d")
+app.mount("/uploads/pdfs", StaticFiles(directory="uploads/pdfs"), name="pdfs")
+app.mount("/uploads/images", StaticFiles(directory="uploads/images"), name="images")
+app.mount("/page_images", StaticFiles(directory="data/page_images"), name="page_images")
 app.mount("/images", StaticFiles(directory="data/caption_images"), name="caption_images")
 # CORS 설정
 origins = [
