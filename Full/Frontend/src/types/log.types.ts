@@ -78,11 +78,10 @@ export interface SessionReport {
   satisfaction: number;
 }
 
-// 상세 로그, 좀 나중에 수정해도 됨
+// 상세 로그
 export interface SessionLog {
-  sessionId: string;
-  role: string;
-  message: string;
-  timestamp: string;
+  createdAt: string;
+  userMessage: string | null;
+  botMessage: string | null;
   feedback: MessageFeedback | null;
 }

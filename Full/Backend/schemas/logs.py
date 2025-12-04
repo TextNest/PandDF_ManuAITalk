@@ -35,5 +35,7 @@ class ReportData(BaseModel):
     satisfaction: float
 
 class LogDetail(BaseModel):
-    is_auto_generated: bool = False
-    created_by: Optional[str] = None
+    createdAt: str
+    userMessage: str | None = None
+    botMessage: str | None = None
+    feedback: str | None = None

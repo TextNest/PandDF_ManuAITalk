@@ -2,112 +2,162 @@
 // 📄 5. src/components/logs/LogTable/LogTable.module.css
 // ============================================ */
 
-.card {
-  background-color: var(--bg-primary);
-  border: 1px solid var(--border-light);
-  border-radius: var(--border-radius-lg);
-  padding: var(--spacing-lg);
-}
-
-.header {
-  margin-bottom: var(--spacing-lg);
-}
-
-.title {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
-  margin: 0;
-}
-
-.tableWrapper {
-  overflow-x: auto;
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.table thead {
-  background-color: var(--bg-secondary);
-}
-
-.table th {
-  padding: var(--spacing-md);
-  text-align: left;
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  color: var(--text-secondary);
-  border-bottom: 2px solid var(--border-light);
-}
-
-.table td {
-  padding: var(--spacing-md);
-  font-size: var(--font-size-sm);
-  border-bottom: 1px solid var(--border-light);
-}
-
-.table tbody tr:hover {
-  background-color: var(--bg-secondary);
-}
-
-.rank {
-  width: 32px;
-  height: 32px;
+/* 배경 오버레이 (ReportTable과 통일) */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-primary);
-  color: white;
-  border-radius: var(--border-radius-md);
-  font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-sm);
+  z-index: 1000;
 }
 
-.questionCell {
-  font-weight: var(--font-weight-medium);
-  color: var(--text-primary);
-  max-width: 400px;
+/* 모달 컨테이너 */
+.modal {
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
-.count {
-  display: inline-block;
-  padding: 4px 12px;
-  background-color: var(--color-primary);
-  color: white;
-  border-radius: var(--border-radius-full);
-  font-weight: var(--font-weight-semibold);
-}
-
-.rateBar {
+/* 카드 본체 */
+.logCard {
   position: relative;
-  width: 100px;
-  height: 24px;
-  background-color: var(--bg-tertiary);
-  border-radius: var(--border-radius-full);
-  overflow: hidden;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px 20px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 40px 20px;
+  width: 720px; /* 리포트보다 살짝 넓게 */
 }
 
-.rateBarFill {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  background: linear-gradient(90deg, var(--color-success), var(--color-success-light));
-  border-radius: var(--border-radius-full);
-  transition: width var(--transition-base);
+/* 헤더 영역 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
-.rateText {
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+/* 닫기 버튼 */
+.closeButton {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-bold);
-  color: var(--text-primary);
-  z-index: 1;
+  top: 16px;
+  right: 20px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* 내용 영역 */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 4px;
+  font-size: 0.875rem;
+}
+
+/* 에러 / 비어있음 메시지 */
+.error {
+  color: #ef4444;
+}
+
+.empty {
+  color: #64748b;
+}
+
+/* 로그 리스트 전체 (스크롤 포인트) */
+.logList {
+  max-height: 60vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-right: 4px; /* 스크롤바 여백 */
+}
+
+/* 개별 로그 블록 */
+.logItem {
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 타임스탬프 + 피드백 라인 */
+.metaRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 4px;
+}
+
+.timestamp {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.feedback {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+/* 메시지 블록 (USER / BOT) */
+.messageBlock {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.messageLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 999px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #475569;
+  flex-shrink: 0;
+}
+
+.messageBody {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  white-space: pre-line;
+  color: #0f172a;
+}
+
+/* 모바일 대응용 */
+@media (max-width: 640px) {
+  .logCard {
+    width: 100%;
+    margin: 20px 12px;
+  }
+
+  .logList {
+    max-height: 55vh;
+  }
 }

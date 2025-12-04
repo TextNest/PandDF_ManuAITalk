@@ -97,15 +97,7 @@ async def get_report(sid:int, user_info:Dict = Depends(get_current_user), sessio
         raise HTTPException(status_code=404,detail="해당 세션의 리포트가 존재하지 않습니다.")
     return items[0]
 
-@router.get("/logs/view-detail/{session_id}", response_model=list[LogDetail])
-async def get_info(user_info: Dict = Depends(get_current_user),session:AsyncSession=Depends(get_session)):
-    recent_session ="""
-SELECT DISTINCT product_id FROM test_products;
-"""
-    user_id = user_info.get("email")
-
-    results = await session.execute(text(recent_session),
-    params={
-        "email":user_id
-    })
+@router.get("/logs/view-detail/{sid}", response_model=list[LogDetail])
+async def get_log(sid:int, user_info:Dict = Depends(get_current_user), session:AsyncSession = Depends(get_session)):
+    results = await session.execute(text(LQ.view_log), {"sid":sid})
     return code_fetch(results)

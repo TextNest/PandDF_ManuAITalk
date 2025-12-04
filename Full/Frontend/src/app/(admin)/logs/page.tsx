@@ -21,8 +21,6 @@ import {
   SessionFilter,
   SessionRecent,
   SessionList,
-  SessionReport,
-  SessionLog,
   SessionListResponse
 } from '@/types/log.types';
 import apiClient from '@/lib/api/client';
@@ -41,7 +39,8 @@ export default function LogsPage() {
   const [totalSessions, setTotalSessions] = useState(0);
   const totalPages = Math.max(1, Math.ceil(totalSessions / pageSize));
   const [selectedSessionId, setSelectedSessionId] = useState<number | null>(null);
-  const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const [isReportOpen, setIsReportOpen] = useState(false);
+  const [isLogOpen, setIsLogOpen] = useState(false);
 
   const handleFilterChange = (next: SessionFilter) => {
     setFilter(next);
@@ -50,12 +49,16 @@ export default function LogsPage() {
 
   const handleSelectSession = (sid: number) => {
     setSelectedSessionId(sid);
-    setIsDetailOpen(true);
+    setIsReportOpen(true);
   };
 
-  const handleCloseDetail = () => {
-    setIsDetailOpen(false);
-    setSelectedSessionId(null);
+  const handleOpenLog = () => {
+    setIsReportOpen(false);
+    setIsLogOpen(true);
+  };
+
+  const handleCloseLog = () => {
+    setIsLogOpen(false);
   };
 
   useEffect(() => {
@@ -218,11 +221,19 @@ export default function LogsPage() {
           다음
         </button>
 
-        {/* 맨 아래에 모달 추가 */}
+        {/* 리포트 조회 */}
         <ReportTable
-        open={isDetailOpen}
+        open={isReportOpen}
         sid={selectedSessionId}
-        onClose={handleCloseDetail}
+        onClose={() => setIsReportOpen(false)}
+        onOpenLog={handleOpenLog}
+        />
+
+        {/* 상세 로그 조회 */}
+        <LogTable
+        open={isLogOpen}
+        sid={selectedSessionId}
+        onClose={handleCloseLog}
         />
       </div>
     </div>
