@@ -103,7 +103,10 @@
 /* 로딩 상태 */
 .loading {
   position: relative;
-  color: transparent;
+}
+
+.hiddenText {
+  visibility: hidden;
 }
 
 .spinner {

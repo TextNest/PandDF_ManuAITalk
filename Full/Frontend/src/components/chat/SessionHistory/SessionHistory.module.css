@@ -2,36 +2,6 @@
 // 📄 4. src/components/chat/SessionHistory/SessionHistory.module.css
 // ============================================ */
 
-/* 토글 버튼 */
-.toggleButton {
-  position: fixed;
-  left: 1rem; /* 🔥 left: 0 → left: 1rem (여백 추가) */
-  top: 7.7rem; /* 🔥 top: 50% → top: 4.0rem (헤더 아래) */
-  transform: none; /* 🔥 translateY 제거 */
-  z-index: 1000;
-  width: 40px;
-  height: 40px;
-  background: white;
-  border: 1px solid #e0e0e0;
-  border-radius: 50%; /* 🔥 둥글게 */
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #667eea;
-  transition: all 0.2s;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.toggleButton:hover {
-  transform: scale(1.1);
-  box-shadow: var(--shadow-xl);
-}
-
-.toggleButton:active {
-  transform: scale(0.95);
-}
-
 .backdrop {
   position: fixed;
   top: 0;
@@ -197,7 +167,7 @@
     max-width: 320px;
   }
   .toggleButton {
-    top: 9.2rem;
+    top: 10rem;
   }
 }
 

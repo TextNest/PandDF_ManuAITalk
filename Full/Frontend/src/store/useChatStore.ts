@@ -15,11 +15,13 @@ interface ChatSession {
 
 // TTS 재생 상태 타입 정의
 type TTSState = 'idle' | 'loading' | 'playing' | 'error';
+type InputMode = 'text' | 'voice';
 
 interface ChatStore {
   // 상태
   sessions: Record<string, ChatSession>;
   currentProductId: string | null;
+  lastInputMode: InputMode;
   
   // TTS 관련 상태
   ttsPlayingMessageId: string | null;
@@ -31,6 +33,7 @@ interface ChatStore {
 
   // 액션
   setCurrentProduct: (productId: string) => void;
+  setLastInputMode: (mode: InputMode) => void;
   addMessage: (productId: string, message: Message) => void;
   clearSession: (productId: string) => void;
   getSession: (productId: string) => ChatSession | undefined;
@@ -49,6 +52,7 @@ interface ChatStore {
 export const useChatStore = create<ChatStore>((set, get) => ({
   sessions: {},
   currentProductId: null,
+  lastInputMode: 'text',
   
   // TTS 초기 상태
   ttsPlayingMessageId: null,
@@ -60,6 +64,10 @@ export const useChatStore = create<ChatStore>((set, get) => ({
 
   setCurrentProduct: (productId) => {
     set({ currentProductId: productId });
+  },
+
+  setLastInputMode: (mode) => {
+    set({ lastInputMode: mode });
   },
   
   addMessage: (productId, message) => {

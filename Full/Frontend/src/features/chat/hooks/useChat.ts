@@ -41,6 +41,7 @@ export const useChat = (initialProductId: string) => {
     const [isNewSession, setIsNewSession] = useState<boolean>(() => !initialSessionIdFromUrl);
     const [suggestedQuestions, setSuggestedQuestions] = useState<string[]>([]);
     const lastPlayedMessageId = useRef<string | null>(null); // 마지막으로 재생한 메시지 ID 추적
+    const { addMessage } = useChatStore();
 
     // --- 자동 재생 로직 ---
     useEffect(() => {
@@ -139,6 +140,7 @@ export const useChat = (initialProductId: string) => {
                         setIsSessionLoading(false);
                         if (data.message) {
                             setMessages(data.message);
+                            data.message.forEach((msg: Message) => addMessage(productId, msg));
                         }
                         break;
 
@@ -162,6 +164,7 @@ export const useChat = (initialProductId: string) => {
                         const message_id = data.message_id ? data.message_id : `bot-${Date.now()}`;
                         const botMessage: Message = { id: message_id, role: 'assistant', content: data.message, timestamp: new Date().toISOString(), feedback: null };
                         setMessages(prev => [...prev, botMessage]);
+                        addMessage(productId, botMessage);
                         break;
                 }
             } catch (e) {
@@ -203,8 +206,8 @@ export const useChat = (initialProductId: string) => {
 
     // 새 세션 시작: WebSocket 재연결 (원래 코드 유지)
     const handleNewSession = useCallback(async () => {
-        setMessages([]);
-        setIsSessionLoading(true);
+        setMessages([]); 
+        // setIsSessionLoading(true); // 새 대화 시에는 로딩 상태가 필요 없음
         setIsNewSession(true);
         connectWebSocket();
     }, [connectWebSocket]);
@@ -234,7 +237,8 @@ export const useChat = (initialProductId: string) => {
 
         const userMessage: Message = { id: `user-${Date.now()}`, role: 'user', content: content.trim(), timestamp: new Date().toISOString() };
         setMessages(prev => [...prev, userMessage]);
-        setIsLoading(true);
+        addMessage(productId, userMessage);
+        setIsLoading(true); 
         setError(null);
 
         try {
@@ -243,8 +247,8 @@ export const useChat = (initialProductId: string) => {
             setError('메시지 전송 중 오류가 발생했습니다.');
             setIsLoading(false);
         }
-    }, []);
-
+    }, [productId, addMessage]); 
+    
     const scrollToBottom = useCallback(() => { /* ... */ }, []);
     useEffect(() => { scrollToBottom(); }, [messages, scrollToBottom]);
 
@@ -275,7 +279,11 @@ export const useChat = (initialProductId: string) => {
     const fetchSuggestedQuestions = useCallback(async () => {
         if (!productId) return;
         try {
-            const response = await fetch(`${BACKEND_URL}/api/chat/suggestions/${productId}`);
+            const response = await fetch(`${BACKEND_URL}/api/chat/suggestions/${productId}`, {
+                headers: {
+                    'ngrok-skip-browser-warning': 'true' // Bypass ngrok warning page
+                }
+            });
             if (response.ok) {
                 const data = await response.json();
                 setSuggestedQuestions(data.question || []);

@@ -75,7 +75,8 @@ export default function SimulationPage() {
       if (placedItems.length > 0) {
         setSummaryModalOpen(true);
       } else {
-        reset();
+        // 배치된 아이템이 없으면 모달을 띄우지 않고, reset()도 호출하지 않아 제품 정보 유지
+        // reset(); // 이전에는 여기서 reset()을 호출하여 제품 정보가 사라졌음
       }
     }
     prevIsARActive.current = isARActive;

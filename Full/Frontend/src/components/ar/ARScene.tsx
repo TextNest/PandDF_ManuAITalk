@@ -151,7 +151,7 @@ const ARScene = forwardRef<ARSceneHandle, ARSceneProps>(({ uiOverlayRef, lastUIT
   }, [endARCounter, handleEndAR]);
 
   const startAR = useCallback(async () => {
-    useARStore.getState().reset();
+    //useARStore.getState().reset();
     setDebugMessage(null);
 
     try {

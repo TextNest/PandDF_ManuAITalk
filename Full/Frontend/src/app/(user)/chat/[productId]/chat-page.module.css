@@ -10,18 +10,31 @@
 }
 
 .productInfo {
-  padding: var(--spacing-md);
+  padding: 0 var(--spacing-md); /* Adjust padding */
   background-color: var(--bg-primary);
   border-bottom: 1px solid var(--border-light);
   display: flex;
-  justify-content: center;
+  justify-content: space-between; /* Align items */
   align-items: center;
+  height: 56px; /* Give it a fixed height */
+}
+
+/* New style for the toggle button */
+.sidebarToggleButton {
+  padding: var(--spacing-sm);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
 }
 
 .productId {
   margin: 0;
   font-size: var(--font-size-sm);
   color: var(--text-secondary);
+  /* Make sure it doesn't push the button */
+  text-align: center;
+  flex-grow: 1;
 }
 
 /* 메시지 영역 */
@@ -130,6 +143,7 @@
   outline: none;
   /* iOS 기본 스타일 제거 */
   -webkit-appearance: none;
+  min-width: 0; /* Allow input to shrink below its default minimum content size */
 }
 
 .input:focus {

@@ -12,6 +12,7 @@ export default function ProductDetailPage({
 }: { 
   params: { id: string } 
 }) {
+
   return (
     <div className={styles.productPage}>
       {/* 제품 이미지 */}
@@ -23,8 +24,7 @@ export default function ProductDetailPage({
 
       {/* 제품 정보 */}
       <div className={styles.productInfo}>
-        <h1 className={styles.productName}>제품명</h1>
-        <p className={styles.productId}>모델: {params.id}</p>
+
       </div>
 
       {/* 액션 버튼들 */}

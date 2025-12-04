@@ -40,11 +40,10 @@ export default function Button({
       disabled={disabled || loading}
       {...props}
     >
-      {loading ? (
-        <span className={styles.spinner} />
-      ) : (
-        children
-      )}
+      {loading && <span className={styles.spinner} />}
+      <span className={loading ? styles.hiddenText : ''}>
+        {children}
+      </span>
     </button>
   );
 }

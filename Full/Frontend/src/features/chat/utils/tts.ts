@@ -27,8 +27,9 @@ export const streamTextToSpeech = (
     return () => {};
   }
 
-  const wsUrl = (process.env.NEXT_PUBLIC_API_URL || 'ws://127.0.0.1:8000')
-    .replace(/^http/, 'ws');
+  const wsUrl = process.env.NEXT_PUBLIC_WS_URL || 
+              (process.env.NEXT_PUBLIC_API_URL || 'ws://127.0.0.1:8000')
+                .replace(/^http/, 'ws');
   
   const socket = new WebSocket(`${wsUrl}/voice/ws/tts`);
   let mediaSource = new MediaSource();
@@ -40,7 +41,6 @@ export const streamTextToSpeech = (
   let objectUrl: string | null = null;
 
   const onPlaybackEnded = () => {
-    // onEnd 콜백은 여기서만 호출되어야 가장 정확합니다.
     onEnd?.();
   };
 
@@ -49,7 +49,6 @@ export const streamTextToSpeech = (
       socket.close();
     }
     if (audioEl) {
-      // 이벤트 리스너를 정리합니다.
       audioEl.removeEventListener('ended', onPlaybackEnded);
       audioEl.pause();
       audioEl.src = '';
@@ -61,7 +60,6 @@ export const streamTextToSpeech = (
     }
   };
 
-  // onended 이벤트를 onEnd 콜백에 연결
   audioEl.addEventListener('ended', onPlaybackEnded);
 
   const appendNextAudioChunk = () => {
@@ -73,7 +71,7 @@ export const streamTextToSpeech = (
     try {
       sourceBuffer.appendBuffer(chunk);
     } catch (e) {
-      console.error("Error appending buffer:", e);
+      console.error("TTS: Error appending buffer:", e);
       onError?.("Failed to process audio stream.");
       cleanup();
     }
@@ -95,7 +93,7 @@ export const streamTextToSpeech = (
       });
       trySendText();
     } catch (e) {
-      console.error("Error setting up MediaSource:", e);
+      console.error("TTS: Error setting up MediaSource:", e);
       onError?.("Unsupported audio format or browser.");
       cleanup();
     }
@@ -123,36 +121,45 @@ export const streamTextToSpeech = (
       if (audioEl.paused) {
         audioEl.play().catch(e => {
           if (e.name !== 'AbortError') {
-            console.error("Audio play failed:", e);
+            console.error("TTS: Audio play failed:", e);
           }
         });
       }
+    } else {
+        console.error('TTS: Received non-audio data on WebSocket:', event.data);
     }
   };
 
-  socket.onclose = () => {
-    // 서버가 연결을 닫으면, 스트림이 끝났음을 브라우저에 알립니다.
+  socket.onclose = (event) => {
+    // A normal closure (1000) is expected when the server finishes sending data.
+    // It's not an application error. We should ensure all data is played out.
     const endStream = () => {
       if (sourceBuffer && !isSourceBufferUpdating && mediaSource.readyState === 'open') {
         try {
           mediaSource.endOfStream();
         } catch (e) {
-          console.warn("Error ending stream:", e);
+          // This can sometimes fail if the browser is already tearing things down.
+          console.error("TTS: Error ending MediaSource stream:", e);
         }
       }
-      // 더 이상 onEnd()를 여기서 호출하지 않습니다.
     };
 
+    // Wait until the buffer is empty before ending the stream.
     const checkBuffer = setInterval(() => {
       if (!isSourceBufferUpdating && audioQueue.length === 0) {
         clearInterval(checkBuffer);
         endStream();
       }
     }, 100);
+
+    // Only treat non-normal closures as errors.
+    if (event.code !== 1000) {
+      onError?.(`WebSocket closed abnormally. Code: ${event.code}`);
+    }
   };
   
   socket.onerror = (event) => {
-    console.error("WebSocket error:", event);
+    console.error("TTS: WebSocket error event:", event);
     onError?.("Connection to speech service failed.");
     cleanup();
   };
