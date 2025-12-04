@@ -18,7 +18,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-router = APIRouter(prefix="/api/faqs", tags=["FAQ"])
+router = APIRouter(tags=["FAQ"])
 
 # FAQ 생성 (PDF/수동)
 @router.post("/", response_model=FAQResponse, status_code=201)

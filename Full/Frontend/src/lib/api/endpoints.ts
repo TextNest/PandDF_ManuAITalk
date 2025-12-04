@@ -17,17 +17,17 @@ export const API_ENDPOINTS = {
   
   // 채팅
   CHAT: {
-    SESSIONS : '/chat/history',
-    GET_HISTORY: (productId: string) => `/chat/history/${productId}`,
-    STREAM: '/chat/stream',
+    SESSIONS : '/api/chat/history',
+    GET_HISTORY: (productId: string) => `/api/chat/history/${productId}`,
+    STREAM: '/api/chat/stream',
   },
   
   // 문서
   DOCUMENTS: {
-    LIST: '/documents',
-    UPLOAD: '/documents/upload',
-    GET: (id: string) => `/documents/${id}`,
-    DELETE: (id: string) => `/documents/${id}`,
+    LIST: '/api/documents',
+    UPLOAD: '/api/documents/upload',
+    GET: (id: string) => `/api/documents/${id}`,
+    DELETE: (id: string) => `/api/documents/${id}`,
   },
   
   // FAQ
@@ -44,9 +44,9 @@ export const API_ENDPOINTS = {
   
   // 제품
   PRODUCTS: {
-    LIST: '/products',
-    GET: (productId: string) => `/products/${productId}`,
-    CREATE: '/products',
+    LIST: '/api/products',
+    GET: (productId: string) => `/api/products/${productId}`,
+    CREATE: '/api/products',
   },
   
   // 로그

@@ -19,12 +19,8 @@ __pycache__/
 
 # Backend
 /Full/Backend/db
-/Full/Backend/data/logs
-/Full/Backend/data/page_images
-/Full/Backend/data/upload
-/Full/Backend/uploads/images/*
-/Full/Backend/uploads/models_3d/*
-/Full/Backend/uploads/pdfs/*
+/Full/Backend/data/*
+/Full/Backend/uploads/*
 /Full/Backend/.venv
 
 # Data
@@ -35,3 +31,4 @@ artifacts/
 *test*
 *.ipynb
 .next
+.gitignore

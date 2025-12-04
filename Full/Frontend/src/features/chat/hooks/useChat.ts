@@ -14,17 +14,17 @@ type ChatSession = {
     updatedAt: number;
     createdAt: number; // createdAt 속성 추가
     messages?: Message[];
-}; 
+};
 
 // 🚨 백엔드 주소 설정 (실제 도메인으로 변경 필요)
-const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL; 
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL;
 
 // 💡 사용자 요청: 모든 함수는 에로우 함수로 작성합니다.
 export const useChat = (initialProductId: string) => {
     const router = useRouter();
     const searchParams = useSearchParams();
     // 🔑 useAuth에서 토큰을 가져와 세션 목록 로드에 사용
-    const { isAuthenticated, token: jwtToken } = useAuth(); 
+    const { isAuthenticated, token: jwtToken } = useAuth();
     const [productId, setProductId] = useState<string>(initialProductId);
     const initialSessionIdFromUrl = searchParams.get('session_id') || '';
     // --- 상태 ---
@@ -33,11 +33,11 @@ export const useChat = (initialProductId: string) => {
     const [error, setError] = useState<string | null>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const ws = useRef<WebSocket | null>(null);
-    
+
     // 🚩 [수정]: sessionId 상태를 URL에서 읽어온 값으로 초기화합니다.
     const [sessionId, setSessionId] = useState<string>(initialSessionIdFromUrl);
-    const [sessions, setSessions] = useState<ChatSession[]>([]); 
-    const [isSessionLoading, setIsSessionLoading] = useState(true); 
+    const [sessions, setSessions] = useState<ChatSession[]>([]);
+    const [isSessionLoading, setIsSessionLoading] = useState(true);
     const [isNewSession, setIsNewSession] = useState<boolean>(() => !initialSessionIdFromUrl);
     const [suggestedQuestions, setSuggestedQuestions] = useState<string[]>([]);
     const lastPlayedMessageId = useRef<string | null>(null); // 마지막으로 재생한 메시지 ID 추적
@@ -48,7 +48,7 @@ export const useChat = (initialProductId: string) => {
         if (!isAutoPlayEnabled) return;
 
         const lastMessage = messages[messages.length - 1];
-        
+
         if (lastMessage && lastMessage.role === 'assistant' && lastMessage.id !== lastPlayedMessageId.current) {
             playTTS(lastMessage.id);
             lastPlayedMessageId.current = lastMessage.id;
@@ -57,7 +57,7 @@ export const useChat = (initialProductId: string) => {
 
     const fetchSessions = useCallback(async () => {
         if (!isAuthenticated || !jwtToken) {
-            setSessions([]); 
+            setSessions([]);
             setIsSessionLoading(false);
             return;
         }
@@ -65,14 +65,14 @@ export const useChat = (initialProductId: string) => {
         setIsSessionLoading(true);
         try {
             const response = await fetch(`${BACKEND_URL}/chat/history`, {
-                method: 'POST', 
+                method: 'POST',
                 headers: { 'Authorization': `Bearer ${jwtToken}` },
             });
-            
+
             if (response.ok) {
                 console.log(response)
                 const data: ChatSession[] = await response.json();
-                setSessions(data); 
+                setSessions(data);
             }
         } catch (error) {
             console.error('세션 기록 로드 실패:', error);
@@ -95,15 +95,15 @@ export const useChat = (initialProductId: string) => {
         const wsUrlBase = process.env.NEXT_PUBLIC_WS_URL;
         let wsUrl = `${wsUrlBase}/chat/ws/${productId}`;
         if (targetSessionId) {
-          wsUrl += `?session_id=${targetSessionId}`; 
+            wsUrl += `?session_id=${targetSessionId}`;
         }
-        
+
         if (ws.current) {
             console.log('기존 WebSocket 연결 정리 (재연결)');
             ws.current.close();
             ws.current = null;
         }
-        
+
         const wsInstance = new WebSocket(wsUrl);
         ws.current = wsInstance;
 
@@ -111,9 +111,9 @@ export const useChat = (initialProductId: string) => {
         wsInstance.onopen = () => {
             console.log('WebSocket 연결 성공');
             if (isAuthenticated && jwtToken) {
-               wsInstance.send(JSON.stringify({ type: 'auth', token: jwtToken }));
+                wsInstance.send(JSON.stringify({ type: 'auth', token: jwtToken }));
             } else {
-              wsInstance.send(JSON.stringify({ type: 'auth', token: "pass" }))
+                wsInstance.send(JSON.stringify({ type: 'auth', token: "pass" }))
             }
             // setError(null);
         };
@@ -123,25 +123,25 @@ export const useChat = (initialProductId: string) => {
             setIsLoading(false);
             // 💡 세션 저장 후 목록 갱신은 유지
             if (isAuthenticated) {
-                fetchSessions(); 
+                fetchSessions();
             }
         };
 
         wsInstance.onmessage = (event) => {
             try {
                 const data = JSON.parse(event.data);
-                
+
                 switch (data.type) {
                     // 💡 [통합된 로직]: 백엔드에서 세션 ID 수신
-                    case 'session_init': 
+                    case 'session_init':
                         console.log(data.message);
                         setSessionId(data.sessionId);
-                        setIsSessionLoading(false); 
+                        setIsSessionLoading(false);
                         if (data.message) {
                             setMessages(data.message);
                         }
                         break;
-                    
+
                     case 'stream_end':
                         // 스트림 종료 신호
                         setIsLoading(false);
@@ -152,15 +152,15 @@ export const useChat = (initialProductId: string) => {
                         setMessages(prev => {
                             const lastMessage = prev[prev.length - 1];
                             if (lastMessage && lastMessage.role === 'assistant') {
-                                return [ ...prev.slice(0, -1), { ...lastMessage, content: lastMessage.content + data.token } ];
+                                return [...prev.slice(0, -1), { ...lastMessage, content: lastMessage.content + data.token }];
                             }
-                            return [ ...prev, { id: `bot-${Date.now()}`, role: 'assistant', content: data.token, timestamp: new Date().toISOString() } ];
+                            return [...prev, { id: `bot-${Date.now()}`, role: 'assistant', content: data.token, timestamp: new Date().toISOString() }];
                         });
                         break;
-                        
+
                     case 'bot':
                         const message_id = data.message_id ? data.message_id : `bot-${Date.now()}`;
-                        const botMessage: Message = { id: message_id, role: 'assistant', content: data.message, timestamp: new Date().toISOString(), feedback:null };
+                        const botMessage: Message = { id: message_id, role: 'assistant', content: data.message, timestamp: new Date().toISOString(), feedback: null };
                         setMessages(prev => [...prev, botMessage]);
                         break;
                 }
@@ -168,11 +168,11 @@ export const useChat = (initialProductId: string) => {
                 console.error('수신 데이터 처리 오류:', e);
             }
         };
-        
+
         wsInstance.onerror = (event) => {
-             console.error('WebSocket 오류:', event);
-             setError('WebSocket 연결 오류가 발생했습니다.');
-             setIsLoading(false);
+            console.error('WebSocket 오류:', event);
+            setError('WebSocket 연결 오류가 발생했습니다.');
+            setIsLoading(false);
         };
 
     }, [isAuthenticated, fetchSessions, productId, jwtToken]);
@@ -182,46 +182,46 @@ export const useChat = (initialProductId: string) => {
         if (productId) {
             connectWebSocket(initialSessionIdFromUrl);
         }
-        
+
         return () => {
-             if (ws.current) { ws.current.close(); }
+            if (ws.current) { ws.current.close(); }
         };
     }, [productId, connectWebSocket, initialSessionIdFromUrl]);
 
     const handleLoadSession = useCallback(async (loadSessionId: string, newProductId: string) => {
-      if (productId !== newProductId) {
-          setProductId(newProductId); 
-          setIsNewSession(false);
-          router.push(`/chat/${newProductId}?session_id=${loadSessionId}`); 
-      } else {
-        connectWebSocket(loadSessionId); 
-      }
-      setMessages([]); 
-      setSessionId(loadSessionId); 
-      setIsSessionLoading(true);
+        if (productId !== newProductId) {
+            setProductId(newProductId);
+            setIsNewSession(false);
+            router.push(`/chat/${newProductId}?session_id=${loadSessionId}`);
+        } else {
+            connectWebSocket(loadSessionId);
+        }
+        setMessages([]);
+        setSessionId(loadSessionId);
+        setIsSessionLoading(true);
     }, [connectWebSocket, productId, router]);
 
     // 새 세션 시작: WebSocket 재연결 (원래 코드 유지)
     const handleNewSession = useCallback(async () => {
-        setMessages([]); 
+        setMessages([]);
         setIsSessionLoading(true);
         setIsNewSession(true);
-        connectWebSocket(); 
+        connectWebSocket();
     }, [connectWebSocket]);
 
     const handleDeleteSession = useCallback(async (deleteSessionId: string) => {
         if (!isAuthenticated || !jwtToken) return;
-        
+
         try {
             const response = await fetch(`${BACKEND_URL}/chat/history/${deleteSessionId}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${jwtToken}` },
             });
-            
+
             if (response.ok) {
                 await fetchSessions();
                 if (deleteSessionId === sessionId) {
-                    await handleNewSession(); 
+                    await handleNewSession();
                 }
             }
         } catch (e) {
@@ -234,30 +234,30 @@ export const useChat = (initialProductId: string) => {
 
         const userMessage: Message = { id: `user-${Date.now()}`, role: 'user', content: content.trim(), timestamp: new Date().toISOString() };
         setMessages(prev => [...prev, userMessage]);
-        setIsLoading(true); 
+        setIsLoading(true);
         setError(null);
 
         try {
-            ws.current.send(content.trim()); 
+            ws.current.send(content.trim());
         } catch (err: any) {
-             setError('메시지 전송 중 오류가 발생했습니다.');
-             setIsLoading(false);
+            setError('메시지 전송 중 오류가 발생했습니다.');
+            setIsLoading(false);
         }
-    }, []); 
-    
+    }, []);
+
     const scrollToBottom = useCallback(() => { /* ... */ }, []);
     useEffect(() => { scrollToBottom(); }, [messages, scrollToBottom]);
 
     const sendFeedback = useCallback(async (
-    messageId: string | number, 
-    feedbackType: 'positive' | 'negative' | null
+        messageId: string | number,
+        feedbackType: 'positive' | 'negative' | null
     ) => {
         try {
-            const response = await fetch(`${BACKEND_URL}/chat/feedback`, { 
+            const response = await fetch(`${BACKEND_URL}/chat/feedback`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    message_id: messageId,      
+                    message_id: messageId,
                     feedback: feedbackType,
                 }),
             });
@@ -283,9 +283,9 @@ export const useChat = (initialProductId: string) => {
         } catch (error) {
             console.error('추천 질문 로드 실패:', error);
             // 에러 발생 시 빈 배열로 두어 UI가 깨지지 않게 함
-            setSuggestedQuestions([]); 
+            setSuggestedQuestions([]);
         }
-    }, [productId]); 
+    }, [productId]);
 
     useEffect(() => {
         fetchSuggestedQuestions();

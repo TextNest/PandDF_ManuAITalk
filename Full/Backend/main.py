@@ -75,12 +75,12 @@ async def add_cors_header(request: Request, call_next):
     response.headers["Access-Control-Allow-Headers"] = "*"
     return response
 
-app.include_router(voice.router, prefix="/voice", tags=["Voice"])
-app.include_router(chat.router, tags=["chat"])
-app.include_router(login.router, tags=["login"],prefix="/api")
+app.include_router(voice.router, prefix="/api", tags=["Voice"])
+app.include_router(chat.router, tags=["chat"], prefix="/api")
+app.include_router(login.router, tags=["login"], prefix="/api")
 app.include_router(ar_models.router, tags=["ar_models"], prefix="/api")
 app.include_router(products.router, tags=["products"], prefix="/api/products")
-app.include_router(faq.router, tags=["faq"])
+app.include_router(faq.router, tags=["faq"], prefix="/api/faqs")
 app.include_router(superadmin.router, tags=["superadmin"], prefix="/api/superadmin")
-app.include_router(logs.router, tags=["logs"])
+app.include_router(logs.router, tags=["logs"], prefix="/api")
 app.include_router(dashboard.router, prefix="/api/dashboard", tags=["Dashboard"])
