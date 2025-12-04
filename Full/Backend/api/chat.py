@@ -189,12 +189,8 @@ async def websocket_endpoint(websocket:WebSocket,pid:str,session_id: Optional[st
             results = await session.execute(text(find_message),
             params={"session_id":session_id})
             code_row = results.mappings().all()
-            if code_row:
-                message_count = len(code_row)
-                last_message = code_row[-1]['content']
-            else:
-                message_count = 0
-                last_message = None
+            message_count = len(code_row)
+            last_message = code_row[-1]['content']
 
             find_sessions = await session.execute(text(find_session),params={"session_id":session_id})
             find_sessions = find_sessions.mappings().one_or_none()

@@ -2,97 +2,111 @@
 // 📄 4. src/components/logs/ReportTable/ReportTable.module.css
 // ============================================ */
 
-/* 화면 전체를 덮는 어두운 배경 */
 .backdrop {
   position: fixed;
-  inset: 0; /* top:0, right:0, bottom:0, left:0 축약 */
-  background: rgba(0, 0, 0, 0.35); /* 주변을 어둡게 */
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000; /* 헤더/테이블 위에 올라오도록 충분히 크게 */
+  z-index: 1000;
 }
 
-/* 가운데 떠 있는 팝업 카드 */
-.modal {
-  background: var(--bg-primary, #ffffff);
+.reportCard {
+  position: relative;
+  background: #ffffff;
   border-radius: 16px;
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
-  width: 100%;
-  max-width: 720px;        /* 팝업 최대 가로 */
-  max-height: 80vh;        /* 너무 길어지면 내부 스크롤 */
+  padding: 16px 20px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  gap: 16px;
+  margin: 0 20px;
 }
 
-/* 상단 헤더 영역 (제목 + 닫기 버튼) */
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 20px;
-  border-bottom: 1px solid var(--border-light, #e5e7eb);
-}
-
-.title {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--text-primary, #111827);
-}
-
-.subtitle {
-  margin-top: 2px;
-  font-size: 13px;
-  color: var(--text-muted, #6b7280);
-}
-
-/* X 버튼 */
 .closeButton {
+  position: absolute;
+  top: 16px;
+  right: 20px;
   border: none;
   background: transparent;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1;
-  color: var(--text-muted, #6b7280);
 }
 
-.closeButton:hover {
-  color: var(--text-primary, #111827);
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
 }
 
-/* 본문 스크롤 영역 */
-.content {
-  padding: 16px 20px 20px;
-  overflow-y: auto;
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
-/* 섹션 구분 */
-.section + .section {
-  margin-top: 16px;
+.infoLabel {
+  font-size: 0.75rem;
+  color: #64748b;
 }
 
-.section h3 {
-  font-size: 14px;
+.infoValue {
+  font-size: 0.875rem;
+}
+
+.resolved {
+  color: #22c55e;
   font-weight: 600;
-  margin-bottom: 8px;
 }
 
-.logBox {
-  padding: 10px 12px;
-  background: var(--bg-secondary, #f9fafb);
-  border-radius: 10px;
-  border: 1px solid var(--border-light, #e5e7eb);
-  max-height: 40vh;
-  overflow-y: auto;
-  font-size: 13px;
-  line-height: 1.5;
+.unresolved {
+  color: #ef4444;
+  font-weight: 600;
 }
 
-/* 작은 화면 대응: 좌우 여백만 조금 줄이기 */
-@media (max-width: 768px) {
-  .modal {
-    margin: 0 12px;
-    max-width: 100%;
-  }
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.statCard {
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-bottom: 0.25rem;
+}
+
+.statValue {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.statUnit {
+  font-size: 0.75rem;
+  margin-left: 0.15rem;
+}
+
+.summaryText {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+.footer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logButton {
+  font-size: 0.875rem;
+  text-decoration: underline;
 }

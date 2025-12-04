@@ -4,7 +4,6 @@ from pydantic import BaseModel
 import io
 import os
 import json
-import asyncio
 
 # Google Cloud Text-to-Speech 비동기 클라이언트 임포트
 from google.cloud import texttospeech_v1 as texttospeech
@@ -34,68 +33,35 @@ class TTSRequest(BaseModel):
     language_code: str = "ko-KR"
     voice_name: str = "ko-KR-Wavenet-B" # 여성 목소리
 
-import re
-
-def split_text_into_chunks(text: str, chunk_size: int = 1000):
-    """텍스트를 문장 경계를 존중하며 청크로 나눕니다."""
-    chunks = []
-    # 문장 분리 (마침표, 물음표, 느낌표 기준)
-    sentences = re.split(r'(?<=[.?!])\s+', text)
-    current_chunk = ""
-    for sentence in sentences:
-        if len(current_chunk) + len(sentence) + 1 <= chunk_size:
-            current_chunk += sentence + " "
-        else:
-            chunks.append(current_chunk.strip())
-            current_chunk = sentence + " "
-    if current_chunk:
-        chunks.append(current_chunk.strip())
-    return chunks
-
 @router.post("/tts", tags=["Voice"])
 async def text_to_speech(request: TTSRequest):
     """
     텍스트를 음성으로 변환하여 오디오 파일(MP3)로 스트리밍합니다.
-    긴 텍스트는 자동으로 분할하여 처리합니다.
     """
     if not tts_client:
         raise HTTPException(status_code=500, detail="TTS client is not initialized. Check server credentials.")
 
     try:
-        text = request.text
-        # Google TTS API의 권장 제한(5000자)보다 여유있게 4000자로 설정
-        if len(text) > 4000:
-            text_chunks = split_text_into_chunks(text)
-            audio_segments = []
+        synthesis_input = texttospeech.SynthesisInput(text=request.text)
 
-            for chunk in text_chunks:
-                synthesis_input = texttospeech.SynthesisInput(text=chunk)
-                voice = texttospeech.VoiceSelectionParams(
-                    language_code=request.language_code, name=request.voice_name
-                )
-                audio_config = texttospeech.AudioConfig(
-                    audio_encoding=texttospeech.AudioEncoding.MP3
-                )
-                response = await tts_client.synthesize_speech(
-                    input=synthesis_input, voice=voice, audio_config=audio_config
-                )
-                audio_segments.append(response.audio_content)
-            
-            combined_audio = b"".join(audio_segments)
-            return StreamingResponse(io.BytesIO(combined_audio), media_type="audio/mpeg")
-        
-        else:
-            synthesis_input = texttospeech.SynthesisInput(text=text)
-            voice = texttospeech.VoiceSelectionParams(
-                language_code=request.language_code, name=request.voice_name
-            )
-            audio_config = texttospeech.AudioConfig(
-                audio_encoding=texttospeech.AudioEncoding.MP3
-            )
-            response = await tts_client.synthesize_speech(
-                input=synthesis_input, voice=voice, audio_config=audio_config
-            )
-            return StreamingResponse(io.BytesIO(response.audio_content), media_type="audio/mpeg")
+        # 목소리 설정 (https://cloud.google.com/text-to-speech/docs/voices 참조)
+        voice = texttospeech.VoiceSelectionParams(
+            language_code=request.language_code,
+            name=request.voice_name
+        )
+
+        # 오디오 출력 형식 설정
+        audio_config = texttospeech.AudioConfig(
+            audio_encoding=texttospeech.AudioEncoding.MP3
+        )
+
+        # API 요청 및 응답
+        response = await tts_client.synthesize_speech(
+            input=synthesis_input, voice=voice, audio_config=audio_config
+        )
+
+        # 오디오 데이터를 스트리밍 응답으로 반환
+        return StreamingResponse(io.BytesIO(response.audio_content), media_type="audio/mpeg")
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"An error occurred during TTS synthesis: {str(e)}")
@@ -208,54 +174,4 @@ async def websocket_stt_endpoint(websocket: WebSocket):
         task.cancel()
     
     # print("STT WebSocket connection closed and tasks cleaned up.")
-
-
-@router.websocket("/ws/tts")
-async def websocket_tts_endpoint(websocket: WebSocket):
-    """
-    WebSocket을 통해 텍스트를 받아 TTS 스트리밍을 실시간으로 전송하고 연결을 종료합니다.
-    """
-    await websocket.accept()
-    
-    if not tts_client:
-        await websocket.close(code=1011, reason="TTS client is not initialized.")
-        return
-
-    try:
-        # 클라이언트로부터 단일 텍스트 메시지(JSON) 수신
-        message = await websocket.receive_text()
-        data = json.loads(message)
-        text = data.get("text")
-        
-        if text:
-            # Google Cloud TTS 요청 생성
-            synthesis_input = texttospeech.SynthesisInput(text=text)
-            voice = texttospeech.VoiceSelectionParams(
-                language_code="ko-KR", name="ko-KR-Wavenet-B"
-            )
-            audio_config = texttospeech.AudioConfig(
-                audio_encoding=texttospeech.AudioEncoding.MP3
-            )
-            
-            response_stream = await tts_client.synthesize_speech(
-                input=synthesis_input, voice=voice, audio_config=audio_config
-            )
-            
-            # 오디오 데이터를 클라이언트로 전송
-            await websocket.send_bytes(response_stream.audio_content)
-
-        # 성공적으로 전송 후 연결 종료
-        await websocket.close()
-        print("TTS WebSocket connection closed by server.")
-
-    except WebSocketDisconnect:
-        # 클라이언트가 먼저 연결을 끊은 경우, 조용히 종료
-        print("Client disconnected from TTS WebSocket.")
-    except Exception as e:
-        # 그 외 예외 처리
-        print(f"An error occurred in TTS WebSocket: {e}")
-        if websocket.client_state.name != 'DISCONNECTED':
-            await websocket.close(code=1011)
-
-
 

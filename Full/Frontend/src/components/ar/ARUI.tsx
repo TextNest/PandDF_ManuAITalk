@@ -36,13 +36,7 @@ const handleSelectItemExternal = (
   setIsDropdownOpen(false);
 };
 
-export default function ARUI({
-  lastUITouchTimeRef,
-  productId,
-}: {
-  lastUITouchTimeRef: React.MutableRefObject<number>;
-  productId?: string;
-}) {
+export default function ARUI({ lastUITouchTimeRef }: { lastUITouchTimeRef: React.MutableRefObject<number> }) {
   const {
     isARActive,
     selectedFurniture,
@@ -56,6 +50,9 @@ export default function ARUI({
     setDebugMessage,
     hasInitialScanCompleted,
   } = useARStore();
+
+  const searchParams = useSearchParams();
+  const productId = searchParams.get('productId');
 
   const { panelRef, panelStyle, handleInteractionStart } = usePanelInteraction(lastUITouchTimeRef);
   const [dbItems, setDbItems] = useState<FurnitureItem[]>([]);
@@ -79,58 +76,57 @@ export default function ARUI({
     const abortController = new AbortController();
     const signal = abortController.signal;
 
-    async function fetchAllItems() {
+    async function fetchAndSetItems() {
       setDebugMessage('가구 정보 로딩 중...');
       try {
-        const response = await apiClient.get<Product[]>('/api/products', { signal });
-        const mappedItems = response.data
-          .filter(p => p.model3d_url && p.status === 'completed')
-          .map(mapProductToFurnitureItem);
-        setDbItems(mappedItems);
-        setDebugMessage('가구 목록 로딩 완료. 배치할 가구를 선택하세요.');
-      } catch (error: any) {
-        // AbortError나 CanceledError는 요청 취소 시 정상적으로 발생할 수 있으므로 오류로 처리하지 않음
-        if (error.name !== 'AbortError' && error.name !== 'CanceledError') {
+        if (productId) {
+          const response = await apiClient.get<Product>(`/api/products/${productId}`, { signal });
+          if (!response.data) {
+            throw new Error('제품을 찾을 수 없습니다.');
+          }
+
+          const productData = response.data;
+          /*
+          // 임시로 상태 검사 비활성화
+          if (productData.status !== 'completed') {
+            throw new Error('제품 분석이 완료되지 않아 AR로 볼 수 없습니다.');
+          }
+          */
+
+          let item = mapProductToFurnitureItem(productData);
+          let debugMsg = `${item.name}이(가) 선택되었습니다. 표면을 스캔하고 배치하세요.`;
+
+          if (!item.model3dUrl) {
+            item = { ...item, model3dUrl: DEFAULT_3D_MODEL_URL };
+            debugMsg = `${item.name}의 3D 모델이 없어 기본 모델로 대체되었습니다.`;
+          }
+          
+          setDbItems([item]);
+          selectFurniture(item); // 자동으로 선택
+          setIsPlacing(true);     // 배치 모드로 전환
+          setDebugMessage(debugMsg);
+        } else {
+          const response = await apiClient.get<Product[]>('/api/products', { signal });
+          const mappedItems = response.data
+            .filter(p => p.model3d_url && p.status === 'completed')
+            .map(mapProductToFurnitureItem);
+          setDbItems(mappedItems);
+          setDebugMessage('가구 목록 로딩 완료. 배치할 가구를 선택하세요.');
+        }
+      } catch (error) {
+        if ((error as Error).name !== 'AbortError') {
           console.error("가구 정보를 불러오는 데 실패했습니다:", error);
-          setDebugMessage(`오류: ${error.message}`);
+          setDebugMessage(`오류: ${(error as Error).message}`);
         }
       }
     }
 
-    // productId가 존재하면, 해당 제품이 selectedFurniture에 설정될 때까지 기다립니다.
-    // selectedFurniture가 이미 설정되어 있다면, 해당 제품만 AR에 표시합니다.
-    if (productId && !selectedFurniture) {
-      // 특정 제품을 로딩 중이므로, 추가적인 전체 아이템 fetch를 하지 않고 기다립니다.
-      setDebugMessage('제품 정보 로딩 중...');
-      return; 
-    }
-
-    if (selectedFurniture) {
-      const itemWithDefaultModel = {
-        ...selectedFurniture,
-        model3dUrl: selectedFurniture.model3dUrl || DEFAULT_3D_MODEL_URL,
-      };
-      setDbItems([itemWithDefaultModel]);
-      // 무한 루프 방지: model3dUrl이 실제로 변경되었을 때만 스토어를 업데이트합니다.
-      if (selectedFurniture.model3dUrl !== itemWithDefaultModel.model3dUrl) {
-        selectFurniture(itemWithDefaultModel); // 스토어에도 기본 모델 URL 업데이트
-      }
-      setIsPlacing(true);
-      let debugMsg = `${selectedFurniture.name}이(가) 선택되었습니다. 표면을 스캔하고 배치하세요.`;
-      if (!selectedFurniture.model3dUrl) {
-        debugMsg = `${selectedFurniture.name}의 3D 모델이 없어 기본 모델로 대체되었습니다.`;
-      }
-      setDebugMessage(debugMsg);
-    } else {
-      // productId가 없거나, selectedFurniture가 null일 경우 전체 목록을 불러옴
-      fetchAllItems();
-    }
+    fetchAndSetItems();
 
     return () => {
       abortController.abort();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedFurniture, productId]);
+  }, [productId, setDebugMessage, selectFurniture, setIsPlacing]);
 
   const handleClearFurniture = () => {
     triggerClearFurniture();
@@ -171,7 +167,7 @@ export default function ARUI({
               <div className={styles.section}>
                 <h3 className={styles.subSectionTitle}>DB 아이템 선택 ({dbItems.length}개)</h3>
                 <div className={styles.dropdownContainer}>
-                  <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className={styles.dropdownButton} disabled={arStatus === 'SCANNING' || (!!selectedFurniture && dbItems.length === 1)}>
+                  <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className={styles.dropdownButton} disabled={arStatus === 'SCANNING' || !!productId}>
                     {selectedFurniture
                       ? `${selectedFurniture.name || '알 수 없는 제품'} (W:${selectedFurniture.width || 0}, D:${selectedFurniture.depth || 0}, H:${selectedFurniture.height || 0})`
                       : '-- 아이템 선택 --'}

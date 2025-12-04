@@ -13,7 +13,6 @@ import { toast } from '@/store/useToastStore';
 import { Product } from '@/types/product.types';
 import apiClient from '@/lib/api/client';
 import { FurnitureItem } from '@/lib/ar/types';
-import { DEFAULT_3D_MODEL_URL } from '@/lib/ar/constants'; // DEFAULT_3D_MODEL_URL import
 
 export default function SimulationPage() {
   const params = useParams();
@@ -47,7 +46,7 @@ export default function SimulationPage() {
           const mappedFurniture: FurnitureItem = {
             id: product.data.product_id ?? '',
             name: product.data.product_name || '',
-            model3dUrl: product.data.model3d_url ?? DEFAULT_3D_MODEL_URL,
+            model3dUrl: product.data.model3d_url ?? undefined,
             width_mm: product.data.width_mm ?? undefined,
             height_mm: product.data.height_mm ?? undefined,
             depth_mm: product.data.depth_mm ?? undefined,
@@ -115,7 +114,7 @@ export default function SimulationPage() {
       </div>
 
       <div ref={uiOverlayRef} className={styles.arOverlayContainer}>
-        <ARUI lastUITouchTimeRef={lastUITouchTimeRef} productId={productId} />
+        <ARUI lastUITouchTimeRef={lastUITouchTimeRef} />
         <PlacedItemsCard />
       </div>
 
