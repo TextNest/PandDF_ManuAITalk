@@ -63,7 +63,7 @@ export function useFurniturePlacement(
                 ? model3dUrl 
                 : `${baseUrl.replace(/\/$/, '')}/${model3dUrl.replace(/^\//, '')}`;
             
-            setDebugMessage(`모델 로딩 중: ${absoluteUrl}`);
+            setDebugMessage(`모델 로딩 중...`);
             const loader = new GLTFLoader();
             loader.setRequestHeader({ 'ngrok-skip-browser-warning': 'true' });
 
@@ -99,7 +99,7 @@ export function useFurniturePlacement(
                 const errorMessage = error instanceof ErrorEvent 
                     ? error.message 
                     : (typeof error === 'object' && error !== null ? JSON.stringify(error) : String(error));
-                setDebugMessage(`모델 로딩 실패. URL: ${absoluteUrl}, 에러: ${errorMessage}`);
+                setDebugMessage(`모델 로딩 실패. 에러: ${errorMessage}`);
                 
                 const geometry = new BoxGeometry(itemWidthMeters, itemHeightMeters, itemDepthMeters);
                 const material = new MeshStandardMaterial({ color: COLORS.FURNITURE_PREVIEW, transparent: true, opacity: 0.5 });

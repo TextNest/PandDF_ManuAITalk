@@ -170,9 +170,9 @@ export default function ARUI({
             <>
               <h2 className={styles.sectionTitle}>가구 배치(m)</h2>
               <div className={styles.section}>
-                <h3 className={styles.subSectionTitle}>DB 아이템 선택 ({dbItems.length}개)</h3>
+                <h3 className={styles.subSectionTitle}>제품 선택 ({dbItems.length}개)</h3>
                 <div className={styles.dropdownContainer}>
-                  <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className={styles.dropdownButton} disabled={arStatus === 'SCANNING' || (!!selectedFurniture && dbItems.length === 1)}>
+                  <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className={styles.dropdownButton} disabled={arStatus === 'SCANNING'}>
                     {selectedFurniture
                       ? `${selectedFurniture.name || '알 수 없는 제품'} (W:${selectedFurniture.width || 0}, D:${selectedFurniture.depth || 0}, H:${selectedFurniture.height || 0})`
                       : '-- 아이템 선택 --'}
