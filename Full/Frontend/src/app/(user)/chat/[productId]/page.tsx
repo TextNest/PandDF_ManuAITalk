@@ -8,8 +8,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { Send, Mic } from 'lucide-react';
-import { playTextToSpeech } from '@/features/chat/utils/tts';
+import { Send, Mic, Menu } from 'lucide-react'; // Import Menu icon
 import { useAuth } from '@/features/auth/hooks/useAuth';
 import { useChat } from '@/features/chat/hooks/useChat';
 import ChatMessage from '@/components/chat/ChatMessage/ChatMessage';
@@ -20,6 +19,7 @@ import styles from './chat-page.module.css';
 import { toast } from '@/store/useToastStore';
 import { Message } from '@/types/chat.types';
 import { useChatStore } from '@/store/useChatStore'; // useChatStore 임포트
+import TTSPlayer from '@/components/chat/TTSPlayer/TTSPlayer'; // TTSPlayer 임포트
 
 const SUGGESTED_QUESTIONS = [
   '제품 사용법이 궁금해요',
@@ -34,9 +34,10 @@ export default function ChatPage({
   params: { productId: string }
 }) {
   const router = useRouter();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // 인증 상태
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
 
   // 채팅 상태
   const [inputValue, setInputValue] = useState('');
@@ -58,7 +59,7 @@ export default function ChatPage({
   } = useChat(params.productId);
 
   // STT 상태 (useChatStore에서 가져옴)
-  const { isRecording, startRecording, stopRecording } = useChatStore();
+  const { isRecording, startRecording, stopRecording, setCurrentProduct, setLastInputMode } = useChatStore();
   const socketRef = useRef<WebSocket | null>(null);
   const audioProcessorRef = useRef<{
     audioContext: AudioContext;
@@ -70,20 +71,36 @@ export default function ChatPage({
   const lastFinalTranscriptRef = useRef('');
   const silenceTimerRef = useRef<NodeJS.Timeout | null>(null);
   const lastIsRecordingRef = useRef(false);
-  const lastPlayedMessageId = useRef<string | null>(null);
-  const isAutoPlayingRef = useRef(false);
   const isUserSpeakingRef = useRef(false);
+
+  // Set the current product ID in the global store
+  useEffect(() => {
+    if (params.productId) {
+      setCurrentProduct(params.productId);
+    }
+  }, [params.productId, setCurrentProduct]);
 
   // 로그인 배너 상태
   const [showLoginBanner, setShowLoginBanner] = useState(true);
 
   // --- 함수 정의 (컴포넌트 렌더링 로직보다 위에 정의) ---
 
-  const handleSend = useCallback(async () => {
+  // 1. Text input handler
+  const handleTextSend = useCallback(async () => {
     if (!inputValue.trim() || isLoading) return;
+    setLastInputMode('text'); // Set input mode to text
     await sendMessage(inputValue);
     setInputValue('');
-  }, [inputValue, isLoading, sendMessage]);
+  }, [inputValue, isLoading, sendMessage, setLastInputMode]);
+
+  // 2. Voice input handler
+  const sendTranscribedMessage = useCallback(async (text: string) => {
+    if (!text.trim() || isLoading) return;
+    setLastInputMode('voice'); // Set input mode to voice
+    await sendMessage(text);
+    setInputValue('');
+  }, [isLoading, sendMessage, setLastInputMode]);
+
 
   const stopRecordingCallback = useCallback(() => { // 이름 변경: stopRecording은 전역 액션과 이름 충돌
     if (!audioProcessorRef.current) return; // Guard: ref가 없으면 아무것도 하지 않음
@@ -277,37 +294,11 @@ export default function ChatPage({
 
   useEffect(() => {
     // 녹음이 중지되고 입력값이 있을 때 메시지 전송
-    // isRecording이 useChatStore의 상태이므로, 이 Effect는 전역 isRecording 변화에 반응합니다.
     if (lastIsRecordingRef.current && !isRecording && inputValue.trim()) {
-      handleSend();
+      sendTranscribedMessage(inputValue); // 3. Use the new voice-specific handler
     }
     lastIsRecordingRef.current = isRecording;
-  }, [isRecording, inputValue, handleSend]);
-
-  useEffect(() => {
-    const lastMessage = messages[messages.length - 1];
-    if (
-      messages.length > 2 &&
-      lastMessage &&
-      lastMessage.role === 'assistant' &&
-      !isLoading &&
-      lastMessage.id !== lastPlayedMessageId.current &&
-      !isAutoPlayingRef.current
-    ) {
-      isAutoPlayingRef.current = true;
-      lastPlayedMessageId.current = lastMessage.id;
-      playTextToSpeech(lastMessage.content)
-        .then(() => handleMicClick())
-        .catch(err => {
-          if (err.name === 'NotAllowedError') {
-            toast.info("음성 자동 재생이 차단되었습니다. 스피커를 클릭해 들어보세요.", 5000);
-          }
-        })
-        .finally(() => {
-          isAutoPlayingRef.current = false;
-        });
-    }
-  }, [messages, isLoading, handleMicClick]);
+  }, [isRecording, inputValue, sendTranscribedMessage]);
 
   const handleGoogleLogin = () => {
     const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
@@ -334,9 +325,15 @@ export default function ChatPage({
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      handleSend();
+      handleTextSend(); // 4. Use the new text-specific handler
     }
   };
+
+  // handlers for SessionHistory
+  const handleLogin = () => router.push('/login');
+  const handleLogout = () => logout();
+  const handleNavigate = (path: string) => router.push(path);
+
 
   // --- 렌더링 로직 ---
 
@@ -352,13 +349,20 @@ export default function ChatPage({
 
   return (
     <div className={styles.chatPage}>
+      <TTSPlayer />
       {/* 세션 히스토리 사이드바 */}
       <SessionHistory
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
         sessions={sessions}
         currentSessionId={sessionId}
         onSelectSession={loadSession}
         onNewSession={startNewSession}
         onDeleteSession={deleteSession}
+        isAuthenticated={isAuthenticated}
+        onLogin={handleLogin}
+        onLogout={handleLogout}
+        onNavigate={handleNavigate}
       />
 
       <div className={styles.chatContent}>
@@ -377,8 +381,15 @@ export default function ChatPage({
           </div>
         )}
 
-        {/* 제품 정보 헤더 - 버튼들 제거 */}
+        {/* 제품 정보 헤더 with new button */}
         <div className={styles.productInfo}>
+          <button 
+            className={styles.sidebarToggleButton} 
+            onClick={() => setIsSidebarOpen(true)}
+            aria-label="대화 기록 열기"
+          >
+            <Menu size={20} />
+          </button>
           <p className={styles.productId}>제품: {params.productId}</p>
         </div>
 
@@ -428,7 +439,7 @@ export default function ChatPage({
           </button>
           <button
             className={styles.sendButton}
-            onClick={handleSend}
+            onClick={handleTextSend} // 4. Use the new text-specific handler
             disabled={!inputValue.trim() || isLoading}
             aria-label="전송"
           >

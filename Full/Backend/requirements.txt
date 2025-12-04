@@ -46,6 +46,10 @@ PyJWT
 google-genai
 opencv-python-headless
 
+# STT & TTS
+google-cloud-texttospeech
+google-cloud-speech
+
 #기타 
 ipython
 pydantic

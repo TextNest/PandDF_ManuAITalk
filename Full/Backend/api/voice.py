@@ -5,6 +5,7 @@ import io
 import os
 import json
 import asyncio
+import re # 정규식 모듈 임포트
 
 # Google Cloud Text-to-Speech 비동기 클라이언트 임포트
 from google.cloud import texttospeech_v1 as texttospeech
@@ -29,6 +30,15 @@ else:
 
 router = APIRouter()
 
+def preprocess_text(text: str) -> str:
+    """TTS 변환 전 텍스트에서 이미지 URL 및 태그를 제거합니다."""
+    if not text:
+        return ""
+    # Markdown 이미지, HTML 이미지 태그, 일반 URL을 찾아 공백으로 대체
+    image_and_url_pattern = r'(\!\[[^\]]*\]\([^)]*\))|(<img[^>]*>)|(https?:\/\/[^\s]+)'
+    processed_text = re.sub(image_and_url_pattern, ' ', text)
+    return processed_text
+
 class TTSRequest(BaseModel):
     text: str
     language_code: str = "ko-KR"
@@ -43,7 +53,12 @@ async def text_to_speech(request: TTSRequest):
         raise HTTPException(status_code=500, detail="TTS client is not initialized. Check server credentials.")
 
     try:
-        synthesis_input = texttospeech.SynthesisInput(text=request.text)
+        # TTS 변환 전 텍스트 전처리
+        processed_text = preprocess_text(request.text)
+        if not processed_text.strip():
+            raise HTTPException(status_code=400, detail="Text is empty after preprocessing.")
+
+        synthesis_input = texttospeech.SynthesisInput(text=processed_text)
 
         # 목소리 설정 (https://cloud.google.com/text-to-speech/docs/voices 참조)
         voice = texttospeech.VoiceSelectionParams(
@@ -181,12 +196,68 @@ async def websocket_stt_endpoint(websocket: WebSocket):
 async def websocket_tts_endpoint(websocket: WebSocket):
     """
     WebSocket을 통해 텍스트를 받아 TTS 스트리밍을 실시간으로 전송하고 연결을 종료합니다.
+    긴 텍스트는 5000 byte 미만으로 분할하여 순차적으로 처리합니다.
     """
     await websocket.accept()
     
     if not tts_client:
         await websocket.close(code=1011, reason="TTS client is not initialized.")
         return
+
+    def chunk_text(text: str, max_chunk_bytes: int = 3000):
+        """텍스트를 문장 단위로 자르되, 최대 byte 길이를 넘지 않도록 분할합니다."""
+        import re
+        sentences = re.split(r'(?<=[.!?])\s+', text) # 문장 단위 분할
+        if not sentences:
+            return [text] if text.strip() else []
+
+        chunks = []
+        current_chunk_parts = []
+        current_chunk_bytes = 0
+
+        for sentence in sentences:
+            sentence_bytes = len(sentence.encode('utf-8'))
+            
+            # 현재 청크에 문장을 추가할 수 없는 경우
+            if current_chunk_bytes + sentence_bytes + len(" ".encode('utf-8')) > max_chunk_bytes:
+                # 현재 청크에 내용이 있다면 추가하고 초기화
+                if current_chunk_parts:
+                    chunks.append(" ".join(current_chunk_parts).strip())
+                current_chunk_parts = []
+                current_chunk_bytes = 0
+                
+                # 문장 자체가 너무 긴 경우 처리
+                if sentence_bytes > max_chunk_bytes:
+                    # 문장을 더 작은 바이트 단위로 분할
+                    temp_sentence = sentence
+                    while len(temp_sentence.encode('utf-8')) > max_chunk_bytes:
+                        split_point = 0
+                        for i in range(len(temp_sentence)):
+                            if len(temp_sentence[:i+1].encode('utf-8')) <= max_chunk_bytes:
+                                split_point = i + 1
+                            else:
+                                break
+                        chunks.append(temp_sentence[:split_point].strip())
+                        temp_sentence = temp_sentence[split_point:].strip()
+                    if temp_sentence:
+                        current_chunk_parts.append(temp_sentence)
+                        current_chunk_bytes = len(temp_sentence.encode('utf-8'))
+                    continue # 다음 문장으로 넘어감
+
+            # 현재 청크에 문장 추가
+            current_chunk_parts.append(sentence)
+            current_chunk_bytes += sentence_bytes + len(" ".encode('utf-8')) # 공백 포함
+
+        # 마지막 청크 추가
+        if current_chunk_parts:
+            chunks.append(" ".join(current_chunk_parts).strip())
+            
+        # 모든 청크가 비어있을 경우 (원문이 공백인 경우 등)
+        if not chunks and text.strip():
+            # 안전장치: 위의 로직으로도 청크가 안 만들어지면 원문을 그대로 반환 (오류 방지)
+            chunks.append(text.strip())
+
+        return chunks
 
     try:
         # 클라이언트로부터 단일 텍스트 메시지(JSON) 수신
@@ -195,25 +266,37 @@ async def websocket_tts_endpoint(websocket: WebSocket):
         text = data.get("text")
         
         if text:
-            # Google Cloud TTS 요청 생성
-            synthesis_input = texttospeech.SynthesisInput(text=text)
-            voice = texttospeech.VoiceSelectionParams(
-                language_code="ko-KR", name="ko-KR-Wavenet-B"
-            )
-            audio_config = texttospeech.AudioConfig(
-                audio_encoding=texttospeech.AudioEncoding.MP3
-            )
+            # TTS 변환 전 텍스트 전처리
+            processed_text = preprocess_text(text)
+            if not processed_text.strip():
+                # 전처리 후 텍스트가 비어있으면 아무것도 하지 않고 연결 종료
+                await websocket.close()
+                return
+
+            # 텍스트를 5000 byte 미만 청크로 분할
+            text_chunks = chunk_text(processed_text)
             
-            response_stream = await tts_client.synthesize_speech(
-                input=synthesis_input, voice=voice, audio_config=audio_config
-            )
-            
-            # 오디오 데이터를 클라이언트로 전송
-            await websocket.send_bytes(response_stream.audio_content)
+            for chunk_index, chunk in enumerate(text_chunks):
+                print(f"Processing chunk {chunk_index + 1}/{len(text_chunks)} (bytes: {len(chunk.encode('utf-8'))}): {chunk[:50]}...")
+                # Google Cloud TTS 요청 생성
+                synthesis_input = texttospeech.SynthesisInput(text=chunk)
+                voice = texttospeech.VoiceSelectionParams(
+                    language_code="ko-KR", name="ko-KR-Wavenet-B"
+                )
+                audio_config = texttospeech.AudioConfig(
+                    audio_encoding=texttospeech.AudioEncoding.MP3
+                )
+                
+                response_stream = await tts_client.synthesize_speech(
+                    input=synthesis_input, voice=voice, audio_config=audio_config
+                )
+                
+                # 오디오 데이터를 클라이언트로 전송
+                await websocket.send_bytes(response_stream.audio_content)
 
         # 성공적으로 전송 후 연결 종료
         await websocket.close()
-        print("TTS WebSocket connection closed by server.")
+        print("TTS WebSocket connection closed by server after streaming all chunks.")
 
     except WebSocketDisconnect:
         # 클라이언트가 먼저 연결을 끊은 경우, 조용히 종료
@@ -222,7 +305,7 @@ async def websocket_tts_endpoint(websocket: WebSocket):
         # 그 외 예외 처리
         print(f"An error occurred in TTS WebSocket: {e}")
         if websocket.client_state.name != 'DISCONNECTED':
-            await websocket.close(code=1011)
+            await websocket.close(code=1011, reason=f"TTS Error: {e}")
 
 
 

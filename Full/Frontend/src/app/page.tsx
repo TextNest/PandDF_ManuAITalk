@@ -170,7 +170,7 @@ export default function HomePage() {
           </div>
 
           <p className={styles.tagline}>
-            AI가 제품 설명서를 읽어드립니다
+            AI가 제품 설명서를 읽어드립니다.
           </p>
 
           <p className={styles.description}>

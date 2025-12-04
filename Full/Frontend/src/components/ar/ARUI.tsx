@@ -97,10 +97,11 @@ export default function ARUI({
       }
     }
 
-    // productId가 존재하면, 해당 제품이 selectedFurniture에 설정될 때까지 기다립니다.
-    // selectedFurniture가 이미 설정되어 있다면, 해당 제품만 AR에 표시합니다.
-    if (productId && !selectedFurniture) {
-      // 특정 제품을 로딩 중이므로, 추가적인 전체 아이템 fetch를 하지 않고 기다립니다.
+    const productInStoreMatchesUrl = selectedFurniture?.id?.toString() === productId;
+
+    if (productId && !productInStoreMatchesUrl) {
+      // productId가 URL에 있지만, 스토어에 제품이 없거나 다른 제품이 있는 경우
+      // 올바른 데이터가 외부에서 fetch되고 스토어에 설정될 때까지 로딩 상태를 표시하고 기다립니다.
       setDebugMessage('제품 정보 로딩 중...');
       return; 
     }
