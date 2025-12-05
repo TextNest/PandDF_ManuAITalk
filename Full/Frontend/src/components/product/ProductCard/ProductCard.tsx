@@ -10,7 +10,6 @@ import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation'; // useRouter 임포트
 import {
   MoreVertical,
-  Edit,
   Trash2,
   Power,
   QrCode,
@@ -73,7 +72,6 @@ export default function ProductCard({ product, onProductUpdate, onProductDelete 
       setIsMenuOpen(false);
       return;
     }
-    console.log('수정하기:', product.product_id);
     const encodedProductId = encodeURIComponent(product.product_id);
     router.push(`/products/edit/${encodedProductId}`); // 수정 페이지로 이동
     setIsMenuOpen(false);

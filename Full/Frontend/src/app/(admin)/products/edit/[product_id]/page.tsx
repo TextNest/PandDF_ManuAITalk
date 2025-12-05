@@ -35,7 +35,7 @@ export default function EditProductPage() {
         }
         setProduct(response.data);
       } catch (err: any) {
-        console.error('제품 정보 불러오기 실패:', err);
+        console.error('[ProductEdit] fetch failed:', err);
         setError(err.response?.data?.detail || err.message || '알 수 없는 오류');
       } finally {
         setLoading(false);
@@ -47,7 +47,6 @@ export default function EditProductPage() {
 
   const handleSubmit = async (data: Partial<ProductUpdate>) => {
     try {
-      console.log('제품 수정 데이터:', data);
       const response = await apiClient.put(`/api/products/${product_id}`, data);
 
       if (response.status !== 200) {
@@ -57,7 +56,7 @@ export default function EditProductPage() {
       alert('제품이 성공적으로 수정되었습니다!');
       router.push('/products');
     } catch (err: any) {
-      console.error('제품 수정 실패:', err);
+      console.error('[ProductEdit] update failed:', err);
       alert(`제품 수정에 실패했습니다: ${err.response?.data?.detail || err.message || '알 수 없는 오류'}`);
     }
   };

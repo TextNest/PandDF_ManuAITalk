@@ -1,22 +1,6 @@
 // ============================================
 // 📄 src/types/log.types.ts
 // ============================================
-// 로그 관련 타입 정의 (ver.0.1)
-// ============================================
-
-export interface ChatLog {
-  id: string;
-  productId: string;
-  productName: string;
-  question: string;
-  answer: string;
-  responseTime: number; // ms
-  wasHelpful: boolean | null;
-  timestamp: Date;
-  userId?: string;
-}
-
-// ============================================
 // 로그 관련 타입 재정의 (ver.2.0)
 // ============================================
 

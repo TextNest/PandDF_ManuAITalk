@@ -54,9 +54,9 @@ export default function ProductsPage() {
       } catch (err: any) {
         // AbortError(fetch) 또는 CanceledError(axios)는 정상적인 취소이므로 무시
         if (err.name === 'AbortError' || err.name === 'CanceledError') {
-          console.log('Fetch was canceled, this is expected in development.');
+          return;
         } else {
-          console.error("Error in fetchProducts:", err);
+          console.error("[fetchProducts] fetch failed:", err);
           setError(err.message || '알 수 없는 오류가 발생했습니다.');
         }
       } finally {

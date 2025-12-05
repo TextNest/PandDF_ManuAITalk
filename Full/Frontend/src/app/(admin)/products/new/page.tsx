@@ -19,8 +19,6 @@ export default function NewProductPage() {
 
   const handleSubmit = async (data: Omit<ProductFormData, 'company_internal_id'>) => {
     try {
-      console.log('제품 등록 데이터:', data);
-
       // apiClient를 사용하여 인증된 요청 전송
       await apiClient.post('/api/products/', data);
       
@@ -30,7 +28,7 @@ export default function NewProductPage() {
       router.refresh(); // 페이지를 새로고침하여 목록에 새 제품이 보이도록 함
       
     } catch (error: any) {
-      console.error('제품 등록 실패:', error);
+      console.error('[ProductNew] register failed:', error);
       
       // API 에러 응답에서 상세 메시지 추출
       let errorMessage = '알 수 없는 오류가 발생했습니다.';

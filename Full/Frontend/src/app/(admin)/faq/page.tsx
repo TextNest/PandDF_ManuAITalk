@@ -41,9 +41,6 @@ export default function FAQPage() {
           params.status = statusFilter;
         }
 
-        const apiUrl = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}${API_ENDPOINTS.FAQ.LIST}`;
-        console.log('FAQ API 호출:', apiUrl, params);
-
         const response = await apiClient.get(API_ENDPOINTS.FAQ.LIST, { params });
         const convertedFAQs = convertFAQResponseArrayToFAQArray(response.data);
         setFaqs(convertedFAQs);
@@ -70,39 +67,6 @@ export default function FAQPage() {
     fetchFAQs();
   }, [statusFilter]);
 
-  // FAQ 목록 다시 불러오기
-  const refreshFAQs = async () => {
-    try {
-      setIsLoading(true);
-      setError(null);
-
-      const params: { status?: string; limit?: number } = {
-        limit: 1000,
-      };
-
-      if (statusFilter !== 'all' && statusFilter !== 'needsReview') {
-        params.status = statusFilter;
-      }
-
-      const response = await apiClient.get(API_ENDPOINTS.FAQ.LIST, { params });
-      const convertedFAQs = convertFAQResponseArrayToFAQArray(response.data);
-      setFaqs(convertedFAQs);
-    } catch (err: any) {
-      console.error('FAQ 조회 실패:', err);
-      let errorMessage = 'FAQ를 불러오는데 실패했습니다.';
-      if (err.code === 'ERR_NETWORK' || err.message === 'Network Error') {
-        errorMessage = '네트워크 오류가 발생했습니다. 백엔드 서버가 실행 중인지 확인해주세요.';
-      } else if (err.response) {
-        errorMessage = `서버 오류: ${err.response.status} - ${err.response.data?.detail || err.response.statusText}`;
-      } else if (err.message) {
-        errorMessage = err.message;
-      }
-      setError(new Error(errorMessage));
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   // FAQ 업데이트 핸들러
   const handleFAQUpdate = (updatedFaq: FAQ) => {
     setFaqs(prevFaqs =>
@@ -122,8 +86,6 @@ export default function FAQPage() {
 
   // 검색 쿼리에 따른 필터링 (클라이언트 측)
   const filteredFAQs = faqs.filter(faq => {
-    console.log('statusFilter:', statusFilter);
-    console.log('faqs status 목록:', faqs.map(f => f.status));
     // 1) 상태 필터 먼저 적용
     if (statusFilter === 'needsReview') {
       if (faq.status !== 'draft' && faq.status !== 'candidate') return false;

@@ -10,7 +10,6 @@ import { useState, useEffect } from 'react';
 import {  
   History, 
 } from 'lucide-react';
-import Button from '@/components/ui/Button/Button';
 import RecentSessionTable from '@/components/logs/RecentSessionTable/RecentSessionTable';
 import SessionFilterTable from '@/components/logs/SessionFilter/SessionFilter';
 import SessionTable from '@/components/logs/SessionTable/SessionTable';
@@ -68,11 +67,10 @@ export default function LogsPage() {
         const res = await apiClient.get<SessionRecent[]>(
           API_ENDPOINTS.LOGS.RECENT
         );
-        console.log('최근 문의 결과',res.data);
 
         setRecentSessions(res.data);
       } catch (error) {
-        console.error('최근 문의 불러오기 실패:', error);
+        console.error('[RecentSessions] fetch failed:', error);
       } finally {
         setRecentLoading(false);
       }
@@ -88,7 +86,7 @@ export default function LogsPage() {
         );
         setProductOptions(res.data);
       } catch (error) {
-        console.error('제품 목록 불러오기 실패:', error);
+        console.error('[ProductOptions] fetch failed:', error);
       }
     };
     fetchProductOptions();
@@ -116,7 +114,7 @@ export default function LogsPage() {
         setSessions(res.data.items);
         setTotalSessions(res.data.total);
       } catch (error) {
-        console.error('세션 목록 불러오기 실패:', error);
+        console.error('[TotalSessions] fetch failed:', error);
       } finally {
         setSessionsLoading(false);
       }
@@ -149,7 +147,6 @@ export default function LogsPage() {
           <RecentSessionTable
             sessions={recentSessions}
             onSelectSession={(sid) => {
-              console.log('최근 문의 클릭:', sid,);
               handleSelectSession(sid);
             }}
           />
@@ -178,7 +175,6 @@ export default function LogsPage() {
         <SessionTable
           sessions={sessions}
           onSelectSession={(sid) => {
-            console.log('세션 선택:', sid);
             handleSelectSession(sid);
           }}
         />

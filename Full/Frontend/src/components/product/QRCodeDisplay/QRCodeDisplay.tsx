@@ -13,8 +13,8 @@ import Button from '@/components/ui/Button/Button';
 import styles from './QRCodeDisplay.module.css';
 
 interface QRCodeDisplayProps {
-  productId: string;
-  productName: string;
+  productId: string | null | undefined;
+  productName: string | null | undefined;
   size?: number;
 }
 
