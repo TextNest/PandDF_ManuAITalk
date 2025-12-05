@@ -371,9 +371,9 @@ export default function ChatPage({
           <div className={styles.loginBanner}>
             <div className={styles.bannerContent}>
               <span>💡 로그인하면 이전 대화 기록을 확인할 수 있어요!</span>
-              <button className={styles.loginButton} onClick={handleGoogleLogin}>
+              {/* <button className={styles.loginButton} onClick={handleGoogleLogin}>
                 구글로 로그인
-              </button>
+              </button> */}
             </div>
             <button className={styles.closeBanner} onClick={() => setShowLoginBanner(false)} aria-label="배너 닫기">
               ✕

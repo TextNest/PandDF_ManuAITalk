@@ -13,6 +13,8 @@ import type { SessionReport } from "@/types/log.types.ts";
 import apiClient from "@/lib/api/client";
 import { API_ENDPOINTS } from "@/lib/api/endpoints";
 
+import Button from '@/components/ui/Button/Button';
+
 type ReportTableProps = {
   open: boolean;
   sid: number | null;   // session_internal_id (조회용 키)
@@ -182,13 +184,14 @@ export default function ReportTable({
                 {/* (선택) 상세 로그 보기 버튼 */}
                 {onOpenLog && (
                   <div className={styles.footer}>
-                    <button
-                      type="button"
-                      className={styles.logButton}
+                    <Button
+                      variant="primary"
+                      size="md"
                       onClick={onOpenLog}
+                      fullWidth={false}
                     >
                       상세 로그 보기
-                    </button>
+                    </Button>
                   </div>
                 )}
               </>

@@ -14,6 +14,7 @@ from langchain_core.runnables import RunnableConfig
 from module.qa_recommend import RecommendRAGChain
 from sqlalchemy import text 
 import logging
+import os
 
 logging.basicConfig(
     level=logging.INFO, # INFO 레벨 이상만 출력 (DEBUG는 무시)
@@ -35,7 +36,12 @@ _rag_cache = {}
 def get_rag_chain(product_id: str) -> HybridRAGChain:
     if product_id not in _rag_cache:
         print(f"RAG 체인 생성:[{product_id}]")
-        _rag_cache[product_id] = HybridRAGChain(product_id)
+        
+        # 환경변수에서 주소를 가져오고, 없으면 기본값으로 localhost 사용
+        base_url = os.getenv("NEXT_PUBLIC_API_URL", "http://localhost:8000")
+        
+        # 가져온 주소를 넣어줌
+        _rag_cache[product_id] = HybridRAGChain(product_id, local_path=base_url)
     else:
         print(f"[{product_id}] RAG 체인 재사용")
     return _rag_cache[product_id]

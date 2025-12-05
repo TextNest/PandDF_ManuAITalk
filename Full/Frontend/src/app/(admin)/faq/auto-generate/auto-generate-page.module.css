@@ -3,7 +3,16 @@
 // ============================================ */
 
 .page {
-  max-width: 1200px;
+  /* max-width: 1200px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 가로 축 기준 가운데 정렬 */
+}
+
+.header, 
+.content {
+  width: 100%;
+  max-width: 800px; /* 원하는 너비로 조절 */
 }
 
 .header {

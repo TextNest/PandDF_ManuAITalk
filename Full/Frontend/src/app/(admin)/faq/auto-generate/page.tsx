@@ -186,7 +186,7 @@ export default function FAQAutoGeneratePage() {
       <div className={styles.header}>
         <div>
           <h1>
-            <Sparkles size={28} />
+            {/* <Sparkles size={28} /> */}
             FAQ 자동 생성
           </h1>
           <p className={styles.subtitle}>
@@ -302,7 +302,7 @@ export default function FAQAutoGeneratePage() {
 
           {isGenerating && (
             <div className={styles.loadingBox}>
-              <Sparkles size={20} />
+              {/* <Sparkles size={20} /> */}
               <p>FAQ를 생성하는 중입니다...</p>
             </div>
           )}
@@ -314,7 +314,7 @@ export default function FAQAutoGeneratePage() {
               fullWidth
               onClick={handleGenerate}
             >
-              <Sparkles size={20} />
+              {/* <Sparkles size={20} /> */}
               FAQ 생성하기
             </Button>
           )}
