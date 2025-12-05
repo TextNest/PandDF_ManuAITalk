@@ -31,7 +31,7 @@ async def lifespan(app: FastAPI):
     await create_tables()
     # 앱 시작 시 스케줄러 가동
     start_scheduler()
-    asyncio.create_task(Scheduler_ARP(2))
+    asyncio.create_task(Scheduler_ARP())
     yield
     # 앱 종료 시 정리 로직 (필요 시)
 

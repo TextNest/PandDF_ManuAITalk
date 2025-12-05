@@ -271,7 +271,7 @@ class LogQuery_v2:
     FROM tb_message
     WHERE session_internal_id = :sid
     GROUP BY created_at
-    ORDER BY created_at ASC;
+    ORDER BY created_at ASC
     """
 
 # ---------- FAQ 관련 쿼리 ----------

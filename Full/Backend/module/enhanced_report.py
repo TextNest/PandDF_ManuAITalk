@@ -26,7 +26,8 @@ from collections import Counter
 
 __ver__ = 2.1
 
-ACTIVATE = os.environ["AUTOMATIC_REPORT_ACTIVATE"]=="1"
+ACTIVATE = os.getenv("AUTOMATIC_REPORT_ACTIVATE", "0")=="1"
+VERBOSE = int(os.getenv("AUTOMATIC_REPORT_VERBOSE", "0"))
 INTERVAL = int(os.environ.get("AUTOMATIC_REPORT_INTERVAL", "1800"))
 MODEL = os.environ.get("AUTOMATIC_REPORT_MODEL", "gemini-2.5-flash")
 
@@ -71,7 +72,7 @@ def convert_report_v2(log: list, session_iid: str, session_info: dict):
     return rst
 
 def verbose_msg(message:str):
-    return f"""{'-'*40}\n   {message}\n{'-'*40}"""
+    return f"""{'-'*40}{message}{'-'*40}"""
 
 async def search_session(terminal):
     query = text(AutoReportProcess_v2.find_session_for_rep)
@@ -135,16 +136,23 @@ async def reset_report(terminal):
 
 #--------------------------------------------------
 
-async def Scheduler_ARP(verbose:int = 0):
+async def Scheduler_ARP():
     if ACTIVATE:
-        print(verbose_msg("SCHEDULER_ARP : Activated"))
+        print(verbose_msg(f"""
+    SCHEDULER_ARP : Activated
+    --verbose  : {VERBOSE}
+    --interval : {INTERVAL}
+    --model    : {MODEL}
+"""))
         while True:
             try:
-                await execute_report(verbose)
+                await execute_report(VERBOSE)
             except Exception as e:
                 print(f'SCHEDULER_ARP : ERROR!\n>>> {e}')
             await asyncio.sleep(INTERVAL)
     else:
-        print(verbose_msg("SCHEDULER_ARP : Deactivated"))
+        print(verbose_msg(f"""
+    SCHEDULER_ARP : Deactivated
+"""))
         return
 
