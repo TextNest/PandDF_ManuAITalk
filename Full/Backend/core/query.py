@@ -610,7 +610,7 @@ JOIN tb_session s ON m.session_internal_id = s.session_internal_id
 JOIN tb_product p ON s.product_internal_id = p.product_internal_id
 WHERE p.company_internal_id = :company_id
   AND m.role = 'user'
-  AND m.created_at >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+  AND m.created_at >= DATE_SUB(CURDATE(), INTERVAL :days DAY)
 GROUP BY DATE_FORMAT(m.created_at, '%Y-%m-%d')
 ORDER BY date ASC
 """

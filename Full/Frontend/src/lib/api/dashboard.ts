@@ -38,7 +38,7 @@ export const getSuperAdminStats = async (): Promise<SuperAdminStats> => {
     return response.data;
 };
 
-export const getCompanyAdminStats = async (): Promise<CompanyAdminStats> => {
-    const response = await apiClient.get('/api/dashboard/company-admin/stats');
+export const getCompanyAdminStats = async (days: number = 7): Promise<CompanyAdminStats> => {
+    const response = await apiClient.get('/api/dashboard/company-admin/stats', {params: {days}});
     return response.data;
 };

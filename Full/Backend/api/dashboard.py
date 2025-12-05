@@ -58,6 +58,7 @@ async def get_super_admin_stats(
 
 @router.get("/company-admin/stats")
 async def get_company_admin_stats(
+    days: int = 7,
     session: AsyncSession = Depends(get_session),
     current_user: dict = Depends(get_current_user)
 ):
@@ -112,7 +113,7 @@ async def get_company_admin_stats(
 
     # 5. 일별 질문 수 (최근 7일)
     daily_queries_query = get_daily_queries_sql
-    daily_queries_result = await session.execute(text(daily_queries_query), {"company_id": company_id})
+    daily_queries_result = await session.execute(text(daily_queries_query), {"company_id": company_id, "days": days})
     stats['daily_queries'] = [dict(row) for row in daily_queries_result.mappings().all()]
 
     return stats

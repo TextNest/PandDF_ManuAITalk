@@ -15,7 +15,7 @@ import DashboardSkeleton from '@/components/dashboard/DashboardSkeleton/Dashboar
 import styles from './dashboard-page.module.css';
 
 export default function DashboardPage() {
-  const { data, isLoading, error } = useDashboardData();
+  const { data, isLoading, error, days, setDays } = useDashboardData();
 
   // 로딩 중
   if (isLoading) {
@@ -82,7 +82,12 @@ export default function DashboardPage() {
 
       {/* 차트 영역 */}
       <div className={styles.chartsGrid}>
-        <QueryAnalytics data={data.analytics} />
+        {/* QueryAnalytics 컴포넌트에 props로 전달 */}
+        <QueryAnalytics
+          data={data.analytics}
+          days={days}
+          setDays={setDays}
+        />
         <TopQuestions questions={data.topQuestions} />
       </div>
 

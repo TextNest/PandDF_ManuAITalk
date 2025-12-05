@@ -47,6 +47,8 @@ interface DashboardData {
 }
 
 export function useDashboardData() {
+  // 날짜 범위 상태 추가(기본값 7일)
+  const [days, setDays] = useState(7);
   const [data, setData] = useState<DashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -55,8 +57,8 @@ export function useDashboardData() {
     try {
       setIsLoading(true);
 
-      // 실제 API 호출
-      const stats = await getCompanyAdminStats();
+      // 실제 API 호출: 현재 설정된 days 값 전달
+      const stats = await getCompanyAdminStats(days);
 
       // API 응답을 DashboardData 형식으로 변환
       const dashboardData: DashboardData = {
@@ -102,15 +104,18 @@ export function useDashboardData() {
       setIsLoading(false);
     }
   };
-
+  
+  // days가 변경될 때마다 fetchData가 다시 실행되도록 의존성 배열에 추가
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [days]);
 
   return {
     data,
     isLoading,
     error,
     refetch: fetchData,
+    days,
+    setDays,
   };
 }

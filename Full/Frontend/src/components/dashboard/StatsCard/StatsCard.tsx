@@ -50,12 +50,19 @@ export default function StatsCard({
       <div className={styles.content}>
         <div className={styles.value}>{value}</div>
         
-        {change !== undefined && (
+        {/* change가 undefined가 아니고, 0이 아닐 때만 증감 표시 */}
+        {change !== undefined && change !== 0 ? (
           <div className={`${styles.change} ${isPositive ? styles.positive : isNegative ? styles.negative : ''}`}>
-            {isPositive ? <TrendingUp size={16} /> : isNegative ? <TrendingDown size={16} /> : null}
+            {isPositive ? <TrendingUp size={16} /> : <TrendingDown size={16} />}
             <span>{Math.abs(change)}%</span>
           </div>
+        ) : (
+          // change가 없거나 0일 때는 '-' 표시
+          <div className={styles.change}>
+            <span style={{ color: '#9CA3AF' }}>-</span>
+          </div>
         )}
+        
       </div>
     </div>
   );

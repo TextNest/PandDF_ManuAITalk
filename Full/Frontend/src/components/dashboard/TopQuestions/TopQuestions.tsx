@@ -24,7 +24,7 @@ export default function TopQuestions({ questions }: { questions?: any[] }) {
             가장 많이 질문한 제품 Top 5
           </h3>
         </div>
-        <div className={styles.empty}>데이터가 없습니다.</div>
+        <div className={styles.noData}>데이터가 없습니다.</div>
       </div>
     );
   }
