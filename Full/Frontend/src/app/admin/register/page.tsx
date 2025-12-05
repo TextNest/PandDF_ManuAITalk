@@ -340,9 +340,9 @@ export default function RegisterPage() {
               </div>
 
               {/* 추가 정보 안내 */}
-              <div className={styles.infoBox}>
+              {/* <div className={styles.infoBox}>
                 <p>💡 직책 정보는 회원가입 후 프로필 설정에서 추가할 수 있습니다.</p>
-              </div>
+              </div> */}
             </div>
 
             <div className={styles.actions}>

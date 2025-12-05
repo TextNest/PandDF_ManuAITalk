@@ -12,6 +12,9 @@ import type { SessionLog } from "@/types/log.types.ts";
 import apiClient from "@/lib/api/client";
 import { API_ENDPOINTS } from "@/lib/api/endpoints";
 
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+
 type LogTableProps = {
   open: boolean;
   sid: number | null;      // session_internal_id
@@ -134,7 +137,9 @@ export default function LogTable({ open, sid, onClose }: LogTableProps) {
                     <div className={styles.messageBlock}>
                       <div className={styles.messageLabel}>BOT</div>
                       <div className={styles.messageBody}>
-                        {turn.botMessage || "(메시지 없음)"}
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                          {turn.botMessage || "(메시지 없음)"}
+                        </ReactMarkdown>
                       </div>
                     </div>
                   </article>
