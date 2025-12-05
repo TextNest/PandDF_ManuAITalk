@@ -1,0 +1,12 @@
+{
+  "num_pages": 40,
+  "lines_before": 530,
+  "lines_after": 461,
+  "placeholders_removed_estimate": 60,
+  "repeated_lines_removed": 0,
+  "num_repeated_patterns": 0,
+  "repeated_patterns_sample": [],
+  "repeated_threshold": 24,
+  "doc_id": "ATTM115-MWK",
+  "source_parsed_file": "data\\parsed\\ATTM115-MWK.md"
+}

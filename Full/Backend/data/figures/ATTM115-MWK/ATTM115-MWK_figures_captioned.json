@@ -1,0 +1,1333 @@
+{
+  "doc_id": "ATTM115-MWK",
+  "source_pdf": "uploads/pdfs/ATTM115-MWK.pdf",
+  "num_images_total": 48,
+  "num_images_kept": 45,
+  "created_by": "image_captioner_gemini.py",
+  "model": "gemini-2.5-flash",
+  "config": {
+    "CAPTION_MAX_CHARS": 320,
+    "UNSAFE_KEYWORDS": [
+      "폭발",
+      "감전",
+      "사망",
+      "질식",
+      "중독",
+      "화재",
+      "불이 날",
+      "불이날",
+      "가스 누출",
+      "가스누출",
+      "가스가 새",
+      "전기 충격",
+      "전기충격",
+      "고압",
+      "중상",
+      "심각한 부상"
+    ]
+  },
+  "images": [
+    {
+      "file": "data/figures/ATTM115-MWK/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        205,
+        419
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 205.0,
+        "height": 419.0,
+        "aspect_ratio": 0.4892601431980907,
+        "ink_ratio": 0.15846091157808953,
+        "edge_ratio": 0.26184294778508643,
+        "table_line_ratio": 0.12819139647243727,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_001_figure_001.png",
+      "caption_short": "이것은 공기청정기이며, 전체적으로 길고 둥근 원통형 모양이다. 정면에서 본 모습이다. 가장 위쪽에는 둥근 조작부가 있고, 그 중앙에는 'Cloud 9'이라는 글자가 작게 보인다. 조작부 바로 아래쪽에는 매끈한 띠가 둘러져 있으며, 그 가운데에 'WINIX'라는 글자가 선명하게 쓰여 있다. 제품의 몸통 대부분은 위아래로 길게 뻗은 세로줄 무늬로 덮여 있으며, 이는 공기가 드나드는 부분을 나타낸다. 가장 아래쪽은 위쪽과 비슷하게 둥글고 납작한 받침대가 제품을 안정적으로 받치고 있는 모습이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_009_figure_002.png",
+      "page": 9,
+      "index": 2,
+      "size_px": [
+        402,
+        241
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 402.0,
+        "height": 241.0,
+        "aspect_ratio": 1.6680497925311204,
+        "ink_ratio": 0.15114262711339568,
+        "edge_ratio": 0.11358147024215025,
+        "table_line_ratio": 0.07282054458000455,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_009_figure_002.png",
+      "caption_short": "이것은 공기청정기의 위에서 본 모습이다. 제품은 둥근 원반 형태이며, 가장 바깥쪽 원형 부분은 공기가 나오는 공기배출구이다. 이 둥근 원반 전체는 윗면 덮개이다. 윗면 덮개의 중앙에는 둥근 조작부와 표시부가 있다. 조작부의 가운데에는 숫자가 보이는 화면과 여러 기능 버튼이 배열되어 있다. 조작부의 가장 아래쪽에는 공기오염도 표시부가 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_009_figure_003.png",
+      "page": 9,
+      "index": 3,
+      "size_px": [
+        467,
+        346
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 467.0,
+        "height": 346.0,
+        "aspect_ratio": 1.3497109826589595,
+        "ink_ratio": 0.12482826057357874,
+        "edge_ratio": 0.14702132663291703,
+        "table_line_ratio": 0.045295886918097314,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_009_figure_003.png",
+      "caption_short": "이 제품은 공기청정기이며, 길쭉한 원통형 모양을 하고 있다. 뒷면 덮개가 분리된 상태로 제품의 안쪽 구조를 보여주는 모습이다. 가장 위쪽은 둥근 형태로 되어 있고, 그 아래 본체 측면에는 '먼지센서 덮개'라는 작은 사각형 부분이 위치한다. 제품의 왼쪽 기둥 형태 부분은 '본체'라고 불리며, 본체 안에는 회색의 커다란 원통형 '일체형 필터'가 세로로 놓여 있다. 오른쪽에는 본체에서 떨어져 서 있는 곡선 모양의 '뒷면 덮개'가 보인다. 제품의 가장 아래쪽 본체에서는 '전원 플러그' 선이 나와 바닥에 있으며, 전원 플러그 옆에는 '이 제품은 220V 전용입니다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_009_figure_004.png",
+      "page": 9,
+      "index": 4,
+      "size_px": [
+        358,
+        71
+      ],
+      "keep_for_caption": false,
+      "category": "procedure_banner",
+      "tags": [
+        "procedure_banner"
+      ],
+      "metrics": {
+        "width": 358.0,
+        "height": 71.0,
+        "aspect_ratio": 5.042253521126761,
+        "ink_ratio": 0.07624518058069085,
+        "edge_ratio": 0.05444960264379574,
+        "table_line_ratio": 0.03997167361712173,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": true
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_010_figure_005.png",
+      "page": 10,
+      "index": 5,
+      "size_px": [
+        598,
+        250
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 598.0,
+        "height": 250.0,
+        "aspect_ratio": 2.392,
+        "ink_ratio": 0.08808026755852842,
+        "edge_ratio": 0.06216722408026756,
+        "table_line_ratio": 0.047137123745819395,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_010_figure_005.png",
+      "caption_short": "이 부분은 제품의 숫자와 불빛으로 정보를 보여주는 화면이다. 가운데에 숫자가 표시되는 세 개의 전광판 같은 칸이 나란히 있다. 첫 번째 칸 위에는 \"PM2.5\"라고 쓰여 있으며, 이 칸들은 미세먼지 농도, 필터 남은 양, 잠금 모드 상태를 알려준다. 오른쪽에는 \"필터 교체\" 글자와 동그란 불빛이 있다. 이는 필터 남은 양 확인 및 리셋 버튼이다. 필터 교체 후 5초 이상 누르면 필터 사용량을 새로 시작할 수 있다는 설명도 함께 있다. 아래쪽에는 \"약\"과 \"강\" 글자가 있는 가로로 긴 선 모양의 바람 세기 표시등이 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_010_figure_006.png",
+      "page": 10,
+      "index": 6,
+      "size_px": [
+        613,
+        364
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 613.0,
+        "height": 364.0,
+        "aspect_ratio": 1.684065934065934,
+        "ink_ratio": 0.3303649857483463,
+        "edge_ratio": 0.055801050499256044,
+        "table_line_ratio": 0.3036453758313465,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_010_figure_006.png",
+      "caption_short": "이것은 검은색 바탕에 흰색 글자와 표시가 있는 동그란 전자제품 조작부이며, 정면에서 본 모습이다. 조작부 위쪽에는 미세먼지 농도 'PM2.5' 표시창과 그 옆에 '필터 교체' 글자가 보이며, 그 아래에 '약'에서 '강'까지 풍량 조절 막대가 있다. 가운데에는 '슈퍼 청정', '자동', '풍량', '수면', 'Wi-Fi'라고 쓰인 동그란 버튼 다섯 개가 왼쪽부터 차례로 나열되어 있다. 가장 아래쪽에는 조도 센서와 전원 ON/OFF 버튼이 있으며, '수면 모드 버튼'은 길게 누르면 잠금 기능을 사용하거나 해제할 수 있다는 안내가 조작부 오른쪽 아래에 적혀 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_013_figure_007.png",
+      "page": 13,
+      "index": 7,
+      "size_px": [
+        121,
+        121
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 121.0,
+        "height": 121.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.12212280581927464,
+        "edge_ratio": 0.18407212622088656,
+        "table_line_ratio": 0.07219452223208797,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_013_figure_007.png",
+      "caption_short": "장면에는 방 안의 가구와 전자제품들이 보인다. 오른쪽에는 길쭉하고 둥근 기둥 모양의 공기청정기가 바닥에 서 있고, 옆면에는 세로줄 무늬가 있다. 왼쪽에는 낮은 직사각형 수납장 위에 텔레비전과 작은 라디오가 나란히 놓여 있다. 공기청정기는 텔레비전과 라디오 바로 옆에 바싹 붙어 있다. 공기청정기에서 텔레비전과 라디오 쪽으로 번개 모양의 선들이 그려져 있다. 왼쪽 위에는 회색 원 안에 사선이 그어진 금지 표시가 크게 있어서, 전자제품을 가까이 두는 것이 좋지 않음을 알려준다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_013_figure_008.png",
+      "page": 13,
+      "index": 8,
+      "size_px": [
+        118,
+        120
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 118.0,
+        "height": 120.0,
+        "aspect_ratio": 0.9833333333333333,
+        "ink_ratio": 0.09004237288135593,
+        "edge_ratio": 0.1306497175141243,
+        "table_line_ratio": 0.03834745762711864,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_013_figure_008.png",
+      "caption_short": "오른쪽에 키가 큰 원통형 가전제품이 정면을 보고 서 있다. 제품의 가장 위쪽에서는 따뜻한 김이나 공기처럼 보이는 물결 모양 선들이 위로 활발하게 솟아오른다. 제품의 중간부터 아래쪽 몸통에는 촘촘하게 세로로 길게 이어진 가는 줄무늬들이 여러 개 보인다. 제품의 왼쪽에는 커다란 둥근 금지 표시가 있다. 이 표시는 왼쪽 위에서 오른쪽 아래로 빗금이 그어져 있으며, 빗금 안에는 햇살이 비추는 태양 모양이 그려져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_013_figure_009.png",
+      "page": 13,
+      "index": 9,
+      "size_px": [
+        118,
+        117
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 118.0,
+        "height": 117.0,
+        "aspect_ratio": 1.0085470085470085,
+        "ink_ratio": 0.11705055772852382,
+        "edge_ratio": 0.14732724902216426,
+        "table_line_ratio": 0.06555120961900623,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_013_figure_009.png",
+      "caption_short": "오른쪽에는 위아래로 길쭉한 원통 모양의 제품이 바닥에 세워져 있다. 제품의 몸통에는 세로줄 무늬가 있고, 위쪽은 납작하다. 제품의 왼쪽에는 벽에 난 창문처럼 보이는 네모난 구멍이 열려 있다. 이 구멍에서 작은 물방울이나 먼지 같은 것들이 여러 줄기 선을 따라 제품 쪽으로 뿜어져 나오고 있다. 제품 아래 바닥에는 검은색 액체가 흥건하게 고여 있다. 이 모든 장면 위에는 동그라미 안에 비스듬한 선이 그어진 금지 표시가 그려져 있다. 이는 그림의 행동을 하지 말라는 경고이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_013_figure_010.png",
+      "page": 13,
+      "index": 10,
+      "size_px": [
+        116,
+        116
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 116.0,
+        "height": 116.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.10508323424494649,
+        "edge_ratio": 0.10857609988109393,
+        "table_line_ratio": 0.03180737217598097,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_013_figure_010.png",
+      "caption_short": "밝은 파란색 배경 위에 한 장면이 나타난다. 화면 왼쪽 위에는 '하지 마시오'를 뜻하는 동그란 금지 표시가 크게 그려져 있다. 금지 표시의 오른쪽에는 위아래로 길쭉한 원통형의 전자제품이 보인다. 이 제품은 몸통 전체에 세로 방향 줄무늬가 촘촘히 새겨져 있고, 위와 아래는 평평한 면으로 마무리되어 있다. 현재 제품은 단단하고 평평하지 않은, 물결 모양의 울퉁불퉁한 바닥 위에서 오른쪽으로 심하게 기울어져 불안정하게 흔들리는 모습이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_014_figure_011.png",
+      "page": 14,
+      "index": 11,
+      "size_px": [
+        273,
+        125
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 273.0,
+        "height": 125.0,
+        "aspect_ratio": 2.184,
+        "ink_ratio": 0.07610256410256411,
+        "edge_ratio": 0.16835164835164834,
+        "table_line_ratio": 0.03997069597069597,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_014_figure_011.png",
+      "caption_short": "벽에 부착된 하얀색 전기 콘센트가 보인다. 콘센트에는 동그란 구멍 두 개와 위쪽에 접지 단자 구멍이 있다. 흰색 전원 플러그가 이 콘센트 구멍 안으로 꽂히는 중이다. 플러그에서 이어진 얇은 전원 코드는 오른쪽 아래로 내려갔다가 다시 위로 올라가며, 화면 오른쪽 끝에 세로로 길쭉한 전자제품 본체에 연결되어 있다. 이 전자제품 본체는 표면에 세로 줄무늬가 있는 형태이다. 파란색 화살표는 오른쪽에서 왼쪽으로, 플러그가 콘센트 안으로 들어가는 방향을 보여준다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_014_figure_012.png",
+      "page": 14,
+      "index": 12,
+      "size_px": [
+        271,
+        147
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 271.0,
+        "height": 147.0,
+        "aspect_ratio": 1.8435374149659864,
+        "ink_ratio": 0.062027763134774205,
+        "edge_ratio": 0.061776740216381756,
+        "table_line_ratio": 0.04412982905339258,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_014_figure_012.png",
+      "caption_short": "장면 가운데에는 전원 버튼 모양이 자리하고 있다. 이 모양은 굵은 검은색 선으로 이루어진 동그란 원과, 원의 가장 윗부분에서 위로 짧게 솟아오른 세로선으로 구성되어 있다. 원의 오른쪽 아랫부분에는 손 하나가 보인다. 이 손은 얇은 파란색 선으로 윤곽이 그려져 있으며, 검지 손가락을 길게 뻗어 검은색 원 부분을 가리키는 듯한 모습이다. 마치 전원 버튼을 눌러 제품을 켜거나 끄려는 동작을 보여주는 장면이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_014_figure_013.png",
+      "page": 14,
+      "index": 13,
+      "size_px": [
+        271,
+        93
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 271.0,
+        "height": 93.0,
+        "aspect_ratio": 2.913978494623656,
+        "ink_ratio": 0.07959369916279808,
+        "edge_ratio": 0.1033607110264651,
+        "table_line_ratio": 0.04721660119827005,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_014_figure_013.png",
+      "caption_short": "눈앞에는 모서리가 둥근, 가로로 긴 직사각형 모양의 조작부가 있다. 조작부 안에는 왼쪽부터 오른쪽으로 세 개의 동그란 버튼이 나란히 자리하고 있다. 가장 왼쪽에 있는 버튼에는 '슈퍼 청정'이라고 세로로 쓰여 있다. 가장 오른쪽에 있는 버튼에는 '풍량'이라고 쓰여 있다. 가운데 버튼에는 '자동'이라고 쓰여 있으며, 이 버튼 바로 위에는 짧은 파란색 표시등이 켜져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_014_figure_014.png",
+      "page": 14,
+      "index": 14,
+      "size_px": [
+        268,
+        159
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 268.0,
+        "height": 159.0,
+        "aspect_ratio": 1.6855345911949686,
+        "ink_ratio": 0.06298695203229138,
+        "edge_ratio": 0.06922932507274945,
+        "table_line_ratio": 0.039003097718952405,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_014_figure_014.png",
+      "caption_short": "사각형 모양의 화면 정면이 눈앞에 펼쳐져 있다. 이 화면의 가운데 위쪽에는 커다란 둥근 버튼이 하나 자리하고 있다. 버튼 안에는 위에서 아래로 나란히 한글 글자가 쓰여 있는데, 위쪽에는 '슈퍼'가, 아래쪽에는 '청정'이 적혀 있어서 이 버튼이 '슈퍼 청정' 기능을 나타낸다는 것을 알 수 있다. 둥근 버튼의 오른쪽 아래 부분에서는 하늘색 선으로 뚜렷하게 그려진 손이 보인다. 이 손은 검지 손가락을 길게 펴서 '슈퍼 청정' 버튼의 아래쪽 '청정' 글자 부분을 정확히 가리키고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_015_figure_015.png",
+      "page": 15,
+      "index": 15,
+      "size_px": [
+        272,
+        146
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 272.0,
+        "height": 146.0,
+        "aspect_ratio": 1.8630136986301369,
+        "ink_ratio": 0.06265108783239323,
+        "edge_ratio": 0.05595286059629331,
+        "table_line_ratio": 0.05043815471394037,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_015_figure_015.png",
+      "caption_short": "화면의 가운데에는 전자제품의 전원을 켜고 끄는 버튼 모양이 있다. 이 버튼은 둥근 원 모양으로 그려져 있으며, 원의 가장 위쪽 가운데에서 짧은 세로선이 위로 쭉 뻗어 올라가 있다. 이 전원 버튼 모양의 오른쪽 부분을, 화면 오른쪽 아래에서 나타난 파란색 손이 검지 손가락으로 가볍게 누르고 있다. 손가락을 제외한 다른 손 부분은 주먹을 살짝 쥔 듯이 구부러진 모습이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_015_figure_016.png",
+      "page": 15,
+      "index": 16,
+      "size_px": [
+        268,
+        92
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 268.0,
+        "height": 92.0,
+        "aspect_ratio": 2.9130434782608696,
+        "ink_ratio": 0.07219338092147956,
+        "edge_ratio": 0.11145360155743024,
+        "table_line_ratio": 0.03719175859831279,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_015_figure_016.png",
+      "caption_short": "눈앞에는 가로로 길쭉한 직사각형 형태의 평평한 조작부가 보인다. 이 조작부의 정면에는 세 개의 동그란 조절 버튼이 일정한 간격으로 가로 방향으로 줄지어 있다. 가장 왼쪽에 있는 첫 번째 버튼 안에는 '슈퍼청정'이라는 글자가 세로로 쓰여 있다. 가운데에 있는 두 번째 버튼 안에는 '자동'이라는 글자가 세로로 쓰여 있다. 이 '자동' 버튼의 위쪽으로는 활성화되었음을 나타내는 짧은 하늘색 선이 가로로 그어져 있다. 가장 오른쪽에 있는 세 번째 버튼 안에는 '풍량'이라는 글자가 세로로 쓰여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_015_figure_017.png",
+      "page": 15,
+      "index": 17,
+      "size_px": [
+        269,
+        156
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 269.0,
+        "height": 156.0,
+        "aspect_ratio": 1.7243589743589745,
+        "ink_ratio": 0.05128205128205128,
+        "edge_ratio": 0.060766371175293106,
+        "table_line_ratio": 0.031955962253360025,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_015_figure_017.png",
+      "caption_short": "정면에서 본 네모난 화면의 모습이다. 화면의 가운데에는 테두리가 둥근 커다란 버튼이 하나 있다. 이 버튼 안에는 한글로 '자동'이라고 적혀 있다. 오른쪽 아래에서 하늘색 선으로 그려진 손가락이 이 '자동' 버튼의 아랫부분을 누르려는 듯 가리키고 있다. 이것은 제품의 자동 기능을 선택하라는 표시이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_015_figure_018.png",
+      "page": 15,
+      "index": 18,
+      "size_px": [
+        272,
+        145
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 272.0,
+        "height": 145.0,
+        "aspect_ratio": 1.8758620689655172,
+        "ink_ratio": 0.06295638945233266,
+        "edge_ratio": 0.06239858012170385,
+        "table_line_ratio": 0.0515973630831643,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_015_figure_018.png",
+      "caption_short": "하얀 배경 위에 전원을 켜고 끄는 역할을 하는 커다란 검은색 아이콘이 보인다. 이 아이콘은 마치 고리처럼 굵은 선으로 그려진 동그라미 모양인데, 이 동그라미의 맨 위쪽은 살짝 떨어져 비어 있다. 그리고 이 비어있는 공간의 가운데에서 위쪽으로 짧은 세로선이 하나 뻗어 있다. 아이콘의 오른쪽 아래쪽으로는 연한 하늘색 윤곽선으로 그려진 사람의 손이 나타난다. 이 손은 다섯 손가락이 모두 보이며, 검지 손가락을 쭉 펴서 아이콘의 동그란 부분 중 아랫부분을 누르기 직전의 모습이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_016_figure_019.png",
+      "page": 16,
+      "index": 19,
+      "size_px": [
+        270,
+        157
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 270.0,
+        "height": 157.0,
+        "aspect_ratio": 1.7197452229299364,
+        "ink_ratio": 0.058622316584100026,
+        "edge_ratio": 0.06475583864118896,
+        "table_line_ratio": 0.03873555083746166,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_016_figure_019.png",
+      "caption_short": "제품의 조작부 중 하나를 정면에서 본 모습이다. 화면 가운데에 굵은 검은색 선으로 둥근 원이 그려져 있고, 이것은 버튼을 나타낸다. 이 둥근 버튼의 중앙에는 한글로 '풍량'이라는 두 글자가 선명하게 쓰여 있다. 버튼의 오른쪽 아래 부분에는 파란색 윤곽선으로 그려진 손 모양의 커서가 보인다. 커서의 검지 손가락은 '풍량' 버튼의 가장자리 아랫부분을 가리키고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_016_figure_020.png",
+      "page": 16,
+      "index": 20,
+      "size_px": [
+        270,
+        92
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 270.0,
+        "height": 92.0,
+        "aspect_ratio": 2.9347826086956523,
+        "ink_ratio": 0.06980676328502415,
+        "edge_ratio": 0.1000402576489533,
+        "table_line_ratio": 0.0391304347826087,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_016_figure_020.png",
+      "caption_short": "가로로 길고 양쪽 모서리가 둥글게 처리된 네모난 형태의 조작부이다. 이것은 제품의 정면을 바라본 모습이다. 조작부의 중앙에는 세 개의 동그란 버튼이 가로 방향으로 가지런히 놓여 있다. 가장 왼쪽에 있는 첫 번째 버튼 위에는 회색의 짧은 막대 표시등이 있고, 버튼 안에는 '자동'이라고 쓰여 있다. 가운데에 있는 두 번째 버튼 위에는 밝은 파란색의 짧은 막대 표시등이 환하게 켜져 있고, 버튼 안에는 '풍량'이라는 글자가 보인다. 가장 오른쪽에 있는 세 번째 버튼 위에도 회색의 짧은 막대 표시등이 있고, 버튼 안에는 '수면'이라고 쓰여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_016_figure_021.png",
+      "page": 16,
+      "index": 21,
+      "size_px": [
+        271,
+        192
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 271.0,
+        "height": 192.0,
+        "aspect_ratio": 1.4114583333333333,
+        "ink_ratio": 0.22217097170971709,
+        "edge_ratio": 0.07662592250922509,
+        "table_line_ratio": 0.20879458794587946,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_016_figure_021.png",
+      "caption_short": "정면에서 보이는 원형 모양의 전자제품 조작부이다. 가장 위쪽에는 '스마트 센서 표시등'이라는 글자가 있고, 그 아래에는 하늘색의 작은 원형 표시등이 보인다. 조작부 중앙에는 큰 숫자로 '888'이 나타나 있고, 그 위에는 'PM 2.5'라는 작은 글자가 쓰여 있다. 큰 숫자 아래에는 여러 칸으로 나뉜 막대 모양의 표시기와 '좋음, 보통, 나쁨, 매우나쁨'이라는 글자들이 나란히 있다. 조작부의 아래쪽에는 여섯 개의 동그란 버튼이 가로로 줄지어 있다. 왼쪽부터 '수동 풍량', '취침', '예약', '버튼 잠금', '살균', 'Wi-Fi'라고 각각 쓰여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_017_figure_022.png",
+      "page": 17,
+      "index": 22,
+      "size_px": [
+        270,
+        157
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 270.0,
+        "height": 157.0,
+        "aspect_ratio": 1.7197452229299364,
+        "ink_ratio": 0.06112290634583628,
+        "edge_ratio": 0.06275064873790988,
+        "table_line_ratio": 0.04380750176928521,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_017_figure_022.png",
+      "caption_short": "하얀색 네모난 화면이 정면에 보인다. 화면 한가운데에 검은색 선으로 그려진 동그란 버튼이 있다. 이 동그란 버튼 안에는 '수면'이라는 글자가 검은색으로 쓰여 있다. 동그란 버튼의 오른쪽 아래에서 하늘색 손가락이 '수면' 글자를 톡 누르려고 하고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_017_figure_023.png",
+      "page": 17,
+      "index": 23,
+      "size_px": [
+        269,
+        92
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 269.0,
+        "height": 92.0,
+        "aspect_ratio": 2.9239130434782608,
+        "ink_ratio": 0.07063197026022305,
+        "edge_ratio": 0.11103927590108291,
+        "table_line_ratio": 0.039275901082915794,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_017_figure_023.png",
+      "caption_short": "직사각형 형태의 조작부 전면에는 세 개의 동그란 버튼이 가로로 나란히 배치되어 있다. 각 버튼의 바로 위에는 기능 작동 상태를 알려주는 짧은 막대 모양의 표시등이 하나씩 보인다. 가장 왼쪽에 있는 첫 번째 버튼 안에는 '풍량'이라고 쓰여 있고, 그 위 표시등은 현재 꺼져 있는 회색이다. 가운데에 있는 두 번째 버튼 안에는 '수면'이라고 쓰여 있으며, 그 위 표시등은 밝은 하늘색으로 환하게 켜져 있다. 가장 오른쪽에 있는 세 번째 버튼 안에는 'Wi-Fi'라고 적혀 있고, 그 위 표시등은 현재 꺼져 있는 회색이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_017_figure_024.png",
+      "page": 17,
+      "index": 24,
+      "size_px": [
+        271,
+        225
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 271.0,
+        "height": 225.0,
+        "aspect_ratio": 1.2044444444444444,
+        "ink_ratio": 0.07652316523165231,
+        "edge_ratio": 0.05116851168511685,
+        "table_line_ratio": 0.06948749487494875,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_017_figure_024.png",
+      "caption_short": "네모난 전자 화면이 있다. 화면의 왼쪽 위에는 '피엠이점오(PM2.5)'라고 쓰여 있다. 화면 가운데에는 일곱 개의 조각으로 이루어진 디지털 숫자처럼, '큐(Q)' 모양과 '엘(L)' 모양의 글자가 크고 굵게 표시되어 있다. 화면의 가장 왼쪽 아래에는 '약'이라는 한글이 보이고, 그 옆으로는 짧고 굵은 가로 막대가 채워져 있다. 이 가로 막대는 오른쪽으로 계속 이어지면서 길게 비어 있는 상태이다. 화면의 가장 오른쪽 아래에는 '강'이라는 한글이 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_018_figure_025.png",
+      "page": 18,
+      "index": 25,
+      "size_px": [
+        275,
+        186
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 275.0,
+        "height": 186.0,
+        "aspect_ratio": 1.478494623655914,
+        "ink_ratio": 0.06756598240469208,
+        "edge_ratio": 0.08103616813294233,
+        "table_line_ratio": 0.1393548387096774,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_018_figure_025.png",
+      "caption_short": "이것은 전자제품의 평평하고 네모난 조작 화면 일부이다. 화면 왼쪽에는 숫자를 표시하는 큰 영역 두 개가 위에서 아래로 나란히 있다. 각 숫자 표시 영역은 여러 개의 짧은 막대 모양으로 이루어져 있으며, 숫자를 표현할 수 있는 형태이다. 화면의 왼쪽 아래쪽에는 현재 상태를 나타내는 듯한 짧은 가로 막대 표시가 있고, 그 옆에는 '강'이라는 글자가 쓰여 있다. 화면의 오른쪽 가운데에는 '필터 교체'라는 한글 문구가 또렷하게 보이며, 그 아래에는 파란색 윤곽선으로 그려진 손 모양이 검지 손가락으로 위쪽의 '필터 교체' 글자를 가리키고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_018_figure_026.png",
+      "page": 18,
+      "index": 26,
+      "size_px": [
+        269,
+        151
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 269.0,
+        "height": 151.0,
+        "aspect_ratio": 1.781456953642384,
+        "ink_ratio": 0.06499421453014599,
+        "edge_ratio": 0.06883478175238189,
+        "table_line_ratio": 0.046037568625520074,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_018_figure_026.png",
+      "caption_short": "눈앞에는 네모난 모양의 평평한 판이 보인다. 이 판의 정중앙에는 얇은 검은 선으로 그려진 커다란 원형의 표시가 있다. 원의 한가운데에는 'Wi-Fi'라는 글자가 굵고 또렷하게 쓰여 있다. 'W'는 대문자이고, 'i'와 'Fi'는 소문자로 이어진다. 이 원형 표시의 오른쪽 아래에는 사람의 오른손이 파란색 선으로 그려져 있다. 오른손의 검지 손가락은 길게 뻗어져서 원형 표시의 오른쪽 옆 부분에 닿아 있으며, 엄지와 다른 손가락들은 가볍게 접혀 있다. 손가락은 마치 이 원형 표시를 누르려는 듯한 자세를 하고 있는 모습이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_018_figure_027.png",
+      "page": 18,
+      "index": 27,
+      "size_px": [
+        270,
+        93
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 270.0,
+        "height": 93.0,
+        "aspect_ratio": 2.903225806451613,
+        "ink_ratio": 0.078215850258861,
+        "edge_ratio": 0.09956192751891677,
+        "table_line_ratio": 0.04659498207885305,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_018_figure_027.png",
+      "caption_short": "앞에 보이는 것은 모서리가 둥근, 가로로 긴 네모난 조작부이다. 이 조작부 정면의 가운데 부분에 동그란 버튼 세 개가 나란히 놓여 있다. 왼쪽부터 첫 번째 버튼 위에는 회색 선 모양의 표시등이 있고, 버튼 안에는 한글로 '풍량'이라고 쓰여 있다. 가운데 버튼 위에도 똑같은 회색 선 모양의 표시등이 있으며, 버튼 안에는 한글로 '수면'이라고 쓰여 있다. 가장 오른쪽에 있는 세 번째 버튼 위에는 밝은 파란색 선 모양의 표시등이 켜져 있고, 버튼 안에는 영어로 'Wi-Fi'라고 쓰여 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_019_figure_028.png",
+      "page": 19,
+      "index": 28,
+      "size_px": [
+        490,
+        273
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 490.0,
+        "height": 273.0,
+        "aspect_ratio": 1.794871794871795,
+        "ink_ratio": 0.12156686850564402,
+        "edge_ratio": 0.11388203633101593,
+        "table_line_ratio": 0.06684607909097705,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_019_figure_028.png",
+      "caption_short": "눈앞에는 공기청정기에 들어가는 필터가 놓여 있다. 왼쪽에는 위아래로 길쭉하고 둥근 원통 모양의 필터가 보이는데, 옆면에 여러 개의 주름이 잡혀 있다. 이 필터는 아래쪽에 ‘일체형필터’라고 적혀 있다. 오른쪽은 이 필터를 세로로 잘라 내부를 보여주는 단면 모습이다. 가장 바깥쪽 층이 있고, 그 안쪽에는 두 가지 종류의 필터가 겹쳐져 있다. 위쪽에는 ‘콤비필터’라고 쓰인 부분이 있고, 아래쪽에는 ‘프리필터’라고 쓰인 부분이 있다. 이 단면 모습은 ‘필터 단면’이라고 표시되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_020_figure_029.png",
+      "page": 20,
+      "index": 29,
+      "size_px": [
+        513,
+        296
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 513.0,
+        "height": 296.0,
+        "aspect_ratio": 1.7331081081081081,
+        "ink_ratio": 0.09317870502081028,
+        "edge_ratio": 0.09320504715241558,
+        "table_line_ratio": 0.045189926768874136,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_020_figure_029.png",
+      "caption_short": "왼쪽에는 옆에서 본 원통형 공기 필터가 있다. 층층이 가로 주름이 있고, 위에는 '[일체형필터]'라고 적혀 있다. 오른쪽에는 필터 내부 단면이 보인다. 위에는 '[필터 단면]'이라 쓰였고, 왼쪽에서 먼지(파란 점) 섞인 공기가 들어온다. 가장 바깥쪽 촘촘한 그물망 필터는 '1 프리필터'이고, 그 안쪽 두꺼운 격자무늬 필터 여러 겹은 '2 ~ 5 콤비필터'라고 적혀 있다. 필터를 거친 깨끗한 공기는 안쪽에서 위쪽으로 흘러나간다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_022_figure_030.png",
+      "page": 22,
+      "index": 30,
+      "size_px": [
+        273,
+        297
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 273.0,
+        "height": 297.0,
+        "aspect_ratio": 0.9191919191919192,
+        "ink_ratio": 0.09997409997409998,
+        "edge_ratio": 0.14845648178981513,
+        "table_line_ratio": 0.06058139391472725,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_022_figure_030.png",
+      "caption_short": "이 장면에는 높고 둥근 전자제품이 살짝 오른쪽에서 비스듬히 보이는 모습이다. 제품의 맨 위쪽에는 둥근 모양의 구멍들이 보이고, 그 가운데에는 작은 네모난 조작부가 위치해 있다. 제품의 옆면에는 세로줄 무늬가 있는 덮개가 보이며, 이 덮개는 제품 본체에서 바깥쪽으로 당겨져 열리고 있는 중이다. 밝은 하늘색 화살표가 덮개가 당겨지는 오른쪽 방향을 가리키고 있다. 덮개가 열린 안쪽으로는 제품 내부의 빈 공간이 일부 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_022_figure_031.png",
+      "page": 22,
+      "index": 31,
+      "size_px": [
+        271,
+        295
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 271.0,
+        "height": 295.0,
+        "aspect_ratio": 0.9186440677966101,
+        "ink_ratio": 0.09202576771530427,
+        "edge_ratio": 0.09894302332853837,
+        "table_line_ratio": 0.16407530176996685,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_022_figure_031.png",
+      "caption_short": "높고 둥근 기둥 모양의 전자제품을 정면에서 살짝 옆으로 본 모습이다. 제품의 가장 위쪽은 둥글며, 부채꼴 무늬가 촘촘하고 가운데에 작은 조작부가 있다. 제품의 왼쪽 면에 있던 기다란 덮개 하나가 본체에서 앞으로 분리되어 살짝 열려 있다. 덮개가 열린 안쪽 공간에는 길쭉한 회색 필터가 본체 안에 세워져 있고, 이 회색 필터의 오른쪽 면에서 바깥쪽으로 향하는 파란색 화살표가 그려져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_022_figure_032.png",
+      "page": 22,
+      "index": 32,
+      "size_px": [
+        268,
+        226
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 268.0,
+        "height": 226.0,
+        "aspect_ratio": 1.1858407079646018,
+        "ink_ratio": 0.09701492537313433,
+        "edge_ratio": 0.0711596882842425,
+        "table_line_ratio": 0.1944426099590543,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_022_figure_032.png",
+      "caption_short": "투명하고 넓적한 컵 모양의 통 안에 회색 원통이 세워져 있다. 원통은 통 안에 거의 가득 차 있으며, 통의 위쪽은 비어 있다. 원통의 가장 위쪽 면은 평평한 원 모양인데, 그 가운데에 하늘색 화살표가 위를 향해 똑바로 그려져 있다. 이 화살표는 회색 원통을 위쪽으로 당겨 올려야 한다는 것을 알려주는 표시다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_023_figure_033.png",
+      "page": 23,
+      "index": 33,
+      "size_px": [
+        273,
+        297
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 273.0,
+        "height": 297.0,
+        "aspect_ratio": 0.9191919191919192,
+        "ink_ratio": 0.10110876777543444,
+        "edge_ratio": 0.10133076799743466,
+        "table_line_ratio": 0.1601484934818268,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_023_figure_033.png",
+      "caption_short": "키가 크고 둥근 기둥처럼 생긴 전자제품이 앞쪽에서 살짝 오른쪽을 바라보는 모습이다. 제일 위에는 둥글게 구멍이 여러 개 나 있는 부분이 있고, 몸통 왼쪽 편은 열려 있어서 안쪽이 보인다. 열린 틈 안에는 커다란 회색 사각형 부품이 세로로 놓여 있고, 파란색 화살표가 이 부품을 안쪽으로 밀어 넣으라고 가리키고 있다. 몸통의 오른쪽 위편에는 작은 네모난 조작부나 표시등이 보인다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_023_figure_034.png",
+      "page": 23,
+      "index": 34,
+      "size_px": [
+        272,
+        297
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 272.0,
+        "height": 297.0,
+        "aspect_ratio": 0.9158249158249159,
+        "ink_ratio": 0.11758516537928303,
+        "edge_ratio": 0.1496954842543078,
+        "table_line_ratio": 0.06497573776985542,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_023_figure_034.png",
+      "caption_short": "눈앞에 키가 큰 원통형 전자 제품이 보인다. 위에서 비스듬히 앞쪽을 내려다보는 모습이다. 제품의 위쪽 면은 둥글고, 가운데에 작은 조작부가 있으며 주변에는 부채꼴 무늬가 있다. 제품의 오른쪽 앞부분이 열려 있고, 그 안쪽이 비어 있는 모습이다. 오른쪽에는 세로 줄무늬가 있는 길고 평평한 판이 약간 휘어진 채로 놓여 있고, 그 판이 열린 본체 안쪽으로 향하는 파란색 화살표가 그려져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_024_figure_035.png",
+      "page": 24,
+      "index": 35,
+      "size_px": [
+        121,
+        134
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 121.0,
+        "height": 134.0,
+        "aspect_ratio": 0.9029850746268657,
+        "ink_ratio": 0.6387689650918958,
+        "edge_ratio": 0.0775872702602689,
+        "table_line_ratio": 0.6631923029480695,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_024_figure_035.png",
+      "caption_short": "밝은 파란색 배경 위에 모서리가 둥근 네모난 모양의 아이콘이 있다. 아이콘의 가장 위쪽 중앙에는 흰색 글자로 '필터'라고 선명하게 쓰여 있다. 그 아래, 아이콘의 가운데부터 아래쪽까지 커다란 흰색 알파벳 'S'가 자리 잡고 있다. 이 'S'는 위쪽에 있는 '필터' 글자보다 훨씬 크고 두껍게 그려져 아이콘의 주요 시각 요소를 이룬다. 'S'는 중앙을 기준으로 위아래로 길게 이어지는 부드러운 곡선 형태로, 아래쪽으로 갈수록 약간 넓어진다. 전체적으로 '필터'라는 글자와 커다란 'S'가 안정감 있게 배치되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_027_figure_036.png",
+      "page": 27,
+      "index": 36,
+      "size_px": [
+        271,
+        221
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 271.0,
+        "height": 221.0,
+        "aspect_ratio": 1.2262443438914028,
+        "ink_ratio": 0.13414369437812027,
+        "edge_ratio": 0.2005810555843115,
+        "table_line_ratio": 0.09816166034963517,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_027_figure_036.png",
+      "caption_short": "이 장면에는 높고 둥근 원통 모양의 제품이 보인다. 위에서 내려다본 모습과 옆면이 함께 나타나 있다. 제품의 가장 위쪽은 평평하고 둥글며, 가운데에서 바깥쪽으로 여러 개의 선이 퍼져 있다. 그 아래쪽으로는 매끈한 띠 모양의 부분이 둘러져 있고, 이 부분에 'WINIX'라는 글자가 가로로 쓰여 있다. 'WINIX' 글자 아래쪽으로는 원통 전체에 세로로 길고 물결치는 듯한 주름들이 촘촘하게 배열되어 있다. 오른쪽 옆면의 매끈한 띠 부분에서는 손이 부드러운 천을 잡고 닦고 있으며, 닦는 부위 옆에는 반짝이는 작은 별 두 개가 나타나 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_027_figure_037.png",
+      "page": 27,
+      "index": 37,
+      "size_px": [
+        272,
+        168
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 272.0,
+        "height": 168.0,
+        "aspect_ratio": 1.619047619047619,
+        "ink_ratio": 0.12373074229691877,
+        "edge_ratio": 0.18060661764705882,
+        "table_line_ratio": 0.0623468137254902,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_027_figure_037.png",
+      "caption_short": "높고 둥근 형태로 보이는 제품의 안쪽 모습이다. 제품의 한쪽 면이 열려 내부가 시원하게 드러나 있으며, 안쪽 벽면에는 세로로 길게 주름진 연한 파란색 필터가 촘촘히 둘러져 있다. 내부 바닥은 평평한 원형으로 연한 파란색이며, 중앙에 작은 구멍 두 개와 깨끗함을 나타내는 듯한 반짝이는 별 모양 두 개가 보인다. 오른쪽에서는 가늘고 납작한 노즐이 달린 작은 손 청소기가 큰 제품 안쪽 바닥에 닿아 먼지를 빨아들이는 중이다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_028_figure_038.png",
+      "page": 28,
+      "index": 38,
+      "size_px": [
+        274,
+        297
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 274.0,
+        "height": 297.0,
+        "aspect_ratio": 0.9225589225589226,
+        "ink_ratio": 0.11086534444198677,
+        "edge_ratio": 0.14924180982575144,
+        "table_line_ratio": 0.060802673941360075,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_028_figure_038.png",
+      "caption_short": "원통형의 키 큰 전자제품이 바닥에 세워져 있는 모습이다. 제품을 위에서 비스듬히 내려다보는 시점으로, 윗면은 둥글고 중앙에는 작은 조작부가 보인다. 제품의 오른쪽 옆면에는 세로로 긴 덮개가 있는데, 이 덮개가 안쪽에서 바깥쪽으로 당겨지면서 분리되고 있는 중이다. 덮개의 바깥쪽 면에는 가늘고 긴 세로 줄무늬 무늬가 있으며, 오른쪽 끝 부분에는 잡기 쉽게 살짝 튀어나온 손잡이처럼 생긴 부분이 있다. 파란색 화살표는 이 덮개가 오른쪽 방향으로 당겨져 분리되고 있음을 알려준다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_028_figure_039.png",
+      "page": 28,
+      "index": 39,
+      "size_px": [
+        270,
+        295
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 270.0,
+        "height": 295.0,
+        "aspect_ratio": 0.9152542372881356,
+        "ink_ratio": 0.10200878844946641,
+        "edge_ratio": 0.09844318895166353,
+        "table_line_ratio": 0.165323289391086,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_028_figure_039.png",
+      "caption_short": "이 제품은 위쪽이 살짝 좁아지는 원통 모양의 가전제품이다. 왼쪽 앞에서 비스듬히 내려다보는 모습이다. 제품의 맨 위쪽에는 둥근 무늬가 있는 조작부가 보이고, 그 아래 오른쪽 옆면에는 작은 구멍들이 있는 연결 단자가 있다. 왼쪽 옆면의 덮개는 아래쪽으로 길게 열려 있어 제품 내부가 드러나 있다. 안쪽 아래에는 회색으로 된 원통형 필터가 보이고, 이 필터가 제품 본체에서 바깥으로 살짝 빠져나온 상태이다. 필터 오른쪽 옆에는 제품 바깥쪽을 향해 길게 뻗은 파란색 화살표가 그려져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_029_figure_040.png",
+      "page": 29,
+      "index": 40,
+      "size_px": [
+        274,
+        174
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 274.0,
+        "height": 174.0,
+        "aspect_ratio": 1.5747126436781609,
+        "ink_ratio": 0.11748049332997734,
+        "edge_ratio": 0.0920169477305143,
+        "table_line_ratio": 0.24033056464468497,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_029_figure_040.png",
+      "caption_short": "장면의 왼쪽에는 손으로 잡을 수 있는 작은 청소기가 있다. 이 청소기는 곡선 형태의 몸체에 손잡이가 위쪽에 있고, 앞부분에서는 얇고 길쭉한 흡입구가 오른쪽으로 뻗어 있다. 그 오른쪽에는 위로 길쭉하게 서 있는 원통 모양의 물체가 있다. 청소기의 흡입구가 원통의 옆면에 닿아 있고, 흡입구 근처에 반짝이는 작은 별 두 개가 그려져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_030_figure_041.png",
+      "page": 30,
+      "index": 41,
+      "size_px": [
+        272,
+        168
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 272.0,
+        "height": 168.0,
+        "aspect_ratio": 1.619047619047619,
+        "ink_ratio": 0.11383928571428571,
+        "edge_ratio": 0.07341999299719888,
+        "table_line_ratio": 0.17811186974789917,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_030_figure_041.png",
+      "caption_short": "정면에서 살짝 오른쪽으로 비스듬히 본 모습이다. 왼쪽에는 네모난 전자제품 본체가 세로로 길게 서 있다. 본체 옆에는 회색 판 모양의 먼지센서 덮개가 위쪽으로 살짝 들려 있는 상태이다. 이 덮개는 본체 위쪽의 작은 고리 부분으로 연결되어 있다. 덮개의 가운데쯤에는 위에서 아래로 크게 휘어지는 파란색 화살표가 그려져 있는데, 이는 덮개를 아래로 내리는 방향을 가리킨다. 덮개 아래쪽에는 두 개의 가로줄이 볼록하게 표현되어 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_030_figure_042.png",
+      "page": 30,
+      "index": 42,
+      "size_px": [
+        270,
+        169
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 270.0,
+        "height": 169.0,
+        "aspect_ratio": 1.5976331360946745,
+        "ink_ratio": 0.1059171597633136,
+        "edge_ratio": 0.10543502081963621,
+        "table_line_ratio": 0.0581634889327197,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_030_figure_042.png",
+      "caption_short": "사각형 모양의 납작한 부품이 약간 기울어진 채 정면을 향해 있다. 부품의 왼쪽 가운데 부분에는 안쪽으로 깊숙하게 파인 듯한 네모난 홈이 보인다. 이 홈의 오른쪽으로 동그랗게 확대된 장면이 연결되어 있다. 확대된 장면 안에는 위쪽에 '렌즈'라고 적힌 작고 투명한 타원형 부분이 빛나고 있고, 아래쪽에서는 '면봉'이라고 쓰인 막대가 렌즈 표면을 살짝 누르며 닦고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_030_figure_043.png",
+      "page": 30,
+      "index": 43,
+      "size_px": [
+        268,
+        164
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 268.0,
+        "height": 164.0,
+        "aspect_ratio": 1.6341463414634145,
+        "ink_ratio": 0.12479523116126684,
+        "edge_ratio": 0.10236166727338915,
+        "table_line_ratio": 0.051328722242446306,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_030_figure_043.png",
+      "caption_short": "왼쪽에는 전자제품의 일부분인 네모난 모양의 덮개가 보인다. 이 덮개 가운데에는 작은 네모난 구멍이 있다. 이 구멍은 오른쪽의 둥근 확대 그림으로 이어진다. 확대된 둥근 그림 속에는 이 네모난 구멍이 더 크게 나타나 있으며, 안쪽에는 하늘색의 둥근 먼지 센서 렌즈가 있다. 가는 면봉이 이 하늘색 렌즈 부분을 조심스럽게 닦고 있는 모습이다. 렌즈가 닦인 위쪽에는 깨끗해졌음을 보여주는 작은 반짝임 두 개가 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_030_figure_044.png",
+      "page": 30,
+      "index": 44,
+      "size_px": [
+        270,
+        168
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 270.0,
+        "height": 168.0,
+        "aspect_ratio": 1.6071428571428572,
+        "ink_ratio": 0.12414021164021163,
+        "edge_ratio": 0.076168430335097,
+        "table_line_ratio": 0.1886904761904762,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_030_figure_044.png",
+      "caption_short": "어떤 기기의 덮개가 오른쪽 앞에서 비스듬히 보이는 모습이다. 이 덮개는 위쪽으로 열리도록 설계된 직사각형 모양이다. 덮개 위쪽 가장자리는 기기 본체와 연결되어 있고, 덮개 표면에는 가로 방향으로 길게 파인 두 줄의 선이 있다. 덮개 오른쪽 면에는 위로 들어 올릴 때 사용하는 작은 고리 모양의 잠금쇠가 있다. 덮개를 위로 들어 올리는 움직임을 알려주는 곡선 화살표가 오른쪽 아래에서 시작하여 왼쪽 위를 향해 그려져 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_031_figure_045.png",
+      "page": 31,
+      "index": 45,
+      "size_px": [
+        269,
+        171
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 269.0,
+        "height": 171.0,
+        "aspect_ratio": 1.5730994152046784,
+        "ink_ratio": 0.10674145090110655,
+        "edge_ratio": 0.0866757972999413,
+        "table_line_ratio": 0.22741798734755103,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_031_figure_045.png",
+      "caption_short": "가운데에 작은 손잡이형 청소기와 원통형 물체가 놓여 있다. 왼쪽에 있는 청소기는 길쭉한 타원형 몸통을 가졌으며, 위쪽에는 작은 네모난 버튼이 있다. 청소기 오른쪽 끝에서는 길고 납작한 흡입구가 앞으로 길게 뻗어 나와 있다. 이 흡입구는 오른쪽에 위아래가 평평한 높은 원통형 물체의 옆면 가운데쯤에 닿아 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_031_figure_046.png",
+      "page": 31,
+      "index": 46,
+      "size_px": [
+        269,
+        167
+      ],
+      "keep_for_caption": true,
+      "category": "photo_or_diagram",
+      "tags": [],
+      "metrics": {
+        "width": 269.0,
+        "height": 167.0,
+        "aspect_ratio": 1.6107784431137724,
+        "ink_ratio": 0.12659439485341584,
+        "edge_ratio": 0.1757896845713777,
+        "table_line_ratio": 0.05983571889677893,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": false,
+        "is_procedure_banner": false
+      },
+      "caption_file": "data/caption_images/ATTM115-MWK/page_031_figure_046.png",
+      "caption_short": "왼쪽에는 위가 잘려나간 키가 큰 원통형 물체가 보인다. 이 물체의 안쪽 벽은 수직으로 길게 주름 잡힌 필터로 둘러싸여 있다. 이 필터의 안쪽 공간과 바닥은 깨끗하게 닦인 듯 연한 하늘색으로 채워져 있고, 바닥 가운데에는 작은 동그라미 모양의 움푹 들어간 부분이 있다. 바닥의 연한 하늘색 부분에는 작은 반짝이는 표시 두 개가 있다. 오른쪽에는 손으로 잡고 쓰는 작은 청소기가 있다. 이 청소기는 길쭉한 몸체 끝에 납작한 흡입구가 달려 있는데, 흡입구가 왼쪽의 원통형 물체 바닥을 향하고 있다.",
+      "caption_fallback_reason": null
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_040_figure_047.png",
+      "page": 40,
+      "index": 47,
+      "size_px": [
+        36,
+        50
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 36.0,
+        "height": 50.0,
+        "aspect_ratio": 0.72,
+        "ink_ratio": 0.3138888888888889,
+        "edge_ratio": 0.21555555555555556,
+        "table_line_ratio": 0.14277777777777778,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_040_figure_048.png",
+      "page": 40,
+      "index": 48,
+      "size_px": [
+        44,
+        44
+      ],
+      "keep_for_caption": false,
+      "category": "small_icon",
+      "tags": [
+        "small_icon"
+      ],
+      "metrics": {
+        "width": 44.0,
+        "height": 44.0,
+        "aspect_ratio": 1.0,
+        "ink_ratio": 0.440599173553719,
+        "edge_ratio": 0.2334710743801653,
+        "table_line_ratio": 0.27479338842975204,
+        "is_qr_code": false,
+        "qr_heuristic": false,
+        "is_small_icon": true,
+        "is_procedure_banner": false
+      },
+      "caption_file": null,
+      "caption_short": null,
+      "caption_fallback_reason": "not_for_caption"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "doc_id": "ATTM115-MWK",
+  "source_caption_file": "data\\figures\\ATTM115-MWK\\ATTM115-MWK_figures_captioned.json",
+  "num_images_total": 48,
+  "num_keep_for_caption": 45,
+  "num_with_caption_text": 45,
+  "num_chunks_written": 45
+}

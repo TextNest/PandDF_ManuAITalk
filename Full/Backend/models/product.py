@@ -38,7 +38,7 @@ class Product(Base):
     model3d_url = Column(String(255), nullable=True, comment="3D 모델 파일 경로")
 
     width_mm = Column(Float, nullable=True, comment="제품 가로 길이 (mm)")
-    height_mm = Column(Float, nullable=True, comment="제품 세로 길이 (mm)")
+    height_mm = Column(Float, nullable=True, comment="제품 높이 길이 (mm)")
     depth_mm = Column(Float, nullable=True, comment="제품 깊이 길이 (mm)")
 
     created_by = Column(Integer, nullable=True, comment="생성한 관리자 ID") # 추가

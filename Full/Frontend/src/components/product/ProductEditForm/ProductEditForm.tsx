@@ -328,7 +328,7 @@ export default function ProductEditForm({ initialData, onSubmit, onCancel }: Pro
             </div>
             <div className={styles.field}>
               <Input
-                label="세로 (mm)"
+                label="높이 (mm)"
                 type="number"
                 value={formData.height_mm || ''}
                 onChange={(e) => handleChange('height_mm', parseFloat(e.target.value))}

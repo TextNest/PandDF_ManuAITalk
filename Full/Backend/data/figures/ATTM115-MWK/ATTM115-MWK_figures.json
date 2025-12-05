@@ -1,0 +1,439 @@
+{
+  "doc_id": "ATTM115-MWK",
+  "source_pdf": "uploads/pdfs/ATTM115-MWK.pdf",
+  "num_figures": 48,
+  "images": [
+    {
+      "file": "data/figures/ATTM115-MWK/page_001_figure_001.png",
+      "page": 1,
+      "index": 1,
+      "size_px": [
+        205,
+        419
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_009_figure_002.png",
+      "page": 9,
+      "index": 2,
+      "size_px": [
+        402,
+        241
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_009_figure_003.png",
+      "page": 9,
+      "index": 3,
+      "size_px": [
+        467,
+        346
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_009_figure_004.png",
+      "page": 9,
+      "index": 4,
+      "size_px": [
+        358,
+        71
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_010_figure_005.png",
+      "page": 10,
+      "index": 5,
+      "size_px": [
+        598,
+        250
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_010_figure_006.png",
+      "page": 10,
+      "index": 6,
+      "size_px": [
+        613,
+        364
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_013_figure_007.png",
+      "page": 13,
+      "index": 7,
+      "size_px": [
+        121,
+        121
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_013_figure_008.png",
+      "page": 13,
+      "index": 8,
+      "size_px": [
+        118,
+        120
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_013_figure_009.png",
+      "page": 13,
+      "index": 9,
+      "size_px": [
+        118,
+        117
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_013_figure_010.png",
+      "page": 13,
+      "index": 10,
+      "size_px": [
+        116,
+        116
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_014_figure_011.png",
+      "page": 14,
+      "index": 11,
+      "size_px": [
+        273,
+        125
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_014_figure_012.png",
+      "page": 14,
+      "index": 12,
+      "size_px": [
+        271,
+        147
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_014_figure_013.png",
+      "page": 14,
+      "index": 13,
+      "size_px": [
+        271,
+        93
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_014_figure_014.png",
+      "page": 14,
+      "index": 14,
+      "size_px": [
+        268,
+        159
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_015_figure_015.png",
+      "page": 15,
+      "index": 15,
+      "size_px": [
+        272,
+        146
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_015_figure_016.png",
+      "page": 15,
+      "index": 16,
+      "size_px": [
+        268,
+        92
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_015_figure_017.png",
+      "page": 15,
+      "index": 17,
+      "size_px": [
+        269,
+        156
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_015_figure_018.png",
+      "page": 15,
+      "index": 18,
+      "size_px": [
+        272,
+        145
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_016_figure_019.png",
+      "page": 16,
+      "index": 19,
+      "size_px": [
+        270,
+        157
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_016_figure_020.png",
+      "page": 16,
+      "index": 20,
+      "size_px": [
+        270,
+        92
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_016_figure_021.png",
+      "page": 16,
+      "index": 21,
+      "size_px": [
+        271,
+        192
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_017_figure_022.png",
+      "page": 17,
+      "index": 22,
+      "size_px": [
+        270,
+        157
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_017_figure_023.png",
+      "page": 17,
+      "index": 23,
+      "size_px": [
+        269,
+        92
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_017_figure_024.png",
+      "page": 17,
+      "index": 24,
+      "size_px": [
+        271,
+        225
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_018_figure_025.png",
+      "page": 18,
+      "index": 25,
+      "size_px": [
+        275,
+        186
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_018_figure_026.png",
+      "page": 18,
+      "index": 26,
+      "size_px": [
+        269,
+        151
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_018_figure_027.png",
+      "page": 18,
+      "index": 27,
+      "size_px": [
+        270,
+        93
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_019_figure_028.png",
+      "page": 19,
+      "index": 28,
+      "size_px": [
+        490,
+        273
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_020_figure_029.png",
+      "page": 20,
+      "index": 29,
+      "size_px": [
+        513,
+        296
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_022_figure_030.png",
+      "page": 22,
+      "index": 30,
+      "size_px": [
+        273,
+        297
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_022_figure_031.png",
+      "page": 22,
+      "index": 31,
+      "size_px": [
+        271,
+        295
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_022_figure_032.png",
+      "page": 22,
+      "index": 32,
+      "size_px": [
+        268,
+        226
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_023_figure_033.png",
+      "page": 23,
+      "index": 33,
+      "size_px": [
+        273,
+        297
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_023_figure_034.png",
+      "page": 23,
+      "index": 34,
+      "size_px": [
+        272,
+        297
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_024_figure_035.png",
+      "page": 24,
+      "index": 35,
+      "size_px": [
+        121,
+        134
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_027_figure_036.png",
+      "page": 27,
+      "index": 36,
+      "size_px": [
+        271,
+        221
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_027_figure_037.png",
+      "page": 27,
+      "index": 37,
+      "size_px": [
+        272,
+        168
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_028_figure_038.png",
+      "page": 28,
+      "index": 38,
+      "size_px": [
+        274,
+        297
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_028_figure_039.png",
+      "page": 28,
+      "index": 39,
+      "size_px": [
+        270,
+        295
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_029_figure_040.png",
+      "page": 29,
+      "index": 40,
+      "size_px": [
+        274,
+        174
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_030_figure_041.png",
+      "page": 30,
+      "index": 41,
+      "size_px": [
+        272,
+        168
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_030_figure_042.png",
+      "page": 30,
+      "index": 42,
+      "size_px": [
+        270,
+        169
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_030_figure_043.png",
+      "page": 30,
+      "index": 43,
+      "size_px": [
+        268,
+        164
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_030_figure_044.png",
+      "page": 30,
+      "index": 44,
+      "size_px": [
+        270,
+        168
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_031_figure_045.png",
+      "page": 31,
+      "index": 45,
+      "size_px": [
+        269,
+        171
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_031_figure_046.png",
+      "page": 31,
+      "index": 46,
+      "size_px": [
+        269,
+        167
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_040_figure_047.png",
+      "page": 40,
+      "index": 47,
+      "size_px": [
+        36,
+        50
+      ]
+    },
+    {
+      "file": "data/figures/ATTM115-MWK/page_040_figure_048.png",
+      "page": 40,
+      "index": 48,
+      "size_px": [
+        44,
+        44
+      ]
+    }
+  ]
+}

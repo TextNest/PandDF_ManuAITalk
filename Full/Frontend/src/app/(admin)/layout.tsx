@@ -42,10 +42,6 @@ export default function AdminLayout({
                 router.push('/superadmin')
             }   
         }
-        else{
-            router.push('/dashboard')  
-        }
-      
     }
   }, [isAuthenticated, isHydrated, router,isCompanyAdmin,isSuperAdmin]);
 
